@@ -24,226 +24,660 @@
 <!-- 页面内容 -->
 <div class="page-content">
   <div class="container">
+
     <!-- 页面标题 -->
     <div class="page-header mb-48">
       <h1>人力资源服务旗舰店</h1>
-      <p>强化经营性人力资源服务机构日常管理，实施从业人员入库管理，实时监测稳就业服务效能。鼓励优质机构开设“服务网店”，整合岗位发布、视频面试、政策咨询等功能，打破时空限制，实现用工需求与服务供给的高效衔接。</p>
+      <p>强化经营性人力资源服务机构日常管理，实施从业人员入库管理，实时监测稳就业服务效能。鼓励优质机构开设"服务网店"，整合岗位发布、视频面试、政策咨询等功能，打破时空限制，实现用工需求与服务供给的高效衔接。</p>
     </div>
 
     <!-- 核心指标 -->
     <div class="row mb-48">
       <div class="col-3">
         <div class="stat-card">
-          <div class="number">128</div>
+          <div class="number" id="stat-orgs">128</div>
           <div class="label">入驻机构数量</div>
         </div>
       </div>
       <div class="col-3">
         <div class="stat-card">
-          <div class="number">2,456</div>
+          <div class="number" id="stat-jobs">2,456</div>
           <div class="label">发布岗位总数</div>
         </div>
       </div>
       <div class="col-3">
         <div class="stat-card">
-          <div class="number">94.6%</div>
+          <div class="number" id="stat-satisfaction">94.6%</div>
           <div class="label">服务满意度</div>
         </div>
       </div>
       <div class="col-3">
         <div class="stat-card">
-          <div class="number">1,892</div>
+          <div class="number" id="stat-matches">1,892</div>
           <div class="label">本月成功撮合</div>
         </div>
       </div>
     </div>
 
-    <!-- 功能模块 -->
+    <!-- 功能模块入口 -->
     <div class="section-header mb-32">
       <h2>核心功能</h2>
+      <p>点击功能卡片进入对应服务模块</p>
     </div>
-    <div class="row mb-32">
+    <div class="row mb-48">
       <div class="col-4">
-        <div class="feature-card">
+        <div class="feature-card" onclick="showModule('org-manage')">
           <div class="card-header">
             <div class="icon">🏢</div>
             <div class="card-content">
-              <div class="title-row">
-                <h3>机构入库管理</h3>
-              </div>
-              <p>实施从业人员入库管理，建立机构信用档案，实时监测稳就业服务效能，规范人力资源服务市场秩序。</p>
+              <div class="title-row"><h3>机构入库管理</h3></div>
+              <p>实施从业人员入库管理，建立机构信用档案，实时监测稳就业服务效能。</p>
             </div>
             <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
             </svg>
           </div>
-          <div>
-            <span class="tag">从业人员管理</span>
-            <span class="tag">信用评价</span>
-            <span class="tag">效能监测</span>
-          </div>
+          <div><span class="tag">从业人员管理</span><span class="tag">信用评价</span><span class="tag">效能监测</span></div>
         </div>
       </div>
       <div class="col-4">
-        <div class="feature-card">
+        <div class="feature-card" onclick="showModule('online-store')">
           <div class="card-header">
             <div class="icon">🛒</div>
             <div class="card-content">
-              <div class="title-row">
-                <h3>线上服务网店</h3>
-              </div>
-              <p>鼓励优质机构开设"服务网店"，整合岗位发布、视频面试、政策咨询等功能，打破时空限制，提供一站式服务。</p>
+              <div class="title-row"><h3>线上服务网店</h3></div>
+              <p>鼓励优质机构开设"服务网店"，整合岗位发布、视频面试、政策咨询等功能。</p>
             </div>
             <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
             </svg>
           </div>
-          <div>
-            <span class="tag">岗位发布</span>
-            <span class="tag">视频面试</span>
-            <span class="tag">政策咨询</span>
-          </div>
+          <div><span class="tag">岗位发布</span><span class="tag">视频面试</span><span class="tag">政策咨询</span></div>
         </div>
       </div>
       <div class="col-4">
-        <div class="feature-card">
+        <div class="feature-card" onclick="showModule('matching')">
           <div class="card-header">
             <div class="icon">🤝</div>
             <div class="card-content">
-              <div class="title-row">
-                <h3>智能撮合对接</h3>
-              </div>
-              <p>通过线上智能撮合、线下专场对接相结合，定期组织企业与机构供需洽谈会，快速匹配优质人力资源服务。</p>
+              <div class="title-row"><h3>智能撮合对接</h3></div>
+              <p>通过线上智能撮合、线下专场对接相结合，定期组织企业与机构供需洽谈会。</p>
             </div>
             <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
             </svg>
           </div>
-          <div>
-            <span class="tag">智能匹配</span>
-            <span class="tag">专场对接</span>
-            <span class="tag">供需洽谈</span>
-          </div>
+          <div><span class="tag">智能匹配</span><span class="tag">专场对接</span><span class="tag">供需洽谈</span></div>
         </div>
       </div>
     </div>
-
     <div class="row mb-48">
       <div class="col-4">
-        <div class="feature-card">
+        <div class="feature-card" onclick="showModule('dispute')">
           <div class="card-header">
             <div class="icon">⚖️</div>
             <div class="card-content">
-              <div class="title-row">
-                <h3>争议调解机制</h3>
-              </div>
-              <p>在人社部门监督指导下，建立线上服务争议调解机制，保障企业与求职者的合法权益，构建和谐劳动关系。</p>
+              <div class="title-row"><h3>争议调解机制</h3></div>
+              <p>建立线上服务争议调解机制，保障企业与求职者的合法权益。</p>
             </div>
             <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
             </svg>
           </div>
-          <div>
-            <span class="tag">在线调解</span>
-            <span class="tag">权益保障</span>
-            <span class="tag">监督指导</span>
-          </div>
+          <div><span class="tag">在线调解</span><span class="tag">权益保障</span><span class="tag">监督指导</span></div>
         </div>
       </div>
       <div class="col-4">
-        <div class="feature-card">
+        <div class="feature-card" onclick="showModule('rating')">
           <div class="card-header">
             <div class="icon">⭐</div>
             <div class="card-content">
-              <div class="title-row">
-                <h3>星级评价推介</h3>
-              </div>
-              <p>为诚信服务机构赋予星级推介，建立公开透明的评价体系，引导服务机构提升服务质量，促进行业良性发展。</p>
+              <div class="title-row"><h3>星级评价推介</h3></div>
+              <p>为诚信服务机构赋予星级推介，建立公开透明的评价体系。</p>
             </div>
             <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
             </svg>
           </div>
-          <div>
-            <span class="tag">星级评定</span>
-            <span class="tag">诚信推介</span>
-            <span class="tag">质量提升</span>
-          </div>
+          <div><span class="tag">星级评定</span><span class="tag">诚信推介</span><span class="tag">质量提升</span></div>
         </div>
       </div>
       <div class="col-4">
-        <div class="feature-card">
+        <div class="feature-card" onclick="showModule('dashboard')">
           <div class="card-header">
             <div class="icon">📊</div>
             <div class="card-content">
-              <div class="title-row">
-                <h3>数据监测看板</h3>
-              </div>
-              <p>实时监测服务机构运营数据、岗位匹配效率、服务满意度等关键指标，为政策制定和行业监管提供数据支撑。</p>
+              <div class="title-row"><h3>数据监测看板</h3></div>
+              <p>实时监测服务机构运营数据、岗位匹配效率、服务满意度等关键指标。</p>
             </div>
             <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
             </svg>
           </div>
-          <div>
-            <span class="tag">实时监测</span>
-            <span class="tag">数据看板</span>
-            <span class="tag">决策支持</span>
-          </div>
+          <div><span class="tag">实时监测</span><span class="tag">数据看板</span><span class="tag">决策支持</span></div>
         </div>
       </div>
     </div>
 
-    <!-- 优质机构列表 -->
-    <div class="section-header mb-32">
-      <h2>优质服务机构</h2>
-    </div>
-    <div class="card">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>机构名称</th>
-            <th>服务类型</th>
-            <th>星级评分</th>
-            <th>本月撮合量</th>
-            <th>状态</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>XX人力资源有限公司</td>
-            <td>劳务派遣 / 招聘外包</td>
-            <td><span class="star-rating">★★★★★</span> 5.0</td>
-            <td>286</td>
-            <td><span class="status-dot status-success"></span>营业中</td>
-          </tr>
-          <tr>
-            <td>XX人才服务集团</td>
-            <td>高端猎头 / 培训服务</td>
-            <td><span class="star-rating">★★★★☆</span> 4.8</td>
-            <td>198</td>
-            <td><span class="status-dot status-success"></span>营业中</td>
-          </tr>
-          <tr>
-            <td>XX灵活用工平台</td>
-            <td>零工匹配 / 岗位外包</td>
-            <td><span class="star-rating">★★★★☆</span> 4.6</td>
-            <td>412</td>
-            <td><span class="status-dot status-success"></span>营业中</td>
-          </tr>
-          <tr>
-            <td>XX职业培训学校</td>
-            <td>技能培训 / 就业指导</td>
-            <td><span class="star-rating">★★★★★</span> 5.0</td>
-            <td>156</td>
-            <td><span class="status-dot status-warning"></span>审核中</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- 机构列表模块 -->
+    <div id="module-org-list" class="mb-48">
+      <div class="section-header mb-32">
+        <h2>优质服务机构</h2>
+        <p>实时监测入驻机构运营状态与服务效能</p>
+      </div>
+
+      <!-- 搜索和筛选 -->
+      <div class="search-bar">
+        <input type="text" class="form-input" placeholder="搜索机构名称、服务类型..." id="org-search" onkeyup="filterOrgs()">
+        <button class="btn btn-primary" onclick="showModal('add-org-modal')">+ 新增机构</button>
+      </div>
+      <div class="filter-bar mb-24">
+        <select class="form-select" id="filter-type" onchange="filterOrgs()">
+          <option value="">全部服务类型</option>
+          <option value="劳务派遣">劳务派遣</option>
+          <option value="招聘外包">招聘外包</option>
+          <option value="高端猎头">高端猎头</option>
+          <option value="零工匹配">零工匹配</option>
+          <option value="技能培训">技能培训</option>
+        </select>
+        <select class="form-select" id="filter-status" onchange="filterOrgs()">
+          <option value="">全部状态</option>
+          <option value="营业中">营业中</option>
+          <option value="审核中">审核中</option>
+          <option value="已停用">已停用</option>
+        </select>
+        <select class="form-select" id="filter-star" onchange="filterOrgs()">
+          <option value="">全部星级</option>
+          <option value="5">5星</option>
+          <option value="4">4星</option>
+          <option value="3">3星及以下</option>
+        </select>
+      </div>
+
+      <!-- 机构表格 -->
+      <div class="card">
+        <table class="table" id="org-table">
+          <thead>
+            <tr>
+              <th>机构名称</th>
+              <th>服务类型</th>
+              <th>星级评分</th>
+              <th>本月撮合量</th>
+              <th>满意度</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="org-tbody">
+            <tr data-type="劳务派遣,招聘外包" data-star="5">
+              <td><strong>XX人力资源有限公司</strong></td>
+              <td>劳务派遣 / 招聘外包</td>
+              <td><span class="star-rating">★★★★★</span> 5.0</td>
+              <td>286</td>
+              <td><div class="progress-bar"><div class="progress-fill" style="width: 96%;"></div></div><span class="text-small">96%</span></td>
+              <td><span class="badge badge-success">营业中</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="viewOrgDetail(0)">查看</button></td>
+            </tr>
+            <tr data-type="高端猎头,技能培训" data-star="4">
+              <td><strong>XX人才服务集团</strong></td>
+              <td>高端猎头 / 培训服务</td>
+              <td><span class="star-rating">★★★★☆</span> 4.8</td>
+              <td>198</td>
+              <td><div class="progress-bar"><div class="progress-fill" style="width: 92%;"></div></div><span class="text-small">92%</span></td>
+              <td><span class="badge badge-success">营业中</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="viewOrgDetail(1)">查看</button></td>
+            </tr>
+            <tr data-type="零工匹配,岗位外包" data-star="4">
+              <td><strong>XX灵活用工平台</strong></td>
+              <td>零工匹配 / 岗位外包</td>
+              <td><span class="star-rating">★★★★☆</span> 4.6</td>
+              <td>412</td>
+              <td><div class="progress-bar"><div class="progress-fill" style="width: 91%;"></div></div><span class="text-small">91%</span></td>
+              <td><span class="badge badge-success">营业中</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="viewOrgDetail(2)">查看</button></td>
+            </tr>
+            <tr data-type="技能培训,就业指导" data-star="5">
+              <td><strong>XX职业培训学校</strong></td>
+              <td>技能培训 / 就业指导</td>
+              <td><span class="star-rating">★★★★★</span> 5.0</td>
+              <td>156</td>
+              <td><div class="progress-bar"><div class="progress-fill" style="width: 98%;"></div></div><span class="text-small">98%</span></td>
+              <td><span class="badge badge-warning">审核中</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="viewOrgDetail(3)">查看</button></td>
+            </tr>
+            <tr data-type="劳务派遣,招聘外包" data-star="4">
+              <td><strong>XX劳务外包公司</strong></td>
+              <td>劳务派遣 / 产线外包</td>
+              <td><span class="star-rating">★★★★☆</span> 4.5</td>
+              <td>324</td>
+              <td><div class="progress-bar"><div class="progress-fill" style="width: 89%;"></div></div><span class="text-small">89%</span></td>
+              <td><span class="badge badge-success">营业中</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="viewOrgDetail(4)">查看</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
   </div>
 </div>
+
+<!-- 新增机构模态框 -->
+<div class="modal-overlay" id="add-org-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>新增入驻机构</h3>
+      <button class="modal-close" onclick="closeModal('add-org-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">机构名称</label>
+        <input type="text" class="form-input" id="new-org-name" placeholder="请输入机构全称">
+      </div>
+      <div class="form-group">
+        <label class="form-label">统一社会信用代码</label>
+        <input type="text" class="form-input" id="new-org-code" placeholder="请输入统一社会信用代码">
+      </div>
+      <div class="form-group">
+        <label class="form-label">服务类型</label>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <label style="font-size: 14px; display: flex; align-items: center; gap: 4px;"><input type="checkbox" value="劳务派遣"> 劳务派遣</label>
+          <label style="font-size: 14px; display: flex; align-items: center; gap: 4px;"><input type="checkbox" value="招聘外包"> 招聘外包</label>
+          <label style="font-size: 14px; display: flex; align-items: center; gap: 4px;"><input type="checkbox" value="高端猎头"> 高端猎头</label>
+          <label style="font-size: 14px; display: flex; align-items: center; gap: 4px;"><input type="checkbox" value="零工匹配"> 零工匹配</label>
+          <label style="font-size: 14px; display: flex; align-items: center; gap: 4px;"><input type="checkbox" value="技能培训"> 技能培训</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">联系人</label>
+        <input type="text" class="form-input" id="new-org-contact" placeholder="请输入联系人姓名">
+      </div>
+      <div class="form-group">
+        <label class="form-label">联系电话</label>
+        <input type="tel" class="form-input" id="new-org-phone" placeholder="请输入联系电话">
+      </div>
+      <div class="form-group">
+        <label class="form-label">机构简介</label>
+        <textarea class="form-textarea" id="new-org-desc" placeholder="请输入机构简介"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('add-org-modal')">取消</button>
+      <button class="btn btn-primary" onclick="submitNewOrg()">提交审核</button>
+    </div>
+  </div>
+</div>
+
+<!-- 机构详情模态框 -->
+<div class="modal-overlay" id="org-detail-modal">
+  <div class="modal" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3 id="detail-org-name">机构详情</h3>
+      <button class="modal-close" onclick="closeModal('org-detail-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="row mb-24">
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">机构名称</label>
+            <div id="detail-name" class="text-h3"></div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">星级评分</label>
+            <div id="detail-star" style="font-size: 18px;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-24">
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">服务类型</label>
+            <div id="detail-type"></div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">运营状态</label>
+            <div id="detail-status"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-24">
+        <div class="col-4">
+          <div class="stat-card">
+            <div class="number" id="detail-matches" style="font-size: 32px;">0</div>
+            <div class="label">本月撮合量</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-card">
+            <div class="number" id="detail-satisfaction" style="font-size: 32px;">0%</div>
+            <div class="label">服务满意度</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-card">
+            <div class="number" id="detail-employees" style="font-size: 32px;">0</div>
+            <div class="label">从业人员数</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">服务评价</label>
+        <div id="detail-reviews" style="max-height: 200px; overflow-y: auto;"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('org-detail-modal')">关闭</button>
+      <button class="btn btn-primary" onclick="showNotification('已联系机构负责人', 'success')">联系机构</button>
+    </div>
+  </div>
+</div>
+
+<!-- 智能撮合模态框 -->
+<div class="modal-overlay" id="matching-modal">
+  <div class="modal" style="max-width: 600px;">
+    <div class="modal-header">
+      <h3>智能撮合服务</h3>
+      <button class="modal-close" onclick="closeModal('matching-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="steps mb-32">
+        <div class="step active" id="match-step-1">
+          <div class="step-circle">1</div>
+          <div class="step-label">需求发布</div>
+        </div>
+        <div class="step" id="match-step-2">
+          <div class="step-circle">2</div>
+          <div class="step-label">智能匹配</div>
+        </div>
+        <div class="step" id="match-step-3">
+          <div class="step-circle">3</div>
+          <div class="step-label">洽谈对接</div>
+        </div>
+        <div class="step" id="match-step-4">
+          <div class="step-circle">4</div>
+          <div class="step-label">签约合作</div>
+        </div>
+      </div>
+
+      <div id="match-form-1">
+        <div class="form-group">
+          <label class="form-label">企业名称</label>
+          <input type="text" class="form-input" placeholder="请输入企业名称">
+        </div>
+        <div class="form-group">
+          <label class="form-label">服务需求</label>
+          <select class="form-select">
+            <option>请选择服务需求</option>
+            <option>批量招聘</option>
+            <option>劳务派遣</option>
+            <option>高端猎头</option>
+            <option>灵活用工</option>
+            <option>技能培训</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">需求描述</label>
+          <textarea class="form-textarea" placeholder="请详细描述您的服务需求..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">预算范围</label>
+          <input type="text" class="form-input" placeholder="例如：5-10万元/年">
+        </div>
+      </div>
+
+      <div id="match-form-2" style="display: none;">
+        <h3 class="mb-16">智能匹配结果</h3>
+        <div class="card mb-16" style="border-left: 4px solid var(--primary);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h4 style="margin: 0 0 4px 0;">XX人力资源有限公司</h4>
+              <p class="text-small">劳务派遣 / 招聘外包 | 匹配度：98%</p>
+            </div>
+            <span class="badge badge-success">推荐</span>
+          </div>
+        </div>
+        <div class="card mb-16" style="border-left: 4px solid var(--primary);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h4 style="margin: 0 0 4px 0;">XX人才服务集团</h4>
+              <p class="text-small">高端猎头 / 培训服务 | 匹配度：95%</p>
+            </div>
+            <span class="badge badge-info">优质</span>
+          </div>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--primary);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h4 style="margin: 0 0 4px 0;">XX灵活用工平台</h4>
+              <p class="text-small">零工匹配 / 岗位外包 | 匹配度：92%</p>
+            </div>
+            <span class="badge badge-info">优质</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="match-form-3" style="display: none;">
+        <h3 class="mb-16">洽谈对接</h3>
+        <p class="text-body mb-16">系统已为您预约以下洽谈会：</p>
+        <div class="card">
+          <p class="text-small mb-8">📅 时间：2026年5月15日 14:00-16:00</p>
+          <p class="text-small mb-8">📍 地点：线上视频会议室 / 市人社局洽谈大厅A厅</p>
+          <p class="text-small">👥 参会机构：XX人力资源有限公司、XX人才服务集团</p>
+        </div>
+      </div>
+
+      <div id="match-form-4" style="display: none;">
+        <div style="text-align: center; padding: 40px 0;">
+          <div style="font-size: 64px; margin-bottom: 16px;">🎉</div>
+          <h3 class="mb-8">撮合成功！</h3>
+          <p class="text-body">您已与XX人力资源有限公司达成合作意向，请在3个工作日内完成签约。</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" id="match-prev-btn" style="display: none;" onclick="prevMatchStep()">上一步</button>
+      <button class="btn btn-primary" id="match-next-btn" onclick="nextMatchStep()">下一步</button>
+    </div>
+  </div>
+</div>
+
+<!-- 通知提示 -->
+<div class="notification" id="notification" style="display: none;">
+  <span id="notification-msg"></span>
+</div>
+
+<script>
+// 机构数据
+const orgData = [
+  { name: "XX人力资源有限公司", type: "劳务派遣 / 招聘外包", star: 5.0, starText: "★★★★★", matches: 286, satisfaction: 96, status: "营业中", statusClass: "badge-success", employees: 45, reviews: ["服务专业，响应速度快", "岗位匹配精准，满意度高"] },
+  { name: "XX人才服务集团", type: "高端猎头 / 培训服务", star: 4.8, starText: "★★★★☆", matches: 198, satisfaction: 92, status: "营业中", statusClass: "badge-success", employees: 128, reviews: ["猎头服务优质，人才质量高", "培训课程体系完善"] },
+  { name: "XX灵活用工平台", type: "零工匹配 / 岗位外包", star: 4.6, starText: "★★★★☆", matches: 412, satisfaction: 91, status: "营业中", statusClass: "badge-success", employees: 67, reviews: ["零工匹配效率高", "平台操作便捷"] },
+  { name: "XX职业培训学校", type: "技能培训 / 就业指导", star: 5.0, starText: "★★★★★", matches: 156, satisfaction: 98, status: "审核中", statusClass: "badge-warning", employees: 32, reviews: ["培训质量优秀", "就业指导专业"] },
+  { name: "XX劳务外包公司", type: "劳务派遣 / 产线外包", star: 4.5, starText: "★★★★☆", matches: 324, satisfaction: 89, status: "营业中", statusClass: "badge-success", employees: 89, reviews: ["外包服务规范", "人员素质较高"] }
+];
+
+// 显示模块
+function showModule(moduleName) {
+  switch(moduleName) {
+    case 'org-manage':
+      document.getElementById('module-org-list').scrollIntoView({ behavior: 'smooth' });
+      showNotification('已跳转到机构管理模块', 'success');
+      break;
+    case 'online-store':
+      showNotification('线上服务网店功能开发中...', 'warning');
+      break;
+    case 'matching':
+      showModal('matching-modal');
+      break;
+    case 'dispute':
+      showNotification('争议调解申请功能开发中...', 'warning');
+      break;
+    case 'rating':
+      showNotification('星级评价功能开发中...', 'warning');
+      break;
+    case 'dashboard':
+      showNotification('数据监测看板功能开发中...', 'warning');
+      break;
+  }
+}
+
+// 筛选机构
+function filterOrgs() {
+  const search = document.getElementById('org-search').value.toLowerCase();
+  const type = document.getElementById('filter-type').value;
+  const status = document.getElementById('filter-status').value;
+  const star = document.getElementById('filter-star').value;
+
+  const rows = document.querySelectorAll('#org-tbody tr');
+  rows.forEach(row => {
+    let show = true;
+    const rowType = row.getAttribute('data-type');
+    const rowStar = parseInt(row.getAttribute('data-star'));
+
+    if (search && !row.textContent.toLowerCase().includes(search)) show = false;
+    if (type && !rowType.includes(type)) show = false;
+    if (status) {
+      const statusCell = row.querySelector('td:nth-child(6) .badge');
+      if (statusCell && !statusCell.textContent.includes(status)) show = false;
+    }
+    if (star) {
+      if (star === '5' && rowStar < 5) show = false;
+      else if (star === '4' && rowStar < 4) show = false;
+      else if (star === '3' && rowStar >= 4) show = false;
+    }
+
+    row.style.display = show ? '' : 'none';
+  });
+}
+
+// 查看机构详情
+function viewOrgDetail(index) {
+  const org = orgData[index];
+  document.getElementById('detail-org-name').textContent = org.name;
+  document.getElementById('detail-name').textContent = org.name;
+  document.getElementById('detail-type').innerHTML = org.type.split('/').map(t => `<span class="tag">${t.trim()}</span>`).join('');
+  document.getElementById('detail-star').innerHTML = `<span class="star-rating">${org.starText}</span> ${org.star}`;
+  document.getElementById('detail-status').innerHTML = `<span class="${org.statusClass}">${org.status}</span>`;
+  document.getElementById('detail-matches').textContent = org.matches;
+  document.getElementById('detail-satisfaction').textContent = org.satisfaction + '%';
+  document.getElementById('detail-employees').textContent = org.employees;
+
+  const reviewsHtml = org.reviews.map(r => `<div class="card mb-8" style="padding: 12px;"><span class="star-rating">★★★★★</span> ${r}</div>`).join('');
+  document.getElementById('detail-reviews').innerHTML = reviewsHtml;
+
+  showModal('org-detail-modal');
+}
+
+// 提交新机构
+function submitNewOrg() {
+  const name = document.getElementById('new-org-name').value;
+  if (!name) {
+    showNotification('请输入机构名称', 'error');
+    return;
+  }
+  closeModal('add-org-modal');
+  showNotification(`机构"${name}"已提交审核，预计3个工作日内完成`, 'success');
+  document.getElementById('new-org-name').value = '';
+  document.getElementById('new-org-code').value = '';
+  document.getElementById('new-org-contact').value = '';
+  document.getElementById('new-org-phone').value = '';
+  document.getElementById('new-org-desc').value = '';
+}
+
+// 智能撮合步骤
+let currentMatchStep = 1;
+function nextMatchStep() {
+  if (currentMatchStep < 4) {
+    document.getElementById(`match-step-${currentMatchStep}`).classList.remove('active');
+    document.getElementById(`match-step-${currentMatchStep}`).classList.add('completed');
+    currentMatchStep++;
+    document.getElementById(`match-step-${currentMatchStep}`).classList.add('active');
+
+    document.getElementById('match-form-1').style.display = 'none';
+    document.getElementById('match-form-2').style.display = 'none';
+    document.getElementById('match-form-3').style.display = 'none';
+    document.getElementById('match-form-4').style.display = 'none';
+    document.getElementById(`match-form-${currentMatchStep}`).style.display = 'block';
+
+    document.getElementById('match-prev-btn').style.display = 'inline-flex';
+    if (currentMatchStep === 4) {
+      document.getElementById('match-next-btn').textContent = '完成';
+    }
+  } else {
+    closeModal('matching-modal');
+    showNotification('智能撮合流程已完成！', 'success');
+    currentMatchStep = 1;
+    resetMatchSteps();
+  }
+}
+
+function prevMatchStep() {
+  if (currentMatchStep > 1) {
+    document.getElementById(`match-step-${currentMatchStep}`).classList.remove('active');
+    currentMatchStep--;
+    document.getElementById(`match-step-${currentMatchStep}`).classList.remove('completed');
+    document.getElementById(`match-step-${currentMatchStep}`).classList.add('active');
+
+    document.getElementById('match-form-1').style.display = 'none';
+    document.getElementById('match-form-2').style.display = 'none';
+    document.getElementById('match-form-3').style.display = 'none';
+    document.getElementById('match-form-4').style.display = 'none';
+    document.getElementById(`match-form-${currentMatchStep}`).style.display = 'block';
+
+    document.getElementById('match-next-btn').textContent = '下一步';
+    if (currentMatchStep === 1) {
+      document.getElementById('match-prev-btn').style.display = 'none';
+    }
+  }
+}
+
+function resetMatchSteps() {
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById(`match-step-${i}`).classList.remove('active', 'completed');
+  }
+  document.getElementById('match-step-1').classList.add('active');
+  document.getElementById('match-form-1').style.display = 'block';
+  document.getElementById('match-form-2').style.display = 'none';
+  document.getElementById('match-form-3').style.display = 'none';
+  document.getElementById('match-form-4').style.display = 'none';
+  document.getElementById('match-prev-btn').style.display = 'none';
+  document.getElementById('match-next-btn').textContent = '下一步';
+}
+
+// 模态框控制
+function showModal(id) {
+  document.getElementById(id).classList.add('active');
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('active');
+}
+
+// 通知提示
+function showNotification(msg, type) {
+  const notification = document.getElementById('notification');
+  const msgEl = document.getElementById('notification-msg');
+  notification.className = 'notification ' + (type || '');
+  msgEl.textContent = msg;
+  notification.style.display = 'flex';
+  setTimeout(() => {
+    notification.style.display = 'none';
+  }, 3000);
+}
+
+// 点击模态框外部关闭
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === this) {
+      this.classList.remove('active');
+    }
+  });
+});
+</script>
 
 </body>
 </html>

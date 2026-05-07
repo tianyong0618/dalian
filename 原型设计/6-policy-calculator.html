@@ -24,6 +24,7 @@
 <!-- 页面内容 -->
 <div class="page-content">
   <div class="container">
+
     <!-- 页面标题 -->
     <div class="page-header mb-48">
       <h1>政策计算器</h1>
@@ -34,192 +35,221 @@
     <div class="row mb-48">
       <div class="col-3">
         <div class="stat-card">
-          <div class="number">2,356</div>
+          <div class="number" id="stat-policies">2,356</div>
           <div class="label">政策条款总数</div>
         </div>
       </div>
       <div class="col-3">
         <div class="stat-card">
-          <div class="number">1.28亿</div>
+          <div class="number" id="stat-amount">1.28亿</div>
           <div class="label">本月测算红利总额</div>
         </div>
       </div>
       <div class="col-3">
         <div class="stat-card">
-          <div class="number">86,452</div>
+          <div class="number" id="stat-users">86,452</div>
           <div class="label">本月测算人次</div>
         </div>
       </div>
       <div class="col-3">
         <div class="stat-card">
-          <div class="number">94.5%</div>
+          <div class="number" id="stat-accuracy">94.5%</div>
           <div class="label">匹配准确率</div>
         </div>
       </div>
     </div>
 
-    <!-- 计算器表单 -->
+    <!-- 功能模块入口 -->
+    <div class="section-header mb-32">
+      <h2>核心功能</h2>
+      <p>点击进入对应功能模块</p>
+    </div>
+    <div class="row mb-32">
+      <div class="col-4">
+        <div class="feature-card" onclick="showModal('policy-calc-modal')">
+          <div class="card-header">
+            <div class="icon">🧮</div>
+            <div class="card-content">
+              <div class="title-row"><h3>智能政策测算</h3><span class="feature-badge">核心</span></div>
+              <p>依托多维度数据建模与算法引擎，精准计算可享受的政策红利。</p>
+            </div>
+            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div><span class="tag">智能测算</span><span class="tag">就业补贴</span><span class="tag">创业扶持</span></div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="feature-card" onclick="showModal('policy-library-modal')">
+          <div class="card-header">
+            <div class="icon">📚</div>
+            <div class="card-content">
+              <div class="title-row"><h3>政策文件库</h3></div>
+              <p>整合政策文件库、服务事项库，自动拆解政策条款。</p>
+            </div>
+            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div><span class="tag">政策拆解</span><span class="tag">知识图谱</span><span class="tag">关联网络</span></div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="feature-card" onclick="showModal('policy-network-modal')">
+          <div class="card-header">
+            <div class="icon">🕸️</div>
+            <div class="card-content">
+              <div class="title-row"><h3>政策关联网络</h3></div>
+              <p>利用知识图谱构建政策—服务—对象关联网络。</p>
+            </div>
+            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div><span class="tag">知识图谱</span><span class="tag">关联分析</span><span class="tag">可视化</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-48">
+      <div class="col-4">
+        <div class="feature-card" onclick="showModal('effect-tracking-modal')">
+          <div class="card-header">
+            <div class="icon">📊</div>
+            <div class="card-content">
+              <div class="title-row"><h3>效果追踪评估</h3></div>
+              <p>支持政府从政策覆盖率、受益群体画像等维度量化评估。</p>
+            </div>
+            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div><span class="tag">覆盖率分析</span><span class="tag">受益群体</span><span class="tag">效果评估</span></div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="feature-card" onclick="showModal('benefit-group-modal')">
+          <div class="card-header">
+            <div class="icon">👥</div>
+            <div class="card-content">
+              <div class="title-row"><h3>受益群体画像</h3></div>
+              <p>分析政策受益群体特征，优化政策投放精准度。</p>
+            </div>
+            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div><span class="tag">群体分析</span><span class="tag">精准投放</span><span class="tag">效果优化</span></div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="feature-card" onclick="showModal('policy-recommend-modal')">
+          <div class="card-header">
+            <div class="icon">💡</div>
+            <div class="card-content">
+              <div class="title-row"><h3>智能政策推荐</h3></div>
+              <p>结合大模型分析能力，为个人与企业智能推荐适用政策。</p>
+            </div>
+            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div><span class="tag">智能推荐</span><span class="tag">大模型</span><span class="tag">精准匹配</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 政策计算器表单 -->
     <div class="section-header mb-32">
       <h2>政策红利测算</h2>
+      <p>填写基本信息，一键计算可享受的政策红利</p>
     </div>
     <div class="card mb-48">
       <div class="row">
         <div class="col-6">
-          <div class="mb-20">
-            <label style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; display: block;">用户类型</label>
-            <select style="width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 15px; background: white;">
-              <option>请选择用户类型</option>
-              <option>个人求职者</option>
-              <option>高校毕业生</option>
-              <option>就业困难人员</option>
-              <option>企业用户</option>
-              <option>个体工商户</option>
+          <div class="form-group">
+            <label class="form-label">用户类型</label>
+            <select class="form-select" id="calc-user-type" onchange="updatePolicyOptions()">
+              <option value="">请选择用户类型</option>
+              <option value="personal">个人求职者</option>
+              <option value="graduate">高校毕业生</option>
+              <option value="difficult">就业困难人员</option>
+              <option value="enterprise">企业用户</option>
+              <option value="veteran">退役军人</option>
+              <option value="farmer">农民工</option>
             </select>
           </div>
-          <div class="mb-20">
-            <label style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; display: block;">所在区域</label>
-            <select style="width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 15px; background: white;">
-              <option>请选择所在区域</option>
+          <div class="form-group">
+            <label class="form-label">所在区域</label>
+            <select class="form-select">
+              <option value="">请选择所在区域</option>
               <option>市辖区</option>
               <option>XX区</option>
               <option>XX县</option>
               <option>XX市</option>
             </select>
           </div>
-          <div class="mb-20">
-            <label style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; display: block;">政策类型</label>
-            <select style="width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 15px; background: white;">
-              <option>请选择政策类型</option>
-              <option>就业补贴</option>
-              <option>培训资助</option>
-              <option>创业扶持</option>
-              <option>社保减免</option>
-              <option>稳岗返还</option>
+          <div class="form-group">
+            <label class="form-label">政策类型</label>
+            <select class="form-select" id="calc-policy-type">
+              <option value="">请选择政策类型</option>
             </select>
           </div>
         </div>
         <div class="col-6">
-          <div class="mb-20">
-            <label style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; display: block;">月收入/营业额（元）</label>
-            <input type="number" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 15px;" placeholder="请输入月收入或营业额">
+          <div class="form-group">
+            <label class="form-label">月收入/营业额（元）</label>
+            <input type="number" class="form-input" id="calc-income" placeholder="请输入月收入或营业额">
           </div>
-          <div class="mb-20">
-            <label style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; display: block;">参保人数/员工数</label>
-            <input type="number" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 15px;" placeholder="请输入参保人数或员工数">
+          <div class="form-group">
+            <label class="form-label">参保人数/员工数</label>
+            <input type="number" class="form-input" id="calc-employees" placeholder="请输入参保人数或员工数">
           </div>
-          <div class="mb-20">
-            <label style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; display: block;">重点群体标识</label>
+          <div class="form-group">
+            <label class="form-label">重点群体标识</label>
             <div style="display: flex; gap: 16px; margin-top: 8px;">
               <label style="font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px;">
-                <input type="checkbox" value="高校毕业生"> 高校毕业生
+                <input type="checkbox" value="graduate" id="tag-graduate"> 高校毕业生
               </label>
               <label style="font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px;">
-                <input type="checkbox" value="就业困难"> 就业困难
+                <input type="checkbox" value="difficult" id="tag-difficult"> 就业困难
               </label>
               <label style="font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px;">
-                <input type="checkbox" value="退役军人"> 退役军人
+                <input type="checkbox" value="veteran" id="tag-veteran"> 退役军人
               </label>
             </div>
           </div>
           <div class="mt-32">
-            <button class="btn btn-primary" style="width: 100%; padding: 14px 24px; font-size: 16px;">开始测算</button>
+            <button class="btn btn-primary" style="width: 100%; padding: 14px 24px; font-size: 16px;" onclick="calculatePolicy()">开始测算</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 测算结果示例 -->
-    <div class="card mb-48" style="background: linear-gradient(135deg, rgba(22, 119, 255, 0.05) 0%, rgba(114, 46, 209, 0.05) 100%; border: 1px solid rgba(22, 119, 255, 0.2);">
-      <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 24px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">测算结果示例</h3>
-      <div class="row">
-        <div class="col-4" style="text-align: center;">
-          <div style="font-size: 42px; font-weight: 800; line-height: 1.1; margin-bottom: 8px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">12,800<span style="font-size: 18px;">元</span></div>
+    <!-- 测算结果 -->
+    <div class="card mb-48" id="calc-result" style="display: none; background: linear-gradient(135deg, rgba(22, 119, 255, 0.05) 0%, rgba(114, 46, 209, 0.05) 100%); border: 1px solid rgba(22, 119, 255, 0.2);">
+      <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 24px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">测算结果</h3>
+      <div class="row mb-32">
+        <div class="col-4 text-center">
+          <div style="font-size: 42px; font-weight: 800; line-height: 1.1; margin-bottom: 8px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" id="result-amount">0元</div>
           <div style="font-size: 15px; color: var(--text-secondary); font-weight: 500;">预计可申领补贴总额</div>
         </div>
-        <div class="col-4" style="text-align: center;">
-          <div style="font-size: 42px; font-weight: 800; line-height: 1.1; margin-bottom: 8px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">5<span style="font-size: 18px;">项</span></div>
+        <div class="col-4 text-center">
+          <div style="font-size: 42px; font-weight: 800; line-height: 1.1; margin-bottom: 8px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" id="result-policies">0项</div>
           <div style="font-size: 15px; color: var(--text-secondary); font-weight: 500;">符合条件政策</div>
         </div>
-        <div class="col-4" style="text-align: center;">
-          <div style="font-size: 42px; font-weight: 800; line-height: 1.1; margin-bottom: 8px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">92%</div>
+        <div class="col-4 text-center">
+          <div style="font-size: 42px; font-weight: 800; line-height: 1.1; margin-bottom: 8px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" id="result-confidence">0%</div>
           <div style="font-size: 15px; color: var(--text-secondary); font-weight: 500;">匹配置信度</div>
         </div>
       </div>
+      <div id="result-details"></div>
     </div>
 
-    <!-- 功能模块 -->
-    <div class="section-header mb-32">
-      <h2>核心功能</h2>
-    </div>
-    <div class="row mb-48">
-      <div class="col-4">
-        <div class="feature-card">
-          <div class="card-header">
-            <div class="icon">📄</div>
-            <div class="card-content">
-              <div class="title-row">
-                <h3>智能政策拆解</h3>
-              </div>
-              <p>自动拆解政策条款，利用知识图谱构建政策—服务—对象关联网络，实现政策条款的结构化解析。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div>
-            <span class="tag">政策拆解</span>
-            <span class="tag">知识图谱</span>
-            <span class="tag">关联网络</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="feature-card">
-          <div class="card-header">
-            <div class="icon">🧮</div>
-            <div class="card-content">
-              <div class="title-row">
-                <h3>精准红利计算</h3>
-              </div>
-              <p>结合大模型分析能力，为个人与企业精准计算可享受的政策红利，如就业补贴、培训资助、创业扶持等。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div>
-            <span class="tag">精准计算</span>
-            <span class="tag">就业补贴</span>
-            <span class="tag">创业扶持</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="feature-card">
-          <div class="card-header">
-            <div class="icon">📊</div>
-            <div class="card-content">
-              <div class="title-row">
-                <h3>效果追踪评估</h3>
-              </div>
-              <p>支持政府从政策覆盖率、受益群体画像等维度量化评估政策实施效果，实现全链路智能化管理。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div>
-            <span class="tag">效果评估</span>
-            <span class="tag">覆盖率分析</span>
-            <span class="tag">智能管理</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 政策覆盖率 -->
+    <!-- 政策覆盖率分析 -->
     <div class="section-header mb-32">
       <h2>政策覆盖率分析</h2>
+      <p>实时监测各类政策的覆盖情况与实施效果</p>
     </div>
     <div class="card">
       <table class="table">
@@ -229,65 +259,75 @@
             <th>政策数量</th>
             <th>覆盖人数</th>
             <th>覆盖率</th>
+            <th>趋势</th>
             <th>状态</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>就业补贴</td>
+            <td><strong>就业补贴</strong></td>
             <td>28</td>
             <td>45,678</td>
             <td>
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <div style="width: 180px; height: 10px; background: rgba(22, 119, 255, 0.1); border-radius: 5px; overflow: hidden;">
-                  <div style="height: 100%; width: 87%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-gradient-end) 100%); border-radius: 5px;"></div>
-                </div>
-                <span style="font-size: 14px; color: var(--text-secondary);">87%</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="progress-bar" style="width: 200px;"><div class="progress-fill" style="width: 87%;"></div></div>
+                <span>87%</span>
               </div>
             </td>
-            <td><span class="status-dot status-success"></span>良好</td>
+            <td style="color: var(--success);">↑ 上升</td>
+            <td><span class="badge badge-success">良好</span></td>
           </tr>
           <tr>
-            <td>培训资助</td>
+            <td><strong>培训资助</strong></td>
             <td>15</td>
             <td>23,456</td>
             <td>
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <div style="width: 180px; height: 10px; background: rgba(22, 119, 255, 0.1); border-radius: 5px; overflow: hidden;">
-                  <div style="height: 100%; width: 72%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-gradient-end) 100%); border-radius: 5px;"></div>
-                </div>
-                <span style="font-size: 14px; color: var(--text-secondary);">72%</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="progress-bar" style="width: 200px;"><div class="progress-fill" style="width: 72%;"></div></div>
+                <span>72%</span>
               </div>
             </td>
-            <td><span class="status-dot status-warning"></span>待提升</td>
+            <td style="color: var(--success);">↑ 上升</td>
+            <td><span class="badge badge-warning">待提升</span></td>
           </tr>
           <tr>
-            <td>创业扶持</td>
+            <td><strong>创业扶持</strong></td>
             <td>12</td>
             <td>8,923</td>
             <td>
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <div style="width: 180px; height: 10px; background: rgba(22, 119, 255, 0.1); border-radius: 5px; overflow: hidden;">
-                  <div style="height: 100%; width: 65%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-gradient-end) 100%); border-radius: 5px;"></div>
-                </div>
-                <span style="font-size: 14px; color: var(--text-secondary);">65%</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="progress-bar" style="width: 200px;"><div class="progress-fill" style="width: 65%;"></div></div>
+                <span>65%</span>
               </div>
             </td>
-            <td><span class="status-dot status-warning"></span>待提升</td>
+            <td style="color: var(--warning);">→ 平稳</td>
+            <td><span class="badge badge-warning">待提升</span></td>
           </tr>
           <tr>
-            <td>社保减免</td>
+            <td><strong>社保减免</strong></td>
             <td>9</td>
             <td>56,123</td>
             <td>
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <div style="width: 180px; height: 10px; background: rgba(22, 119, 255, 0.1); border-radius: 5px; overflow: hidden;">
-                  <div style="height: 100%; width: 91%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-gradient-end) 100%); border-radius: 5px;"></div>
-                </div>
-                <span style="font-size: 14px; color: var(--text-secondary);">91%</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="progress-bar" style="width: 200px;"><div class="progress-fill" style="width: 91%;"></div></div>
+                <span>91%</span>
               </div>
             </td>
-            <td><span class="status-dot status-success"></span>优秀</td>
+            <td style="color: var(--success);">↑ 上升</td>
+            <td><span class="badge badge-success">优秀</span></td>
+          </tr>
+          <tr>
+            <td><strong>稳岗返还</strong></td>
+            <td>8</td>
+            <td>12,345</td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="progress-bar" style="width: 200px;"><div class="progress-fill" style="width: 68%;"></div></div>
+                <span>68%</span>
+              </div>
+            </td>
+            <td style="color: var(--warning);">→ 平稳</td>
+            <td><span class="badge badge-warning">待提升</span></td>
           </tr>
         </tbody>
       </table>
@@ -295,6 +335,657 @@
 
   </div>
 </div>
+
+<!-- 政策测算模态框 -->
+<div class="modal-overlay" id="policy-calc-modal">
+  <div class="modal" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3>智能政策测算</h3>
+      <button class="modal-close" onclick="closeModal('policy-calc-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="steps mb-32">
+        <div class="step active" id="calc-step-1">
+          <div class="step-circle">1</div>
+          <div class="step-label">填写信息</div>
+        </div>
+        <div class="step" id="calc-step-2">
+          <div class="step-circle">2</div>
+          <div class="step-label">智能匹配</div>
+        </div>
+        <div class="step" id="calc-step-3">
+          <div class="step-circle">3</div>
+          <div class="step-label">测算结果</div>
+        </div>
+      </div>
+
+      <div id="calc-form-1">
+        <div class="form-group">
+          <label class="form-label">用户类型</label>
+          <select class="form-select">
+            <option>个人求职者</option>
+            <option>高校毕业生</option>
+            <option>就业困难人员</option>
+            <option>企业用户</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">政策类型</label>
+          <select class="form-select">
+            <option>就业补贴</option>
+            <option>培训资助</option>
+            <option>创业扶持</option>
+            <option>社保减免</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">年收入（元）</label>
+          <input type="number" class="form-input" placeholder="请输入年收入">
+        </div>
+      </div>
+
+      <div id="calc-form-2" style="display: none;">
+        <h4 class="mb-16">正在智能匹配政策...</h4>
+        <div class="card mb-16" style="border-left: 4px solid var(--success);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h4 style="margin: 0 0 4px 0;">就业补贴</h4>
+              <p class="text-small">匹配度：98% | 可申领：8,000元</p>
+            </div>
+            <span class="badge badge-success">推荐</span>
+          </div>
+        </div>
+        <div class="card mb-16" style="border-left: 4px solid var(--primary);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h4 style="margin: 0 0 4px 0;">培训资助</h4>
+              <p class="text-small">匹配度：95% | 可申领：3,000元</p>
+            </div>
+            <span class="badge badge-info">优质</span>
+          </div>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--primary);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h4 style="margin: 0 0 4px 0;">创业扶持</h4>
+              <p class="text-small">匹配度：88% | 可申领：10,000元</p>
+            </div>
+            <span class="badge badge-info">优质</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="calc-form-3" style="display: none; text-align: center; padding: 40px 0;">
+        <div style="font-size: 64px; margin-bottom: 16px;">🎉</div>
+        <h3 class="mb-8">测算完成！</h3>
+        <p class="text-body mb-24">共匹配到 <strong>3项</strong> 适用政策，预计可申领补贴总额 <strong style="color: var(--primary);">21,000元</strong></p>
+        <div class="row">
+          <div class="col-4">
+            <div class="stat-card" style="padding: 16px;">
+              <div class="number" style="font-size: 24px;">8,000元</div>
+              <div class="label">就业补贴</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="stat-card" style="padding: 16px;">
+              <div class="number" style="font-size: 24px;">3,000元</div>
+              <div class="label">培训资助</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="stat-card" style="padding: 16px;">
+              <div class="number" style="font-size: 24px;">10,000元</div>
+              <div class="label">创业扶持</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" id="calc-prev-btn" style="display: none;" onclick="prevCalcStep()">上一步</button>
+      <button class="btn btn-primary" id="calc-next-btn" onclick="nextCalcStep()">下一步</button>
+    </div>
+  </div>
+</div>
+
+<!-- 政策文件库模态框 -->
+<div class="modal-overlay" id="policy-library-modal">
+  <div class="modal" style="max-width: 800px;">
+    <div class="modal-header">
+      <h3>政策文件库</h3>
+      <button class="modal-close" onclick="closeModal('policy-library-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="search-bar mb-24">
+        <input type="text" class="form-input" placeholder="搜索政策文件...">
+        <button class="btn btn-primary" onclick="showNotification('政策文件已更新', 'success')">搜索</button>
+      </div>
+      <div class="card mb-16" style="border-left: 4px solid var(--primary);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 8px 0;">《关于进一步做好稳就业工作的通知》</h4>
+            <p class="text-small">文件编号：RS-2026-001 | 发布日期：2026-01-15</p>
+            <div class="mt-8">
+              <span class="tag">就业补贴</span>
+              <span class="tag">稳岗返还</span>
+              <span class="tag">重点群体</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="showPolicyDetail(0)">查看拆解</button>
+        </div>
+      </div>
+      <div class="card mb-16" style="border-left: 4px solid var(--primary);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 8px 0;">《高校毕业生就业创业扶持政策》</h4>
+            <p class="text-small">文件编号：RS-2026-015 | 发布日期：2026-02-20</p>
+            <div class="mt-8">
+              <span class="tag">就业补贴</span>
+              <span class="tag">创业扶持</span>
+              <span class="tag">培训资助</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="showPolicyDetail(1)">查看拆解</button>
+        </div>
+      </div>
+      <div class="card" style="border-left: 4px solid var(--primary);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 8px 0;">《企业社保减免优惠政策》</h4>
+            <p class="text-small">文件编号：RS-2026-028 | 发布日期：2026-03-10</p>
+            <div class="mt-8">
+              <span class="tag">社保减免</span>
+              <span class="tag">企业优惠</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="showPolicyDetail(2)">查看拆解</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('policy-library-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 政策关联网络模态框 -->
+<div class="modal-overlay" id="policy-network-modal">
+  <div class="modal" style="max-width: 800px;">
+    <div class="modal-header">
+      <h3>政策关联网络</h3>
+      <button class="modal-close" onclick="closeModal('policy-network-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="text-body mb-24">展示政策—服务—对象的知识图谱关联网络</p>
+      <div class="card" style="background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%); min-height: 400px; position: relative; overflow: hidden;">
+        <div style="text-align: center; padding: 40px 0;">
+          <div style="display: inline-block; background: var(--primary); color: white; padding: 20px 40px; border-radius: 50px; font-weight: 600; margin-bottom: 40px; font-size: 18px;">就业补贴政策（中心节点）</div>
+          <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
+            <div style="background: rgba(82, 196, 26, 0.1); padding: 16px 24px; border-radius: var(--radius-md); border: 1px solid rgba(82, 196, 26, 0.3);">
+              <div style="font-weight: 600; color: var(--success); margin-bottom: 8px;">👥 适用对象</div>
+              <div class="text-small">高校毕业生、就业困难人员<br>退役军人、农民工</div>
+            </div>
+            <div style="background: rgba(250, 173, 20, 0.1); padding: 16px 24px; border-radius: var(--radius-md); border: 1px solid rgba(250, 173, 20, 0.3);">
+              <div style="font-weight: 600; color: var(--warning); margin-bottom: 8px;">📋 服务事项</div>
+              <div class="text-small">岗位补贴申领<br>社保补贴办理</div>
+            </div>
+            <div style="background: rgba(114, 46, 209, 0.1); padding: 16px 24px; border-radius: var(--radius-md); border: 1px solid rgba(114, 46, 209, 0.3);">
+              <div style="font-weight: 600; color: var(--primary-gradient-end); margin-bottom: 8px;">📚 政策条款</div>
+              <div class="text-small">补贴标准：2000-8000元<br>申领条件：连续缴纳社保6个月</div>
+            </div>
+            <div style="background: rgba(22, 119, 255, 0.1); padding: 16px 24px; border-radius: var(--radius-md); border: 1px solid rgba(22, 119, 255, 0.3);">
+              <div style="font-weight: 600; color: var(--primary); margin-bottom: 8px;">🏢 执行机构</div>
+              <div class="text-small">人社局就业促进科<br>各街道便民服务中心</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('policy-network-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 效果追踪模态框 -->
+<div class="modal-overlay" id="effect-tracking-modal">
+  <div class="modal" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3>效果追踪评估</h3>
+      <button class="modal-close" onclick="closeModal('effect-tracking-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="row mb-24">
+        <div class="col-4">
+          <div class="stat-card" style="padding: 16px;">
+            <div class="number" style="font-size: 28px;">87%</div>
+            <div class="label">就业补贴覆盖率</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-card" style="padding: 16px;">
+            <div class="number" style="font-size: 28px;">72%</div>
+            <div class="label">培训资助覆盖率</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-card" style="padding: 16px;">
+            <div class="number" style="font-size: 28px;">1.28亿</div>
+            <div class="label">本月红利总额</div>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="mb-16">政策效果趋势</h4>
+      <div class="card mb-16">
+        <div class="row">
+          <div class="col-6">
+            <div class="mb-12">
+              <div style="display: flex; justify-content: space-between; font-size: 14px; color: var(--text-secondary); margin-bottom: 4px;">
+                <span>就业补贴发放</span><span>↑ 12%</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill" style="width: 87%;"></div></div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="mb-12">
+              <div style="display: flex; justify-content: space-between; font-size: 14px; color: var(--text-secondary); margin-bottom: 4px;">
+                <span>培训资助覆盖</span><span>↑ 8%</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill" style="width: 72%;"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="mb-12">
+              <div style="display: flex; justify-content: space-between; font-size: 14px; color: var(--text-secondary); margin-bottom: 4px;">
+                <span>创业扶持</span><span>→ 平稳</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill" style="width: 65%;"></div></div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="mb-12">
+              <div style="display: flex; justify-content: space-between; font-size: 14px; color: var(--text-secondary); margin-bottom: 4px;">
+                <span>社保减免</span><span>↑ 15%</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill" style="width: 91%;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="mb-16">受益群体分析</h4>
+      <div class="card">
+        <div class="mb-12">
+          <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 4px;">
+            <span>高校毕业生</span><span>45,678人（受益最大群体）</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 35%; background: var(--success);"></div></div>
+        </div>
+        <div class="mb-12">
+          <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 4px;">
+            <span>就业困难人员</span><span>23,456人</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 18%; background: var(--warning);"></div></div>
+        </div>
+        <div>
+          <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 4px;">
+            <span>退役军人</span><span>12,345人</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 10%; background: var(--primary);"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('effect-tracking-modal')">关闭</button>
+      <button class="btn btn-primary" onclick="showNotification('评估报告已生成', 'success')">生成评估报告</button>
+    </div>
+  </div>
+</div>
+
+<!-- 受益群体画像模态框 -->
+<div class="modal-overlay" id="benefit-group-modal">
+  <div class="modal" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3>受益群体画像</h3>
+      <button class="modal-close" onclick="closeModal('benefit-group-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">选择政策</label>
+        <select class="form-select" onchange="updateBenefitGroup(this.value)">
+          <option value="就业补贴">就业补贴</option>
+          <option value="培训资助">培训资助</option>
+          <option value="创业扶持">创业扶持</option>
+          <option value="社保减免">社保减免</option>
+        </select>
+      </div>
+      <div class="row mb-24">
+        <div class="col-6">
+          <div class="stat-card" style="padding: 16px;">
+            <div class="number" style="font-size: 28px;">45,678</div>
+            <div class="label">受益人数</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="stat-card" style="padding: 16px;">
+            <div class="number" style="font-size: 28px;">8,000元</div>
+            <div class="label">人均受益</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h4 class="mb-16">群体特征</h4>
+        <div class="mb-12">
+          <span class="tag">平均年龄：26岁</span>
+          <span class="tag">本科及以上：68%</span>
+          <span class="tag">平均薪资：7.5K</span>
+        </div>
+        <div class="mb-16">
+          <span class="tag">主要来源：高校毕业生（52%）</span>
+          <span class="tag">主要来源：就业困难（23%）</span>
+          <span class="tag">主要来源：退役军人（15%）</span>
+        </div>
+        <h4 class="mb-16">政策满意度</h4>
+        <div class="mb-12">
+          <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 4px;">
+            <span>申请便捷性</span><span>92%</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 92%;"></div></div>
+        </div>
+        <div>
+          <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 4px;">
+            <span>补贴发放及时性</span><span>88%</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 88%;"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('benefit-group-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 智能政策推荐模态框 -->
+<div class="modal-overlay" id="policy-recommend-modal">
+  <div class="modal" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3>智能政策推荐</h3>
+      <button class="modal-close" onclick="closeModal('policy-recommend-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="text-body mb-16">结合大模型分析能力，为张三智能推荐适用政策：</p>
+      <div class="card mb-16" style="border-left: 4px solid var(--success);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 8px 0;">💰 就业补贴</h4>
+            <p class="text-small">可申领 8,000元 | 匹配度：98%</p>
+            <p class="text-small mt-8">依据：高校毕业生、本科及以上学历、连续缴纳社保12个月</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="showNotification('申请已提交', 'success')">立即申领</button>
+        </div>
+      </div>
+      <div class="card mb-16" style="border-left: 4px solid var(--primary);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 8px 0;">📚 培训资助</h4>
+            <p class="text-small">可申领 3,000元 | 匹配度：95%</p>
+            <p class="text-small mt-8">依据：Java开发岗位、3年工作经验、技能提升需求</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="showNotification('申请已提交', 'success')">立即申领</button>
+        </div>
+      </div>
+      <div class="card" style="border-left: 4px solid var(--primary);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 8px 0;">🚀 创业扶持</h4>
+            <p class="text-small">可申领 10,000元 | 匹配度：88%</p>
+            <p class="text-small mt-8">依据：创业意向、高校毕业生、首次创业</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="showNotification('申请已提交', 'success')">立即申领</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('policy-recommend-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 政策条款拆解模态框 -->
+<div class="modal-overlay" id="policy-detail-modal">
+  <div class="modal" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3 id="policy-detail-title">政策条款拆解</h3>
+      <button class="modal-close" onclick="closeModal('policy-detail-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="card mb-16" style="background: var(--bg-secondary);">
+        <h4 class="mb-8">政策摘要</h4>
+        <p class="text-small" id="policy-summary"></p>
+      </div>
+      <h4 class="mb-16">条款拆解</h4>
+      <div id="policy-clauses"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('policy-detail-modal')">关闭</button>
+      <button class="btn btn-primary" onclick="showNotification('已添加到计算器', 'success')">计算此项</button>
+    </div>
+  </div>
+</div>
+
+<!-- 通知提示 -->
+<div class="notification" id="notification" style="display: none;">
+  <span id="notification-msg"></span>
+</div>
+
+<script>
+// 政策数据
+const policyData = [
+  {
+    title: '《关于进一步做好稳就业工作的通知》',
+    summary: '针对高校毕业生、就业困难人员等重点群体，提供就业补贴、稳岗返还等政策支持，减轻企业用工成本，促进重点群体就业。',
+    clauses: [
+      { title: '就业补贴', content: '对吸纳高校毕业生并缴纳社保6个月以上的企业，按每人2000元标准给予补贴', condition: '企业吸纳高校毕业生，连续缴纳社保6个月以上', amount: '2000元/人' },
+      { title: '社保补贴', content: '对就业困难人员灵活就业的，给予社保缴费额2/3的补贴', condition: '就业困难人员，灵活就业', amount: '社保缴费的67%' },
+      { title: '稳岗返还', content: '对不裁员或少裁员的参保企业，返还其上年度实际缴纳失业保险费的50%', condition: '参保企业，不裁员或少裁员', amount: '失业保险费的50%' }
+    ]
+  },
+  {
+    title: '《高校毕业生就业创业扶持政策》',
+    summary: '为高校毕业生提供全方位就业创业支持，包括求职创业补贴、创业担保贷款、免费创业培训等政策。',
+    clauses: [
+      { title: '求职创业补贴', content: '对毕业年度高校毕业生给予一次性求职创业补贴', condition: '毕业年度高校毕业生', amount: '3000元/人' },
+      { title: '创业担保贷款', content: '高校毕业生创业可申请最高50万元的创业担保贷款', condition: '高校毕业生，首次创业', amount: '最高50万元' },
+      { title: '免费创业培训', content: '为高校毕业生提供免费创业培训课程', condition: '高校毕业生，创业意向', amount: '免费' }
+    ]
+  },
+  {
+    title: '《企业社保减免优惠政策》',
+    summary: '为小微企业提供社保减免优惠，降低企业用工成本，支持企业稳定就业岗位。',
+    clauses: [
+      { title: '养老保险减免', content: '小微企业养老保险单位缴费比例降至14%', condition: '小微企业', amount: '单位缴费降至14%' },
+      { title: '失业保险减免', content: '小微企业失业保险单位缴费比例降至0.5%', condition: '小微企业', amount: '单位缴费降至0.5%' }
+    ]
+  }
+];
+
+// 更新政策选项
+function updatePolicyOptions() {
+  const userType = document.getElementById('calc-user-type').value;
+  const policySelect = document.getElementById('calc-policy-type');
+
+  const options = {
+    '': ['请选择政策类型'],
+    'personal': ['就业补贴', '培训资助', '社保减免'],
+    'graduate': ['就业补贴', '创业扶持', '培训资助', '求职创业补贴'],
+    'difficult': ['就业补贴', '社保补贴', '培训资助'],
+    'enterprise': ['稳岗返还', '社保减免', '创业担保贷款'],
+    'veteran': ['就业补贴', '创业扶持', '免费培训'],
+    'farmer': ['就业补贴', '技能培训', '社保补贴']
+  };
+
+  policySelect.innerHTML = (options[userType] || options['']).map(o => `<option>${o}</option>`).join('');
+}
+
+// 计算政策
+function calculatePolicy() {
+  const userType = document.getElementById('calc-user-type').value;
+  const policyType = document.getElementById('calc-policy-type').value;
+
+  if (!userType || !policyType) {
+    showNotification('请填写完整信息', 'error');
+    return;
+  }
+
+  // 模拟计算结果
+  const results = {
+    'personal': { amount: '5,200', policies: 2, confidence: '92%', details: ['就业补贴：3,000元（求职创业补贴）', '培训资助：2,200元（技能提升补贴）'] },
+    'graduate': { amount: '12,800', policies: 3, confidence: '95%', details: ['就业补贴：8,000元', '创业扶持：3,000元', '培训资助：1,800元'] },
+    'difficult': { amount: '6,500', policies: 2, confidence: '90%', details: ['就业补贴：4,000元', '社保补贴：2,500元/年'] },
+    'enterprise': { amount: '25,000', policies: 2, confidence: '88%', details: ['稳岗返还：15,000元', '社保减免：10,000元/年'] },
+    'veteran': { amount: '9,000', policies: 2, confidence: '93%', details: ['就业补贴：5,000元', '创业扶持：4,000元'] },
+    'farmer': { amount: '4,800', policies: 2, confidence: '91%', details: ['就业补贴：3,000元', '技能培训：1,800元'] }
+  };
+
+  const result = results[userType] || results['personal'];
+
+  document.getElementById('result-amount').textContent = result.amount + '元';
+  document.getElementById('result-policies').textContent = result.policies + '项';
+  document.getElementById('result-confidence').textContent = result.confidence;
+
+  const detailsHtml = result.details.map(d => `<div class="card mb-8" style="padding: 12px;"><span class="star-rating">✓</span> ${d}</div>`).join('');
+  document.getElementById('result-details').innerHTML = `<h4 class="mb-16">适用政策明细</h4>${detailsHtml}`;
+
+  document.getElementById('calc-result').style.display = 'block';
+  document.getElementById('calc-result').scrollIntoView({ behavior: 'smooth' });
+
+  showNotification('测算完成！', 'success');
+}
+
+// 政策测算步骤
+let currentCalcStep = 1;
+function nextCalcStep() {
+  if (currentCalcStep < 3) {
+    document.getElementById(`calc-step-${currentCalcStep}`).classList.remove('active');
+    if (currentCalcStep < 2) {
+      document.getElementById(`calc-step-${currentCalcStep}`).classList.add('completed');
+    }
+    currentCalcStep++;
+    document.getElementById(`calc-step-${currentCalcStep}`).classList.add('active');
+
+    document.getElementById('calc-form-1').style.display = 'none';
+    document.getElementById('calc-form-2').style.display = 'none';
+    document.getElementById('calc-form-3').style.display = 'none';
+    document.getElementById(`calc-form-${currentCalcStep}`).style.display = 'block';
+
+    document.getElementById('calc-prev-btn').style.display = 'inline-flex';
+    if (currentCalcStep === 3) {
+      document.getElementById('calc-next-btn').textContent = '完成';
+    }
+  } else {
+    closeModal('policy-calc-modal');
+    showNotification('政策测算完成！', 'success');
+    currentCalcStep = 1;
+    resetCalcSteps();
+  }
+}
+
+function prevCalcStep() {
+  if (currentCalcStep > 1) {
+    document.getElementById(`calc-step-${currentCalcStep}`).classList.remove('active');
+    currentCalcStep--;
+    document.getElementById(`calc-step-${currentCalcStep}`).classList.remove('completed');
+    document.getElementById(`calc-step-${currentCalcStep}`).classList.add('active');
+
+    document.getElementById('calc-form-1').style.display = 'none';
+    document.getElementById('calc-form-2').style.display = 'none';
+    document.getElementById('calc-form-3').style.display = 'none';
+    document.getElementById(`calc-form-${currentCalcStep}`).style.display = 'block';
+
+    document.getElementById('calc-next-btn').textContent = '下一步';
+    if (currentCalcStep === 1) {
+      document.getElementById('calc-prev-btn').style.display = 'none';
+    }
+  }
+}
+
+function resetCalcSteps() {
+  for (let i = 1; i <= 3; i++) {
+    document.getElementById(`calc-step-${i}`).classList.remove('active', 'completed');
+  }
+  document.getElementById('calc-step-1').classList.add('active');
+  document.getElementById('calc-form-1').style.display = 'block';
+  document.getElementById('calc-form-2').style.display = 'none';
+  document.getElementById('calc-form-3').style.display = 'none';
+  document.getElementById('calc-prev-btn').style.display = 'none';
+  document.getElementById('calc-next-btn').textContent = '下一步';
+}
+
+// 显示政策详情
+function showPolicyDetail(index) {
+  const policy = policyData[index];
+  document.getElementById('policy-detail-title').textContent = policy.title;
+  document.getElementById('policy-summary').textContent = policy.summary;
+
+  const clausesHtml = policy.clauses.map(c => `
+    <div class="card mb-12">
+      <h4 style="margin: 0 0 8px 0; font-size: 16px;">${c.title}</h4>
+      <p class="text-small mb-8">${c.content}</p>
+      <div class="row">
+        <div class="col-6"><span class="text-small" style="color: var(--text-secondary);">适用条件：</span><span class="text-small">${c.condition}</span></div>
+        <div class="col-6"><span class="text-small" style="color: var(--text-secondary);">补贴标准：</span><span class="text-small" style="color: var(--success); font-weight: 600;">${c.amount}</span></div>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('policy-clauses').innerHTML = clausesHtml;
+  closeModal('policy-library-modal');
+  showModal('policy-detail-modal');
+}
+
+// 更新受益群体
+function updateBenefitGroup(policy) {
+  const data = {
+    '就业补贴': { people: '45,678', amount: '8,000元' },
+    '培训资助': { people: '23,456', amount: '3,000元' },
+    '创业扶持': { people: '8,923', amount: '10,000元' },
+    '社保减免': { people: '56,123', amount: '5,000元/年' }
+  };
+  const d = data[policy] || data['就业补贴'];
+  document.querySelectorAll('#benefit-group-modal .stat-card .number')[0].textContent = d.people;
+  document.querySelectorAll('#benefit-group-modal .stat-card .number')[1].textContent = d.amount;
+}
+
+// 模态框控制
+function showModal(id) {
+  document.getElementById(id).classList.add('active');
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('active');
+}
+
+// 通知提示
+function showNotification(msg, type) {
+  const notification = document.getElementById('notification');
+  const msgEl = document.getElementById('notification-msg');
+  notification.className = 'notification ' + (type || '');
+  msgEl.textContent = msg;
+  notification.style.display = 'flex';
+  setTimeout(() => { notification.style.display = 'none'; }, 3000);
+}
+
+// 点击模态框外部关闭
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === this) { this.classList.remove('active'); }
+  });
+});
+</script>
 
 </body>
 </html>

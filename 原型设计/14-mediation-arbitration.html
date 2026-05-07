@@ -24,6 +24,7 @@
 <!-- 页面内容 -->
 <div class="page-content">
   <div class="container">
+
     <!-- 页面标题 -->
     <div class="page-header mb-48">
       <h1>调解仲裁服务</h1>
@@ -34,253 +35,785 @@
     <div class="row mb-48">
       <div class="col-3">
         <div class="stat-card">
-          <div class="number">1,562</div>
+          <div class="number" id="stat-cases">1,562</div>
           <div class="label">本月调解案件</div>
         </div>
       </div>
       <div class="col-3">
         <div class="stat-card">
-          <div class="number">92.3%</div>
+          <div class="number" id="stat-success">92.3%</div>
           <div class="label">调解成功率</div>
         </div>
       </div>
       <div class="col-3">
         <div class="stat-card">
-          <div class="number">386</div>
+          <div class="number" id="stat-cloud">386</div>
           <div class="label">云庭审次数</div>
         </div>
       </div>
       <div class="col-3">
         <div class="stat-card">
-          <div class="number">24h</div>
+          <div class="number" id="stat-response">24h</div>
           <div class="label">平均响应时间</div>
         </div>
       </div>
     </div>
 
-    <!-- 功能模块 -->
+    <!-- 功能模块入口 -->
     <div class="section-header mb-32">
       <h2>核心功能</h2>
+      <p>点击进入对应服务模块，体验全流程在线服务</p>
     </div>
     <div class="row mb-32">
       <div class="col-4">
-        <div class="feature-card">
+        <div class="feature-card" onclick="showModal('ec-contract-modal')">
           <div class="card-header">
             <div class="icon">📝</div>
             <div class="card-content">
-              <div class="title-row">
-                <h3>电子劳动合同</h3>
-              </div>
-              <p>推行电子劳动合同，实现合同签署全程数字化，确保合同法律效力，降低企业用工成本，保障劳动者权益。</p>
+              <div class="title-row"><h3>电子劳动合同</h3></div>
+              <p>推行电子劳动合同，实现合同签署全程数字化，确保合同法律效力。</p>
             </div>
             <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
             </svg>
           </div>
-          <div>
-            <span class="tag">电子签署</span>
-            <span class="tag">法律效力</span>
-            <span class="tag">全程留痕</span>
-          </div>
+          <div><span class="tag">电子签署</span><span class="tag">法律效力</span><span class="tag">全程留痕</span></div>
         </div>
       </div>
       <div class="col-4">
-        <div class="feature-card">
+        <div class="feature-card" onclick="showModal('wage-modal')">
           <div class="card-header">
             <div class="icon">💰</div>
             <div class="card-content">
-              <div class="title-row">
-                <h3>根治欠薪平台</h3>
-              </div>
-              <p>集成优化根治欠薪一体化平台，瞄准农民工全工作周期权益保障，实现用工考勤联网、工资发放确认、纠纷维权投诉。</p>
+              <div class="title-row"><h3>根治欠薪平台</h3></div>
+              <p>集成优化根治欠薪一体化平台，实现用工考勤联网、工资发放确认、纠纷维权投诉。</p>
             </div>
             <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
             </svg>
           </div>
-          <div>
-            <span class="tag">考勤联网</span>
-            <span class="tag">工资确认</span>
-            <span class="tag">欠薪预警</span>
-          </div>
+          <div><span class="tag">考勤联网</span><span class="tag">工资确认</span><span class="tag">欠薪预警</span></div>
         </div>
       </div>
       <div class="col-4">
-        <div class="feature-card">
+        <div class="feature-card" onclick="startCaseRegistration()">
           <div class="card-header">
             <div class="icon">⚖️</div>
             <div class="card-content">
-              <div class="title-row">
-                <h3>在线调解仲裁</h3>
-              </div>
-              <p>提供在线调解和在线仲裁服务，支持远程"云庭审"，当事人足不出户即可完成案件审理，实现"云上庭、云送达"。</p>
+              <div class="title-row"><h3>在线调解仲裁</h3><span class="feature-badge">热门</span></div>
+              <p>提供在线调解和在线仲裁服务，支持远程"云庭审"，当事人足不出户即可完成案件审理。</p>
             </div>
             <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
             </svg>
           </div>
-          <div>
-            <span class="tag">云庭审</span>
-            <span class="tag">云送达</span>
-            <span class="tag">在线视频</span>
-          </div>
+          <div><span class="tag">云庭审</span><span class="tag">云送达</span><span class="tag">在线视频</span></div>
         </div>
       </div>
     </div>
-
     <div class="row mb-48">
       <div class="col-4">
-        <div class="feature-card">
+        <div class="feature-card" onclick="showModal('legal-aid-modal')">
           <div class="card-header">
             <div class="icon">🤝</div>
             <div class="card-content">
-              <div class="title-row">
-                <h3>法律援助申请</h3>
-              </div>
-              <p>支持法律援助网上申请，为符合条件的劳动者提供便捷的法律援助通道，降低维权门槛，保障合法权益。</p>
+              <div class="title-row"><h3>法律援助申请</h3></div>
+              <p>支持法律援助网上申请，为符合条件的劳动者提供便捷的法律援助通道。</p>
             </div>
             <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
             </svg>
           </div>
-          <div>
-            <span class="tag">在线申请</span>
-            <span class="tag">法律援助</span>
-            <span class="tag">维权通道</span>
-          </div>
+          <div><span class="tag">在线申请</span><span class="tag">法律援助</span><span class="tag">维权通道</span></div>
         </div>
       </div>
       <div class="col-4">
-        <div class="feature-card">
+        <div class="feature-card" onclick="showNotification('项目实时监管功能开发中...', 'warning')">
           <div class="card-header">
             <div class="icon">🔍</div>
             <div class="card-content">
-              <div class="title-row">
-                <h3>项目实时监管</h3>
-              </div>
-              <p>推动在建工程项目全要素实时监管，实现用工考勤、工资发放、社保缴纳等数据联网，及时预警欠薪隐患。</p>
+              <div class="title-row"><h3>项目实时监管</h3></div>
+              <p>推动在建工程项目全要素实时监管，实现用工考勤、工资发放、社保缴纳等数据联网。</p>
             </div>
             <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
             </svg>
           </div>
-          <div>
-            <span class="tag">全要素监管</span>
-            <span class="tag">智能预警</span>
-            <span class="tag">数据联网</span>
-          </div>
+          <div><span class="tag">全要素监管</span><span class="tag">智能预警</span><span class="tag">数据联网</span></div>
         </div>
       </div>
       <div class="col-4">
-        <div class="feature-card">
+        <div class="feature-card" onclick="showNotification('数字化仲裁庭功能开发中...', 'warning')">
           <div class="card-header">
             <div class="icon">🏛️</div>
             <div class="card-content">
-              <div class="title-row">
-                <h3>数字化仲裁庭</h3>
-              </div>
-              <p>健全仲裁工作上下联动机制，构建数字化仲裁庭，电子材料全程留痕，实现案件审理标准化、数字化、智能化。</p>
+              <div class="title-row"><h3>数字化仲裁庭</h3></div>
+              <p>健全仲裁工作上下联动机制，构建数字化仲裁庭，电子材料全程留痕。</p>
             </div>
             <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
             </svg>
           </div>
-          <div>
-            <span class="tag">数字仲裁</span>
-            <span class="tag">上下联动</span>
-            <span class="tag">全程留痕</span>
-          </div>
+          <div><span class="tag">数字仲裁</span><span class="tag">上下联动</span><span class="tag">全程留痕</span></div>
         </div>
       </div>
     </div>
 
-    <!-- 云庭审流程 -->
+    <!-- 案件管理模块 -->
     <div class="section-header mb-32">
-      <h2>云庭审流程</h2>
+      <h2>案件管理</h2>
+      <p>在线申请、进度跟踪、结果查询</p>
     </div>
+
+    <!-- 搜索和筛选 -->
+    <div class="search-bar mb-24">
+      <input type="text" class="form-input" placeholder="搜索案件编号、当事人姓名..." id="case-search" onkeyup="filterCases()">
+      <button class="btn btn-primary" onclick="startCaseRegistration()">+ 申请立案</button>
+    </div>
+    <div class="filter-bar mb-24">
+      <select class="form-select" id="filter-case-type" onchange="filterCases()">
+        <option value="">全部案件类型</option>
+        <option value="工资拖欠">工资拖欠纠纷</option>
+        <option value="劳动合同">劳动合同争议</option>
+        <option value="工伤赔偿">工伤赔偿纠纷</option>
+        <option value="社保缴纳">社保缴纳争议</option>
+      </select>
+      <select class="form-select" id="filter-case-status" onchange="filterCases()">
+        <option value="">全部状态</option>
+        <option value="已结案">已结案</option>
+        <option value="审理中">审理中</option>
+        <option value="调解中">调解中</option>
+        <option value="待受理">待受理</option>
+      </select>
+    </div>
+
+    <!-- 案件表格 -->
     <div class="card mb-48">
-      <div class="row" style="text-align: center;">
-        <div class="col-3">
-          <div style="width: 64px; height: 64px; background: linear-gradient(135deg, rgba(22, 119, 255, 0.1) 0%, rgba(114, 46, 209, 0.1) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
-            <span style="color: var(--primary); font-size: 24px; font-weight: 600;">1</span>
-          </div>
-          <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">申请立案</h4>
-          <p style="font-size: 14px; color: var(--text-secondary);">在线提交仲裁申请及证据材料</p>
-        </div>
-        <div class="col-3">
-          <div style="width: 64px; height: 64px; background: linear-gradient(135deg, rgba(22, 119, 255, 0.1) 0%, rgba(114, 46, 209, 0.1) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
-            <span style="color: var(--primary); font-size: 24px; font-weight: 600;">2</span>
-          </div>
-          <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">审核受理</h4>
-          <p style="font-size: 14px; color: var(--text-secondary);">仲裁委在线审核材料并受理</p>
-        </div>
-        <div class="col-3">
-          <div style="width: 64px; height: 64px; background: linear-gradient(135deg, rgba(22, 119, 255, 0.1) 0%, rgba(114, 46, 209, 0.1) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
-            <span style="color: var(--primary); font-size: 24px; font-weight: 600;">3</span>
-          </div>
-          <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">云上庭审</h4>
-          <p style="font-size: 14px; color: var(--text-secondary);">远程视频庭审，在线举证质证</p>
-        </div>
-        <div class="col-3">
-          <div style="width: 64px; height: 64px; background: linear-gradient(135deg, rgba(22, 119, 255, 0.1) 0%, rgba(114, 46, 209, 0.1) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
-            <span style="color: var(--primary); font-size: 24px; font-weight: 600;">4</span>
-          </div>
-          <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">云送达</h4>
-          <p style="font-size: 14px; color: var(--text-secondary);">电子法律文书在线送达签字</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- 近期案件列表 -->
-    <div class="section-header mb-32">
-      <h2>近期案件</h2>
-    </div>
-    <div class="card">
-      <table class="table">
+      <table class="table" id="case-table">
         <thead>
           <tr>
             <th>案件编号</th>
             <th>案件类型</th>
             <th>申请人</th>
+            <th>被申请人</th>
             <th>状态</th>
             <th>提交时间</th>
+            <th>操作</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>ZC20260501001</td>
+        <tbody id="case-tbody">
+          <tr data-type="工资拖欠" data-status="已结案">
+            <td><strong>ZC20260501001</strong></td>
             <td>工资拖欠纠纷</td>
             <td>张三</td>
-            <td><span class="status-dot status-success"></span>已结案</td>
+            <td>XX建筑公司</td>
+            <td><span class="badge badge-success">已结案</span></td>
             <td>2026-05-01</td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewCaseDetail(0)">查看</button></td>
           </tr>
-          <tr>
-            <td>ZC20260502003</td>
+          <tr data-type="劳动合同" data-status="审理中">
+            <td><strong>ZC20260502003</strong></td>
             <td>劳动合同争议</td>
             <td>XX建筑公司</td>
-            <td><span class="status-dot status-warning"></span>审理中</td>
+            <td>李四</td>
+            <td><span class="badge badge-info">审理中</span></td>
             <td>2026-05-02</td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewCaseDetail(1)">查看</button></td>
           </tr>
-          <tr>
-            <td>ZC20260503005</td>
+          <tr data-type="工伤赔偿" data-status="调解中">
+            <td><strong>ZC20260503005</strong></td>
             <td>工伤赔偿纠纷</td>
             <td>李四</td>
-            <td><span class="status-dot status-warning"></span>调解中</td>
+            <td>XX制造公司</td>
+            <td><span class="badge badge-warning">调解中</span></td>
             <td>2026-05-03</td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewCaseDetail(2)">查看</button></td>
           </tr>
-          <tr>
-            <td>ZC20260504002</td>
+          <tr data-type="社保缴纳" data-status="待受理">
+            <td><strong>ZC20260504002</strong></td>
             <td>社保缴纳争议</td>
             <td>王五</td>
-            <td><span class="status-dot status-danger"></span>待受理</td>
+            <td>XX科技公司</td>
+            <td><span class="badge badge-danger">待受理</span></td>
             <td>2026-05-04</td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewCaseDetail(3)">查看</button></td>
+          </tr>
+          <tr data-type="工资拖欠" data-status="已结案">
+            <td><strong>ZC20260505006</strong></td>
+            <td>工资拖欠纠纷</td>
+            <td>赵六</td>
+            <td>XX餐饮公司</td>
+            <td><span class="badge badge-success">已结案</span></td>
+            <td>2026-05-05</td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewCaseDetail(4)">查看</button></td>
           </tr>
         </tbody>
       </table>
     </div>
 
+    <!-- 云庭审流程 -->
+    <div class="section-header mb-32">
+      <h2>云庭审流程</h2>
+      <p>足不出户，在线参与庭审全过程</p>
+    </div>
+    <div class="card mb-48">
+      <div class="steps mb-32">
+        <div class="step completed">
+          <div class="step-circle">✓</div>
+          <div class="step-label">申请立案</div>
+        </div>
+        <div class="step completed">
+          <div class="step-circle">✓</div>
+          <div class="step-label">审核受理</div>
+        </div>
+        <div class="step active">
+          <div class="step-circle">3</div>
+          <div class="step-label">云上庭审</div>
+        </div>
+        <div class="step">
+          <div class="step-circle">4</div>
+          <div class="step-label">云送达</div>
+        </div>
+      </div>
+      <div style="text-align: center; padding: 40px; background: linear-gradient(135deg, rgba(22, 119, 255, 0.05) 0%, rgba(114, 46, 209, 0.05) 100%); border-radius: var(--radius-lg);">
+        <div style="font-size: 64px; margin-bottom: 16px;">🎥</div>
+        <h3 class="mb-8">云庭审已就绪</h3>
+        <p class="text-body mb-24">您的案件 ZC20260503005 已排期，将于 2026-05-10 09:00 开庭</p>
+        <button class="btn btn-primary" onclick="showNotification('正在进入云庭审室...', 'success')">进入庭审室</button>
+      </div>
+    </div>
+
   </div>
 </div>
+
+<!-- 在线立案模态框 -->
+<div class="modal-overlay" id="case-register-modal">
+  <div class="modal" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3>在线申请立案</h3>
+      <button class="modal-close" onclick="closeModal('case-register-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="steps mb-32">
+        <div class="step active" id="reg-step-1">
+          <div class="step-circle">1</div>
+          <div class="step-label">填写信息</div>
+        </div>
+        <div class="step" id="reg-step-2">
+          <div class="step-circle">2</div>
+          <div class="step-label">上传证据</div>
+        </div>
+        <div class="step" id="reg-step-3">
+          <div class="step-circle">3</div>
+          <div class="step-label">确认提交</div>
+        </div>
+      </div>
+
+      <div id="reg-form-1">
+        <div class="form-group">
+          <label class="form-label">案件类型</label>
+          <select class="form-select" id="case-type">
+            <option value="">请选择案件类型</option>
+            <option value="工资拖欠">工资拖欠纠纷</option>
+            <option value="劳动合同">劳动合同争议</option>
+            <option value="工伤赔偿">工伤赔偿纠纷</option>
+            <option value="社保缴纳">社保缴纳争议</option>
+            <option value="违法解雇">违法解雇纠纷</option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label class="form-label">申请人姓名</label>
+              <input type="text" class="form-input" id="applicant-name" placeholder="请输入申请人姓名">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label class="form-label">联系电话</label>
+              <input type="tel" class="form-input" id="applicant-phone" placeholder="请输入联系电话">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">被申请人（单位/个人）</label>
+          <input type="text" class="form-input" id="respondent-name" placeholder="请输入被申请人名称">
+        </div>
+        <div class="form-group">
+          <label class="form-label">纠纷描述</label>
+          <textarea class="form-textarea" id="case-desc" placeholder="请详细描述纠纷经过、诉求等..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">诉求金额（元）</label>
+          <input type="number" class="form-input" id="case-amount" placeholder="请输入诉求金额">
+        </div>
+      </div>
+
+      <div id="reg-form-2" style="display: none;">
+        <h3 class="mb-16">上传证据材料</h3>
+        <p class="text-small mb-24">请上传与案件相关的证据材料，支持 jpg、png、pdf 格式</p>
+        <div class="row mb-16">
+          <div class="col-6">
+            <div class="upload-area" onclick="showNotification('劳动合同已上传成功', 'success')">
+              <div class="upload-icon">📄</div>
+              <p>劳动合同</p>
+              <p class="text-small">点击上传</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="upload-area" onclick="showNotification('工资流水已上传成功', 'success')">
+              <div class="upload-icon">💳</div>
+              <p>工资流水</p>
+              <p class="text-small">点击上传</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="upload-area" onclick="showNotification('考勤记录已上传成功', 'success')">
+              <div class="upload-icon">📅</div>
+              <p>考勤记录</p>
+              <p class="text-small">点击上传</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="upload-area" onclick="showNotification('其他证据已上传成功', 'success')">
+              <div class="upload-icon">📎</div>
+              <p>其他证据</p>
+              <p class="text-small">点击上传</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="reg-form-3" style="display: none;">
+        <h3 class="mb-16">确认立案信息</h3>
+        <div class="card" style="background: var(--bg-secondary);">
+          <div class="row mb-16">
+            <div class="col-6"><strong>案件类型：</strong><span id="confirm-type"></span></div>
+            <div class="col-6"><strong>诉求金额：</strong><span id="confirm-amount"></span> 元</div>
+          </div>
+          <div class="row mb-16">
+            <div class="col-6"><strong>申请人：</strong><span id="confirm-applicant"></span></div>
+            <div class="col-6"><strong>联系电话：</strong><span id="confirm-phone"></span></div>
+          </div>
+          <div class="mb-16"><strong>被申请人：</strong><span id="confirm-respondent"></span></div>
+          <div><strong>纠纷描述：</strong><p id="confirm-desc" class="text-small mt-8"></p></div>
+        </div>
+        <div class="form-group mt-16">
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-secondary);">
+            <input type="checkbox" id="agree-check"> 本人确认以上信息真实有效，并同意在线审理协议
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" id="reg-prev-btn" style="display: none;" onclick="prevRegStep()">上一步</button>
+      <button class="btn btn-primary" id="reg-next-btn" onclick="nextRegStep()">下一步</button>
+    </div>
+  </div>
+</div>
+
+<!-- 案件详情模态框 -->
+<div class="modal-overlay" id="case-detail-modal">
+  <div class="modal" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3 id="detail-case-id">案件详情</h3>
+      <button class="modal-close" onclick="closeModal('case-detail-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="card mb-16" style="background: var(--bg-secondary);">
+        <div class="row mb-16">
+          <div class="col-6"><strong>案件类型：</strong><span id="detail-case-type"></span></div>
+          <div class="col-6"><strong>案件状态：</strong><span id="detail-case-status"></span></div>
+        </div>
+        <div class="row mb-16">
+          <div class="col-6"><strong>申请人：</strong><span id="detail-applicant"></span></div>
+          <div class="col-6"><strong>被申请人：</strong><span id="detail-respondent"></span></div>
+        </div>
+        <div><strong>提交时间：</strong><span id="detail-time"></span></div>
+      </div>
+
+      <h4 class="mb-8">案件进度</h4>
+      <div class="steps mb-24">
+        <div class="step completed">
+          <div class="step-circle">✓</div>
+          <div class="step-label">申请立案</div>
+        </div>
+        <div class="step completed">
+          <div class="step-circle">✓</div>
+          <div class="step-label">审核受理</div>
+        </div>
+        <div class="step active" id="detail-step-3">
+          <div class="step-circle">3</div>
+          <div class="step-label">调解仲裁</div>
+        </div>
+        <div class="step" id="detail-step-4">
+          <div class="step-circle">4</div>
+          <div class="step-label">结案送达</div>
+        </div>
+      </div>
+
+      <h4 class="mb-8">证据材料</h4>
+      <div class="row mb-16">
+        <div class="col-4"><span class="tag">📄 劳动合同.pdf</span></div>
+        <div class="col-4"><span class="tag">💳 工资流水.pdf</span></div>
+        <div class="col-4"><span class="tag">📅 考勤记录.pdf</span></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('case-detail-modal')">关闭</button>
+      <button class="btn btn-primary" onclick="showNotification('法律文书已发送', 'success')">查看文书</button>
+    </div>
+  </div>
+</div>
+
+<!-- 电子劳动合同模态框 -->
+<div class="modal-overlay" id="ec-contract-modal">
+  <div class="modal" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3>电子劳动合同签署</h3>
+      <button class="modal-close" onclick="closeModal('ec-contract-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">合同模板</label>
+        <select class="form-select" onchange="showNotification('已加载合同模板', 'success')">
+          <option>请选择合同模板</option>
+          <option>固定期限劳动合同</option>
+          <option>无固定期限劳动合同</option>
+          <option>劳务派遣合同</option>
+          <option>灵活用工协议</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">用人单位</label>
+        <input type="text" class="form-input" placeholder="请输入用人单位全称">
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">劳动者姓名</label>
+            <input type="text" class="form-input" placeholder="请输入劳动者姓名">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">身份证号</label>
+            <input type="text" class="form-input" placeholder="请输入身份证号">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">合同期限</label>
+            <select class="form-select">
+              <option>1年</option>
+              <option>2年</option>
+              <option>3年</option>
+              <option>无固定期限</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">月薪（元）</label>
+            <input type="number" class="form-input" placeholder="请输入月薪">
+          </div>
+        </div>
+      </div>
+      <div class="card mt-16" style="background: var(--bg-secondary); padding: 16px;">
+        <h4 class="mb-8">合同条款预览</h4>
+        <p class="text-small">根据《中华人民共和国劳动法》和《中华人民共和国劳动合同法》等法律法规，甲乙双方在平等自愿、协商一致的基础上签订本合同...</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('ec-contract-modal')">取消</button>
+      <button class="btn btn-primary" onclick="showNotification('合同已生成，请进行电子签名', 'success')">生成合同</button>
+    </div>
+  </div>
+</div>
+
+<!-- 根治欠薪平台模态框 -->
+<div class="modal-overlay" id="wage-modal">
+  <div class="modal" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3>根治欠薪一体化平台</h3>
+      <button class="modal-close" onclick="closeModal('wage-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="row mb-24">
+        <div class="col-4">
+          <div class="stat-card">
+            <div class="number" style="font-size: 32px;">156</div>
+            <div class="label">在建项目</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-card">
+            <div class="number" style="font-size: 32px;">23,456</div>
+            <div class="label">用工人数</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-card">
+            <div class="number" style="font-size: 32px;">3</div>
+            <div class="label">欠薪预警</div>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="mb-16">欠薪投诉</h4>
+      <div class="form-group">
+        <label class="form-label">项目名称</label>
+        <select class="form-select">
+          <option>请选择在建项目</option>
+          <option>XX商业综合体建设项目</option>
+          <option>XX产业园基础设施项目</option>
+          <option>XX住宅小区开发项目</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">欠薪情况描述</label>
+        <textarea class="form-textarea" placeholder="请详细描述欠薪情况：欠薪月份、金额、人数等..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">上传证据</label>
+        <div class="upload-area" onclick="showNotification('工资条已上传', 'success')">
+          <div class="upload-icon">📎</div>
+          <p>点击上传工资条、考勤记录等证据</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('wage-modal')">取消</button>
+      <button class="btn btn-primary" onclick="showNotification('投诉已提交，将在24小时内受理', 'success')">提交投诉</button>
+    </div>
+  </div>
+</div>
+
+<!-- 法律援助模态框 -->
+<div class="modal-overlay" id="legal-aid-modal">
+  <div class="modal" style="max-width: 600px;">
+    <div class="modal-header">
+      <h3>法律援助申请</h3>
+      <button class="modal-close" onclick="closeModal('legal-aid-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">申请人姓名</label>
+        <input type="text" class="form-input" placeholder="请输入申请人姓名">
+      </div>
+      <div class="form-group">
+        <label class="form-label">经济困难情况</label>
+        <select class="form-select">
+          <option>请选择困难等级</option>
+          <option>低保家庭</option>
+          <option>低收入家庭</option>
+          <option>残疾人</option>
+          <option>农民工</option>
+          <option>其他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">援助事项</label>
+        <select class="form-select">
+          <option>请选择援助事项</option>
+          <option>劳动争议</option>
+          <option>工伤赔偿</option>
+          <option>工资拖欠</option>
+          <option>违法解雇</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">具体情况说明</label>
+        <textarea class="form-textarea" placeholder="请详细描述需要法律援助的具体情况..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('legal-aid-modal')">取消</button>
+      <button class="btn btn-primary" onclick="showNotification('法律援助申请已提交，将在3个工作日内审核', 'success')">提交申请</button>
+    </div>
+  </div>
+</div>
+
+<!-- 通知提示 -->
+<div class="notification" id="notification" style="display: none;">
+  <span id="notification-msg"></span>
+</div>
+
+<script>
+// 案件数据
+const caseData = [
+  { id: "ZC20260501001", type: "工资拖欠", applicant: "张三", respondent: "XX建筑公司", status: "已结案", time: "2026-05-01" },
+  { id: "ZC20260502003", type: "劳动合同", applicant: "XX建筑公司", respondent: "李四", status: "审理中", time: "2026-05-02" },
+  { id: "ZC20260503005", type: "工伤赔偿", applicant: "李四", respondent: "XX制造公司", status: "调解中", time: "2026-05-03" },
+  { id: "ZC20260504002", type: "社保缴纳", applicant: "王五", respondent: "XX科技公司", status: "待受理", time: "2026-05-04" },
+  { id: "ZC20260505006", type: "工资拖欠", applicant: "赵六", respondent: "XX餐饮公司", status: "已结案", time: "2026-05-05" }
+];
+
+// 筛选案件
+function filterCases() {
+  const search = document.getElementById('case-search').value.toLowerCase();
+  const type = document.getElementById('filter-case-type').value;
+  const status = document.getElementById('filter-case-status').value;
+
+  const rows = document.querySelectorAll('#case-tbody tr');
+  rows.forEach(row => {
+    let show = true;
+    const rowType = row.getAttribute('data-type');
+    const rowStatus = row.getAttribute('data-status');
+
+    if (search && !row.textContent.toLowerCase().includes(search)) show = false;
+    if (type && rowType !== type) show = false;
+    if (status && rowStatus !== status) show = false;
+
+    row.style.display = show ? '' : 'none';
+  });
+}
+
+// 查看案件详情
+function viewCaseDetail(index) {
+  const caseItem = caseData[index];
+  document.getElementById('detail-case-id').textContent = caseItem.id;
+  document.getElementById('detail-case-type').textContent = caseItem.type;
+  document.getElementById('detail-case-status').innerHTML = getStatusBadge(caseItem.status);
+  document.getElementById('detail-applicant').textContent = caseItem.applicant;
+  document.getElementById('detail-respondent').textContent = caseItem.respondent;
+  document.getElementById('detail-time').textContent = caseItem.time;
+
+  // 更新步骤状态
+  const status = caseItem.status;
+  document.getElementById('detail-step-3').className = 'step ' + (status === '调解中' || status === '审理中' || status === '已结案' ? 'completed' : '');
+  if (status === '调解中' || status === '审理中') document.getElementById('detail-step-3').className = 'step active';
+  document.getElementById('detail-step-4').className = 'step ' + (status === '已结案' ? 'completed' : '');
+
+  showModal('case-detail-modal');
+}
+
+function getStatusBadge(status) {
+  const map = {
+    '已结案': '<span class="badge badge-success">已结案</span>',
+    '审理中': '<span class="badge badge-info">审理中</span>',
+    '调解中': '<span class="badge badge-warning">调解中</span>',
+    '待受理': '<span class="badge badge-danger">待受理</span>'
+  };
+  return map[status] || status;
+}
+
+// 在线立案步骤
+let currentRegStep = 1;
+function startCaseRegistration() {
+  currentRegStep = 1;
+  resetRegSteps();
+  showModal('case-register-modal');
+}
+
+function nextRegStep() {
+  if (currentRegStep === 1) {
+    // 验证必填字段
+    const type = document.getElementById('case-type').value;
+    const name = document.getElementById('applicant-name').value;
+    if (!type || !name) {
+      showNotification('请填写完整信息', 'error');
+      return;
+    }
+  }
+
+  if (currentRegStep === 2) {
+    // 跳转到确认页面，填充确认信息
+    document.getElementById('confirm-type').textContent = document.getElementById('case-type').value;
+    document.getElementById('confirm-amount').textContent = document.getElementById('case-amount').value || '0';
+    document.getElementById('confirm-applicant').textContent = document.getElementById('applicant-name').value;
+    document.getElementById('confirm-phone').textContent = document.getElementById('applicant-phone').value;
+    document.getElementById('confirm-respondent').textContent = document.getElementById('respondent-name').value;
+    document.getElementById('confirm-desc').textContent = document.getElementById('case-desc').value;
+  }
+
+  if (currentRegStep < 3) {
+    document.getElementById(`reg-step-${currentRegStep}`).classList.remove('active');
+    currentRegStep++;
+    document.getElementById(`reg-step-${currentRegStep}`).classList.add('active');
+
+    document.getElementById('reg-form-1').style.display = 'none';
+    document.getElementById('reg-form-2').style.display = 'none';
+    document.getElementById('reg-form-3').style.display = 'none';
+    document.getElementById(`reg-form-${currentRegStep}`).style.display = 'block';
+
+    document.getElementById('reg-prev-btn').style.display = 'inline-flex';
+    if (currentRegStep === 3) {
+      document.getElementById('reg-next-btn').textContent = '提交立案';
+    }
+  } else {
+    // 提交立案
+    const agree = document.getElementById('agree-check').checked;
+    if (!agree) {
+      showNotification('请先同意在线审理协议', 'error');
+      return;
+    }
+    closeModal('case-register-modal');
+    showNotification('立案申请已提交，案件编号：ZC20260506007', 'success');
+    resetRegSteps();
+  }
+}
+
+function prevRegStep() {
+  if (currentRegStep > 1) {
+    document.getElementById(`reg-step-${currentRegStep}`).classList.remove('active');
+    currentRegStep--;
+    document.getElementById(`reg-step-${currentRegStep}`).classList.add('active');
+
+    document.getElementById('reg-form-1').style.display = 'none';
+    document.getElementById('reg-form-2').style.display = 'none';
+    document.getElementById('reg-form-3').style.display = 'none';
+    document.getElementById(`reg-form-${currentRegStep}`).style.display = 'block';
+
+    document.getElementById('reg-next-btn').textContent = '下一步';
+    if (currentRegStep === 1) {
+      document.getElementById('reg-prev-btn').style.display = 'none';
+    }
+  }
+}
+
+function resetRegSteps() {
+  for (let i = 1; i <= 3; i++) {
+    document.getElementById(`reg-step-${i}`).classList.remove('active', 'completed');
+  }
+  document.getElementById('reg-step-1').classList.add('active');
+  document.getElementById('reg-form-1').style.display = 'block';
+  document.getElementById('reg-form-2').style.display = 'none';
+  document.getElementById('reg-form-3').style.display = 'none';
+  document.getElementById('reg-prev-btn').style.display = 'none';
+  document.getElementById('reg-next-btn').textContent = '下一步';
+}
+
+// 模态框控制
+function showModal(id) {
+  document.getElementById(id).classList.add('active');
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('active');
+}
+
+// 通知提示
+function showNotification(msg, type) {
+  const notification = document.getElementById('notification');
+  const msgEl = document.getElementById('notification-msg');
+  notification.className = 'notification ' + (type || '');
+  msgEl.textContent = msg;
+  notification.style.display = 'flex';
+  setTimeout(() => { notification.style.display = 'none'; }, 3000);
+}
+
+// 点击模态框外部关闭
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === this) { this.classList.remove('active'); }
+  });
+});
+</script>
 
 </body>
 </html>

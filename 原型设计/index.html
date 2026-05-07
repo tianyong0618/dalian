@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人社服务原型设计</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f7fa; color: #333; }
+    .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
+    h1 { font-size: 28px; margin-bottom: 8px; }
+    p.subtitle { color: #666; margin-bottom: 40px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+    .card { background: #fff; border-radius: 12px; padding: 24px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.15); transform: translateY(-2px); }
+    .card h2 { font-size: 18px; margin-bottom: 8px; color: #1a73e8; }
+    .card p { font-size: 14px; color: #666; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>人社服务原型设计</h1>
+    <p class="subtitle">以下为各模块原型页面</p>
+    <div class="grid">
+      <a class="card" href="12-hr-flagship.html">
+        <h2>人社旗舰店</h2>
+        <p>12-hr-flagship.html</p>
+      </a>
+      <a class="card" href="14-mediation-arbitration.html">
+        <h2>调解仲裁</h2>
+        <p>14-mediation-arbitration.html</p>
+      </a>
+      <a class="card" href="6-policy-calculator.html">
+        <h2>政策计算器</h2>
+        <p>6-policy-calculator.html</p>
+      </a>
+      <a class="card" href="9-employment-portrait.html">
+        <h2>就业画像</h2>
+        <p>9-employment-portrait.html</p>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

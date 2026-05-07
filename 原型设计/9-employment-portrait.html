@@ -24,6 +24,7 @@
 <!-- 页面内容 -->
 <div class="page-content">
   <div class="container">
+
     <!-- 页面标题 -->
     <div class="page-header mb-48">
       <h1>就业人员画像</h1>
@@ -34,222 +35,296 @@
     <div class="row mb-48">
       <div class="col-3">
         <div class="stat-card">
-          <div class="number">86,452</div>
+          <div class="number" id="stat-total">86,452</div>
           <div class="label">已建档人数</div>
         </div>
       </div>
       <div class="col-3">
         <div class="stat-card">
-          <div class="number">128</div>
+          <div class="number" id="stat-tags">128</div>
           <div class="label">标签维度</div>
         </div>
       </div>
       <div class="col-3">
         <div class="stat-card">
-          <div class="number">94.7%</div>
+          <div class="number" id="stat-accuracy">94.7%</div>
           <div class="label">匹配准确率</div>
         </div>
       </div>
       <div class="col-3">
         <div class="stat-card">
-          <div class="number">12</div>
+          <div class="number" id="stat-groups">12</div>
           <div class="label">重点群体</div>
         </div>
       </div>
     </div>
 
-    <!-- 功能模块 -->
+    <!-- 功能模块入口 -->
     <div class="section-header mb-32">
       <h2>核心功能</h2>
+      <p>点击进入对应功能模块</p>
     </div>
     <div class="row mb-32">
       <div class="col-4">
-        <div class="feature-card">
+        <div class="feature-card" onclick="showModal('portrait-generate-modal')">
           <div class="card-header">
             <div class="icon">🧠</div>
             <div class="card-content">
-              <div class="title-row">
-                <h3>全息画像构建</h3>
-              </div>
-              <p>基于社保、就业、人才、维权等多维度数据采集，运用知识图谱技术构建就业人员全息画像，实现用户特征精准刻画。</p>
+              <div class="title-row"><h3>一键画像生成</h3><span class="feature-badge">核心</span></div>
+              <p>基于多维度数据采集，一键生成就业人员全息画像。</p>
             </div>
             <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
             </svg>
           </div>
-          <div>
-            <span class="tag">多维数据</span>
-            <span class="tag">知识图谱</span>
-            <span class="tag">精准刻画</span>
-          </div>
+          <div><span class="tag">多维数据</span><span class="tag">知识图谱</span><span class="tag">一键生成</span></div>
         </div>
       </div>
       <div class="col-4">
-        <div class="feature-card">
+        <div class="feature-card" onclick="showModal('tag-manage-modal')">
           <div class="card-header">
             <div class="icon">🏷️</div>
             <div class="card-content">
-              <div class="title-row">
-                <h3>动态标签体系</h3>
-              </div>
-              <p>建立动态标签体系，从教育竞争力、就业稳定性、帮扶指数、薪资变化趋势等方面构建多维标签，实时更新画像数据。</p>
+              <div class="title-row"><h3>标签体系管理</h3></div>
+              <p>建立动态标签体系，实时更新画像数据，支持自定义标签。</p>
             </div>
             <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
             </svg>
           </div>
-          <div>
-            <span class="tag">动态标签</span>
-            <span class="tag">教育竞争力</span>
-            <span class="tag">就业稳定性</span>
-          </div>
+          <div><span class="tag">动态标签</span><span class="tag">自定义</span><span class="tag">实时更新</span></div>
         </div>
       </div>
       <div class="col-4">
-        <div class="feature-card">
+        <div class="feature-card" onclick="showModal('knowledge-graph-modal')">
           <div class="card-header">
-            <div class="icon">👥</div>
+            <div class="icon">🕸️</div>
             <div class="card-content">
-              <div class="title-row">
-                <h3>重点群体画像</h3>
-              </div>
-              <p>针对农民工、在校大学生、高校毕业生、就业困难人员等重点群体深入挖掘，构建群体画像，支持动态识别和分析。</p>
+              <div class="title-row"><h3>知识图谱可视化</h3></div>
+              <p>运用知识图谱技术展示就业人员全息画像关联关系。</p>
             </div>
             <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
             </svg>
           </div>
-          <div>
-            <span class="tag">农民工</span>
-            <span class="tag">高校毕业生</span>
-            <span class="tag">就业困难</span>
+          <div><span class="tag">知识图谱</span><span class="tag">可视化</span><span class="tag">关联分析</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-48">
+      <div class="col-4">
+        <div class="feature-card" onclick="showModal('job-recommend-modal')">
+          <div class="card-header">
+            <div class="icon">💼</div>
+            <div class="card-content">
+              <div class="title-row"><h3>岗位精准推荐</h3></div>
+              <p>基于画像数据为求职者推荐合适的岗位和职业发展路径。</p>
+            </div>
+            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+            </svg>
           </div>
+          <div><span class="tag">精准推荐</span><span class="tag">岗位匹配</span><span class="tag">职业规划</span></div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="feature-card" onclick="showNotification('人才筛选功能开发中...', 'warning')">
+          <div class="card-header">
+            <div class="icon">🎯</div>
+            <div class="card-content">
+              <div class="title-row"><h3>企业人才筛选</h3></div>
+              <p>帮助企业精准筛选人才，快速匹配符合岗位需求的求职者。</p>
+            </div>
+            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div><span class="tag">人才筛选</span><span class="tag">精准匹配</span><span class="tag">效率提升</span></div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="feature-card" onclick="showModal('group-analysis-modal')">
+          <div class="card-header">
+            <div class="icon">👥</div>
+            <div class="card-content">
+              <div class="title-row"><h3>重点群体分析</h3></div>
+              <p>针对农民工、高校毕业生等重点群体深入挖掘，构建群体画像。</p>
+            </div>
+            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div><span class="tag">农民工</span><span class="tag">高校毕业生</span><span class="tag">就业困难</span></div>
         </div>
       </div>
     </div>
 
-    <div class="row mb-48">
-      <div class="col-4">
-        <div class="feature-card">
-          <div class="card-header">
-            <div class="icon">👤</div>
-            <div class="card-content">
-              <div class="title-row">
-                <h3>求职者画像</h3>
-              </div>
-              <p>从就业信息、教育经历、职业技能、就业意向等方面构建人才画像，为求职者推荐合适的岗位和职业发展路径。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div>
-            <span class="tag">技能标签</span>
-            <span class="tag">意向匹配</span>
-            <span class="tag">职业推荐</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="feature-card">
-          <div class="card-header">
-            <div class="icon">🎯</div>
-            <div class="card-content">
-              <div class="title-row">
-                <h3>企业人才筛选</h3>
-              </div>
-              <p>帮助企业精准筛选人才，基于人才画像数据，快速匹配符合岗位需求的求职者，提升招聘效率和质量。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div>
-            <span class="tag">人才筛选</span>
-            <span class="tag">精准匹配</span>
-            <span class="tag">效率提升</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="feature-card">
-          <div class="card-header">
-            <div class="icon">📱</div>
-            <div class="card-content">
-              <div class="title-row">
-                <h3>个性化服务推送</h3>
-              </div>
-              <p>基于画像数据实现个性化服务推送、个性化职业路径推荐，提高人社精准服务能力，促进公共服务体系创新。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div>
-            <span class="tag">精准推送</span>
-            <span class="tag">个性化服务</span>
-            <span class="tag">路径推荐</span>
-          </div>
-        </div>
-      </div>
+    <!-- 人员管理模块 -->
+    <div class="section-header mb-32">
+      <h2>人员画像管理</h2>
+      <p>搜索、查看、管理就业人员画像</p>
+    </div>
+
+    <!-- 搜索和筛选 -->
+    <div class="search-bar mb-24">
+      <input type="text" class="form-input" placeholder="搜索姓名、身份证号、标签..." id="person-search" onkeyup="filterPersons()">
+      <button class="btn btn-primary" onclick="showModal('portrait-generate-modal')">+ 生成画像</button>
+    </div>
+    <div class="filter-bar mb-24">
+      <select class="form-select" id="filter-group" onchange="filterPersons()">
+        <option value="">全部群体</option>
+        <option value="高校毕业生">高校毕业生</option>
+        <option value="就业困难人员">就业困难人员</option>
+        <option value="农民工">农民工</option>
+        <option value="零工人员">零工人员</option>
+        <option value="退役军人">退役军人</option>
+      </select>
+      <select class="form-select" id="filter-education" onchange="filterPersons()">
+        <option value="">全部学历</option>
+        <option value="本科及以上">本科及以上</option>
+        <option value="大专">大专</option>
+        <option value="高中及以下">高中及以下</option>
+      </select>
+      <select class="form-select" id="filter-stability" onchange="filterPersons()">
+        <option value="">稳定性排序</option>
+        <option value="high">高稳定性</option>
+        <option value="medium">中等稳定性</option>
+        <option value="low">低稳定性</option>
+      </select>
+    </div>
+
+    <!-- 人员表格 -->
+    <div class="card mb-48">
+      <table class="table" id="person-table">
+        <thead>
+          <tr>
+            <th>姓名</th>
+            <th>学历</th>
+            <th>重点群体</th>
+            <th>教育竞争力</th>
+            <th>就业稳定性</th>
+            <th>标签</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="person-tbody">
+          <tr data-group="高校毕业生" data-education="本科及以上" data-stability="high">
+            <td><strong>张三</strong></td>
+            <td>本科</td>
+            <td><span class="badge badge-info">高校毕业生</span></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 88%;"></div></div></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 78%;"></div></div></td>
+            <td><span class="tag" style="font-size: 12px;">Java开发</span> <span class="tag" style="font-size: 12px;">3年经验</span></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(0)">查看画像</button></td>
+          </tr>
+          <tr data-group="就业困难人员" data-education="高中及以下" data-stability="low">
+            <td><strong>李四</strong></td>
+            <td>高中</td>
+            <td><span class="badge badge-warning">就业困难</span></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 45%;"></div></div></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 32%;"></div></div></td>
+            <td><span class="tag" style="font-size: 12px;">零工人员</span> <span class="tag" style="font-size: 12px;">技能培训</span></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(1)">查看画像</button></td>
+          </tr>
+          <tr data-group="农民工" data-education="高中及以下" data-stability="medium">
+            <td><strong>王五</strong></td>
+            <td>中专</td>
+            <td><span class="badge badge-success">农民工</span></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 52%;"></div></div></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 55%;"></div></div></td>
+            <td><span class="tag" style="font-size: 12px;">建筑工</span> <span class="tag" style="font-size: 12px;">计件工</span></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(2)">查看画像</button></td>
+          </tr>
+          <tr data-group="高校毕业生" data-education="本科及以上" data-stability="high">
+            <td><strong>赵六</strong></td>
+            <td>硕士</td>
+            <td><span class="badge badge-info">高校毕业生</span></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 92%;"></div></div></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div></td>
+            <td><span class="tag" style="font-size: 12px;">Python</span> <span class="tag" style="font-size: 12px;">AI算法</span></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(3)">查看画像</button></td>
+          </tr>
+          <tr data-group="零工人员" data-education="大专" data-stability="low">
+            <td><strong>孙七</strong></td>
+            <td>大专</td>
+            <td><span class="badge badge-info">零工人员</span></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 48%;"></div></div></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 28%;"></div></div></td>
+            <td><span class="tag" style="font-size: 12px;">外卖骑手</span> <span class="tag" style="font-size: 12px;">灵活用工</span></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(4)">查看画像</button></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <!-- 画像维度展示 -->
     <div class="section-header mb-32">
       <h2>画像核心维度</h2>
+      <p>多维度数据分析，精准刻画人员特征</p>
     </div>
-    <div class="card mb-48">
-      <div class="row">
-        <div class="col-6">
-          <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 24px; color: var(--text-primary);">个人维度</h3>
+    <div class="row mb-48">
+      <div class="col-6">
+        <div class="card">
+          <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 24px;">个人能力维度</h3>
           <div class="mb-20">
-            <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">教育竞争力</div>
-            <div style="height: 10px; background: rgba(22, 119, 255, 0.1); border-radius: 5px; overflow: hidden;">
-              <div style="height: 100%; width: 78%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-gradient-end) 100%); border-radius: 5px;"></div>
+            <div style="display: flex; justify-content: space-between; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">
+              <span>教育竞争力</span><span>88%</span>
             </div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 88%;"></div></div>
           </div>
           <div class="mb-20">
-            <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">就业稳定性</div>
-            <div style="height: 10px; background: rgba(22, 119, 255, 0.1); border-radius: 5px; overflow: hidden;">
-              <div style="height: 100%; width: 65%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-gradient-end) 100%); border-radius: 5px;"></div>
+            <div style="display: flex; justify-content: space-between; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">
+              <span>就业稳定性</span><span>78%</span>
             </div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 78%;"></div></div>
           </div>
           <div class="mb-20">
-            <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">职业技能评分</div>
-            <div style="height: 10px; background: rgba(22, 119, 255, 0.1); border-radius: 5px; overflow: hidden;">
-              <div style="height: 100%; width: 82%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-gradient-end) 100%); border-radius: 5px;"></div>
+            <div style="display: flex; justify-content: space-between; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">
+              <span>职业技能评分</span><span>82%</span>
             </div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 82%;"></div></div>
           </div>
           <div class="mb-20">
-            <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">薪资增长趋势</div>
-            <div style="height: 10px; background: rgba(22, 119, 255, 0.1); border-radius: 5px; overflow: hidden;">
-              <div style="height: 100%; width: 71%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-gradient-end) 100%); border-radius: 5px;"></div>
+            <div style="display: flex; justify-content: space-between; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">
+              <span>薪资增长趋势</span><span>71%</span>
             </div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 71%;"></div></div>
+          </div>
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">
+              <span>帮扶指数</span><span>65%</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 65%;"></div></div>
           </div>
         </div>
-        <div class="col-6">
-          <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 24px; color: var(--text-primary);">常见标签云</h3>
+      </div>
+      <div class="col-6">
+        <div class="card" style="height: 100%;">
+          <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 24px;">常见标签云</h3>
           <div style="line-height: 2.5;">
-            <span class="tag" style="font-size: 14px;">本科及以上学历</span>
-            <span class="tag" style="font-size: 13px;">3年工作经验</span>
-            <span class="tag" style="font-size: 15px;">Java开发</span>
-            <span class="tag" style="font-size: 12px;">社保连续缴纳</span>
-            <span class="tag" style="font-size: 14px;">求职意向：互联网</span>
-            <span class="tag" style="font-size: 13px;">培训经历丰富</span>
-            <span class="tag" style="font-size: 12px;">零工人员</span>
-            <span class="tag" style="font-size: 14px;">就业困难人员</span>
-            <span class="tag" style="font-size: 13px;">高校毕业生</span>
-            <span class="tag" style="font-size: 12px;">农民工</span>
-            <span class="tag" style="font-size: 14px;">高技能人才</span>
-            <span class="tag" style="font-size: 13px;">创业意向</span>
+            <span class="tag" style="font-size: 16px; padding: 8px 18px;">本科及以上学历</span>
+            <span class="tag" style="font-size: 14px; padding: 7px 16px;">3年工作经验</span>
+            <span class="tag" style="font-size: 18px; padding: 9px 20px;">Java开发</span>
+            <span class="tag" style="font-size: 13px; padding: 6px 14px;">社保连续缴纳</span>
+            <span class="tag" style="font-size: 15px; padding: 8px 18px;">求职意向：互联网</span>
+            <span class="tag" style="font-size: 14px; padding: 7px 16px;">培训经历丰富</span>
+            <span class="tag" style="font-size: 13px; padding: 6px 14px;">零工人员</span>
+            <span class="tag" style="font-size: 15px; padding: 8px 18px;">就业困难人员</span>
+            <span class="tag" style="font-size: 14px; padding: 7px 16px;">高校毕业生</span>
+            <span class="tag" style="font-size: 13px; padding: 6px 14px;">农民工</span>
+            <span class="tag" style="font-size: 16px; padding: 8px 18px;">高技能人才</span>
+            <span class="tag" style="font-size: 14px; padding: 7px 16px;">创业意向</span>
+            <span class="tag" style="font-size: 13px; padding: 6px 14px;">退役军人</span>
+            <span class="tag" style="font-size: 15px; padding: 8px 18px;">灵活用工</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 重点群体列表 -->
+    <!-- 重点群体监测 -->
     <div class="section-header mb-32">
       <h2>重点群体监测</h2>
+      <p>动态识别和深入分析各类重点就业群体</p>
     </div>
     <div class="card">
       <table class="table">
@@ -259,37 +334,75 @@
             <th>人数规模</th>
             <th>就业率</th>
             <th>主要需求</th>
+            <th>趋势</th>
             <th>状态</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>高校毕业生</td>
+            <td><strong>高校毕业生</strong></td>
             <td>12,456</td>
-            <td>91.2%</td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 91.2%;"></div></div>
+                <span>91.2%</span>
+              </div>
+            </td>
             <td>岗位匹配、就业指导</td>
-            <td><span class="status-dot status-success"></span>监测中</td>
+            <td style="color: var(--success);">↑ 上升</td>
+            <td><span class="badge badge-success">监测中</span></td>
           </tr>
           <tr>
-            <td>就业困难人员</td>
+            <td><strong>就业困难人员</strong></td>
             <td>3,892</td>
-            <td>76.5%</td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 76.5%;"></div></div>
+                <span>76.5%</span>
+              </div>
+            </td>
             <td>技能培训、兜底安置</td>
-            <td><span class="status-dot status-warning"></span>重点关注</td>
+            <td style="color: var(--warning);">→ 平稳</td>
+            <td><span class="badge badge-warning">重点关注</span></td>
           </tr>
           <tr>
-            <td>农民工群体</td>
+            <td><strong>农民工群体</strong></td>
             <td>28,345</td>
-            <td>88.7%</td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 88.7%;"></div></div>
+                <span>88.7%</span>
+              </div>
+            </td>
             <td>欠薪维权、技能培训</td>
-            <td><span class="status-dot status-success"></span>监测中</td>
+            <td style="color: var(--success);">↑ 上升</td>
+            <td><span class="badge badge-success">监测中</span></td>
           </tr>
           <tr>
-            <td>零工从业人员</td>
+            <td><strong>零工从业人员</strong></td>
             <td>15,678</td>
-            <td>82.3%</td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 82.3%;"></div></div>
+                <span>82.3%</span>
+              </div>
+            </td>
             <td>权益保障、职业培训</td>
-            <td><span class="status-dot status-warning"></span>重点关注</td>
+            <td style="color: var(--success);">↑ 上升</td>
+            <td><span class="badge badge-warning">重点关注</span></td>
+          </tr>
+          <tr>
+            <td><strong>退役军人</strong></td>
+            <td>2,345</td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 93.5%;"></div></div>
+                <span>93.5%</span>
+              </div>
+            </td>
+            <td>创业扶持、技能培训</td>
+            <td style="color: var(--success);">↑ 上升</td>
+            <td><span class="badge badge-success">监测中</span></td>
           </tr>
         </tbody>
       </table>
@@ -297,6 +410,603 @@
 
   </div>
 </div>
+
+<!-- 一键生成画像模态框 -->
+<div class="modal-overlay" id="portrait-generate-modal">
+  <div class="modal" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3>一键生成画像</h3>
+      <button class="modal-close" onclick="closeModal('portrait-generate-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="steps mb-32">
+        <div class="step active" id="portrait-step-1">
+          <div class="step-circle">1</div>
+          <div class="step-label">选择人员</div>
+        </div>
+        <div class="step" id="portrait-step-2">
+          <div class="step-circle">2</div>
+          <div class="step-label">数据采集</div>
+        </div>
+        <div class="step" id="portrait-step-3">
+          <div class="step-circle">3</div>
+          <div class="step-label">生成画像</div>
+        </div>
+        <div class="step" id="portrait-step-4">
+          <div class="step-circle">4</div>
+          <div class="step-label">完成</div>
+        </div>
+      </div>
+
+      <div id="portrait-form-1">
+        <div class="form-group">
+          <label class="form-label">身份证号/姓名</label>
+          <input type="text" class="form-input" placeholder="请输入身份证号或姓名" id="portrait-search-input">
+        </div>
+        <div class="card" style="background: var(--bg-secondary); cursor: pointer;" onclick="selectPersonForPortrait('张三', '410xxxxxxxxxxxx1234')">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <strong>张三</strong>
+              <span class="text-small m110-8">410xxxxxxxxxxxx1234</span>
+            </div>
+            <span class="badge badge-info">高校毕业生</span>
+          </div>
+        </div>
+        <div class="card mt-8" style="background: var(--bg-secondary); cursor: pointer;" onclick="selectPersonForPortrait('李四', '410xxxxxxxxxxxx5678')">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <strong>李四</strong>
+              <span class="text-small ml-8">410xxxxxxxxxxxx5678</span>
+            </div>
+            <span class="badge badge-warning">就业困难</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="portrait-form-2" style="display: none;">
+        <h4 class="mb-16">正在采集多维度数据...</h4>
+        <div class="mb-16">
+          <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;">
+            <span>📚 社保数据</span><span style="color: var(--success);">✓ 已采集</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div>
+        </div>
+        <div class="mb-16">
+          <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;">
+            <span>💼 就业数据</span><span style="color: var(--success);">✓ 已采集</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div>
+        </div>
+        <div class="mb-16">
+          <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;">
+            <span>🎓 人才数据</span><span style="color: var(--success);">✓ 已采集</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div>
+        </div>
+        <div class="mb-16">
+          <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;">
+            <span>⚖️ 维权数据</span><span style="color: var(--success);">✓ 已采集</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div>
+        </div>
+        <div>
+          <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;">
+            <span>🏷️ 动态标签</span><span style="color: var(--success);">✓ 已生成</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div>
+        </div>
+      </div>
+
+      <div id="portrait-form-3" style="display: none;">
+        <h4 class="mb-16">正在生成全息画像...</h4>
+        <div class="row mb-16">
+          <div class="col-6">
+            <div class="stat-card" style="padding: 20px;">
+              <div class="number" style="font-size: 28px;">88%</div>
+              <div class="label">教育竞争力</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="stat-card" style="padding: 20px;">
+              <div class="number" style="font-size: 28px;">78%</div>
+              <div class="label">就业稳定性</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="stat-card" style="padding: 20px;">
+              <div class="number" style="font-size: 28px;">82%</div>
+              <div class="label">职业技能</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="stat-card" style="padding: 20px;">
+              <div class="number" style="font-size: 28px;">71%</div>
+              <div class="label">薪资趋势</div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-16">
+          <strong class="form-label">生成标签：</strong>
+          <div style="margin-top: 8px;">
+            <span class="tag">Java开发</span>
+            <span class="tag">本科及以上</span>
+            <span class="tag">3年经验</span>
+            <span class="tag">社保连续缴纳</span>
+            <span class="tag">求职意向：互联网</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="portrait-form-4" style="display: none; text-align: center; padding: 40px 0;">
+        <div style="font-size: 64px; margin-bottom: 16px;">✨</div>
+        <h3 class="mb-8">画像生成成功！</h3>
+        <p class="text-body">张三的全息画像已生成，包含128个标签维度，匹配准确率94.7%</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" id="portrait-prev-btn" style="display: none;" onclick="prevPortraitStep()">上一步</button>
+      <button class="btn btn-primary" id="portrait-next-btn" onclick="nextPortraitStep()">下一步</button>
+    </div>
+  </div>
+</div>
+
+<!-- 标签管理模态框 -->
+<div class="modal-overlay" id="tag-manage-modal">
+  <div class="modal" style="max-width: 600px;">
+    <div class="modal-header">
+      <h3>标签体系管理</h3>
+      <button class="modal-close" onclick="closeModal('tag-manage-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">添加新标签</label>
+        <div style="display: flex; gap: 8px;">
+          <input type="text" class="form-input" id="new-tag-input" placeholder="输入新标签名称">
+          <button class="btn btn-primary" onclick="addTag()">添加</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">标签分类</label>
+        <select class="form-select" onchange="filterTagCategories(this.value)">
+          <option value="">全部分类</option>
+          <option value="教育">教育背景</option>
+          <option value="技能">职业技能</option>
+          <option value="就业">就业状态</option>
+          <option value="群体">重点群体</option>
+        </select>
+      </div>
+      <div id="tag-list">
+        <div class="mb-8" data-category="教育"><span class="tag">本科及以上学历 <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>
+        <div class="mb-8" data-category="技能"><span class="tag">Java开发 <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>
+        <div class="mb-8" data-category="技能"><span class="tag">Python <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>
+        <div class="mb-8" data-category="群体"><span class="tag">高校毕业生 <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>
+        <div class="mb-8" data-category="群体"><span class="tag">就业困难人员 <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>
+        <div class="mb-8" data-category="就业"><span class="tag">社保连续缴纳 <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>
+        <div class="mb-8" data-category="技能"><span class="tag">3年工作经验 <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>
+        <div class="mb-8" data-category="群体"><span class="tag">农民工 <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('tag-manage-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 知识图谱模态框 -->
+<div class="modal-overlay" id="knowledge-graph-modal">
+  <div class="modal" style="max-width: 800px;">
+    <div class="modal-header">
+      <h3>知识图谱可视化</h3>
+      <button class="modal-close" onclick="closeModal('knowledge-graph-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="text-body mb-24">展示就业人员画像的多维度关联关系</p>
+      <div class="card" style="background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%); min-height: 400px; position: relative; overflow: hidden;">
+        <!-- 简化的知识图谱可视化 -->
+        <div style="text-align: center; padding: 40px 0;">
+          <div style="display: inline-block; background: var(--primary); color: white; padding: 16px 32px; border-radius: 50px; font-weight: 600; margin-bottom: 40px;">张三（中心节点）</div>
+          <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
+            <div style="background: rgba(22, 119, 255, 0.1); padding: 16px 24px; border-radius: var(--radius-md); border: 1px solid rgba(22, 119, 255, 0.3);">
+              <div style="font-weight: 600; color: var(--primary); margin-bottom: 8px;">🎓 教育背景</div>
+              <div class="text-small">本科 / 计算机科学</div>
+            </div>
+            <div style="background: rgba(114, 46, 209, 0.1); padding: 16px 24px; border-radius: var(--radius-md); border: 1px solid rgba(114, 46, 209, 0.3);">
+              <div style="font-weight: 600; color: var(--primary-gradient-end); margin-bottom: 8px;">💼 就业信息</div>
+              <div class="text-small">Java开发 / 3年经验</div>
+            </div>
+            <div style="background: rgba(82, 196, 26, 0.1); padding: 16px 24px; border-radius: var(--radius-md); border: 1px solid rgba(82, 196, 26, 0.3);">
+              <div style="font-weight: 600; color: var(--success); margin-bottom: 8px;">🏷️ 技能标签</div>
+              <div class="text-small">Java / SQL / 项目管理</div>
+            </div>
+            <div style="background: rgba(250, 173, 20, 0.1); padding: 16px 24px; border-radius: var(--radius-md); border: 1px solid rgba(250, 173, 20, 0.3);">
+              <div style="font-weight: 600; color: var(--warning); margin-bottom: 8px;">📈 薪资趋势</div>
+              <div class="text-small">月均 15K / 年增长 12%</div>
+            </div>
+            <div style="background: rgba(255, 77, 79, 0.1); padding: 16px 24px; border-radius: var(--radius-md); border: 1px solid rgba(255, 77, 79, 0.3);">
+              <div style="font-weight: 600; color: var(--danger); margin-bottom: 8px;">👥 群体属性</div>
+              <div class="text-small">高校毕业生 / 重点帮扶</div>
+            </div>
+            <div style="background: rgba(22, 119, 255, 0.1); padding: 16px 24px; border-radius: var(--radius-md); border: 1px solid rgba(22, 119, 255, 0.3);">
+              <div style="font-weight: 600; color: var(--primary); margin-bottom: 8px;">⚖️ 维权记录</div>
+              <div class="text-small">无纠纷记录 / 信用良好</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('knowledge-graph-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 岗位推荐模态框 -->
+<div class="modal-overlay" id="job-recommend-modal">
+  <div class="modal" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3>岗位精准推荐</h3>
+      <button class="modal-close" onclick="closeModal('job-recommend-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="text-body mb-16">基于张三的画像数据，智能推荐以下岗位：</p>
+      <div class="card mb-16" style="border-left: 4px solid var(--primary);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 4px 0;">高级Java开发工程师</h4>
+            <p class="text-small">XX科技有限公司 | 15-25K | 匹配度：98%</p>
+          </div>
+          <button class="btn btn-primary btn-sm">投递简历</button>
+        </div>
+      </div>
+      <div class="card mb-16" style="border-left: 4px solid var(--primary);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 4px 0;">后端开发工程师（Python）</h4>
+            <p class="text-small">XX互联网公司 | 12-20K | 匹配度：95%</p>
+          </div>
+          <button class="btn btn-primary btn-sm">投递简历</button>
+        </div>
+      </div>
+      <div class="card mb-16" style="border-left: 4px solid var(--primary);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 4px 0;">全栈开发工程师</h4>
+            <p class="text-small">XX创业公司 | 10-18K | 匹配度：92%</p>
+          </div>
+          <button class="btn btn-primary btn-sm">投递简历</button>
+        </div>
+      </div>
+      <div class="card" style="border-left: 4px solid var(--primary);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 4px 0;">技术项目经理</h4>
+            <p class="text-small">XX软件公司 | 18-30K | 匹配度：88%</p>
+          </div>
+          <button class="btn btn-primary btn-sm">投递简历</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('job-recommend-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 重点群体分析模态框 -->
+<div class="modal-overlay" id="group-analysis-modal">
+  <div class="modal" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3>重点群体分析</h3>
+      <button class="modal-close" onclick="closeModal('group-analysis-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">选择分析群体</label>
+        <select class="form-select" onchange="updateGroupAnalysis(this.value)">
+          <option value="高校毕业生">高校毕业生</option>
+          <option value="就业困难人员">就业困难人员</option>
+          <option value="农民工">农民工</option>
+          <option value="零工人员">零工人员</option>
+          <option value="退役军人">退役军人</option>
+        </select>
+      </div>
+      <div class="row mb-16">
+        <div class="col-6">
+          <div class="stat-card" style="padding: 20px;">
+            <div class="number" style="font-size: 28px;">12,456</div>
+            <div class="label">群体规模</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="stat-card" style="padding: 20px;">
+            <div class="number" style="font-size: 28px;">91.2%</div>
+            <div class="label">就业率</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h4 class="mb-16">群体特征分析</h4>
+        <div class="mb-12">
+          <span class="tag">平均年龄：24岁</span>
+          <span class="tag">本科及以上：78%</span>
+          <span class="tag">平均薪资：8.5K</span>
+        </div>
+        <div class="mb-12">
+          <span class="tag">求职意向：互联网（45%）</span>
+          <span class="tag">求职意向：金融（23%）</span>
+          <span class="tag">求职意向：教育（18%）</span>
+        </div>
+        <div>
+          <span class="tag">主要需求：岗位匹配</span>
+          <span class="tag">主要需求：就业指导</span>
+          <span class="tag">主要需求：技能培训</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('group-analysis-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 人员详情模态框 -->
+<div class="modal-overlay" id="person-detail-modal">
+  <div class="modal" style="max-width: 800px;">
+    <div class="modal-header">
+      <h3 id="detail-person-name">人员画像详情</h3>
+      <button class="modal-close" onclick="closeModal('person-detail-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="row mb-24">
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">姓名</label>
+            <div id="detail-name" class="text-h3"></div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">重点群体</label>
+            <div id="detail-group"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-24">
+        <div class="col-4">
+          <div class="stat-card" style="padding: 16px;">
+            <div class="number" id="detail-competitiveness" style="font-size: 24px;">0%</div>
+            <div class="label">教育竞争力</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-card" style="padding: 16px;">
+            <div class="number" id="detail-stability" style="font-size: 24px;">0%</div>
+            <div class="label">就业稳定性</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-card" style="padding: 16px;">
+            <div class="number" id="detail-skill" style="font-size: 24px;">0%</div>
+            <div class="label">职业技能</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">标签列表</label>
+        <div id="detail-tags" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
+      </div>
+      <div class="form-group mt-16">
+        <label class="form-label">个性化服务推送</label>
+        <div id="detail-services" style="display: flex; flex-direction: column; gap: 8px;"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('person-detail-modal')">关闭</button>
+      <button class="btn btn-primary" onclick="showModal('job-recommend-modal')">查看推荐岗位</button>
+    </div>
+  </div>
+</div>
+
+<!-- 通知提示 -->
+<div class="notification" id="notification" style="display: none;">
+  <span id="notification-msg"></span>
+</div>
+
+<script>
+// 人员数据
+const personData = [
+  { name: "张三", idCard: "410xxxxxxxxxxxx1234", group: "高校毕业生", education: "本科", competitiveness: 88, stability: 78, skill: 82, tags: ["Java开发", "本科及以上", "3年经验", "社保连续缴纳", "求职意向：互联网"] },
+  { name: "李四", idCard: "410xxxxxxxxxxxx5678", group: "就业困难人员", education: "高中", competitiveness: 45, stability: 32, skill: 38, tags: ["零工人员", "技能培训", "就业帮扶", "高中及以下"] },
+  { name: "王五", idCard: "410xxxxxxxxxxxx9012", group: "农民工", education: "中专", competitiveness: 52, stability: 55, skill: 48, tags: ["建筑工", "计件工", "农民工", "中专学历"] },
+  { name: "赵六", idCard: "410xxxxxxxxxxxx3456", group: "高校毕业生", education: "硕士", competitiveness: 92, stability: 85, skill: 90, tags: ["Python", "AI算法", "硕士", "社保连续缴纳"] },
+  { name: "孙七", idCard: "410xxxxxxxxxxxx7890", group: "零工人员", education: "大专", competitiveness: 48, stability: 28, skill: 42, tags: ["外卖骑手", "灵活用工", "零工人员", "大专"] }
+];
+
+// 筛选人员
+function filterPersons() {
+  const search = document.getElementById('person-search').value.toLowerCase();
+  const group = document.getElementById('filter-group').value;
+  const education = document.getElementById('filter-education').value;
+  const stability = document.getElementById('filter-stability').value;
+
+  const rows = document.querySelectorAll('#person-tbody tr');
+  rows.forEach(row => {
+    let show = true;
+    const rowGroup = row.getAttribute('data-group');
+    const rowEducation = row.getAttribute('data-education');
+    const rowStability = row.getAttribute('data-stability');
+
+    if (search && !row.textContent.toLowerCase().includes(search)) show = false;
+    if (group && rowGroup !== group) show = false;
+    if (education && rowEducation !== education) show = false;
+    if (stability && rowStability !== stability) show = false;
+
+    row.style.display = show ? '' : 'none';
+  });
+}
+
+// 查看人员详情
+function viewPersonDetail(index) {
+  const person = personData[index];
+  document.getElementById('detail-person-name').textContent = person.name + ' 的画像详情';
+  document.getElementById('detail-name').textContent = person.name;
+  document.getElementById('detail-group').innerHTML = `<span class="badge badge-info">${person.group}</span>`;
+  document.getElementById('detail-competitiveness').textContent = person.competitiveness + '%';
+  document.getElementById('detail-stability').textContent = person.stability + '%';
+  document.getElementById('detail-skill').textContent = person.skill + '%';
+
+  const tagsHtml = person.tags.map(t => `<span class="tag">${t}</span>`).join('');
+  document.getElementById('detail-tags').innerHTML = tagsHtml;
+
+  const servicesHtml = [
+    '📩 推荐岗位：高级Java开发工程师（匹配度98%）',
+    '📚 推荐培训：Java进阶课程（免费）',
+    '💰 可申请补贴：就业补贴 2000元',
+    '🎓 职业路径：Java开发 → 技术专家 → 架构师'
+  ].map(s => `<div class="card" style="padding: 12px; font-size: 14px;">${s}</div>`).join('');
+  document.getElementById('detail-services').innerHTML = servicesHtml;
+
+  showModal('person-detail-modal');
+}
+
+// 画像生成步骤
+let currentPortraitStep = 1;
+function nextPortraitStep() {
+  if (currentPortraitStep < 4) {
+    document.getElementById(`portrait-step-${currentPortraitStep}`).classList.remove('active');
+    if (currentPortraitStep < 3) {
+      document.getElementById(`portrait-step-${currentPortraitStep}`).classList.add('completed');
+    }
+    currentPortraitStep++;
+    document.getElementById(`portrait-step-${currentPortraitStep}`).classList.add('active');
+
+    document.getElementById('portrait-form-1').style.display = 'none';
+    document.getElementById('portrait-form-2').style.display = 'none';
+    document.getElementById('portrait-form-3').style.display = 'none';
+    document.getElementById('portrait-form-4').style.display = 'none';
+    document.getElementById(`portrait-form-${currentPortraitStep}`).style.display = 'block';
+
+    document.getElementById('portrait-prev-btn').style.display = 'inline-flex';
+    if (currentPortraitStep === 4) {
+      document.getElementById('portrait-next-btn').textContent = '完成';
+    }
+  } else {
+    closeModal('portrait-generate-modal');
+    showNotification('画像生成完成！', 'success');
+    currentPortraitStep = 1;
+    resetPortraitSteps();
+  }
+}
+
+function prevPortraitStep() {
+  if (currentPortraitStep > 1) {
+    document.getElementById(`portrait-step-${currentPortraitStep}`).classList.remove('active');
+    currentPortraitStep--;
+    document.getElementById(`portrait-step-${currentPortraitStep}`).classList.remove('completed');
+    document.getElementById(`portrait-step-${currentPortraitStep}`).classList.add('active');
+
+    document.getElementById('portrait-form-1').style.display = 'none';
+    document.getElementById('portrait-form-2').style.display = 'none';
+    document.getElementById('portrait-form-3').style.display = 'none';
+    document.getElementById('portrait-form-4').style.display = 'none';
+    document.getElementById(`portrait-form-${currentPortraitStep}`).style.display = 'block';
+
+    document.getElementById('portrait-next-btn').textContent = '下一步';
+    if (currentPortraitStep === 1) {
+      document.getElementById('portrait-prev-btn').style.display = 'none';
+    }
+  }
+}
+
+function resetPortraitSteps() {
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById(`portrait-step-${i}`).classList.remove('active', 'completed');
+  }
+  document.getElementById('portrait-step-1').classList.add('active');
+  document.getElementById('portrait-form-1').style.display = 'block';
+  document.getElementById('portrait-form-2').style.display = 'none';
+  document.getElementById('portrait-form-3').style.display = 'none';
+  document.getElementById('portrait-form-4').style.display = 'none';
+  document.getElementById('portrait-prev-btn').style.display = 'none';
+  document.getElementById('portrait-next-btn').textContent = '下一步';
+}
+
+function selectPersonForPortrait(name, idCard) {
+  document.getElementById('portrait-search-input').value = `${name} ${idCard}`;
+  showNotification(`已选择人员：${name}`, 'success');
+}
+
+// 标签管理
+function addTag() {
+  const input = document.getElementById('new-tag-input');
+  const tagText = input.value.trim();
+  if (!tagText) {
+    showNotification('请输入标签名称', 'error');
+    return;
+  }
+  const tagHtml = `<div class="mb-8" data-category="自定义"><span class="tag">${tagText} <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>`;
+  document.getElementById('tag-list').insertAdjacentHTML('beforeend', tagHtml);
+  input.value = '';
+  showNotification(`标签"${tagText}"已添加`, 'success');
+}
+
+function removeTag(el) {
+  el.parentElement.parentElement.remove();
+}
+
+function filterTagCategories(category) {
+  const tags = document.querySelectorAll('#tag-list > div');
+  tags.forEach(tag => {
+    if (!category || tag.getAttribute('data-category') === category) {
+      tag.style.display = '';
+    } else {
+      tag.style.display = 'none';
+    }
+  });
+}
+
+// 群体分析
+function updateGroupAnalysis(group) {
+  const data = {
+    '高校毕业生': { scale: '12,456', rate: '91.2%' },
+    '就业困难人员': { scale: '3,892', rate: '76.5%' },
+    '农民工': { scale: '28,345', rate: '88.7%' },
+    '零工人员': { scale: '15,678', rate: '82.3%' },
+    '退役军人': { scale: '2,345', rate: '93.5%' }
+  };
+  const groupData = data[group] || data['高校毕业生'];
+  document.querySelector('#group-analysis-modal .stat-card .number').textContent = groupData.scale;
+  document.querySelectorAll('#group-analysis-modal .stat-card .number')[1].textContent = groupData.rate;
+}
+
+// 模态框控制
+function showModal(id) {
+  document.getElementById(id).classList.add('active');
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('active');
+}
+
+// 通知提示
+function showNotification(msg, type) {
+  const notification = document.getElementById('notification');
+  const msgEl = document.getElementById('notification-msg');
+  notification.className = 'notification ' + (type || '');
+  msgEl.textContent = msg;
+  notification.style.display = 'flex';
+  setTimeout(() => { notification.style.display = 'none'; }, 3000);
+}
+
+// 点击模态框外部关闭
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === this) { this.classList.remove('active'); }
+  });
+});
+</script>
 
 </body>
 </html>
