@@ -25,47 +25,49 @@
 <div class="page-content">
   <div class="container">
     <!-- 页面标题 -->
-    <div class="mb-24">
-      <h1 class="text-h1 mb-16">政策计算器</h1>
-      <p class="text-body">依托多维度数据建模与算法引擎，整合政策文件库、服务事项库与用户特征标签，自动拆解政策条款，为个人与企业精准计算可享受的政策红利。</p>
+    <div class="page-header mb-48">
+      <h1>政策计算器</h1>
+      <p>依托多维度数据建模与算法引擎，整合政策文件库、服务事项库与用户特征标签，自动拆解政策条款，为个人与企业精准计算可享受的政策红利。</p>
     </div>
 
     <!-- 核心指标 -->
-    <div class="row mb-24">
+    <div class="row mb-48">
       <div class="col-3">
-        <div class="card text-center">
-          <div class="text-h1" style="color: var(--primary);">2,356</div>
-          <div class="text-small mt-8">政策条款总数</div>
+        <div class="stat-card">
+          <div class="number">2,356</div>
+          <div class="label">政策条款总数</div>
         </div>
       </div>
       <div class="col-3">
-        <div class="card text-center">
-          <div class="text-h1" style="color: var(--success);">1.28亿</div>
-          <div class="text-small mt-8">本月测算红利总额</div>
+        <div class="stat-card">
+          <div class="number">1.28亿</div>
+          <div class="label">本月测算红利总额</div>
         </div>
       </div>
       <div class="col-3">
-        <div class="card text-center">
-          <div class="text-h1" style="color: var(--primary);">86,452</div>
-          <div class="text-small mt-8">本月测算人次</div>
+        <div class="stat-card">
+          <div class="number">86,452</div>
+          <div class="label">本月测算人次</div>
         </div>
       </div>
       <div class="col-3">
-        <div class="card text-center">
-          <div class="text-h1" style="color: var(--warning);">94.5%</div>
-          <div class="text-small mt-8">匹配准确率</div>
+        <div class="stat-card">
+          <div class="number">94.5%</div>
+          <div class="label">匹配准确率</div>
         </div>
       </div>
     </div>
 
     <!-- 计算器表单 -->
-    <h2 class="text-h2 mb-16">政策红利测算</h2>
-    <div class="card mb-24">
+    <div class="section-header mb-32">
+      <h2>政策红利测算</h2>
+    </div>
+    <div class="card mb-48">
       <div class="row">
         <div class="col-6">
-          <div class="mb-16">
-            <label class="text-h3 mb-8" style="display: block;">用户类型</label>
-            <select class="input">
+          <div class="mb-20">
+            <label style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; display: block;">用户类型</label>
+            <select style="width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 15px; background: white;">
               <option>请选择用户类型</option>
               <option>个人求职者</option>
               <option>高校毕业生</option>
@@ -74,9 +76,9 @@
               <option>个体工商户</option>
             </select>
           </div>
-          <div class="mb-16">
-            <label class="text-h3 mb-8" style="display: block;">所在区域</label>
-            <select class="input">
+          <div class="mb-20">
+            <label style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; display: block;">所在区域</label>
+            <select style="width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 15px; background: white;">
               <option>请选择所在区域</option>
               <option>市辖区</option>
               <option>XX区</option>
@@ -84,9 +86,9 @@
               <option>XX市</option>
             </select>
           </div>
-          <div class="mb-16">
-            <label class="text-h3 mb-8" style="display: block;">政策类型</label>
-            <select class="input">
+          <div class="mb-20">
+            <label style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; display: block;">政策类型</label>
+            <select style="width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 15px; background: white;">
               <option>请选择政策类型</option>
               <option>就业补贴</option>
               <option>培训资助</option>
@@ -97,62 +99,74 @@
           </div>
         </div>
         <div class="col-6">
-          <div class="mb-16">
-            <label class="text-h3 mb-8" style="display: block;">月收入/营业额（元）</label>
-            <input type="number" class="input" placeholder="请输入月收入或营业额">
+          <div class="mb-20">
+            <label style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; display: block;">月收入/营业额（元）</label>
+            <input type="number" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 15px;" placeholder="请输入月收入或营业额">
           </div>
-          <div class="mb-16">
-            <label class="text-h3 mb-8" style="display: block;">参保人数/员工数</label>
-            <input type="number" class="input" placeholder="请输入参保人数或员工数">
+          <div class="mb-20">
+            <label style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; display: block;">参保人数/员工数</label>
+            <input type="number" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 15px;" placeholder="请输入参保人数或员工数">
           </div>
-          <div class="mb-16">
-            <label class="text-h3 mb-8" style="display: block;">重点群体标识</label>
+          <div class="mb-20">
+            <label style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; display: block;">重点群体标识</label>
             <div style="display: flex; gap: 16px; margin-top: 8px;">
-              <label style="font-size: 14px; display: flex; align-items: center; gap: 4px;">
+              <label style="font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px;">
                 <input type="checkbox" value="高校毕业生"> 高校毕业生
               </label>
-              <label style="font-size: 14px; display: flex; align-items: center; gap: 4px;">
+              <label style="font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px;">
                 <input type="checkbox" value="就业困难"> 就业困难
               </label>
-              <label style="font-size: 14px; display: flex; align-items: center; gap: 4px;">
+              <label style="font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px;">
                 <input type="checkbox" value="退役军人"> 退役军人
               </label>
             </div>
           </div>
           <div class="mt-32">
-            <button class="btn btn-primary" style="width: 100%; padding: 12px;">开始测算</button>
+            <button class="btn btn-primary" style="width: 100%; padding: 14px 24px; font-size: 16px;">开始测算</button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- 测算结果示例 -->
-    <div class="card mb-24" style="background: var(--primary-light); border: 1px solid var(--primary);">
-      <h3 class="text-h3 mb-16" style="color: var(--primary);">测算结果示例</h3>
+    <div class="card mb-48" style="background: linear-gradient(135deg, rgba(22, 119, 255, 0.05) 0%, rgba(114, 46, 209, 0.05) 100%; border: 1px solid rgba(22, 119, 255, 0.2);">
+      <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 24px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">测算结果示例</h3>
       <div class="row">
-        <div class="col-4 text-center">
-          <div class="text-h1" style="color: var(--primary);">12,800<span style="font-size: 16px;">元</span></div>
-          <div class="text-small mt-8">预计可申领补贴总额</div>
+        <div class="col-4" style="text-align: center;">
+          <div style="font-size: 42px; font-weight: 800; line-height: 1.1; margin-bottom: 8px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">12,800<span style="font-size: 18px;">元</span></div>
+          <div style="font-size: 15px; color: var(--text-secondary); font-weight: 500;">预计可申领补贴总额</div>
         </div>
-        <div class="col-4 text-center">
-          <div class="text-h1" style="color: var(--primary);">5<span style="font-size: 16px;">项</span></div>
-          <div class="text-small mt-8">符合条件政策</div>
+        <div class="col-4" style="text-align: center;">
+          <div style="font-size: 42px; font-weight: 800; line-height: 1.1; margin-bottom: 8px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">5<span style="font-size: 18px;">项</span></div>
+          <div style="font-size: 15px; color: var(--text-secondary); font-weight: 500;">符合条件政策</div>
         </div>
-        <div class="col-4 text-center">
-          <div class="text-h1" style="color: var(--success);">92%</div>
-          <div class="text-small mt-8">匹配置信度</div>
+        <div class="col-4" style="text-align: center;">
+          <div style="font-size: 42px; font-weight: 800; line-height: 1.1; margin-bottom: 8px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">92%</div>
+          <div style="font-size: 15px; color: var(--text-secondary); font-weight: 500;">匹配置信度</div>
         </div>
       </div>
     </div>
 
     <!-- 功能模块 -->
-    <h2 class="text-h2 mb-16">核心功能</h2>
-    <div class="row mb-24">
+    <div class="section-header mb-32">
+      <h2>核心功能</h2>
+    </div>
+    <div class="row mb-48">
       <div class="col-4">
-        <div class="card">
-          <h3 class="text-h3 mb-16">智能政策拆解</h3>
-          <p class="text-body">自动拆解政策条款，利用知识图谱构建政策—服务—对象关联网络，实现政策条款的结构化解析。</p>
-          <div class="mt-16">
+        <div class="feature-card">
+          <div class="card-header">
+            <div class="icon">📄</div>
+            <div class="card-content">
+              <div class="title-row">
+                <h3>智能政策拆解</h3>
+              </div>
+              <p>自动拆解政策条款，利用知识图谱构建政策—服务—对象关联网络，实现政策条款的结构化解析。</p>
+            </div>
+            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div>
             <span class="tag">政策拆解</span>
             <span class="tag">知识图谱</span>
             <span class="tag">关联网络</span>
@@ -160,10 +174,20 @@
         </div>
       </div>
       <div class="col-4">
-        <div class="card">
-          <h3 class="text-h3 mb-16">精准红利计算</h3>
-          <p class="text-body">结合大模型分析能力，为个人与企业精准计算可享受的政策红利，如就业补贴、培训资助、创业扶持等。</p>
-          <div class="mt-16">
+        <div class="feature-card">
+          <div class="card-header">
+            <div class="icon">🧮</div>
+            <div class="card-content">
+              <div class="title-row">
+                <h3>精准红利计算</h3>
+              </div>
+              <p>结合大模型分析能力，为个人与企业精准计算可享受的政策红利，如就业补贴、培训资助、创业扶持等。</p>
+            </div>
+            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div>
             <span class="tag">精准计算</span>
             <span class="tag">就业补贴</span>
             <span class="tag">创业扶持</span>
@@ -171,10 +195,20 @@
         </div>
       </div>
       <div class="col-4">
-        <div class="card">
-          <h3 class="text-h3 mb-16">效果追踪评估</h3>
-          <p class="text-body">支持政府从政策覆盖率、受益群体画像等维度量化评估政策实施效果，实现全链路智能化管理。</p>
-          <div class="mt-16">
+        <div class="feature-card">
+          <div class="card-header">
+            <div class="icon">📊</div>
+            <div class="card-content">
+              <div class="title-row">
+                <h3>效果追踪评估</h3>
+              </div>
+              <p>支持政府从政策覆盖率、受益群体画像等维度量化评估政策实施效果，实现全链路智能化管理。</p>
+            </div>
+            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div>
             <span class="tag">效果评估</span>
             <span class="tag">覆盖率分析</span>
             <span class="tag">智能管理</span>
@@ -184,7 +218,9 @@
     </div>
 
     <!-- 政策覆盖率 -->
-    <h2 class="text-h2 mb-16">政策覆盖率分析</h2>
+    <div class="section-header mb-32">
+      <h2>政策覆盖率分析</h2>
+    </div>
     <div class="card">
       <table class="table">
         <thead>
@@ -202,10 +238,12 @@
             <td>28</td>
             <td>45,678</td>
             <td>
-              <div class="progress-bar" style="width: 200px;">
-                <div class="progress-fill" style="width: 87%;"></div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 180px; height: 10px; background: rgba(22, 119, 255, 0.1); border-radius: 5px; overflow: hidden;">
+                  <div style="height: 100%; width: 87%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-gradient-end) 100%); border-radius: 5px;"></div>
+                </div>
+                <span style="font-size: 14px; color: var(--text-secondary);">87%</span>
               </div>
-              <span class="text-small">87%</span>
             </td>
             <td><span class="status-dot status-success"></span>良好</td>
           </tr>
@@ -214,10 +252,12 @@
             <td>15</td>
             <td>23,456</td>
             <td>
-              <div class="progress-bar" style="width: 200px;">
-                <div class="progress-fill" style="width: 72%;"></div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 180px; height: 10px; background: rgba(22, 119, 255, 0.1); border-radius: 5px; overflow: hidden;">
+                  <div style="height: 100%; width: 72%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-gradient-end) 100%); border-radius: 5px;"></div>
+                </div>
+                <span style="font-size: 14px; color: var(--text-secondary);">72%</span>
               </div>
-              <span class="text-small">72%</span>
             </td>
             <td><span class="status-dot status-warning"></span>待提升</td>
           </tr>
@@ -226,10 +266,12 @@
             <td>12</td>
             <td>8,923</td>
             <td>
-              <div class="progress-bar" style="width: 200px;">
-                <div class="progress-fill" style="width: 65%;"></div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 180px; height: 10px; background: rgba(22, 119, 255, 0.1); border-radius: 5px; overflow: hidden;">
+                  <div style="height: 100%; width: 65%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-gradient-end) 100%); border-radius: 5px;"></div>
+                </div>
+                <span style="font-size: 14px; color: var(--text-secondary);">65%</span>
               </div>
-              <span class="text-small">65%</span>
             </td>
             <td><span class="status-dot status-warning"></span>待提升</td>
           </tr>
@@ -238,10 +280,12 @@
             <td>9</td>
             <td>56,123</td>
             <td>
-              <div class="progress-bar" style="width: 200px;">
-                <div class="progress-fill" style="width: 91%;"></div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 180px; height: 10px; background: rgba(22, 119, 255, 0.1); border-radius: 5px; overflow: hidden;">
+                  <div style="height: 100%; width: 91%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-gradient-end) 100%); border-radius: 5px;"></div>
+                </div>
+                <span style="font-size: 14px; color: var(--text-secondary);">91%</span>
               </div>
-              <span class="text-small">91%</span>
             </td>
             <td><span class="status-dot status-success"></span>优秀</td>
           </tr>
