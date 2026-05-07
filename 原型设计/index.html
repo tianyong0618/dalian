@@ -3,41 +3,276 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>人社服务原型设计</title>
+  <title>人社智能服务系统</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f7fa; color: #333; }
-    .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
-    h1 { font-size: 28px; margin-bottom: 8px; }
-    p.subtitle { color: #666; margin-bottom: 40px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-    .card { background: #fff; border-radius: 12px; padding: 24px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.15); transform: translateY(-2px); }
-    .card h2 { font-size: 18px; margin-bottom: 8px; color: #1a73e8; }
-    .card p { font-size: 14px; color: #666; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #e8eaf0 0%, #d5d8e0 30%, #c8cdd8 60%, #bcc2cf 100%);
+      color: #1d1d1f;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* 装饰性虚化衬底 */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -120px;
+      right: -80px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(120, 140, 180, 0.25) 0%, transparent 70%);
+      filter: blur(60px);
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -150px;
+      left: -100px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(160, 140, 200, 0.2) 0%, transparent 70%);
+      filter: blur(80px);
+      z-index: 0;
+    }
+
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 80px 40px 60px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 顶部导航 - 毛玻璃 */
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px;
+      margin-bottom: 60px;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1d1d1f;
+      letter-spacing: -0.3px;
+    }
+
+    .logo span {
+      color: #6e7a8a;
+      font-weight: 400;
+      margin-left: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #424245;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #1d1d1f; }
+
+    /* 主标题区 */
+    .hero {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      color: #1d1d1f;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #6e7a8a;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* 模块网格 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      flex: 1;
+    }
+
+    /* 毛玻璃卡片 */
+    .card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      padding: 36px 32px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .card h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1d1d1f;
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #6e7a8a;
+      line-height: 1.6;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #4a6fa5;
+      transition: gap 0.2s;
+    }
+
+    .card:hover .card-link { gap: 10px; }
+
+    /* 底部 */
+    .footer {
+      text-align: center;
+      padding: 40px 0 20px;
+      font-size: 13px;
+      color: #86868b;
+    }
+
+    /* 响应式 */
+    @media (max-width: 700px) {
+      .page-wrapper { padding: 40px 20px 40px; }
+      .hero h1 { font-size: 32px; }
+      .hero p { font-size: 16px; }
+      .grid { grid-template-columns: 1fr; }
+      .top-nav { padding: 10px 16px; }
+      .nav-links { display: none; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>人社服务原型设计</h1>
-    <p class="subtitle">以下为各模块原型页面</p>
-    <div class="grid">
+  <div class="page-wrapper">
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+      <div class="logo">人社智能服务<span>System</span></div>
+      <ul class="nav-links">
+        <!-- <li><a href="#modules">服务模块</a></li>
+        <li><a href="#">数据看板</a></li>
+        <li><a href="#">帮助中心</a></li> -->
+      </ul>
+    </nav>
+
+    <!-- 主标题 -->
+    <div class="hero">
+      <h1>人社智能服务系统</h1>
+      <p>集旗舰店、调解仲裁、政策计算、就业画像于一体的智能化人社服务平台</p>
+    </div>
+
+    <!-- 模块卡片 -->
+    <div class="grid" id="modules">
       <a class="card" href="12-hr-flagship.html">
+        <div class="card-icon">🏪</div>
         <h2>人社旗舰店</h2>
-        <p>12-hr-flagship.html</p>
+        <p>一站式人社服务旗舰店，提供全方位人力资源与社会保障在线服务。</p>
+        <span class="card-link">进入模块 →</span>
       </a>
+
       <a class="card" href="14-mediation-arbitration.html">
+        <div class="card-icon">⚖️</div>
         <h2>调解仲裁</h2>
-        <p>14-mediation-arbitration.html</p>
+        <p>劳动人事争议调解与仲裁全流程在线办理，高效便捷。</p>
+        <span class="card-link">进入模块 →</span>
       </a>
+
       <a class="card" href="6-policy-calculator.html">
+        <div class="card-icon">🧮</div>
         <h2>政策计算器</h2>
-        <p>6-policy-calculator.html</p>
+        <p>智能测算人社政策待遇，一键生成个性化计算结果。</p>
+        <span class="card-link">进入模块 →</span>
       </a>
+
       <a class="card" href="9-employment-portrait.html">
+        <div class="card-icon">📊</div>
         <h2>就业画像</h2>
-        <p>9-employment-portrait.html</p>
+        <p>基于大数据构建就业人员画像，精准匹配就业服务。</p>
+        <span class="card-link">进入模块 →</span>
       </a>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer">
+      © 2026 人社智能服务系统
     </div>
   </div>
 </body>
