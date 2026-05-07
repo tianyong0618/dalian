@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>政策计算器 - 人社服务数字化平台</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 导航栏 -->
+<nav class="navbar">
+  <div class="container">
+    <a href="#" class="navbar-logo">人社服务数字平台</a>
+    <ul class="navbar-nav">
+      <li><a href="12-hr-flagship.html">人力资源服务旗舰店</a></li>
+      <li><a href="14-mediation-arbitration.html">调解仲裁服务</a></li>
+      <li><a href="9-employment-portrait.html">就业人员画像</a></li>
+      <li><a href="6-policy-calculator.html" class="active">政策计算器</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- 页面内容 -->
+<div class="page-content">
+  <div class="container">
+    <!-- 页面标题 -->
+    <div class="mb-24">
+      <h1 class="text-h1 mb-16">政策计算器</h1>
+      <p class="text-body">依托多维度数据建模与算法引擎，整合政策文件库、服务事项库与用户特征标签，自动拆解政策条款，为个人与企业精准计算可享受的政策红利。</p>
+    </div>
+
+    <!-- 核心指标 -->
+    <div class="row mb-24">
+      <div class="col-3">
+        <div class="card text-center">
+          <div class="text-h1" style="color: var(--primary);">2,356</div>
+          <div class="text-small mt-8">政策条款总数</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card text-center">
+          <div class="text-h1" style="color: var(--success);">1.28亿</div>
+          <div class="text-small mt-8">本月测算红利总额</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card text-center">
+          <div class="text-h1" style="color: var(--primary);">86,452</div>
+          <div class="text-small mt-8">本月测算人次</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card text-center">
+          <div class="text-h1" style="color: var(--warning);">94.5%</div>
+          <div class="text-small mt-8">匹配准确率</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 计算器表单 -->
+    <h2 class="text-h2 mb-16">政策红利测算</h2>
+    <div class="card mb-24">
+      <div class="row">
+        <div class="col-6">
+          <div class="mb-16">
+            <label class="text-h3 mb-8" style="display: block;">用户类型</label>
+            <select class="input">
+              <option>请选择用户类型</option>
+              <option>个人求职者</option>
+              <option>高校毕业生</option>
+              <option>就业困难人员</option>
+              <option>企业用户</option>
+              <option>个体工商户</option>
+            </select>
+          </div>
+          <div class="mb-16">
+            <label class="text-h3 mb-8" style="display: block;">所在区域</label>
+            <select class="input">
+              <option>请选择所在区域</option>
+              <option>市辖区</option>
+              <option>XX区</option>
+              <option>XX县</option>
+              <option>XX市</option>
+            </select>
+          </div>
+          <div class="mb-16">
+            <label class="text-h3 mb-8" style="display: block;">政策类型</label>
+            <select class="input">
+              <option>请选择政策类型</option>
+              <option>就业补贴</option>
+              <option>培训资助</option>
+              <option>创业扶持</option>
+              <option>社保减免</option>
+              <option>稳岗返还</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="mb-16">
+            <label class="text-h3 mb-8" style="display: block;">月收入/营业额（元）</label>
+            <input type="number" class="input" placeholder="请输入月收入或营业额">
+          </div>
+          <div class="mb-16">
+            <label class="text-h3 mb-8" style="display: block;">参保人数/员工数</label>
+            <input type="number" class="input" placeholder="请输入参保人数或员工数">
+          </div>
+          <div class="mb-16">
+            <label class="text-h3 mb-8" style="display: block;">重点群体标识</label>
+            <div style="display: flex; gap: 16px; margin-top: 8px;">
+              <label style="font-size: 14px; display: flex; align-items: center; gap: 4px;">
+                <input type="checkbox" value="高校毕业生"> 高校毕业生
+              </label>
+              <label style="font-size: 14px; display: flex; align-items: center; gap: 4px;">
+                <input type="checkbox" value="就业困难"> 就业困难
+              </label>
+              <label style="font-size: 14px; display: flex; align-items: center; gap: 4px;">
+                <input type="checkbox" value="退役军人"> 退役军人
+              </label>
+            </div>
+          </div>
+          <div class="mt-32">
+            <button class="btn btn-primary" style="width: 100%; padding: 12px;">开始测算</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 测算结果示例 -->
+    <div class="card mb-24" style="background: var(--primary-light); border: 1px solid var(--primary);">
+      <h3 class="text-h3 mb-16" style="color: var(--primary);">测算结果示例</h3>
+      <div class="row">
+        <div class="col-4 text-center">
+          <div class="text-h1" style="color: var(--primary);">12,800<span style="font-size: 16px;">元</span></div>
+          <div class="text-small mt-8">预计可申领补贴总额</div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="text-h1" style="color: var(--primary);">5<span style="font-size: 16px;">项</span></div>
+          <div class="text-small mt-8">符合条件政策</div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="text-h1" style="color: var(--success);">92%</div>
+          <div class="text-small mt-8">匹配置信度</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 功能模块 -->
+    <h2 class="text-h2 mb-16">核心功能</h2>
+    <div class="row mb-24">
+      <div class="col-4">
+        <div class="card">
+          <h3 class="text-h3 mb-16">智能政策拆解</h3>
+          <p class="text-body">自动拆解政策条款，利用知识图谱构建政策—服务—对象关联网络，实现政策条款的结构化解析。</p>
+          <div class="mt-16">
+            <span class="tag">政策拆解</span>
+            <span class="tag">知识图谱</span>
+            <span class="tag">关联网络</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <h3 class="text-h3 mb-16">精准红利计算</h3>
+          <p class="text-body">结合大模型分析能力，为个人与企业精准计算可享受的政策红利，如就业补贴、培训资助、创业扶持等。</p>
+          <div class="mt-16">
+            <span class="tag">精准计算</span>
+            <span class="tag">就业补贴</span>
+            <span class="tag">创业扶持</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <h3 class="text-h3 mb-16">效果追踪评估</h3>
+          <p class="text-body">支持政府从政策覆盖率、受益群体画像等维度量化评估政策实施效果，实现全链路智能化管理。</p>
+          <div class="mt-16">
+            <span class="tag">效果评估</span>
+            <span class="tag">覆盖率分析</span>
+            <span class="tag">智能管理</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 政策覆盖率 -->
+    <h2 class="text-h2 mb-16">政策覆盖率分析</h2>
+    <div class="card">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>政策类型</th>
+            <th>政策数量</th>
+            <th>覆盖人数</th>
+            <th>覆盖率</th>
+            <th>状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>就业补贴</td>
+            <td>28</td>
+            <td>45,678</td>
+            <td>
+              <div class="progress-bar" style="width: 200px;">
+                <div class="progress-fill" style="width: 87%;"></div>
+              </div>
+              <span class="text-small">87%</span>
+            </td>
+            <td><span class="status-dot status-success"></span>良好</td>
+          </tr>
+          <tr>
+            <td>培训资助</td>
+            <td>15</td>
+            <td>23,456</td>
+            <td>
+              <div class="progress-bar" style="width: 200px;">
+                <div class="progress-fill" style="width: 72%;"></div>
+              </div>
+              <span class="text-small">72%</span>
+            </td>
+            <td><span class="status-dot status-warning"></span>待提升</td>
+          </tr>
+          <tr>
+            <td>创业扶持</td>
+            <td>12</td>
+            <td>8,923</td>
+            <td>
+              <div class="progress-bar" style="width: 200px;">
+                <div class="progress-fill" style="width: 65%;"></div>
+              </div>
+              <span class="text-small">65%</span>
+            </td>
+            <td><span class="status-dot status-warning"></span>待提升</td>
+          </tr>
+          <tr>
+            <td>社保减免</td>
+            <td>9</td>
+            <td>56,123</td>
+            <td>
+              <div class="progress-bar" style="width: 200px;">
+                <div class="progress-fill" style="width: 91%;"></div>
+              </div>
+              <span class="text-small">91%</span>
+            </td>
+            <td><span class="status-dot status-success"></span>优秀</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

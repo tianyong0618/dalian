@@ -1,0 +1,270 @@
+/* 字节跳动风格 - 人社服务原型共享样式 */
+/* 主色 #1677ff | 极简清冷风 | 12列网格 */
+
+/* === 基础重置 === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  color: #333333;
+  background: #f5f5f5;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === 颜色变量 === */
+:root {
+  --primary: #1677ff;
+  --primary-light: #e6f4ff;
+  --primary-dark: #0958d9;
+  --bg: #f5f5f5;
+  --card-bg: #ffffff;
+  --text-title: #1f1f1f;
+  --text-body: #333333;
+  --text-secondary: #666666;
+  --text-hint: #999999;
+  --border: #e8e8e8;
+  --success: #52c41a;
+  --warning: #faad14;
+  --danger: #ff4d4f;
+}
+
+/* === 布局 - 12列网格 === */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+.col-12 { grid-column: span 12; }
+.col-8 { grid-column: span 8; }
+.col-6 { grid-column: span 6; }
+.col-4 { grid-column: span 4; }
+.col-3 { grid-column: span 3; }
+
+/* === 间距 === */
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.p-24 { padding: 24px; }
+.p-32 { padding: 32px; }
+
+/* === 字体层级 === */
+.text-h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-title);
+  line-height: 1.4;
+}
+.text-h2 {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-title);
+  line-height: 1.4;
+}
+.text-h3 {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-body);
+  line-height: 1.5;
+}
+.text-body {
+  font-size: 14px;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+.text-small {
+  font-size: 12px;
+  color: var(--text-hint);
+}
+
+/* === 圆角 === */
+.radius-sm { border-radius: 6px; }
+.radius-md { border-radius: 8px; }
+.radius-lg { border-radius: 16px; }
+.radius-xl { border-radius: 20px; }
+
+/* === 阴影 === */
+.shadow-sm {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.shadow-md {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+.shadow-lg {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+}
+
+/* === 卡片 === */
+.card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 24px;
+  transition: box-shadow 0.2s;
+}
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* === 按钮 === */
+.btn {
+  display: inline-block;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  text-align: center;
+}
+.btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+}
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+.btn-outline:hover {
+  background: var(--primary-light);
+}
+
+/* === 导航栏 === */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar-logo {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+}
+.navbar-nav a {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.navbar-nav a:hover,
+.navbar-nav a.active {
+  color: var(--primary);
+}
+
+/* === 页面内容区 === */
+.page-content {
+  margin-top: 56px;
+  padding: 32px 0;
+}
+
+/* === 标签 === */
+.tag {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 12px;
+  border-radius: 6px;
+  background: var(--primary-light);
+  color: var(--primary);
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+/* === 输入框 === */
+.input {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input:focus {
+  border-color: var(--primary);
+}
+
+/* === 表格 === */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.table th,
+.table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.table th {
+  color: var(--text-secondary);
+  font-weight: 500;
+  background: #fafafa;
+}
+.table tr:hover td {
+  background: #fafafa;
+}
+
+/* === 进度条 === */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+/* === 评分/星级 === */
+.star-rating {
+  color: var(--warning);
+  font-size: 16px;
+}
+
+/* === 状态标签 === */
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.status-success { background: var(--success); }
+.status-warning { background: var(--warning); }
+.status-danger { background: var(--danger); }
