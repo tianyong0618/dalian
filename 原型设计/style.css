@@ -965,3 +965,17 @@ body {
   border-color: var(--primary) !important;
   background: rgba(22, 119, 255, 0.05);
 }
+
+/* 数据源卡片 */
+.data-source-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+.data-source-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
