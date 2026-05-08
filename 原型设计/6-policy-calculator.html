@@ -611,6 +611,20 @@
           <button class="btn btn-secondary btn-sm" onclick="showPolicyDetail(4)">查看拆解</button>
         </div>
       </div>
+      <div class="card mb-16" style="border-left: 4px solid var(--primary-gradient-end);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 8px 0;">《创业担保贷款实施细则》</h4>
+            <p class="text-small">文件编号：RS-2026-048 | 发布日期：2026-05-01</p>
+            <div class="mt-8">
+              <span class="tag">创业扶持</span>
+              <span class="tag">担保贷款</span>
+              <span class="tag">创业服务</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="showPolicyDetail(5)">查看拆解</button>
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('policy-library-modal')">关闭</button>
@@ -1429,6 +1443,14 @@ const policyData = [
       { title: '技能培训补贴', content: '参加职业技能培训并取得职业资格证书的，给予最高3000元培训补贴', condition: '个人参加培训并取得证书', amount: '最高3000元' },
       { title: '新型学徒制培训', content: '企业开展新型学徒制培训的，按每人每年4000元标准给予补贴', condition: '企业开展学徒制培训', amount: '4000元/人/年' },
       { title: '高技能人才培养', content: '对培养高技能人才的企业给予一次性奖励，每培养一名高级工奖励1000元', condition: '企业培养高技能人才', amount: '1000元/人' }
+    ]
+  },
+  {
+    title: '《创业担保贷款实施细则》',
+    summary: '为符合条件的个人和小微企业提供创业担保贷款支持，降低创业融资成本，简化贷款审批流程，支持创业者成功创业。',
+    clauses: [
+      { title: '个人创业贷款', content: '符合条件的个人可申请最高30万元的创业担保贷款，财政给予贴息', condition: '个人创业，信用良好', amount: '最高30万元' },
+      { title: '小微企业贷款', content: '小微企业可申请最高300万元的创业担保贷款，财政给予部分贴息', condition: '小微企业，带动就业5人以上', amount: '最高300万元' }
     ]
   }
 ];
