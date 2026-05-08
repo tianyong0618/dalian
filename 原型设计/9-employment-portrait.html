@@ -1028,25 +1028,46 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
   });
 });
 
-// 用户类型切换
+// 页面加载时初始化用户权限
+document.addEventListener('DOMContentLoaded', function() {
+  switchUserType('gov');
+});
+
+// 用户类型切换（完善版）
 let currentUserType = 'gov'; // gov | agency | enterprise
 function switchUserType(type) {
   currentUserType = type;
-  showNotification(`已切换为：${type === 'gov' ? '人社部门' : type === 'agency' ? '经营性人力资源服务机构' : '用工企业'}`, 'success');
+  const typeNames = { gov: '人社部门', agency: '经营性人力资源服务机构', enterprise: '用工企业' };
+  showNotification(`已切换为：${typeNames[type]}`, 'success');
 
-  // 根据权限显示/隐藏功能
-  const enterpriseOnly = document.querySelectorAll('.enterprise-hidden');
-  const govOnly = document.querySelectorAll('.gov-only');
-
-  if (type === 'enterprise') {
-    enterpriseOnly.forEach(el => el.style.display = 'none');
-    govOnly.forEach(el => el.style.opacity = '0.5');
-  } else if (type === 'agency') {
-    enterpriseOnly.forEach(el => el.style.display = 'none');
-    govOnly.forEach(el => el.style.opacity = '1');
-  } else {
-    enterpriseOnly.forEach(el => el.style.display = '');
-    govOnly.forEach(el => el.style.opacity = '1');
+  // 人社部门：全部可见
+  if (type === 'gov') {
+    document.querySelectorAll('.enterprise-hidden').forEach(el => el.style.display = '');
+    document.querySelectorAll('.gov-only').forEach(el => {
+      el.style.display = '';
+      el.style.opacity = '1';
+    });
+    document.querySelectorAll('.portrait-tab').forEach(btn => btn.style.display = '');
+  }
+  // 机构：可看求职者+重点群体画像
+  else if (type === 'agency') {
+    document.querySelectorAll('.enterprise-hidden').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.gov-only').forEach(el => {
+      el.style.display = '';
+      el.style.opacity = '1';
+    });
+    const talentTab = document.querySelectorAll('.portrait-tab')[1];
+    if (talentTab) talentTab.style.display = 'none';
+  }
+  // 企业：仅人才画像
+  else if (type === 'enterprise') {
+    document.querySelectorAll('.enterprise-hidden').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.gov-only').forEach(el => {
+      el.style.display = 'none';
+    });
+    document.querySelectorAll('.portrait-tab').forEach((btn, idx) => {
+      btn.style.display = idx === 1 ? '' : 'none';
+    });
   }
 }
 </script>
