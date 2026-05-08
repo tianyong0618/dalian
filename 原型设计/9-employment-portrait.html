@@ -25,6 +25,27 @@
 <div class="page-content">
   <div class="container">
 
+    <!-- 用户类型切换器 -->
+    <div class="user-switcher mb-32">
+      <div class="section-header mb-16">
+        <h3 style="font-size: 16px; font-weight: 600; color: var(--text-secondary);">当前用户类型</h3>
+      </div>
+      <div class="radio-group" style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <label class="radio-label" style="cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 12px 24px; border: 2px solid var(--border-color); border-radius: var(--radius-md); transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="if(!this.querySelector('input').checked) this.style.borderColor='var(--border-color)'">
+          <input type="radio" name="user-type" value="gov" checked onchange="switchUserType('gov')" style="accent-color: var(--primary);">
+          <span>🏛️ 人社部门</span>
+        </label>
+        <label class="radio-label" style="cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 12px 24px; border: 2px solid var(--border-color); border-radius: var(--radius-md); transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="if(!this.querySelector('input').checked) this.style.borderColor='var(--border-color)'">
+          <input type="radio" name="user-type" value="agency" onchange="switchUserType('agency')" style="accent-color: var(--primary);">
+          <span>🏢 经营性人力资源服务机构</span>
+        </label>
+        <label class="radio-label" style="cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 12px 24px; border: 2px solid var(--border-color); border-radius: var(--radius-md); transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="if(!this.querySelector('input').checked) this.style.borderColor='var(--border-color)'">
+          <input type="radio" name="user-type" value="enterprise" onchange="switchUserType('enterprise')" style="accent-color: var(--primary);">
+          <span>🏭 用工企业</span>
+        </label>
+      </div>
+    </div>
+
     <!-- 页面标题 -->
     <div class="page-header mb-48">
       <h1>就业人员画像</h1>
@@ -1006,6 +1027,28 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
     if (e.target === this) { this.classList.remove('active'); }
   });
 });
+
+// 用户类型切换
+let currentUserType = 'gov'; // gov | agency | enterprise
+function switchUserType(type) {
+  currentUserType = type;
+  showNotification(`已切换为：${type === 'gov' ? '人社部门' : type === 'agency' ? '经营性人力资源服务机构' : '用工企业'}`, 'success');
+
+  // 根据权限显示/隐藏功能
+  const enterpriseOnly = document.querySelectorAll('.enterprise-hidden');
+  const govOnly = document.querySelectorAll('.gov-only');
+
+  if (type === 'enterprise') {
+    enterpriseOnly.forEach(el => el.style.display = 'none');
+    govOnly.forEach(el => el.style.opacity = '0.5');
+  } else if (type === 'agency') {
+    enterpriseOnly.forEach(el => el.style.display = 'none');
+    govOnly.forEach(el => el.style.opacity = '1');
+  } else {
+    enterpriseOnly.forEach(el => el.style.display = '');
+    govOnly.forEach(el => el.style.opacity = '1');
+  }
+}
 </script>
 
 </body>

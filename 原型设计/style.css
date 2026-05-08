@@ -959,3 +959,9 @@ body {
     width: 100%;
   }
 }
+
+/* 用户切换器选中状态 */
+.radio-label:has(input:checked) {
+  border-color: var(--primary) !important;
+  background: rgba(22, 119, 255, 0.05);
+}
