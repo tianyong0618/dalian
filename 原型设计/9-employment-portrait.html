@@ -638,40 +638,83 @@
   </div>
 </div>
 
-<!-- 标签管理模态框 -->
+<!-- 标签体系管理模态框 -->
 <div class="modal-overlay" id="tag-manage-modal">
-  <div class="modal" style="max-width: 600px;">
+  <div class="modal" style="max-width: 900px;">
     <div class="modal-header">
-      <h3>标签体系管理</h3>
+      <h3>动态标签体系管理</h3>
       <button class="modal-close" onclick="closeModal('tag-manage-modal')">&times;</button>
     </div>
     <div class="modal-body">
-      <div class="form-group">
-        <label class="form-label">添加新标签</label>
-        <div style="display: flex; gap: 8px;">
-          <input type="text" class="form-input" id="new-tag-input" placeholder="输入新标签名称">
-          <button class="btn btn-primary" onclick="addTag()">添加</button>
+      <div style="display: flex; gap: 24px; min-height: 400px;">
+        <!-- 左侧分类导航 -->
+        <div style="width: 200px; border-right: 1px solid var(--border-color); padding-right: 16px;">
+          <h4 class="mb-16" style="font-size: 14px; color: var(--text-secondary);">标签分类</h4>
+          <div class="tag-category-nav" style="display: flex; flex-direction: column; gap: 4px;">
+            <button class="tag-cat-btn active" onclick="switchTagCategory('basic', this)" style="text-align: left; padding: 8px 12px; border: none; background: rgba(22, 119, 255, 0.1); color: var(--primary); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;">📋 基础信息标签</button>
+            <button class="tag-cat-btn" onclick="switchTagCategory('education', this)" style="text-align: left; padding: 8px 12px; border: none; background: none; color: var(--text-secondary); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;">🎓 教育特征标签</button>
+            <button class="tag-cat-btn" onclick="switchTagCategory('employment', this)" style="text-align: left; padding: 8px 12px; border: none; background: none; color: var(--text-secondary); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;">💼 就业特征标签</button>
+            <button class="tag-cat-btn" onclick="switchTagCategory('skill', this)" style="text-align: left; padding: 8px 12px; border: none; background: none; color: var(--text-secondary); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;">⚡ 技能标签</button>
+            <button class="tag-cat-btn" onclick="switchTagCategory('support', this)" style="text-align: left; padding: 8px 12px; border: none; background: none; color: var(--text-secondary); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;">🆘 帮扶标签</button>
+            <button class="tag-cat-btn" onclick="switchTagCategory('intent', this)" style="text-align: left; padding: 8px 12px; border: none; background: none; color: var(--text-secondary); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;">🎯 意向标签</button>
+          </div>
+          <div class="mt-16" style="padding-top: 16px; border-top: 1px solid var(--border-color);">
+            <button class="btn btn-primary btn-sm" style="width: 100%;" onclick="showNotification('AI正在智能生成标签...', 'success')">🤖 AI智能生成标签</button>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">标签分类</label>
-        <select class="form-select" onchange="filterTagCategories(this.value)">
-          <option value="">全部分类</option>
-          <option value="教育">教育背景</option>
-          <option value="技能">职业技能</option>
-          <option value="就业">就业状态</option>
-          <option value="群体">重点群体</option>
-        </select>
-      </div>
-      <div id="tag-list">
-        <div class="mb-8" data-category="教育"><span class="tag">本科及以上学历 <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>
-        <div class="mb-8" data-category="技能"><span class="tag">Java开发 <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>
-        <div class="mb-8" data-category="技能"><span class="tag">Python <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>
-        <div class="mb-8" data-category="群体"><span class="tag">高校毕业生 <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>
-        <div class="mb-8" data-category="群体"><span class="tag">就业困难人员 <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>
-        <div class="mb-8" data-category="就业"><span class="tag">社保连续缴纳 <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>
-        <div class="mb-8" data-category="技能"><span class="tag">3年工作经验 <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>
-        <div class="mb-8" data-category="群体"><span class="tag">农民工 <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>
+        <!-- 右侧标签列表 -->
+        <div style="flex: 1;">
+          <div class="form-group">
+            <label class="form-label">添加新标签</label>
+            <div style="display: flex; gap: 8px;">
+              <input type="text" class="form-input" id="new-tag-input" placeholder="输入新标签名称">
+              <button class="btn btn-primary" onclick="addTag()">添加</button>
+            </div>
+          </div>
+          <div id="tag-list-by-category">
+            <!-- 基础信息标签 -->
+            <div data-tag-category="basic">
+              <div class="mb-8"><span class="tag">年龄：25-35岁 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-8"><span class="tag">大专学历 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-8"><span class="tag">本地户籍 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+            </div>
+            <!-- 教育特征标签 -->
+            <div data-tag-category="education" style="display: none;">
+              <div class="mb-8"><span class="tag">本科及以上 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--primary);">🤖 AI</span></div>
+              <div class="mb-8"><span class="tag">计算机专业 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--primary);">🤖 AI</span></div>
+              <div class="mb-8"><span class="tag">教育竞争力：高 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+            </div>
+            <!-- 就业特征标签 -->
+            <div data-tag-category="employment" style="display: none;">
+              <div class="mb-8"><span class="tag">社保连续缴纳 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--primary);">🤖 AI</span></div>
+              <div class="mb-8"><span class="tag">就业稳定性：高 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-8"><span class="tag">工作年限：3-5年 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+            </div>
+            <!-- 技能标签 -->
+            <div data-tag-category="skill" style="display: none;">
+              <div class="mb-8"><span class="tag">Java开发 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--primary);">🤖 AI</span></div>
+              <div class="mb-8"><span class="tag">Python <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-8"><span class="tag">SQL <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+            </div>
+            <!-- 帮扶标签 -->
+            <div data-tag-category="support" style="display: none;">
+              <div class="mb-8"><span class="tag">就业困难人员 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-8"><span class="tag">帮扶等级：C级 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-8"><span class="tag">需技能培训 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+            </div>
+            <!-- 意向标签 -->
+            <div data-tag-category="intent" style="display: none;">
+              <div class="mb-8"><span class="tag">求职意向：互联网 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--primary);">🤖 AI</span></div>
+              <div class="mb-8"><span class="tag">薪资期望：15-20K <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-8"><span class="tag">工作地点：本地 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+            </div>
+          </div>
+          <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-color); display: flex; gap: 16px; font-size: 13px; color: var(--text-tertiary);">
+            <span>标签总数：<strong>128</strong></span>
+            <span>AI自动生成：<strong>96</strong></span>
+            <span>手动添加：<strong>32</strong></span>
+          </div>
+        </div>
       </div>
     </div>
     <div class="modal-footer">
@@ -1128,16 +1171,6 @@ function removeTag(el) {
   el.parentElement.parentElement.remove();
 }
 
-function filterTagCategories(category) {
-  const tags = document.querySelectorAll('#tag-list > div');
-  tags.forEach(tag => {
-    if (!category || tag.getAttribute('data-category') === category) {
-      tag.style.display = '';
-    } else {
-      tag.style.display = 'none';
-    }
-  });
-}
 
 // 群体分析
 function updateGroupAnalysis(group) {
@@ -1236,6 +1269,22 @@ function switchDataTab(tab, btn) {
   });
   btn.style.color = 'var(--primary)';
   btn.style.borderBottom = '2px solid var(--primary)';
+}
+
+// 标签分类切换
+function switchTagCategory(category, btn) {
+  // 隐藏所有分类
+  document.querySelectorAll('[data-tag-category]').forEach(el => el.style.display = 'none');
+  // 显示当前分类
+  document.querySelectorAll(`[data-tag-category="${category}"]`).forEach(el => el.style.display = 'block');
+
+  // 更新按钮样式
+  document.querySelectorAll('.tag-cat-btn').forEach(b => {
+    b.style.background = 'none';
+    b.style.color = 'var(--text-secondary)';
+  });
+  btn.style.background = 'rgba(22, 119, 255, 0.1)';
+  btn.style.color = 'var(--primary)';
 }
 </script>
 
