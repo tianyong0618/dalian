@@ -625,6 +625,20 @@
           <button class="btn btn-secondary btn-sm" onclick="showPolicyDetail(5)">查看拆解</button>
         </div>
       </div>
+      <div class="card" style="border-left: 4px solid var(--warning);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 8px 0;">《重点群体就业帮扶政策》</h4>
+            <p class="text-small">文件编号：RS-2026-055 | 发布日期：2026-05-05</p>
+            <div class="mt-8">
+              <span class="tag">就业帮扶</span>
+              <span class="tag">重点群体</span>
+              <span class="tag">社保补贴</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="showPolicyDetail(6)">查看拆解</button>
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('policy-library-modal')">关闭</button>
@@ -1451,6 +1465,14 @@ const policyData = [
     clauses: [
       { title: '个人创业贷款', content: '符合条件的个人可申请最高30万元的创业担保贷款，财政给予贴息', condition: '个人创业，信用良好', amount: '最高30万元' },
       { title: '小微企业贷款', content: '小微企业可申请最高300万元的创业担保贷款，财政给予部分贴息', condition: '小微企业，带动就业5人以上', amount: '最高300万元' }
+    ]
+  },
+  {
+    title: '《重点群体就业帮扶政策》',
+    summary: '针对高校毕业生、就业困难人员、退役军人、农民工等重点群体，提供专项就业帮扶和社保补贴，促进重点群体稳定就业。',
+    clauses: [
+      { title: '重点群体社保补贴', content: '企业招用重点群体人员的，按实际缴纳社保费的50%给予补贴', condition: '企业招用重点群体，签订1年以上劳动合同', amount: '社保缴费的50%' },
+      { title: '公益性岗位补贴', content: '对通过公益性岗位安置重点群体的单位，给予岗位补贴和社会保险补贴', condition: '公益性岗位安置重点群体', amount: '当地最低工资标准的50%-100%' }
     ]
   }
 ];
