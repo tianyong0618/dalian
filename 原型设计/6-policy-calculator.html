@@ -597,6 +597,20 @@
           <button class="btn btn-secondary btn-sm" onclick="showPolicyDetail(3)">查看拆解</button>
         </div>
       </div>
+      <div class="card mb-16" style="border-left: 4px solid var(--warning);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 8px 0;">《职业技能提升行动计划》</h4>
+            <p class="text-small">文件编号：RS-2026-042 | 发布日期：2026-04-15</p>
+            <div class="mt-8">
+              <span class="tag">培训资助</span>
+              <span class="tag">技能提升</span>
+              <span class="tag">职业培训</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="showPolicyDetail(4)">查看拆解</button>
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('policy-library-modal')">关闭</button>
@@ -1406,6 +1420,15 @@ const policyData = [
     clauses: [
       { title: '一般企业稳岗返还', content: '对不裁员或少裁员的参保企业，返还其上年度实际缴纳失业保险费的60%', condition: '参保企业，不裁员或少裁员', amount: '失业保险费的60%' },
       { title: '困难企业稳岗返还', content: '对面临暂时性生产经营困难且恢复有望的企业，返还上年度失业保险费的70%', condition: '参保企业，困难企业认定', amount: '失业保险费的70%' }
+    ]
+  },
+  {
+    title: '《职业技能提升行动计划》',
+    summary: '全面推进职业技能提升行动，对参加职业技能培训并取得证书的人员给予补贴，支持企业开展新型学徒制培训，加快培养高技能人才。',
+    clauses: [
+      { title: '技能培训补贴', content: '参加职业技能培训并取得职业资格证书的，给予最高3000元培训补贴', condition: '个人参加培训并取得证书', amount: '最高3000元' },
+      { title: '新型学徒制培训', content: '企业开展新型学徒制培训的，按每人每年4000元标准给予补贴', condition: '企业开展学徒制培训', amount: '4000元/人/年' },
+      { title: '高技能人才培养', content: '对培养高技能人才的企业给予一次性奖励，每培养一名高级工奖励1000元', condition: '企业培养高技能人才', amount: '1000元/人' }
     ]
   }
 ];
