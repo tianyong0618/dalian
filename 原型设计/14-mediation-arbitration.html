@@ -433,6 +433,18 @@
         </div>
       </div>
 
+      <div id="reg-form-3"<div style="background: #fff7e6; padding: 12px; border-radius: 8px; margin-top: 16px; border-left: 4px solid #fa8c16;" id="ai-verify-result">
+        <div style="font-weight: 600; margin-bottom: 8px;">🤖 AI材料校验中...</div>
+        <div style="font-size: 14px;" id="verify-details">
+          <p>✓ 劳动合同已上传 - 格式合规</p>
+          <p>✓ 工资流水已上传 - 完整</p>
+          <p>⚠️ 考勤记录缺失 - 建议补充</p>
+          <p>✓ 其他证据已上传 - 有效</p>
+        </div>
+      </div>
+</div>
+      </div>
+
       <div id="reg-form-3" style="display: none;">
         <h3 class="mb-16">确认立案信息</h3>
         <div class="card" style="background: var(--bg-secondary);">
@@ -447,6 +459,17 @@
           <div class="mb-16"><strong>被申请人：</strong><span id="confirm-respondent"></span></div>
           <div><strong>纠纷描述：</strong><p id="confirm-desc" class="text-small mt-8"></p></div>
         </div>
+
+        <div style="background: #e6f7ff; padding: 12px; border-radius: 8px; margin-top: 16px; border-left: 4px solid #1677ff;" id="case-division-suggest">
+          <div style="font-weight: 600; margin-bottom: 8px;">📊 案件分流建议</div>
+          <div style="font-size: 14px;" id="division-details">
+            <p>案件类型：<span id="division-type">-</span></p>
+            <p>诉求金额：<span id="division-amount">-</span> 元</p>
+            <p>建议分流至：<strong style="color: var(--primary);" id="division-suggest">仲裁程序</strong>（争议金额较大，建议正式仲裁）</p>
+            <p>备选方案：<strong>调解程序</strong>（若双方愿意协商）</p>
+          </div>
+        </div>
+      </div>
         <div class="form-group mt-16">
           <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-secondary);">
             <input type="checkbox" id="agree-check"> 本人确认以上信息真实有效，并同意在线审理协议
@@ -574,10 +597,20 @@
         <h4 class="mb-8">合同条款预览</h4>
         <p class="text-small">根据《中华人民共和国劳动法》和《中华人民共和国劳动合同法》等法律法规，甲乙双方在平等自愿、协商一致的基础上签订本合同...</p>
       </div>
+
+      <div class="card mt-16" style="background: var(--bg-secondary); padding: 16px; display: none;" id="contract-record-area">
+        <h4 class="mb-8">📋 合同备案信息</h4>
+        <div class="row mb-8">
+          <div class="col-6"><strong>备案编号：</strong><span id="contract-record-no" style="color: var(--primary); font-weight: 600;"></span></div>
+          <div class="col-6"><strong>备案状态：</strong><span id="contract-record-status" style="color: var(--success);">待备案</span></div>
+        </div>
+        <div class="mb-8"><strong>备案时间：</strong><span id="contract-record-time">-</span></div>
+        <div id="contract-record-status-detail"></div>
+      </div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('ec-contract-modal')">取消</button>
-      <button class="btn btn-primary" onclick="showNotification('合同已生成，请进行电子签名', 'success')">生成合同</button>
+      <button class="btn btn-primary" onclick="generateContract()">生成合同</button>
     </div>
   </div>
 </div>
@@ -2104,6 +2137,38 @@ function viewMediationDetail(id) {
   showNotification('正在查看调解案件 ' + id + ' 详情...', 'success');
 }
 
+// 电子劳动合同备案编号生成
+function generateContract() {
+  // 生成备案编号：HT + 日期 + 4位随机数
+  const now = new Date();
+  const dateStr = now.getFullYear().toString() +
+    (now.getMonth()+1).toString().padStart(2,'0') +
+    now.getDate().toString().padStart(2,'0');
+  const random = Math.floor(1000 + Math.random() * 9000);
+  const recordNo = 'HT' + dateStr + random;
+
+  // 显示备案信息
+  document.getElementById('contract-record-no').textContent = recordNo;
+  document.getElementById('contract-record-status').textContent = '已备案';
+  document.getElementById('contract-record-status').style.color = 'var(--success)';
+  document.getElementById('contract-record-time').textContent =
+    now.getFullYear() + '-' + (now.getMonth()+1).toString().padStart(2,'0') + '-' +
+    now.getDate().toString().padStart(2,'0') + ' ' +
+    now.getHours().toString().padStart(2,'0') + ':' +
+    now.getMinutes().toString().padStart(2,'0');
+
+  // 显示数据联动状态
+  document.getElementById('contract-record-status-detail').innerHTML =
+    '<div style="margin-top: 12px; padding: 8px; background: rgba(82,196,26,0.1); border-radius: 4px; font-size: 14px;">' +
+    '<p>✓ 已同步至根治欠薪平台</p>' +
+    '<p>✓ 已同步至调解仲裁平台</p>' +
+    '<p>✓ 作为用工关系认定依据</p>' +
+    '</div>';
+
+  document.getElementById('contract-record-area').style.display = 'block';
+  showNotification('合同已生成，备案编号：' + recordNo, 'success');
+}
+
 // 在线立案步骤
 let currentRegStep = 1;
 function startCaseRegistration() {
@@ -2131,6 +2196,38 @@ function nextRegStep() {
     document.getElementById('confirm-phone').textContent = document.getElementById('applicant-phone').value;
     document.getElementById('confirm-respondent').textContent = document.getElementById('respondent-name').value;
     document.getElementById('confirm-desc').textContent = document.getElementById('case-desc').value;
+
+    // 新增：更新AI校验结果（模拟）
+    const verifyDetails = document.getElementById('verify-details');
+    const caseType = document.getElementById('case-type').value;
+    const caseAmount = parseInt(document.getElementById('case-amount').value) || 0;
+
+    // 模拟AI校验
+    let verifyHTML = '';
+    if (caseType) verifyHTML += '<p>✓ 案件类型已选择 - 有效</p>';
+    if (document.getElementById('applicant-name').value) verifyHTML += '<p>✓ 申请人信息完整</p>';
+    if (caseAmount > 0) verifyHTML += '<p>✓ 诉求金额已填写 - ' + caseAmount + '元</p>';
+    verifyHTML += '<p>⚠️ 建议上传考勤记录作为补充证据</p>';
+    verifyDetails.innerHTML = verifyHTML;
+
+    // 新增：更新案件分流建议
+    const divisionSuggest = document.getElementById('division-suggest');
+    const divisionType = document.getElementById('division-type');
+    const divisionAmount = document.getElementById('division-amount');
+
+    divisionType.textContent = caseType || '-';
+    divisionAmount.textContent = caseAmount || '-';
+
+    if (caseAmount > 50000 || caseType === '工伤赔偿') {
+      divisionSuggest.textContent = '仲裁程序';
+      divisionSuggest.parentNode.innerHTML = '建议分流至：<strong style="color: var(--primary);">仲裁程序</strong>（争议金额较大或涉及工伤，建议正式仲裁）';
+    } else if (caseAmount > 10000) {
+      divisionSuggest.textContent = '调解或仲裁';
+      divisionSuggest.parentNode.innerHTML = '建议分流至：<strong style="color: var(--warning);">调解程序</strong>（金额适中，建议优先调解）';
+    } else {
+      divisionSuggest.textContent = '调解程序';
+      divisionSuggest.parentNode.innerHTML = '建议分流至：<strong style="color: var(--success);">调解程序</strong>（金额较小，建议快速调解）';
+    }
   }
 
   if (currentRegStep < 3) {
@@ -2234,6 +2331,167 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
     if (e.target === this) { this.classList.remove('active'); }
   });
 });
+
+// Task 3: 调解员智能推荐
+const mediatorDB = [
+  { name: '王调解员', skill: '工资纠纷', score: 4.8, load: 8 },
+  { name: '李调解员', skill: '工伤赔偿', score: 4.9, load: 6 },
+  { name: '张调解员', skill: '劳动合同', score: 4.7, load: 5 },
+  { name: '赵调解员', skill: '社保争议', score: 4.8, load: 9 },
+  { name: '陈调解员', skill: '综合争议', score: 4.6, load: 7 }
+];
+
+function updateMediatorSuggest() {
+  const caseType = document.querySelector('#mediation-assign-modal input[value*="争议"]')?.value || '劳动合同争议';
+  const typeMap = {
+    '工资拖欠纠纷': '工资纠纷',
+    '工伤赔偿纠纷': '工伤赔偿',
+    '劳动合同争议': '劳动合同',
+    '社保缴纳争议': '社保争议',
+    '违法解雇纠纷': '综合争议'
+  };
+  const targetSkill = typeMap[caseType] || '综合争议';
+
+  let bestMatch = mediatorDB[0];
+  let bestScore = 0;
+
+  mediatorDB.forEach(m => {
+    let score = 0;
+    if (m.skill === targetSkill) score += 50;
+    score += m.score * 10;
+    score += (10 - m.load);
+    if (score > bestScore) {
+      bestScore = score;
+      bestMatch = m;
+    }
+  });
+
+  // 动态添加或更新AI推荐区域
+  let suggestDiv = document.getElementById('ai-mediator-suggest');
+  if (!suggestDiv) {
+    suggestDiv = document.createElement('div');
+    suggestDiv.id = 'ai-mediator-suggest';
+    suggestDiv.style.cssText = 'background: #f6ffed; padding: 12px; border-radius: 8px; margin-top: 16px; border-left: 4px solid #52c41a;';
+    const selectDiv = document.querySelector('#mediation-assign-modal .form-group:nth-child(3)');
+    if (selectDiv && selectDiv.parentNode) {
+      selectDiv.parentNode.insertBefore(suggestDiv, selectDiv.nextSibling);
+    }
+  }
+  suggestDiv.innerHTML = `
+    <div style="font-weight: 600; margin-bottom: 8px;">🤖 AI智能推荐</div>
+    <div style="font-size: 14px;">
+      <p>✓ 推荐：<span id="suggest-name">${bestMatch.name}</span>（专长：<span id="suggest-skill">${bestMatch.skill}</span>，评分：<span id="suggest-score">${bestMatch.score}</span>，当前负荷：<span id="suggest-load">${bestMatch.load}</span>件）</p>
+      <p>✓ 匹配度：<span id="suggest-match">${Math.min(95, 70 + bestMatch.score * 5 - bestMatch.load)}%</span>（专长匹配+负荷适中+高评分）</p>
+    </div>
+  `;
+}
+
+// Task 4: 庭审流程自动引导
+let currentTrialStep = 2;
+const trialSteps = ['庭前准备', '庭审调查', '质证辩论', '最后陈述', '庭审结束'];
+const trialTimes = ['2小时', '1小时30分', '1小时', '30分钟', '0'];
+
+function updateTrialStep(step) {
+  currentTrialStep = step || 2;
+  // 动态添加流程引导UI
+  let guideDiv = document.getElementById('trial-guide');
+  if (!guideDiv) {
+    guideDiv = document.createElement('div');
+    guideDiv.id = 'trial-guide';
+    guideDiv.style.cssText = 'background: #e6f7ff; padding: 12px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid #1677ff;';
+    const trialModal = document.getElementById('cloud-trial-modal');
+    const mockupBody = trialModal?.querySelector('.mockup-body');
+    if (mockupBody) {
+      mockupBody.parentNode.insertBefore(guideDiv, mockupBody);
+    }
+  }
+  guideDiv.innerHTML = `
+    <div style="font-weight: 600; margin-bottom: 8px;">📍 当前环节：<span id="current-trial-step">${trialSteps[currentTrialStep-1]}</span>（第<span id="trial-step-num">${currentTrialStep}</span>/共5步）</div>
+    <div style="font-size: 14px; margin-bottom: 8px;">
+      <p>预计剩余时间：<span id="trial-remain-time">${trialTimes[currentTrialStep-1] || '0'}</span></p>
+      <p>下一步：<span id="trial-next-step">${currentTrialStep < 5 ? trialSteps[currentTrialStep] : '庭审结束'}</span></p>
+    </div>
+    <div style="display: flex; gap: 8px; font-size: 12px;" id="trial-steps-bar">
+      ${trialSteps.map((step, i) => {
+        const idx = i + 1;
+        let bg = '#f5f5f5', color = 'black';
+        if (idx < currentTrialStep) { bg = '#52c41a'; color = 'white'; }
+        else if (idx === currentTrialStep) { bg = '#1677ff'; color = 'white'; }
+        return `<span style="padding: 4px 8px; background: ${bg}; color: ${color}; border-radius: 4px;">${idx < currentTrialStep ? '✓ ' : idx === currentTrialStep ? '➤ ' : ''}${step}</span>`;
+      }).join('')}
+    </div>
+  `;
+}
+
+// Task 6: 打印功能
+function printTabContent(tabId) {
+  const content = document.getElementById(tabId);
+  if (!content) return;
+
+  const printWindow = window.open('', '_blank');
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>打印 - 系统管理</title>
+      <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+        th, td { padding: 8px 12px; border: 1px solid #ddd; text-align: left; font-size: 14px; }
+        th { background: #f5f5f5; font-weight: 600; }
+        h2 { margin-bottom: 16px; }
+        @media print {
+          button { display: none; }
+        }
+      </style>
+    </head>
+    <body>
+      <h2>系统管理 - ${tabId.replace('-', ' ')}</h2>
+      ${content.innerHTML}
+    </body>
+    </html>
+  `);
+  printWindow.document.close();
+  setTimeout(() => { printWindow.print(); }, 250);
+}
+
+// 修改showModal函数，在特定模态框显示时调用更新函数
+const originalShowModal = showModal;
+window.showModal = function(id) {
+  originalShowModal(id);
+  if (id === 'mediation-assign-modal') {
+    setTimeout(updateMediatorSuggest, 100);
+  } else if (id === 'cloud-trial-modal') {
+    setTimeout(() => updateTrialStep(currentTrialStep), 100);
+  }
+};
+
+// Task 6: 在系统管理模态框中动态添加打印按钮
+function addPrintButtons() {
+  const tabs = ['user-manage', 'message-manage', 'evidence-manage', 'log-manage', 'device-manage'];
+  tabs.forEach(tabId => {
+    const tab = document.getElementById(tabId);
+    if (!tab) return;
+    const card = tab.querySelector('.card');
+    if (!card || tab.querySelector('.print-btn')) return;
+
+    const btnDiv = document.createElement('div');
+    btnDiv.className = 'print-btn';
+    btnDiv.style.cssText = 'display: flex; gap: 8px; margin-bottom: 16px;';
+    btnDiv.innerHTML = `
+      <button style="padding: 6px 12px; background: var(--primary); color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;" onclick="printTabContent('${tabId}')">🖨️ 打印当前列表</button>
+      <button style="padding: 6px 12px; background: #52c41a; color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;" onclick="showNotification('列表已导出为Excel', 'success')">📥 导出Excel</button>
+    `;
+    card.parentNode.insertBefore(btnDiv, card);
+  });
+}
+
+// 在系统管理模态框显示时添加打印按钮
+const originalSwitchTab = switchTab;
+window.switchTab = function(tabId, btn) {
+  originalSwitchTab(tabId, btn);
+  setTimeout(() => addPrintButtons(), 100);
+};
 </script>
 
 </body>
