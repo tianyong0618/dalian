@@ -433,6 +433,7 @@
             <th>人数规模</th>
             <th>就业率</th>
             <th>主要需求</th>
+            <th>AI预警</th>
             <th>趋势</th>
             <th>状态</th>
           </tr>
@@ -448,6 +449,7 @@
               </div>
             </td>
             <td>岗位匹配、就业指导</td>
+            <td><span style="font-size: 12px; color: var(--primary);">🤖 AI预测持续上升 ↑</span></td>
             <td style="color: var(--success);">↑ 上升</td>
             <td><span class="badge badge-success">监测中</span></td>
           </tr>
@@ -456,11 +458,12 @@
             <td>3,892</td>
             <td>
               <div style="display: flex; align-items: center; gap: 8px;">
-                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 76.5%;"></div></div>
+                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 76.5%; background: var(--warning);"></div></div>
                 <span>76.5%</span>
               </div>
             </td>
             <td>技能培训、兜底安置</td>
+            <td><span style="font-size: 12px; color: var(--danger);">⚠️ AI预警：需重点关注</span></td>
             <td style="color: var(--warning);">→ 平稳</td>
             <td><span class="badge badge-warning">重点关注</span></td>
           </tr>
@@ -482,11 +485,12 @@
             <td>15,678</td>
             <td>
               <div style="display: flex; align-items: center; gap: 8px;">
-                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 82.3%;"></div></div>
+                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 82.3%; background: var(--warning);"></div></div>
                 <span>82.3%</span>
               </div>
             </td>
             <td>权益保障、职业培训</td>
+            <td><span style="font-size: 12px; color: var(--danger);">⚠️ AI预警：权益风险</span></td>
             <td style="color: var(--success);">↑ 上升</td>
             <td><span class="badge badge-warning">重点关注</span></td>
           </tr>
@@ -889,6 +893,15 @@
           <span class="tag">主要需求：技能培训</span>
         </div>
       </div>
+        <div class="mt-16">
+          <h4 class="mb-8">AI智能分析</h4>
+          <div class="card mb-8" style="padding: 12px; background: rgba(22, 119, 255, 0.05); font-size: 13px;">
+            🤖 <strong>就业率预测：</strong>基于历史数据，预计下季度就业率将<span style="color: var(--success);">上升2%</span>
+          </div>
+          <div class="card" style="padding: 12px; background: rgba(22, 119, 255, 0.05); font-size: 13px;">
+            🤖 <strong>帮扶建议：</strong>建议增加互联网行业岗位推荐，预计可提升匹配率<span style="color: var(--success);">15%</span>
+          </div>
+        </div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('group-analysis-modal')">关闭</button>
