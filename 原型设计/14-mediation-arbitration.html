@@ -111,7 +111,7 @@
         </div>
       </div>
     </div>
-    <div class="row mb-48">
+    <div class="row mb-32">
       <div class="col-4">
         <div class="feature-card" onclick="showModal('legal-aid-modal')">
           <div class="card-header">
@@ -128,7 +128,7 @@
         </div>
       </div>
       <div class="col-4">
-        <div class="feature-card" onclick="showNotification('项目实时监管功能开发中...', 'warning')">
+        <div class="feature-card" onclick="showModal('project-supervision-modal')">
           <div class="card-header">
             <div class="icon">🔍</div>
             <div class="card-content">
@@ -143,7 +143,7 @@
         </div>
       </div>
       <div class="col-4">
-        <div class="feature-card" onclick="showNotification('数字化仲裁庭功能开发中...', 'warning')">
+        <div class="feature-card" onclick="showModal('digital-court-modal')">
           <div class="card-header">
             <div class="icon">🏛️</div>
             <div class="card-content">
@@ -155,6 +155,53 @@
             </svg>
           </div>
           <div><span class="tag">数字仲裁</span><span class="tag">上下联动</span><span class="tag">全程留痕</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-48">
+      <div class="col-4">
+        <div class="feature-card" onclick="showModal('mediation-modal')">
+          <div class="card-header">
+            <div class="icon">📋</div>
+            <div class="card-content">
+              <div class="title-row"><h3>在线争议调解</h3></div>
+              <p>在线提交调解申请，智能分配调解员，通过视频、文字方式开展无接触线上调解。</p>
+            </div>
+            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div><span class="tag">调解申请</span><span class="tag">线上调解</span><span class="tag">协议签署</span></div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="feature-card" onclick="showModal('linkage-modal')">
+          <div class="card-header">
+            <div class="icon">🔗</div>
+            <div class="card-content">
+              <div class="title-row"><h3>仲裁上下联动</h3></div>
+              <p>打通各级仲裁机构数据，实现案件信息同步共享、跨区域案件协同处理。</p>
+            </div>
+            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div><span class="tag">数据贯通</span><span class="tag">案件协同</span><span class="tag">效能监测</span></div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="feature-card" onclick="showModal('system-manage-modal')">
+          <div class="card-header">
+            <div class="icon">⚙️</div>
+            <div class="card-content">
+              <div class="title-row"><h3>系统管理</h3></div>
+              <p>用户权限管理、消息通知、证据管理、日志追溯、多端适配等系统配置。</p>
+            </div>
+            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div><span class="tag">用户管理</span><span class="tag">证据管理</span><span class="tag">多端适配</span></div>
         </div>
       </div>
     </div>
@@ -279,7 +326,7 @@
         <div style="font-size: 64px; margin-bottom: 16px;">🎥</div>
         <h3 class="mb-8">云庭审已就绪</h3>
         <p class="text-body mb-24">您的案件 ZC20260503005 已排期，将于 2026-05-10 09:00 开庭</p>
-        <button class="btn btn-primary" onclick="showNotification('正在进入云庭审室...', 'success')">进入庭审室</button>
+        <button class="btn btn-primary" onclick="showModal('cloud-trial-modal')">进入庭审室</button>
       </div>
     </div>
 
@@ -638,6 +685,1356 @@
   </div>
 </div>
 
+<!-- 项目实时监管模态框 -->
+<div class="modal-overlay" id="project-supervision-modal">
+  <div class="modal" style="max-width: 800px;">
+    <div class="modal-header">
+      <h3>在建工程项目实时监管</h3>
+      <button class="modal-close" onclick="closeModal('project-supervision-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="row mb-24">
+        <div class="col-3">
+          <div class="stat-card">
+            <div class="number" style="font-size: 28px;">156</div>
+            <div class="label">在建项目</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="stat-card">
+            <div class="number" style="font-size: 28px;">23,456</div>
+            <div class="label">用工人数</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="stat-card">
+            <div class="number" style="font-size: 28px;">98.5%</div>
+            <div class="label">合同签署率</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="stat-card">
+            <div class="number" style="font-size: 28px;">3</div>
+            <div class="label">欠薪预警</div>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="mb-16">项目全要素监管</h4>
+      <div class="card mb-16">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>项目名称</th>
+              <th>用工人数</th>
+              <th>合同签订</th>
+              <th>工资发放</th>
+              <th>考勤状态</th>
+              <th>预警</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>XX商业综合体建设项目</td>
+              <td>356人</td>
+              <td><span class="badge badge-success">已签 98%</span></td>
+              <td><span class="badge badge-success">正常</span></td>
+              <td><span class="badge badge-success">联网</span></td>
+              <td><span class="badge badge-success">无</span></td>
+            </tr>
+            <tr>
+              <td>XX产业园基础设施项目</td>
+              <td>528人</td>
+              <td><span class="badge badge-success">已签 95%</span></td>
+              <td><span class="badge badge-warning">延迟</span></td>
+              <td><span class="badge badge-success">联网</span></td>
+              <td><span class="badge badge-warning">工资延迟</span></td>
+            </tr>
+            <tr>
+              <td>XX住宅小区开发项目</td>
+              <td>412人</td>
+              <td><span class="badge badge-warning">已签 82%</span></td>
+              <td><span class="badge badge-danger">异常</span></td>
+              <td><span class="badge badge-warning">部分离线</span></td>
+              <td><span class="badge badge-danger">严重欠薪</span></td>
+            </tr>
+            <tr>
+              <td>XX地铁扩建工程</td>
+              <td>892人</td>
+              <td><span class="badge badge-success">已签 99%</span></td>
+              <td><span class="badge badge-success">正常</span></td>
+              <td><span class="badge badge-success">联网</span></td>
+              <td><span class="badge badge-success">无</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 class="mb-16">欠薪隐患智能预警</h4>
+      <div class="card" style="background: var(--bg-secondary); padding: 16px;">
+        <div class="row mb-12">
+          <div class="col-6"><strong>预警项目：</strong>XX住宅小区开发项目</div>
+          <div class="col-6"><strong>预警级别：</strong><span class="badge badge-danger">红色预警</span></div>
+        </div>
+        <div class="mb-8"><strong>预警原因：</strong></div>
+        <ul class="text-small" style="padding-left: 20px;">
+          <li>工资发放已延迟15天，涉及员工412人</li>
+          <li>近30天投诉量激增，共收到欠薪投诉23件</li>
+          <li>考勤系统部分离线，数据上传不及时</li>
+        </ul>
+        <button class="btn btn-primary btn-sm mt-8" onclick="showNotification('预警信息已推送至人社监管部门', 'success')">推送监管部门</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('project-supervision-modal')">关闭</button>
+      <button class="btn btn-primary" onclick="showNotification('监管报表已导出', 'success')">导出报表</button>
+    </div>
+  </div>
+</div>
+
+<!-- 数字化仲裁庭模态框 -->
+<div class="modal-overlay" id="digital-court-modal">
+  <div class="modal" style="max-width: 800px;">
+    <div class="modal-header">
+      <h3>数字化仲裁庭</h3>
+      <button class="modal-close" onclick="closeModal('digital-court-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="row mb-24">
+        <div class="col-4">
+          <div class="stat-card">
+            <div class="number" style="font-size: 28px;">12</div>
+            <div class="label">在线仲裁庭</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-card">
+            <div class="number" style="font-size: 28px;">386</div>
+            <div class="label">云庭审次数</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-card">
+            <div class="number" style="font-size: 28px;">100%</div>
+            <div class="label">全程留痕</div>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="mb-16">虚拟仲裁庭配置</h4>
+      <div class="card mb-16">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>仲裁庭编号</th>
+              <th>仲裁员</th>
+              <th>书记员</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ZCT-001</strong></td>
+              <td>王仲裁员</td>
+              <td>李书记员</td>
+              <td><span class="badge badge-success">空闲</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showModal('court-config-modal')">配置</button></td>
+            </tr>
+            <tr>
+              <td><strong>ZCT-002</strong></td>
+              <td>张仲裁员</td>
+              <td>赵书记员</td>
+              <td><span class="badge badge-info">庭审中</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showNotification('正在进入庭审观摩...', 'success')">观摩</button></td>
+            </tr>
+            <tr>
+              <td><strong>ZCT-003</strong></td>
+              <td>刘仲裁员</td>
+              <td>陈书记员</td>
+              <td><span class="badge badge-warning">准备中</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showModal('court-config-modal')">配置</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 class="mb-16">庭审流程管控</h4>
+      <div class="steps mb-16">
+        <div class="step completed">
+          <div class="step-circle">✓</div>
+          <div class="step-label">庭前准备</div>
+        </div>
+        <div class="step active">
+          <div class="step-circle">2</div>
+          <div class="step-label">庭审调查</div>
+        </div>
+        <div class="step">
+          <div class="step-circle">3</div>
+          <div class="step-label">质证辩论</div>
+        </div>
+        <div class="step">
+          <div class="step-circle">4</div>
+          <div class="step-label">最后陈述</div>
+        </div>
+        <div class="step">
+          <div class="step-circle">5</div>
+          <div class="step-label">庭审结束</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <button class="btn btn-primary btn-block" onclick="showModal('court-record-modal')">庭审留痕记录</button>
+        </div>
+        <div class="col-6">
+          <button class="btn btn-secondary btn-block" onclick="showNotification('庭审笔录已生成', 'success')">生成笔录</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('digital-court-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 在线争议调解模态框 -->
+<div class="modal-overlay" id="mediation-modal">
+  <div class="modal" style="max-width: 800px;">
+    <div class="modal-header">
+      <h3>在线劳动人事争议调解</h3>
+      <button class="modal-close" onclick="closeModal('mediation-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="row mb-24">
+        <div class="col-3">
+          <div class="stat-card">
+            <div class="number" style="font-size: 28px;">1,562</div>
+            <div class="label">本月调解案件</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="stat-card">
+            <div class="number" style="font-size: 28px;">92.3%</div>
+            <div class="label">调解成功率</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="stat-card">
+            <div class="number" style="font-size: 28px;">285</div>
+            <div class="label">调解员数量</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="stat-card">
+            <div class="number" style="font-size: 28px;">48h</div>
+            <div class="label">平均办结时长</div>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="mb-16">调解申请列表</h4>
+      <div class="card mb-16">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>申请编号</th>
+              <th>争议类型</th>
+              <th>申请人</th>
+              <th>调解员</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>TJ20260501001</strong></td>
+              <td>工资拖欠纠纷</td>
+              <td>张三</td>
+              <td>王调解员</td>
+              <td><span class="badge badge-warning">调解中</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showModal('mediation-room-modal')">进入调解室</button></td>
+            </tr>
+            <tr>
+              <td><strong>TJ20260502002</strong></td>
+              <td>工伤赔偿纠纷</td>
+              <td>李四</td>
+              <td>李调解员</td>
+              <td><span class="badge badge-info">已排期</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showNotification('已发送提醒', 'success')">提醒</button></td>
+            </tr>
+            <tr>
+              <td><strong>TJ20260503003</strong></td>
+              <td>劳动合同争议</td>
+              <td>赵六</td>
+              <td>待分配</td>
+              <td><span class="badge badge-danger">待分配</span></td>
+              <td><button class="btn btn-primary btn-sm" onclick="showModal('mediation-assign-modal')">分配调解员</button></td>
+            </tr>
+            <tr>
+              <td><strong>TJ20260504004</strong></td>
+              <td>社保缴纳争议</td>
+              <td>王五</td>
+              <td>张调解员</td>
+              <td><span class="badge badge-success">已结案</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="viewMediationDetail('TJ20260504004')">查看</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <button class="btn btn-primary btn-block" onclick="showModal('mediation-apply-modal')">+ 提交调解申请</button>
+        </div>
+        <div class="col-6">
+          <button class="btn btn-secondary btn-block" onclick="showNotification('调解案件报表已导出', 'success')">导出报表</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('mediation-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 调解申请模态框 -->
+<div class="modal-overlay" id="mediation-apply-modal">
+  <div class="modal" style="max-width: 650px;">
+    <div class="modal-header">
+      <h3>提交调解申请</h3>
+      <button class="modal-close" onclick="closeModal('mediation-apply-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">争议类型</label>
+        <select class="form-select">
+          <option value="">请选择争议类型</option>
+          <option>工资拖欠纠纷</option>
+          <option>劳动合同争议</option>
+          <option>工伤赔偿纠纷</option>
+          <option>社保缴纳争议</option>
+          <option>违法解雇纠纷</option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">申请人姓名</label>
+            <input type="text" class="form-input" placeholder="请输入申请人姓名">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">联系电话</label>
+            <input type="tel" class="form-input" placeholder="请输入联系电话">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">被申请人（单位/个人）</label>
+        <input type="text" class="form-input" placeholder="请输入被申请人名称">
+      </div>
+      <div class="form-group">
+        <label class="form-label">争议事实描述</label>
+        <textarea class="form-textarea" placeholder="请详细描述争议事实、诉求等..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">上传证据材料</label>
+        <div class="upload-area" onclick="showNotification('证据已上传', 'success')">
+          <div class="upload-icon">📎</div>
+          <p>点击上传劳动合同、工资流水、考勤记录等证据</p>
+          <p class="text-small">支持 jpg、png、pdf 格式</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('mediation-apply-modal')">取消</button>
+      <button class="btn btn-primary" onclick="closeModal('mediation-apply-modal'); showNotification('调解申请已提交，申请编号：TJ20260505005', 'success')">提交申请</button>
+    </div>
+  </div>
+</div>
+
+<!-- 调解员分配模态框 -->
+<div class="modal-overlay" id="mediation-assign-modal">
+  <div class="modal" style="max-width: 600px;">
+    <div class="modal-header">
+      <h3>分配调解员</h3>
+      <button class="modal-close" onclick="closeModal('mediation-assign-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">案件编号</label>
+        <input type="text" class="form-input" value="TJ20260503003" disabled>
+      </div>
+      <div class="form-group">
+        <label class="form-label">争议类型</label>
+        <input type="text" class="form-input" value="劳动合同争议" disabled>
+      </div>
+      <div class="form-group">
+        <label class="form-label">选择调解员</label>
+        <select class="form-select">
+          <option value="">请选择调解员</option>
+          <option>王调解员（专长：工资纠纷，评分：4.8）</option>
+          <option>李调解员（专长：工伤赔偿，评分：4.9）</option>
+          <option>张调解员（专长：劳动合同，评分：4.7）</option>
+          <option>赵调解员（专长：社保争议，评分：4.8）</option>
+          <option>陈调解员（专长：综合争议，评分：4.6）</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">分配方式</label>
+        <div style="display: flex; gap: 16px;">
+          <label style="display: flex; align-items: center; gap: 8px;">
+            <input type="radio" name="assign-type" value="auto" checked> 智能分配
+          </label>
+          <label style="display: flex; align-items: center; gap: 8px;">
+            <input type="radio" name="assign-type" value="manual"> 手动分配
+          </label>
+        </div>
+      </div>
+      <div class="card mt-16" style="background: var(--bg-secondary); padding: 16px;">
+        <h4 class="mb-8">调解员工作量统计</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>调解员</th>
+              <th>在办案件</th>
+              <th>本月结案</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>王调解员</td><td>8</td><td>15</td></tr>
+            <tr><td>李调解员</td><td>6</td><td>18</td></tr>
+            <tr><td>张调解员</td><td>5</td><td>12</td></tr>
+            <tr><td>赵调解员</td><td>9</td><td>14</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('mediation-assign-modal')">取消</button>
+      <button class="btn btn-primary" onclick="closeModal('mediation-assign-modal'); showNotification('调解员已分配，已推送调解任务', 'success')">确认分配</button>
+    </div>
+  </div>
+</div>
+
+<!-- 调解室模态框 -->
+<div class="modal-overlay" id="mediation-room-modal">
+  <div class="modal" style="max-width: 800px;">
+    <div class="modal-header">
+      <h3>在线调解室 - TJ20260501001</h3>
+      <button class="modal-close" onclick="closeModal('mediation-room-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="card mb-16" style="background: var(--bg-secondary); padding: 16px;">
+        <div class="row mb-8">
+          <div class="col-6"><strong>案件类型：</strong>工资拖欠纠纷</div>
+          <div class="col-6"><strong>调解员：</strong>王调解员</div>
+        </div>
+        <div class="row">
+          <div class="col-6"><strong>申请人：</strong>张三</div>
+          <div class="col-6"><strong>被申请人：</strong>XX建筑公司</div>
+        </div>
+      </div>
+
+      <div class="row mb-16">
+        <div class="col-8">
+          <h4 class="mb-8">调解沟通区</h4>
+          <div class="card" style="height: 300px; overflow-y: auto; padding: 16px; background: var(--bg-secondary);">
+            <div class="mb-12" style="text-align: left;">
+              <div style="font-size: 12px; color: var(--text-secondary);">王调解员 09:30</div>
+              <div class="card" style="display: inline-block; padding: 8px 12px; background: white; margin-top: 4px;">
+                您好，我是本案调解员王调解员。今天我们进行在线调解，请双方陈述各自观点。
+              </div>
+            </div>
+            <div class="mb-12" style="text-align: right;">
+              <div style="font-size: 12px; color: var(--text-secondary);">张三 09:32</div>
+              <div class="card" style="display: inline-block; padding: 8px 12px; background: rgba(22, 119, 255, 0.1); margin-top: 4px;">
+                好的。公司拖欠我3个月工资共计15000元，希望公司尽快支付。
+              </div>
+            </div>
+            <div class="mb-12" style="text-align: right;">
+              <div style="font-size: 12px; color: var(--text-secondary);">XX建筑公司 09:35</div>
+              <div class="card" style="display: inline-block; padding: 8px 12px; background: rgba(22, 119, 255, 0.1); margin-top: 4px;">
+                公司目前资金周转困难，正在筹措资金，希望能宽限一个月。
+              </div>
+            </div>
+            <div class="mb-12" style="text-align: left;">
+              <div style="font-size: 12px; color: var(--text-secondary);">王调解员 09:38</div>
+              <div class="card" style="display: inline-block; padding: 8px 12px; background: white; margin-top: 4px;">
+                建议公司先支付50%工资，剩余部分在6月30日前付清，双方是否同意？
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <h4 class="mb-8">视频连线</h4>
+          <div class="card" style="height: 140px; display: flex; align-items: center; justify-content: center; background: #1a1a2e; color: white; margin-bottom: 12px;">
+            <div style="text-align: center;">
+              <div style="font-size: 32px;">📹</div>
+              <div style="font-size: 12px;">调解员画面</div>
+            </div>
+          </div>
+          <div class="card" style="height: 140px; display: flex; align-items: center; justify-content: center; background: #1a1a2e; color: white;">
+            <div style="text-align: center;">
+              <div style="font-size: 32px;">👤</div>
+              <div style="font-size: 12px;">当事人画面</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-16">
+        <div class="col-6">
+          <h4 class="mb-8">证据交换</h4>
+          <div>
+            <span class="tag">📄 工资条.pdf</span>
+            <span class="tag">📅 考勤记录.pdf</span>
+            <span class="tag">💬 聊天记录.pdf</span>
+          </div>
+        </div>
+        <div class="col-6">
+          <h4 class="mb-8">调解结果</h4>
+          <div class="card" style="background: var(--bg-secondary); padding: 12px;">
+            <p class="text-small">调解进行中，待双方达成一致...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <button class="btn btn-primary btn-block" onclick="showNotification('调解协议已生成，请双方签字确认', 'success')">生成调解协议</button>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-secondary btn-block" onclick="showNotification('证据已上传', 'success')">上传证据</button>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-danger btn-block" onclick="showNotification('调解未达成一致，已流转至仲裁程序', 'warning')">流转至仲裁</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('mediation-room-modal')">退出调解室</button>
+    </div>
+  </div>
+</div>
+
+<!-- 仲裁庭配置模态框 -->
+<div class="modal-overlay" id="court-config-modal">
+  <div class="modal" style="max-width: 650px;">
+    <div class="modal-header">
+      <h3>仲裁庭配置 - ZCT-001</h3>
+      <button class="modal-close" onclick="closeModal('court-config-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">仲裁庭名称</label>
+        <input type="text" class="form-input" value="第一在线仲裁庭" placeholder="请输入仲裁庭名称">
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">首席仲裁员</label>
+            <select class="form-select">
+              <option>王仲裁员</option>
+              <option>张仲裁员</option>
+              <option>刘仲裁员</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">书记员</label>
+            <select class="form-select">
+              <option>李书记员</option>
+              <option>赵书记员</option>
+              <option>陈书记员</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">开庭时间</label>
+            <input type="datetime-local" class="form-input" value="2026-05-10T09:00">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="form-label">预计时长</label>
+            <select class="form-select">
+              <option>1小时</option>
+              <option>2小时</option>
+              <option>3小时</option>
+              <option>半天</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">当事人信息</label>
+        <div class="card" style="background: var(--bg-secondary); padding: 12px;">
+          <div class="row mb-8">
+            <div class="col-6"><strong>申请人：</strong>李四</div>
+            <div class="col-6"><strong>被申请人：</strong>XX制造公司</div>
+          </div>
+          <div><strong>案件类型：</strong>工伤赔偿纠纷</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">庭审流程设置</label>
+        <div class="card" style="background: var(--bg-secondary); padding: 12px;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" checked> 庭前准备（宣读纪律、核对身份）
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" checked> 庭审调查（当事人陈述、举证质证）
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" checked> 质证辩论（辩论、最后陈述）
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" checked> 庭审结束（确认笔录、电子签字）
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('court-config-modal')">取消</button>
+      <button class="btn btn-primary" onclick="closeModal('court-config-modal'); showNotification('仲裁庭配置已保存', 'success')">保存配置</button>
+    </div>
+  </div>
+</div>
+
+<!-- 庭审留痕模态框 -->
+<div class="modal-overlay" id="court-record-modal">
+  <div class="modal" style="max-width: 750px;">
+    <div class="modal-header">
+      <h3>庭审全流程留痕记录</h3>
+      <button class="modal-close" onclick="closeModal('court-record-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="card mb-16" style="background: var(--bg-secondary); padding: 16px;">
+        <div class="row mb-8">
+          <div class="col-4"><strong>案件编号：</strong>ZC20260503005</div>
+          <div class="col-4"><strong>仲裁庭：</strong>ZCT-002</div>
+          <div class="col-4"><strong>开庭时间：</strong>2026-05-10 09:00</div>
+        </div>
+      </div>
+
+      <h4 class="mb-16">音视频记录</h4>
+      <div class="card mb-16" style="background: var(--bg-secondary); padding: 16px;">
+        <div class="row mb-12">
+          <div class="col-6">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 24px;">🎥</span>
+              <div>
+                <div><strong>庭审录像</strong></div>
+                <div class="text-small">时长：2小时15分</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6" style="text-align: right;">
+            <button class="btn btn-secondary btn-sm" onclick="showNotification('正在播放庭审录像...', 'success')">播放</button>
+            <button class="btn btn-secondary btn-sm" onclick="showNotification('录像已下载', 'success')">下载</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 24px;">🎤</span>
+              <div>
+                <div><strong>庭审录音</strong></div>
+                <div class="text-small">格式：MP3，128kbps</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6" style="text-align: right;">
+            <button class="btn btn-secondary btn-sm" onclick="showNotification('正在播放庭审录音...', 'success')">播放</button>
+            <button class="btn btn-secondary btn-sm" onclick="showNotification('录音已下载', 'success')">下载</button>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="mb-16">庭审笔录</h4>
+      <div class="card mb-16" style="background: var(--bg-secondary); padding: 16px; max-height: 200px; overflow-y: auto;">
+        <div class="mb-8"><strong>09:00 - 庭前准备</strong></div>
+        <p class="text-small mb-12">仲裁员核对当事人身份，宣读仲裁庭纪律，告知当事人权利义务...</p>
+        <div class="mb-8"><strong>09:15 - 庭审调查</strong></div>
+        <p class="text-small mb-12">申请人陈述：因工伤导致左手骨折，公司拒绝支付工伤赔偿共计80000元...</p>
+        <div class="mb-8"><strong>10:00 - 质证辩论</strong></div>
+        <p class="text-small mb-12">被申请人出示工资发放记录、考勤记录。申请人质证认为证据不完整...</p>
+        <div class="mb-8"><strong>10:45 - 最后陈述</strong></div>
+        <p class="text-small">双方做最后陈述，仲裁员宣布休庭，择日宣判...</p>
+      </div>
+
+      <h4 class="mb-16">操作日志</h4>
+      <div class="card" style="background: var(--bg-secondary); padding: 16px;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>用户</th>
+              <th>操作行为</th>
+              <th>IP地址</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>09:00:15</td>
+              <td>李四（申请人）</td>
+              <td>登录庭审系统</td>
+              <td>192.168.1.101</td>
+            </tr>
+            <tr>
+              <td>09:05:32</td>
+              <td>张仲裁员</td>
+              <td>开始庭审</td>
+              <td>192.168.1.102</td>
+            </tr>
+            <tr>
+              <td>09:30:45</td>
+              <td>李四（申请人）</td>
+              <td>上传证据（医疗证明.pdf）</td>
+              <td>192.168.1.101</td>
+            </tr>
+            <tr>
+              <td>10:15:20</td>
+              <td>XX制造公司</td>
+              <td>电子签字确认笔录</td>
+              <td>192.168.1.103</td>
+            </tr>
+            <tr>
+              <td>11:00:08</td>
+              <td>张仲裁员</td>
+              <td>休庭</td>
+              <td>192.168.1.102</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('court-record-modal')">关闭</button>
+      <button class="btn btn-primary" onclick="showNotification('庭审记录已归档', 'success')">归档记录</button>
+    </div>
+  </div>
+</div>
+
+<!-- 云庭审模态框 -->
+<div class="modal-overlay" id="cloud-trial-modal">
+  <div class="modal" style="max-width: 900px;">
+    <div class="modal-header">
+      <h3>云庭审室 - ZC20260503005</h3>
+      <button class="modal-close" onclick="closeModal('cloud-trial-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="card mb-16" style="background: var(--bg-secondary); padding: 16px;">
+        <div class="row">
+          <div class="col-3"><strong>案件编号：</strong>ZC20260503005</div>
+          <div class="col-3"><strong>案件类型：</strong>工伤赔偿纠纷</div>
+          <div class="col-3"><strong>仲裁员：</strong>张仲裁员</div>
+          <div class="col-3"><strong>开庭时间：</strong>09:00</div>
+        </div>
+      </div>
+
+      <div class="row mb-16">
+        <div class="col-8">
+          <h4 class="mb-8">庭审画面</h4>
+          <div class="card" style="height: 360px; display: flex; align-items: center; justify-content: center; background: #1a1a2e; color: white; position: relative;">
+            <div style="display: flex; gap: 24px;">
+              <div style="text-align: center;">
+                <div style="width: 120px; height: 90px; background: #2a2a4e; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">🧑 仲裁员</div>
+                <div style="font-size: 12px;">张仲裁员</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="width: 120px; height: 90px; background: #2a2a4e; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">👤 申请人</div>
+                <div style="font-size: 12px;">李四</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="width: 120px; height: 90px; background: #2a2a4e; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">🏢 被申请人</div>
+                <div style="font-size: 12px;">XX制造公司</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="width: 120px; height: 90px; background: #2a2a4e; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">📝 书记员</div>
+                <div style="font-size: 12px;">赵书记员</div>
+              </div>
+            </div>
+            <div style="position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 16px;">
+              <button class="btn btn-secondary btn-sm" onclick="showNotification('麦克风已静音', 'warning')">🎤 静音</button>
+              <button class="btn btn-secondary btn-sm" onclick="showNotification('摄像头已关闭', 'warning')">📹 关闭摄像头</button>
+              <button class="btn btn-danger btn-sm" onclick="showNotification('已退出庭审室', 'warning')">退出</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <h4 class="mb-8">庭审笔录</h4>
+          <div class="card" style="height: 360px; overflow-y: auto; padding: 12px; background: var(--bg-secondary); font-size: 13px;">
+            <div class="mb-8"><strong>09:00 开庭</strong></div>
+            <p class="text-small mb-8">仲裁员宣布开庭，核对当事人身份...</p>
+            <div class="mb-8"><strong>09:10 申请人陈述</strong></div>
+            <p class="text-small mb-8">申请人李四陈述：2026年3月在工作中受伤，导致左手骨折，公司拒绝支付工伤赔偿...</p>
+            <div class="mb-8"><strong>09:30 被申请人答辩</strong></div>
+            <p class="text-small mb-8">被申请人XX制造公司答辩：对工伤事实无异议，但认为赔偿金额过高...</p>
+            <div class="mb-8"><strong>09:50 举证质证</strong></div>
+            <p class="text-small">申请人出示医疗证明、工伤认定决定书...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3">
+          <button class="btn btn-primary btn-block" onclick="showNotification('证据已上传并展示给各方', 'success')">上传证据</button>
+        </div>
+        <div class="col-3">
+          <button class="btn btn-secondary btn-block" onclick="showNotification('庭审笔录已生成，请签字确认', 'success')">电子签字</button>
+        </div>
+        <div class="col-3">
+          <button class="btn btn-secondary btn-block" onclick="showModal('court-record-modal')">庭审记录</button>
+        </div>
+        <div class="col-3">
+          <button class="btn btn-danger btn-block" onclick="showNotification('庭审已结束，笔录已归档', 'success')">结束庭审</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 仲裁工作上下联动模态框 -->
+<div class="modal-overlay" id="linkage-modal">
+  <div class="modal" style="max-width: 850px;">
+    <div class="modal-header">
+      <h3>仲裁工作上下联动</h3>
+      <button class="modal-close" onclick="closeModal('linkage-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="row mb-24">
+        <div class="col-3">
+          <div class="stat-card">
+            <div class="number" style="font-size: 28px;">15</div>
+            <div class="label">联动机构</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="stat-card">
+            <div class="number" style="font-size: 28px;">2,358</div>
+            <div class="label">本月案件</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="stat-card">
+            <div class="number" style="font-size: 28px;">94.5%</div>
+            <div class="label">协同率</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="stat-card">
+            <div class="number" style="font-size: 28px;">89.2%</div>
+            <div class="label">办结率</div>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="mb-16">数据上下贯通</h4>
+      <div class="card mb-16">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>机构名称</th>
+              <th>级别</th>
+              <th>本月案件</th>
+              <th>已办结</th>
+              <th>数据同步状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>市劳动人事争议仲裁委员会</strong></td>
+              <td><span class="badge badge-info">市级</span></td>
+              <td>568</td>
+              <td>512</td>
+              <td><span class="badge badge-success">已同步</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showNotification('正在查看机构详情...', 'success')">查看</button></td>
+            </tr>
+            <tr>
+              <td>XX区劳动人事争议仲裁委员会</td>
+              <td><span class="badge badge-warning">区级</span></td>
+              <td>386</td>
+              <td>352</td>
+              <td><span class="badge badge-success">已同步</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showNotification('正在查看机构详情...', 'success')">查看</button></td>
+            </tr>
+            <tr>
+              <td>YY区劳动人事争议仲裁委员会</td>
+              <td><span class="badge badge-warning">区级</span></td>
+              <td>412</td>
+              <td>378</td>
+              <td><span class="badge badge-success">已同步</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showNotification('正在查看机构详情...', 'success')">查看</button></td>
+            </tr>
+            <tr>
+              <td>ZZ县劳动人事争议仲裁委员会</td>
+              <td><span class="badge badge-warning">县级</span></td>
+              <td>298</td>
+              <td>245</td>
+              <td><span class="badge badge-warning">同步延迟</span></td>
+              <td><button class="btn btn-primary btn-sm" onclick="showNotification('已触发强制同步', 'success')">强制同步</button></td>
+            </tr>
+            <tr>
+              <td>WW县劳动人事争议仲裁委员会</td>
+              <td><span class="badge badge-warning">县级</span></td>
+              <td>256</td>
+              <td>231</td>
+              <td><span class="badge badge-success">已同步</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showNotification('正在查看机构详情...', 'success')">查看</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 class="mb-16">案件协同处理</h4>
+      <div class="card mb-16" style="background: var(--bg-secondary); padding: 16px;">
+        <div class="row mb-12">
+          <div class="col-6"><strong>协同案件编号：</strong>XJ20260501001</div>
+          <div class="col-6"><strong>协同类型：</strong><span class="badge badge-info">跨区域</span></div>
+        </div>
+        <div class="row mb-12">
+          <div class="col-6"><strong>主办机构：</strong>市劳动人事争议仲裁委员会</div>
+          <div class="col-6"><strong>协办机构：</strong>XX区劳动人事争议仲裁委员会</div>
+        </div>
+        <div class="mb-8"><strong>案件简述：</strong>涉及跨区域的集体劳动争议，需要上级仲裁机构指导协调</div>
+        <button class="btn btn-primary btn-sm mt-8" onclick="showNotification('协同指令已下发', 'success')">下发协同指令</button>
+      </div>
+
+      <h4 class="mb-16">效能监测报表</h4>
+      <div class="row">
+        <div class="col-6">
+          <div class="card" style="background: var(--bg-secondary); padding: 16px;">
+            <h4 class="mb-8">各区县办结率</h4>
+            <div class="mb-8" style="display: flex; justify-content: space-between;">
+              <span>XX区</span><span>91.2%</span>
+            </div>
+            <div class="progress-bar mb-12" style="width: 100%; height: 8px; background: var(--bg-secondary); border-radius: 4px; overflow: hidden;">
+              <div style="width: 91.2%; height: 100%; background: var(--primary);"></div>
+            </div>
+            <div class="mb-8" style="display: flex; justify-content: space-between;">
+              <span>YY区</span><span>91.7%</span>
+            </div>
+            <div class="progress-bar mb-12" style="width: 100%; height: 8px; background: var(--bg-secondary); border-radius: 4px; overflow: hidden;">
+              <div style="width: 91.7%; height: 100%; background: var(--primary);"></div>
+            </div>
+            <div class="mb-8" style="display: flex; justify-content: space-between;">
+              <span>ZZ县</span><span>82.2%</span>
+            </div>
+            <div class="progress-bar" style="width: 100%; height: 8px; background: var(--bg-secondary); border-radius: 4px; overflow: hidden;">
+              <div style="width: 82.2%; height: 100%; background: var(--warning);"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card" style="background: var(--bg-secondary); padding: 16px;">
+            <h4 class="mb-8">云庭审使用率</h4>
+            <div class="mb-8" style="display: flex; justify-content: space-between;">
+              <span>本月</span><span>78.5%</span>
+            </div>
+            <div class="progress-bar mb-12" style="width: 100%; height: 8px; background: var(--bg-secondary); border-radius: 4px; overflow: hidden;">
+              <div style="width: 78.5%; height: 100%; background: var(--primary);"></div>
+            </div>
+            <div class="mb-8" style="display: flex; justify-content: space-between;">
+              <span>上月</span><span>72.3%</span>
+            </div>
+            <div class="progress-bar mb-12" style="width: 100%; height: 8px; background: var(--bg-secondary); border-radius: 4px; overflow: hidden;">
+              <div style="width: 72.3%; height: 100%; background: var(--secondary);"></div>
+            </div>
+            <div class="mb-8" style="display: flex; justify-content: space-between;">
+              <span>同比增长</span><span>+15.2%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('linkage-modal')">关闭</button>
+      <button class="btn btn-primary" onclick="showNotification('联动效能报表已导出', 'success')">导出报表</button>
+    </div>
+  </div>
+</div>
+
+<!-- 系统管理模态框 -->
+<div class="modal-overlay" id="system-manage-modal">
+  <div class="modal" style="max-width: 850px;">
+    <div class="modal-header">
+      <h3>系统管理</h3>
+      <button class="modal-close" onclick="closeModal('system-manage-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <!-- 标签页导航 -->
+      <div class="tabs mb-24" style="display: flex; border-bottom: 1px solid var(--border-color);">
+        <button class="tab-btn active" onclick="switchTab('user-manage', this)" style="padding: 12px 16px; border: none; background: none; border-bottom: 2px solid var(--primary); color: var(--primary); cursor: pointer;">用户管理</button>
+        <button class="tab-btn" onclick="switchTab('message-manage', this)" style="padding: 12px 16px; border: none; background: none; color: var(--text-secondary); cursor: pointer;">消息通知</button>
+        <button class="tab-btn" onclick="switchTab('evidence-manage', this)" style="padding: 12px 16px; border: none; background: none; color: var(--text-secondary); cursor: pointer;">证据管理</button>
+        <button class="tab-btn" onclick="switchTab('log-manage', this)" style="padding: 12px 16px; border: none; background: none; color: var(--text-secondary); cursor: pointer;">日志追溯</button>
+        <button class="tab-btn" onclick="switchTab('device-manage', this)" style="padding: 12px 16px; border: none; background: none; color: var(--text-secondary); cursor: pointer;">多端适配</button>
+      </div>
+
+      <!-- 用户管理 -->
+      <div id="user-manage" class="tab-content">
+        <div class="row mb-16">
+          <div class="col-3">
+            <div class="stat-card">
+              <div class="number" style="font-size: 24px;">1,256</div>
+              <div class="label">劳动者用户</div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="stat-card">
+              <div class="number" style="font-size: 24px;">856</div>
+              <div class="label">用人单位</div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="stat-card">
+              <div class="number" style="font-size: 24px;">285</div>
+              <div class="label">调解仲裁人员</div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="stat-card">
+              <div class="number" style="font-size: 24px;">68</div>
+              <div class="label">监管人员</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>用户名</th>
+                <th>角色</th>
+                <th>权限</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>张三（劳动者）</td>
+                <td><span class="badge badge-info">劳动者</span></td>
+                <td>申请、查询、调解</td>
+                <td><span class="badge badge-success">正常</span></td>
+                <td><button class="btn btn-secondary btn-sm" onclick="showNotification('正在编辑用户权限...', 'success')">编辑</button></td>
+              </tr>
+              <tr>
+                <td>XX公司（用人单位）</td>
+                <td><span class="badge badge-warning">用人单位</span></td>
+                <td>应诉、查询、合同管理</td>
+                <td><span class="badge badge-success">正常</span></td>
+                <td><button class="btn btn-secondary btn-sm" onclick="showNotification('正在编辑用户权限...', 'success')">编辑</button></td>
+              </tr>
+              <tr>
+                <td>王仲裁员</td>
+                <td><span class="badge badge-primary">仲裁员</span></td>
+                <td>案件审理、裁决、调解</td>
+                <td><span class="badge badge-success">正常</span></td>
+                <td><button class="btn btn-secondary btn-sm" onclick="showNotification('正在编辑用户权限...', 'success')">编辑</button></td>
+              </tr>
+              <tr>
+                <td>人社局管理员</td>
+                <td><span class="badge badge-danger">管理员</span></td>
+                <td>全权限</td>
+                <td><span class="badge badge-success">正常</span></td>
+                <td><button class="btn btn-secondary btn-sm" onclick="showNotification('正在编辑用户权限...', 'success')">编辑</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 消息通知 -->
+      <div id="message-manage" class="tab-content" style="display: none;">
+        <div class="row mb-16">
+          <div class="col-4">
+            <div class="stat-card">
+              <div class="number" style="font-size: 24px;">3,586</div>
+              <div class="label">本月发送</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="stat-card">
+              <div class="number" style="font-size: 24px;">98.5%</div>
+              <div class="label">送达率</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="stat-card">
+              <div class="number" style="font-size: 24px;">5</div>
+              <div class="label">待发送</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>通知类型</th>
+                <th>接收人</th>
+                <th>发送时间</th>
+                <th>状态</th>
+                <th>渠道</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>庭审通知</td>
+                <td>李四</td>
+                <td>2026-05-08 08:30</td>
+                <td><span class="badge badge-success">已送达</span></td>
+                <td>短信+小程序</td>
+              </tr>
+              <tr>
+                <td>文书送达</td>
+                <td>张三</td>
+                <td>2026-05-07 15:20</td>
+                <td><span class="badge badge-success">已签收</span></td>
+                <td>站内信+短信</td>
+              </tr>
+              <tr>
+                <td>欠薪预警</td>
+                <td>人社监管员</td>
+                <td>2026-05-08 10:15</td>
+                <td><span class="badge badge-success">已送达</span></td>
+                <td>短信+站内信</td>
+              </tr>
+              <tr>
+                <td>案件进度</td>
+                <td>赵六</td>
+                <td>2026-05-06 09:45</td>
+                <td><span class="badge badge-warning">未读</span></td>
+                <td>小程序</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 证据管理 -->
+      <div id="evidence-manage" class="tab-content" style="display: none;">
+        <div class="row mb-16">
+          <div class="col-4">
+            <div class="stat-card">
+              <div class="number" style="font-size: 24px;">12,568</div>
+              <div class="label">证据总数</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="stat-card">
+              <div class="number" style="font-size: 24px;">856GB</div>
+              <div class="label">存储用量</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="stat-card">
+              <div class="number" style="font-size: 24px;">100%</div>
+              <div class="label">加密率</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>证据名称</th>
+                <th>案件编号</th>
+                <th>上传人</th>
+                <th>上传时间</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>📄 劳动合同.pdf</td>
+                <td>ZC20260501001</td>
+                <td>张三</td>
+                <td>2026-05-01 10:30</td>
+                <td><span class="badge badge-success">已核验</span></td>
+                <td><button class="btn btn-secondary btn-sm" onclick="showNotification('证据已下载', 'success')">下载</button></td>
+              </tr>
+              <tr>
+                <td>💳 工资流水.pdf</td>
+                <td>ZC20260502003</td>
+                <td>XX建筑公司</td>
+                <td>2026-05-02 14:20</td>
+                <td><span class="badge badge-success">已核验</span></td>
+                <td><button class="btn btn-secondary btn-sm" onclick="showNotification('证据已下载', 'success')">下载</button></td>
+              </tr>
+              <tr>
+                <td>📹 庭审录像.mp4</td>
+                <td>ZC20260503005</td>
+                <td>张仲裁员</td>
+                <td>2026-05-03 11:45</td>
+                <td><span class="badge badge-success">已归档</span></td>
+                <td><button class="btn btn-secondary btn-sm" onclick="showNotification('证据已下载', 'success')">下载</button></td>
+              </tr>
+              <tr>
+                <td>📋 医疗证明.pdf</td>
+                <td>ZC20260503005</td>
+                <td>李四</td>
+                <td>2026-05-03 09:15</td>
+                <td><span class="badge badge-warning">待核验</span></td>
+                <td><button class="btn btn-primary btn-sm" onclick="showNotification('证据已核验', 'success')">核验</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 日志追溯 -->
+      <div id="log-manage" class="tab-content" style="display: none;">
+        <div class="card mb-16">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>时间</th>
+                <th>用户</th>
+                <th>操作模块</th>
+                <th>操作行为</th>
+                <th>IP地址</th>
+                <th>结果</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2026-05-08 10:30:15</td>
+                <td>王仲裁员</td>
+                <td>云庭审</td>
+                <td>开始庭审 ZC20260503005</td>
+                <td>192.168.1.102</td>
+                <td><span class="badge badge-success">成功</span></td>
+              </tr>
+              <tr>
+                <td>2026-05-08 10:25:30</td>
+                <td>李四</td>
+                <td>证据管理</td>
+                <td>上传证据（医疗证明.pdf）</td>
+                <td>192.168.1.101</td>
+                <td><span class="badge badge-success">成功</span></td>
+              </tr>
+              <tr>
+                <td>2026-05-08 09:45:22</td>
+                <td>系统管理员</td>
+                <td>用户管理</td>
+                <td>修改用户权限（赵六）</td>
+                <td>192.168.1.200</td>
+                <td><span class="badge badge-success">成功</span></td>
+              </tr>
+              <tr>
+                <td>2026-05-08 09:12:08</td>
+                <td>XX公司</td>
+                <td>文书送达</td>
+                <td>电子签收裁决书</td>
+                <td>192.168.1.150</td>
+                <td><span class="badge badge-success">成功</span></td>
+              </tr>
+              <tr>
+                <td>2026-05-08 08:50:33</td>
+                <td>人社监管员</td>
+                <td>欠薪预警</td>
+                <td>推送预警信息（XX项目）</td>
+                <td>192.168.1.180</td>
+                <td><span class="badge badge-success">成功</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button class="btn btn-secondary" onclick="showNotification('操作日志已导出', 'success')">导出日志</button>
+      </div>
+
+      <!-- 多端适配 -->
+      <div id="device-manage" class="tab-content" style="display: none;">
+        <div class="row mb-16">
+          <div class="col-3">
+            <div class="stat-card">
+              <div class="number" style="font-size: 24px;">2,156</div>
+              <div class="label">PC端用户</div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="stat-card">
+              <div class="number" style="font-size: 24px;">3,856</div>
+              <div class="label">移动端用户</div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="stat-card">
+              <div class="number" style="font-size: 24px;">1,245</div>
+              <div class="label">小程序用户</div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="stat-card">
+              <div class="number" style="font-size: 24px;">98.8%</div>
+              <div class="label">数据同步率</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h4 class="mb-16">多端登录管理</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>用户名</th>
+                <th>登录设备</th>
+                <th>登录时间</th>
+                <th>在线时长</th>
+                <th>状态</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>李四</td>
+                <td>📱 iPhone 15 Pro</td>
+                <td>2026-05-08 08:30</td>
+                <td>2小时15分</td>
+                <td><span class="badge badge-success">在线</span></td>
+              </tr>
+              <tr>
+                <td>王仲裁员</td>
+                <td>💻 MacBook Pro</td>
+                <td>2026-05-08 09:00</td>
+                <td>1小时45分</td>
+                <td><span class="badge badge-success">在线</span></td>
+              </tr>
+              <tr>
+                <td>XX公司</td>
+                <td>📱 微信小程序</td>
+                <td>2026-05-08 10:15</td>
+                <td>30分钟</td>
+                <td><span class="badge badge-success">在线</span></td>
+              </tr>
+              <tr>
+                <td>张调解员</td>
+                <td>💻 Windows PC</td>
+                <td>2026-05-07 16:20</td>
+                <td>-</td>
+                <td><span class="badge badge-secondary">离线</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('system-manage-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
 <!-- 通知提示 -->
 <div class="notification" id="notification" style="display: none;">
   <span id="notification-msg"></span>
@@ -700,6 +2097,11 @@ function getStatusBadge(status) {
     '待受理': '<span class="badge badge-danger">待受理</span>'
   };
   return map[status] || status;
+}
+
+// 查看调解案件详情
+function viewMediationDetail(id) {
+  showNotification('正在查看调解案件 ' + id + ' 详情...', 'success');
 }
 
 // 在线立案步骤
@@ -786,6 +2188,25 @@ function resetRegSteps() {
   document.getElementById('reg-form-3').style.display = 'none';
   document.getElementById('reg-prev-btn').style.display = 'none';
   document.getElementById('reg-next-btn').textContent = '下一步';
+}
+
+// 系统管理标签页切换
+function switchTab(tabId, btn) {
+  // 隐藏所有标签内容
+  const contents = document.querySelectorAll('.tab-content');
+  contents.forEach(content => content.style.display = 'none');
+
+  // 显示选中标签内容
+  document.getElementById(tabId).style.display = 'block';
+
+  // 更新按钮样式
+  const btns = document.querySelectorAll('.tab-btn');
+  btns.forEach(b => {
+    b.style.borderBottom = 'none';
+    b.style.color = 'var(--text-secondary)';
+  });
+  btn.style.borderBottom = '2px solid var(--primary)';
+  btn.style.color = 'var(--primary)';
 }
 
 // 模态框控制
