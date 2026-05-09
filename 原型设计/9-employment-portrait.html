@@ -1236,6 +1236,9 @@ function updateGroupAnalysis(group) {
 
 // 模态框控制
 function showModal(id) {
+  document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+    modal.classList.remove('active');
+  });
   document.getElementById(id).classList.add('active');
 }
 

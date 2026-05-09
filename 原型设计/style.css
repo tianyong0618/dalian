@@ -602,7 +602,7 @@ body {
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
-  z-index: 2000;
+  z-index: 5000;
   display: none;
   align-items: center;
   justify-content: center;
