@@ -132,42 +132,14 @@
     </div>
     </div>
 
-    <!-- 功能模块入口 -->
+    <!-- 功能模块入口
     <div class="section-header mb-32">
       <h2>核心功能</h2>
       <p>点击进入对应功能模块</p>
     </div>
     <div class="row mb-32">
-      <div class="col-4 enterprise-hidden">
-        <div class="feature-card" onclick="showModal('portrait-generate-modal')">
-          <div class="card-header">
-            <div class="icon">🧠</div>
-            <div class="card-content">
-              <div class="title-row"><h3>一键画像生成</h3><span class="feature-badge">核心</span></div>
-              <p>基于多维度数据采集，一键生成就业人员全息画像。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div><span class="tag">多维数据</span><span class="tag">知识图谱</span><span class="tag">一键生成</span></div>
-        </div>
-      </div>
-      <div class="col-4 enterprise-hidden">
-        <div class="feature-card" onclick="showModal('tag-manage-modal')">
-          <div class="card-header">
-            <div class="icon">🏷️</div>
-            <div class="card-content">
-              <div class="title-row"><h3>标签体系管理</h3></div>
-              <p>建立动态标签体系，实时更新画像数据，支持自定义标签。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div><span class="tag">动态标签</span><span class="tag">自定义</span><span class="tag">实时更新</span></div>
-        </div>
-      </div>
+
+
       <div class="col-4 enterprise-hidden">
         <div class="feature-card" onclick="showModal('knowledge-graph-modal')">
           <div class="card-header">
@@ -200,37 +172,8 @@
           <div><span class="tag">精准推荐</span><span class="tag">岗位匹配</span><span class="tag">职业规划</span></div>
         </div>
       </div>
-      <div class="col-4">
-        <div class="feature-card" onclick="showNotification('人才筛选功能开发中...', 'warning')">
-          <div class="card-header">
-            <div class="icon">🎯</div>
-            <div class="card-content">
-              <div class="title-row"><h3>企业人才筛选</h3></div>
-              <p>帮助企业精准筛选人才，快速匹配符合岗位需求的求职者。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div><span class="tag">人才筛选</span><span class="tag">精准匹配</span><span class="tag">效率提升</span></div>
-        </div>
-      </div>
-      <div class="col-4 enterprise-hidden">
-        <div class="feature-card" onclick="showModal('group-analysis-modal')">
-          <div class="card-header">
-            <div class="icon">👥</div>
-            <div class="card-content">
-              <div class="title-row"><h3>重点群体分析</h3></div>
-              <p>针对农民工、高校毕业生等重点群体深入挖掘，构建群体画像。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div><span class="tag">农民工</span><span class="tag">高校毕业生</span><span class="tag">就业困难</span></div>
-        </div>
-      </div>
-    </div>
+
+    </div> -->
 
     <!-- 人员管理模块 -->
     <div class="section-header mb-32">
@@ -242,6 +185,7 @@
     <div class="search-bar mb-24">
       <input type="text" class="form-input" placeholder="搜索姓名、身份证号、标签..." id="person-search" onkeyup="filterPersons()">
       <button class="btn btn-primary" onclick="showModal('portrait-generate-modal')">+ 生成画像</button>
+      <button class="btn btn-secondary" onclick="showModal('tag-manage-modal')">标签管理</button>
     </div>
     <div class="filter-bar mb-24">
       <select class="form-select" id="filter-group" onchange="filterPersons()">
@@ -296,7 +240,7 @@
             <td><div class="progress-bar"><div class="progress-fill" style="width: 88%;"></div></div></td>
             <td><div class="progress-bar"><div class="progress-fill" style="width: 78%;"></div></div></td>
             <td><span class="tag" style="font-size: 12px;">Java开发</span> <span class="tag" style="font-size: 12px;">3年经验</span></td>
-            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(0)">查看画像</button></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(0)">详情</button></td>
           </tr>
           <tr data-group="就业困难人员" data-education="高中及以下" data-stability="low" data-portrait-type="jobseeker">
             <td><strong>李四</strong></td>
@@ -306,7 +250,7 @@
             <td><div class="progress-bar"><div class="progress-fill" style="width: 45%;"></div></div></td>
             <td><div class="progress-bar"><div class="progress-fill" style="width: 32%;"></div></div></td>
             <td><span class="tag" style="font-size: 12px;">零工人员</span> <span class="tag" style="font-size: 12px;">技能培训</span></td>
-            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(1)">查看画像</button></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(1)">详情</button></td>
           </tr>
           <tr data-group="农民工" data-education="高中及以下" data-stability="medium" data-portrait-type="keygroup">
             <td><strong>王五</strong></td>
@@ -316,7 +260,7 @@
             <td><div class="progress-bar"><div class="progress-fill" style="width: 52%;"></div></div></td>
             <td><div class="progress-bar"><div class="progress-fill" style="width: 55%;"></div></div></td>
             <td><span class="tag" style="font-size: 12px;">建筑工</span> <span class="tag" style="font-size: 12px;">计件工</span></td>
-            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(2)">查看画像</button></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(2)">详情</button></td>
           </tr>
           <tr data-group="高校毕业生" data-education="本科及以上" data-stability="high" data-portrait-type="talent">
             <td><strong>赵六</strong></td>
@@ -326,7 +270,7 @@
             <td><div class="progress-bar"><div class="progress-fill" style="width: 92%;"></div></div></td>
             <td><div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div></td>
             <td><span class="tag" style="font-size: 12px;">Python</span> <span class="tag" style="font-size: 12px;">AI算法</span></td>
-            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(3)">查看画像</button></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(3)">详情</button></td>
           </tr>
           <tr data-group="零工人员" data-education="大专" data-stability="low" data-portrait-type="jobseeker">
             <td><strong>孙七</strong></td>
@@ -336,13 +280,13 @@
             <td><div class="progress-bar"><div class="progress-fill" style="width: 48%;"></div></div></td>
             <td><div class="progress-bar"><div class="progress-fill" style="width: 28%;"></div></div></td>
             <td><span class="tag" style="font-size: 12px;">外卖骑手</span> <span class="tag" style="font-size: 12px;">灵活用工</span></td>
-            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(4)">查看画像</button></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(4)">详情</button></td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- 画像维度展示 -->
+    <!-- 画像维度展示
     <div class="section-header mb-32">
       <h2>画像核心维度</h2>
       <p>多维度数据分析，精准刻画人员特征</p>
@@ -405,7 +349,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- 重点群体监测 -->
     <div class="enterprise-hidden">
