@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>机构管理 - 人社服务数字化平台</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 导航栏 -->
+<nav class="navbar">
+  <div class="container">
+    <a href="12-hr-flagship.html" class="navbar-logo">人社服务数字平台</a>
+    <ul class="navbar-nav">
+      <li><a href="12-hr-flagship.html">首页</a></li>
+      <li><a href="12a-org-management.html" class="active">机构管理</a></li>
+      <li><a href="12b-employee-management.html">从业人员管理</a></li>
+      <li><a href="12c-online-store.html">服务网店</a></li>
+      <li><a href="12d-demand-matching.html">供需撮合</a></li>
+      <li><a href="12e-dispute-mediation.html">争议调解</a></li>
+      <li><a href="12f-credit-evaluation.html">诚信评价</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- 页面内容 -->
+<div class="page-content">
+  <div class="container">
+    
+    <!-- 页面标题 -->
+    <div class="section-header mb-32">
+      <h2>模块一：经营性人力资源服务机构管理</h2>
+      <p>机构准入备案、日常运营管理、违规处理、年度审核全流程管理</p>
+    </div>
+
+    <!-- 2.1.1 机构准入与备案 -->
+    <div class="card mb-24 p-24">
+      <h3 class="mb-16">2.1.1 机构准入与备案</h3>
+      <div class="row">
+        <div class="col-4">
+          <div class="feature-card" onclick="showModal('org-register-modal')">
+            <div class="card-header">
+              <div class="icon">📝</div>
+              <div class="card-content">
+                <h4>机构注册</h4>
+                <p class="text-small">在线提交注册申请，上传资质材料，填写基本信息</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="feature-card" onclick="showModal('org-audit-modal')">
+            <div class="card-header">
+              <div class="icon">✅</div>
+              <div class="card-content">
+                <h4>资质审核</h4>
+                <p class="text-small">人社部门在线审核，留痕可追溯，支持退回修改</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="feature-card">
+            <div class="card-header">
+              <div class="icon">📋</div>
+              <div class="card-content">
+                <h4>备案管理</h4>
+                <p class="text-small">自动生成备案编号，支持变更申请与状态更新</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.1.2 机构日常管理 -->
+    <div class="card mb-24 p-24">
+      <h3 class="mb-16">2.1.2 机构日常管理</h3>
+      <div class="row mb-16">
+        <div class="col-3">
+          <div class="stat-card" style="padding: 20px 16px;">
+            <div class="number" style="font-size: 32px;">128</div>
+            <div class="label">入驻机构</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="stat-card" style="padding: 20px 16px;">
+            <div class="number" style="font-size: 32px;">96.2%</div>
+            <div class="label">平均合规率</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="stat-card" style="padding: 20px 16px;">
+            <div class="number" style="font-size: 32px;">12</div>
+            <div class="label">本月预警</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="stat-card" style="padding: 20px 16px;">
+            <div class="number" style="font-size: 32px;">3</div>
+            <div class="label">年度审核待办</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- AI运营监测 -->
+      <div class="card p-16 mb-16" style="border-left: 4px solid var(--primary);">
+        <div class="row" style="align-items: center;">
+          <div class="col-6">
+            <h4 style="margin: 0 0 4px 0;">🤖 AI运营状态监测</h4>
+            <p class="text-small">实时采集服务数据，智能分析运营状态，自动预警异常</p>
+          </div>
+          <div class="col-6 text-right">
+            <span class="badge badge-warning">2条异常预警</span>
+            <button class="btn btn-primary ml-8">查看预警</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 机构列表 -->
+      <div class="search-bar">
+        <input type="text" class="form-input" placeholder="搜索机构名称、服务类型...">
+        <button class="btn btn-primary">+ 新增机构</button>
+      </div>
+      <div class="filter-bar mb-24">
+        <select class="form-select">
+          <option value="">全部服务类型</option>
+          <option value="劳务派遣">劳务派遣</option>
+          <option value="招聘外包">招聘外包</option>
+        </select>
+        <select class="form-select">
+          <option value="">全部状态</option>
+          <option value="营业中">营业中</option>
+          <option value="审核中">审核中</option>
+        </select>
+        <select class="form-select">
+          <option value="">全部星级</option>
+          <option value="5">5星</option>
+          <option value="4">4星</option>
+        </select>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>机构名称</th>
+            <th>服务类型</th>
+            <th>星级</th>
+            <th>本月撮合</th>
+            <th>满意度</th>
+            <th>状态</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>XX人力资源有限公司</strong></td>
+            <td>劳务派遣 / 招聘外包</td>
+            <td><span class="star-rating">★★★★★</span> 5.0</td>
+            <td>286</td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 96%;"></div></div><span class="text-small">96%</span></td>
+            <td><span class="badge badge-success">营业中</span></td>
+            <td><button class="btn btn-secondary btn-sm">查看</button></td>
+          </tr>
+          <tr>
+            <td><strong>XX人才服务集团</strong></td>
+            <td>高端猎头 / 培训服务</td>
+            <td><span class="star-rating">★★★★☆</span> 4.8</td>
+            <td>198</td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 92%;"></div></div><span class="text-small">92%</span></td>
+            <td><span class="badge badge-success">营业中</span></td>
+            <td><button class="btn btn-secondary btn-sm">查看</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

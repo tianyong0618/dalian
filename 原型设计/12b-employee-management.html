@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>从业人员管理 - 人社服务数字化平台</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 导航栏 -->
+<nav class="navbar">
+  <div class="container">
+    <a href="12-hr-flagship.html" class="navbar-logo">人社服务数字平台</a>
+    <ul class="navbar-nav">
+      <li><a href="12-hr-flagship.html">首页</a></li>
+      <li><a href="12a-org-management.html">机构管理</a></li>
+      <li><a href="12b-employee-management.html" class="active">从业人员管理</a></li>
+      <li><a href="12c-online-store.html">服务网店</a></li>
+      <li><a href="12d-demand-matching.html">供需撮合</a></li>
+      <li><a href="12e-dispute-mediation.html">争议调解</a></li>
+      <li><a href="12f-credit-evaluation.html">诚信评价</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- 页面内容 -->
+<div class="page-content">
+  <div class="container">
+    
+    <!-- 页面标题 -->
+    <div class="section-header mb-32">
+      <h2>模块二：从业人员入库管理</h2>
+      <p>从业人员信息采集、AI核验、全生命周期管理与诚信档案</p>
+    </div>
+
+    <!-- 2.2.1 从业人员信息入库 -->
+    <div class="card mb-24 p-24">
+      <h3 class="mb-16">2.2.1 从业人员信息入库</h3>
+      <div class="row">
+        <div class="col-3">
+          <div class="feature-card">
+            <div class="card-header">
+              <div class="icon">📥</div>
+              <div class="card-content">
+                <h4>信息采集</h4>
+                <p class="text-small">批量导入/单个添加，采集基本信息、从业资质、经历等</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="feature-card">
+            <div class="card-header">
+              <div class="icon">🤖</div>
+              <div class="card-content">
+                <h4>AI信息核验</h4>
+                <p class="text-small">OCR识别+AI比对，自动校验身份证、资质证书真实性</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="feature-card">
+            <div class="card-header">
+              <div class="icon">✅</div>
+              <div class="card-content">
+                <h4>入库审核</h4>
+                <p class="text-small">人社部门在线审核，生成唯一入库编号</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="feature-card">
+            <div class="card-header">
+              <div class="icon">🔄</div>
+              <div class="card-content">
+                <h4>信息更新</h4>
+                <p class="text-small">机构在线更新从业人员信息，实时同步</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.2.2 从业人员全生命周期管理 -->
+    <div class="card p-24">
+      <h3 class="mb-16">2.2.2 从业人员全生命周期管理</h3>
+      <div class="row">
+        <div class="col-3">
+          <div class="feature-card">
+            <div class="card-header">
+              <div class="icon">🎓</div>
+              <div class="card-content">
+                <h4>培训管理</h4>
+                <p class="text-small">AI推荐培训课程，记录时长与考核结果，确保年培训≥10课时</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="feature-card">
+            <div class="card-header">
+              <div class="icon">💼</div>，
+              <div class="card-content">
+                <h4>岗位管理</h4>
+                <p class="text-small">记录岗位分配变动，关联机构服务项目</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="feature-card">
+            <div class="card-header">
+              <div class="icon">🚪</div>
+              <div class="card-content">
+                <h4>离职管理</h4>
+                <p class="text-small">标记离职状态，保留历史记录，支持重新入库</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="feature-card">
+            <div class="card-header">
+              <div class="icon">📋</div>
+              <div class="card-content">
+                <h4>诚信档案</h4>
+                <p class="text-small">记录从业行为，关联机构诚信评级，违规者限制入库</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 从业人员列表 -->
+      <div class="mt-24">
+        <div class="search-bar">
+          <input type="text" class="form-input" placeholder="搜索从业人员姓名、身份证号、资质...">
+          <button class="btn btn-primary">+ 新增从业人员</button>
+        </div>
+        <table class="table mt-16">
+          <thead>
+            <tr>
+              <th>姓名</th>
+              <th>身份证号</th>
+              <th>所属机构</th>
+              <th>从业资质</th>
+              <th>培训课时</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>张三</strong></td>
+              <td>320***********1234</td>
+              <td>XX人力资源有限公司</td>
+              <td><span class="tag">人力资源从业资格证</span></td>
+              <td>12课时</td>
+              <td><span class="badge badge-success">在职</span></td>
+              <td><button class="btn btn-secondary btn-sm">查看</button></td>
+            </tr>
+            <tr>
+              <td><strong>李四</strong></td>
+              <td>320***********5678</td>
+              <td>XX人才服务集团</td>
+              <td><span class="tag">高级人力资源管理师</span></td>
+              <td>15课时</td>
+              <td><span class="badge badge-success">在职</span></td>
+              <td><button class="btn btn-secondary btn-sm">查看</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
