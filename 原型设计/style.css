@@ -979,3 +979,22 @@ body {
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
+
+/* 用户类型切换样式 */
+.gov-only {
+  display: block;
+}
+
+.enterprise-hidden {
+  display: block;
+}
+
+/* 为了确保切换时元素正确显示/隐藏，添加这些类的默认样式 */
+.gov-only {
+  opacity: 1;
+}
+
+/* 确保表格行在隐藏时完全消失 */
+tr.enterprise-hidden {
+  display: none;
+}

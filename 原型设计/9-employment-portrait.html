@@ -11,40 +11,27 @@
 <!-- 导航栏 -->
 <nav class="navbar">
   <div class="container">
-    <a href="#" class="navbar-logo">人社服务数字平台</a>
+    <a href="12-hr-flagship.html" class="navbar-logo">人社服务数字平台</a>
     <ul class="navbar-nav">
       <li><a href="12-hr-flagship.html">人力资源服务旗舰店</a></li>
       <li><a href="14-mediation-arbitration.html">调解仲裁服务</a></li>
       <li><a href="9-employment-portrait.html" class="active">就业人员画像</a></li>
       <li><a href="6-policy-calculator.html">政策计算器</a></li>
     </ul>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px;" id="role-switcher" onchange="switchRole()">
+        <option value="gov">人社部门（管理端）</option>
+        <option value="org">服务机构（运营端）</option>
+        <option value="enterprise">用工企业（使用端）</option>
+      </select>
+      <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600;">管</div>
+    </div>
   </div>
 </nav>
 
 <!-- 页面内容 -->
 <div class="page-content">
   <div class="container">
-
-    <!-- 用户类型切换器 -->
-    <div class="user-switcher mb-32">
-      <div class="section-header mb-16">
-        <h3 style="font-size: 16px; font-weight: 600; color: var(--text-secondary);">当前用户类型</h3>
-      </div>
-      <div class="radio-group" style="display: flex; gap: 16px; flex-wrap: wrap;">
-        <label class="radio-label" style="cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 12px 24px; border: 2px solid var(--border-color); border-radius: var(--radius-md); transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="if(!this.querySelector('input').checked) this.style.borderColor='var(--border-color)'">
-          <input type="radio" name="user-type" value="gov" checked onchange="switchUserType('gov')" style="accent-color: var(--primary);">
-          <span>🏛️ 人社部门</span>
-        </label>
-        <label class="radio-label" style="cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 12px 24px; border: 2px solid var(--border-color); border-radius: var(--radius-md); transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="if(!this.querySelector('input').checked) this.style.borderColor='var(--border-color)'">
-          <input type="radio" name="user-type" value="agency" onchange="switchUserType('agency')" style="accent-color: var(--primary);">
-          <span>🏢 经营性人力资源服务机构</span>
-        </label>
-        <label class="radio-label" style="cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 12px 24px; border: 2px solid var(--border-color); border-radius: var(--radius-md); transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="if(!this.querySelector('input').checked) this.style.borderColor='var(--border-color)'">
-          <input type="radio" name="user-type" value="enterprise" onchange="switchUserType('enterprise')" style="accent-color: var(--primary);">
-          <span>🏭 用工企业</span>
-        </label>
-      </div>
-    </div>
 
     <!-- 页面标题 -->
     <div class="page-header mb-48">
@@ -151,7 +138,7 @@
       <p>点击进入对应功能模块</p>
     </div>
     <div class="row mb-32">
-      <div class="col-4">
+      <div class="col-4 enterprise-hidden">
         <div class="feature-card" onclick="showModal('portrait-generate-modal')">
           <div class="card-header">
             <div class="icon">🧠</div>
@@ -166,7 +153,7 @@
           <div><span class="tag">多维数据</span><span class="tag">知识图谱</span><span class="tag">一键生成</span></div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-4 enterprise-hidden">
         <div class="feature-card" onclick="showModal('tag-manage-modal')">
           <div class="card-header">
             <div class="icon">🏷️</div>
@@ -181,7 +168,7 @@
           <div><span class="tag">动态标签</span><span class="tag">自定义</span><span class="tag">实时更新</span></div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-4 enterprise-hidden">
         <div class="feature-card" onclick="showModal('knowledge-graph-modal')">
           <div class="card-header">
             <div class="icon">🕸️</div>
@@ -421,94 +408,96 @@
     </div>
 
     <!-- 重点群体监测 -->
-    <div class="section-header mb-32">
-      <h2>重点群体监测</h2>
-      <p>动态识别和深入分析各类重点就业群体</p>
-    </div>
-    <div class="card">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>群体类型</th>
-            <th>人数规模</th>
-            <th>就业率</th>
-            <th>主要需求</th>
-            <th>AI预警</th>
-            <th>趋势</th>
-            <th>状态</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>高校毕业生</strong></td>
-            <td>12,456</td>
-            <td>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 91.2%;"></div></div>
-                <span>91.2%</span>
-              </div>
-            </td>
-            <td>岗位匹配、就业指导</td>
-            <td><span style="font-size: 12px; color: var(--primary);">🤖 AI预测持续上升 ↑</span></td>
-            <td style="color: var(--success);">↑ 上升</td>
-            <td><span class="badge badge-success">监测中</span></td>
-          </tr>
-          <tr>
-            <td><strong>就业困难人员</strong></td>
-            <td>3,892</td>
-            <td>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 76.5%; background: var(--warning);"></div></div>
-                <span>76.5%</span>
-              </div>
-            </td>
-            <td>技能培训、兜底安置</td>
-            <td><span style="font-size: 12px; color: var(--danger);">⚠️ AI预警：需重点关注</span></td>
-            <td style="color: var(--warning);">→ 平稳</td>
-            <td><span class="badge badge-warning">重点关注</span></td>
-          </tr>
-          <tr>
-            <td><strong>农民工群体</strong></td>
-            <td>28,345</td>
-            <td>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 88.7%;"></div></div>
-                <span>88.7%</span>
-              </div>
-            </td>
-            <td>欠薪维权、技能培训</td>
-            <td style="color: var(--success);">↑ 上升</td>
-            <td><span class="badge badge-success">监测中</span></td>
-          </tr>
-          <tr>
-            <td><strong>零工从业人员</strong></td>
-            <td>15,678</td>
-            <td>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 82.3%; background: var(--warning);"></div></div>
-                <span>82.3%</span>
-              </div>
-            </td>
-            <td>权益保障、职业培训</td>
-            <td><span style="font-size: 12px; color: var(--danger);">⚠️ AI预警：权益风险</span></td>
-            <td style="color: var(--success);">↑ 上升</td>
-            <td><span class="badge badge-warning">重点关注</span></td>
-          </tr>
-          <tr>
-            <td><strong>退役军人</strong></td>
-            <td>2,345</td>
-            <td>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 93.5%;"></div></div>
-                <span>93.5%</span>
-              </div>
-            </td>
-            <td>创业扶持、技能培训</td>
-            <td style="color: var(--success);">↑ 上升</td>
-            <td><span class="badge badge-success">监测中</span></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="enterprise-hidden">
+      <div class="section-header mb-32">
+        <h2>重点群体监测</h2>
+        <p>动态识别和深入分析各类重点就业群体</p>
+      </div>
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>群体类型</th>
+              <th>人数规模</th>
+              <th>就业率</th>
+              <th>主要需求</th>
+              <th>AI预警</th>
+              <th>趋势</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>高校毕业生</strong></td>
+              <td>12,456</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 91.2%;"></div></div>
+                  <span>91.2%</span>
+                </div>
+              </td>
+              <td>岗位匹配、就业指导</td>
+              <td><span style="font-size: 12px; color: var(--primary);">🤖 AI预测持续上升 ↑</span></td>
+              <td style="color: var(--success);">↑ 上升</td>
+              <td><span class="badge badge-success">监测中</span></td>
+            </tr>
+            <tr>
+              <td><strong>就业困难人员</strong></td>
+              <td>3,892</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 76.5%; background: var(--warning);"></div></div>
+                  <span>76.5%</span>
+                </div>
+              </td>
+              <td>技能培训、兜底安置</td>
+              <td><span style="font-size: 12px; color: var(--danger);">⚠️ AI预警：需重点关注</span></td>
+              <td style="color: var(--warning);">→ 平稳</td>
+              <td><span class="badge badge-warning">重点关注</span></td>
+            </tr>
+            <tr>
+              <td><strong>农民工群体</strong></td>
+              <td>28,345</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 88.7%;"></div></div>
+                  <span>88.7%</span>
+                </div>
+              </td>
+              <td>欠薪维权、技能培训</td>
+              <td style="color: var(--success);">↑ 上升</td>
+              <td><span class="badge badge-success">监测中</span></td>
+            </tr>
+            <tr>
+              <td><strong>零工从业人员</strong></td>
+              <td>15,678</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 82.3%; background: var(--warning);"></div></div>
+                  <span>82.3%</span>
+                </div>
+              </td>
+              <td>权益保障、职业培训</td>
+              <td><span style="font-size: 12px; color: var(--danger);">⚠️ AI预警：权益风险</span></td>
+              <td style="color: var(--success);">↑ 上升</td>
+              <td><span class="badge badge-warning">重点关注</span></td>
+            </tr>
+            <tr>
+              <td><strong>退役军人</strong></td>
+              <td>2,345</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 93.5%;"></div></div>
+                  <span>93.5%</span>
+                </div>
+              </td>
+              <td>创业扶持、技能培训</td>
+              <td style="color: var(--success);">↑ 上升</td>
+              <td><span class="badge badge-success">监测中</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
   </div>
@@ -1086,6 +1075,24 @@
 </div>
 
 <script>
+// 角色切换功能
+function switchRole() {
+  const select = document.getElementById('role-switcher');
+  const type = select.value;
+  
+  // 更新角色显示标识
+  const roleBadge = document.querySelector('.navbar > .container > div:last-child > div:last-child');
+  const roleNames = {
+    gov: '管',
+    org: '机',
+    enterprise: '企'
+  };
+  roleBadge.textContent = roleNames[type];
+  
+  // 调用用户类型切换函数
+  switchUserType(type);
+}
+
 // 人员数据
 const personData = [
   { name: "张三", idCard: "410xxxxxxxxxxxx1234", group: "高校毕业生", education: "本科", portraitType: "talent", competitiveness: 88, stability: 78, skill: 82, match: 91, salaryExp: "15K", tags: ["Java开发", "本科及以上", "3年经验", "社保连续缴纳", "求职意向：互联网"], services: ["📩 推荐岗位：高级Java开发（98%）", "📚 推荐培训：Java进阶（免费）", "💰 可申请补贴：2000元", "🎓 职业路径：Java→专家→架构师"] },
@@ -1315,10 +1322,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // 用户类型切换（完善版）
-let currentUserType = 'gov'; // gov | agency | enterprise
+let currentUserType = 'gov'; // gov | org | enterprise
 function switchUserType(type) {
   currentUserType = type;
-  const typeNames = { gov: '人社部门', agency: '经营性人力资源服务机构', enterprise: '用工企业' };
+  const typeNames = { gov: '人社部门', org: '经营性人力资源服务机构', enterprise: '用工企业' };
   showNotification(`已切换为：${typeNames[type]}`, 'success');
 
   // 人社部门：全部可见
@@ -1331,7 +1338,7 @@ function switchUserType(type) {
     document.querySelectorAll('.portrait-tab').forEach(btn => btn.style.display = '');
   }
   // 机构：可看求职者+重点群体画像
-  else if (type === 'agency') {
+  else if (type === 'org') {
     document.querySelectorAll('.enterprise-hidden').forEach(el => el.style.display = 'none');
     document.querySelectorAll('.gov-only').forEach(el => {
       el.style.display = '';
