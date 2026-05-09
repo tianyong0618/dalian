@@ -184,44 +184,37 @@
   </div>
 </div>
 
+<style>
+  .row.mb-48 { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+  .row.mb-48 > [class*="col-"] { flex: 0 0 auto; width: 31%; }
+</style>
 <script>
-  // 角色切换功能
   document.addEventListener('DOMContentLoaded', function() {
     var roleSwitcher = document.getElementById('role-switcher');
     var featureCards = document.querySelectorAll('.col-4[data-roles]');
     
     function updateFeatureVisibility() {
       var currentRole = roleSwitcher.value;
-      var visibleCount = 0;
       
       featureCards.forEach(function(card) {
         var roles = card.getAttribute('data-roles');
         if (roles && roles.split(' ').indexOf(currentRole) !== -1) {
           card.style.display = '';
-          visibleCount++;
         } else {
           card.style.display = 'none';
         }
       });
       
-      // 更新行容器的显示状态
       var rows = document.querySelectorAll('.row.mb-48');
       rows.forEach(function(row) {
-        var visibleCards = row.querySelectorAll('.col-4[data-roles]');
-        var hasVisibleCards = false;
-        visibleCards.forEach(function(card) {
-          if (card.style.display !== 'none') {
-            hasVisibleCards = true;
-          }
+        var visibleCards = Array.from(row.querySelectorAll('.col-4[data-roles]')).filter(function(card) {
+          return card.style.display !== 'none';
         });
-        row.style.display = hasVisibleCards ? '' : 'none';
+        row.style.display = visibleCards.length > 0 ? 'flex' : 'none';
       });
     }
     
-    // 初始化时执行一次
     updateFeatureVisibility();
-    
-    // 监听切换事件
     roleSwitcher.addEventListener('change', updateFeatureVisibility);
   });
 </script>
