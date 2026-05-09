@@ -75,7 +75,7 @@
       <p>点击功能卡片进入对应服务模块</p>
     </div>
     <div class="row mb-48">
-      <div class="col-4">
+      <div class="col-4" data-roles="gov">
         <a href="12a-org-management.html" style="text-decoration: none; color: inherit;">
           <div class="feature-card">
             <div class="card-header">
@@ -92,7 +92,7 @@
           </div>
         </a>
       </div>
-      <div class="col-4">
+      <div class="col-4" data-roles="gov org">
         <a href="12b-employee-management.html" style="text-decoration: none; color: inherit;">
           <div class="feature-card">
             <div class="card-header">
@@ -109,7 +109,7 @@
           </div>
         </a>
       </div>
-      <div class="col-4">
+      <div class="col-4" data-roles="gov org enterprise">
         <a href="12c-online-store.html" style="text-decoration: none; color: inherit;">
           <div class="feature-card">
             <div class="card-header">
@@ -128,7 +128,7 @@
       </div>
     </div>
     <div class="row mb-48">
-      <div class="col-4">
+      <div class="col-4" data-roles="gov org enterprise">
         <a href="12d-demand-matching.html" style="text-decoration: none; color: inherit;">
           <div class="feature-card">
             <div class="card-header">
@@ -145,7 +145,7 @@
           </div>
         </a>
       </div>
-      <div class="col-4">
+      <div class="col-4" data-roles="gov org enterprise">
         <a href="12e-dispute-mediation.html" style="text-decoration: none; color: inherit;">
           <div class="feature-card">
             <div class="card-header">
@@ -162,7 +162,7 @@
           </div>
         </a>
       </div>
-      <div class="col-4">
+      <div class="col-4" data-roles="gov">
         <a href="12f-credit-evaluation.html" style="text-decoration: none; color: inherit;">
           <div class="feature-card">
             <div class="card-header">
@@ -183,6 +183,48 @@
     
   </div>
 </div>
+
+<script>
+  // 角色切换功能
+  document.addEventListener('DOMContentLoaded', function() {
+    var roleSwitcher = document.getElementById('role-switcher');
+    var featureCards = document.querySelectorAll('.col-4[data-roles]');
+    
+    function updateFeatureVisibility() {
+      var currentRole = roleSwitcher.value;
+      var visibleCount = 0;
+      
+      featureCards.forEach(function(card) {
+        var roles = card.getAttribute('data-roles');
+        if (roles && roles.split(' ').indexOf(currentRole) !== -1) {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      // 更新行容器的显示状态
+      var rows = document.querySelectorAll('.row.mb-48');
+      rows.forEach(function(row) {
+        var visibleCards = row.querySelectorAll('.col-4[data-roles]');
+        var hasVisibleCards = false;
+        visibleCards.forEach(function(card) {
+          if (card.style.display !== 'none') {
+            hasVisibleCards = true;
+          }
+        });
+        row.style.display = hasVisibleCards ? '' : 'none';
+      });
+    }
+    
+    // 初始化时执行一次
+    updateFeatureVisibility();
+    
+    // 监听切换事件
+    roleSwitcher.addEventListener('change', updateFeatureVisibility);
+  });
+</script>
 
 </body>
 </html>
