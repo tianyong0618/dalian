@@ -1388,21 +1388,70 @@
     let currentEvidenceIndex = 0;
     let isDrawing = false;
     let signCtx = null;
+    let sharedData = {};
 
-    // 角色切换
+    // 角色切换 - 使用父页面接口
     function switchRole(role) {
-      const rolePages = {
-        'laborer': '14c-laborer.html',
-        'employer': '14b-employer.html',
-        'arbitration': '14a-arbitration.html',
-        'supervisor': '14e-supervisor.html',
-        'legal-aid': '14d-legal-aid.html'
-      };
-      
-      if (rolePages[role]) {
-        window.location.href = rolePages[role];
+      if (window.parent && window.parent.switchToRole) {
+        window.parent.switchToRole(role);
+      } else if (window.parent && window.parent.postMessage) {
+        window.parent.postMessage({ type: 'SWITCH_ROLE', role: role }, '*');
+      } else {
+        const rolePages = {
+          'laborer': '14c-laborer.html',
+          'employer': '14b-employer.html',
+          'arbitration': '14a-arbitration.html',
+          'supervisor': '14e-supervisor.html',
+          'legal-aid': '14d-legal-aid.html'
+        };
+        if (rolePages[role]) {
+          window.location.href = rolePages[role];
+        }
       }
     }
+
+    // 显示通知
+    function showNotification(message, type = 'info') {
+      if (window.parent && window.parent.showNotification) {
+        window.parent.showNotification(message, type);
+      } else if (window.parent && window.parent.postMessage) {
+        window.parent.postMessage({ type: 'NOTIFY', message: message, level: type }, '*');
+      } else {
+        alert(message);
+      }
+    }
+
+    // 请求共享数据
+    function requestSharedData() {
+      if (window.parent && window.parent.postMessage) {
+        window.parent.postMessage({ type: 'REQUEST_SHARED_DATA' }, '*');
+      }
+    }
+
+    // 监听来自父页面的消息
+    window.addEventListener('message', function(event) {
+      const message = event.data;
+      
+      if (message.type === 'ROLE_CHANGE') {
+        sharedData = message.data || {};
+        updateUIWithSharedData();
+      } else if (message.type === 'SHARED_DATA') {
+        sharedData = message.data || {};
+        updateUIWithSharedData();
+      }
+    });
+
+    // 根据共享数据更新UI
+    function updateUIWithSharedData() {
+      if (sharedData.currentCase) {
+        document.getElementById('ct-case-id').textContent = sharedData.currentCase.caseId || 'LA2024-0892';
+      }
+    }
+
+    // 页面加载时请求共享数据
+    document.addEventListener('DOMContentLoaded', function() {
+      requestSharedData();
+    });
 
     // 顶部标签切换
     document.querySelectorAll('.tab-item').forEach(tab => {
@@ -1865,14 +1914,15 @@
       </div>
     </div>
 
-    <!-- 主内容区 -->
+    <!-- 主内容区 - 五分区布局 -->
     <div class="ct-main">
-      <!-- 左侧: 视频会议区 -->
-      <div class="ct-content">
+      <!-- 左侧区域：视频会议区 + 证据展示区 -->
+      <div class="ct-left-panel">
         <!-- 区域2: 视频会议区 -->
         <div class="ct-video-section">
-          <div class="ct-video-header">
-            <span>📹 视频会议</span>
+          <div class="ct-section-header">
+            <span class="section-icon">📹</span>
+            <span class="section-title">视频会议</span>
             <div class="ct-video-controls">
               <button class="ct-control-btn" onclick="shareScreen()" title="共享屏幕">🖥️</button>
               <button class="ct-control-btn" onclick="toggleRecording()" title="录制">⏺</button>
@@ -1891,25 +1941,26 @@
             </div>
             <!-- 底部: 当事人画面 -->
             <div class="ct-video-sub-grid">
-              <div class="ct-video-thumb" id="applicant-video">
+              <div class="ct-video-thumb active" id="applicant-video">
                 <div class="ct-participant-avatar small">申</div>
                 <div class="ct-participant-name">张某</div>
-                <div class="ct-video-badge">申请人</div>
+                <div class="ct-video-badge applicant">申请人</div>
+                <div class="ct-speaking-indicator"></div>
               </div>
               <div class="ct-video-thumb" id="respondent-video">
                 <div class="ct-participant-avatar small">被</div>
                 <div class="ct-participant-name">某科技公司</div>
-                <div class="ct-video-badge">被申请人</div>
+                <div class="ct-video-badge respondent">被申请人</div>
               </div>
               <div class="ct-video-thumb" id="clerk-video">
                 <div class="ct-participant-avatar small">书</div>
                 <div class="ct-participant-name">李书记员</div>
-                <div class="ct-video-badge">书记员</div>
+                <div class="ct-video-badge clerk">书记员</div>
               </div>
               <div class="ct-video-thumb" id="lawyer-video">
                 <div class="ct-participant-avatar small">律</div>
                 <div class="ct-participant-name">陈律师</div>
-                <div class="ct-video-badge">代理人</div>
+                <div class="ct-video-badge lawyer">代理人</div>
               </div>
             </div>
           </div>
@@ -1943,18 +1994,22 @@
               <span class="step-num">7</span>
               <span class="step-name">调解/宣判</span>
             </div>
-            <button class="btn btn-sm btn-secondary" onclick="nextTrialStep()">下一步 →</button>
+            <button class="btn btn-sm btn-primary" onclick="nextTrialStep()">下一步 →</button>
           </div>
         </div>
+      </div>
 
+      <!-- 中间区域：证据展示区 -->
+      <div class="ct-middle-panel">
         <!-- 区域3: 证据展示区 -->
         <div class="ct-evidence-section">
-          <div class="ct-panel-header">
-            <span>📁 证据材料</span>
+          <div class="ct-section-header">
+            <span class="section-icon">📁</span>
+            <span class="section-title">证据材料</span>
             <button class="btn btn-sm btn-primary" onclick="showUploadEvidenceModal()">+ 上传</button>
           </div>
           <div class="ct-evidence-list" id="evidence-list">
-            <div class="ct-evidence-item" onclick="showEvidence('劳动合同.pdf')">
+            <div class="ct-evidence-item active" onclick="showEvidence('劳动合同.pdf')">
               <div class="evidence-icon">📄</div>
               <div class="evidence-info">
                 <div class="evidence-name">劳动合同.pdf</div>
@@ -1986,16 +2041,44 @@
               </div>
               <button class="evidence-action" onclick="event.stopPropagation(); showEvidence('解除劳动合同通知书.pdf')">展示</button>
             </div>
+            <div class="ct-evidence-item" onclick="showEvidence('考勤记录.xlsx')">
+              <div class="evidence-icon">📊</div>
+              <div class="evidence-info">
+                <div class="evidence-name">考勤记录.xlsx</div>
+                <div class="evidence-meta">申请人提交 | 2024-02-28</div>
+              </div>
+              <button class="evidence-action" onclick="event.stopPropagation(); showEvidence('考勤记录.xlsx')">展示</button>
+            </div>
+          </div>
+          <!-- 证据预览窗口 -->
+          <div class="ct-evidence-preview">
+            <div class="preview-header">
+              <span>当前展示: 劳动合同.pdf</span>
+            </div>
+            <div class="preview-content">
+              <div class="document-preview">
+                <div class="doc-icon">📄</div>
+                <div class="doc-placeholder">证据预览区域</div>
+                <div class="doc-pages">第 1 / 5 页</div>
+              </div>
+            </div>
+            <div class="preview-controls">
+              <button class="btn btn-xs btn-secondary" onclick="prevEvidence()">←</button>
+              <button class="btn btn-xs btn-secondary" onclick="nextEvidence()">→</button>
+              <button class="btn btn-xs btn-secondary">放大</button>
+              <button class="btn btn-xs btn-secondary">缩小</button>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- 右侧边栏 -->
-      <div class="ct-sidebar">
+      <!-- 右侧边栏：庭审笔录 + 操作区 -->
+      <div class="ct-right-panel">
         <!-- 区域4: 庭审笔录区 -->
         <div class="ct-transcript-section">
-          <div class="ct-panel-header">
-            <span>📝 庭审笔录</span>
+          <div class="ct-section-header">
+            <span class="section-icon">📝</span>
+            <span class="section-title">庭审笔录</span>
             <button class="btn btn-sm btn-secondary" onclick="exportTranscript()">导出</button>
           </div>
           <div class="ct-transcript-body" id="transcript-body">
@@ -2037,8 +2120,9 @@
 
         <!-- 区域5: 操作按钮区 -->
         <div class="ct-actions-section">
-          <div class="ct-panel-header">
-            <span>⚡ 庭审操作</span>
+          <div class="ct-section-header">
+            <span class="section-icon">⚡</span>
+            <span class="section-title">庭审操作</span>
           </div>
           <div class="ct-action-buttons">
             <button class="ct-action-btn primary" onclick="showUploadEvidenceModal()">
@@ -2626,14 +2710,183 @@
       background: rgba(255,255,255,0.3);
     }
 
+    .ct-main {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      gap: 12px;
+      padding: 12px;
+    }
+
+    .ct-left-panel {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .ct-middle-panel {
+      width: 320px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ct-right-panel {
+      width: 340px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      background: #1a1a2e;
+      border-radius: 8px;
+      border: 1px solid #333;
+    }
+
+    .ct-section-header {
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #252540;
+      font-size: 14px;
+      color: #fff;
+      flex-shrink: 0;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .section-icon {
+      margin-right: 8px;
+    }
+
+    .section-title {
+      font-weight: 600;
+    }
+
+    .ct-video-section {
+      background: #1a1a2e;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+      border: 1px solid #333;
+    }
+
     .ct-evidence-section {
       background: #1a1a2e;
       border-radius: 8px;
       display: flex;
       flex-direction: column;
-      width: 300px;
+      height: 100%;
+      overflow: hidden;
+      border: 1px solid #333;
+    }
+
+    .ct-evidence-preview {
+      border-top: 1px solid #333;
+      padding: 12px;
       flex-shrink: 0;
-      margin-left: 16px;
+    }
+
+    .preview-header {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 12px;
+    }
+
+    .preview-content {
+      background: #252540;
+      border-radius: 6px;
+      padding: 20px;
+      min-height: 120px;
+    }
+
+    .document-preview {
+      text-align: center;
+    }
+
+    .doc-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .doc-placeholder {
+      color: #666;
+      font-size: 12px;
+    }
+
+    .doc-pages {
+      color: #888;
+      font-size: 11px;
+      margin-top: 8px;
+    }
+
+    .preview-controls {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      justify-content: center;
+    }
+
+    .btn-xs {
+      padding: 4px 10px;
+      font-size: 11px;
+    }
+
+    .ct-video-thumb.active {
+      border: 2px solid var(--primary);
+    }
+
+    .ct-video-thumb.active .ct-participant-avatar {
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.5);
+    }
+
+    .ct-video-badge.applicant {
+      background: rgba(22, 119, 255, 0.2);
+      color: #60a5fa;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+    }
+
+    .ct-video-badge.respondent {
+      background: rgba(82, 196, 26, 0.2);
+      color: #4ade80;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+    }
+
+    .ct-video-badge.clerk {
+      background: rgba(250, 173, 20, 0.2);
+      color: #fbbf24;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+    }
+
+    .ct-video-badge.lawyer {
+      background: rgba(114, 46, 209, 0.2);
+      color: #a78bfa;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+    }
+
+    .ct-speaking-indicator {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      width: 8px;
+      height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+      animation: pulse 1s infinite;
+    }
+
+    .ct-evidence-item.active {
+      background: rgba(22, 119, 255, 0.2);
+      border: 1px solid var(--primary);
     }
 
     .ct-evidence-list {

@@ -40,6 +40,99 @@
       height: 100%;
       border: none;
     }
+
+    /* 全局通知样式 */
+    .global-notification {
+      position: fixed;
+      top: 80px;
+      right: 24px;
+      padding: 16px 24px;
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 1000;
+      transform: translateX(120%);
+      transition: transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .global-notification.show {
+      transform: translateX(0);
+    }
+
+    .global-notification.success {
+      background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);
+    }
+
+    .global-notification.warning {
+      background: linear-gradient(135deg, #faad14 0%, #ffc53d 100%);
+    }
+
+    .global-notification.error {
+      background: linear-gradient(135deg, #ff4d4f 0%, #ff7875 100%);
+    }
+
+    .global-notification.info {
+      background: linear-gradient(135deg, #1677ff 0%, #40a9ff 100%);
+    }
+
+    .notification-icon {
+      font-size: 18px;
+    }
+
+    /* 消息提示气泡 */
+    .message-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      min-width: 18px;
+      height: 18px;
+      background: #ff4d4f;
+      color: white;
+      border-radius: 9px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+    }
+
+    /* 快速导航菜单 */
+    .quick-nav {
+      display: flex;
+      gap: 8px;
+    }
+
+    .quick-nav-btn {
+      padding: 8px 16px;
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+    }
+
+    .quick-nav-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: rgba(22, 119, 255, 0.05);
+    }
+
+    .quick-nav-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -48,7 +141,25 @@
   <nav class="navbar">
     <div class="container">
       <a href="index.html" class="navbar-logo">人社服务数字平台</a>
-      <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <!-- 快速导航 -->
+        <div class="quick-nav">
+          <button class="quick-nav-btn active" data-role="arbitration" onclick="loadRole('arbitration')">
+            ⚖ 仲裁
+          </button>
+          <button class="quick-nav-btn" data-role="laborer" onclick="loadRole('laborer')">
+            👷 劳动者
+          </button>
+          <button class="quick-nav-btn" data-role="employer" onclick="loadRole('employer')">
+            🏢 用人单位
+          </button>
+          <button class="quick-nav-btn" data-role="supervisor" onclick="loadRole('supervisor')">
+            📊 监管
+          </button>
+          <button class="quick-nav-btn" data-role="legal-aid" onclick="loadRole('legal-aid')">
+            🤝 法律援助
+          </button>
+        </div>
         <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px;" id="role-select" onchange="loadRole(this.value)">
           <option value="arbitration" selected>⚖ 仲裁机构端</option>
           <option value="laborer">👷 劳动者端</option>
@@ -65,6 +176,9 @@
   </main>
 </div>
 
+<!-- 全局通知容器 -->
+<div id="notification-container"></div>
+
 <script>
   // 角色与页面映射
   const ROLE_PAGES = {
@@ -75,7 +189,7 @@
     'legal-aid': '14d-legal-aid.html'
   };
 
-  // 角色显示名称（用于选中状态）
+  // 角色显示名称
   const ROLE_LABELS = {
     'laborer': '👷 劳动者端',
     'employer': '🏢 用人单位端',
@@ -87,15 +201,58 @@
   // 当前角色
   let currentRole = 'arbitration';
 
+  // 共享数据存储（用于跨页面传递数据）
+  const sharedData = {
+    currentCase: null,
+    notificationCount: {
+      arbitration: 0,
+      laborer: 0,
+      employer: 0,
+      supervisor: 3,
+      legal-aid: 0
+    },
+    recentActivities: []
+  };
+
   // 加载角色页面
   function loadRole(role) {
     if (!role || !ROLE_PAGES[role]) return;
     
     currentRole = role;
+    
+    // 更新快速导航按钮状态
+    document.querySelectorAll('.quick-nav-btn').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.getAttribute('data-role') === role) {
+        btn.classList.add('active');
+      }
+    });
+    
+    // 更新下拉框选中状态
+    document.getElementById('role-select').value = role;
+    
+    // 加载页面
     document.getElementById('content-frame').src = ROLE_PAGES[role];
     
-    // 更新下拉框选中状态（保留显示）
-    document.getElementById('role-select').value = role;
+    // 发送初始化消息到子页面
+    setTimeout(() => {
+      sendMessageToFrame({
+        type: 'ROLE_CHANGE',
+        role: role,
+        data: sharedData
+      });
+    }, 100);
+    
+    // 显示切换通知
+    showNotification(`已切换至 ${ROLE_LABELS[role]}`, 'info');
+  }
+
+  // 向 iframe 发送消息
+  function sendMessageToFrame(message) {
+    const frame = document.getElementById('content-frame');
+    if (frame && frame.contentWindow) {
+      frame.contentWindow.postMessage(message, '*');
+    }
   }
 
   // 从 iframe 内调用切换角色
@@ -106,22 +263,130 @@
     }
   };
 
+  // 从 iframe 发送数据
+  window.sendDataFromFrame = function(data) {
+    if (data.type === 'SET_CURRENT_CASE') {
+      sharedData.currentCase = data.payload;
+      showNotification(`案件 ${data.payload.caseId} 已选中`, 'success');
+    } else if (data.type === 'ADD_NOTIFICATION') {
+      if (sharedData.notificationCount[data.role]) {
+        sharedData.notificationCount[data.role]++;
+      }
+      updateBadges();
+    } else if (data.type === 'ADD_ACTIVITY') {
+      sharedData.recentActivities.unshift({
+        ...data.payload,
+        timestamp: new Date().toISOString()
+      });
+      if (sharedData.recentActivities.length > 10) {
+        sharedData.recentActivities.pop();
+      }
+    }
+  };
+
+  // 更新通知徽章
+  function updateBadges() {
+    document.querySelectorAll('.quick-nav-btn').forEach(btn => {
+      const role = btn.getAttribute('data-role');
+      const count = sharedData.notificationCount[role] || 0;
+      
+      let badge = btn.querySelector('.message-badge');
+      if (count > 0) {
+        if (!badge) {
+          badge = document.createElement('span');
+          badge.className = 'message-badge';
+          btn.appendChild(badge);
+        }
+        badge.textContent = count > 99 ? '99+' : count;
+      } else if (badge) {
+        badge.remove();
+      }
+    });
+  }
+
+  // 显示全局通知
+  function showNotification(message, type = 'info') {
+    const container = document.getElementById('notification-container');
+    const notification = document.createElement('div');
+    notification.className = `global-notification ${type}`;
+    
+    const icons = {
+      success: '✓',
+      warning: '⚠',
+      error: '✕',
+      info: 'ℹ'
+    };
+    
+    notification.innerHTML = `
+      <span class="notification-icon">${icons[type] || 'ℹ'}</span>
+      <span>${message}</span>
+    `;
+    
+    container.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.classList.add('show');
+    }, 10);
+    
+    setTimeout(() => {
+      notification.classList.remove('show');
+      setTimeout(() => {
+        notification.remove();
+      }, 300);
+    }, 4000);
+  }
+
+  // 监听来自 iframe 的消息
+  window.addEventListener('message', function(event) {
+    const message = event.data;
+    
+    if (message.type === 'REQUEST_SHARED_DATA') {
+      sendMessageToFrame({
+        type: 'SHARED_DATA',
+        data: sharedData
+      });
+    } else if (message.type === 'NOTIFY') {
+      showNotification(message.message, message.level || 'info');
+    } else if (message.type === 'SWITCH_ROLE') {
+      loadRole(message.role);
+    } else if (message.type === 'NAVIGATE_TO_PAGE') {
+      const frame = document.getElementById('content-frame');
+      if (frame) {
+        frame.src = message.page;
+      }
+    } else if (message.type === 'SET_CASE_DATA') {
+      sharedData.currentCase = message.data;
+    }
+  });
+
   // 页面加载完成后初始化
   document.addEventListener('DOMContentLoaded', function() {
-    // 检查 URL 参数
     const params = new URLSearchParams(window.location.search);
     const role = params.get('role');
     
     if (role && ROLE_PAGES[role]) {
-      // URL 参数指定了角色
       currentRole = role;
       document.getElementById('role-select').value = role;
       document.getElementById('content-frame').src = ROLE_PAGES[role];
-    } else {
-      // 默认加载劳动者端
-      document.getElementById('role-select').value = 'arbitration';
+      
+      document.querySelectorAll('.quick-nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-role') === role) {
+          btn.classList.add('active');
+        }
+      });
     }
+    
+    updateBadges();
   });
+
+  // 暴露给子页面的接口
+  window.platform = {
+    switchRole: loadRole,
+    showNotification: showNotification,
+    sendMessage: sendMessageToFrame,
+    sharedData: sharedData
+  };
 </script>
 
 </body>
