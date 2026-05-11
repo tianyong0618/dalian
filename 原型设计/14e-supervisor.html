@@ -9,25 +9,44 @@
     /* 布局样式 */
     .app-layout {
       display: flex;
+      flex-direction: column;
       min-height: 100vh;
+      padding: 24px;
+      background: var(--bg-secondary);
     }
 
-/* 左侧菜单 */
-    .sidebar {
-      width: 220px;
-      background: white;
-      border-right: 1px solid var(--border-color);
-      padding: 16px 0;
-      flex-shrink: 0;
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      z-index: 100;
+    /* 顶部标签导航 */
+    .top-tabs {
+      display: flex;
+      gap: 8px;
+      padding: 0 0 24px 0;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
     }
 
-    .sidebar-menu {
-      list-style: none;
+    .tab-item {
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      transition: all 0.3s ease;
     }
+
+    .tab-item:hover {
+      color: var(--primary);
+      background: rgba(22, 119, 255, 0.05);
+    }
+
+    .tab-item.active {
+      color: var(--primary);
+      background: var(--primary);
+      color: white;
+    }
+
+
 
     .sidebar-menu li {
       margin-bottom: 4px;
@@ -366,40 +385,13 @@
 </head>
 <body>
   <div class="app-layout">
-    <aside class="sidebar">
-      <ul class="sidebar-menu">
-        <li>
-          <a href="#">
-            <span class="menu-icon">📊</span>
-            我的工作台
-          </a>
-        </li>
-        <li>
-          <a href="#" class="active">
-            <span class="menu-icon">🏗️</span>
-            项目监管
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="menu-icon">⚠️</span>
-            欠薪预警
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="menu-icon">📈</span>
-            效能统计
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="menu-icon">📋</span>
-            报表中心
-          </a>
-        </li>
-      </ul>
-    </aside>
+    <div class="top-tabs">
+      <div class="tab-item active">我的工作台</div>
+      <div class="tab-item">项目监管</div>
+      <div class="tab-item">欠薪预警</div>
+      <div class="tab-item">效能统计</div>
+      <div class="tab-item">报表中心</div>
+    </div>
 
     <main class="main-content">
       <div class="top-nav">

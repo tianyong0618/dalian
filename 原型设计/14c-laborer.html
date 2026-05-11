@@ -13,24 +13,35 @@
       padding: 24px 0;
     }
 
-    /* 布局样式 */
-    .layout {
+    /* 顶部标签导航 */
+    .top-tabs {
       display: flex;
-      gap: 24px;
-      min-height: calc(100vh - 120px);
+      gap: 8px;
+      padding: 0 0 24px 0;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
     }
 
-    .sidebar {
-      width: 220px;
-      flex-shrink: 0;
-      background: var(--bg-primary);
-      border-radius: var(--radius-lg);
-      padding: 16px 0;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-color);
-      height: fit-content;
-      position: sticky;
-      top: 24px;
+    .tab-item {
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      transition: all 0.3s ease;
+    }
+
+    .tab-item:hover {
+      color: var(--primary);
+      background: rgba(22, 119, 255, 0.05);
+    }
+
+    .tab-item.active {
+      color: var(--primary);
+      background: var(--primary);
+      color: white;
     }
 
     .sidebar .menu {
@@ -488,33 +499,17 @@
 
 <div class="iframe-page">
   <div class="container">
-    <div class="layout">
-      <!-- 左侧菜单 -->
-      <aside class="sidebar">
-        <ul class="menu">
-          <li class="menu-item active" data-module="dashboard">
-            <a href="#">我的工作台</a>
-          </li>
-          <li class="menu-item" data-module="contracts">
-            <a href="#">电子劳动合同</a>
-          </li>
-          <li class="menu-item" data-module="apply">
-            <a href="#">案件申请</a>
-          </li>
-          <li class="menu-item" data-module="cases">
-            <a href="#">我的案件</a>
-          </li>
-          <li class="menu-item" data-module="documents">
-            <a href="#">文书查看</a>
-          </li>
-          <li class="menu-item" data-module="legal-aid">
-            <a href="#">法律援助</a>
-          </li>
-        </ul>
-      </aside>
+    <main class="main-content">
+      <div class="top-tabs">
+        <div class="tab-item active" data-module="dashboard">我的工作台</div>
+        <div class="tab-item" data-module="contracts">电子劳动合同</div>
+        <div class="tab-item" data-module="apply">案件申请</div>
+        <div class="tab-item" data-module="cases">我的案件</div>
+        <div class="tab-item" data-module="documents">文书查看</div>
+        <div class="tab-item" data-module="legal-aid">法律援助</div>
+      </div>
 
-      <!-- 主内容区 -->
-      <main class="main-content">
+      <div class="content-area">
         
         <!-- 仪表盘（我的工作台） -->
         <div class="module-section active" id="module-dashboard">
@@ -968,9 +963,7 @@
             <button class="btn btn-primary" onclick="showModal('legal-aid-apply-modal')">申请法律援助</button>
           </div>
         </div>
-
-      </main>
-    </div>
+    </main>
   </div>
 </div>
 
@@ -1192,8 +1185,8 @@
 </div>
 
 <script>
-  // 菜单切换功能
-  document.querySelectorAll('.sidebar .menu-item').forEach(function(item) {
+  // 顶部标签切换功能
+  document.querySelectorAll('.tab-item').forEach(function(item) {
     item.addEventListener('click', function() {
       var module = this.getAttribute('data-module');
       switchModule(module);
@@ -1202,32 +1195,27 @@
 
   // 切换模块
   function switchModule(moduleId) {
-    // 更新菜单状态
-    document.querySelectorAll('.sidebar .menu-item').forEach(function(item) {
+    document.querySelectorAll('.tab-item').forEach(function(item) {
       item.classList.remove('active');
       if (item.getAttribute('data-module') === moduleId) {
         item.classList.add('active');
       }
     });
 
-    // 更新内容区显示
     document.querySelectorAll('.module-section').forEach(function(section) {
       section.classList.remove('active');
     });
     document.getElementById('module-' + moduleId).classList.add('active');
   }
 
-  // 模态框显示
   function showModal(modalId) {
     document.getElementById(modalId).classList.add('active');
   }
 
-  // 模态框关闭
   function closeModal(modalId) {
     document.getElementById(modalId).classList.remove('active');
   }
 
-  // 点击模态框外部关闭
   document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
     overlay.addEventListener('click', function(e) {
       if (e.target === this) {
@@ -1236,7 +1224,6 @@
     });
   });
 
-  // 通知提示
   function showNotification(message, type) {
     var notification = document.createElement('div');
     notification.className = 'notification ' + (type || '');
@@ -1248,7 +1235,6 @@
     }, 3000);
   }
 
-  // 文件上传模拟
   function uploadFile(type) {
     var fileNames = {
       'id-card': '身份证件',
@@ -1259,7 +1245,6 @@
     showNotification(fileNames[type] + '已上传成功', 'success');
   }
 
-  // 提交案件申请
   function submitCase(event) {
     event.preventDefault();
     var agree = document.getElementById('apply-agree').checked;
@@ -1273,12 +1258,10 @@
     }, 1500);
   }
 
-  // 显示案件详情
   function showCaseDetail(caseId) {
     showModal('case-detail-modal');
   }
 
-  // 签收确认
   function confirmReceive(caseId) {
     showNotification('文书签收成功', 'success');
   }

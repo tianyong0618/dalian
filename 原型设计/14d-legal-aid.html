@@ -8,18 +8,40 @@
   <style>
     .app-layout {
       display: flex;
+      flex-direction: column;
       min-height: 100vh;
+      padding: 24px;
+      background: var(--bg-secondary);
     }
 
-    .sidebar {
-      width: 220px;
-      background: white;
-      border-right: 1px solid var(--border-color);
-      padding: 16px 0;
-      flex-shrink: 0;
-      position: sticky;
-      top: 0;
-      height: 100vh;
+    .top-tabs {
+      display: flex;
+      gap: 8px;
+      padding: 0 0 24px 0;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .tab-item {
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      transition: all 0.3s ease;
+    }
+
+    .tab-item:hover {
+      color: var(--primary);
+      background: rgba(22, 119, 255, 0.05);
+    }
+
+    .tab-item.active {
+      color: var(--primary);
+      background: var(--primary);
+      color: white;
     }
 
     .sidebar-menu {
@@ -420,34 +442,12 @@
 </head>
 <body>
   <div class="app-layout">
-    <aside class="sidebar">
-      <ul class="sidebar-menu">
-        <li>
-          <a href="#">
-            <span class="menu-icon">📊</span>
-            我的工作台
-          </a>
-        </li>
-        <li>
-          <a href="#" class="active">
-            <span class="menu-icon">📝</span>
-            援助申请
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="menu-icon">📁</span>
-            案件管理
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="menu-icon">📈</span>
-            统计分析
-          </a>
-        </li>
-      </ul>
-    </aside>
+    <div class="top-tabs">
+      <div class="tab-item active">我的工作台</div>
+      <div class="tab-item">援助申请</div>
+      <div class="tab-item">案件管理</div>
+      <div class="tab-item">统计分析</div>
+    </div>
 
     <main class="main-content">
       <div class="top-nav">
