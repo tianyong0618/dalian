@@ -2365,12 +2365,6 @@
       if (target) {
         target.style.display = 'block';
         
-        // 平滑滚动到目标模块
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-        
         // 添加激活状态高亮
         setTimeout(() => {
           target.style.backgroundColor = 'rgba(22, 119, 255, 0.03)';
