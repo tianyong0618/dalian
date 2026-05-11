@@ -129,16 +129,68 @@
       padding: 24px;
     }
 
-    /* 云庭审五分区布局 */
+    /* 云庭审三行布局 */
     .cloud-trial-layout {
-      display: grid;
-      grid-template-columns: 220px 1fr 280px 260px 180px;
-      gap: 12px;
-      height: calc(100vh - 200px);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      height: calc(100vh - 180px);
       min-height: 500px;
     }
 
-    .trial-panel {
+    /* 第一行：案件信息 */
+    .trial-row-1 {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .trial-row-1 .trial-panel {
+      background: white;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      padding: 12px;
+      flex: 1;
+    }
+
+    /* 第二行：视频画面 - 占据主要空间 */
+    .trial-row-2 {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      min-height: 300px;
+    }
+
+    .trial-row-2 .trial-panel-header {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border-color);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-primary);
+      background: var(--bg-secondary);
+      flex-shrink: 0;
+    }
+
+    .trial-row-2 .trial-panel-body {
+      flex: 1;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 第三行：证据、笔录、操作 */
+    .trial-row-3 {
+      display: flex;
+      gap: 10px;
+      height: 140px;
+      flex-shrink: 0;
+    }
+
+    .trial-row-3 .trial-panel {
       background: white;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-color);
@@ -147,24 +199,29 @@
       overflow: hidden;
     }
 
-    .trial-panel-header {
-      padding: 16px;
+    .trial-row-3 .trial-panel-header {
+      padding: 8px 12px;
       border-bottom: 1px solid var(--border-color);
       font-weight: 600;
-      font-size: 14px;
+      font-size: 12px;
       color: var(--text-primary);
       background: var(--bg-secondary);
+      flex-shrink: 0;
     }
 
-    .trial-panel-body {
+    .trial-row-3 .trial-panel-body {
       flex: 1;
-      padding: 16px;
+      padding: 10px;
       overflow-y: auto;
     }
 
+    .trial-row-3 .trial-panel:nth-child(1) { flex: 1.2; }
+    .trial-row-3 .trial-panel:nth-child(2) { flex: 1.5; }
+    .trial-row-3 .trial-panel:nth-child(3) { flex: 1; }
+
     /* 信息栏 */
     .case-info-list {
-      font-size: 13px;
+      font-size: 12px;
     }
 
     .case-info-item {
@@ -187,11 +244,12 @@
       font-weight: 500;
     }
 
-    /* 视频区 */
+/* 视频区 */
     .video-area {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 8px;
+      height: 100%;
     }
 
     .video-main {
@@ -202,7 +260,7 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      min-height: 300px;
+      min-height: 150px;
     }
 
     .video-placeholder {
@@ -217,16 +275,16 @@
 
     .video-controls {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       justify-content: center;
-      padding: 12px;
+      padding: 8px;
       background: #2a2a3e;
       border-radius: var(--radius-md);
     }
 
     .video-btn {
-      width: 40px;
-      height: 40px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       border: none;
       background: rgba(255, 255, 255, 0.1);
@@ -235,7 +293,70 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .video-sub {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      height: 50px;
+      flex-shrink: 0;
+    }
+
+    .video-sub-item {
+      background: #1a1a2e;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 10px;
+    }
+
+    .video-main {
+      flex: 1;
+      background: #1a1a2e;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 250px;
+    }
+
+    .video-placeholder {
+      color: rgba(255, 255, 255, 0.5);
+      text-align: center;
+    }
+
+    .video-placeholder .icon {
+      font-size: 64px;
+      margin-bottom: 12px;
+    }
+
+    .video-controls {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      padding: 8px;
+      background: #2a2a3e;
+      border-radius: var(--radius-md);
+    }
+
+    .video-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
       transition: all 0.3s ease;
     }
 
@@ -246,8 +367,8 @@
     .video-sub {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      height: 100px;
+      gap: 6px;
+      height: 60px;
     }
 
     .video-sub-item {
@@ -257,7 +378,7 @@
       align-items: center;
       justify-content: center;
       color: rgba(255, 255, 255, 0.5);
-      font-size: 12px;
+      font-size: 10px;
     }
 
     /* 证据区 */
@@ -770,191 +891,6 @@
         </div>
       </div>
 
-      <!-- 云庭审五分区布局 -->
-      <div class="content-card">
-        <div class="content-card-header">
-          <h3>🎥 云庭审 - 案件编号：LA2024-0892</h3>
-          <div>
-            <button class="btn btn-secondary btn-sm">开始庭审</button>
-            <button class="btn btn-primary btn-sm">结束庭审</button>
-          </div>
-        </div>
-        <div class="content-card-body" style="padding: 16px;">
-          <div class="cloud-trial-layout">
-            <!-- 信息栏 -->
-            <div class="trial-panel">
-              <div class="trial-panel-header">📋 案件信息</div>
-              <div class="trial-panel-body">
-                <div class="case-info-list">
-                  <div class="case-info-item">
-                    <span class="case-info-label">案件编号</span>
-                    <span class="case-info-value">LA2024-0892</span>
-                  </div>
-                  <div class="case-info-item">
-                    <span class="case-info-label">申请人</span>
-                    <span class="case-info-value">张某</span>
-                  </div>
-                  <div class="case-info-item">
-                    <span class="case-info-label">被申请人</span>
-                    <span class="case-info-value">某科技公司</span>
-                  </div>
-                  <div class="case-info-item">
-                    <span class="case-info-label">案由</span>
-                    <span class="case-info-value">劳动争议</span>
-                  </div>
-                  <div class="case-info-item">
-                    <span class="case-info-label">请求金额</span>
-                    <span class="case-info-value">¥45,000</span>
-                  </div>
-                  <div class="case-info-item">
-                    <span class="case-info-label">仲裁员</span>
-                    <span class="case-info-value">李某</span>
-                  </div>
-                  <div class="case-info-item">
-                    <span class="case-info-label">开庭时间</span>
-                    <span class="case-info-value">2024-03-15 14:00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 视频区 -->
-            <div class="trial-panel">
-              <div class="trial-panel-header">🎥 视频画面</div>
-              <div class="trial-panel-body">
-                <div class="video-area">
-                  <div class="video-main">
-                    <div class="video-placeholder">
-                      <div class="icon">📹</div>
-                      <div>庭审直播中</div>
-                    </div>
-                  </div>
-                  <div class="video-sub">
-                    <div class="video-sub-item">申请人</div>
-                    <div class="video-sub-item">被申请人</div>
-                    <div class="video-sub-item">仲裁员</div>
-                  </div>
-                  <div class="video-controls">
-                    <button class="video-btn">🎤</button>
-                    <button class="video-btn">📹</button>
-                    <button class="video-btn">🖥️</button>
-                    <button class="video-btn">📞</button>
-                    <button class="video-btn">⏹️</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 证据区 -->
-            <div class="trial-panel">
-              <div class="trial-panel-header">📁 证据材料</div>
-              <div class="trial-panel-body">
-                <div class="evidence-list">
-                  <div class="evidence-item">
-                    <div class="evidence-icon">📄</div>
-                    <div class="evidence-info">
-                      <div class="evidence-name">劳动合同.pdf</div>
-                      <div class="evidence-meta">2.4MB · 申请人提交</div>
-                    </div>
-                  </div>
-                  <div class="evidence-item">
-                    <div class="evidence-icon">📄</div>
-                    <div class="evidence-info">
-                      <div class="evidence-name">工资流水.pdf</div>
-                      <div class="evidence-meta">1.8MB · 申请人提交</div>
-                    </div>
-                  </div>
-                  <div class="evidence-item">
-                    <div class="evidence-icon">📄</div>
-                    <div class="evidence-info">
-                      <div class="evidence-name">解除劳动合同证明.pdf</div>
-                      <div class="evidence-meta">0.9MB · 被申请人提交</div>
-                    </div>
-                  </div>
-                  <div class="evidence-item">
-                    <div class="evidence-icon">📄</div>
-                    <div class="evidence-info">
-                      <div class="evidence-name">社保缴费记录.pdf</div>
-                      <div class="evidence-meta">1.2MB · 申请人提交</div>
-                    </div>
-                  </div>
-                  <div class="evidence-item">
-                    <div class="evidence-icon">📄</div>
-                    <div class="evidence-info">
-                      <div class="evidence-name">考勤记录.xlsx</div>
-                      <div class="evidence-meta">0.5MB · 被申请人提交</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 笔录区 -->
-            <div class="trial-panel">
-              <div class="trial-panel-header">📝 庭审笔录</div>
-              <div class="trial-panel-body">
-                <div class="record-area">
-                  <div class="record-messages">
-                    <div class="record-message arbiter">
-                      <strong>仲裁员：</strong>现在开庭。首先核对当事人身份...
-                    </div>
-                    <div class="record-message laborer">
-                      <strong>申请人：</strong>我是申请人张某，我的身份证号码是...
-                    </div>
-                    <div class="record-message employer">
-                      <strong>被申请人：</strong>我是被申请人公司的委托代理人...
-                    </div>
-                    <div class="record-message arbiter">
-                      <strong>仲裁员：</strong>请申请人陈述仲裁请求和事实理由。
-                    </div>
-                    <div class="record-message laborer">
-                      <strong>申请人：</strong>请求被申请人支付违法解除劳动合同赔偿金...
-                    </div>
-                  </div>
-                  <div class="record-input">
-                    <input type="text" placeholder="输入笔录内容...">
-                    <button>发送</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 操作栏 -->
-            <div class="trial-panel">
-              <div class="trial-panel-header">⚡ 操作</div>
-              <div class="trial-panel-body">
-                <div class="action-area">
-                  <button class="action-btn">
-                    <span class="icon">📋</span>
-                    <span class="text">生成笔录</span>
-                  </button>
-                  <button class="action-btn">
-                    <span class="icon">🔔</span>
-                    <span class="text">提醒发言</span>
-                  </button>
-                  <button class="action-btn">
-                    <span class="icon">⏸️</span>
-                    <span class="text">暂停庭审</span>
-                  </button>
-                  <button class="action-btn">
-                    <span class="icon">🔒</span>
-                    <span class="text">临时闭庭</span>
-                  </button>
-                  <button class="action-btn">
-                    <span class="icon">📊</span>
-                    <span class="text">案件统计</span>
-                  </button>
-                  <button class="action-btn">
-                    <span class="icon">📤</span>
-                    <span class="text">导出材料</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- 案件列表 -->
       <div class="content-card">
         <div class="content-card-header">
@@ -997,7 +933,10 @@
                 <td>¥45,000</td>
                 <td><span class="badge badge-warning">仲裁审理</span></td>
                 <td>2024-03-01</td>
-                <td><button class="btn btn-secondary btn-sm">查看</button></td>
+                <td>
+                  <button class="btn btn-secondary btn-sm" style="margin-right:4px;">查看</button>
+                  <button class="btn btn-primary btn-sm" onclick="openCloudTrial()">开始庭审</button>
+                </td>
               </tr>
               <tr>
                 <td>LA2024-0891</td>
@@ -1069,6 +1008,312 @@
         this.classList.add('active');
       });
     });
+
+// 云庭审全屏
+    function openCloudTrial() {
+      document.getElementById('cloud-trial-fullscreen').classList.add('active');
+    }
+
+    function closeCloudTrial() {
+      document.getElementById('cloud-trial-fullscreen').classList.remove('active');
+    }
   </script>
+
+  <div class="cloud-trial-fullscreen" id="cloud-trial-fullscreen">
+    <div class="ct-header">
+      <div class="ct-header-left">
+        <span class="ct-logo">⚖️</span>
+        <span class="ct-title">劳动人事争议仲裁庭</span>
+      </div>
+      <div class="ct-header-center">
+        <div class="ct-case-info">
+          <span>案件编号：LA2024-0892</span>
+          <span class="ct-divider">|</span>
+          <span>申请人：张某</span>
+          <span class="ct-divider">|</span>
+          <span>被申请人：某科技公司</span>
+        </div>
+      </div>
+      <div class="ct-header-right">
+        <span class="ct-status">● 庭审中</span>
+        <button class="ct-btn-end" onclick="closeCloudTrial()">结束庭审</button>
+      </div>
+    </div>
+
+    <div class="ct-main">
+      <div class="ct-content">
+        <div class="ct-video-area">
+          <div class="ct-video-main">
+            <div class="ct-video-placeholder">
+              <div class="icon">📹</div>
+              <div>仲裁员画面</div>
+            </div>
+          </div>
+          <div class="ct-video-grid">
+            <div class="ct-video-thumb">申请人</div>
+            <div class="ct-video-thumb">被申请人</div>
+            <div class="ct-video-thumb">书记员</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ct-sidebar">
+        <div class="ct-panel">
+          <div class="ct-panel-header">证据材料</div>
+          <div class="ct-panel-body">
+            <div class="ct-evidence-list">
+              <div class="ct-evidence-item">📄 劳动合同.pdf</div>
+              <div class="ct-evidence-item">📄 工资流水.pdf</div>
+              <div class="ct-evidence-item">📄 解除证明.pdf</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ct-panel">
+          <div class="ct-panel-header">庭审笔录</div>
+          <div class="ct-panel-body">
+            <div class="ct-record-list">
+              <div class="ct-record-item"><strong>仲裁员：</strong>现在开庭...</div>
+              <div class="ct-record-item"><strong>申请人：</strong>我是张某...</div>
+              <div class="ct-record-item"><strong>被申请人：</strong>委托代理人...</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ct-actions">
+          <button class="ct-action-btn">🎤 静音</button>
+          <button class="ct-action-btn">📹 摄像头</button>
+          <button class="ct-action-btn">🖥️ 共享屏幕</button>
+          <button class="ct-action-btn">📋 笔录</button>
+          <button class="ct-action-btn">⏸️ 休庭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .cloud-trial-fullscreen {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #0f0f1a;
+      z-index: 9999;
+    }
+
+    .cloud-trial-fullscreen.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ct-header {
+      height: 56px;
+      background: #1a1a2e;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      border-bottom: 1px solid #333;
+      flex-shrink: 0;
+    }
+
+    .ct-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ct-logo {
+      font-size: 24px;
+    }
+
+    .ct-title {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .ct-header-center {
+      flex: 1;
+      text-align: center;
+    }
+
+    .ct-case-info {
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    .ct-divider {
+      margin: 0 12px;
+      color: #444;
+    }
+
+    .ct-header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .ct-status {
+      color: #4ade80;
+      font-size: 13px;
+    }
+
+    .ct-btn-end {
+      padding: 8px 20px;
+      background: #ef4444;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .ct-main {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .ct-content {
+      flex: 1;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ct-video-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ct-video-main {
+      flex: 1;
+      background: #1a1a2e;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ct-video-placeholder {
+      color: #666;
+      text-align: center;
+    }
+
+    .ct-video-placeholder .icon {
+      font-size: 64px;
+      margin-bottom: 12px;
+    }
+
+    .ct-video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      height: 80px;
+      flex-shrink: 0;
+    }
+
+    .ct-video-thumb {
+      background: #1a1a2e;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 12px;
+    }
+
+    .ct-sidebar {
+      width: 300px;
+      background: #1a1a2e;
+      border-left: 1px solid #333;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .ct-panel {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid #333;
+    }
+
+    .ct-panel:nth-child(2) {
+      flex: 1;
+      min-height: 0;
+    }
+
+    .ct-panel-header {
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      background: #252540;
+      flex-shrink: 0;
+    }
+
+    .ct-panel-body {
+      flex: 1;
+      padding: 12px;
+      overflow-y: auto;
+    }
+
+    .ct-evidence-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ct-evidence-item {
+      padding: 10px;
+      background: #252540;
+      border-radius: 6px;
+      color: #ccc;
+      font-size: 13px;
+    }
+
+    .ct-record-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ct-record-item {
+      padding: 10px;
+      background: #252540;
+      border-radius: 6px;
+      color: #ccc;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .ct-actions {
+      padding: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .ct-action-btn {
+      padding: 10px 16px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .ct-action-btn:hover {
+      background: #444;
+    }
+  </style>
 </body>
 </html>
