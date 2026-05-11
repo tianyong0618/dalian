@@ -985,6 +985,14 @@ body {
   display: block;
 }
 
+.org-only {
+  display: none;
+}
+
+.gov-org-only {
+  display: block;
+}
+
 .enterprise-hidden {
   display: block;
 }

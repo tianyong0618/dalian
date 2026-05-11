@@ -395,6 +395,88 @@
       font-size: 13px;
     }
 
+    .notification {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      padding: 12px 24px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      z-index: 10002;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transform: translateX(120%);
+      transition: all 0.3s ease;
+    }
+
+    .notification.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .notification.success { border-left: 4px solid #52c41a; }
+    .notification.warning { border-left: 4px solid #faad14; }
+    .notification.info { border-left: 4px solid #1677ff; }
+    .notification.error { border-left: 4px solid #ff4d4f; }
+
+    .card { background: white; border-radius: var(--radius-lg); border: 1px solid var(--border-color); overflow: hidden; margin-bottom: 24px; }
+    .table { width: 100%; border-collapse: collapse; }
+    .table thead { background: linear-gradient(135deg, rgba(19, 194, 194, 0.05) 0%, rgba(54, 207, 193, 0.05) 100%); }
+    .table th { text-align: left; padding: 14px 16px; font-size: 13px; font-weight: 600; color: var(--text-primary); border-bottom: 2px solid rgba(19, 194, 194, 0.1); }
+    .table td { padding: 14px 16px; font-size: 13px; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); }
+    .table tbody tr:hover { background: rgba(19, 194, 194, 0.03); }
+    .badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 100px; font-size: 12px; font-weight: 500; }
+    .badge-success { background: rgba(82, 196, 26, 0.1); color: var(--success); }
+    .badge-warning { background: rgba(250, 173, 20, 0.1); color: var(--warning); }
+    .badge-info { background: rgba(22, 119, 255, 0.1); color: var(--primary); }
+    .badge-danger { background: rgba(255, 77, 79, 0.1); color: var(--danger); }
+    .mb-16 { margin-bottom: 16px; }
+    .col-6 { flex: 0 0 50%; max-width: 50%; padding: 0 8px; box-sizing: border-box; }
+    .form-row { display: flex; flex-wrap: wrap; margin: 0 -8px; }
+    .form-input { width: 100%; padding: 10px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 14px; background: white; color: var(--text-primary); transition: all 0.3s ease; box-sizing: border-box; }
+    .form-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(19, 194, 194, 0.1); }
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: white; border-radius: var(--radius-lg); max-width: 700px; width: 90%; max-height: 90vh; overflow: auto; }
+    .modal-header { padding: 20px 24px; background: linear-gradient(135deg, #13c2c2 0%, #36cfc1 100%); color: white; display: flex; justify-content: space-between; align-items: center; }
+    .modal-header h3 { margin: 0; font-size: 18px; }
+    .modal-close { width: 32px; height: 32px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); color: white; cursor: pointer; font-size: 20px; }
+    .modal-body { padding: 24px; }
+    .modal-footer { padding: 16px 24px; background: var(--bg-secondary); display: flex; justify-content: flex-end; gap: 12px; }
+
+    .evidence-tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; background: var(--bg-secondary); border-radius: 4px; font-size: 12px; color: var(--text-secondary); }
+    .evidence-tag.active { background: rgba(19, 194, 194, 0.1); color: #13c2c2; }
+
+    .case-timeline { position: relative; padding-left: 30px; }
+    .case-timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border-color); }
+    .timeline-item { position: relative; padding-bottom: 24px; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot { position: absolute; left: -26px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--border-color); border: 2px solid white; }
+    .timeline-item.completed .timeline-dot { background: #13c2c2; }
+    .timeline-item.active .timeline-dot { background: var(--primary); box-shadow: 0 0 0 4px rgba(19, 194, 194, 0.2); }
+    .timeline-content { background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 16px; }
+    .timeline-content h5 { font-size: 14px; font-weight: 600; color: var(--text-primary); margin: 0 0 4px 0; }
+    .timeline-content p { font-size: 13px; color: var(--text-secondary); margin: 0; }
+    .timeline-time { font-size: 12px; color: var(--text-tertiary); margin-top: 8px; }
+
+    .lawyer-select-list { display: flex; flex-direction: column; gap: 12px; }
+    .lawyer-select-card { display: flex; align-items: center; gap: 16px; padding: 16px; border: 2px solid var(--border-color); border-radius: var(--radius-md); cursor: pointer; transition: all 0.3s ease; }
+    .lawyer-select-card:hover { border-color: rgba(19, 194, 194, 0.3); }
+    .lawyer-select-card.selected { border-color: #13c2c2; background: rgba(19, 194, 194, 0.05); }
+
+    .upload-area { border: 2px dashed var(--border-color); border-radius: var(--radius-md); padding: 30px; text-align: center; cursor: pointer; transition: all 0.3s ease; }
+    .upload-area:hover { border-color: #13c2c2; background: rgba(19, 194, 194, 0.05); }
+    .upload-icon { font-size: 32px; margin-bottom: 8px; }
+    .upload-area p { font-size: 14px; color: var(--text-secondary); margin: 0; }
+
+    .card { background: white; border-radius: var(--radius-lg); border: 1px solid var(--border-color); overflow: hidden; margin-bottom: 24px; }
+
     @media (max-width: 1200px) {
       .stats-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -476,7 +558,7 @@
       <div class="application-section">
         <div class="section-header-bar">
           <h2 class="section-title">援助申请审核列表</h2>
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" onclick="showNotification('新建申请功能', 'info')">
             <span>🔍</span>
             新建申请
           </button>
@@ -522,7 +604,7 @@
                 <td>2026-05-10</td>
                 <td><span class="status-badge pending">待审核</span></td>
                 <td>
-                  <button class="btn btn-sm btn-primary">审核</button>
+                  <button class="btn btn-sm btn-primary" onclick="reviewApplication('陈某')">审核</button>
                 </td>
               </tr>
               <tr>
@@ -533,7 +615,7 @@
                 <td>2026-05-09</td>
                 <td><span class="status-badge processing">审核中</span></td>
                 <td>
-                  <button class="btn btn-sm btn-secondary">查看</button>
+                  <button class="btn btn-sm btn-secondary" onclick="viewApplication('刘某')">查看</button>
                 </td>
               </tr>
               <tr>
@@ -544,7 +626,7 @@
                 <td>2026-05-08</td>
                 <td><span class="status-badge approved">已通过</span></td>
                 <td>
-                  <button class="btn btn-sm btn-success">指派律师</button>
+                  <button class="btn btn-sm btn-success" onclick="assignLawyer('张某')">指派律师</button>
                 </td>
               </tr>
               <tr>
@@ -555,7 +637,7 @@
                 <td>2026-05-07</td>
                 <td><span class="status-badge assigned">已指派</span></td>
                 <td>
-                  <button class="btn btn-sm btn-secondary">查看</button>
+                  <button class="btn btn-sm btn-secondary" onclick="viewApplication('王某')">查看</button>
                 </td>
               </tr>
               <tr>
@@ -566,7 +648,7 @@
                 <td>2026-05-06</td>
                 <td><span class="status-badge rejected">已驳回</span></td>
                 <td>
-                  <button class="btn btn-sm btn-secondary">详情</button>
+                  <button class="btn btn-sm btn-secondary" onclick="viewApplicationDetail('周某')">详情</button>
                 </td>
               </tr>
               <tr>
@@ -577,7 +659,7 @@
                 <td>2026-05-05</td>
                 <td><span class="status-badge approved">已通过</span></td>
                 <td>
-                  <button class="btn btn-sm btn-success">指派律师</button>
+                  <button class="btn btn-sm btn-success" onclick="assignLawyer('吴某')">指派律师</button>
                 </td>
               </tr>
               <tr>
@@ -588,7 +670,7 @@
                 <td>2026-05-04</td>
                 <td><span class="status-badge assigned">已指派</span></td>
                 <td>
-                  <button class="btn btn-sm btn-secondary">查看</button>
+                  <button class="btn btn-sm btn-secondary" onclick="viewApplication('郑某')">查看</button>
                 </td>
               </tr>
             </tbody>
@@ -617,7 +699,7 @@
                 <div class="label">历史案件</div>
               </div>
             </div>
-            <button class="btn btn-sm btn-primary assign-btn">指派</button>
+            <button class="btn btn-sm btn-primary assign-btn" onclick="assignToLawyer('李律师')">指派</button>
           </div>
           <div class="lawyer-card">
             <div class="lawyer-avatar">👩‍⚖️</div>
@@ -635,7 +717,7 @@
                 <div class="label">历史案件</div>
               </div>
             </div>
-            <button class="btn btn-sm btn-primary assign-btn">指派</button>
+            <button class="btn btn-sm btn-primary assign-btn" onclick="assignToLawyer('王律师')">指派</button>
           </div>
           <div class="lawyer-card">
             <div class="lawyer-avatar">👨‍⚖️</div>
@@ -653,7 +735,7 @@
                 <div class="label">历史案件</div>
               </div>
             </div>
-            <button class="btn btn-sm btn-primary assign-btn">指派</button>
+            <button class="btn btn-sm btn-primary assign-btn" onclick="assignToLawyer('张律师')">指派</button>
           </div>
           <div class="lawyer-card">
             <div class="lawyer-avatar">👩‍⚖️</div>
@@ -671,14 +753,258 @@
                 <div class="label">历史案件</div>
               </div>
             </div>
-            <button class="btn btn-sm btn-primary assign-btn">指派</button>
+            <button class="btn btn-sm btn-primary assign-btn" onclick="assignToLawyer('赵律师')">指派</button>
           </div>
         </div>
       </div>
     </main>
   </div>
 
+  <!-- 审核申请模态框 -->
+  <div class="modal-overlay" id="review-modal">
+    <div class="modal" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3>审核法律援助申请</h3>
+        <button class="modal-close" onclick="closeModal('review-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background: var(--bg-secondary); padding: 16px; border-radius: var(--radius-md); margin-bottom: 20px;">
+          <div class="form-row mb-16">
+            <div class="col-6"><strong>申请人：</strong><span id="review-name">-</span></div>
+            <div class="col-6"><strong>联系电话：</strong><span id="review-phone">-</span></div>
+          </div>
+          <div class="form-row mb-16">
+            <div class="col-6"><strong>案件类型：</strong><span id="review-type">-</span></div>
+            <div class="col-6"><strong>申请金额：</strong><span id="review-amount">-</span></div>
+          </div>
+          <div><strong>申请日期：</strong><span id="review-date">-</span></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">经济困难证明</label>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="evidence-tag active">✅ 低保证明</span>
+            <span class="evidence-tag active">✅ 收入证明</span>
+            <span class="evidence-tag">❌ 房产证明</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">审核结果 <span style="color: var(--danger);">*</span></label>
+          <select class="form-select" id="review-result" style="width: 100%;">
+            <option value="">请选择审核结果</option>
+            <option value="approved">通过</option>
+            <option value="rejected">驳回</option>
+            <option value="supplement">需补充材料</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">审核意见</label>
+          <textarea class="form-input" id="review-remark" placeholder="请输入审核意见..." rows="3" style="width: 100%;"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('review-modal')">取消</button>
+        <button class="btn btn-primary" onclick="submitReview()">提交审核</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 查看详情模态框 -->
+  <div class="modal-overlay" id="detail-modal">
+    <div class="modal" style="max-width: 700px;">
+      <div class="modal-header">
+        <h3>申请详情</h3>
+        <button class="modal-close" onclick="closeModal('detail-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="card" style="background: var(--bg-secondary);">
+          <div class="form-row mb-16">
+            <div class="col-6"><strong>申请人：</strong><span id="detail-name">-</span></div>
+            <div class="col-6"><strong>联系电话：</strong><span id="detail-phone">-</span></div>
+          </div>
+          <div class="form-row mb-16">
+            <div class="col-6"><strong>案件类型：</strong><span id="detail-type">-</span></div>
+            <div class="col-6"><strong>申请金额：</strong><span id="detail-amount">-</span></div>
+          </div>
+          <div class="form-row mb-16">
+            <div class="col-6"><strong>申请日期：</strong><span id="detail-date">-</span></div>
+            <div class="col-6"><strong>当前状态：</strong><span id="detail-status">-</span></div>
+          </div>
+          <div><strong>指派律师：</strong><span id="detail-lawyer">-</span></div>
+        </div>
+        <div class="form-group" style="margin-top: 16px;">
+          <label class="form-label">纠纷描述</label>
+          <p id="detail-desc" style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">因公司拖欠工资3个月，共计18000元，多次沟通未果，现申请法律援助代理劳动仲裁。</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">案件进度</label>
+          <div class="case-timeline" id="detail-timeline">
+            <div class="timeline-item completed">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h5>提交申请</h5>
+                <p>申请人提交法律援助申请</p>
+                <div class="timeline-time" id="timeline-step-1">-</div>
+              </div>
+            </div>
+            <div class="timeline-item active">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h5>审核中</h5>
+                <p>材料审核阶段</p>
+                <div class="timeline-time">进行中</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h5>指派律师</h5>
+                <p>等待分配援助律师</p>
+                <div class="timeline-time">-</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h5>案件代理</h5>
+                <p>律师代理仲裁/诉讼</p>
+                <div class="timeline-time">-</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('detail-modal')">关闭</button>
+        <button class="btn btn-primary" onclick="closeModal('detail-modal')">打印</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 指派律师模态框 -->
+  <div class="modal-overlay" id="assign-modal">
+    <div class="modal" style="max-width: 700px;">
+      <div class="modal-header">
+        <h3>指派援助律师</h3>
+        <button class="modal-close" onclick="closeModal('assign-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background: var(--bg-secondary); padding: 16px; border-radius: var(--radius-md); margin-bottom: 20px;">
+          <strong>申请人：</strong><span id="assign-applicant">-</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">选择律师</label>
+          <div class="lawyer-select-list">
+            <div class="lawyer-select-card" onclick="selectLawyer(this, '李律师')">
+              <div class="lawyer-avatar">👨‍⚖️</div>
+              <div class="lawyer-info">
+                <div class="lawyer-name">李律师</div>
+                <div class="lawyer-detail">执业年限：12年 | 擅长：劳动争议、合同纠纷</div>
+              </div>
+              <div class="lawyer-stats">
+                <div class="lawyer-stat">
+                  <div class="count">8</div>
+                  <div class="label">在办案件</div>
+                </div>
+              </div>
+            </div>
+            <div class="lawyer-select-card" onclick="selectLawyer(this, '王律师')">
+              <div class="lawyer-avatar">👩‍⚖️</div>
+              <div class="lawyer-info">
+                <div class="lawyer-name">王律师</div>
+                <div class="lawyer-detail">执业年限：8年 | 擅长：劳动仲裁、工伤赔偿</div>
+              </div>
+              <div class="lawyer-stats">
+                <div class="lawyer-stat">
+                  <div class="count">5</div>
+                  <div class="label">在办案件</div>
+                </div>
+              </div>
+            </div>
+            <div class="lawyer-select-card" onclick="selectLawyer(this, '张律师')">
+              <div class="lawyer-avatar">👨‍⚖️</div>
+              <div class="lawyer-info">
+                <div class="lawyer-name">张律师</div>
+                <div class="lawyer-detail">执业年限：15年 | 擅长：复杂劳动争议、集体案件</div>
+              </div>
+              <div class="lawyer-stats">
+                <div class="lawyer-stat">
+                  <div class="count">12</div>
+                  <div class="label">在办案件</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">指派备注</label>
+          <textarea class="form-input" id="assign-remark" placeholder="请输入指派备注..." rows="2" style="width: 100%;"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('assign-modal')">取消</button>
+        <button class="btn btn-primary" onclick="submitAssign()">确认指派</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 新建申请模态框 -->
+  <div class="modal-overlay" id="new-app-modal">
+    <div class="modal" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3>新建法律援助申请</h3>
+        <button class="modal-close" onclick="closeModal('new-app-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">申请人姓名 <span style="color: var(--danger);">*</span></label>
+          <input type="text" class="form-input" id="new-name" placeholder="请输入申请人姓名" style="width: 100%;">
+        </div>
+        <div class="form-group">
+          <label class="form-label">联系电话 <span style="color: var(--danger);">*</span></label>
+          <input type="tel" class="form-input" id="new-phone" placeholder="请输入联系电话" style="width: 100%;">
+        </div>
+        <div class="form-row">
+          <div class="col-6">
+            <div class="form-group">
+              <label class="form-label">案件类型</label>
+              <select class="form-select" id="new-type" style="width: 100%;">
+                <option value="">请选择</option>
+                <option>劳动仲裁</option>
+                <option>诉讼代理</option>
+                <option>非诉调解</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label class="form-label">申请金额</label>
+              <input type="number" class="form-input" id="new-amount" placeholder="¥" style="width: 100%;">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">纠纷描述</label>
+          <textarea class="form-input" id="new-desc" placeholder="请描述纠纷情况..." rows="3" style="width: 100%;"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">上传证明材料</label>
+          <div class="upload-area" onclick="uploadFile()">
+            <div class="upload-icon">📎</div>
+            <p>点击上传经济困难证明等材料</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('new-app-modal')">取消</button>
+        <button class="btn btn-primary" onclick="submitNewApplication()">提交申请</button>
+      </div>
+    </div>
+  </div>
+
   <script>
+    var currentApplicant = null;
+    var selectedLawyer = null;
+
     function switchRole(role) {
       const roleUrls = {
         'laborer': '14c-laborer.html',
@@ -690,6 +1016,208 @@
       if (roleUrls[role]) {
         window.location.href = roleUrls[role];
       }
+    }
+
+    function showNotification(message, type) {
+      var notification = document.createElement('div');
+      notification.className = 'notification ' + (type || '');
+      notification.innerHTML = '<span>' + message + '</span>';
+      document.body.appendChild(notification);
+      setTimeout(function() {
+        notification.classList.add('show');
+      }, 10);
+      setTimeout(function() {
+        notification.classList.remove('show');
+        setTimeout(function() {
+          notification.remove();
+        }, 300);
+      }, 3000);
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
+
+    document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+      overlay.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('active');
+        }
+      });
+    });
+
+    var applicationData = [
+      { name: '陈某', phone: '138****1234', type: '劳动仲裁', amount: '¥ 28,000', date: '2026-05-10', status: 'pending' },
+      { name: '刘某', phone: '139****5678', type: '诉讼代理', amount: '¥ 45,000', date: '2026-05-09', status: 'processing' },
+      { name: '张某', phone: '137****9012', type: '劳动仲裁', amount: '¥ 15,000', date: '2026-05-08', status: 'approved' },
+      { name: '王某', phone: '136****3456', type: '非诉调解', amount: '¥ 8,000', date: '2026-05-07', status: 'assigned' },
+      { name: '周某', phone: '135****7890', type: '诉讼代理', amount: '¥ 62,000', date: '2026-05-06', status: 'rejected' },
+      { name: '吴某', phone: '134****2345', type: '劳动仲裁', amount: '¥ 22,000', date: '2026-05-05', status: 'approved' },
+      { name: '郑某', phone: '133****6789', type: '劳动仲裁', amount: '¥ 18,500', date: '2026-05-04', status: 'assigned' }
+    ];
+
+    function reviewApplication(name) {
+      var app = applicationData.find(function(a) { return a.name === name; });
+      if (app) {
+        currentApplicant = app;
+        document.getElementById('review-name').textContent = app.name;
+        document.getElementById('review-phone').textContent = app.phone;
+        document.getElementById('review-type').textContent = app.type;
+        document.getElementById('review-amount').textContent = app.amount;
+        document.getElementById('review-date').textContent = app.date;
+        document.getElementById('review-result').value = '';
+        document.getElementById('review-remark').value = '';
+        document.getElementById('review-modal').classList.add('active');
+      }
+    }
+
+    function submitReview() {
+      var result = document.getElementById('review-result').value;
+      var remark = document.getElementById('review-remark').value;
+      if (!result) {
+        showNotification('请选择审核结果', 'warning');
+        return;
+      }
+      var statusMap = { 'approved': 'approved', 'rejected': 'rejected', 'supplement': 'pending' };
+      var statusTextMap = { 'approved': '已通过', 'rejected': '已驳回', 'supplement': '待补充' };
+      if (currentApplicant) {
+        currentApplicant.status = statusMap[result];
+        updateTableRow(currentApplicant);
+      }
+      closeModal('review-modal');
+      showNotification('审核提交成功，状态更新为：' + statusTextMap[result], 'success');
+    }
+
+    function updateTableRow(app) {
+      var rows = document.querySelectorAll('.application-table tbody tr');
+      rows.forEach(function(row) {
+        if (row.querySelector('.applicant-name').textContent === app.name) {
+          var statusBadge = row.querySelector('.status-badge');
+          statusBadge.className = 'status-badge ' + app.status;
+          statusBadge.textContent = app.status === 'pending' ? '待审核' :
+                                  app.status === 'processing' ? '审核中' :
+                                  app.status === 'approved' ? '已通过' :
+                                  app.status === 'rejected' ? '已驳回' : '已指派';
+          var actionCell = row.querySelector('td:last-child');
+          if (app.status === 'approved') {
+            actionCell.innerHTML = '<button class="btn btn-sm btn-success" onclick="assignLawyer(\'' + app.name + '\')">指派律师</button>';
+          } else if (app.status === 'assigned') {
+            actionCell.innerHTML = '<button class="btn btn-sm btn-secondary" onclick="viewApplication(\'' + app.name + '\')">查看</button>';
+          } else if (app.status === 'rejected') {
+            actionCell.innerHTML = '<button class="btn btn-sm btn-secondary" onclick="viewApplicationDetail(\'' + app.name + '\')">详情</button>';
+          } else {
+            actionCell.innerHTML = '<button class="btn btn-sm btn-primary" onclick="reviewApplication(\'' + app.name + '\')">审核</button>';
+          }
+        }
+      });
+    }
+
+    function viewApplication(name) {
+      var app = applicationData.find(function(a) { return a.name === name; });
+      if (app) {
+        document.getElementById('detail-name').textContent = app.name;
+        document.getElementById('detail-phone').textContent = app.phone;
+        document.getElementById('detail-type').textContent = app.type;
+        document.getElementById('detail-amount').textContent = app.amount;
+        document.getElementById('detail-date').textContent = app.date;
+        document.getElementById('detail-status').textContent = getStatusText(app.status);
+        document.getElementById('detail-lawyer').textContent = app.lawyer || '待指派';
+        document.getElementById('detail-modal').classList.add('active');
+      }
+    }
+
+    function viewApplicationDetail(name) {
+      viewApplication(name);
+    }
+
+    function getStatusText(status) {
+      return status === 'pending' ? '待审核' :
+             status === 'processing' ? '审核中' :
+             status === 'approved' ? '已通过' :
+             status === 'rejected' ? '已驳回' : '已指派';
+    }
+
+    function assignLawyer(name) {
+      var app = applicationData.find(function(a) { return a.name === name; });
+      if (app) {
+        currentApplicant = app;
+        selectedLawyer = null;
+        document.querySelectorAll('.lawyer-select-card').forEach(function(card) {
+          card.classList.remove('selected');
+        });
+        document.getElementById('assign-applicant').textContent = app.name;
+        document.getElementById('assign-remark').value = '';
+        document.getElementById('assign-modal').classList.add('active');
+      }
+    }
+
+    function selectLawyer(card, lawyerName) {
+      document.querySelectorAll('.lawyer-select-card').forEach(function(c) {
+        c.classList.remove('selected');
+      });
+      card.classList.add('selected');
+      selectedLawyer = lawyerName;
+    }
+
+    function submitAssign() {
+      if (!selectedLawyer) {
+        showNotification('请选择律师', 'warning');
+        return;
+      }
+      if (currentApplicant) {
+        currentApplicant.status = 'assigned';
+        currentApplicant.lawyer = selectedLawyer;
+        updateTableRow(currentApplicant);
+      }
+      closeModal('assign-modal');
+      showNotification('已指派 ' + selectedLawyer + ' 为援助律师', 'success');
+    }
+
+    function assignToLawyer(lawyerName) {
+      showNotification('已指派 ' + lawyerName + '，请先选择申请人', 'info');
+    }
+
+    function uploadFile() {
+      showNotification('文件上传功能开发中...', 'info');
+    }
+
+    function submitNewApplication() {
+      var name = document.getElementById('new-name').value;
+      var phone = document.getElementById('new-phone').value;
+      if (!name || !phone) {
+        showNotification('请填写必填信息', 'warning');
+        return;
+      }
+      var newApp = {
+        name: name,
+        phone: phone,
+        type: document.getElementById('new-type').value || '劳动仲裁',
+        amount: '¥ ' + (document.getElementById('new-amount').value || '0'),
+        date: new Date().toISOString().split('T')[0],
+        status: 'pending'
+      };
+      applicationData.unshift(newApp);
+      addTableRow(newApp);
+      closeModal('new-app-modal');
+      showNotification('申请已提交，等待审核', 'success');
+      document.getElementById('new-name').value = '';
+      document.getElementById('new-phone').value = '';
+      document.getElementById('new-type').value = '';
+      document.getElementById('new-amount').value = '';
+      document.getElementById('new-desc').value = '';
+    }
+
+    function addTableRow(app) {
+      var tbody = document.querySelector('.application-table tbody');
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td class="applicant-name">' + app.name + '</td>' +
+                     '<td>' + app.phone + '</td>' +
+                     '<td>' + app.type + '</td>' +
+                     '<td>' + app.amount + '</td>' +
+                     '<td>' + app.date + '</td>' +
+                     '<td><span class="status-badge pending">待审核</span></td>' +
+                     '<td><button class="btn btn-sm btn-primary" onclick="reviewApplication(\'' + app.name + '\')">审核</button></td>';
+      tbody.insertBefore(tr, tbody.firstChild);
     }
   </script>
 </body>

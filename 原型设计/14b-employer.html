@@ -855,7 +855,113 @@
       background: rgba(82, 196, 26, 0.05);
     }
 
+    /* 通知样式 */
+    .notification {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      padding: 12px 24px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      z-index: 10002;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transform: translateX(120%);
+      transition: all 0.3s ease;
+    }
+
+    .notification.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .notification.success { border-left: 4px solid #52c41a; }
+    .notification.warning { border-left: 4px solid #faad14; }
+    .notification.info { border-left: 4px solid #1677ff; }
+    .notification.error { border-left: 4px solid #ff4d4f; }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: white;
+      border-radius: var(--radius-lg);
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow: auto;
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 { margin: 0; font-size: 18px; }
+
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .modal-body { padding: 24px; }
+
+    .modal-footer {
+      padding: 16px 24px;
+      background: var(--bg-secondary);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
     /* 响应式 */
+    .mb-16 { margin-bottom: 16px; }
+    .col-6 { flex: 0 0 50%; max-width: 50%; padding: 0 8px; box-sizing: border-box; }
+    .form-row { display: flex; flex-wrap: wrap; margin: 0 -8px; }
+    .form-textarea { width: 100%; padding: 10px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 14px; background: white; color: var(--text-primary); transition: all 0.3s ease; resize: vertical; }
+    .form-textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.1); }
+
+    .card { background: white; border-radius: var(--radius-lg); border: 1px solid var(--border-color); overflow: hidden; margin-bottom: 24px; }
+    .card h3 { font-size: 16px; font-weight: 600; margin: 0 0 16px 0; }
+    .table { width: 100%; border-collapse: collapse; }
+    .table thead { background: linear-gradient(135deg, rgba(82, 196, 26, 0.05) 0%, rgba(115, 209, 61, 0.05) 100%); }
+    .table th { text-align: left; padding: 14px 16px; font-size: 13px; font-weight: 600; color: var(--text-primary); border-bottom: 2px solid rgba(82, 196, 26, 0.1); }
+    .table td { padding: 14px 16px; font-size: 13px; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); }
+    .table tbody tr:hover { background: rgba(82, 196, 26, 0.03); }
+    .badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 100px; font-size: 12px; font-weight: 500; }
+    .badge-success { background: rgba(82, 196, 26, 0.1); color: var(--success); }
+    .badge-warning { background: rgba(250, 173, 20, 0.1); color: var(--warning); }
+    .badge-info { background: rgba(22, 119, 255, 0.1); color: var(--primary); }
+    .badge-danger { background: rgba(255, 77, 79, 0.1); color: var(--danger); }
+    .section-header-bar { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--border-color); }
+    .section-title { font-size: 18px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 8px; margin: 0; }
+    .section-title::before { content: ''; width: 4px; height: 20px; background: linear-gradient(180deg, #52c41a 0%, #73d13d 100%); border-radius: 2px; }
+
     @media (max-width: 1200px) {
       .stats-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -911,20 +1017,21 @@
 <body>
   <div class="app-layout">
     <div class="top-tabs">
-      <div class="tab-item active">我的工作台</div>
-      <div class="tab-item">合同管理</div>
-      <div class="tab-item">应诉案件</div>
-      <div class="tab-item">考勤上报</div>
-      <div class="tab-item">工资确认</div>
-      <div class="tab-item">欠薪投诉处理</div>
+      <div class="tab-item active" data-tab="dashboard">我的工作台</div>
+      <div class="tab-item" data-tab="contracts">合同管理</div>
+      <div class="tab-item" data-tab="cases">应诉案件</div>
+      <div class="tab-item" data-tab="attendance">考勤上报</div>
+      <div class="tab-item" data-tab="wage">工资确认</div>
+      <div class="tab-item" data-tab="complaint">欠薪投诉处理</div>
     </div>
 
-    <main class="main-content">
-      <div class="top-nav">
-        <h1 class="page-title">用人单位端</h1>
-      </div>
+    <main class="main-content" id="main-content">
+      <div id="tab-dashboard">
+        <div class="top-nav">
+          <h1 class="page-title">用人单位端</h1>
+        </div>
 
-      <div class="stats-grid">
+        <div class="stats-grid">
         <div class="stat-card employer-stat">
           <div class="number">12</div>
           <div class="label">在职员工数</div>
@@ -974,7 +1081,7 @@
                 <td>2027-01-14</td>
                 <td><span class="status-badge signed">已签署</span></td>
                 <td>
-                  <button class="btn btn-sm btn-secondary">查看</button>
+                  <button class="btn btn-sm btn-secondary" onclick="showNotification('查看合同详情', 'info')">查看</button>
                 </td>
               </tr>
               <tr>
@@ -985,7 +1092,7 @@
                 <td>2027-01-31</td>
                 <td><span class="status-badge processing">签署中</span></td>
                 <td>
-                  <button class="btn btn-sm btn-secondary">提醒</button>
+                  <button class="btn btn-sm btn-warning" onclick="showNotification('已发送签署提醒', 'success')">提醒</button>
                 </td>
               </tr>
               <tr>
@@ -996,7 +1103,7 @@
                 <td>2027-02-28</td>
                 <td><span class="status-badge pending">待签署</span></td>
                 <td>
-                  <button class="btn btn-sm btn-primary">发送</button>
+                  <button class="btn btn-sm btn-primary" onclick="openContractModal()">发送</button>
                 </td>
               </tr>
               <tr>
@@ -1007,7 +1114,7 @@
                 <td>2026-05-31</td>
                 <td><span class="status-badge expired">已过期</span></td>
                 <td>
-                  <button class="btn btn-sm btn-secondary">续签</button>
+                  <button class="btn btn-sm btn-secondary" onclick="showNotification('正在续签...', 'info')">续签</button>
                 </td>
               </tr>
               <tr>
@@ -1018,7 +1125,7 @@
                 <td>2027-03-31</td>
                 <td><span class="status-badge signed">已签署</span></td>
                 <td>
-                  <button class="btn btn-sm btn-secondary">查看</button>
+                  <button class="btn btn-sm btn-secondary" onclick="showNotification('查看合同详情', 'info')">查看</button>
                 </td>
               </tr>
             </tbody>
@@ -1030,10 +1137,10 @@
       <div class="attendance-section">
         <div class="section-header-bar">
           <h2 class="section-title">考勤上报</h2>
-          <button class="btn btn-primary">
-            <span>📤</span>
-            提交考勤
-          </button>
+<button class="btn btn-primary" onclick="openContractModal(); return false;">
+              <span>📤</span>
+              提交考勤
+            </button>
         </div>
         <div class="attendance-form">
           <div class="form-row">
@@ -1123,6 +1230,244 @@
           </table>
         </div>
       </div>
+      </div>
+
+      <!-- 合同管理标签页 -->
+      <div id="tab-contracts" style="display: none;">
+        <div class="top-nav">
+          <h1 class="page-title">合同管理</h1>
+        </div>
+        <div class="contract-section">
+          <div class="section-header-bar">
+            <h2 class="section-title">合同列表</h2>
+            <button class="btn btn-primary" onclick="openContractModal()">
+              <span>➕</span>
+              发起签署
+            </button>
+          </div>
+          <div class="table-wrapper">
+            <table class="contract-table">
+              <thead>
+                <tr>
+                  <th>合同名称</th>
+                  <th>员工姓名</th>
+                  <th>合同类型</th>
+                  <th>签订日期</th>
+                  <th>截止日期</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="contract-name">劳动合同-2026版</td>
+                  <td>张三</td>
+                  <td>全职合同</td>
+                  <td>2026-01-15</td>
+                  <td>2027-01-14</td>
+                  <td><span class="status-badge signed">已签署</span></td>
+                  <td><button class="btn btn-sm btn-secondary" onclick="showNotification('查看合同详情', 'info')">查看</button></td>
+                </tr>
+                <tr>
+                  <td class="contract-name">劳动合同-2026版</td>
+                  <td>李四</td>
+                  <td>全职合同</td>
+                  <td>2026-02-01</td>
+                  <td>2027-01-31</td>
+                  <td><span class="status-badge processing">签署中</span></td>
+                  <td><button class="btn btn-sm btn-warning" onclick="showNotification('已发送签署提醒', 'success')">提醒</button></td>
+                </tr>
+                <tr>
+                  <td class="contract-name">劳务派遣合同</td>
+                  <td>王五</td>
+                  <td>派遣合同</td>
+                  <td>2026-03-01</td>
+                  <td>2027-02-28</td>
+                  <td><span class="status-badge pending">待签署</span></td>
+                  <td><button class="btn btn-sm btn-primary" onclick="openContractModal()">发送</button></td>
+                </tr>
+                <tr>
+                  <td class="contract-name">兼职协议</td>
+                  <td>赵六</td>
+                  <td>兼职合同</td>
+                  <td>2025-06-01</td>
+                  <td>2026-05-31</td>
+                  <td><span class="status-badge expired">已过期</span></td>
+                  <td><button class="btn btn-sm btn-secondary" onclick="showNotification('正在续签...', 'info')">续签</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 应诉案件标签页 -->
+      <div id="tab-cases" style="display: none;">
+        <div class="top-nav">
+          <h1 class="page-title">应诉案件</h1>
+        </div>
+        <div class="card">
+          <div class="section-header-bar">
+            <h2 class="section-title">案件列表</h2>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>案件编号</th>
+                <th>案件类型</th>
+                <th>申请人</th>
+                <th>状态</th>
+                <th>提交时间</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>ZC20260503005</strong></td>
+                <td>工伤赔偿纠纷</td>
+                <td>张三</td>
+                <td><span class="badge badge-info">审理中</span></td>
+                <td>2026-05-03</td>
+                <td><button class="btn btn-sm btn-primary" onclick="showNotification('准备应诉材料...', 'info')">应诉</button></td>
+              </tr>
+              <tr>
+                <td><strong>ZC20260428003</strong></td>
+                <td>劳动报酬纠纷</td>
+                <td>李四</td>
+                <td><span class="badge badge-warning">调解中</span></td>
+                <td>2026-04-28</td>
+                <td><button class="btn btn-sm btn-secondary" onclick="showNotification('查看调解进度', 'info')">查看</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 工资确认标签页 -->
+      <div id="tab-wage" style="display: none;">
+        <div class="top-nav">
+          <h1 class="page-title">工资确认</h1>
+        </div>
+        <div class="wage-confirm-section active" id="wage-confirm-section">
+          <div class="section-header-bar">
+            <h2 class="section-title">待确认工资</h2>
+          </div>
+          <div class="confirm-card">
+            <div class="confirm-icon">👷</div>
+            <div class="confirm-info">
+              <h4>张三 - 2026年4月工资</h4>
+              <p>考勤天数：22天 | 应发工资：8,500元 | 实发工资：8,200元</p>
+            </div>
+            <span class="confirm-status pending">待确认</span>
+            <button class="btn btn-sm btn-primary" onclick="confirmWage(this, '张三')">确认</button>
+          </div>
+          <div class="confirm-card">
+            <div class="confirm-icon">👷</div>
+            <div class="confirm-info">
+              <h4>李四 - 2026年4月工资</h4>
+              <p>考勤天数：20天 | 应发工资：7,500元 | 实发工资：7,200元</p>
+            </div>
+            <span class="confirm-status pending">待确认</span>
+            <button class="btn btn-sm btn-primary" onclick="confirmWage(this, '李四')">确认</button>
+          </div>
+          <div class="confirm-card">
+            <div class="confirm-icon">👷</div>
+            <div class="confirm-info">
+              <h4>王五 - 2026年4月工资</h4>
+              <p>考勤天数：23天 | 应发工资：9,000元 | 实发工资：8,800元</p>
+            </div>
+            <span class="confirm-status confirmed">已确认</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 欠薪投诉处理标签页 -->
+      <div id="tab-complaint" style="display: none;">
+        <div class="top-nav">
+          <h1 class="page-title">欠薪投诉处理</h1>
+        </div>
+        <div class="complaint-section active" id="complaint-section">
+          <div class="section-header-bar">
+            <h2 class="section-title">投诉列表</h2>
+            <button class="btn btn-primary" onclick="openComplaintModal()">
+              <span>📝</span>
+              新建投诉
+            </button>
+          </div>
+          <div style="padding: 16px 24px; background: var(--bg-secondary);">
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+              <select class="form-select" style="width: 150px;">
+                <option value="">全部状态</option>
+                <option>待受理</option>
+                <option>处理中</option>
+                <option>已结案</option>
+              </select>
+              <select class="form-select" style="width: 150px;">
+                <option value="">全部类型</option>
+                <option>工资拖欠</option>
+                <option>加班费</option>
+                <option>经济补偿</option>
+              </select>
+              <button class="btn btn-secondary btn-sm" onclick="showNotification('正在筛选...', 'info')">筛选</button>
+            </div>
+          </div>
+          <div class="complaint-card">
+            <div class="complaint-header">
+              <div>
+                <div class="complaint-title">投诉人：陈小明 - 工资拖欠纠纷</div>
+                <div class="complaint-time">投诉时间：2026-05-08 14:30</div>
+              </div>
+              <span class="complaint-status pending">待受理</span>
+            </div>
+            <div class="complaint-content">公司拖欠2026年3月-4月工资共计15,000元，多次沟通未果。</div>
+            <div class="complaint-evidence">
+              <span class="evidence-tag">📎 劳动合同</span>
+              <span class="evidence-tag">📎 考勤记录</span>
+              <span class="evidence-tag">📎 工资条</span>
+            </div>
+            <div class="complaint-actions">
+              <button class="btn btn-sm btn-warning" onclick="acceptComplaint(this, 'ZC20260508001')">受理</button>
+              <button class="btn btn-sm btn-secondary" onclick="viewComplaintDetail('ZC20260508001')">查看详情</button>
+            </div>
+          </div>
+          <div class="complaint-card">
+            <div class="complaint-header">
+              <div>
+                <div class="complaint-title">投诉人：赵小红 - 加班费纠纷</div>
+                <div class="complaint-time">投诉时间：2026-05-05 09:15</div>
+              </div>
+              <span class="complaint-status processing">处理中</span>
+            </div>
+            <div class="complaint-content">2026年4月加班费共计3,200元未发放，需要公司核实确认。</div>
+            <div class="complaint-evidence">
+              <span class="evidence-tag">📎 加班记录</span>
+              <span class="evidence-tag">📎 工资条</span>
+            </div>
+            <div class="complaint-actions">
+              <button class="btn btn-sm btn-primary" onclick="processComplaint(this, 'ZC20260505002')">处理</button>
+              <button class="btn btn-sm btn-secondary" onclick="viewComplaintDetail('ZC20260505002')">查看详情</button>
+            </div>
+          </div>
+          <div class="complaint-card">
+            <div class="complaint-header">
+              <div>
+                <div class="complaint-title">投诉人：刘大力 - 经济补偿金</div>
+                <div class="complaint-time">投诉时间：2026-04-28 16:45</div>
+              </div>
+              <span class="complaint-status resolved">已结案</span>
+            </div>
+            <div class="complaint-content">解除劳动合同经济补偿金争议，经调解已达成一致意见。</div>
+            <div class="complaint-evidence">
+              <span class="evidence-tag">📎 调解协议书</span>
+            </div>
+            <div class="complaint-actions">
+              <button class="btn btn-sm btn-secondary" onclick="viewComplaintDetail('ZC20260428003')">查看详情</button>
+              <button class="btn btn-sm btn-primary" onclick="showNotification('调解协议已归档', 'success')">导出协议</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 合同签署向导 -->
       <div class="contract-wizard" id="contract-wizard">
         <div class="wizard-steps">
@@ -1305,134 +1650,6 @@
 
         <div style="text-align: center; margin-top: 20px;">
           <button class="btn btn-secondary btn-sm" onclick="closeWizard()">取消</button>
-        </div>
-      </div>
-
-      <!-- 农民工工资确认区域 -->
-      <div class="wage-confirm-section" id="wage-confirm-section">
-        <div class="section-header-bar">
-          <h2 class="section-title">农民工工资确认</h2>
-        </div>
-        <div class="confirm-card">
-          <div class="confirm-icon">👷</div>
-          <div class="confirm-info">
-            <h4>张三 - 2026年4月工资</h4>
-            <p>考勤天数：22天 | 应发工资：8,500元 | 实发工资：8,200元</p>
-          </div>
-          <span class="confirm-status pending">待确认</span>
-          <button class="btn btn-sm btn-primary" onclick="confirmWage(this, '张三')">确认</button>
-        </div>
-        <div class="confirm-card">
-          <div class="confirm-icon">👷</div>
-          <div class="confirm-info">
-            <h4>李四 - 2026年4月工资</h4>
-            <p>考勤天数：20天 | 应发工资：7,500元 | 实发工资：7,200元</p>
-          </div>
-          <span class="confirm-status pending">待确认</span>
-          <button class="btn btn-sm btn-primary" onclick="confirmWage(this, '李四')">确认</button>
-        </div>
-        <div class="confirm-card">
-          <div class="confirm-icon">👷</div>
-          <div class="confirm-info">
-            <h4>王五 - 2026年4月工资</h4>
-            <p>考勤天数：23天 | 应发工资：9,000元 | 实发工资：8,800元</p>
-          </div>
-          <span class="confirm-status confirmed">已确认</span>
-        </div>
-      </div>
-
-      <!-- 欠薪投诉处理区域 -->
-      <div class="complaint-section" id="complaint-section">
-        <div class="section-header-bar">
-          <h2 class="section-title">欠薪投诉处理</h2>
-          <button class="btn btn-primary" onclick="openComplaintModal()">
-            <span>📝</span>
-            新建投诉
-          </button>
-        </div>
-
-        <!-- 投诉筛选 -->
-        <div style="padding: 16px 24px; background: var(--bg-secondary);">
-          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <select class="form-select" style="width: 150px;">
-              <option value="">全部状态</option>
-              <option value="待受理">待受理</option>
-              <option value="处理中">处理中</option>
-              <option value="已结案">已结案</option>
-            </select>
-            <select class="form-select" style="width: 150px;">
-              <option value="">全部类型</option>
-              <option value="工资拖欠">工资拖欠</option>
-              <option value="加班费">加班费</option>
-              <option value="经济补偿">经济补偿</option>
-            </select>
-            <input type="month" class="form-input" style="width: 150px;" value="2026-05">
-            <button class="btn btn-secondary btn-sm">筛选</button>
-          </div>
-        </div>
-
-        <!-- 投诉列表 -->
-        <div class="complaint-card">
-          <div class="complaint-header">
-            <div>
-              <div class="complaint-title">投诉人：陈小明 - 工资拖欠纠纷</div>
-              <div class="complaint-time">投诉时间：2026-05-08 14:30</div>
-            </div>
-            <span class="complaint-status pending">待受理</span>
-          </div>
-          <div class="complaint-content">
-            公司拖欠2026年3月-4月工资共计15,000元，多次沟通未果。
-          </div>
-          <div class="complaint-evidence">
-            <span class="evidence-tag">📎 劳动合同</span>
-            <span class="evidence-tag">📎 考勤记录</span>
-            <span class="evidence-tag">📎 工资条</span>
-          </div>
-          <div class="complaint-actions">
-            <button class="btn btn-sm btn-warning" onclick="acceptComplaint(this, 'ZC20260508001')">受理</button>
-            <button class="btn btn-sm btn-secondary" onclick="viewComplaintDetail('ZC20260508001')">查看详情</button>
-          </div>
-        </div>
-
-        <div class="complaint-card">
-          <div class="complaint-header">
-            <div>
-              <div class="complaint-title">投诉人：赵小红 - 加班费纠纷</div>
-              <div class="complaint-time">投诉时间：2026-05-05 09:15</div>
-            </div>
-            <span class="complaint-status processing">处理中</span>
-          </div>
-          <div class="complaint-content">
-            2026年4月加班费共计3,200元未发放，需要公司核实确认。
-          </div>
-          <div class="complaint-evidence">
-            <span class="evidence-tag">📎 加班记录</span>
-            <span class="evidence-tag">📎 工资条</span>
-          </div>
-          <div class="complaint-actions">
-            <button class="btn btn-sm btn-primary" onclick="processComplaint(this, 'ZC20260505002')">处理</button>
-            <button class="btn btn-sm btn-secondary" onclick="viewComplaintDetail('ZC20260505002')">查看详情</button>
-          </div>
-        </div>
-
-        <div class="complaint-card">
-          <div class="complaint-header">
-            <div>
-              <div class="complaint-title">投诉人：刘大力 - 经济补偿金</div>
-              <div class="complaint-time">投诉时间：2026-04-28 16:45</div>
-            </div>
-            <span class="complaint-status resolved">已结案</span>
-          </div>
-          <div class="complaint-content">
-            解除劳动合同经济补偿金争议，经调解已达成一致意见。
-          </div>
-          <div class="complaint-evidence">
-            <span class="evidence-tag">📎 调解协议书</span>
-          </div>
-          <div class="complaint-actions">
-            <button class="btn btn-sm btn-secondary" onclick="viewComplaintDetail('ZC20260428003')">查看详情</button>
-            <button class="btn btn-sm btn-primary" onclick="showNotification('调解协议已归档', 'success')">导出协议</button>
-          </div>
         </div>
       </div>
     </main>
@@ -1636,12 +1853,31 @@
 
     document.querySelectorAll('.tab-item').forEach(function(tab) {
       tab.addEventListener('click', function() {
-        switchTab(this.textContent);
-        if (this.textContent === '发起签署') {
-          openContractModal();
-        }
+        var tabName = this.getAttribute('data-tab');
+        switchTab(tabName);
       });
     });
+
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-item').forEach(function(tab) {
+        tab.classList.remove('active');
+        if (tab.getAttribute('data-tab') === tabName) {
+          tab.classList.add('active');
+        }
+      });
+
+      document.querySelectorAll('[id^="tab-"]').forEach(function(content) {
+        content.style.display = 'none';
+      });
+
+      var targetContent = document.getElementById('tab-' + tabName);
+      if (targetContent) {
+        targetContent.style.display = 'block';
+      }
+
+      if (tabName === 'contracts') {
+      }
+    }
 
     function confirmWage(btn, name) {
       var card = btn.closest('.confirm-card');

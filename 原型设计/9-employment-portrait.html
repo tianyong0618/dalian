@@ -59,6 +59,7 @@
       </div>
     </div>
 
+    <!-- 数据采集与整合模块 - 仅人社可见 -->
     <div class="gov-only">
     <!-- 数据采集与整合模块 -->
     <div class="section-header mb-32">
@@ -176,8 +177,8 @@
     <!-- 搜索和筛选 -->
     <div class="search-bar mb-24">
       <input type="text" class="form-input" placeholder="搜索姓名、身份证号、标签..." id="person-search" onkeyup="filterPersons()">
-      <button class="btn btn-primary" onclick="showModal('portrait-generate-modal')">+ 生成画像</button>
-      <button class="btn btn-secondary" onclick="showModal('tag-manage-modal')">标签管理</button>
+      <button class="btn btn-primary gov-org-only" onclick="showModal('portrait-generate-modal')">+ 生成画像</button>
+      <button class="btn btn-secondary gov-org-only" onclick="showModal('tag-manage-modal')">标签管理</button>
     </div>
     <div class="filter-bar mb-24">
       <select class="form-select" id="filter-group" onchange="filterPersons()">
@@ -343,8 +344,8 @@
       </div>
     </div> -->
 
-    <!-- 重点群体监测 -->
-    <div class="enterprise-hidden">
+    <!-- 重点群体监测 - 仅人社可见 -->
+    <div class="gov-only">
       <div class="section-header mb-32">
         <h2>重点群体监测</h2>
         <p>动态识别和深入分析各类重点就业群体</p>
@@ -1215,25 +1216,62 @@
 </div>
 
 <script>
+// 用户类型切换
+let currentUserType = 'gov';
+function switchUserType(type) {
+  currentUserType = type;
+  const typeNames = { gov: '人社部门', org: '经营性人力资源服务机构', enterprise: '用工企业' };
+  showNotification(`已切换为：${typeNames[type]}`, 'success');
+
+  // gov-only: 仅人社可见
+  document.querySelectorAll('.gov-only').forEach(el => {
+    el.style.display = (type === 'gov' || type === 'org') ? '' : 'none';
+  });
+
+  // org-only: 仅机构可见
+  document.querySelectorAll('.org-only').forEach(el => {
+    el.style.display = type === 'org' ? '' : 'none';
+  });
+
+  // gov-org-only: 人社和机构可见
+  document.querySelectorAll('.gov-org-only').forEach(el => {
+    el.style.display = (type === 'gov' || type === 'org') ? '' : 'none';
+  });
+
+  // enterprise-hidden: 企业隐藏（人社+机构可见）
+  document.querySelectorAll('.enterprise-hidden').forEach(el => {
+    el.style.display = type === 'enterprise' ? 'none' : '';
+  });
+
+  // gov-org-enterprise-all: 三者都可见
+  document.querySelectorAll('.gov-org-enterprise-all').forEach(el => {
+    el.style.display = '';
+  });
+
+  // 画像类型Tab显示控制
+  document.querySelectorAll('.portrait-tab').forEach((btn, idx) => {
+    if (type === 'gov') {
+      btn.style.display = '';
+    } else if (type === 'org') {
+      btn.style.display = idx === 0 || idx === 2 ? '' : 'none';
+    } else {
+      btn.style.display = idx === 1 ? '' : 'none';
+    }
+  });
+
+  // 数据管理模态框中的安全管理Tab仅人社可见
+  const securityTab = document.querySelector('#data-tab-security');
+  if (securityTab) {
+    securityTab.style.display = (type === 'gov' || type === 'org') ? '' : 'none';
+  }
+}
+
 // 角色切换功能
 function switchRole() {
   const select = document.getElementById('role-switcher');
   const type = select.value;
-  
-  // 更新角色显示标识
-  const roleBadge = document.querySelector('.navbar > .container > div:last-child > div:last-child');
-  const roleNames = {
-    gov: '管',
-    org: '机',
-    enterprise: '企'
-  };
-  roleBadge.textContent = roleNames[type];
-  
-  // 调用用户类型切换函数
   switchUserType(type);
 }
-
-// 人员数据
 const personData = [
   { name: "张三", idCard: "410xxxxxxxxxxxx1234", group: "高校毕业生", education: "本科", portraitType: "talent", competitiveness: 88, stability: 78, skill: 82, match: 91, salaryExp: "15K", tags: ["Java开发", "本科及以上", "3年经验", "社保连续缴纳", "求职意向：互联网"], services: ["📩 推荐岗位：高级Java开发（98%）", "📚 推荐培训：Java进阶（免费）", "💰 可申请补贴：2000元", "🎓 职业路径：Java→专家→架构师"] },
   { name: "李四", idCard: "410xxxxxxxxxxxx5678", group: "就业困难人员", education: "高中", portraitType: "jobseeker", competitiveness: 45, stability: 32, skill: 38, supportIndex: 75, salaryTrend: 65, tags: ["零工人员", "技能培训", "就业帮扶", "高中及以下"], services: ["📩 推荐岗位：仓管员（85%）", "📚 推荐培训：叉车证（免费）", "💰 可申请补贴：就业困难补贴1500元", "🆘 帮扶计划：一对一就业指导"] },
@@ -1549,43 +1587,6 @@ document.addEventListener('DOMContentLoaded', function() {
   switchUserType('gov');
 });
 
-// 用户类型切换（完善版）
-let currentUserType = 'gov'; // gov | org | enterprise
-function switchUserType(type) {
-  currentUserType = type;
-  const typeNames = { gov: '人社部门', org: '经营性人力资源服务机构', enterprise: '用工企业' };
-  showNotification(`已切换为：${typeNames[type]}`, 'success');
-
-  // 人社部门：全部可见
-  if (type === 'gov') {
-    document.querySelectorAll('.enterprise-hidden').forEach(el => el.style.display = '');
-    document.querySelectorAll('.gov-only').forEach(el => {
-      el.style.display = '';
-      el.style.opacity = '1';
-    });
-    document.querySelectorAll('.portrait-tab').forEach(btn => btn.style.display = '');
-  }
-  // 机构：可看求职者+重点群体画像
-  else if (type === 'org') {
-    document.querySelectorAll('.enterprise-hidden').forEach(el => el.style.display = 'none');
-    document.querySelectorAll('.gov-only').forEach(el => {
-      el.style.display = '';
-      el.style.opacity = '1';
-    });
-    const talentTab = document.querySelectorAll('.portrait-tab')[1];
-    if (talentTab) talentTab.style.display = 'none';
-  }
-  // 企业：仅人才画像
-  else if (type === 'enterprise') {
-    document.querySelectorAll('.enterprise-hidden').forEach(el => el.style.display = 'none');
-    document.querySelectorAll('.gov-only').forEach(el => {
-      el.style.display = 'none';
-    });
-    document.querySelectorAll('.portrait-tab').forEach((btn, idx) => {
-      btn.style.display = idx === 1 ? '' : 'none';
-    });
-  }
-}
 // 数据管理Tab切换
 function switchDataTab(tab, btn) {
   const tabs = ['log', 'verify', 'security', 'clean'];
