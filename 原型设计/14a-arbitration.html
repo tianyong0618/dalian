@@ -1882,7 +1882,25 @@
     function showModule(module) {
       document.querySelectorAll('.module-section').forEach(m => m.style.display = 'none');
       const target = document.getElementById('module-' + module);
-      if (target) target.style.display = 'block';
+      if (target) {
+        target.style.display = 'block';
+        
+        // 平滑滚动到目标模块
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        
+        // 添加激活状态高亮
+        setTimeout(() => {
+          target.style.backgroundColor = 'rgba(22, 119, 255, 0.03)';
+          target.style.borderLeft = '4px solid var(--primary)';
+          setTimeout(() => {
+            target.style.backgroundColor = '';
+            target.style.borderLeft = '';
+          }, 2000);
+        }, 300);
+      }
     }
 
     // 云庭审功能
@@ -4128,93 +4146,130 @@
     }
 
     .org-card {
-      background: var(--bg-secondary);
-      border-radius: var(--radius-md);
-      padding: 16px;
-      border-left: 4px solid var(--primary);
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+
+    .org-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .org-card.primary {
+      border-top: 4px solid var(--primary);
+      background: linear-gradient(180deg, rgba(22, 119, 255, 0.05) 0%, white 100%);
     }
 
     .org-card.secondary {
-      border-left-color: var(--primary-gradient-end);
+      border-top: 4px solid var(--success);
+      background: linear-gradient(180deg, rgba(82, 196, 26, 0.05) 0%, white 100%);
     }
 
     .org-card h5 {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin: 0 0 12px 0;
-    }
-
-    .org-name {
       font-size: 15px;
       font-weight: 600;
       color: var(--text-primary);
-      margin-bottom: 8px;
+      margin: 0 0 12px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .org-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
     }
 
     .org-contact {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-secondary);
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
+    }
+
+    .org-contact span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .linkage-timeline {
       position: relative;
-      padding-left: 24px;
+      padding-left: 28px;
     }
 
     .linkage-timeline::before {
       content: '';
       position: absolute;
-      left: 7px;
-      top: 4px;
-      bottom: 4px;
-      width: 2px;
-      background: var(--border-color);
+      left: 10px;
+      top: 8px;
+      bottom: 8px;
+      width: 3px;
+      background: linear-gradient(180deg, var(--primary) 0%, var(--border-color) 100%);
+      border-radius: 2px;
     }
 
     .timeline-org {
       font-size: 12px;
-      color: var(--text-tertiary);
-      margin-top: 4px;
+      color: var(--primary);
+      margin-top: 6px;
+      padding: 2px 8px;
+      background: rgba(22, 119, 255, 0.1);
+      border-radius: var(--radius-sm);
+      display: inline-block;
     }
 
     .task-list {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
 
     .task-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px;
+      gap: 14px;
+      padding: 14px 16px;
       background: var(--bg-secondary);
       border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .task-item:hover {
+      border-color: rgba(22, 119, 255, 0.2);
+      background: rgba(22, 119, 255, 0.03);
     }
 
     .task-item.completed {
       opacity: 0.7;
+      background: rgba(82, 196, 26, 0.05);
     }
 
     .task-checkbox {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       border: 2px solid var(--border-color);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-secondary);
       flex-shrink: 0;
+      transition: all 0.2s ease;
     }
 
     .task-item.completed .task-checkbox {
-      background: var(--success);
+      background: linear-gradient(135deg, var(--success) 0%, #3cb371 100%);
       border-color: var(--success);
       color: white;
     }
@@ -4223,30 +4278,33 @@
       flex: 1;
       font-size: 14px;
       color: var(--text-primary);
+      line-height: 1.5;
     }
 
     .task-org {
       font-size: 12px;
-      color: var(--primary);
+      color: white;
       font-weight: 500;
-      padding: 4px 8px;
-      background: rgba(22, 119, 255, 0.1);
-      border-radius: var(--radius-sm);
+      padding: 5px 12px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%);
+      border-radius: var(--radius-md);
     }
 
     /* 云送达样式 */
     .serve-info {
-      background: var(--bg-secondary);
-      border-radius: var(--radius-md);
-      padding: 16px;
-      margin-bottom: 16px;
+      background: linear-gradient(135deg, rgba(22, 119, 255, 0.05) 0%, rgba(114, 46, 209, 0.05) 100%);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(22, 119, 255, 0.1);
     }
 
     .info-row {
       display: flex;
       justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px solid var(--border-color);
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .info-row:last-child {
@@ -4256,34 +4314,37 @@
     .info-label {
       font-size: 13px;
       color: var(--text-secondary);
+      font-weight: 500;
     }
 
     .info-value {
-      font-size: 13px;
-      font-weight: 500;
+      font-size: 14px;
+      font-weight: 600;
       color: var(--text-primary);
     }
 
     .serve-methods {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 14px;
     }
 
     .method-option {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 12px;
-      background: var(--bg-secondary);
-      border-radius: var(--radius-md);
+      gap: 12px;
+      padding: 16px;
+      background: white;
+      border-radius: var(--radius-lg);
       cursor: pointer;
-      transition: all 0.2s;
-      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      border: 2px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
     }
 
     .method-option:hover {
-      background: var(--bg-tertiary);
+      border-color: rgba(22, 119, 255, 0.3);
+      box-shadow: var(--shadow-md);
     }
 
     .method-option input[type="radio"] {
@@ -4292,69 +4353,99 @@
 
     .method-option input[type="radio"]:checked + .method-icon {
       border-color: var(--primary);
-      background: rgba(22, 119, 255, 0.1);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%);
+      color: white;
+    }
+
+    .method-option input[type="radio"]:checked ~ .method-text {
+      color: var(--primary);
+      font-weight: 600;
     }
 
     .method-icon {
-      width: 32px;
-      height: 32px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 18px;
       border: 2px solid var(--border-color);
-      transition: all 0.2s;
+      transition: all 0.3s ease;
+      background: var(--bg-secondary);
     }
 
     .method-text {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--text-primary);
+      font-weight: 500;
     }
 
     .serve-targets {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
 
     .target-option {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      background: var(--bg-secondary);
-      border-radius: var(--radius-sm);
+      gap: 12px;
+      padding: 12px 16px;
+      background: white;
+      border-radius: var(--radius-md);
       cursor: pointer;
+      border: 1px solid var(--border-color);
+      transition: all 0.2s ease;
+    }
+
+    .target-option:hover {
+      border-color: rgba(22, 119, 255, 0.3);
     }
 
     .target-option input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .target-option span {
+      font-size: 14px;
+      color: var(--text-primary);
     }
 
     .serve-preview {
-      margin-top: 16px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
     }
 
     .serve-preview h4 {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--text-primary);
-      margin: 0 0 12px 0;
+      margin: 0 0 14px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .doc-preview {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px;
-      background: var(--bg-secondary);
-      border-radius: var(--radius-md);
+      gap: 14px;
+      padding: 16px;
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
     }
 
     .doc-preview .doc-icon {
-      font-size: 32px;
+      font-size: 40px;
+      padding: 12px;
+      background: rgba(22, 119, 255, 0.1);
+      border-radius: var(--radius-md);
     }
 
     .doc-info {
@@ -4362,13 +4453,14 @@
     }
 
     .doc-name {
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 15px;
+      font-weight: 600;
       color: var(--text-primary);
+      margin-bottom: 4px;
     }
 
     .doc-size {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-secondary);
     }
 
@@ -4376,19 +4468,164 @@
     .form-row {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap: 18px;
     }
 
     .alert {
-      padding: 12px 16px;
-      border-radius: var(--radius-sm);
-      margin-bottom: 16px;
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .alert-warning {
-      background: rgba(250, 173, 20, 0.1);
+      background: linear-gradient(135deg, rgba(250, 173, 20, 0.1) 0%, rgba(255, 152, 0, 0.05) 100%);
       color: #d48806;
-      border: 1px solid rgba(250, 173, 20, 0.2);
+      border: 1px solid rgba(250, 173, 20, 0.3);
+    }
+
+    /* 庭审排期弹窗样式 */
+    .schedule-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .schedule-modal.active {
+      display: flex;
+    }
+
+    .schedule-modal .modal-content {
+      background: white;
+      border-radius: var(--radius-xl);
+      width: 90%;
+      max-width: 700px;
+      max-height: 90vh;
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      animation: slideUp 0.3s ease;
+    }
+
+    .schedule-modal .modal-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .schedule-modal .modal-header h3 {
+      color: white;
+      font-size: 18px;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .schedule-modal .modal-close {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+
+    .schedule-modal .modal-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .schedule-modal .modal-body {
+      padding: 24px;
+    }
+
+    .schedule-modal .form-group {
+      margin-bottom: 20px;
+    }
+
+    .schedule-modal .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .schedule-modal .form-select,
+    .schedule-modal .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .schedule-modal .form-select:focus,
+    .schedule-modal .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.1);
+    }
+
+    .schedule-modal .modal-footer {
+      padding: 20px 24px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .schedule-modal .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%);
+      border: none;
+      color: white;
+      padding: 12px 24px;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .schedule-modal .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .schedule-modal .btn-secondary {
+      padding: 12px 24px;
+      border-radius: var(--radius-md);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    /* 动画 */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* 案件详情弹窗 */
@@ -4408,13 +4645,50 @@
       display: flex;
     }
 
-    .modal-overlay {
-      position: absolute;
+    /* 弹窗容器样式 */
+    .linkage-detail-modal,
+    .serve-modal {
+      display: none;
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .linkage-detail-modal.active,
+    .serve-modal.active {
+      display: flex;
+    }
+
+    .linkage-detail-modal .modal-overlay,
+    .serve-modal .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100vw;
+      height: 100vh;
       background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      z-index: 9998;
+    }
+
+    .linkage-detail-modal .modal-content,
+    .serve-modal .modal-content {
+      position: relative;
+      background: white;
+      border-radius: var(--radius-lg);
+      width: 90%;
+      max-width: 800px;
+      max-height: 85vh;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      z-index: 9999;
     }
 
     .modal-content {
