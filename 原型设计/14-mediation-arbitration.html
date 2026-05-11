@@ -50,10 +50,10 @@
       <a href="index.html" class="navbar-logo">人社服务数字平台</a>
       <div style="display: flex; align-items: center; gap: 12px;">
         <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px;" id="role-select" onchange="loadRole(this.value)">
+          <option value="arbitration" selected>⚖ 仲裁机构端</option>
           <option value="laborer">👷 劳动者端</option>
           <option value="employer">🏢 用人单位端</option>
-          <option value="arbitration">⚖ 仲裁机构端</option>
-          <option value="supervisor" selected>📊 人社监管端</option>
+          <option value="supervisor">📊 人社监管端</option>
           <option value="legal-aid">🤝 法律援助端</option>
         </select>
       </div>
@@ -61,7 +61,7 @@
   </nav>
 
   <main class="spa-content">
-    <iframe id="content-frame" src="14e-supervisor.html" frameborder="0"></iframe>
+    <iframe id="content-frame" src="14a-arbitration.html" frameborder="0"></iframe>
   </main>
 </div>
 
@@ -85,7 +85,7 @@
   };
 
   // 当前角色
-  let currentRole = 'supervisor';
+  let currentRole = 'arbitration';
 
   // 加载角色页面
   function loadRole(role) {
@@ -119,7 +119,7 @@
       document.getElementById('content-frame').src = ROLE_PAGES[role];
     } else {
       // 默认加载劳动者端
-      document.getElementById('role-select').value = 'supervisor';
+      document.getElementById('role-select').value = 'arbitration';
     }
   });
 </script>
