@@ -834,87 +834,291 @@
   </div>
 </div>
 
-<!-- 人员详情模态框（升级版） -->
+<!-- 人员详情模态框（人才全息画像） -->
 <div class="modal-overlay" id="person-detail-modal">
-  <div class="modal" style="max-width: 900px;">
-    <div class="modal-header">
-      <h3 id="detail-person-name">人员画像详情</h3>
-      <button class="modal-close" onclick="closeModal('person-detail-modal')">&times;</button>
-    </div>
-    <div class="modal-body">
-      <!-- 画像类型切换Tab -->
-      <div id="portrait-type-tabs" style="display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px;">
-        <button class="portrait-tab active" onclick="switchPortraitType('jobseeker', this)" style="padding: 8px 16px; border: 2px solid var(--primary); background: rgba(22, 119, 255, 0.1); color: var(--primary); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;">📋 求职者画像</button>
-        <button class="portrait-tab" onclick="switchPortraitType('talent', this)" style="padding: 8px 16px; border: 2px solid var(--border-color); background: none; color: var(--text-secondary); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;">💼 人才画像</button>
-        <button class="portrait-tab" onclick="switchPortraitType('keygroup', this)" style="padding: 8px 16px; border: 2px solid var(--border-color); background: none; color: var(--text-secondary); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;">👥 重点群体画像</button>
-      </div>
-
-      <!-- 公共信息 -->
-      <div class="row mb-24">
-        <div class="col-6">
-          <div class="form-group">
-            <label class="form-label">姓名</label>
-            <div id="detail-name" class="text-h3"></div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="form-group">
-            <label class="form-label">重点群体</label>
-            <div id="detail-group"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 求职者画像维度 -->
-      <div id="portrait-jobseeker" class="portrait-content">
-        <div class="row mb-24">
-          <div class="col-3"><div class="stat-card" style="padding: 16px;"><div class="number" id="detail-competitiveness" style="font-size: 24px;">0%</div><div class="label">教育竞争力</div></div></div>
-          <div class="col-3"><div class="stat-card" style="padding: 16px;"><div class="number" id="detail-stability" style="font-size: 24px;">0%</div><div class="label">就业稳定性</div></div></div>
-          <div class="col-3"><div class="stat-card" style="padding: 16px;"><div class="number" id="detail-support-index" style="font-size: 24px;">0%</div><div class="label">帮扶指数</div></div></div>
-          <div class="col-3"><div class="stat-card" style="padding: 16px;"><div class="number" id="detail-salary-trend" style="font-size: 24px;">0%</div><div class="label">薪资趋势</div></div></div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">标签列表（帮扶标签 + 意向标签）</label>
-          <div id="detail-tags-jobseeker" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
-        </div>
-      </div>
-
-      <!-- 人才画像维度 -->
-      <div id="portrait-talent" class="portrait-content" style="display: none;">
-        <div class="row mb-24">
-          <div class="col-3"><div class="stat-card" style="padding: 16px;"><div class="number" style="font-size: 24px;" id="detail-education-bg">-</div><div class="label">教育经历</div></div></div>
-          <div class="col-3"><div class="stat-card" style="padding: 16px;"><div class="number" id="detail-skill" style="font-size: 24px;">0%</div><div class="label">职业技能</div></div></div>
-          <div class="col-3"><div class="stat-card" style="padding: 16px;"><div class="number" id="detail-match" style="font-size: 24px;">0%</div><div class="label">意向匹配度</div></div></div>
-          <div class="col-3"><div class="stat-card" style="padding: 16px;"><div class="number" id="detail-salary-exp" style="font-size: 24px;">-</div><div class="label">薪资预期</div></div></div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">标签列表（技能标签 + 教育标签）</label>
-          <div id="detail-tags-talent" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
-        </div>
-      </div>
-
-      <!-- 重点群体画像维度 -->
-      <div id="portrait-keygroup" class="portrait-content" style="display: none;">
-        <div class="row mb-24">
-          <div class="col-4"><div class="stat-card" style="padding: 16px;"><div class="number" id="detail-group-scale" style="font-size: 24px;">0</div><div class="label">群体规模</div></div></div>
-          <div class="col-4"><div class="stat-card" style="padding: 16px;"><div class="number" id="detail-group-rate" style="font-size: 24px;">0%</div><div class="label">群体就业率</div></div></div>
-          <div class="col-4"><div class="stat-card" style="padding: 16px;"><div class="number" id="detail-group-demand" style="font-size: 20px;">-</div><div class="label">主要需求</div></div></div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">标签列表（基础信息 + 帮扶标签）</label>
-          <div id="detail-tags-keygroup" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
-        </div>
-      </div>
-
-      <!-- 个性化服务推送（公共） -->
-      <div class="form-group mt-16">
-        <label class="form-label">个性化服务推送</label>
-        <div id="detail-services" style="display: flex; flex-direction: column; gap: 8px;"></div>
+  <div class="modal" style="max-width: 1100px; max-height: 85vh; overflow: hidden; display: flex; flex-direction: column;">
+    <!-- 头部 -->
+    <div style="background: linear-gradient(135deg, #0a1628 0%, #1a365d 100%); color: white; padding: 16px 24px; flex-shrink: 0;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 id="detail-person-name" style="color: white; margin: 0; font-size: 20px;">人才全息画像</h3>
+        <button class="modal-close" onclick="closeModal('person-detail-modal')" style="color: white; opacity: 1; background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
       </div>
     </div>
-    <div class="modal-footer">
-      <button class="btn btn-secondary" onclick="closeModal('person-detail-modal')">关闭</button>
-      <button class="btn btn-primary" onclick="showModal('job-recommend-modal')">查看推荐岗位</button>
+    <!-- 内容区 -->
+    <div style="flex: 1; overflow-y: auto; padding: 20px 24px; background: linear-gradient(180deg, #0a1628 0%, #0f1f38 100%);">
+      
+      <!-- 顶部三栏布局 -->
+      <div style="display: grid; grid-template-columns: 180px 1fr 180px; gap: 16px; margin-bottom: 16px;">
+        <!-- 左侧：成长积分雷达图 -->
+        <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 1px solid #2a5a8a; border-radius: 12px; padding: 14px;">
+          <h4 style="color: #5ae8ff; margin: 0 0 10px 0; font-size: 13px; text-align: center;">🔷 成长积分</h4>
+          <div style="display: flex; align-items: center; justify-content: center;">
+            <svg width="140" height="140" viewBox="0 0 160 160">
+              <polygon points="80,15 145,50 125,115 35,115 15,50" fill="none" stroke="#2a5a8a" stroke-width="1"/>
+              <polygon points="80,35 125,60 110,100 50,100 35,60" fill="none" stroke="#3a7aaa" stroke-width="1" opacity="0.5"/>
+              <polygon points="80,55 110,70 100,90 60,90 50,70" fill="rgba(90,232,255,0.3)" stroke="#5ae8ff" stroke-width="2"/>
+              <text x="80" y="12" fill="#8ab4d4" font-size="9" text-anchor="middle">类型一</text>
+              <text x="152" y="52" fill="#8ab4d4" font-size="9" text-anchor="start">类型二</text>
+              <text x="130" y="125" fill="#8ab4d4" font-size="9" text-anchor="middle">类型三</text>
+              <text x="30" y="125" fill="#8ab4d4" font-size="9" text-anchor="middle">类型四</text>
+              <text x="8" y="52" fill="#8ab4d4" font-size="9" text-anchor="end">类型五</text>
+            </svg>
+          </div>
+        </div>
+        
+        <!-- 中间：人员信息 -->
+        <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 2px solid #3a7aaa; border-radius: 12px; padding: 16px;">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <!-- 头像 -->
+            <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #2a5a8a 0%, #5ae8ff 100%); display: flex; align-items: center; justify-content: center; font-size: 36px; flex-shrink: 0;">👤</div>
+            <!-- 基本信息 -->
+            <div style="flex: 1; min-width: 0;">
+              <h3 id="detail-name" style="color: #5ae8ff; margin: 0 0 6px 0; font-size: 18px;">刘某某</h3>
+              <div style="color: #8ab4d4; font-size: 12px; margin-bottom: 8px;">
+                <span style="background: rgba(90,232,255,0.2); border: 1px solid #5ae8ff; padding: 2px 8px; border-radius: 4px; font-size: 11px;">男 | 汉族</span>
+              </div>
+              <div style="color: #a0c8e8; font-size: 12px; line-height: 1.6;">
+                <div>📅 生日：1990年12月22日（35岁）</div>
+                <div>🎓 学历：博士研究生</div>
+                <div>💼 职位：国网某省电力公司经济法律部法律事务处副处长</div>
+              </div>
+            </div>
+            <!-- 能力标签 -->
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; max-width: 200px;">
+              <span class="tag" style="background: rgba(42,90,138,0.6); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 10px; padding: 3px 8px;">人工智能</span>
+              <span class="tag" style="background: rgba(42,90,138,0.6); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 10px; padding: 3px 8px;">数据库</span>
+              <span class="tag" style="background: rgba(42,90,138,0.6); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 10px; padding: 3px 8px;">技术架构</span>
+              <span class="tag" style="background: rgba(42,90,138,0.6); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 10px; padding: 3px 8px;">经验丰富</span>
+              <span class="tag" style="background: rgba(42,90,138,0.6); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 10px; padding: 3px 8px;">项目管理</span>
+            </div>
+          </div>
+          <!-- 底部四个指标 -->
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 14px;">
+            <div style="background: rgba(42,90,138,0.3); border: 1px solid #3a7aaa; border-radius: 8px; padding: 10px; text-align: center;">
+              <div style="font-size: 16px; color: #5ae8ff;">🎓</div>
+              <div style="color: #8ab4d4; font-size: 10px; margin-top: 2px;">最高学历</div>
+              <div style="color: #5ae8ff; font-weight: 600; font-size: 13px;">博士</div>
+            </div>
+            <div style="background: rgba(42,90,138,0.3); border: 1px solid #3a7aaa; border-radius: 8px; padding: 10px; text-align: center;">
+              <div style="font-size: 16px; color: #5ae8ff;">💼</div>
+              <div style="color: #8ab4d4; font-size: 10px; margin-top: 2px;">工作经历</div>
+              <div style="color: #5ae8ff; font-weight: 600; font-size: 13px;">5年</div>
+            </div>
+            <div style="background: rgba(42,90,138,0.3); border: 1px solid #3a7aaa; border-radius: 8px; padding: 10px; text-align: center;">
+              <div style="font-size: 16px; color: #5ae8ff;">📄</div>
+              <div style="color: #8ab4d4; font-size: 10px; margin-top: 2px;">发表论文</div>
+              <div style="color: #5ae8ff; font-weight: 600; font-size: 13px;">3篇</div>
+            </div>
+            <div style="background: rgba(42,90,138,0.3); border: 1px solid #3a7aaa; border-radius: 8px; padding: 10px; text-align: center;">
+              <div style="font-size: 16px; color: #5ae8ff;">👥</div>
+              <div style="color: #8ab4d4; font-size: 10px; margin-top: 2px;">参与项目</div>
+              <div style="color: #5ae8ff; font-weight: 600; font-size: 13px;">10个</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 右侧：潜力 -->
+        <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 1px solid #2a5a8a; border-radius: 12px; padding: 14px;">
+          <h4 style="color: #5ae8ff; margin: 0 0 10px 0; font-size: 13px; text-align: center;">🔷 潜力</h4>
+          <div style="display: flex; align-items: center; justify-content: center;">
+            <svg width="140" height="140" viewBox="0 0 160 160">
+              <polygon points="80,10 140,40 140,95 80,125 20,95 20,40" fill="none" stroke="#2a5a8a" stroke-width="1"/>
+              <polygon points="80,28 120,50 120,88 80,110 40,88 40,50" fill="none" stroke="#3a7aaa" stroke-width="1" opacity="0.5"/>
+              <polygon points="80,48 105,62 105,85 80,98 55,85 55,62" fill="rgba(90,232,255,0.3)" stroke="#5ae8ff" stroke-width="2"/>
+              <text x="80" y="8" fill="#8ab4d4" font-size="9" text-anchor="middle">类型一</text>
+              <text x="148" y="42" fill="#8ab4d4" font-size="9" text-anchor="start">类型二</text>
+              <text x="148" y="100" fill="#8ab4d4" font-size="9" text-anchor="start">类型三</text>
+              <text x="80" y="138" fill="#8ab4d4" font-size="9" text-anchor="middle">类型四</text>
+              <text x="12" y="100" fill="#8ab4d4" font-size="9" text-anchor="end">类型五</text>
+              <text x="12" y="42" fill="#8ab4d4" font-size="9" text-anchor="end">类型六</text>
+              <text x="80" y="78" fill="#5ae8ff" font-size="12" font-weight="bold" text-anchor="middle">67.60</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 第二行：左右两栏 -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+        <!-- 培训情况 -->
+        <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 1px solid #2a5a8a; border-radius: 12px; padding: 14px;">
+          <h4 style="color: #5ae8ff; margin: 0 0 12px 0; font-size: 13px;">🔷 培训情况</h4>
+          <div id="detail-training" style="color: #a0c8e8;">
+            <div style="display: flex; gap: 12px; margin-bottom: 10px;">
+              <div style="width: 60px; text-align: center;">
+                <div style="width: 8px; height: 8px; background: #5ae8ff; border-radius: 50%; margin: 4px auto 0;"></div>
+                <div style="width: 2px; height: 100%; background: #3a7aaa; margin: 0 auto;"></div>
+              </div>
+              <div style="flex: 1; padding-bottom: 10px; border-bottom: 1px solid rgba(42,90,138,0.3);">
+                <div style="font-size: 11px; color: #8ab4d4;">2022-03</div>
+                <div style="font-size: 12px; margin-top: 2px;">参加管理干部实务学习培训</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px; margin-bottom: 10px;">
+              <div style="width: 60px; text-align: center;">
+                <div style="width: 8px; height: 8px; background: #3a7aaa; border-radius: 50%; margin: 4px auto 0;"></div>
+                <div style="width: 2px; height: 100%; background: #3a7aaa; margin: 0 auto;"></div>
+              </div>
+              <div style="flex: 1; padding-bottom: 10px; border-bottom: 1px solid rgba(42,90,138,0.3);">
+                <div style="font-size: 11px; color: #8ab4d4;">2021-05</div>
+                <div style="font-size: 12px; margin-top: 2px;">参加管理能力提升培训</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px; margin-bottom: 10px;">
+              <div style="width: 60px; text-align: center;">
+                <div style="width: 8px; height: 8px; background: #3a7aaa; border-radius: 50%; margin: 4px auto 0;"></div>
+                <div style="width: 2px; height: 100%; background: #3a7aaa; margin: 0 auto;"></div>
+              </div>
+              <div style="flex: 1; padding-bottom: 10px; border-bottom: 1px solid rgba(42,90,138,0.3);">
+                <div style="font-size: 11px; color: #8ab4d4;">2020-07</div>
+                <div style="font-size: 12px; margin-top: 2px;">参加专业技术培训</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px;">
+              <div style="width: 60px; text-align: center;">
+                <div style="width: 8px; height: 8px; background: #2a5a8a; border-radius: 50%; margin: 4px auto 0;"></div>
+              </div>
+              <div style="flex: 1;">
+                <div style="font-size: 11px; color: #8ab4d4;">2019-11</div>
+                <div style="font-size: 12px; margin-top: 2px;">参加岗前培训</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 素质基础 -->
+        <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 1px solid #2a5a8a; border-radius: 12px; padding: 14px;">
+          <h4 style="color: #5ae8ff; margin: 0 0 12px 0; font-size: 13px;">🔷 素质基础</h4>
+          <div id="detail-quality" style="color: #a0c8e8;">
+            <div style="margin-bottom: 10px;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                <span style="font-size: 12px;">工作年限</span>
+                <span style="font-size: 12px; color: #5ae8ff;">5年</span>
+              </div>
+              <div style="background: rgba(42,90,138,0.5); height: 6px; border-radius: 3px;"><div style="width: 80%; height: 100%; background: linear-gradient(90deg, #5ae8ff, #3a7aaa); border-radius: 3px;"></div></div>
+            </div>
+            <div style="margin-bottom: 10px;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                <span style="font-size: 12px;">单位经历</span>
+                <span style="font-size: 12px; color: #5ae8ff;">生产部·建设部</span>
+              </div>
+              <div style="background: rgba(42,90,138,0.5); height: 6px; border-radius: 3px;"><div style="width: 75%; height: 100%; background: linear-gradient(90deg, #5ae8ff, #3a7aaa); border-radius: 3px;"></div></div>
+            </div>
+            <div style="margin-bottom: 10px;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                <span style="font-size: 12px;">岗位经历</span>
+                <span style="font-size: 12px; color: #5ae8ff;">5年生产、3年管理</span>
+              </div>
+              <div style="background: rgba(42,90,138,0.5); height: 6px; border-radius: 3px;"><div style="width: 85%; height: 100%; background: linear-gradient(90deg, #5ae8ff, #3a7aaa); border-radius: 3px;"></div></div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                <span style="font-size: 12px;">人员调动</span>
+                <span style="font-size: 12px; color: #5ae8ff;">高职级调整</span>
+              </div>
+              <div style="background: rgba(42,90,138,0.5); height: 6px; border-radius: 3px;"><div style="width: 70%; height: 100%; background: linear-gradient(90deg, #5ae8ff, #3a7aaa); border-radius: 3px;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 第三行：履历 + 获得专家人才称号 -->
+      <div style="display: grid; grid-template-columns: 1fr 280px; gap: 16px;">
+        <!-- 履历 -->
+        <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 1px solid #2a5a8a; border-radius: 12px; padding: 14px;">
+          <h4 style="color: #5ae8ff; margin: 0 0 12px 0; font-size: 13px;">🔷 履历</h4>
+          <div id="detail-resume" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+            <div>
+              <div style="text-align: center; color: #8ab4d4; font-size: 11px; margin-bottom: 8px;">教育背景</div>
+              <div style="border-left: 2px solid #3a7aaa; padding-left: 10px;">
+                <div style="position: relative; padding-left: 14px; margin-bottom: 10px;">
+                  <div style="position: absolute; left: -7px; top: 3px; width: 8px; height: 8px; background: #5ae8ff; border-radius: 50%;"></div>
+                  <div style="font-size: 10px; color: #8ab4d4;">2015-2019</div>
+                  <div style="font-size: 11px; color: #a0c8e8;">本科</div>
+                </div>
+                <div style="position: relative; padding-left: 14px; margin-bottom: 10px;">
+                  <div style="position: absolute; left: -7px; top: 3px; width: 8px; height: 8px; background: #3a7aaa; border-radius: 50%;"></div>
+                  <div style="font-size: 10px; color: #8ab4d4;">2019-2022</div>
+                  <div style="font-size: 11px; color: #a0c8e8;">硕士</div>
+                </div>
+                <div style="position: relative; padding-left: 14px;">
+                  <div style="position: absolute; left: -7px; top: 3px; width: 8px; height: 8px; background: #2a5a8a; border-radius: 50%;"></div>
+                  <div style="font-size: 10px; color: #8ab4d4;">2022-至今</div>
+                  <div style="font-size: 11px; color: #a0c8e8;">博士</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div style="text-align: center; color: #8ab4d4; font-size: 11px; margin-bottom: 8px;">毕业院校</div>
+              <div style="border-left: 2px solid #3a7aaa; padding-left: 10px;">
+                <div style="position: relative; padding-left: 14px; margin-bottom: 10px;">
+                  <div style="position: absolute; left: -7px; top: 3px; width: 8px; height: 8px; background: #5ae8ff; border-radius: 50%;"></div>
+                  <div style="font-size: 11px; color: #a0c8e8;">政法大学</div>
+                  <div style="font-size: 10px; color: #6a9ac4;">法学专业</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div style="text-align: center; color: #8ab4d4; font-size: 11px; margin-bottom: 8px;">职位晋升</div>
+              <div style="border-left: 2px solid #3a7aaa; padding-left: 10px;">
+                <div style="position: relative; padding-left: 14px; margin-bottom: 10px;">
+                  <div style="position: absolute; left: -7px; top: 3px; width: 8px; height: 8px; background: #5ae8ff; border-radius: 50%;"></div>
+                  <div style="font-size: 10px; color: #8ab4d4;">2012-2013</div>
+                  <div style="font-size: 11px; color: #a0c8e8;">科长</div>
+                </div>
+                <div style="position: relative; padding-left: 14px;">
+                  <div style="position: absolute; left: -7px; top: 3px; width: 8px; height: 8px; background: #3a7aaa; border-radius: 50%;"></div>
+                  <div style="font-size: 10px; color: #8ab4d4;">2013-至今</div>
+                  <div style="font-size: 11px; color: #a0c8e8;">处长</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div style="text-align: center; color: #8ab4d4; font-size: 11px; margin-bottom: 8px;">工作单位</div>
+              <div style="border-left: 2px solid #3a7aaa; padding-left: 10px;">
+                <div style="position: relative; padding-left: 14px; margin-bottom: 10px;">
+                  <div style="position: absolute; left: -7px; top: 3px; width: 8px; height: 8px; background: #5ae8ff; border-radius: 50%;"></div>
+                  <div style="font-size: 11px; color: #a0c8e8;">电力公司</div>
+                  <div style="font-size: 10px; color: #6a9ac4;">法律事务处副处长</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 获得专家人才称号 -->
+        <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 1px solid #2a5a8a; border-radius: 12px; padding: 14px;">
+          <h4 style="color: #5ae8ff; margin: 0 0 12px 0; font-size: 13px;">🔷 获得专家人才称号</h4>
+          <div id="detail-titles" style="color: #a0c8e8;">
+            <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(42,90,138,0.3); border: 1px solid #3a7aaa; border-radius: 8px; margin-bottom: 8px;">
+              <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #5ae8ff, #3a7aaa); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px;">🏆</div>
+              <div>
+                <div style="font-size: 12px; font-weight: 500; color: #5ae8ff;">地市专家人才称号</div>
+                <div style="font-size: 10px; color: #8ab4d4;">2019-05</div>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(42,90,138,0.3); border: 1px solid #3a7aaa; border-radius: 8px; margin-bottom: 8px;">
+              <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #5ae8ff, #3a7aaa); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px;">🏅</div>
+              <div>
+                <div style="font-size: 12px; font-weight: 500; color: #5ae8ff;">省公司级人才</div>
+                <div style="font-size: 10px; color: #8ab4d4;">2018-03</div>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(42,90,138,0.3); border: 1px solid #3a7aaa; border-radius: 8px;">
+              <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #5ae8ff, #3a7aaa); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px;">🎖️</div>
+              <div>
+                <div style="font-size: 12px; font-weight: 500; color: #5ae8ff;">工程技术专家</div>
+                <div style="font-size: 10px; color: #8ab4d4;">2019-05</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <!-- 底部按钮 -->
+    <div style="background: #0a1628; border-top: 1px solid #2a5a8a; padding: 12px 24px; display: flex; justify-content: flex-end; gap: 12px; flex-shrink: 0;">
+      <button class="btn btn-secondary" onclick="closeModal('person-detail-modal')" style="background: rgba(42,90,138,0.5); border: 1px solid #3a7aaa; color: #8ab4d4; padding: 8px 20px; border-radius: 6px; cursor: pointer;">关闭</button>
+      <button class="btn btn-primary" onclick="showModal('job-recommend-modal')" style="background: linear-gradient(135deg, #5ae8ff, #3a7aaa); border: none; color: #0a1628; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600;">查看推荐岗位</button>
     </div>
   </div>
 </div>
@@ -1058,54 +1262,139 @@ function filterPersons() {
   });
 }
 
-// 查看人员详情（支持三类画像）
+// 查看人员详情（人才全息画像）
 function viewPersonDetail(index) {
   const person = personData[index];
-  document.getElementById('detail-person-name').textContent = person.name + ' 的画像详情';
+  document.getElementById('detail-person-name').textContent = '人才全息画像 - ' + person.name;
   document.getElementById('detail-name').textContent = person.name;
-  document.getElementById('detail-group').innerHTML = `<span class="badge badge-info">${person.group}</span>`;
 
-  // 求职者画像
-  document.getElementById('detail-competitiveness').textContent = person.competitiveness + '%';
-  document.getElementById('detail-stability').textContent = person.stability + '%';
-  document.getElementById('detail-support-index').textContent = (person.supportIndex || 65) + '%';
-  document.getElementById('detail-salary-trend').textContent = (person.salaryTrend || 71) + '%';
+  // 更新培训情况
+  const trainingHtml = `
+    <div class="mb-12" style="padding: 10px; background: rgba(42,90,138,0.2); border-left: 3px solid #5ae8ff; border-radius: 4px;">
+      <div style="font-size: 12px; color: #8ab4d4;">2022-03</div>
+      <div style="font-size: 13px; margin-top: 4px;">参加${person.group}业务培训</div>
+    </div>
+    <div class="mb-12" style="padding: 10px; background: rgba(42,90,138,0.2); border-left: 3px solid #3a7aaa; border-radius: 4px;">
+      <div style="font-size: 12px; color: #8ab4d4;">2021-05</div>
+      <div style="font-size: 13px; margin-top: 4px;">参加管理能力提升培训</div>
+    </div>
+    <div class="mb-12" style="padding: 10px; background: rgba(42,90,138,0.2); border-left: 3px solid #3a7aaa; border-radius: 4px;">
+      <div style="font-size: 12px; color: #8ab4d4;">2020-07</div>
+      <div style="font-size: 13px; margin-top: 4px;">参加专业技术培训</div>
+    </div>
+    <div style="padding: 10px; background: rgba(42,90,138,0.2); border-left: 3px solid #3a7aaa; border-radius: 4px;">
+      <div style="font-size: 12px; color: #8ab4d4;">2019-11</div>
+      <div style="font-size: 13px; margin-top: 4px;">参加岗前培训</div>
+    </div>
+  `;
+  document.getElementById('detail-training').innerHTML = trainingHtml;
 
-  // 人才画像
-  document.getElementById('detail-education-bg').textContent = person.education || '-';
-  document.getElementById('detail-skill').textContent = person.skill + '%';
-  document.getElementById('detail-match').textContent = (person.match || 91) + '%';
-  document.getElementById('detail-salary-exp').textContent = person.salaryExp || '-';
+  // 更新素质基础
+  const qualityHtml = `
+    <div class="mb-12">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+        <span style="font-size: 13px;">工作年限</span>
+        <span style="font-size: 13px; color: #5ae8ff;">${person.competitiveness ? Math.round(person.competitiveness / 10) : 5}年</span>
+      </div>
+      <div class="progress-bar" style="background: rgba(42,90,138,0.5); height: 8px; border-radius: 4px;">
+        <div class="progress-fill" style="width: ${person.competitiveness || 80}%; background: linear-gradient(90deg, #5ae8ff, #3a7aaa); height: 100%; border-radius: 4px;"></div>
+      </div>
+    </div>
+    <div class="mb-12">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+        <span style="font-size: 13px;">教育背景</span>
+        <span style="font-size: 13px; color: #5ae8ff;">${person.education}</span>
+      </div>
+      <div class="progress-bar" style="background: rgba(42,90,138,0.5); height: 8px; border-radius: 4px;">
+        <div class="progress-fill" style="width: ${person.skill || 75}%; background: linear-gradient(90deg, #5ae8ff, #3a7aaa); height: 100%; border-radius: 4px;"></div>
+      </div>
+    </div>
+    <div class="mb-12">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+        <span style="font-size: 13px;">就业稳定性</span>
+        <span style="font-size: 13px; color: #5ae8ff;">${person.stability}%</span>
+      </div>
+      <div class="progress-bar" style="background: rgba(42,90,138,0.5); height: 8px; border-radius: 4px;">
+        <div class="progress-fill" style="width: ${person.stability}%; background: linear-gradient(90deg, #5ae8ff, #3a7aaa); height: 100%; border-radius: 4px;"></div>
+      </div>
+    </div>
+    <div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+        <span style="font-size: 13px;">技能匹配度</span>
+        <span style="font-size: 13px; color: #5ae8ff;">${person.match || 85}%</span>
+      </div>
+      <div class="progress-bar" style="background: rgba(42,90,138,0.5); height: 8px; border-radius: 4px;">
+        <div class="progress-fill" style="width: ${person.match || 85}%; background: linear-gradient(90deg, #5ae8ff, #3a7aaa); height: 100%; border-radius: 4px;"></div>
+      </div>
+    </div>
+  `;
+  document.getElementById('detail-quality').innerHTML = qualityHtml;
 
-  // 重点群体画像
-  document.getElementById('detail-group-scale').textContent = person.groupScale || '0';
-  document.getElementById('detail-group-rate').textContent = (person.groupRate || 0) + '%';
-  document.getElementById('detail-group-demand').textContent = person.groupDemand || '-';
+  // 更新履历
+  const resumeHtml = `
+    <div style="flex: 1; min-width: 200px;">
+      <div style="text-align: center; color: #8ab4d4; font-size: 12px; margin-bottom: 12px;">教育背景</div>
+      <div style="border-left: 2px solid #3a7aaa; padding-left: 16px; margin-left: 8px;">
+        <div class="mb-16" style="position: relative;">
+          <div style="position: absolute; left: -22px; top: 4px; width: 10px; height: 10px; background: #5ae8ff; border-radius: 50%;"></div>
+          <div style="font-size: 12px; color: #8ab4d4;">2015-2019</div>
+          <div style="font-size: 13px; color: #a0c8e8; margin-top: 4px;">${person.education}</div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="flex: 1; min-width: 200px;">
+      <div style="text-align: center; color: #8ab4d4; font-size: 12px; margin-bottom: 12px;">工作经历</div>
+      <div style="border-left: 2px solid #3a7aaa; padding-left: 16px; margin-left: 8px;">
+        <div class="mb-16" style="position: relative;">
+          <div style="position: absolute; left: -22px; top: 4px; width: 10px; height: 10px; background: #5ae8ff; border-radius: 50%;"></div>
+          <div style="font-size: 12px; color: #8ab4d4;">2019-至今</div>
+          <div style="font-size: 13px; color: #a0c8e8; margin-top: 4px;">${person.group}</div>
+          <div style="font-size: 11px; color: #6a9ac4; margin-top: 2px;">评分：${(person.competitiveness / 10).toFixed(1)}</div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="flex: 1; min-width: 200px;">
+      <div style="text-align: center; color: #8ab4d4; font-size: 12px; margin-bottom: 12px;">技能标签</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; padding: 8px;">
+        ${person.tags.map(tag => `<span class="tag" style="background: rgba(42,90,138,0.6); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 11px; padding: 4px 10px;">${tag}</span>`).join('')}
+      </div>
+    </div>
+  `;
+  document.getElementById('detail-resume').innerHTML = resumeHtml;
 
-  // 标签（根据画像类型显示不同）
-  const tagsHtml = person.tags.map(t => `<span class="tag">${t}</span>`).join('');
-  document.getElementById('detail-tags-jobseeker').innerHTML = tagsHtml;
-  document.getElementById('detail-tags-talent').innerHTML = tagsHtml;
-  document.getElementById('detail-tags-keygroup').innerHTML = tagsHtml;
-
-  // 个性化服务
-  const servicesHtml = (person.services || [
-    '📩 推荐岗位',
-    '📚 推荐培训',
-    '💰 可申请补贴',
-    '🎓 职业路径'
-  ]).map(s => `<div class="card" style="padding: 12px; font-size: 14px;">${s}</div>`).join('');
-  document.getElementById('detail-services').innerHTML = servicesHtml;
-
-  // 根据人员类型默认显示对应画像
-  const portraitType = person.portraitType || 'jobseeker';
-  switchPortraitType(portraitType, document.querySelector(`#portrait-type-tabs .portrait-tab`));
-
-  // 检查权限
-  if (currentUserType === 'enterprise' && portraitType !== 'talent') {
-    showNotification('企业用户仅可查看人才画像', 'warning');
-    switchPortraitType('talent', document.querySelectorAll('#portrait-type-tabs .portrait-tab')[1]);
-  }
+  // 更新获得专家人才称号
+  const titlesHtml = `
+    <div class="mb-12" style="padding: 12px; background: rgba(42,90,138,0.3); border: 1px solid #3a7aaa; border-radius: 8px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #5ae8ff, #3a7aaa); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">🏆</div>
+        <div style="flex: 1;">
+          <div style="font-size: 13px; font-weight: 500; color: #5ae8ff;">优秀员工</div>
+          <div style="font-size: 11px; color: #8ab4d4; margin-top: 2px;">2022年度</div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-12" style="padding: 12px; background: rgba(42,90,138,0.3); border: 1px solid #3a7aaa; border-radius: 8px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #5ae8ff, #3a7aaa); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">🏅</div>
+        <div style="flex: 1;">
+          <div style="font-size: 13px; font-weight: 500; color: #5ae8ff;">业务骨干</div>
+          <div style="font-size: 11px; color: #8ab4d4; margin-top: 2px;">2021年度</div>
+        </div>
+      </div>
+    </div>
+    <div style="padding: 12px; background: rgba(42,90,138,0.3); border: 1px solid #3a7aaa; border-radius: 8px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #5ae8ff, #3a7aaa); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px;">🎖️</div>
+        <div style="flex: 1;">
+          <div style="font-size: 13px; font-weight: 500; color: #5ae8ff;">先进个人</div>
+          <div style="font-size: 11px; color: #8ab4d4; margin-top: 2px;">2020年度</div>
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById('detail-titles').innerHTML = titlesHtml;
 
   showModal('person-detail-modal');
 }
