@@ -13,13 +13,11 @@
     <a href="index.html" class="navbar-logo">人社服务数字平台</a>
     <div class="role-switch">
       <select id="role-select" onchange="switchRole(this.value)">
-        <option value="">选择角色</option>
-        <option value="14-mediation-arbitration.html">平台首页</option>
-        <option value="role-laborer.html">劳动者端</option>
-        <option value="role-employer.html">用人单位端</option>
-        <option value="role-arbitration.html">仲裁机构端</option>
-        <option value="role-supervisor.html">人社监管端</option>
-        <option value="role-legal-aid.html">法律援助端</option>
+        <option value="14c-laborer.html">劳动者端</option>
+        <option value="14b-employer.html">用人单位端</option>
+        <option value="14a-arbitration.html">仲裁机构端</option>
+        <option value="14e-supervisor.html" selected>人社监管端</option>
+        <option value="14d-legal-aid.html">法律援助端</option>
       </select>
     </div>
   </div>
@@ -42,7 +40,7 @@
     </div>
     <div class="row mb-48 role-cards">
       <div class="col-5">
-        <div class="role-card laborer-card" onclick="switchRole('role-laborer.html')">
+        <div class="role-card laborer-card" onclick="switchRole('14c-laborer.html')">
           <div class="role-icon">👷</div>
           <div class="role-content">
             <h3>劳动者端</h3>
@@ -54,7 +52,7 @@
         </div>
       </div>
       <div class="col-5">
-        <div class="role-card employer-card" onclick="switchRole('role-employer.html')">
+        <div class="role-card employer-card" onclick="switchRole('14b-employer.html')">
           <div class="role-icon">🏢</div>
           <div class="role-content">
             <h3>用人单位端</h3>
@@ -66,7 +64,7 @@
         </div>
       </div>
       <div class="col-5">
-        <div class="role-card arbitration-card" onclick="switchRole('role-arbitration.html')">
+        <div class="role-card arbitration-card" onclick="switchRole('14a-arbitration.html')">
           <div class="role-icon">⚖️</div>
           <div class="role-content">
             <h3>仲裁机构端</h3>
@@ -78,7 +76,7 @@
         </div>
       </div>
       <div class="col-5">
-        <div class="role-card supervisor-card" onclick="switchRole('role-supervisor.html')">
+        <div class="role-card supervisor-card" onclick="switchRole('14e-supervisor.html')">
           <div class="role-icon">📊</div>
           <div class="role-content">
             <h3>人社监管端</h3>
@@ -90,7 +88,7 @@
         </div>
       </div>
       <div class="col-5">
-        <div class="role-card legal-aid-card" onclick="switchRole('role-legal-aid.html')">
+        <div class="role-card legal-aid-card" onclick="switchRole('14d-legal-aid.html')">
           <div class="role-icon">🤝</div>
           <div class="role-content">
             <h3>法律援助端</h3>
@@ -2180,11 +2178,11 @@
 <script>
 // 角色页面映射
 const ROLE_PAGES = {
-  '劳动者': 'role-laborer.html',
-  '用人单位': 'role-employer.html',
-  '仲裁机构': 'role-arbitration.html',
-  '人社监管': 'role-supervisor.html',
-  '法律援助': 'role-legal-aid.html'
+  '劳动者': '14c-laborer.html',
+  '用人单位': '14b-employer.html',
+  '仲裁机构': '14a-arbitration.html',
+  '人社监管': '14e-supervisor.html',
+  '法律援助': '14d-legal-aid.html'
 };
 
 // 角色切换函数
