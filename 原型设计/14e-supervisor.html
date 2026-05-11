@@ -12,13 +12,17 @@
       min-height: 100vh;
     }
 
-    /* 左侧菜单 */
+/* 左侧菜单 */
     .sidebar {
-      width: 240px;
+      width: 220px;
       background: white;
       border-right: 1px solid var(--border-color);
-      padding: 24px 0;
+      padding: 16px 0;
       flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      z-index: 100;
     }
 
     .sidebar-menu {
@@ -59,10 +63,12 @@
       text-align: center;
     }
 
-    /* 主内容区 */
+/* 主内容区 */
     .main-content {
       flex: 1;
-      padding: 24px 32px;
+      padding: 24px;
+      background: var(--bg-secondary);
+      min-height: 100vh;
       overflow-y: auto;
     }
 
@@ -398,15 +404,6 @@
     <main class="main-content">
       <div class="top-nav">
         <h1 class="page-title">人社监管端</h1>
-        <div class="role-switch">
-          <select id="roleSelect" onchange="switchRole(this.value)">
-            <option value="laborer">劳动者</option>
-            <option value="employer">用人单位</option>
-            <option value="arbitration">仲裁机构</option>
-            <option value="supervisor" selected>人社监管</option>
-            <option value="legal-aid">法律援助</option>
-          </select>
-        </div>
       </div>
 
       <div class="stats-grid">
