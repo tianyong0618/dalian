@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用人单位端 - 根治欠薪一体化平台</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* 布局样式 */
+    .app-layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* 左侧菜单 */
+    .sidebar {
+      width: 240px;
+      background: white;
+      border-right: 1px solid var(--border-color);
+      padding: 24px 0;
+      flex-shrink: 0;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+    }
+
+    .sidebar-menu li {
+      margin-bottom: 4px;
+    }
+
+    .sidebar-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 24px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+    }
+
+    .sidebar-menu a:hover {
+      color: var(--primary);
+      background: rgba(22, 119, 255, 0.05);
+    }
+
+    .sidebar-menu a.active {
+      color: var(--primary);
+      background: rgba(22, 119, 255, 0.1);
+      border-left-color: var(--primary);
+    }
+
+    .sidebar-menu .menu-icon {
+      font-size: 18px;
+      width: 24px;
+      text-align: center;
+    }
+
+    /* 主内容区 */
+    .main-content {
+      flex: 1;
+      padding: 24px 32px;
+      overflow-y: auto;
+    }
+
+    /* 顶部导航 */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* 统计卡片区域 */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .stat-card.employer-stat {
+      position: relative;
+    }
+
+    .stat-card.employer-stat::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #52c41a 0%, #73d13d 100%);
+    }
+
+    .stat-card.employer-stat .number {
+      background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* 功能卡片区域 */
+    .feature-section {
+      margin-bottom: 32px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .feature-card:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(22, 119, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .feature-card .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .feature-card .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(82, 196, 26, 0.1) 0%, rgba(115, 209, 61, 0.1) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0 0 8px 0;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* 合同管理表格 */
+    .contract-section {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    .section-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 20px;
+      background: linear-gradient(180deg, #52c41a 0%, #73d13d 100%);
+      border-radius: 2px;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    .contract-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .contract-table thead {
+      background: linear-gradient(135deg, rgba(82, 196, 26, 0.05) 0%, rgba(115, 209, 61, 0.05) 100%);
+    }
+
+    .contract-table th {
+      text-align: left;
+      padding: 16px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      border-bottom: 2px solid rgba(82, 196, 26, 0.1);
+      white-space: nowrap;
+    }
+
+    .contract-table td {
+      padding: 16px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    .contract-table tbody tr:hover {
+      background: rgba(82, 196, 26, 0.03);
+    }
+
+    .contract-name {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .status-badge.pending {
+      background: rgba(250, 173, 20, 0.1);
+      color: var(--warning);
+    }
+
+    .status-badge.signed {
+      background: rgba(82, 196, 26, 0.1);
+      color: var(--success);
+    }
+
+    .status-badge.expired {
+      background: rgba(255, 77, 79, 0.1);
+      color: var(--danger);
+    }
+
+    .status-badge.processing {
+      background: rgba(22, 119, 255, 0.1);
+      color: var(--primary);
+    }
+
+    /* 考勤上报区域 */
+    .attendance-section {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    .attendance-form {
+      padding: 24px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 0;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .form-input, .form-select {
+      width: 100%;
+      padding: 10px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      background: white;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus, .form-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.1);
+    }
+
+    .attendance-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .attendance-table thead {
+      background: linear-gradient(135deg, rgba(22, 119, 255, 0.05) 0%, rgba(114, 46, 209, 0.05) 100%);
+    }
+
+    .attendance-table th {
+      text-align: left;
+      padding: 14px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      border-bottom: 2px solid rgba(22, 119, 255, 0.1);
+    }
+
+    .attendance-table td {
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .attendance-table tbody tr:hover {
+      background: rgba(22, 119, 255, 0.03);
+    }
+
+    /* 按钮样式 */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);
+      color: white;
+      box-shadow: 0 4px 14px rgba(82, 196, 26, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(82, 196, 26, 0.4);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-secondary);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-sm {
+      padding: 6px 14px;
+      font-size: 12px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 1200px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .form-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .app-layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        padding: 16px 0;
+      }
+
+      .sidebar-menu a {
+        padding: 12px 16px;
+      }
+
+      .main-content {
+        padding: 16px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .top-nav {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <ul class="sidebar-menu">
+        <li>
+          <a href="#">
+            <span class="menu-icon">📊</span>
+            我的工作台
+          </a>
+        </li>
+        <li>
+          <a href="#" class="active">
+            <span class="menu-icon">📄</span>
+            合同管理
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="menu-icon">⚖️</span>
+            应诉案件
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="menu-icon">📅</span>
+            考勤上报
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="menu-icon">💰</span>
+            工资确认
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="menu-icon">📢</span>
+            欠薪投诉处理
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <div class="top-nav">
+        <h1 class="page-title">用人单位端</h1>
+        <div class="role-switch">
+          <select id="roleSelect" onchange="switchRole(this.value)">
+            <option value="laborer">劳动者</option>
+            <option value="employer" selected>用人单位</option>
+            <option value="arbitration">仲裁机构</option>
+            <option value="supervisor">人社监管</option>
+            <option value="legal-aid">法律援助</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card employer-stat">
+          <div class="number">12</div>
+          <div class="label">在职员工数</div>
+        </div>
+        <div class="stat-card employer-stat">
+          <div class="number">8</div>
+          <div class="label">待签署合同</div>
+        </div>
+        <div class="stat-card employer-stat">
+          <div class="number">5</div>
+          <div class="label">考勤记录</div>
+        </div>
+        <div class="stat-card employer-stat">
+          <div class="number">2</div>
+          <div class="label">待处理投诉</div>
+        </div>
+      </div>
+
+      <!-- 合同管理功能 -->
+      <div class="contract-section">
+        <div class="section-header-bar">
+          <h2 class="section-title">合同管理</h2>
+          <button class="btn btn-primary" onclick="openContractModal()">
+            <span>➕</span>
+            发起签署
+          </button>
+        </div>
+        <div class="table-wrapper">
+          <table class="contract-table">
+            <thead>
+              <tr>
+                <th>合同名称</th>
+                <th>员工姓名</th>
+                <th>合同类型</th>
+                <th>签订日期</th>
+                <th>截止日期</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="contract-name">劳动合同-2026版</td>
+                <td>张三</td>
+                <td>全职合同</td>
+                <td>2026-01-15</td>
+                <td>2027-01-14</td>
+                <td><span class="status-badge signed">已签署</span></td>
+                <td>
+                  <button class="btn btn-sm btn-secondary">查看</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="contract-name">劳动合同-2026版</td>
+                <td>李四</td>
+                <td>全职合同</td>
+                <td>2026-02-01</td>
+                <td>2027-01-31</td>
+                <td><span class="status-badge processing">签署中</span></td>
+                <td>
+                  <button class="btn btn-sm btn-secondary">提醒</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="contract-name">劳务派遣合同</td>
+                <td>王五</td>
+                <td>派遣合同</td>
+                <td>2026-03-01</td>
+                <td>2027-02-28</td>
+                <td><span class="status-badge pending">待签署</span></td>
+                <td>
+                  <button class="btn btn-sm btn-primary">发送</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="contract-name">兼职协议</td>
+                <td>赵六</td>
+                <td>兼职合同</td>
+                <td>2025-06-01</td>
+                <td>2026-05-31</td>
+                <td><span class="status-badge expired">已过期</span></td>
+                <td>
+                  <button class="btn btn-sm btn-secondary">续签</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="contract-name">劳动合同-2026版</td>
+                <td>钱七</td>
+                <td>全职合同</td>
+                <td>2026-04-01</td>
+                <td>2027-03-31</td>
+                <td><span class="status-badge signed">已签署</span></td>
+                <td>
+                  <button class="btn btn-sm btn-secondary">查看</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 考勤上报功能 -->
+      <div class="attendance-section">
+        <div class="section-header-bar">
+          <h2 class="section-title">考勤上报</h2>
+          <button class="btn btn-primary">
+            <span>📤</span>
+            提交考勤
+          </button>
+        </div>
+        <div class="attendance-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">考勤月份</label>
+              <input type="month" class="form-input" value="2026-05">
+            </div>
+            <div class="form-group">
+              <label class="form-label">部门</label>
+              <select class="form-select">
+                <option>全部部门</option>
+                <option>技术部</option>
+                <option>市场部</option>
+                <option>行政部</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">考勤状态</label>
+              <select class="form-select">
+                <option>全部状态</option>
+                <option>正常</option>
+                <option>迟到</option>
+                <option>请假</option>
+                <option>旷工</option>
+              </select>
+            </div>
+          </div>
+          <table class="attendance-table">
+            <thead>
+              <tr>
+                <th>员工姓名</th>
+                <th>部门</th>
+                <th>出勤天数</th>
+                <th>迟到次数</th>
+                <th>请假天数</th>
+                <th>旷工天数</th>
+                <th>状态</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>张三</td>
+                <td>技术部</td>
+                <td>22</td>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+                <td><span class="status-badge signed">正常</span></td>
+              </tr>
+              <tr>
+                <td>李四</td>
+                <td>技术部</td>
+                <td>21</td>
+                <td>2</td>
+                <td>2</td>
+                <td>0</td>
+                <td><span class="status-badge pending">异常</span></td>
+              </tr>
+              <tr>
+                <td>王五</td>
+                <td>市场部</td>
+                <td>23</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td><span class="status-badge signed">正常</span></td>
+              </tr>
+              <tr>
+                <td>赵六</td>
+                <td>行政部</td>
+                <td>20</td>
+                <td>0</td>
+                <td>3</td>
+                <td>0</td>
+                <td><span class="status-badge signed">正常</span></td>
+              </tr>
+              <tr>
+                <td>钱七</td>
+                <td>技术部</td>
+                <td>18</td>
+                <td>3</td>
+                <td>0</td>
+                <td>2</td>
+                <td><span class="status-badge expired">严重异常</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function switchRole(role) {
+      const roleUrls = {
+        'laborer': 'role-laborer.html',
+        'employer': 'role-employer.html',
+        'arbitration': 'role-arbitration.html',
+        'supervisor': 'role-supervisor.html',
+        'legal-aid': 'role-legal-aid.html'
+      };
+      if (roleUrls[role]) {
+        window.location.href = roleUrls[role];
+      }
+    }
+
+    function openContractModal() {
+      alert('发起签署合同功能');
+    }
+  </script>
+</body>
+</html>

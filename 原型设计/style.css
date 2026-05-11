@@ -998,3 +998,223 @@ body {
 tr.enterprise-hidden {
   display: none;
 }
+
+/* 角色切换器样式 */
+.role-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.role-switch select {
+  appearance: none;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 8px 40px 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%234b5563' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.role-switch select:hover {
+  border-color: var(--primary);
+}
+
+.role-switch select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.1);
+}
+
+/* 角色卡片样式 */
+.role-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.col-5 {
+  flex: 0 0 calc(20% - 13px);
+  max-width: calc(20% - 13px);
+}
+
+.role-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.role-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.role-card .role-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.role-card .role-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.role-card .role-content h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+}
+
+.role-card .role-content p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.role-card .arrow-icon {
+  width: 20px;
+  height: 20px;
+  color: #d1d5db;
+  flex-shrink: 0;
+  transition: color 0.3s ease;
+}
+
+.role-card:hover .arrow-icon {
+  color: var(--primary);
+}
+
+/* 劳动者卡片 */
+.laborer-card {
+  border-left: 4px solid #1677ff;
+}
+.laborer-card .role-icon {
+  background: rgba(22, 119, 255, 0.1);
+}
+.laborer-card:hover {
+  border-color: #1677ff;
+}
+
+/* 用人单位卡片 */
+.employer-card {
+  border-left: 4px solid #52c41a;
+}
+.employer-card .role-icon {
+  background: rgba(82, 196, 26, 0.1);
+}
+.employer-card:hover {
+  border-color: #52c41a;
+}
+
+/* 仲裁机构卡片 */
+.arbitration-card {
+  border-left: 4px solid #722ed1;
+}
+.arbitration-card .role-icon {
+  background: rgba(114, 46, 209, 0.1);
+}
+.arbitration-card:hover {
+  border-color: #722ed1;
+}
+
+/* 人社监管卡片 */
+.supervisor-card {
+  border-left: 4px solid #fa8c16;
+}
+.supervisor-card .role-icon {
+  background: rgba(250, 140, 22, 0.1);
+}
+.supervisor-card:hover {
+  border-color: #fa8c16;
+}
+
+/* 法律援助卡片 */
+.legal-aid-card {
+  border-left: 4px solid #13c2c2;
+}
+.legal-aid-card .role-icon {
+  background: rgba(19, 194, 194, 0.1);
+}
+.legal-aid-card:hover {
+  border-color: #13c2c2;
+}
+
+/* 预警类统计卡片 */
+.stat-warning .number {
+  background: linear-gradient(135deg, var(--warning) 0%, #fa8c16 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-warning::before {
+  background: linear-gradient(90deg, var(--warning) 0%, #fa8c16 100%);
+}
+
+.stat-danger .number {
+  background: linear-gradient(135deg, var(--danger) 0%, #ff7875 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-danger::before {
+  background: linear-gradient(90deg, var(--danger) 0%, #ff7875 100%);
+}
+
+/* 响应式角色卡片 */
+@media (max-width: 1024px) {
+  .col-5 {
+    flex: 0 0 calc(33.333% - 11px);
+    max-width: calc(33.333% - 11px);
+  }
+}
+
+@media (max-width: 768px) {
+  .role-cards {
+    flex-direction: column;
+  }
+  
+  .col-5 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  .role-card {
+    padding: 16px;
+  }
+  
+  .role-card .role-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  .role-switch select {
+    font-size: 12px;
+    padding: 6px 32px 6px 12px;
+  }
+}

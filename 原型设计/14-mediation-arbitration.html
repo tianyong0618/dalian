@@ -11,6 +11,17 @@
 <nav class="navbar">
   <div class="container">
     <a href="index.html" class="navbar-logo">人社服务数字平台</a>
+    <div class="role-switch">
+      <select id="role-select" onchange="switchRole(this.value)">
+        <option value="">选择角色</option>
+        <option value="14-mediation-arbitration.html">平台首页</option>
+        <option value="role-laborer.html">劳动者端</option>
+        <option value="role-employer.html">用人单位端</option>
+        <option value="role-arbitration.html">仲裁机构端</option>
+        <option value="role-supervisor.html">人社监管端</option>
+        <option value="role-legal-aid.html">法律援助端</option>
+      </select>
+    </div>
   </div>
 </nav>
 
@@ -22,6 +33,80 @@
     <div class="page-header mb-48">
       <h1>调解仲裁服务</h1>
       <p>推行电子劳动合同，优化根治欠薪一体化平台，建立"无接触"劳动人事争议调解仲裁服务平台。提供在线调解和在线仲裁服务，支持远程"云庭审"，维护劳动者合法权益，构建数字化仲裁庭。</p>
+    </div>
+
+    <!-- 角色快捷入口卡片区 -->
+    <div class="section-header mb-32">
+      <h2>角色入口</h2>
+      <p>选择您的角色，快速进入对应服务</p>
+    </div>
+    <div class="row mb-48 role-cards">
+      <div class="col-5">
+        <div class="role-card laborer-card" onclick="switchRole('role-laborer.html')">
+          <div class="role-icon">👷</div>
+          <div class="role-content">
+            <h3>劳动者端</h3>
+            <p>案件申请、我的案件、文书查看</p>
+          </div>
+          <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="role-card employer-card" onclick="switchRole('role-employer.html')">
+          <div class="role-icon">🏢</div>
+          <div class="role-content">
+            <h3>用人单位端</h3>
+            <p>合同管理、应诉处理</p>
+          </div>
+          <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="role-card arbitration-card" onclick="switchRole('role-arbitration.html')">
+          <div class="role-icon">⚖️</div>
+          <div class="role-content">
+            <h3>仲裁机构端</h3>
+            <p>案件管理、云庭审</p>
+          </div>
+          <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="role-card supervisor-card" onclick="switchRole('role-supervisor.html')">
+          <div class="role-icon">📊</div>
+          <div class="role-content">
+            <h3>人社监管端</h3>
+            <p>项目监管、欠薪预警</p>
+          </div>
+          <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="role-card legal-aid-card" onclick="switchRole('role-legal-aid.html')">
+          <div class="role-icon">🤝</div>
+          <div class="role-content">
+            <h3>法律援助端</h3>
+            <p>援助申请、法援管理</p>
+          </div>
+          <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 平台概览仪表盘 -->
+    <div class="section-header mb-32">
+      <h2>平台概览</h2>
+      <p>五大角色共用核心统计指标</p>
     </div>
 
     <!-- 核心指标 -->
@@ -48,6 +133,32 @@
         <div class="stat-card">
           <div class="number" id="stat-response">24h</div>
           <div class="label">平均响应时间</div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-48">
+      <div class="col-3">
+        <div class="stat-card stat-warning">
+          <div class="number" id="stat-warning">3</div>
+          <div class="label">欠薪预警项目</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="stat-card stat-danger">
+          <div class="number" id="stat-pending">28</div>
+          <div class="label">待处理案件</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="stat-card">
+          <div class="number" id="stat-monthly">156</div>
+          <div class="label">在建项目</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="stat-card">
+          <div class="number" id="stat-workers">23,456</div>
+          <div class="label">用工人数</div>
         </div>
       </div>
     </div>
@@ -2067,6 +2178,22 @@
 </div>
 
 <script>
+// 角色页面映射
+const ROLE_PAGES = {
+  '劳动者': 'role-laborer.html',
+  '用人单位': 'role-employer.html',
+  '仲裁机构': 'role-arbitration.html',
+  '人社监管': 'role-supervisor.html',
+  '法律援助': 'role-legal-aid.html'
+};
+
+// 角色切换函数
+function switchRole(page) {
+  if (page) {
+    window.location.href = page;
+  }
+}
+
 // 案件数据
 const caseData = [
   { id: "ZC20260501001", type: "工资拖欠", applicant: "张三", respondent: "XX建筑公司", status: "已结案", time: "2026-05-01" },
