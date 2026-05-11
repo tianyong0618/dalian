@@ -894,7 +894,7 @@
               <div class="document-actions">
                 <button class="btn btn-secondary btn-sm" onclick="showNotification('文书已下载', 'success')">下载</button>
                 <button class="btn btn-secondary btn-sm" onclick="showNotification('开始打印...', 'success')">打印</button>
-                <button class="btn btn-primary btn-sm" onclick="confirmReceive('ZC20260501001')">签收确认</button>
+                <button class="btn btn-primary btn-sm" onclick="confirmReceive.call(this, 'ZC20260501001')">签收确认</button>
               </div>
             </div>
 
@@ -907,7 +907,7 @@
               <div class="document-actions">
                 <button class="btn btn-secondary btn-sm" onclick="showNotification('文书已下载', 'success')">下载</button>
                 <button class="btn btn-secondary btn-sm" onclick="showNotification('开始打印...', 'success')">打印</button>
-                <button class="btn btn-primary btn-sm" onclick="confirmReceive('ZC20260503005')">签收确认</button>
+                <button class="btn btn-primary btn-sm" onclick="confirmReceive.call(this, 'ZC20260503005')">签收确认</button>
               </div>
             </div>
 
@@ -920,7 +920,7 @@
               <div class="document-actions">
                 <button class="btn btn-secondary btn-sm" onclick="showNotification('文书已下载', 'success')">下载</button>
                 <button class="btn btn-secondary btn-sm" onclick="showNotification('开始打印...', 'success')">打印</button>
-                <button class="btn btn-primary btn-sm" onclick="confirmReceive('ZC20260503005')">签收确认</button>
+                <button class="btn btn-primary btn-sm" onclick="confirmReceive.call(this, 'ZC20260503005')">签收确认</button>
               </div>
             </div>
 
@@ -933,7 +933,7 @@
               <div class="document-actions">
                 <button class="btn btn-secondary btn-sm" onclick="showNotification('文书已下载', 'success')">下载</button>
                 <button class="btn btn-secondary btn-sm" onclick="showNotification('开始打印...', 'success')">打印</button>
-                <button class="btn btn-primary btn-sm" onclick="confirmReceive('ZC20260428003')">签收确认</button>
+                <button class="btn btn-primary btn-sm" onclick="confirmReceive.call(this, 'ZC20260428003')">签收确认</button>
               </div>
             </div>
           </div>
@@ -1263,7 +1263,61 @@
   }
 
   function confirmReceive(caseId) {
-    showNotification('文书签收成功', 'success');
+    var btn = this;
+    if (confirm('确认签收此文书吗？签收后将更新案件状态。')) {
+      showNotification('文书签收成功，案件已归档', 'success');
+
+      setTimeout(function() {
+        showNotification('案件 ' + caseId + ' 已结案', 'info');
+      }, 1500);
+
+      setTimeout(function() {
+        showNotification('短信/站内信通知已发送', 'info');
+      }, 3000);
+
+      var card = btn.closest('.document-card');
+      if (card) {
+        card.style.opacity = '0.5';
+        var actions = card.querySelector('.document-actions');
+        if (actions) {
+          actions.innerHTML = '<span class="badge badge-success">已签收</span>';
+        }
+      }
+    }
+  }
+
+  function switchRole(role) {
+    const roleUrls = {
+      'laborer': '14c-laborer.html',
+      'employer': '14b-employer.html',
+      'arbitration': '14a-arbitration.html',
+      'supervisor': '14e-supervisor.html',
+      'legal-aid': '14d-legal-aid.html'
+    };
+    if (roleUrls[role]) {
+      window.location.href = roleUrls[role];
+    }
+  }
+
+  function downloadDocument(docId) {
+    showNotification('正在生成文书PDF...', 'info');
+    setTimeout(function() {
+      showNotification('文书已下载', 'success');
+    }, 1500);
+  }
+
+  function printDocument(docId) {
+    showNotification('正在准备打印...', 'info');
+    setTimeout(function() {
+      showNotification('打印任务已发送', 'success');
+    }, 1000);
+  }
+
+  function viewDocument(docId) {
+    showNotification('正在打开文书...', 'info');
+    setTimeout(function() {
+      showNotification('文书已在新窗口打开', 'success');
+    }, 800);
   }
 </script>
 

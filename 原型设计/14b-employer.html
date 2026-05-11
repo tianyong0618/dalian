@@ -434,6 +434,427 @@
       font-size: 12px;
     }
 
+    .btn-warning {
+      background: linear-gradient(135deg, #fa8c16 0%, #faad14 100%);
+      color: white;
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, #ff4d4f 0%, #ff7875 100%);
+      color: white;
+    }
+
+    /* 合同签署向导 */
+    .contract-wizard {
+      display: none;
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+
+    .contract-wizard.active {
+      display: block;
+    }
+
+    .wizard-steps {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+
+    .wizard-step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      color: var(--text-tertiary);
+      position: relative;
+    }
+
+    .wizard-step.active {
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    .wizard-step.completed {
+      color: var(--success);
+    }
+
+    .wizard-step::after {
+      content: '';
+      position: absolute;
+      right: -40px;
+      width: 40px;
+      height: 2px;
+      background: var(--border-color);
+    }
+
+    .wizard-step:last-child::after {
+      display: none;
+    }
+
+    .wizard-step.completed::after {
+      background: var(--success);
+    }
+
+    .wizard-step .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .wizard-step.active .step-num {
+      background: var(--success);
+      color: white;
+    }
+
+    .wizard-step.completed .step-num {
+      background: var(--success);
+      color: white;
+    }
+
+    .wizard-content {
+      padding: 24px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: var(--bg-secondary);
+    }
+
+    .wizard-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 24px;
+    }
+
+    .template-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .template-card {
+      padding: 20px;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .template-card:hover {
+      border-color: var(--primary);
+    }
+
+    .template-card.selected {
+      border-color: var(--success);
+      background: rgba(82, 196, 26, 0.05);
+    }
+
+    .template-card .icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .template-card h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+    }
+
+    .template-card p {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      margin: 0;
+    }
+
+    /* 农民工工资确认 */
+    .wage-confirm-section {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      margin-bottom: 32px;
+      display: none;
+    }
+
+    .wage-confirm-section.active {
+      display: block;
+    }
+
+    .confirm-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .confirm-card:last-child {
+      border-bottom: none;
+    }
+
+    .confirm-card:hover {
+      background: rgba(82, 196, 26, 0.03);
+    }
+
+    .confirm-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: rgba(82, 196, 26, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .confirm-info {
+      flex: 1;
+    }
+
+    .confirm-info h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+    }
+
+    .confirm-info p {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .confirm-status {
+      padding: 8px 16px;
+      border-radius: var(--radius-md);
+      font-size: 12px;
+    }
+
+    .confirm-status.pending {
+      background: rgba(250, 173, 20, 0.1);
+      color: var(--warning);
+    }
+
+    .confirm-status.confirmed {
+      background: rgba(82, 196, 26, 0.1);
+      color: var(--success);
+    }
+
+    /* 欠薪投诉处理 */
+    .complaint-section {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      margin-bottom: 32px;
+      display: none;
+    }
+
+    .complaint-section.active {
+      display: block;
+    }
+
+    .complaint-card {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .complaint-card:last-child {
+      border-bottom: none;
+    }
+
+    .complaint-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .complaint-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .complaint-time {
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    .complaint-content {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .complaint-evidence {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .evidence-tag {
+      padding: 4px 12px;
+      background: var(--bg-secondary);
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .complaint-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .complaint-status {
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 12px;
+    }
+
+    .complaint-status.pending {
+      background: rgba(250, 173, 20, 0.1);
+      color: var(--warning);
+    }
+
+    .complaint-status.processing {
+      background: rgba(22, 119, 255, 0.1);
+      color: var(--primary);
+    }
+
+    .complaint-status.resolved {
+      background: rgba(82, 196, 26, 0.1);
+      color: var(--success);
+    }
+
+    /* 模态框 */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: white;
+      border-radius: var(--radius-lg);
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow: auto;
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      background: var(--bg-secondary);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    /* 通知 */
+    .notification {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      padding: 12px 24px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      z-index: 10002;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateX(120%);
+      transition: transform 0.3s ease;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    .notification.success {
+      border-left: 4px solid var(--success);
+    }
+
+    .notification.warning {
+      border-left: 4px solid var(--warning);
+    }
+
+    .notification.info {
+      border-left: 4px solid var(--primary);
+    }
+
+    .notification.error {
+      border-left: 4px solid var(--danger);
+    }
+
+    .signature-area {
+      border: 2px dashed var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 40px;
+      text-align: center;
+      background: var(--bg-secondary);
+      cursor: pointer;
+    }
+
+    .signature-area:hover {
+      border-color: var(--success);
+    }
+
+    .signature-area.signed {
+      border-style: solid;
+      border-color: var(--success);
+      background: rgba(82, 196, 26, 0.05);
+    }
+
     /* 响应式 */
     @media (max-width: 1200px) {
       .stats-grid {
@@ -702,7 +1123,359 @@
           </table>
         </div>
       </div>
+      <!-- 合同签署向导 -->
+      <div class="contract-wizard" id="contract-wizard">
+        <div class="wizard-steps">
+          <div class="wizard-step active" id="step-1">
+            <span class="step-num">1</span>
+            <span>选择模板</span>
+          </div>
+          <div class="wizard-step" id="step-2">
+            <span class="step-num">2</span>
+            <span>填写信息</span>
+          </div>
+          <div class="wizard-step" id="step-3">
+            <span class="step-num">3</span>
+            <span>发送签署</span>
+          </div>
+          <div class="wizard-step" id="step-4">
+            <span class="step-num">4</span>
+            <span>完成</span>
+          </div>
+        </div>
+
+        <!-- 步骤1: 选择模板 -->
+        <div class="wizard-content" id="wizard-step-1">
+          <h3 style="margin: 0 0 20px 0; font-size: 16px;">请选择合同模板</h3>
+          <div class="template-grid">
+            <div class="template-card" onclick="selectTemplate(this, 'fixed')">
+              <div class="icon">📄</div>
+              <h4>固定期限劳动合同</h4>
+              <p>适用于标准用工场景</p>
+            </div>
+            <div class="template-card" onclick="selectTemplate(this, 'unlimited')">
+              <div class="icon">📑</div>
+              <h4>无固定期限劳动合同</h4>
+              <p>适用于长期稳定用工</p>
+            </div>
+            <div class="template-card" onclick="selectTemplate(this, 'dispatch')">
+              <div class="icon">📋</div>
+              <h4>劳务派遣合同</h4>
+              <p>适用于劳务派遣用工</p>
+            </div>
+            <div class="template-card" onclick="selectTemplate(this, 'flexible')">
+              <div class="icon">📝</div>
+              <h4>灵活用工协议</h4>
+              <p>适用于临时/兼职用工</p>
+            </div>
+            <div class="template-card" onclick="selectTemplate(this, 'parttime')">
+              <div class="icon">⏰</div>
+              <h4>兼职协议</h4>
+              <p>适用于非全日制用工</p>
+            </div>
+            <div class="template-card" onclick="selectTemplate(this, 'project')">
+              <div class="icon">🎯</div>
+              <h4>项目制合同</h4>
+              <p>适用于项目制用工</p>
+            </div>
+          </div>
+          <div class="wizard-actions">
+            <div></div>
+            <button class="btn btn-primary" onclick="nextStep(2)">下一步</button>
+          </div>
+        </div>
+
+        <!-- 步骤2: 填写信息 -->
+        <div class="wizard-content" id="wizard-step-2" style="display: none;">
+          <h3 style="margin: 0 0 20px 0; font-size: 16px;">填写合同信息</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">员工姓名 <span style="color: var(--danger);">*</span></label>
+              <input type="text" class="form-input" id="emp-name" placeholder="请输入员工姓名">
+            </div>
+            <div class="form-group">
+              <label class="form-label">身份证号 <span style="color: var(--danger);">*</span></label>
+              <input type="text" class="form-input" id="emp-idcard" placeholder="请输入身份证号">
+            </div>
+            <div class="form-group">
+              <label class="form-label">联系电话</label>
+              <input type="tel" class="form-input" id="emp-phone" placeholder="请输入联系电话">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">合同期限 <span style="color: var(--danger);">*</span></label>
+              <select class="form-select" id="emp-duration">
+                <option value="">请选择期限</option>
+                <option>1年</option>
+                <option>2年</option>
+                <option>3年</option>
+                <option>无固定期限</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">月薪（元）<span style="color: var(--danger);">*</span></label>
+              <input type="number" class="form-input" id="emp-salary" placeholder="请输入月薪">
+            </div>
+            <div class="form-group">
+              <label class="form-label">工作岗位</label>
+              <input type="text" class="form-input" id="emp-position" placeholder="请输入工作岗位">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">合同开始日期 <span style="color: var(--danger);">*</span></label>
+              <input type="date" class="form-input" id="emp-start-date">
+            </div>
+            <div class="form-group">
+              <label class="form-label">合同结束日期</label>
+              <input type="date" class="form-input" id="emp-end-date">
+            </div>
+            <div class="form-group">
+              <label class="form-label">试用期</label>
+              <select class="form-select" id="emp-probation">
+                <option value="">无试用期</option>
+                <option>1个月</option>
+                <option>2个月</option>
+                <option>3个月</option>
+                <option>6个月</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">工作内容描述</label>
+            <textarea class="form-input" id="emp-work-desc" placeholder="请描述工作内容" rows="3"></textarea>
+          </div>
+          <div class="wizard-actions">
+            <button class="btn btn-secondary" onclick="prevStep(1)">上一步</button>
+            <button class="btn btn-primary" onclick="nextStep(3)">下一步</button>
+          </div>
+        </div>
+
+        <!-- 步骤3: 发送签署 -->
+        <div class="wizard-content" id="wizard-step-3" style="display: none;">
+          <h3 style="margin: 0 0 20px 0; font-size: 16px;">确认并发送签署</h3>
+          <div style="background: var(--bg-primary); padding: 20px; border-radius: var(--radius-md); margin-bottom: 20px;">
+            <h4 style="margin: 0 0 16px 0; font-size: 14px; color: var(--text-primary);">合同预览</h4>
+            <div id="contract-preview">
+              <div class="form-row mb-16">
+                <div class="col-6"><strong>合同类型：</strong><span id="preview-type">-</span></div>
+                <div class="col-6"><strong>员工姓名：</strong><span id="preview-name">-</span></div>
+              </div>
+              <div class="form-row mb-16">
+                <div class="col-6"><strong>合同期限：</strong><span id="preview-duration">-</span></div>
+                <div class="col-6"><strong>月薪：</strong><span id="preview-salary">-</span></div>
+              </div>
+              <div class="form-row mb-16">
+                <div class="col-6"><strong>开始日期：</strong><span id="preview-start">-</span></div>
+                <div class="col-6"><strong>结束日期：</strong><span id="preview-end">-</span></div>
+              </div>
+              <div><strong>工作岗位：</strong><span id="preview-position">-</span></div>
+            </div>
+          </div>
+          <div class="signature-area" id="employer-signature" onclick="signDocument('employer')">
+            <div style="font-size: 32px; margin-bottom: 12px;">✍️</div>
+            <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">点击此处进行电子签章</p>
+            <p style="font-size: 12px; color: var(--text-tertiary); margin: 8px 0 0 0;">请用人单位法定代表人或授权人签字</p>
+          </div>
+          <div class="wizard-actions">
+            <button class="btn btn-secondary" onclick="prevStep(2)">上一步</button>
+            <button class="btn btn-primary" onclick="sendForSigning()">发送签署</button>
+          </div>
+        </div>
+
+        <!-- 步骤4: 完成 -->
+        <div class="wizard-content" id="wizard-step-4" style="display: none;">
+          <div style="text-align: center; padding: 40px;">
+            <div style="font-size: 64px; margin-bottom: 20px;">✅</div>
+            <h3 style="margin: 0 0 12px 0; font-size: 18px; color: var(--success);">合同已发送</h3>
+            <p style="font-size: 14px; color: var(--text-secondary); margin: 0 0 24px 0;">合同已成功发送给员工签署，请等待员工确认</p>
+            <div style="background: var(--bg-primary); padding: 16px; border-radius: var(--radius-md); display: inline-block;">
+              <p style="margin: 0; font-size: 14px; color: var(--text-secondary);">
+                签署链接已发送至员工手机/邮箱<br>
+                员工需在 <strong style="color: var(--warning);">7天内</strong> 完成签署
+              </p>
+            </div>
+          </div>
+          <div class="wizard-actions">
+            <button class="btn btn-secondary" onclick="closeWizard()">返回合同列表</button>
+            <button class="btn btn-primary" onclick="showNotification('短信提醒已发送', 'success')">发送提醒</button>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+          <button class="btn btn-secondary btn-sm" onclick="closeWizard()">取消</button>
+        </div>
+      </div>
+
+      <!-- 农民工工资确认区域 -->
+      <div class="wage-confirm-section" id="wage-confirm-section">
+        <div class="section-header-bar">
+          <h2 class="section-title">农民工工资确认</h2>
+        </div>
+        <div class="confirm-card">
+          <div class="confirm-icon">👷</div>
+          <div class="confirm-info">
+            <h4>张三 - 2026年4月工资</h4>
+            <p>考勤天数：22天 | 应发工资：8,500元 | 实发工资：8,200元</p>
+          </div>
+          <span class="confirm-status pending">待确认</span>
+          <button class="btn btn-sm btn-primary" onclick="confirmWage(this, '张三')">确认</button>
+        </div>
+        <div class="confirm-card">
+          <div class="confirm-icon">👷</div>
+          <div class="confirm-info">
+            <h4>李四 - 2026年4月工资</h4>
+            <p>考勤天数：20天 | 应发工资：7,500元 | 实发工资：7,200元</p>
+          </div>
+          <span class="confirm-status pending">待确认</span>
+          <button class="btn btn-sm btn-primary" onclick="confirmWage(this, '李四')">确认</button>
+        </div>
+        <div class="confirm-card">
+          <div class="confirm-icon">👷</div>
+          <div class="confirm-info">
+            <h4>王五 - 2026年4月工资</h4>
+            <p>考勤天数：23天 | 应发工资：9,000元 | 实发工资：8,800元</p>
+          </div>
+          <span class="confirm-status confirmed">已确认</span>
+        </div>
+      </div>
+
+      <!-- 欠薪投诉处理区域 -->
+      <div class="complaint-section" id="complaint-section">
+        <div class="section-header-bar">
+          <h2 class="section-title">欠薪投诉处理</h2>
+          <button class="btn btn-primary" onclick="openComplaintModal()">
+            <span>📝</span>
+            新建投诉
+          </button>
+        </div>
+
+        <!-- 投诉筛选 -->
+        <div style="padding: 16px 24px; background: var(--bg-secondary);">
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <select class="form-select" style="width: 150px;">
+              <option value="">全部状态</option>
+              <option value="待受理">待受理</option>
+              <option value="处理中">处理中</option>
+              <option value="已结案">已结案</option>
+            </select>
+            <select class="form-select" style="width: 150px;">
+              <option value="">全部类型</option>
+              <option value="工资拖欠">工资拖欠</option>
+              <option value="加班费">加班费</option>
+              <option value="经济补偿">经济补偿</option>
+            </select>
+            <input type="month" class="form-input" style="width: 150px;" value="2026-05">
+            <button class="btn btn-secondary btn-sm">筛选</button>
+          </div>
+        </div>
+
+        <!-- 投诉列表 -->
+        <div class="complaint-card">
+          <div class="complaint-header">
+            <div>
+              <div class="complaint-title">投诉人：陈小明 - 工资拖欠纠纷</div>
+              <div class="complaint-time">投诉时间：2026-05-08 14:30</div>
+            </div>
+            <span class="complaint-status pending">待受理</span>
+          </div>
+          <div class="complaint-content">
+            公司拖欠2026年3月-4月工资共计15,000元，多次沟通未果。
+          </div>
+          <div class="complaint-evidence">
+            <span class="evidence-tag">📎 劳动合同</span>
+            <span class="evidence-tag">📎 考勤记录</span>
+            <span class="evidence-tag">📎 工资条</span>
+          </div>
+          <div class="complaint-actions">
+            <button class="btn btn-sm btn-warning" onclick="acceptComplaint(this, 'ZC20260508001')">受理</button>
+            <button class="btn btn-sm btn-secondary" onclick="viewComplaintDetail('ZC20260508001')">查看详情</button>
+          </div>
+        </div>
+
+        <div class="complaint-card">
+          <div class="complaint-header">
+            <div>
+              <div class="complaint-title">投诉人：赵小红 - 加班费纠纷</div>
+              <div class="complaint-time">投诉时间：2026-05-05 09:15</div>
+            </div>
+            <span class="complaint-status processing">处理中</span>
+          </div>
+          <div class="complaint-content">
+            2026年4月加班费共计3,200元未发放，需要公司核实确认。
+          </div>
+          <div class="complaint-evidence">
+            <span class="evidence-tag">📎 加班记录</span>
+            <span class="evidence-tag">📎 工资条</span>
+          </div>
+          <div class="complaint-actions">
+            <button class="btn btn-sm btn-primary" onclick="processComplaint(this, 'ZC20260505002')">处理</button>
+            <button class="btn btn-sm btn-secondary" onclick="viewComplaintDetail('ZC20260505002')">查看详情</button>
+          </div>
+        </div>
+
+        <div class="complaint-card">
+          <div class="complaint-header">
+            <div>
+              <div class="complaint-title">投诉人：刘大力 - 经济补偿金</div>
+              <div class="complaint-time">投诉时间：2026-04-28 16:45</div>
+            </div>
+            <span class="complaint-status resolved">已结案</span>
+          </div>
+          <div class="complaint-content">
+            解除劳动合同经济补偿金争议，经调解已达成一致意见。
+          </div>
+          <div class="complaint-evidence">
+            <span class="evidence-tag">📎 调解协议书</span>
+          </div>
+          <div class="complaint-actions">
+            <button class="btn btn-sm btn-secondary" onclick="viewComplaintDetail('ZC20260428003')">查看详情</button>
+            <button class="btn btn-sm btn-primary" onclick="showNotification('调解协议已归档', 'success')">导出协议</button>
+          </div>
+        </div>
+      </div>
     </main>
+  </div>
+
+  <!-- 投诉处理模态框 -->
+  <div class="modal-overlay" id="complaint-modal">
+    <div class="modal" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3>投诉处理</h3>
+        <button class="modal-close" onclick="closeModal('complaint-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">处理结果</label>
+          <select class="form-select" id="complaint-result">
+            <option value="">请选择处理结果</option>
+            <option value="协商一致">协商一致</option>
+            <option value="支付完成">支付完成</option>
+            <option value="调解成功">调解成功</option>
+            <option value="无法协调">无法协调，建议仲裁</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">处理说明</label>
+          <textarea class="form-input" id="complaint-remark" placeholder="请输入处理说明..." rows="4"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">支付金额（元）</label>
+          <input type="number" class="form-input" id="complaint-amount" placeholder="请输入实际支付金额">
+        </div>
+        <div class="form-group">
+          <label class="form-label">上传凭证</label>
+          <div class="signature-area" style="padding: 20px;">
+            <p style="font-size: 12px; color: var(--text-tertiary); margin: 0;">点击上传支付凭证或调解协议</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('complaint-modal')">取消</button>
+        <button class="btn btn-primary" onclick="resolveComplaint()">完成处理</button>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -720,8 +1493,245 @@
     }
 
     function openContractModal() {
-      alert('发起签署合同功能');
+      document.getElementById('contract-wizard').classList.add('active');
     }
+
+    function closeWizard() {
+      document.getElementById('contract-wizard').classList.remove('active');
+      resetWizard();
+    }
+
+    function resetWizard() {
+      document.querySelectorAll('.wizard-step').forEach(function(step) {
+        step.classList.remove('active', 'completed');
+      });
+      document.querySelectorAll('.wizard-content').forEach(function(content) {
+        content.style.display = 'none';
+      });
+      document.getElementById('step-1').classList.add('active');
+      document.getElementById('wizard-step-1').style.display = 'block';
+      document.querySelectorAll('.template-card').forEach(function(card) {
+        card.classList.remove('selected');
+      });
+      document.getElementById('employer-signature').classList.remove('signed');
+      document.getElementById('employer-signature').innerHTML = '<div style="font-size: 32px; margin-bottom: 12px;">✍️</div><p style="font-size: 14px; color: var(--text-secondary); margin: 0;">点击此处进行电子签章</p><p style="font-size: 12px; color: var(--text-tertiary); margin: 8px 0 0 0;">请用人单位法定代表人或授权人签字</p>';
+    }
+
+    function selectTemplate(card, type) {
+      document.querySelectorAll('.template-card').forEach(function(c) {
+        c.classList.remove('selected');
+      });
+      card.classList.add('selected');
+    }
+
+    function nextStep(step) {
+      if (step === 2) {
+        var selected = document.querySelector('.template-card.selected');
+        if (!selected) {
+          showNotification('请先选择合同模板', 'warning');
+          return;
+        }
+      }
+      if (step === 3) {
+        var name = document.getElementById('emp-name').value;
+        var idcard = document.getElementById('emp-idcard').value;
+        if (!name || !idcard) {
+          showNotification('请填写必填信息', 'warning');
+          return;
+        }
+        updateContractPreview();
+      }
+      for (var i = 1; i <= 4; i++) {
+        var stepEl = document.getElementById('step-' + i);
+        var contentEl = document.getElementById('wizard-step-' + i);
+        if (i < step) {
+          stepEl.classList.remove('active');
+          stepEl.classList.add('completed');
+        } else if (i === step) {
+          stepEl.classList.add('active');
+          stepEl.classList.remove('completed');
+          contentEl.style.display = 'block';
+        } else {
+          stepEl.classList.remove('active', 'completed');
+          contentEl.style.display = 'none';
+        }
+      }
+    }
+
+    function prevStep(step) {
+      for (var i = 1; i <= 4; i++) {
+        var stepEl = document.getElementById('step-' + i);
+        var contentEl = document.getElementById('wizard-step-' + i);
+        if (i < step) {
+          stepEl.classList.add('completed');
+          stepEl.classList.remove('active');
+        } else if (i === step) {
+          stepEl.classList.add('active');
+          stepEl.classList.remove('completed');
+          contentEl.style.display = 'block';
+        } else {
+          stepEl.classList.remove('active', 'completed');
+          contentEl.style.display = 'none';
+        }
+      }
+    }
+
+    function updateContractPreview() {
+      var typeMap = {
+        'fixed': '固定期限劳动合同',
+        'unlimited': '无固定期限劳动合同',
+        'dispatch': '劳务派遣合同',
+        'flexible': '灵活用工协议',
+        'parttime': '兼职协议',
+        'project': '项目制合同'
+      };
+      var selected = document.querySelector('.template-card.selected');
+      var typeKey = selected ? selected.getAttribute('onclick').toString().match(/'(\w+)'/)[1] : '';
+      document.getElementById('preview-type').textContent = typeMap[typeKey] || '-';
+      document.getElementById('preview-name').textContent = document.getElementById('emp-name').value || '-';
+      document.getElementById('preview-duration').textContent = document.getElementById('emp-duration').value || '-';
+      document.getElementById('preview-salary').textContent = (document.getElementById('emp-salary').value || '-') + '元';
+      document.getElementById('preview-start').textContent = document.getElementById('emp-start-date').value || '-';
+      document.getElementById('preview-end').textContent = document.getElementById('emp-end-date').value || '-';
+      document.getElementById('preview-position').textContent = document.getElementById('emp-position').value || '-';
+    }
+
+    function signDocument(type) {
+      var signatureArea = document.getElementById('employer-signature');
+      signatureArea.classList.add('signed');
+      signatureArea.innerHTML = '<div style="font-size: 32px; margin-bottom: 12px;">✅</div><p style="font-size: 14px; color: var(--success); margin: 0;">签章已完成</p><p style="font-size: 12px; color: var(--text-secondary); margin: 8px 0 0 0;">签署时间：' + new Date().toLocaleString() + '</p>';
+      showNotification('电子签章完成', 'success');
+    }
+
+    function sendForSigning() {
+      var signatureArea = document.getElementById('employer-signature');
+      if (!signatureArea.classList.contains('signed')) {
+        showNotification('请先进行电子签章', 'warning');
+        return;
+      }
+      nextStep(4);
+      showNotification('合同已发送给员工签署', 'success');
+    }
+
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-item').forEach(function(tab) {
+        tab.classList.remove('active');
+        if (tab.textContent === tabName) {
+          tab.classList.add('active');
+        }
+      });
+      var contractWizard = document.getElementById('contract-wizard');
+      var wageSection = document.getElementById('wage-confirm-section');
+      var complaintSection = document.getElementById('complaint-section');
+      contractWizard.classList.remove('active');
+      wageSection.classList.remove('active');
+      complaintSection.classList.remove('active');
+      if (tabName === '合同管理') {
+      } else if (tabName === '工资确认') {
+        wageSection.classList.add('active');
+      } else if (tabName === '欠薪投诉处理') {
+        complaintSection.classList.add('active');
+      }
+    }
+
+    document.querySelectorAll('.tab-item').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        switchTab(this.textContent);
+        if (this.textContent === '发起签署') {
+          openContractModal();
+        }
+      });
+    });
+
+    function confirmWage(btn, name) {
+      var card = btn.closest('.confirm-card');
+      var status = card.querySelector('.confirm-status');
+      status.textContent = '已确认';
+      status.classList.remove('pending');
+      status.classList.add('confirmed');
+      btn.style.display = 'none';
+      showNotification(name + '工资已确认', 'success');
+    }
+
+    function openComplaintModal() {
+      document.getElementById('complaint-modal').classList.add('active');
+    }
+
+    function acceptComplaint(btn, complaintId) {
+      var card = btn.closest('.complaint-card');
+      var status = card.querySelector('.complaint-status');
+      status.textContent = '处理中';
+      status.classList.remove('pending');
+      status.classList.add('processing');
+      btn.textContent = '处理';
+      btn.setAttribute('onclick', 'processComplaint(this, "' + complaintId + '")');
+      btn.classList.remove('btn-warning');
+      btn.classList.add('btn-primary');
+      showNotification('投诉已受理，开始处理', 'success');
+    }
+
+    function processComplaint(btn, complaintId) {
+      document.getElementById('complaint-modal').classList.add('active');
+      btn._complaintId = complaintId;
+    }
+
+    function resolveComplaint() {
+      var result = document.getElementById('complaint-result').value;
+      if (!result) {
+        showNotification('请选择处理结果', 'warning');
+        return;
+      }
+      var complaintCards = document.querySelectorAll('.complaint-card');
+      for (var i = 0; i < complaintCards.length; i++) {
+        var card = complaintCards[i];
+        var status = card.querySelector('.complaint-status');
+        if (status && status.classList.contains('processing')) {
+          status.textContent = '已结案';
+          status.classList.remove('processing');
+          status.classList.add('resolved');
+          var actions = card.querySelector('.complaint-actions');
+          actions.innerHTML = '<button class="btn btn-sm btn-secondary" onclick="viewComplaintDetail(\'' + (card._complaintId || '') + '\')">查看详情</button>';
+          break;
+        }
+      }
+      closeModal('complaint-modal');
+      showNotification('投诉处理完成', 'success');
+      document.getElementById('complaint-result').value = '';
+      document.getElementById('complaint-remark').value = '';
+      document.getElementById('complaint-amount').value = '';
+    }
+
+    function viewComplaintDetail(complaintId) {
+      showNotification('正在加载投诉详情...', 'info');
+    }
+
+    function showNotification(message, type) {
+      var notification = document.createElement('div');
+      notification.className = 'notification ' + (type || '');
+      notification.innerHTML = '<span>' + message + '</span>';
+      document.body.appendChild(notification);
+      setTimeout(function() {
+        notification.classList.add('show');
+      }, 10);
+      setTimeout(function() {
+        notification.classList.remove('show');
+        setTimeout(function() {
+          notification.remove();
+        }, 300);
+      }, 3000);
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
+
+    document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+      overlay.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('active');
+        }
+      });
+    });
   </script>
 </body>
 </html>

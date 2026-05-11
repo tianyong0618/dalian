@@ -892,7 +892,7 @@
       </div>
 
       <!-- 案件列表 -->
-      <div class="content-card">
+      <div class="content-card" id="module-case-management">
         <div class="content-card-header">
           <h3>📋 待处理案件列表</h3>
           <div class="filter-bar">
@@ -934,8 +934,8 @@
                 <td><span class="badge badge-warning">仲裁审理</span></td>
                 <td>2024-03-01</td>
                 <td>
-                  <button class="btn btn-secondary btn-sm" style="margin-right:4px;">查看</button>
-                  <button class="btn btn-primary btn-sm" onclick="openCloudTrial()">开始庭审</button>
+                  <button class="btn btn-secondary btn-sm" style="margin-right:4px;" onclick="viewCaseDetail('LA2024-0892')">查看</button>
+                  <button class="btn btn-primary btn-sm" onclick="openCloudTrial('LA2024-0892')">开始庭审</button>
                 </td>
               </tr>
               <tr>
@@ -946,7 +946,10 @@
                 <td>¥120,000</td>
                 <td><span class="badge badge-info">调解中</span></td>
                 <td>2024-02-28</td>
-                <td><button class="btn btn-secondary btn-sm">查看</button></td>
+                <td>
+                  <button class="btn btn-secondary btn-sm" onclick="viewCaseDetail('LA2024-0891')">查看</button>
+                  <button class="btn btn-secondary btn-sm" onclick="showAssignModal('LA2024-0891')">分配</button>
+                </td>
               </tr>
               <tr>
                 <td>LA2024-0890</td>
@@ -956,7 +959,7 @@
                 <td>¥35,000</td>
                 <td><span class="badge badge-success">已结案</span></td>
                 <td>2024-02-25</td>
-                <td><button class="btn btn-secondary btn-sm">查看</button></td>
+                <td><button class="btn btn-secondary btn-sm" onclick="viewCaseDetail('LA2024-0890')">查看</button></td>
               </tr>
               <tr>
                 <td>LA2024-0889</td>
@@ -966,7 +969,10 @@
                 <td>¥28,000</td>
                 <td><span class="badge badge-warning">待分配</span></td>
                 <td>2024-02-24</td>
-                <td><button class="btn btn-secondary btn-sm">查看</button></td>
+                <td>
+                  <button class="btn btn-secondary btn-sm" onclick="viewCaseDetail('LA2024-0889')">查看</button>
+                  <button class="btn btn-warning btn-sm" onclick="showAssignModal('LA2024-0889')">分配调解员</button>
+                </td>
               </tr>
               <tr>
                 <td>LA2024-0888</td>
@@ -976,18 +982,415 @@
                 <td>¥65,000</td>
                 <td><span class="badge badge-info">调解中</span></td>
                 <td>2024-02-23</td>
-                <td><button class="btn btn-secondary btn-sm">查看</button></td>
+                <td><button class="btn btn-secondary btn-sm" onclick="viewCaseDetail('LA2024-0888')">查看</button></td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
+
+      
+      <div class="module-section" id="module-mediation" style="display:none;">
+        <div class="module-header">
+          <h2>调解管理</h2>
+          <button class="btn btn-primary" onclick="showNotification('新建调解任务', 'info')">+ 分配调解任务</button>
+        </div>
+
+        
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3>👤 调解员管理</h3>
+            <button class="btn btn-secondary btn-sm">查看全部</button>
+          </div>
+          <div class="content-card-body">
+            <div class="mediator-card">
+              <div class="mediator-avatar">陈</div>
+              <div class="mediator-info">
+                <h4>陈调解员</h4>
+                <p>专业领域：劳动争议、合同纠纷 | 工作年限：8年</p>
+                <div class="mediator-stats">
+                  <div class="mediator-stat">
+                    <div class="num">156</div>
+                    <div class="label">已完成案件</div>
+                  </div>
+                  <div class="mediator-stat">
+                    <div class="num">92%</div>
+                    <div class="label">调解成功率</div>
+                  </div>
+                  <div class="mediator-stat">
+                    <div class="num">5</div>
+                    <div class="label">当前在办</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mediator-actions">
+                <button class="btn btn-primary btn-sm" onclick="smartAssign('LA2024-0889')">智能分配</button>
+              </div>
+            </div>
+
+            <div class="mediator-card">
+              <div class="mediator-avatar">李</div>
+              <div class="mediator-info">
+                <h4>李调解员</h4>
+                <p>专业领域：工伤赔偿、社会保险 | 工作年限：5年</p>
+                <div class="mediator-stats">
+                  <div class="mediator-stat">
+                    <div class="num">89</div>
+                    <div class="label">已完成案件</div>
+                  </div>
+                  <div class="mediator-stat">
+                    <div class="num">88%</div>
+                    <div class="label">调解成功率</div>
+                  </div>
+                  <div class="mediator-stat">
+                    <div class="num">3</div>
+                    <div class="label">当前在办</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mediator-actions">
+                <button class="btn btn-secondary btn-sm" onclick="showAssignModal('LA2024-0891')">分配案件</button>
+              </div>
+            </div>
+
+            <div class="mediator-card">
+              <div class="mediator-avatar">王</div>
+              <div class="mediator-info">
+                <h4>王调解员</h4>
+                <p>专业领域：工资拖欠、经济补偿 | 工作年限：10年</p>
+                <div class="mediator-stats">
+                  <div class="mediator-stat">
+                    <div class="num">234</div>
+                    <div class="label">已完成案件</div>
+                  </div>
+                  <div class="mediator-stat">
+                    <div class="num">95%</div>
+                    <div class="label">调解成功率</div>
+                  </div>
+                  <div class="mediator-stat">
+                    <div class="num">2</div>
+                    <div class="label">当前在办</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mediator-actions">
+                <button class="btn btn-secondary btn-sm" onclick="showAssignModal('LA2024-0889')">分配案件</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3>🔄 调解中案件</h3>
+          </div>
+          <div class="content-card-body" style="padding: 0;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>案件编号</th>
+                  <th>调解员</th>
+                  <th>申请人</th>
+                  <th>被申请人</th>
+                  <th>调解进度</th>
+                  <th>开始时间</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>LA2024-0891</td>
+                  <td>陈调解员</td>
+                  <td>李某</td>
+                  <td>某制造公司</td>
+                  <td>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 60%;"></div>
+                    </div>
+                    <span class="progress-text">60%</span>
+                  </td>
+                  <td>2024-02-28</td>
+                  <td>
+                    <button class="btn btn-secondary btn-sm">查看详情</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>LA2024-0888</td>
+                  <td>李调解员</td>
+                  <td>孙某</td>
+                  <td>某教育公司</td>
+                  <td>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 35%;"></div>
+                    </div>
+                    <span class="progress-text">35%</span>
+                  </td>
+                  <td>2024-02-23</td>
+                  <td>
+                    <button class="btn btn-secondary btn-sm">查看详情</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="module-section" id="module-cloud-trial" style="display:none;">
+        <div class="module-header">
+          <h2>云庭审管理</h2>
+          <button class="btn btn-primary" onclick="showNotification('排期功能开发中', 'info')">+ 庭审排期</button>
+        </div>
+
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3>📅 今日庭审安排</h3>
+          </div>
+          <div class="content-card-body" style="padding: 0;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>时间</th>
+                  <th>案件编号</th>
+                  <th>案件类型</th>
+                  <th>申请人</th>
+                  <th>被申请人</th>
+                  <th>仲裁员</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>09:00</td>
+                  <td>LA2024-0892</td>
+                  <td>劳动争议</td>
+                  <td>张某</td>
+                  <td>某科技公司</td>
+                  <td>王仲裁员</td>
+                  <td><span class="badge badge-success">进行中</span></td>
+                  <td>
+                    <button class="btn btn-primary btn-sm" onclick="openCloudTrial('LA2024-0892')">进入庭审</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>14:00</td>
+                  <td>LA2024-0895</td>
+                  <td>工伤待遇</td>
+                  <td>刘某</td>
+                  <td>某建筑公司</td>
+                  <td>张仲裁员</td>
+                  <td><span class="badge badge-warning">待开庭</span></td>
+                  <td>
+                    <button class="btn btn-secondary btn-sm">查看详情</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>15:30</td>
+                  <td>LA2024-0896</td>
+                  <td>社会保险</td>
+                  <td>赵某</td>
+                  <td>某电商公司</td>
+                  <td>李仲裁员</td>
+                  <td><span class="badge badge-warning">待开庭</span></td>
+                  <td>
+                    <button class="btn btn-secondary btn-sm">查看详情</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="module-section" id="module-documents" style="display:none;">
+        <div class="module-header">
+          <h2>文书管理</h2>
+          <button class="btn btn-primary" onclick="showNotification('生成裁决书', 'info')">+ 生成裁决书</button>
+        </div>
+
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3>📄 待送达文书</h3>
+          </div>
+          <div class="content-card-body" style="padding: 0;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>文书编号</th>
+                  <th>案件编号</th>
+                  <th>文书类型</th>
+                  <th>当事人</th>
+                  <th>生成时间</th>
+                  <th>送达状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>WS2024-0892</td>
+                  <td>LA2024-0892</td>
+                  <td>裁决书</td>
+                  <td>张某 vs 某科技公司</td>
+                  <td>2024-03-05</td>
+                  <td><span class="badge badge-warning">待送达</span></td>
+                  <td>
+                    <button class="btn btn-primary btn-sm" onclick="showNotification('云送达中...', 'info')">云送达</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>WS2024-0891</td>
+                  <td>LA2024-0891</td>
+                  <td>调解书</td>
+                  <td>李某 vs 某制造公司</td>
+                  <td>2024-03-04</td>
+                  <td><span class="badge badge-info">送达中</span></td>
+                  <td>
+                    <button class="btn btn-secondary btn-sm">查看详情</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>WS2024-0890</td>
+                  <td>LA2024-0890</td>
+                  <td>受理通知书</td>
+                  <td>王某 vs 某贸易公司</td>
+                  <td>2024-02-25</td>
+                  <td><span class="badge badge-success">已送达</span></td>
+                  <td>
+                    <button class="btn btn-secondary btn-sm">查看详情</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="module-section" id="module-linkage" style="display:none;">
+        <div class="module-header">
+          <h2>上下联动管理</h2>
+        </div>
+
+        <div class="row mb-24">
+          <div class="col-3">
+            <div class="stat-card">
+              <div class="number">12</div>
+              <div class="label">跨区域协同案件</div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="stat-card">
+              <div class="number">5</div>
+              <div class="label">上级督办案件</div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="stat-card">
+              <div class="number">89%</div>
+              <div class="label">数据同步率</div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="stat-card">
+              <div class="number">156</div>
+              <div class="label">本月办结案件</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3>🔗 跨区域协同案件</h3>
+          </div>
+          <div class="content-card-body" style="padding: 0;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>案件编号</th>
+                  <th>协同区域</th>
+                  <th>案件类型</th>
+                  <th>主办机构</th>
+                  <th>协办机构</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>LA2024-0892</td>
+                  <td>杭州-上海</td>
+                  <td>劳动争议</td>
+                  <td>杭州市仲裁委</td>
+                  <td>上海市仲裁委</td>
+                  <td><span class="badge badge-info">协同中</span></td>
+                  <td>
+                    <button class="btn btn-secondary btn-sm">查看详情</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>LA2024-0889</td>
+                  <td>杭州-宁波</td>
+                  <td>工资拖欠</td>
+                  <td>宁波市仲裁委</td>
+                  <td>杭州市仲裁委</td>
+                  <td><span class="badge badge-warning">待协作</span></td>
+                  <td>
+                    <button class="btn btn-secondary btn-sm">查看详情</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 
+  
+  <div class="assign-case-modal" id="assign-case-modal">
+    <div class="assign-modal-content">
+      <div class="assign-modal-header">
+        <h3>👤 分配调解员 - 案件 <span id="assign-case-id">LA2024-0889</span></h3>
+        <button class="modal-close" onclick="closeAssignModal()">×</button>
+      </div>
+      <div class="assign-modal-body">
+        <div class="form-group">
+          <label class="form-label">选择调解员</label>
+          <select class="form-select" id="mediator-select">
+            <option value="">请选择调解员</option>
+            <option value="chen">陈调解员 - 劳动争议专家 - 当前5件</option>
+            <option value="li">李调解员 - 工伤赔偿专家 - 当前3件</option>
+            <option value="wang">王调解员 - 工资拖欠专家 - 当前2件</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">
+            <input type="checkbox" id="smart-assign-checkbox"> 启用AI智能分配
+          </label>
+          <p class="text-small text-secondary">AI将根据案件特征自动匹配最合适的调解员</p>
+        </div>
+      </div>
+      <div class="assign-modal-footer">
+        <button class="btn btn-secondary" onclick="closeAssignModal()">取消</button>
+        <button class="btn btn-primary" onclick="confirmAssign()">确认分配</button>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // 全局变量
+    let trialStartTime = null;
+    let timerInterval = null;
+    let currentEvidenceIndex = 0;
+    let isDrawing = false;
+    let signCtx = null;
+
+    // 角色切换
     function switchRole(role) {
-      // 根据角色跳转到对应页面
       const rolePages = {
         'laborer': '14c-laborer.html',
         'employer': '14b-employer.html',
@@ -1001,91 +1404,751 @@
       }
     }
 
-    // 菜单点击事件
-    document.querySelectorAll('.menu-item').forEach(item => {
-      item.addEventListener('click', function() {
-        document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
+    // 顶部标签切换
+    document.querySelectorAll('.tab-item').forEach(tab => {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
         this.classList.add('active');
+        
+        const module = this.textContent.trim();
+        switch(module) {
+          case '我的工作台':
+            showModule('dashboard');
+            break;
+          case '案件管理':
+            showModule('case-management');
+            break;
+          case '调解管理':
+            showModule('mediation');
+            break;
+          case '云庭审':
+            showModule('cloud-trial');
+            break;
+          case '文书管理':
+            showModule('documents');
+            break;
+          case '上下联动':
+            showModule('linkage');
+            break;
+        }
       });
     });
 
-// 云庭审全屏
-    function openCloudTrial() {
+    function showModule(module) {
+      document.querySelectorAll('.module-section').forEach(m => m.style.display = 'none');
+      const target = document.getElementById('module-' + module);
+      if (target) target.style.display = 'block';
+    }
+
+    // 云庭审功能
+    function openCloudTrial(caseId) {
       document.getElementById('cloud-trial-fullscreen').classList.add('active');
+      startTrialTimer();
+      
+      if (caseId) {
+        document.getElementById('ct-case-id').textContent = caseId;
+      }
     }
 
     function closeCloudTrial() {
       document.getElementById('cloud-trial-fullscreen').classList.remove('active');
+      stopTrialTimer();
+      showNotification('庭审已结束', 'info');
     }
+
+    function startTrialTimer() {
+      trialStartTime = Date.now();
+      timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    function stopTrialTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+    }
+
+    function updateTimer() {
+      const elapsed = Math.floor((Date.now() - trialStartTime) / 1000);
+      const hours = Math.floor(elapsed / 3600).toString().padStart(2, '0');
+      const minutes = Math.floor((elapsed % 3600) / 60).toString().padStart(2, '0');
+      const seconds = (elapsed % 60).toString().padStart(2, '0');
+      document.getElementById('ct-duration').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    function toggleMute() {
+      const icon = document.getElementById('mic-icon');
+      icon.textContent = icon.textContent === '🎤' ? '🔇' : '🎤';
+      showNotification(icon.textContent === '🔇' ? '已静音' : '已开启麦克风', 'info');
+    }
+
+    function toggleCamera() {
+      const icon = document.getElementById('camera-icon');
+      icon.textContent = icon.textContent === '📹' ? '📷' : '📹';
+      showNotification(icon.textContent === '📷' ? '已关闭摄像头' : '已开启摄像头', 'info');
+    }
+
+    function shareScreen() {
+      showNotification('屏幕共享功能已开启', 'success');
+    }
+
+    function toggleRecording() {
+      showNotification('庭审录制功能已开启', 'info');
+    }
+
+    function fullscreenVideo() {
+      const el = document.getElementById('arbiter-video');
+      if (el.requestFullscreen) {
+        el.requestFullscreen();
+      }
+    }
+
+    function nextTrialStep() {
+      const steps = document.querySelectorAll('.ct-trial-step');
+      let currentStep = null;
+      
+      steps.forEach((step, index) => {
+        step.classList.remove('active');
+        if (step.classList.contains('completed')) {
+          currentStep = index;
+        }
+      });
+      
+      if (currentStep < steps.length - 1) {
+        steps[currentStep].classList.add('completed');
+        steps[currentStep + 1].classList.add('active');
+        
+        addTranscriptMessage('system', '【系统】进入' + steps[currentStep + 1].querySelector('.step-name').textContent + '环节');
+        showNotification('已进入: ' + steps[currentStep + 1].querySelector('.step-name').textContent, 'success');
+      } else {
+        showNotification('庭审流程已全部完成', 'info');
+      }
+    }
+
+    // 证据相关
+    function showEvidence(evidenceName) {
+      document.getElementById('evidence-preview-title').textContent = evidenceName;
+      document.getElementById('evidence-preview-name').textContent = evidenceName;
+      document.getElementById('evidence-preview-modal').classList.add('active');
+      
+      const items = document.querySelectorAll('.ct-evidence-item');
+      items.forEach((item, index) => {
+        if (item.querySelector('.evidence-name').textContent === evidenceName) {
+          currentEvidenceIndex = index;
+        }
+      });
+    }
+
+    function closeEvidencePreview() {
+      document.getElementById('evidence-preview-modal').classList.remove('active');
+    }
+
+    function prevEvidence() {
+      const items = document.querySelectorAll('.ct-evidence-item');
+      currentEvidenceIndex = (currentEvidenceIndex - 1 + items.length) % items.length;
+      const name = items[currentEvidenceIndex].querySelector('.evidence-name').textContent;
+      document.getElementById('evidence-preview-name').textContent = name;
+    }
+
+    function nextEvidence() {
+      const items = document.querySelectorAll('.ct-evidence-item');
+      currentEvidenceIndex = (currentEvidenceIndex + 1) % items.length;
+      const name = items[currentEvidenceIndex].querySelector('.evidence-name').textContent;
+      document.getElementById('evidence-preview-name').textContent = name;
+    }
+
+    function showUploadEvidenceModal() {
+      document.getElementById('upload-evidence-modal').classList.add('active');
+    }
+
+    function closeUploadModal() {
+      document.getElementById('upload-evidence-modal').classList.remove('active');
+    }
+
+    function handleFileUpload(input) {
+      if (input.files && input.files[0]) {
+        const fileName = input.files[0].name;
+        document.getElementById('evidence-name').value = fileName;
+        showNotification('已选择文件: ' + fileName, 'success');
+      }
+    }
+
+    function submitEvidence() {
+      const name = document.getElementById('evidence-name').value;
+      const source = document.getElementById('evidence-source').value;
+      
+      if (!name) {
+        showNotification('请输入证据名称', 'warning');
+        return;
+      }
+      
+      const list = document.getElementById('evidence-list');
+      const newItem = document.createElement('div');
+      newItem.className = 'ct-evidence-item';
+      newItem.onclick = function() { showEvidence(name); };
+      newItem.innerHTML = `
+        <div class="evidence-icon">📄</div>
+        <div class="evidence-info">
+          <div class="evidence-name">${name}</div>
+          <div class="evidence-meta">${source === 'applicant' ? '申请人' : '被申请人'}提交 | ${new Date().toLocaleDateString()}</div>
+        </div>
+        <button class="evidence-action" onclick="event.stopPropagation(); showEvidence('${name}')">展示</button>
+      `;
+      list.appendChild(newItem);
+      
+      addTranscriptMessage('system', '【系统】新证据已上传: ' + name);
+      closeUploadModal();
+      showNotification('证据上传成功', 'success');
+      
+      document.getElementById('evidence-name').value = '';
+    }
+
+    // 笔录相关
+    function handleTranscriptInput(event) {
+      if (event.key === 'Enter') {
+        sendTranscript();
+      }
+    }
+
+    function sendTranscript() {
+      const input = document.getElementById('transcript-input');
+      const text = input.value.trim();
+      
+      if (text) {
+        addTranscriptMessage('arbiter', text);
+        input.value = '';
+      }
+    }
+
+    function addTranscriptMessage(role, text) {
+      const body = document.getElementById('transcript-body');
+      const time = new Date().toLocaleTimeString();
+      
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `ct-transcript-msg ${role}`;
+      msgDiv.innerHTML = `<span class="msg-role">${getRoleName(role)}：</span><span class="msg-text">${text}</span>`;
+      
+      body.appendChild(msgDiv);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function getRoleName(role) {
+      const roles = {
+        'system': '系统',
+        'arbiter': '仲裁员',
+        'applicant': '申请人',
+        'respondent': '被申请人'
+      };
+      return roles[role] || role;
+    }
+
+    function exportTranscript() {
+      showNotification('庭审笔录导出中...', 'info');
+      setTimeout(() => {
+        showNotification('笔录已导出', 'success');
+      }, 1000);
+    }
+
+    // 操作按钮功能
+    function startCrossExamine() {
+      showNotification('进入举证质证环节', 'info');
+      addTranscriptMessage('system', '【系统】进入举证质证环节，请各方依次出示证据');
+    }
+
+    function addStatement() {
+      const input = document.getElementById('transcript-input');
+      input.focus();
+    }
+
+    function adjournTrial() {
+      if (confirm('确定要申请休庭吗？')) {
+        document.getElementById('ct-trial-status').textContent = '已休庭';
+        addTranscriptMessage('system', '【系统】仲裁员宣布休庭');
+        showNotification('已休庭，请等待恢复庭审通知', 'warning');
+      }
+    }
+
+    function startMediation() {
+      showNotification('进入调解程序', 'info');
+      addTranscriptMessage('system', '【系统】双方是否同意调解？');
+    }
+
+    function announceJudgment() {
+      showNotification('进入宣判环节', 'info');
+      addTranscriptMessage('arbiter', '本案现宣布裁决结果...');
+    }
+
+    // 电子签字
+    function showSignModal() {
+      document.getElementById('sign-modal').classList.add('active');
+      
+      setTimeout(() => {
+        const canvas = document.getElementById('sign-canvas');
+        signCtx = canvas.getContext('2d');
+        signCtx.fillStyle = '#fafafa';
+        signCtx.fillRect(0, 0, canvas.width, canvas.height);
+      }, 100);
+    }
+
+    function closeSignModal() {
+      document.getElementById('sign-modal').classList.remove('active');
+    }
+
+    function startSign(e) {
+      isDrawing = true;
+      const canvas = document.getElementById('sign-canvas');
+      const rect = canvas.getBoundingClientRect();
+      signCtx.beginPath();
+      signCtx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+    }
+
+    function doSign(e) {
+      if (!isDrawing) return;
+      const canvas = document.getElementById('sign-canvas');
+      const rect = canvas.getBoundingClientRect();
+      signCtx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+      signCtx.strokeStyle = '#000';
+      signCtx.lineWidth = 2;
+      signCtx.stroke();
+    }
+
+    function endSign() {
+      isDrawing = false;
+    }
+
+    function clearSign() {
+      const canvas = document.getElementById('sign-canvas');
+      signCtx.fillStyle = '#fafafa';
+      signCtx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function confirmSign() {
+      showNotification('电子签字已确认，具有法律效力', 'success');
+      addTranscriptMessage('system', '【系统】电子签字已完成，笔录已锁定');
+      closeSignModal();
+    }
+
+    function endTrial() {
+      if (confirm('确定要结束庭审吗？')) {
+        addTranscriptMessage('system', '【系统】庭审结束');
+        showNotification('庭审已结束，正在生成庭审记录...', 'info');
+        
+        setTimeout(() => {
+          closeCloudTrial();
+          showNotification('庭审记录已生成，可前往文书管理查看', 'success');
+        }, 2000);
+      }
+    }
+
+    // 调解员相关
+    function showAssignModal(caseId) {
+      document.getElementById('assign-case-id').textContent = caseId;
+      document.getElementById('assign-case-modal').classList.add('active');
+    }
+
+    function closeAssignModal() {
+      document.getElementById('assign-case-modal').classList.remove('active');
+    }
+
+    function assignMediator(mediatorId) {
+      const caseId = document.getElementById('assign-case-id').textContent;
+      showNotification('案件 ' + caseId + ' 已分配给调解员', 'success');
+      closeAssignModal();
+      
+      setTimeout(() => {
+        showNotification('调解员已收到任务通知', 'info');
+      }, 1000);
+    }
+
+    function smartAssign(caseId) {
+      showNotification('AI正在分析案件特征，智能匹配最佳调解员...', 'info');
+      
+      setTimeout(() => {
+        const mediators = document.querySelectorAll('.mediator-card');
+        if (mediators.length > 0) {
+          const recommended = mediators[0];
+          const name = recommended.querySelector('.mediator-info h4').textContent;
+          showNotification('推荐调解员: ' + name, 'success');
+        }
+      }, 1500);
+    }
+
+    // 通知提示
+    function confirmAssign() {
+      const mediator = document.getElementById('mediator-select').value;
+      if (!mediator) {
+        showNotification('请选择调解员', 'warning');
+        return;
+      }
+      
+      const caseId = document.getElementById('assign-case-id').textContent;
+      const mediatorName = document.querySelector(`#mediator-select option[value="${mediator}"]`).textContent.split('-')[0].trim();
+      
+      showNotification(`案件 ${caseId} 已分配给 ${mediatorName}`, 'success');
+      closeAssignModal();
+      
+      setTimeout(() => {
+        showNotification(`${mediatorName} 已收到任务通知`, 'info');
+      }, 1000);
+    }
+
+    function showNotification(message, type) {
+      const notification = document.createElement('div');
+      notification.className = 'notification ' + (type || '');
+      notification.innerHTML = `<span>${message}</span>`;
+      document.body.appendChild(notification);
+
+      setTimeout(function() {
+        notification.classList.add('show');
+      }, 10);
+
+      setTimeout(function() {
+        notification.classList.remove('show');
+        setTimeout(function() {
+          notification.remove();
+        }, 300);
+      }, 3000);
+    }
+
+    document.querySelectorAll('.tab-item').forEach(function(item) {
+      item.addEventListener('click', function() {
+        document.querySelectorAll('.tab-item').forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    document.querySelectorAll('.modal-overlay, .assign-case-modal').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('active');
+        }
+      });
+    });
   </script>
 
+  <!-- 云庭审完整五分区弹窗 -->
   <div class="cloud-trial-fullscreen" id="cloud-trial-fullscreen">
+    <!-- 区域1: 顶部信息栏 -->
     <div class="ct-header">
       <div class="ct-header-left">
         <span class="ct-logo">⚖️</span>
         <span class="ct-title">劳动人事争议仲裁庭</span>
+        <span class="ct-court-name">杭州市劳动人事争议仲裁委员会</span>
       </div>
       <div class="ct-header-center">
         <div class="ct-case-info">
-          <span>案件编号：LA2024-0892</span>
+          <span><strong>案件编号：</strong><span id="ct-case-id">LA2024-0892</span></span>
           <span class="ct-divider">|</span>
-          <span>申请人：张某</span>
+          <span><strong>案由：</strong><span id="ct-case-type">劳动争议</span></span>
           <span class="ct-divider">|</span>
-          <span>被申请人：某科技公司</span>
+          <span><strong>申请人：</strong><span id="ct-applicant">张某</span></span>
+          <span class="ct-divider">|</span>
+          <span><strong>被申请人：</strong><span id="ct-respondent">某科技公司</span></span>
         </div>
       </div>
       <div class="ct-header-right">
-        <span class="ct-status">● 庭审中</span>
-        <button class="ct-btn-end" onclick="closeCloudTrial()">结束庭审</button>
+        <div class="ct-timer">
+          <span class="ct-timer-label">庭审时长</span>
+          <span class="ct-timer-value" id="ct-duration">00:00:00</span>
+        </div>
+        <span class="ct-status">
+          <span class="ct-status-dot"></span>
+          <span id="ct-trial-status">庭审中</span>
+        </span>
+        <button class="ct-btn" onclick="toggleMute()">
+          <span id="mic-icon">🎤</span>
+        </button>
+        <button class="ct-btn" onclick="toggleCamera()">
+          <span id="camera-icon">📹</span>
+        </button>
+        <button class="ct-btn-end" onclick="endTrial()">结束庭审</button>
       </div>
     </div>
 
+    <!-- 主内容区 -->
     <div class="ct-main">
+      <!-- 左侧: 视频会议区 -->
       <div class="ct-content">
-        <div class="ct-video-area">
-          <div class="ct-video-main">
-            <div class="ct-video-placeholder">
-              <div class="icon">📹</div>
-              <div>仲裁员画面</div>
+        <!-- 区域2: 视频会议区 -->
+        <div class="ct-video-section">
+          <div class="ct-video-header">
+            <span>📹 视频会议</span>
+            <div class="ct-video-controls">
+              <button class="ct-control-btn" onclick="shareScreen()" title="共享屏幕">🖥️</button>
+              <button class="ct-control-btn" onclick="toggleRecording()" title="录制">⏺</button>
+              <button class="ct-control-btn" onclick="fullscreenVideo()" title="全屏">⛶</button>
             </div>
           </div>
-          <div class="ct-video-grid">
-            <div class="ct-video-thumb">申请人</div>
-            <div class="ct-video-thumb">被申请人</div>
-            <div class="ct-video-thumb">书记员</div>
+          <div class="ct-video-area">
+            <!-- 主画面: 仲裁员 -->
+            <div class="ct-video-main" id="arbiter-video">
+              <div class="ct-video-placeholder">
+                <div class="ct-participant-avatar">仲</div>
+                <div class="ct-participant-name">王仲裁员</div>
+                <div class="ct-participant-role">仲裁员</div>
+              </div>
+              <div class="ct-video-active-indicator"></div>
+            </div>
+            <!-- 底部: 当事人画面 -->
+            <div class="ct-video-sub-grid">
+              <div class="ct-video-thumb" id="applicant-video">
+                <div class="ct-participant-avatar small">申</div>
+                <div class="ct-participant-name">张某</div>
+                <div class="ct-video-badge">申请人</div>
+              </div>
+              <div class="ct-video-thumb" id="respondent-video">
+                <div class="ct-participant-avatar small">被</div>
+                <div class="ct-participant-name">某科技公司</div>
+                <div class="ct-video-badge">被申请人</div>
+              </div>
+              <div class="ct-video-thumb" id="clerk-video">
+                <div class="ct-participant-avatar small">书</div>
+                <div class="ct-participant-name">李书记员</div>
+                <div class="ct-video-badge">书记员</div>
+              </div>
+              <div class="ct-video-thumb" id="lawyer-video">
+                <div class="ct-participant-avatar small">律</div>
+                <div class="ct-participant-name">陈律师</div>
+                <div class="ct-video-badge">代理人</div>
+              </div>
+            </div>
+          </div>
+          <!-- 庭审流程控制条 -->
+          <div class="ct-trial-progress">
+            <div class="ct-trial-step completed" data-step="1">
+              <span class="step-num">1</span>
+              <span class="step-name">宣布开庭</span>
+            </div>
+            <div class="ct-trial-step active" data-step="2">
+              <span class="step-num">2</span>
+              <span class="step-name">身份核实</span>
+            </div>
+            <div class="ct-trial-step" data-step="3">
+              <span class="step-num">3</span>
+              <span class="step-name">陈述答辩</span>
+            </div>
+            <div class="ct-trial-step" data-step="4">
+              <span class="step-num">4</span>
+              <span class="step-name">举证质证</span>
+            </div>
+            <div class="ct-trial-step" data-step="5">
+              <span class="step-num">5</span>
+              <span class="step-name">辩论陈述</span>
+            </div>
+            <div class="ct-trial-step" data-step="6">
+              <span class="step-num">6</span>
+              <span class="step-name">最后陈述</span>
+            </div>
+            <div class="ct-trial-step" data-step="7">
+              <span class="step-num">7</span>
+              <span class="step-name">调解/宣判</span>
+            </div>
+            <button class="btn btn-sm btn-secondary" onclick="nextTrialStep()">下一步 →</button>
+          </div>
+        </div>
+
+        <!-- 区域3: 证据展示区 -->
+        <div class="ct-evidence-section">
+          <div class="ct-panel-header">
+            <span>📁 证据材料</span>
+            <button class="btn btn-sm btn-primary" onclick="showUploadEvidenceModal()">+ 上传</button>
+          </div>
+          <div class="ct-evidence-list" id="evidence-list">
+            <div class="ct-evidence-item" onclick="showEvidence('劳动合同.pdf')">
+              <div class="evidence-icon">📄</div>
+              <div class="evidence-info">
+                <div class="evidence-name">劳动合同.pdf</div>
+                <div class="evidence-meta">申请人提交 | 2024-02-28</div>
+              </div>
+              <button class="evidence-action" onclick="event.stopPropagation(); showEvidence('劳动合同.pdf')">展示</button>
+            </div>
+            <div class="ct-evidence-item" onclick="showEvidence('工资流水.pdf')">
+              <div class="evidence-icon">💳</div>
+              <div class="evidence-info">
+                <div class="evidence-name">工资流水.pdf</div>
+                <div class="evidence-meta">申请人提交 | 2024-02-28</div>
+              </div>
+              <button class="evidence-action" onclick="event.stopPropagation(); showEvidence('工资流水.pdf')">展示</button>
+            </div>
+            <div class="ct-evidence-item" onclick="showEvidence('社保缴纳记录.pdf')">
+              <div class="evidence-icon">📋</div>
+              <div class="evidence-info">
+                <div class="evidence-name">社保缴纳记录.pdf</div>
+                <div class="evidence-meta">被申请人提交 | 2024-03-01</div>
+              </div>
+              <button class="evidence-action" onclick="event.stopPropagation(); showEvidence('社保缴纳记录.pdf')">展示</button>
+            </div>
+            <div class="ct-evidence-item" onclick="showEvidence('解除劳动合同通知书.pdf')">
+              <div class="evidence-icon">📨</div>
+              <div class="evidence-info">
+                <div class="evidence-name">解除劳动合同通知书.pdf</div>
+                <div class="evidence-meta">被申请人提交 | 2024-03-01</div>
+              </div>
+              <button class="evidence-action" onclick="event.stopPropagation(); showEvidence('解除劳动合同通知书.pdf')">展示</button>
+            </div>
           </div>
         </div>
       </div>
 
+      <!-- 右侧边栏 -->
       <div class="ct-sidebar">
-        <div class="ct-panel">
-          <div class="ct-panel-header">证据材料</div>
-          <div class="ct-panel-body">
-            <div class="ct-evidence-list">
-              <div class="ct-evidence-item">📄 劳动合同.pdf</div>
-              <div class="ct-evidence-item">📄 工资流水.pdf</div>
-              <div class="ct-evidence-item">📄 解除证明.pdf</div>
+        <!-- 区域4: 庭审笔录区 -->
+        <div class="ct-transcript-section">
+          <div class="ct-panel-header">
+            <span>📝 庭审笔录</span>
+            <button class="btn btn-sm btn-secondary" onclick="exportTranscript()">导出</button>
+          </div>
+          <div class="ct-transcript-body" id="transcript-body">
+            <div class="ct-transcript-time">2024-03-05 09:00:00</div>
+            <div class="ct-transcript-msg system">【系统】庭审正式开始</div>
+            
+            <div class="ct-transcript-time">2024-03-05 09:00:15</div>
+            <div class="ct-transcript-msg arbiter">
+              <span class="msg-role">仲裁员：</span>
+              <span class="msg-text">现在宣布开庭。本案为张某诉某科技公司劳动争议案，案号LA2024-0892。请各方确认网络状态良好。</span>
             </div>
+            
+            <div class="ct-transcript-time">2024-03-05 09:00:32</div>
+            <div class="ct-transcript-msg applicant">
+              <span class="msg-role">申请人：</span>
+              <span class="msg-text">确认网络良好，已就位。</span>
+            </div>
+            
+            <div class="ct-transcript-time">2024-03-05 09:00:45</div>
+            <div class="ct-transcript-msg respondent">
+              <span class="msg-role">被申请人：</span>
+              <span class="msg-text">确认网络良好，已就位。</span>
+            </div>
+            
+            <div class="ct-transcript-time">2024-03-05 09:01:00</div>
+            <div class="ct-transcript-msg arbiter">
+              <span class="msg-role">仲裁员：</span>
+              <span class="msg-text">根据《劳动争议调解仲裁法》，本案适用简易程序。现在核实当事人身份。</span>
+            </div>
+            
+            <div class="ct-transcript-time">2024-03-05 09:01:20</div>
+            <div class="ct-transcript-msg system">【系统】请各方保持安静，等待身份核实</div>
+          </div>
+          <div class="ct-transcript-input">
+            <input type="text" id="transcript-input" placeholder="输入笔录内容..." onkeypress="handleTranscriptInput(event)">
+            <button class="btn btn-primary btn-sm" onclick="sendTranscript()">发送</button>
           </div>
         </div>
 
-        <div class="ct-panel">
-          <div class="ct-panel-header">庭审笔录</div>
-          <div class="ct-panel-body">
-            <div class="ct-record-list">
-              <div class="ct-record-item"><strong>仲裁员：</strong>现在开庭...</div>
-              <div class="ct-record-item"><strong>申请人：</strong>我是张某...</div>
-              <div class="ct-record-item"><strong>被申请人：</strong>委托代理人...</div>
+        <!-- 区域5: 操作按钮区 -->
+        <div class="ct-actions-section">
+          <div class="ct-panel-header">
+            <span>⚡ 庭审操作</span>
+          </div>
+          <div class="ct-action-buttons">
+            <button class="ct-action-btn primary" onclick="showUploadEvidenceModal()">
+              <span class="action-icon">📤</span>
+              <span class="action-text">上传证据</span>
+            </button>
+            <button class="ct-action-btn" onclick="startCrossExamine()">
+              <span class="action-icon">⚔️</span>
+              <span class="action-text">举证质证</span>
+            </button>
+            <button class="ct-action-btn" onclick="addStatement()">
+              <span class="action-icon">💬</span>
+              <span class="action-text">补充发言</span>
+            </button>
+            <button class="ct-action-btn warning" onclick="adjournTrial()">
+              <span class="action-icon">⏸️</span>
+              <span class="action-text">申请休庭</span>
+            </button>
+            <button class="ct-action-btn success" onclick="startMediation()">
+              <span class="action-icon">🤝</span>
+              <span class="action-text">调解程序</span>
+            </button>
+            <button class="ct-action-btn danger" onclick="announceJudgment()">
+              <span class="action-icon">⚖️</span>
+              <span class="action-text">宣判</span>
+            </button>
+            <div class="ct-sign-section">
+              <button class="ct-action-btn sign" onclick="showSignModal()">
+                <span class="action-icon">✍️</span>
+                <span class="action-text">电子签字</span>
+              </button>
             </div>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="ct-actions">
-          <button class="ct-action-btn">🎤 静音</button>
-          <button class="ct-action-btn">📹 摄像头</button>
-          <button class="ct-action-btn">🖥️ 共享屏幕</button>
-          <button class="ct-action-btn">📋 笔录</button>
-          <button class="ct-action-btn">⏸️ 休庭</button>
+    <!-- 证据预览弹窗 -->
+    <div class="evidence-preview-modal" id="evidence-preview-modal">
+      <div class="evidence-preview-content">
+        <div class="evidence-preview-header">
+          <span id="evidence-preview-title">证据预览</span>
+          <button class="evidence-preview-close" onclick="closeEvidencePreview()">×</button>
+        </div>
+        <div class="evidence-preview-body">
+          <div class="evidence-preview-placeholder">
+            <div class="evidence-icon large">📄</div>
+            <div id="evidence-preview-name">劳动合同.pdf</div>
+            <div class="evidence-preview-hint">证据内容预览区域</div>
+          </div>
+        </div>
+        <div class="evidence-preview-footer">
+          <button class="btn btn-secondary" onclick="prevEvidence()">← 上一个</button>
+          <button class="btn btn-secondary" onclick="nextEvidence()">下一个 →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 电子签字弹窗 -->
+    <div class="sign-modal" id="sign-modal">
+      <div class="sign-modal-content">
+        <div class="sign-modal-header">
+          <h3>✍️ 电子签字确认</h3>
+          <button class="sign-modal-close" onclick="closeSignModal()">×</button>
+        </div>
+        <div class="sign-modal-body">
+          <p class="sign-notice">请在下方区域内签名，确认庭审笔录内容属实</p>
+          <div class="sign-area" id="sign-area" onmousedown="startSign(event)" onmousemove="doSign(event)" onmouseup="endSign(event)" onmouseleave="endSign(event)">
+            <canvas id="sign-canvas" width="400" height="150"></canvas>
+          </div>
+          <div class="sign-actions">
+            <button class="btn btn-secondary" onclick="clearSign()">清除</button>
+            <button class="btn btn-primary" onclick="confirmSign()">确认签字</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 上传证据弹窗 -->
+    <div class="upload-evidence-modal" id="upload-evidence-modal">
+      <div class="upload-evidence-content">
+        <div class="upload-evidence-header">
+          <h3>📤 上传证据材料</h3>
+          <button class="upload-evidence-close" onclick="closeUploadModal()">×</button>
+        </div>
+        <div class="upload-evidence-body">
+          <div class="upload-dropzone" id="upload-dropzone">
+            <div class="upload-icon">📁</div>
+            <div class="upload-text">拖拽文件到此处，或点击上传</div>
+            <div class="upload-hint">支持 PDF、Word、图片格式，单文件不超过10MB</div>
+            <input type="file" id="evidence-file-input" style="display:none" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" onchange="handleFileUpload(this)">
+            <button class="btn btn-primary" onclick="document.getElementById('evidence-file-input').click()">选择文件</button>
+          </div>
+          <div class="upload-info">
+            <div class="form-group">
+              <label>证据名称</label>
+              <input type="text" class="form-input" id="evidence-name" placeholder="请输入证据名称">
+            </div>
+            <div class="form-group">
+              <label>证据来源</label>
+              <select class="form-select" id="evidence-source">
+                <option value="applicant">申请人提交</option>
+                <option value="respondent">被申请人提交</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="upload-evidence-footer">
+          <button class="btn btn-secondary" onclick="closeUploadModal()">取消</button>
+          <button class="btn btn-primary" onclick="submitEvidence()">上传</button>
         </div>
       </div>
     </div>
@@ -1314,6 +2377,974 @@
     .ct-action-btn:hover {
       background: #444;
     }
-  </style>
+
+    /* 云庭审完整五分区样式 */
+    .ct-court-name {
+      font-size: 12px;
+      color: #888;
+      margin-left: 16px;
+      padding-left: 16px;
+      border-left: 1px solid #444;
+    }
+
+    .ct-timer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 16px;
+    }
+
+    .ct-timer-label {
+      font-size: 10px;
+      color: #888;
+    }
+
+    .ct-timer-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: #4ade80;
+      font-family: monospace;
+    }
+
+    .ct-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+    }
+
+    .ct-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .ct-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #444;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      margin-right: 8px;
+      font-size: 16px;
+      transition: all 0.2s;
+    }
+
+    .ct-btn:hover {
+      background: #444;
+    }
+
+    .ct-video-section {
+      background: #1a1a2e;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .ct-video-header {
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #252540;
+      font-size: 14px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .ct-video-controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    .ct-control-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .ct-control-btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .ct-video-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      gap: 12px;
+      min-height: 0;
+    }
+
+    .ct-video-main {
+      flex: 1;
+      background: #252540;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 200px;
+    }
+
+    .ct-video-placeholder {
+      text-align: center;
+    }
+
+    .ct-participant-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: white;
+      margin: 0 auto 12px;
+    }
+
+    .ct-participant-avatar.small {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+      margin: 0 auto 8px;
+    }
+
+    .ct-participant-name {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .ct-participant-role {
+      color: #888;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .ct-video-active-indicator {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse 2s infinite;
+    }
+
+    .ct-video-sub-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      height: 100px;
+      flex-shrink: 0;
+    }
+
+    .ct-video-thumb {
+      background: #252540;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 8px;
+    }
+
+    .ct-video-badge {
+      font-size: 10px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .ct-trial-progress {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 16px;
+      background: #252540;
+      flex-shrink: 0;
+      overflow-x: auto;
+    }
+
+    .ct-trial-step {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #666;
+      white-space: nowrap;
+    }
+
+    .ct-trial-step.completed {
+      color: #4ade80;
+    }
+
+    .ct-trial-step.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .ct-trial-step .step-num {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .ct-trial-step.completed .step-num {
+      background: #4ade80;
+      color: #000;
+    }
+
+    .ct-trial-step.active .step-num {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .ct-evidence-section {
+      background: #1a1a2e;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      flex-shrink: 0;
+      margin-left: 16px;
+    }
+
+    .ct-evidence-list {
+      flex: 1;
+      padding: 12px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ct-evidence-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: #252540;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .ct-evidence-item:hover {
+      background: #333;
+    }
+
+    .evidence-icon {
+      font-size: 24px;
+      width: 40px;
+      text-align: center;
+    }
+
+    .evidence-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .evidence-name {
+      font-size: 13px;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .evidence-meta {
+      font-size: 11px;
+      color: #888;
+      margin-top: 2px;
+    }
+
+    .evidence-action {
+      padding: 4px 8px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .ct-sidebar {
+      width: 320px;
+      background: #1a1a2e;
+      border-left: 1px solid #333;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .ct-transcript-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      border-bottom: 1px solid #333;
+    }
+
+    .ct-panel-header {
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      background: #252540;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .ct-transcript-body {
+      flex: 1;
+      padding: 12px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ct-transcript-time {
+      font-size: 10px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+
+    .ct-transcript-msg {
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .ct-transcript-msg.system {
+      background: #333;
+      color: #888;
+      text-align: center;
+      font-size: 11px;
+    }
+
+    .ct-transcript-msg.arbiter {
+      background: rgba(114, 46, 209, 0.3);
+      color: #fff;
+    }
+
+    .ct-transcript-msg.applicant {
+      background: rgba(22, 119, 255, 0.3);
+      color: #fff;
+    }
+
+    .ct-transcript-msg.respondent {
+      background: rgba(82, 196, 26, 0.3);
+      color: #fff;
+    }
+
+    .msg-role {
+      font-weight: 600;
+      margin-right: 8px;
+    }
+
+    .ct-transcript-input {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      background: #252540;
+      flex-shrink: 0;
+    }
+
+    .ct-transcript-input input {
+      flex: 1;
+      padding: 8px 12px;
+      background: #333;
+      border: 1px solid #444;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 13px;
+    }
+
+    .ct-transcript-input input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .ct-actions-section {
+      padding: 12px;
+    }
+
+    .ct-action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ct-action-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: #333;
+      border: 1px solid #444;
+      border-radius: 6px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .ct-action-btn:hover {
+      background: #444;
+      border-color: var(--primary);
+    }
+
+    .ct-action-btn.primary {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .ct-action-btn.primary:hover {
+      background: #0056cc;
+    }
+
+    .ct-action-btn.warning {
+      background: #fa8c16;
+      border-color: #fa8c16;
+    }
+
+    .ct-action-btn.success {
+      background: #52c41a;
+      border-color: #52c41a;
+    }
+
+    .ct-action-btn.danger {
+      background: #ff4d4f;
+      border-color: #ff4d4f;
+    }
+
+    .ct-action-btn.sign {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%);
+      border-color: transparent;
+    }
+
+    .action-icon {
+      font-size: 18px;
+    }
+
+    .ct-sign-section {
+      margin-top: 8px;
+      border-top: 1px solid #333;
+      padding-top: 8px;
+    }
+
+    /* 证据预览弹窗 */
+    .evidence-preview-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 10001;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .evidence-preview-modal.active {
+      display: flex;
+    }
+
+    .evidence-preview-content {
+      width: 80%;
+      max-width: 800px;
+      background: #1a1a2e;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .evidence-preview-header {
+      padding: 16px 20px;
+      background: #252540;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    .evidence-preview-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: #333;
+      color: #fff;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .evidence-preview-body {
+      padding: 40px;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .evidence-preview-placeholder {
+      text-align: center;
+    }
+
+    .evidence-icon.large {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+
+    .evidence-preview-hint {
+      color: #666;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    .evidence-preview-footer {
+      padding: 16px 20px;
+      background: #252540;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    /* 电子签字弹窗 */
+    .sign-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 10001;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sign-modal.active {
+      display: flex;
+    }
+
+    .sign-modal-content {
+      width: 500px;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .sign-modal-header {
+      padding: 16px 20px;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sign-modal-header h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .sign-modal-close {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .sign-modal-body {
+      padding: 24px;
+    }
+
+    .sign-notice {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    .sign-area {
+      border: 2px dashed var(--border-color);
+      border-radius: 8px;
+      background: #fafafa;
+      cursor: crosshair;
+    }
+
+    #sign-canvas {
+      display: block;
+      width: 100%;
+    }
+
+    .sign-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    /* 上传证据弹窗 */
+    .upload-evidence-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 10001;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .upload-evidence-modal.active {
+      display: flex;
+    }
+
+    .upload-evidence-content {
+      width: 500px;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .upload-evidence-header {
+      padding: 16px 20px;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .upload-evidence-header h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .upload-evidence-close {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .upload-evidence-body {
+      padding: 24px;
+    }
+
+    .upload-dropzone {
+      border: 2px dashed var(--border-color);
+      border-radius: 8px;
+      padding: 40px;
+      text-align: center;
+      background: var(--bg-secondary);
+      margin-bottom: 20px;
+    }
+
+    .upload-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .upload-text {
+      font-size: 14px;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .upload-hint {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      margin-bottom: 16px;
+    }
+
+    .upload-info {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .upload-evidence-footer {
+      padding: 16px 20px;
+      background: var(--bg-secondary);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    /* 调解员模块样式 */
+    .mediator-section {
+      display: none;
+    }
+
+    .mediator-section.active {
+      display: block;
+    }
+
+    .mediator-card {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .mediator-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .mediator-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .mediator-info {
+      flex: 1;
+    }
+
+    .mediator-info h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0 0 4px 0;
+    }
+
+    .mediator-info p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .mediator-stats {
+      display: flex;
+      gap: 24px;
+    }
+
+    .mediator-stat {
+      text-align: center;
+    }
+
+    .mediator-stat .num {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .mediator-stat .label {
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    .mediator-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* 案件分配弹窗 */
+    .assign-case-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .assign-case-modal.active {
+      display: flex;
+    }
+
+    .assign-modal-content {
+      width: 500px;
+      background: white;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .assign-modal-header {
+      padding: 16px 20px;
+      background: var(--primary);
+      color: white;
+    }
+
+.modal-close {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+      position: absolute;
+      right: 16px;
+      top: 16px;
+    }
+
+    .assign-modal-header {
+      position: relative;
+    }
+
+    .assign-modal-header h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .assign-modal-header h3 span {
+      color: #ffd700;
+    }
+
+    /* 通知样式 */
+    .notification {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      padding: 12px 24px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      z-index: 10002;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateX(120%);
+      transition: transform 0.3s ease;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    .notification.success {
+      border-left: 4px solid var(--success);
+    }
+
+    .notification.warning {
+      border-left: 4px solid var(--warning);
+    }
+
+    .notification.info {
+      border-left: 4px solid var(--primary);
+    }
+
+    .notification.error {
+      border-left: 4px solid var(--danger);
+    }
+
+    /* 进度条样式 */
+    .progress-bar {
+      width: 100px;
+      height: 6px;
+      background: var(--bg-secondary);
+      border-radius: 3px;
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-left: 8px;
+    }
+
+    .assign-modal-body {
+      padding: 24px;
+    }
+
+    .assign-modal-footer {
+      padding: 16px 20px;
+      background: var(--bg-secondary);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 1200px) {
+      .ct-main {
+        flex-direction: column;
+      }
+
+      .ct-evidence-section {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 16px;
+      }
+
+      .ct-sidebar {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid #333;
+      }
+    }
 </body>
 </html>
