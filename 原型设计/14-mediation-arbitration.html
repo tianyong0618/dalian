@@ -28,81 +28,6 @@
       z-index: 100;
     }
 
-    .spa-header-left {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .spa-logo {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--primary);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .spa-logo-icon {
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, var(--primary) 0%, #722ed1 100%);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 16px;
-    }
-
-    .spa-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text-primary);
-      padding-left: 24px;
-      border-left: 1px solid var(--border-color);
-    }
-
-    .spa-header-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .role-select-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .role-select-wrapper label {
-      font-size: 14px;
-      color: var(--text-secondary);
-    }
-
-    .role-select {
-      padding: 8px 16px;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      font-size: 14px;
-      color: var(--text-primary);
-      background: white;
-      cursor: pointer;
-      min-width: 140px;
-      transition: all 0.3s ease;
-    }
-
-    .role-select:hover {
-      border-color: var(--primary);
-    }
-
-    .role-select:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.1);
-    }
-
     /* iframe 内容区 */
     .spa-content {
       flex: 1;
@@ -115,43 +40,28 @@
       height: 100%;
       border: none;
     }
-
-    /* 角色说明 */
-    .role-hint {
-      font-size: 13px;
-      color: var(--text-tertiary);
-    }
   </style>
 </head>
 <body>
 
 <div class="spa-container">
-  <header class="spa-header">
-    <div class="spa-header-left">
-      <a href="index.html" class="spa-logo">
-        <span class="spa-logo-icon">⚖</span>
-        <span>人社服务数字平台</span>
-      </a>
-      <div class="spa-title">调解仲裁服务</div>
-    </div>
-    <div class="spa-header-right">
-      <div class="role-select-wrapper">
-        <label for="role-select">当前角色：</label>
-        <select id="role-select" class="role-select" onchange="loadRole(this.value)">
-          <option value="">选择角色进入工作台</option>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-logo">人社服务数字平台</a>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px;" id="role-select" onchange="loadRole(this.value)">
           <option value="laborer">👷 劳动者端</option>
           <option value="employer">🏢 用人单位端</option>
           <option value="arbitration">⚖ 仲裁机构端</option>
-          <option value="supervisor">📊 人社监管端</option>
+          <option value="supervisor" selected>📊 人社监管端</option>
           <option value="legal-aid">🤝 法律援助端</option>
         </select>
       </div>
-      <span class="role-hint">选择角色后进入对应工作台</span>
     </div>
-  </header>
+  </nav>
 
   <main class="spa-content">
-    <iframe id="content-frame" src="14c-laborer.html" frameborder="0"></iframe>
+    <iframe id="content-frame" src="14e-supervisor.html" frameborder="0"></iframe>
   </main>
 </div>
 
@@ -175,7 +85,7 @@
   };
 
   // 当前角色
-  let currentRole = 'laborer';
+  let currentRole = 'supervisor';
 
   // 加载角色页面
   function loadRole(role) {
@@ -209,7 +119,7 @@
       document.getElementById('content-frame').src = ROLE_PAGES[role];
     } else {
       // 默认加载劳动者端
-      document.getElementById('role-select').value = 'laborer';
+      document.getElementById('role-select').value = 'supervisor';
     }
   });
 </script>
