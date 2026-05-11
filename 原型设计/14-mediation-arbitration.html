@@ -142,25 +142,7 @@
     <div class="container">
       <a href="index.html" class="navbar-logo">人社服务数字平台</a>
       <div style="display: flex; align-items: center; gap: 16px;">
-        <!-- 快速导航 -->
-        <div class="quick-nav">
-          <button class="quick-nav-btn active" data-role="arbitration" onclick="loadRole('arbitration')">
-            ⚖ 仲裁
-          </button>
-          <button class="quick-nav-btn" data-role="laborer" onclick="loadRole('laborer')">
-            👷 劳动者
-          </button>
-          <button class="quick-nav-btn" data-role="employer" onclick="loadRole('employer')">
-            🏢 用人单位
-          </button>
-          <button class="quick-nav-btn" data-role="supervisor" onclick="loadRole('supervisor')">
-            📊 监管
-          </button>
-          <button class="quick-nav-btn" data-role="legal-aid" onclick="loadRole('legal-aid')">
-            🤝 法律援助
-          </button>
-        </div>
-        <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px;" id="role-select" onchange="loadRole(this.value)">
+        <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px;" id="role-select">
           <option value="arbitration" selected>⚖ 仲裁机构端</option>
           <option value="laborer">👷 劳动者端</option>
           <option value="employer">🏢 用人单位端</option>
@@ -209,30 +191,37 @@
       laborer: 0,
       employer: 0,
       supervisor: 3,
-      legal-aid: 0
+      'legal-aid': 0
     },
     recentActivities: []
   };
 
   // 加载角色页面
   function loadRole(role) {
-    if (!role || !ROLE_PAGES[role]) return;
+    console.log('loadRole called with:', role);
+    
+    if (!role || !ROLE_PAGES[role]) {
+      console.error('Invalid role:', role);
+      return;
+    }
     
     currentRole = role;
     
-    // 更新快速导航按钮状态
-    document.querySelectorAll('.quick-nav-btn').forEach(btn => {
-      btn.classList.remove('active');
-      if (btn.getAttribute('data-role') === role) {
-        btn.classList.add('active');
-      }
-    });
-    
     // 更新下拉框选中状态
-    document.getElementById('role-select').value = role;
+    const roleSelect = document.getElementById('role-select');
+    if (roleSelect) {
+      roleSelect.value = role;
+    }
     
-    // 加载页面
-    document.getElementById('content-frame').src = ROLE_PAGES[role];
+    // 加载页面 - 添加时间戳避免缓存
+    const frame = document.getElementById('content-frame');
+    if (frame) {
+      const url = ROLE_PAGES[role] + '?t=' + Date.now();
+      console.log('Setting iframe src to:', url);
+      frame.src = url;
+    } else {
+      console.error('content-frame element not found!');
+    }
     
     // 发送初始化消息到子页面
     setTimeout(() => {
@@ -244,7 +233,7 @@
     }, 100);
     
     // 显示切换通知
-    showNotification(`已切换至 ${ROLE_LABELS[role]}`, 'info');
+    // showNotification(`已切换至 ${ROLE_LABELS[role]}`, 'info');
   }
 
   // 向 iframe 发送消息
@@ -361,23 +350,31 @@
 
   // 页面加载完成后初始化
   document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOMContentLoaded triggered');
+    
     const params = new URLSearchParams(window.location.search);
     const role = params.get('role');
     
     if (role && ROLE_PAGES[role]) {
       currentRole = role;
       document.getElementById('role-select').value = role;
-      document.getElementById('content-frame').src = ROLE_PAGES[role];
-      
-      document.querySelectorAll('.quick-nav-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.getAttribute('data-role') === role) {
-          btn.classList.add('active');
-        }
-      });
+      // 使用时间戳避免缓存
+      document.getElementById('content-frame').src = ROLE_PAGES[role] + '?t=' + Date.now();
     }
     
     updateBadges();
+    
+    // 添加select元素的change事件监听器
+    const roleSelect = document.getElementById('role-select');
+    if (roleSelect) {
+      console.log('role-select element found, adding event listener');
+      roleSelect.addEventListener('change', function(event) {
+        console.log('role-select changed:', event.target.value);
+        loadRole(event.target.value);
+      });
+    } else {
+      console.error('role-select element not found!');
+    }
   });
 
   // 暴露给子页面的接口
