@@ -493,6 +493,142 @@
         </table>
       </div>
     </div>
+    </div>
+
+    <!-- 政策库Tab内容 -->
+    <div id="tab-content-policy" class="tab-content" style="display: none;">
+      <div class="section-header mb-32">
+        <h2>政策文件库</h2>
+        <p>浏览和搜索各类政策文件</p>
+      </div>
+      <div class="card">
+        <div class="row mb-16">
+          <div class="col-8">
+            <input type="text" class="form-input" placeholder="搜索政策文件..." style="max-width: 300px;">
+            <button class="btn btn-primary btn-sm">搜索</button>
+          </div>
+        </div>
+        <table class="table">
+          <thead><tr><th>文件标题</th><th>发布部门</th><th>发布日期</th><th>操作</th></tr></thead>
+          <tbody>
+            <tr><td>关于进一步做好稳就业工作的通知</td><td>市人社局</td><td>2026-05-10</td><td><button class="btn btn-link btn-sm">查看</button></td></tr>
+            <tr><td>高校毕业生就业创业扶持政策</td><td>市人社局</td><td>2026-05-08</td><td><button class="btn btn-link btn-sm">查看</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 服务事项Tab内容 -->
+    <div id="tab-content-service" class="tab-content" style="display: none;">
+      <div class="section-header mb-32">
+        <h2>服务事项库</h2>
+        <p>人社服务事项清单</p>
+      </div>
+      <div class="card">
+        <div class="row mb-16">
+          <div class="col-8">
+            <input type="text" class="form-input" placeholder="搜索服务事项..." style="max-width: 300px;">
+            <button class="btn btn-primary btn-sm">搜索</button>
+          </div>
+        </div>
+        <table class="table">
+          <thead><tr><th>事项名称</th><th>办理部门</th><th>办理时限</th><th>操作</th></tr></thead>
+          <tbody>
+            <tr><td>就业创业证办理</td><td>就业服务中心</td><td>5个工作日</td><td><button class="btn btn-link btn-sm">办理</button></td></tr>
+            <tr><td>社保卡申领</td><td>社保中心</td><td>15个工作日</td><td><button class="btn btn-link btn-sm">办理</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 关联网络Tab内容 -->
+    <div id="tab-content-network" class="tab-content" style="display: none;">
+      <div class="section-header mb-32">
+        <h2>政策关联网络</h2>
+        <p>可视化展示政策之间的关联关系</p>
+      </div>
+      <div class="card" style="padding: 40px; text-align: center;">
+        <div style="font-size: 64px; margin-bottom: 16px;">🕸️</div>
+        <h3 style="margin-bottom: 12px;">政策关联网络图</h3>
+        <p style="color: var(--text-secondary);">展示政策之间的关联关系和依赖网络</p>
+        <div style="margin-top: 24px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+          <span class="tag">就业补贴</span>
+          <span class="tag">创业扶持</span>
+          <span class="tag">培训资助</span>
+          <span class="tag">社保减免</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 效果追踪Tab内容 -->
+    <div id="tab-content-effect" class="tab-content" style="display: none;">
+      <div class="section-header mb-32">
+        <h2>效果追踪评估</h2>
+        <p>监测政策实施效果和数据分析</p>
+      </div>
+      <div class="row mb-32">
+        <div class="col-4">
+          <div class="stat-card">
+            <div class="number" style="color: var(--success);">89%</div>
+            <div class="label">政策知晓率</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-card">
+            <div class="number" style="color: var(--primary);">76%</div>
+            <div class="label">政策覆盖率</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-card">
+            <div class="number" style="color: var(--primary-gradient-end);">82%</div>
+            <div class="label">满意度</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <table class="table">
+          <thead><tr><th>政策类型</th><th>申报人数</th><th>通过人数</th><th>通过率</th></tr></thead>
+          <tbody>
+            <tr><td>就业补贴</td><td>1,234</td><td>1,056</td><td>85.6%</td></tr>
+            <tr><td>创业扶持</td><td>456</td><td>389</td><td>85.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 评估报告Tab内容 -->
+    <div id="tab-content-report" class="tab-content" style="display: none;">
+      <div class="section-header mb-32">
+        <h2>评估报告生成</h2>
+        <p>生成政策效果评估报告</p>
+      </div>
+      <div class="card">
+        <div class="row mb-24">
+          <div class="col-6">
+            <div class="form-group">
+              <label class="form-label">报告类型</label>
+              <select class="form-select">
+                <option>月度评估报告</option>
+                <option>季度评估报告</option>
+                <option>年度评估报告</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label class="form-label">时间范围</label>
+              <select class="form-select">
+                <option>2026年5月</option>
+                <option>2026年4月</option>
+                <option>2026年3月</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary">生成报告</button>
+      </div>
+    </div>
 
   </div>
 </div>
@@ -1946,22 +2082,26 @@ function switchCalcTab(el, tabName) {
   document.querySelectorAll('.top-tabs .tab-item').forEach(item => item.classList.remove('active'));
   el.classList.add('active');
   
-  const modalMap = {
-    'calc': null,
-    'data': null,
-    'policy': 'policy-library-modal',
-    'service': 'service-item-modal',
-    'network': 'policy-network-modal',
-    'effect': 'effect-tracking-modal',
-    'report': 'evaluation-report-modal'
+  document.querySelectorAll('.tab-content').forEach(content => {
+    content.style.display = 'none';
+  });
+  
+  const contentMap = {
+    'calc': 'tab-content-calc',
+    'data': 'tab-content-data',
+    'policy': 'tab-content-policy',
+    'service': 'tab-content-service',
+    'network': 'tab-content-network',
+    'effect': 'tab-content-effect',
+    'report': 'tab-content-report'
   };
   
-  if (tabName === 'calc') {
-    document.getElementById('calc-form-section').scrollIntoView({ behavior: 'smooth' });
-  } else if (tabName === 'data') {
-    document.getElementById('tab-content-data').style.display = 'block';
-  } else if (modalMap[tabName]) {
-    showModal(modalMap[tabName]);
+  if (contentMap[tabName]) {
+    const content = document.getElementById(contentMap[tabName]);
+    if (content) {
+      content.style.display = 'block';
+      content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 }
 
