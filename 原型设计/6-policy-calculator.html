@@ -41,6 +41,9 @@
     .tab-content.active {
       display: block;
     }
+    #tab-content-data {
+      display: none;
+    }
     
     /* 功能卡片边条悬停效果 */
     .feature-card:hover {
@@ -159,8 +162,7 @@
       <p>依托多维度数据建模与算法引擎，整合政策文件库、服务事项库与用户特征标签，自动拆解政策条款，为个人与企业精准计算可享受的政策红利。</p>
     </div>
 
-    <!-- 数据采集与整合模块 - 仅人社和机构可见 -->
-    <div class="gov-only">
+    <div id="tab-content-data" class="tab-content gov-only">
     <div class="section-header mb-24">
       <h2>数据采集与整合</h2>
     </div>
@@ -303,9 +305,11 @@
       <div class="text-small" style="color: var(--text-tertiary); margin-top: 12px;">最近更新：2026-05-12 10:15</div>
     </div>
     </div>
+    </div>
 
     <div class="top-tabs" style="margin-top: 24px;">
       <div class="tab-item active" onclick="switchCalcTab(this, 'calc')">🧮 政策测算</div>
+      <div class="tab-item gov-only" onclick="switchCalcTab(this, 'data')">📊 数据采集</div>
       <div class="tab-item" onclick="switchCalcTab(this, 'policy')">📚 政策库</div>
       <div class="tab-item" onclick="switchCalcTab(this, 'service')">📋 服务事项</div>
       <div class="tab-item" onclick="switchCalcTab(this, 'network')">🕸️ 关联网络</div>
@@ -1983,6 +1987,7 @@ function switchCalcTab(el, tabName) {
   
   const modalMap = {
     'calc': null,
+    'data': null,
     'policy': 'policy-library-modal',
     'service': 'service-item-modal',
     'network': 'policy-network-modal',
@@ -1992,6 +1997,8 @@ function switchCalcTab(el, tabName) {
   
   if (tabName === 'calc') {
     document.getElementById('calc-form-section').scrollIntoView({ behavior: 'smooth' });
+  } else if (tabName === 'data') {
+    document.getElementById('tab-content-data').style.display = 'block';
   } else if (modalMap[tabName]) {
     showModal(modalMap[tabName]);
   }
