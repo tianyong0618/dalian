@@ -21,17 +21,14 @@
   </div>
 </nav>
 
-<!-- 页面内容 -->
 <div class="page-content">
   <div class="container">
 
-    <!-- 页面标题 -->
     <div class="page-header mb-48">
       <h1>就业人员画像</h1>
       <p>构建多维标签化的就业主体数字画像，激活精准识别引擎。基于多维度数据采集与动态标签体系，运用知识图谱技术构建就业人员全息画像，赋能精准服务。</p>
     </div>
 
-    <!-- 核心指标 -->
     <div class="row mb-48">
       <div class="col-3">
         <div class="stat-card">
@@ -59,16 +56,14 @@
       </div>
     </div>
 
-    <!-- 数据采集与整合模块 - 仅人社可见 -->
     <div class="gov-only">
-    <!-- 数据采集与整合模块 -->
     <div class="section-header mb-32">
-      <h2>数据采集与整合</h2>
+      <h2>📊 数据采集与整合</h2>
       <p>整合社保、就业、人才、维权等多领域数据，实时同步更新</p>
     </div>
-    <div class="row mb-48">
+    <div class="row mb-32">
       <div class="col-3">
-        <div class="data-source-card" data-source="social-security">
+        <div class="data-source-card" data-source="social-security" onclick="showModal('data-management-modal')">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
             <span style="font-size: 24px;">📚</span>
             <span class="badge badge-success" style="font-size: 11px;">实时同步</span>
@@ -80,7 +75,7 @@
         </div>
       </div>
       <div class="col-3">
-        <div class="data-source-card" data-source="employment">
+        <div class="data-source-card" data-source="employment" onclick="showModal('data-management-modal')">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
             <span style="font-size: 24px;">💼</span>
             <span class="badge badge-success" style="font-size: 11px;">实时同步</span>
@@ -92,7 +87,7 @@
         </div>
       </div>
       <div class="col-3">
-        <div class="data-source-card" data-source="talent">
+        <div class="data-source-card" data-source="talent" onclick="showModal('data-management-modal')">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
             <span style="font-size: 24px;">🎓</span>
             <span class="badge badge-warning" style="font-size: 11px;">同步中</span>
@@ -104,7 +99,7 @@
         </div>
       </div>
       <div class="col-3">
-        <div class="data-source-card" data-source="rights">
+        <div class="data-source-card" data-source="rights" onclick="showModal('data-management-modal')">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
             <span style="font-size: 24px;">⚖️</span>
             <span class="badge badge-success" style="font-size: 11px;">实时同步</span>
@@ -121,65 +116,21 @@
         <span style="color: var(--primary); font-weight: 600;">📡 数据同步状态：实时同步中</span>
         <span class="text-small ml-16" style="color: var(--text-tertiary);">上次完整同步：2026-05-08 08:00</span>
       </div>
-      <button class="btn btn-secondary btn-sm" onclick="showModal('data-management-modal')">进入数据管理</button>
+      <button class="btn btn-secondary btn-sm" onclick="showModal('data-management-modal')">数据管理</button>
     </div>
     </div>
 
-    <!-- 功能模块入口
     <div class="section-header mb-32">
-      <h2>核心功能</h2>
-      <p>点击进入对应功能模块</p>
-    </div>
-    <div class="row mb-32">
-
-
-      <div class="col-4 enterprise-hidden">
-        <div class="feature-card" onclick="showModal('knowledge-graph-modal')">
-          <div class="card-header">
-            <div class="icon">🕸️</div>
-            <div class="card-content">
-              <div class="title-row"><h3>知识图谱可视化</h3></div>
-              <p>运用知识图谱技术展示就业人员全息画像关联关系。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div><span class="tag">知识图谱</span><span class="tag">可视化</span><span class="tag">关联分析</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-48">
-      <div class="col-4">
-        <div class="feature-card" onclick="showModal('job-recommend-modal')">
-          <div class="card-header">
-            <div class="icon">💼</div>
-            <div class="card-content">
-              <div class="title-row"><h3>岗位精准推荐</h3></div>
-              <p>基于画像数据为求职者推荐合适的岗位和职业发展路径。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div><span class="tag">精准推荐</span><span class="tag">岗位匹配</span><span class="tag">职业规划</span></div>
-        </div>
-      </div>
-
-    </div> -->
-
-    <!-- 人员管理模块 -->
-    <div class="section-header mb-32">
-      <h2>人员画像管理</h2>
+      <h2>👥 人员画像管理</h2>
       <p>搜索、查看、管理就业人员画像</p>
     </div>
 
-    <!-- 搜索和筛选 -->
     <div class="search-bar mb-24">
       <input type="text" class="form-input" placeholder="搜索姓名、身份证号、标签..." id="person-search" onkeyup="filterPersons()">
-      <button class="btn btn-primary gov-org-only" onclick="showModal('portrait-generate-modal')">+ 生成画像</button>
-      <button class="btn btn-secondary gov-org-only" onclick="showModal('tag-manage-modal')">标签管理</button>
+      <button class="btn btn-primary gov-org-only" onclick="showModal('portrait-generate-modal')">➕ 一键生成画像</button>
+      <button class="btn btn-secondary gov-org-only" onclick="showModal('tag-manage-modal')">🏷️ 标签管理</button>
     </div>
+
     <div class="filter-bar mb-24">
       <select class="form-select" id="filter-group" onchange="filterPersons()">
         <option value="">全部群体</option>
@@ -209,7 +160,6 @@
       </select>
     </div>
 
-    <!-- 人员表格 -->
     <div class="card mb-48">
       <table class="table" id="person-table">
         <thead>
@@ -279,75 +229,9 @@
       </table>
     </div>
 
-    <!-- 画像维度展示
-    <div class="section-header mb-32">
-      <h2>画像核心维度</h2>
-      <p>多维度数据分析，精准刻画人员特征</p>
-<p><span class="badge" style="background: rgba(22, 119, 255, 0.1); color: var(--primary); font-size: 11px;">🤖 AI算法自动计算</span> 多维度数据分析，精准刻画人员特征</p>
-    </div>
-    <div class="row mb-48">
-      <div class="col-6">
-        <div class="card">
-          <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 24px;">个人能力维度</h3>
-          <div class="mb-20">
-            <div style="display: flex; justify-content: space-between; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">
-              <span>教育竞争力</span><span>88%</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 88%;"></div></div>
-          </div>
-          <div class="mb-20">
-            <div style="display: flex; justify-content: space-between; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">
-              <span>就业稳定性</span><span>78%</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 78%;"></div></div>
-          </div>
-          <div class="mb-20">
-            <div style="display: flex; justify-content: space-between; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">
-              <span>职业技能评分</span><span>82%</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 82%;"></div></div>
-          </div>
-          <div class="mb-20">
-            <div style="display: flex; justify-content: space-between; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">
-              <span>薪资增长趋势</span><span>71%</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 71%;"></div></div>
-          </div>
-          <div>
-            <div style="display: flex; justify-content: space-between; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">
-              <span>帮扶指数</span><span>65%</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 65%;"></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="card" style="height: 100%;">
-          <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 24px;">常见标签云</h3>
-          <div style="line-height: 2.5;">
-            <span class="tag" style="font-size: 16px; padding: 8px 18px;">本科及以上学历</span>
-            <span class="tag" style="font-size: 14px; padding: 7px 16px;">3年工作经验</span>
-            <span class="tag" style="font-size: 18px; padding: 9px 20px;">Java开发</span>
-            <span class="tag" style="font-size: 13px; padding: 6px 14px;">社保连续缴纳</span>
-            <span class="tag" style="font-size: 15px; padding: 8px 18px;">求职意向：互联网</span>
-            <span class="tag" style="font-size: 14px; padding: 7px 16px;">培训经历丰富</span>
-            <span class="tag" style="font-size: 13px; padding: 6px 14px;">零工人员</span>
-            <span class="tag" style="font-size: 15px; padding: 8px 18px;">就业困难人员</span>
-            <span class="tag" style="font-size: 14px; padding: 7px 16px;">高校毕业生</span>
-            <span class="tag" style="font-size: 13px; padding: 6px 14px;">农民工</span>
-            <span class="tag" style="font-size: 16px; padding: 8px 18px;">高技能人才</span>
-            <span class="tag" style="font-size: 14px; padding: 7px 16px;">创业意向</span>
-            <span class="tag" style="font-size: 13px; padding: 6px 14px;">退役军人</span>
-            <span class="tag" style="font-size: 15px; padding: 8px 18px;">灵活用工</span>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-    <!-- 重点群体监测 - 仅人社可见 -->
     <div class="gov-only">
       <div class="section-header mb-32">
-        <h2>重点群体监测</h2>
+        <h2>📈 重点群体监测</h2>
         <p>动态识别和深入分析各类重点就业群体</p>
       </div>
       <div class="card">
@@ -361,6 +245,7 @@
               <th>AI预警</th>
               <th>趋势</th>
               <th>状态</th>
+              <th>操作</th>
             </tr>
           </thead>
           <tbody>
@@ -377,6 +262,7 @@
               <td><span style="font-size: 12px; color: var(--primary);">🤖 AI预测持续上升 ↑</span></td>
               <td style="color: var(--success);">↑ 上升</td>
               <td><span class="badge badge-success">监测中</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showModal('group-analysis-modal')">分析</button></td>
             </tr>
             <tr>
               <td><strong>就业困难人员</strong></td>
@@ -391,6 +277,7 @@
               <td><span style="font-size: 12px; color: var(--danger);">⚠️ AI预警：需重点关注</span></td>
               <td style="color: var(--warning);">→ 平稳</td>
               <td><span class="badge badge-warning">重点关注</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showModal('group-analysis-modal')">分析</button></td>
             </tr>
             <tr>
               <td><strong>农民工群体</strong></td>
@@ -404,6 +291,7 @@
               <td>欠薪维权、技能培训</td>
               <td style="color: var(--success);">↑ 上升</td>
               <td><span class="badge badge-success">监测中</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showModal('group-analysis-modal')">分析</button></td>
             </tr>
             <tr>
               <td><strong>零工从业人员</strong></td>
@@ -418,6 +306,7 @@
               <td><span style="font-size: 12px; color: var(--danger);">⚠️ AI预警：权益风险</span></td>
               <td style="color: var(--success);">↑ 上升</td>
               <td><span class="badge badge-warning">重点关注</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showModal('group-analysis-modal')">分析</button></td>
             </tr>
             <tr>
               <td><strong>退役军人</strong></td>
@@ -431,6 +320,7 @@
               <td>创业扶持、技能培训</td>
               <td style="color: var(--success);">↑ 上升</td>
               <td><span class="badge badge-success">监测中</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showModal('group-analysis-modal')">分析</button></td>
             </tr>
           </tbody>
         </table>
@@ -440,7 +330,6 @@
   </div>
 </div>
 
-<!-- 一键生成画像模态框 -->
 <div class="modal-overlay" id="portrait-generate-modal">
   <div class="modal" style="max-width: 700px;">
     <div class="modal-header">
@@ -459,7 +348,7 @@
         </div>
         <div class="step" id="portrait-step-3">
           <div class="step-circle">3</div>
-          <div class="step-label">生成画像</div>
+          <div class="step-label">标签生成</div>
         </div>
         <div class="step" id="portrait-step-4">
           <div class="step-circle">4</div>
@@ -518,16 +407,10 @@
           </div>
           <div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div>
         </div>
-        <div>
-          <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;">
-            <span>🏷️ 动态标签</span><span style="color: var(--success);">✓ 已生成</span>
-          </div>
-          <div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div>
-        </div>
       </div>
 
       <div id="portrait-form-3" style="display: none;">
-        <h4 class="mb-16">正在生成全息画像... <span class="badge" style="background: rgba(114, 46, 209, 0.1); color: var(--primary-gradient-end); font-size: 11px;">🕸️ 知识图谱关联分析中...</span></h4>
+        <h4 class="mb-16">正在生成动态标签... <span class="badge" style="background: rgba(114, 46, 209, 0.1); color: var(--primary-gradient-end); font-size: 11px;">🏷️ 智能标签生成中...</span></h4>
         <div class="row mb-16">
           <div class="col-6">
             <div class="stat-card" style="padding: 20px;">
@@ -542,7 +425,7 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row mb-16">
           <div class="col-6">
             <div class="stat-card" style="padding: 20px;">
               <div class="number" style="font-size: 28px;">82%</div>
@@ -556,7 +439,7 @@
             </div>
           </div>
         </div>
-        <div class="mt-16">
+        <div>
           <strong class="form-label">生成标签：</strong>
           <div style="margin-top: 8px;">
             <span class="tag">Java开发</span>
@@ -572,6 +455,10 @@
         <div style="font-size: 64px; margin-bottom: 16px;">✨</div>
         <h3 class="mb-8">画像生成成功！</h3>
         <p class="text-body">张三的全息画像已生成，包含128个标签维度，匹配准确率94.7%</p>
+        <div class="mt-24" style="display: flex; gap: 12px; justify-content: center;">
+          <button class="btn btn-secondary" onclick="closeModal('portrait-generate-modal'); resetPortraitSteps()">关闭</button>
+          <button class="btn btn-primary" onclick="closeModal('portrait-generate-modal'); resetPortraitSteps(); viewPersonDetail(0)">查看画像</button>
+        </div>
       </div>
     </div>
     <div class="modal-footer">
@@ -581,7 +468,6 @@
   </div>
 </div>
 
-<!-- 标签体系管理模态框 -->
 <div class="modal-overlay" id="tag-manage-modal">
   <div class="modal" style="max-width: 900px;">
     <div class="modal-header">
@@ -590,7 +476,6 @@
     </div>
     <div class="modal-body">
       <div style="display: flex; gap: 24px; min-height: 400px;">
-        <!-- 左侧分类导航 -->
         <div style="width: 200px; border-right: 1px solid var(--border-color); padding-right: 16px;">
           <h4 class="mb-16" style="font-size: 14px; color: var(--text-secondary);">标签分类</h4>
           <div class="tag-category-nav" style="display: flex; flex-direction: column; gap: 4px;">
@@ -605,7 +490,6 @@
             <button class="btn btn-primary btn-sm" style="width: 100%;" onclick="showNotification('AI正在智能生成标签...', 'success')">🤖 AI智能生成标签</button>
           </div>
         </div>
-        <!-- 右侧标签列表 -->
         <div style="flex: 1;">
           <div class="form-group">
             <label class="form-label">添加新标签</label>
@@ -615,37 +499,31 @@
             </div>
           </div>
           <div id="tag-list-by-category">
-            <!-- 基础信息标签 -->
             <div data-tag-category="basic">
               <div class="mb-8"><span class="tag">年龄：25-35岁 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
               <div class="mb-8"><span class="tag">大专学历 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
               <div class="mb-8"><span class="tag">本地户籍 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
             </div>
-            <!-- 教育特征标签 -->
             <div data-tag-category="education" style="display: none;">
               <div class="mb-8"><span class="tag">本科及以上 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--primary);">🤖 AI</span></div>
               <div class="mb-8"><span class="tag">计算机专业 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--primary);">🤖 AI</span></div>
               <div class="mb-8"><span class="tag">教育竞争力：高 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
             </div>
-            <!-- 就业特征标签 -->
             <div data-tag-category="employment" style="display: none;">
               <div class="mb-8"><span class="tag">社保连续缴纳 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--primary);">🤖 AI</span></div>
               <div class="mb-8"><span class="tag">就业稳定性：高 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
               <div class="mb-8"><span class="tag">工作年限：3-5年 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
             </div>
-            <!-- 技能标签 -->
             <div data-tag-category="skill" style="display: none;">
               <div class="mb-8"><span class="tag">Java开发 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--primary);">🤖 AI</span></div>
               <div class="mb-8"><span class="tag">Python <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
               <div class="mb-8"><span class="tag">SQL <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
             </div>
-            <!-- 帮扶标签 -->
             <div data-tag-category="support" style="display: none;">
               <div class="mb-8"><span class="tag">就业困难人员 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
               <div class="mb-8"><span class="tag">帮扶等级：C级 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
               <div class="mb-8"><span class="tag">需技能培训 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
             </div>
-            <!-- 意向标签 -->
             <div data-tag-category="intent" style="display: none;">
               <div class="mb-8"><span class="tag">求职意向：互联网 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--primary);">🤖 AI</span></div>
               <div class="mb-8"><span class="tag">薪资期望：15-20K <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
@@ -666,7 +544,6 @@
   </div>
 </div>
 
-<!-- 知识图谱模态框 -->
 <div class="modal-overlay" id="knowledge-graph-modal">
   <div class="modal" style="max-width: 800px;">
     <div class="modal-header">
@@ -679,7 +556,6 @@
   🤖 运用知识图谱技术整合多维度数据，挖掘数据关联关系，精准提取就业人员特征
 </div>
       <div class="card" style="background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%); min-height: 400px; position: relative; overflow: hidden;">
-        <!-- 简化的知识图谱可视化 -->
         <div style="text-align: center; padding: 40px 0;">
           <div style="display: inline-block; background: var(--primary); color: white; padding: 16px 32px; border-radius: 50px; font-weight: 600; margin-bottom: 40px;">张三（中心节点）</div>
           <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
@@ -717,7 +593,6 @@
   </div>
 </div>
 
-<!-- 岗位推荐模态框 -->
 <div class="modal-overlay" id="job-recommend-modal">
   <div class="modal" style="max-width: 700px;">
     <div class="modal-header">
@@ -769,7 +644,6 @@
   </div>
 </div>
 
-<!-- 重点群体分析模态框 -->
 <div class="modal-overlay" id="group-analysis-modal">
   <div class="modal" style="max-width: 700px;">
     <div class="modal-header">
@@ -835,15 +709,11 @@
   </div>
 </div>
 
-<!-- 人员详情模态框（人才全息画像） -->
 <div class="modal-overlay" id="person-detail-modal" style="padding: 0;">
   <div class="modal" style="width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh; border-radius: 0; overflow: hidden; display: flex; flex-direction: column;">
-
-    <!-- 内容区 -->
     <div style="flex: 1; overflow-y: auto; padding: 20px 24px; background: linear-gradient(180deg, #0a1628 0%, #0f1f38 100%); position: relative;">
       <button class="modal-close" onclick="closeModal('person-detail-modal')" style="color: white; opacity: 1; background: none; border: none; font-size: 32px; cursor: pointer; position: absolute; top: 16px; right: 24px; z-index: 100;">&times;</button>
       
-      <!-- 第一层：基础信息卡片 -->
       <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 2px solid #3a7aaa; border-radius: 12px; padding: 20px; margin-bottom: 16px;">
         <div style="display: flex; align-items: center; gap: 20px;">
           <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #2a5a8a 0%, #5ae8ff 100%); display: flex; align-items: center; justify-content: center; font-size: 44px; flex-shrink: 0;">👤</div>
@@ -884,9 +754,7 @@
         </div>
       </div>
       
-      <!-- 第二层：基础身份与属性 + 教育背景 -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-        <!-- 基础身份与属性 -->
         <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 1px solid #2a5a8a; border-radius: 12px; padding: 16px;">
           <h4 style="color: #5ae8ff; margin: 0 0 16px 0; font-size: 14px; font-weight: 600;">🔷 基础身份与属性</h4>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
@@ -917,7 +785,6 @@
           </div>
         </div>
         
-        <!-- 教育背景 -->
         <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 1px solid #2a5a8a; border-radius: 12px; padding: 16px;">
           <h4 style="color: #5ae8ff; margin: 0 0 16px 0; font-size: 14px; font-weight: 600;">🔷 教育背景与学习能力</h4>
           <div style="background: rgba(42,90,138,0.3); padding: 14px; border-radius: 8px; margin-bottom: 12px;">
@@ -945,9 +812,7 @@
         </div>
       </div>
       
-      <!-- 第三层：职业经历 + 核心能力 -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-        <!-- 职业经历 -->
         <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 1px solid #2a5a8a; border-radius: 12px; padding: 16px;">
           <h4 style="color: #5ae8ff; margin: 0 0 16px 0; font-size: 14px; font-weight: 600;">🔷 职业经历与就业稳定性</h4>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
@@ -974,7 +839,6 @@
           </div>
         </div>
         
-        <!-- 核心能力 -->
         <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 1px solid #2a5a8a; border-radius: 12px; padding: 16px;">
           <h4 style="color: #5ae8ff; margin: 0 0 16px 0; font-size: 14px; font-weight: 600;">🔷 核心能力与技能</h4>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
@@ -1020,9 +884,7 @@
         </div>
       </div>
       
-      <!-- 第四层：就业状态 + 薪资评估 -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-        <!-- 就业状态与帮扶 -->
         <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 1px solid #2a5a8a; border-radius: 12px; padding: 16px;">
           <h4 style="color: #5ae8ff; margin: 0 0 16px 0; font-size: 14px; font-weight: 600;">🔷 就业状态与帮扶指数</h4>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
@@ -1052,7 +914,6 @@
           </div>
         </div>
         
-        <!-- 薪资评估 -->
         <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 1px solid #2a5a8a; border-radius: 12px; padding: 16px;">
           <h4 style="color: #5ae8ff; margin: 0 0 16px 0; font-size: 14px; font-weight: 600;">🔷 薪资与价值评估</h4>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
@@ -1085,9 +946,7 @@
         </div>
       </div>
       
-      <!-- 第五层：就业意向 + 风险评估 -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
-        <!-- 就业意向 -->
         <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 1px solid #2a5a8a; border-radius: 12px; padding: 16px;">
           <h4 style="color: #5ae8ff; margin: 0 0 16px 0; font-size: 14px; font-weight: 600;">🔷 就业意向与匹配偏好</h4>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
@@ -1114,7 +973,6 @@
           </div>
         </div>
         
-        <!-- 风险评估 -->
         <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 1px solid #2a5a8a; border-radius: 12px; padding: 16px;">
           <h4 style="color: #5ae8ff; margin: 0 0 16px 0; font-size: 14px; font-weight: 600;">🔷 风险评估与潜力预测</h4>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
@@ -1151,7 +1009,6 @@
   </div>
 </div>
 
-<!-- 数据管理模态框 -->
 <div class="modal-overlay" id="data-management-modal">
   <div class="modal" style="max-width: 900px;">
     <div class="modal-header">
@@ -1159,7 +1016,6 @@
       <button class="modal-close" onclick="closeModal('data-management-modal')">&times;</button>
     </div>
     <div class="modal-body">
-      <!-- Tab导航 -->
       <div class="tabs" style="display: flex; border-bottom: 1px solid var(--border-color); margin-bottom: 24px;">
         <button class="tab-btn active" onclick="switchDataTab('log', this)" style="padding: 12px 24px; border: none; background: none; cursor: pointer; border-bottom: 2px solid var(--primary); color: var(--primary); font-weight: 600;">采集日志</button>
         <button class="tab-btn" onclick="switchDataTab('verify', this)" style="padding: 12px 24px; border: none; background: none; cursor: pointer; color: var(--text-secondary);">数据校验</button>
@@ -1167,7 +1023,6 @@
         <button class="tab-btn" onclick="switchDataTab('clean', this)" style="padding: 12px 24px; border: none; background: none; cursor: pointer; color: var(--text-secondary);">数据清洗</button>
       </div>
 
-      <!-- Tab内容：采集日志 -->
       <div id="data-tab-log">
         <table class="table">
           <thead><tr><th>采集时间</th><th>数据来源</th><th>数据条数</th><th>状态</th></tr></thead>
@@ -1180,7 +1035,6 @@
         </table>
       </div>
 
-      <!-- Tab内容：数据校验 -->
       <div id="data-tab-verify" style="display: none;">
         <div class="row mb-16">
           <div class="col-4"><div class="stat-card" style="padding: 16px;"><div class="number" style="font-size: 24px;">99.2%</div><div class="label">格式校验通过率</div></div></div>
@@ -1194,7 +1048,6 @@
         <div class="card" style="padding: 12px; background: var(--bg-secondary);">✅ 异常值检测与标记</div>
       </div>
 
-      <!-- Tab内容：安全管理 -->
       <div id="data-tab-security" style="display: none;" class="gov-only">
         <div class="mb-16">
           <h4 class="mb-8">数据加密状态</h4>
@@ -1216,7 +1069,6 @@
         </div>
       </div>
 
-      <!-- Tab内容：数据清洗 -->
       <div id="data-tab-clean" style="display: none;">
         <h4 class="mb-16">清洗规则配置</h4>
         <div class="form-group">
@@ -1237,44 +1089,36 @@
   </div>
 </div>
 
-<!-- 通知提示 -->
 <div class="notification" id="notification" style="display: none;">
   <span id="notification-msg"></span>
 </div>
 
 <script>
-// 用户类型切换
 let currentUserType = 'gov';
 function switchUserType(type) {
   currentUserType = type;
   const typeNames = { gov: '人社部门', org: '经营性人力资源服务机构', enterprise: '用工企业' };
 
-  // gov-only: 仅人社可见
   document.querySelectorAll('.gov-only').forEach(el => {
-    el.style.display = (type === 'gov' || type === 'org') ? '' : 'none';
+    el.style.display = type === 'gov' ? '' : 'none';
   });
 
-  // org-only: 仅机构可见
   document.querySelectorAll('.org-only').forEach(el => {
     el.style.display = type === 'org' ? '' : 'none';
   });
 
-  // gov-org-only: 人社和机构可见
   document.querySelectorAll('.gov-org-only').forEach(el => {
     el.style.display = (type === 'gov' || type === 'org') ? '' : 'none';
   });
 
-  // enterprise-hidden: 企业隐藏（人社+机构可见）
   document.querySelectorAll('.enterprise-hidden').forEach(el => {
     el.style.display = type === 'enterprise' ? 'none' : '';
   });
 
-  // gov-org-enterprise-all: 三者都可见
   document.querySelectorAll('.gov-org-enterprise-all').forEach(el => {
     el.style.display = '';
   });
 
-  // 画像类型Tab显示控制
   document.querySelectorAll('.portrait-tab').forEach((btn, idx) => {
     if (type === 'gov') {
       btn.style.display = '';
@@ -1285,14 +1129,12 @@ function switchUserType(type) {
     }
   });
 
-  // 数据管理模态框中的安全管理Tab仅人社可见
   const securityTab = document.querySelector('#data-tab-security');
   if (securityTab) {
-    securityTab.style.display = (type === 'gov' || type === 'org') ? '' : 'none';
+    securityTab.style.display = type === 'gov' ? '' : 'none';
   }
 }
 
-// 角色切换功能
 function switchRole() {
   const select = document.getElementById('role-switcher');
   const type = select.value;
@@ -1306,7 +1148,6 @@ const personData = [
   { name: "孙七", idCard: "410xxxxxxxxxxxx7890", group: "零工人员", education: "大专", portraitType: "jobseeker", competitiveness: 48, stability: 28, skill: 42, supportIndex: 68, salaryTrend: 55, tags: ["外卖骑手", "灵活用工", "零工人员", "大专"], services: ["📩 推荐岗位：骑手队长（78%）", "📚 推荐培训：物流管理", "💰 可申请补贴：灵活就业补贴800元", "🆘 帮扶计划：职业转型指导"] }
 ];
 
-// 筛选人员
 function filterPersons() {
   const search = document.getElementById('person-search').value.toLowerCase();
   const group = document.getElementById('filter-group').value;
@@ -1326,14 +1167,12 @@ function filterPersons() {
   });
 }
 
-// 查看人员详情（求职者画像）
 function viewPersonDetail(index) {
   const person = personData[index];
   document.getElementById('detail-name').textContent = person.name;
   showModal('person-detail-modal');
 }
 
-// 切换画像类型
 function switchPortraitType(type, btn) {
   document.querySelectorAll('.portrait-content').forEach(el => el.style.display = 'none');
   document.querySelectorAll('.portrait-tab').forEach(b => {
@@ -1349,7 +1188,6 @@ function switchPortraitType(type, btn) {
   }
 }
 
-// 画像生成步骤
 let currentPortraitStep = 1;
 function nextPortraitStep() {
   if (currentPortraitStep < 4) {
@@ -1416,7 +1254,6 @@ function selectPersonForPortrait(name, idCard) {
   showNotification(`已选择人员：${name}`, 'success');
 }
 
-// 标签管理
 function addTag() {
   const input = document.getElementById('new-tag-input');
   const tagText = input.value.trim();
@@ -1434,8 +1271,6 @@ function removeTag(el) {
   el.parentElement.parentElement.remove();
 }
 
-
-// 群体分析
 function updateGroupAnalysis(group) {
   const data = {
     '高校毕业生': { scale: '12,456', rate: '91.2%' },
@@ -1449,7 +1284,6 @@ function updateGroupAnalysis(group) {
   document.querySelectorAll('#group-analysis-modal .stat-card .number')[1].textContent = groupData.rate;
 }
 
-// 模态框控制
 function showModal(id) {
   document.querySelectorAll('.modal-overlay.active').forEach(modal => {
     modal.classList.remove('active');
@@ -1461,7 +1295,6 @@ function closeModal(id) {
   document.getElementById(id).classList.remove('active');
 }
 
-// 通知提示
 function showNotification(msg, type) {
   const notification = document.getElementById('notification');
   const msgEl = document.getElementById('notification-msg');
@@ -1471,19 +1304,16 @@ function showNotification(msg, type) {
   setTimeout(() => { notification.style.display = 'none'; }, 3000);
 }
 
-// 点击模态框外部关闭
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
   overlay.addEventListener('click', function(e) {
     if (e.target === this) { this.classList.remove('active'); }
   });
 });
 
-// 页面加载时初始化用户权限
 document.addEventListener('DOMContentLoaded', function() {
   switchUserType('gov');
 });
 
-// 数据管理Tab切换
 function switchDataTab(tab, btn) {
   const tabs = ['log', 'verify', 'security', 'clean'];
   tabs.forEach(t => {
@@ -1500,14 +1330,10 @@ function switchDataTab(tab, btn) {
   btn.style.borderBottom = '2px solid var(--primary)';
 }
 
-// 标签分类切换
 function switchTagCategory(category, btn) {
-  // 隐藏所有分类
   document.querySelectorAll('[data-tag-category]').forEach(el => el.style.display = 'none');
-  // 显示当前分类
   document.querySelectorAll(`[data-tag-category="${category}"]`).forEach(el => el.style.display = 'block');
 
-  // 更新按钮样式
   document.querySelectorAll('.tag-cat-btn').forEach(b => {
     b.style.background = 'none';
     b.style.color = 'var(--text-secondary)';
