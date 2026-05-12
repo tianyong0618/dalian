@@ -159,34 +159,6 @@
       <p>依托多维度数据建模与算法引擎，整合政策文件库、服务事项库与用户特征标签，自动拆解政策条款，为个人与企业精准计算可享受的政策红利。</p>
     </div>
 
-    <!-- 核心指标 -->
-    <div class="row mb-48">
-      <div class="col-3">
-        <div class="stat-card">
-          <div class="number" id="stat-policies">2,356</div>
-          <div class="label">政策条款总数</div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="stat-card">
-          <div class="number" id="stat-amount">1.28亿</div>
-          <div class="label">本月测算红利总额</div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="stat-card">
-          <div class="number" id="stat-users">86,452</div>
-          <div class="label">本月测算人次</div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="stat-card">
-          <div class="number" id="stat-accuracy">94.5%</div>
-          <div class="label">匹配准确率</div>
-        </div>
-      </div>
-    </div>
-
     <!-- 数据采集与整合模块 - 仅人社和机构可见 -->
     <div class="gov-only">
     <!-- 数据采集与整合模块 -->
@@ -253,17 +225,7 @@
     </div>
     </div>
 
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border-color);">
-      <div>
-        <h1 style="font-size: 24px; font-weight: 700; margin: 0 0 8px 0; color: var(--text-primary);">政策计算器</h1>
-        <p style="font-size: 14px; color: var(--text-tertiary); margin: 0;">智能政策测算与人社数据分析平台</p>
-      </div>
-      <div style="display: flex; gap: 12px;">
-        <button class="btn btn-secondary btn-sm" onclick="showModal('data-management-modal')">📊 数据管理</button>
-      </div>
-    </div>
-
-    <div class="top-tabs">
+    <div class="top-tabs" style="margin-top: 24px;">
       <div class="tab-item active" onclick="switchCalcTab(this, 'calc')">🧮 政策测算</div>
       <div class="tab-item" onclick="switchCalcTab(this, 'policy')">📚 政策库</div>
       <div class="tab-item" onclick="switchCalcTab(this, 'service')">📋 服务事项</div>
