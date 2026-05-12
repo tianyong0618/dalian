@@ -212,7 +212,7 @@
         <span style="color: var(--primary); font-weight: 600;">📡 数据同步状态：实时同步中</span>
         <span class="text-small ml-16" style="color: var(--text-tertiary);">上次完整同步：2026-05-12 08:00</span>
       </div>
-      <button class="btn btn-secondary btn-sm" onclick="showModal('data-management-modal')">进入数据管理</button>
+      <button class="btn btn-secondary btn-sm gov-only-btn" onclick="showModal('data-management-modal')">进入数据管理</button>
     </div>
     </div>
 
@@ -1968,7 +1968,7 @@
       <div class="tabs mb-24">
         <button class="tab-btn active" onclick="switchDataTab('log')">采集日志</button>
         <button class="tab-btn" onclick="switchDataTab('validate')">数据校验</button>
-        <button class="tab-btn gov-only-tab" onclick="switchDataTab('security')">安全管理</button>
+        <button class="tab-btn security-tab" onclick="switchDataTab('security')">安全管理</button>
         <button class="tab-btn" onclick="switchDataTab('clean')">数据清洗</button>
       </div>
       
@@ -2083,7 +2083,7 @@
               <input type="checkbox"> 格式标准化 - 统一数据格式
             </label>
           </div>
-          <button class="btn btn-primary btn-sm" style="margin-top: 16px;">应用规则</button>
+          <button class="btn btn-primary btn-sm data-manage-btn" style="margin-top: 16px;">应用规则</button>
         </div>
       </div>
     </div>
@@ -2390,14 +2390,19 @@ function getRoleName(role) {
 }
 
 function updateRoleUI(role) {
-  // 人社可见
+  // 人社可见完整，机构可见但仅查看（隐藏管理功能）
   document.querySelectorAll('.gov-only').forEach(el => {
     el.style.display = (role === 'gov' || role === 'org') ? 'block' : 'none';
   });
 
-  // 企业和个人隐藏某些功能
+  // 机构和人社可见，企业和个人隐藏
   document.querySelectorAll('.enterprise-hidden').forEach(el => {
     el.style.display = (role === 'gov' || role === 'org') ? 'block' : 'none';
+  });
+
+  // 机构-only：隐藏管理按钮（仅人社可操作）
+  document.querySelectorAll('.gov-only-btn').forEach(el => {
+    el.style.display = (role === 'gov') ? 'inline-block' : 'none';
   });
 
   // 更新表单权限
@@ -2405,6 +2410,16 @@ function updateRoleUI(role) {
   if (calcForm) {
     calcForm.disabled = (role === 'enterprise' || role === 'personal');
   }
+
+  // 数据管理模态框中的安全管理Tab仅人社可见
+  document.querySelectorAll('.security-tab').forEach(el => {
+    el.style.display = (role === 'gov') ? 'block' : 'none';
+  });
+  
+  // 数据管理模态框中的操作按钮仅人社可见
+  document.querySelectorAll('.data-manage-btn').forEach(el => {
+    el.style.display = (role === 'gov') ? 'inline-block' : 'none';
+  });
 }
 
 // 页面加载完成后初始化角色状态
