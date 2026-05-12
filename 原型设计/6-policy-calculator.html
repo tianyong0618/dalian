@@ -2324,6 +2324,14 @@ function updateRoleUI(role) {
   }
 }
 
+// 页面加载完成后初始化角色状态
+document.addEventListener('DOMContentLoaded', function() {
+  const defaultRole = 'gov';
+  document.getElementById('role-switcher').value = defaultRole;
+  updateRoleUI(defaultRole);
+  console.log('政策计算器页面初始化完成');
+});
+
 // 标签分类切换
 function switchTagCategory(category) {
   document.querySelectorAll('[id^="tag-list-"]').forEach(el => {
