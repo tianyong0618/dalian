@@ -233,7 +233,7 @@
             <td><div class="progress-bar"><div class="progress-fill" style="width: 88%;"></div></div></td>
             <td><div class="progress-bar"><div class="progress-fill" style="width: 78%;"></div></div></td>
             <td><span class="tag" style="font-size: 12px;">Java开发</span> <span class="tag" style="font-size: 12px;">3年经验</span></td>
-            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(0)">详情</button></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(0)">详情</button> <button class="btn btn-primary btn-sm" onclick="showModal('job-recommend-modal')">推荐岗位</button></td>
           </tr>
           <tr data-group="就业困难人员" data-education="高中及以下" data-stability="low" data-portrait-type="jobseeker">
             <td><strong>李四</strong></td>
@@ -243,7 +243,7 @@
             <td><div class="progress-bar"><div class="progress-fill" style="width: 45%;"></div></div></td>
             <td><div class="progress-bar"><div class="progress-fill" style="width: 32%;"></div></div></td>
             <td><span class="tag" style="font-size: 12px;">零工人员</span> <span class="tag" style="font-size: 12px;">技能培训</span></td>
-            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(1)">详情</button></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(1)">详情</button> <button class="btn btn-primary btn-sm" onclick="showModal('job-recommend-modal')">推荐岗位</button></td>
           </tr>
           <tr data-group="农民工" data-education="高中及以下" data-stability="medium" data-portrait-type="keygroup">
             <td><strong>王五</strong></td>
@@ -253,7 +253,7 @@
             <td><div class="progress-bar"><div class="progress-fill" style="width: 52%;"></div></div></td>
             <td><div class="progress-bar"><div class="progress-fill" style="width: 55%;"></div></div></td>
             <td><span class="tag" style="font-size: 12px;">建筑工</span> <span class="tag" style="font-size: 12px;">计件工</span></td>
-            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(2)">详情</button></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(2)">详情</button> <button class="btn btn-primary btn-sm" onclick="showModal('job-recommend-modal')">推荐岗位</button></td>
           </tr>
           <tr data-group="高校毕业生" data-education="本科及以上" data-stability="high" data-portrait-type="talent">
             <td><strong>赵六</strong></td>
@@ -263,7 +263,7 @@
             <td><div class="progress-bar"><div class="progress-fill" style="width: 92%;"></div></div></td>
             <td><div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div></td>
             <td><span class="tag" style="font-size: 12px;">Python</span> <span class="tag" style="font-size: 12px;">AI算法</span></td>
-            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(3)">详情</button></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(3)">详情</button> <button class="btn btn-primary btn-sm" onclick="showModal('job-recommend-modal')">推荐岗位</button></td>
           </tr>
           <tr data-group="零工人员" data-education="大专" data-stability="low" data-portrait-type="jobseeker">
             <td><strong>孙七</strong></td>
@@ -273,7 +273,7 @@
             <td><div class="progress-bar"><div class="progress-fill" style="width: 48%;"></div></div></td>
             <td><div class="progress-bar"><div class="progress-fill" style="width: 28%;"></div></div></td>
             <td><span class="tag" style="font-size: 12px;">外卖骑手</span> <span class="tag" style="font-size: 12px;">灵活用工</span></td>
-            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(4)">详情</button></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(4)">详情</button> <button class="btn btn-primary btn-sm" onclick="showModal('job-recommend-modal')">推荐岗位</button></td>
           </tr>
         </tbody>
       </table>
@@ -1147,11 +1147,6 @@
         </div>
       </div>
       
-    </div>
-    <!-- 底部按钮 -->
-    <div style="background: #0a1628; border-top: 1px solid #2a5a8a; padding: 12px 24px; display: flex; justify-content: flex-end; gap: 12px; flex-shrink: 0;">
-      <button class="btn btn-secondary" onclick="closeModal('person-detail-modal')" style="background: rgba(42,90,138,0.5); border: 1px solid #3a7aaa; color: #8ab4d4; padding: 8px 20px; border-radius: 6px; cursor: pointer;">关闭</button>
-      <button class="btn btn-primary" onclick="showModal('job-recommend-modal')" style="background: linear-gradient(135deg, #5ae8ff, #3a7aaa); border: none; color: #0a1628; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600;">查看推荐岗位</button>
     </div>
   </div>
 </div>
