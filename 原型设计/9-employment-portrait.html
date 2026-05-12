@@ -1361,14 +1361,15 @@ function switchUserType(type) {
 
 function filterPersonsByPermission(type) {
   const rows = document.querySelectorAll('#person-tbody tr');
+  
   rows.forEach(row => {
     const portraitType = row.getAttribute('data-portrait-type');
     let show = true;
     
-    if (type === 'enterprise' && portraitType !== 'talent') {
-      show = false;
-    } else if (type === 'org' && portraitType === 'talent') {
-      show = false;
+    if (type === 'enterprise') {
+      show = (portraitType === 'talent');
+    } else if (type === 'org') {
+      show = (portraitType !== 'talent');
     }
     
     row.style.display = show ? '' : 'none';
@@ -1795,6 +1796,7 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
 
 document.addEventListener('DOMContentLoaded', function() {
   switchUserType('gov');
+  filterPersonsByPermission('gov');
 });
 
 function switchDataTab(tab, btn) {
