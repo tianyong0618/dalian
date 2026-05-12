@@ -161,67 +161,146 @@
 
     <!-- 数据采集与整合模块 - 仅人社和机构可见 -->
     <div class="gov-only">
-    <!-- 数据采集与整合模块 -->
-    <div class="section-header mb-32">
+    <div class="section-header mb-24">
       <h2>数据采集与整合</h2>
-      <p>整合政策文件、法规、解读、案例等多领域数据，实时同步更新</p>
     </div>
-    <div class="row mb-48">
-      <div class="col-3">
-        <div class="data-source-card" data-source="policy-file">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-size: 24px;">📜</span>
-            <span class="badge badge-success" style="font-size: 11px;">实时同步</span>
-          </div>
-          <h4 style="font-size: 15px; font-weight: 600; margin-bottom: 8px;">政策文件库</h4>
-          <p class="text-small" style="color: var(--text-tertiary); margin-bottom: 4px;">最近更新：2026-05-12 10:30</p>
-          <p class="text-small" style="color: var(--text-tertiary);">数据量：2,356 条</p>
-          <div style="margin-top: 8px; font-size: 11px; color: var(--primary);">🤖 AI自动采集</div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="data-source-card" data-source="policy-law">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-size: 24px;">⚖️</span>
-            <span class="badge badge-warning" style="font-size: 11px;">同步中</span>
-          </div>
-          <h4 style="font-size: 15px; font-weight: 600; margin-bottom: 8px;">政策法规库</h4>
-          <p class="text-small" style="color: var(--text-tertiary); margin-bottom: 4px;">最近更新：2026-05-12 09:45</p>
-          <p class="text-small" style="color: var(--text-tertiary);">数据量：856 条</p>
-          <div style="margin-top: 8px; font-size: 11px; color: var(--primary);">🤖 AI自动采集</div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="data-source-card" data-source="policy-interpret">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-size: 24px;">📖</span>
-            <span class="badge badge-success" style="font-size: 11px;">实时同步</span>
-          </div>
-          <h4 style="font-size: 15px; font-weight: 600; margin-bottom: 8px;">政策解读库</h4>
-          <p class="text-small" style="color: var(--text-tertiary); margin-bottom: 4px;">最近更新：2026-05-12 10:20</p>
-          <p class="text-small" style="color: var(--text-tertiary);">数据量：1,234 篇</p>
-          <div style="margin-top: 8px; font-size: 11px; color: var(--primary);">🤖 AI自动采集</div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="data-source-card" data-source="policy-case">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span style="font-size: 24px;">📊</span>
-            <span class="badge badge-success" style="font-size: 11px;">实时同步</span>
-          </div>
-          <h4 style="font-size: 15px; font-weight: 600; margin-bottom: 8px;">典型案例库</h4>
-          <p class="text-small" style="color: var(--text-tertiary); margin-bottom: 4px;">最近更新：2026-05-12 10:15</p>
-          <p class="text-small" style="color: var(--text-tertiary);">数据量：567 条</p>
-          <div style="margin-top: 8px; font-size: 11px; color: var(--primary);">🤖 AI自动采集</div>
-        </div>
-      </div>
+    <div class="top-tabs mb-24">
+      <div class="tab-item active" onclick="switchDataSource(this, 'policy-file')">📜 政策文件库</div>
+      <div class="tab-item" onclick="switchDataSource(this, 'policy-law')">⚖️ 政策法规库</div>
+      <div class="tab-item" onclick="switchDataSource(this, 'policy-interpret')">📖 政策解读库</div>
+      <div class="tab-item" onclick="switchDataSource(this, 'policy-case')">📊 典型案例库</div>
     </div>
-    <div class="mb-48" style="display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; background: rgba(22, 119, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(22, 119, 255, 0.2);">
-      <div>
-        <span style="color: var(--primary); font-weight: 600;">📡 数据同步状态：实时同步中</span>
-        <span class="text-small ml-16" style="color: var(--text-tertiary);">上次完整同步：2026-05-12 08:00</span>
+    
+    <!-- 政策文件库内容 -->
+    <div id="data-content-policy-file" class="data-source-content">
+      <div class="row mb-16">
+        <div class="col-8">
+          <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+            <input type="text" class="form-input" placeholder="搜索政策文件..." style="max-width: 300px;">
+            <button class="btn btn-primary btn-sm">搜索</button>
+            <button class="btn btn-secondary btn-sm">导入</button>
+            <button class="btn btn-secondary btn-sm">导出</button>
+          </div>
+        </div>
+        <div class="col-4 text-right">
+          <span class="badge badge-success">实时同步</span>
+          <span class="text-small" style="color: var(--text-tertiary); margin-left: 12px;">🤖 AI自动采集</span>
+        </div>
       </div>
-      <button class="btn btn-secondary btn-sm gov-only-btn" onclick="showModal('data-management-modal')">进入数据管理</button>
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr><th>文件标题</th><th>发布部门</th><th>发布日期</th><th>数据量</th><th>操作</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>关于进一步做好稳就业工作的通知</td><td>市人社局</td><td>2026-05-10</td><td>2,356 条</td><td><button class="btn btn-link btn-sm">查看</button></td></tr>
+            <tr><td>高校毕业生就业创业扶持政策</td><td>市人社局</td><td>2026-05-08</td><td>1,234 条</td><td><button class="btn btn-link btn-sm">查看</button></td></tr>
+            <tr><td>企业社保减免优惠政策</td><td>市医保局</td><td>2026-05-05</td><td>856 条</td><td><button class="btn btn-link btn-sm">查看</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-small" style="color: var(--text-tertiary); margin-top: 12px;">最近更新：2026-05-12 10:30 | 上次同步：2026-05-12 08:00</div>
+    </div>
+
+    <!-- 政策法规库内容 -->
+    <div id="data-content-policy-law" class="data-source-content" style="display: none;">
+      <div class="row mb-16">
+        <div class="col-8">
+          <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+            <input type="text" class="form-input" placeholder="搜索法规..." style="max-width: 300px;">
+            <button class="btn btn-primary btn-sm">搜索</button>
+            <button class="btn btn-secondary btn-sm">导入</button>
+            <button class="btn btn-secondary btn-sm">导出</button>
+          </div>
+        </div>
+        <div class="col-4 text-right">
+          <span class="badge badge-warning">同步中</span>
+          <span class="text-small" style="color: var(--text-tertiary); margin-left: 12px;">🤖 AI自动采集</span>
+        </div>
+      </div>
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr><th>法规名称</th><th>法规层级</th><th>发布年份</th><th>关联政策</th><th>操作</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>中华人民共和国劳动法</td><td>法律</td><td>2024</td><td>12 项</td><td><button class="btn btn-link btn-sm">查看</button></td></tr>
+            <tr><td>劳动合同法实施条例</td><td>行政法规</td><td>2024</td><td>8 项</td><td><button class="btn btn-link btn-sm">查看</button></td></tr>
+            <tr><td>工伤保险条例</td><td>行政法规</td><td>2023</td><td>5 项</td><td><button class="btn btn-link btn-sm">查看</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-small" style="color: var(--text-tertiary); margin-top: 12px;">最近更新：2026-05-12 09:45</div>
+    </div>
+
+    <!-- 政策解读库内容 -->
+    <div id="data-content-policy-interpret" class="data-source-content" style="display: none;">
+      <div class="row mb-16">
+        <div class="col-8">
+          <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+            <input type="text" class="form-input" placeholder="搜索解读文章..." style="max-width: 300px;">
+            <button class="btn btn-primary btn-sm">搜索</button>
+            <button class="btn btn-secondary btn-sm">新增</button>
+          </div>
+        </div>
+        <div class="col-4 text-right">
+          <span class="badge badge-success">实时同步</span>
+          <span class="text-small" style="color: var(--text-tertiary); margin-left: 12px;">🤖 AI自动采集</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="row">
+          <div class="col-4">
+            <div style="padding: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+              <h4 style="font-size: 14px; margin-bottom: 8px;">一图读懂就业补贴</h4>
+              <p class="text-small" style="color: var(--text-tertiary);">图解 · 2026-05-10</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div style="padding: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+              <h4 style="font-size: 14px; margin-bottom: 8px;">创业担保贷款申请指南</h4>
+              <p class="text-small" style="color: var(--text-tertiary);">图文 · 2026-05-08</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div style="padding: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+              <h4 style="font-size: 14px; margin-bottom: 8px;">社保减免政策解读</h4>
+              <p class="text-small" style="color: var(--text-tertiary);">视频 · 2026-05-05</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-small" style="color: var(--text-tertiary); margin-top: 12px;">最近更新：2026-05-12 10:20</div>
+    </div>
+
+    <!-- 典型案例库内容 -->
+    <div id="data-content-policy-case" class="data-source-content" style="display: none;">
+      <div class="row mb-16">
+        <div class="col-8">
+          <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+            <input type="text" class="form-input" placeholder="搜索案例..." style="max-width: 300px;">
+            <button class="btn btn-primary btn-sm">搜索</button>
+            <button class="btn btn-secondary btn-sm">新增案例</button>
+          </div>
+        </div>
+        <div class="col-4 text-right">
+          <span class="badge badge-success">实时同步</span>
+          <span class="text-small" style="color: var(--text-tertiary); margin-left: 12px;">🤖 AI自动采集</span>
+        </div>
+      </div>
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr><th>案例标题</th><th>案例类型</th><th>行业</th><th>涉及政策</th><th>操作</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>某科技公司成功申请创业担保贷款</td><td>成功案例</td><td>信息技术</td><td>创业扶持</td><td><button class="btn btn-link btn-sm">查看</button></td></tr>
+            <tr><td>企业吸纳高校毕业生就业补贴申请</td><td>成功案例</td><td>制造业</td><td>就业补贴</td><td><button class="btn btn-link btn-sm">查看</button></td></tr>
+            <tr><td>灵活就业人员社保补贴申请流程</td><td>操作指南</td><td>服务业</td><td>社保补贴</td><td><button class="btn btn-link btn-sm">查看</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-small" style="color: var(--text-tertiary); margin-top: 12px;">最近更新：2026-05-12 10:15</div>
     </div>
     </div>
 
@@ -1883,6 +1962,18 @@ function updateBenefitGroup(policy) {
   const d = data[policy] || data['就业补贴'];
   document.querySelectorAll('#benefit-group-modal .stat-card .number')[0].textContent = d.people;
   document.querySelectorAll('#benefit-group-modal .stat-card .number')[1].textContent = d.amount;
+}
+
+// 数据源Tab切换
+function switchDataSource(el, sourceType) {
+  document.querySelectorAll('.top-tabs .tab-item').forEach(item => {
+    if (item.closest('.gov-only')) item.classList.remove('active');
+  });
+  el.classList.add('active');
+  document.querySelectorAll('.data-source-content').forEach(content => {
+    content.style.display = 'none';
+  });
+  document.getElementById('data-content-' + sourceType).style.display = 'block';
 }
 
 // 顶部Tab切换
