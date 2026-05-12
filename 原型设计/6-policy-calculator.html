@@ -6,6 +6,42 @@
   <title>政策计算器 - 人社服务数字化平台</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    /* 顶部标签导航 */
+    .top-tabs {
+      display: flex;
+      gap: 8px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .tab-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      transition: all 0.3s ease;
+    }
+    .tab-item:hover {
+      color: var(--primary);
+      background: rgba(22, 119, 255, 0.05);
+    }
+    .tab-item.active {
+      color: #fff;
+      background: var(--primary);
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    
     /* 功能卡片边条悬停效果 */
     .feature-card:hover {
       transform: translateY(-2px);
@@ -16,6 +52,7 @@
     .gov-only { display: none; }
     .org-only { display: none; }
     .enterprise-hidden { display: block; }
+    .gov-only-btn { display: none; }
 
     /* 数据源卡片样式 */
     .data-source-card {
@@ -216,36 +253,29 @@
     </div>
     </div>
 
-    <!-- 顶部功能导航 -->
-    <div class="mb-32" style="display: flex; gap: 16px; overflow-x: auto; padding: 8px 0;">
-      <div onclick="showModal('policy-calc-modal')" style="flex: 0 0 auto; min-width: 120px; padding: 16px 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='var(--primary)';this.style.boxShadow='var(--shadow-sm)'" onmouseout="this.style.borderColor='var(--border-color)';this.style.boxShadow='none'">
-        <div style="font-size: 24px; margin-bottom: 8px;">🧮</div>
-        <div style="font-size: 13px; font-weight: 500; color: var(--text-primary);">政策测算</div>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border-color);">
+      <div>
+        <h1 style="font-size: 24px; font-weight: 700; margin: 0 0 8px 0; color: var(--text-primary);">政策计算器</h1>
+        <p style="font-size: 14px; color: var(--text-tertiary); margin: 0;">智能政策测算与人社数据分析平台</p>
       </div>
-      <div onclick="showModal('policy-library-modal')" style="flex: 0 0 auto; min-width: 120px; padding: 16px 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='var(--warning)';this.style.boxShadow='var(--shadow-sm)'" onmouseout="this.style.borderColor='var(--border-color)';this.style.boxShadow='none'">
-        <div style="font-size: 24px; margin-bottom: 8px;">📚</div>
-        <div style="font-size: 13px; font-weight: 500; color: var(--text-primary);">政策库</div>
-      </div>
-      <div onclick="showModal('service-item-modal')" style="flex: 0 0 auto; min-width: 120px; padding: 16px 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='var(--primary)';this.style.boxShadow='var(--shadow-sm)'" onmouseout="this.style.borderColor='var(--border-color)';this.style.boxShadow='none'">
-        <div style="font-size: 24px; margin-bottom: 8px;">📋</div>
-        <div style="font-size: 13px; font-weight: 500; color: var(--text-primary);">服务事项</div>
-      </div>
-      <div onclick="showModal('policy-network-modal')" style="flex: 0 0 auto; min-width: 120px; padding: 16px 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='var(--success)';this.style.boxShadow='var(--shadow-sm)'" onmouseout="this.style.borderColor='var(--border-color)';this.style.boxShadow='none'">
-        <div style="font-size: 24px; margin-bottom: 8px;">🕸️</div>
-        <div style="font-size: 13px; font-weight: 500; color: var(--text-primary);">关联网络</div>
-      </div>
-      <div onclick="showModal('effect-tracking-modal')" class="gov-only-btn" style="flex: 0 0 auto; min-width: 120px; padding: 16px 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='var(--primary-gradient-end)';this.style.boxShadow='var(--shadow-sm)'" onmouseout="this.style.borderColor='var(--border-color)';this.style.boxShadow='none'">
-        <div style="font-size: 24px; margin-bottom: 8px;">📊</div>
-        <div style="font-size: 13px; font-weight: 500; color: var(--text-primary);">效果追踪</div>
-      </div>
-      <div onclick="showModal('evaluation-report-modal')" class="gov-only-btn" style="flex: 0 0 auto; min-width: 120px; padding: 16px 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='var(--primary)';this.style.boxShadow='var(--shadow-sm)'" onmouseout="this.style.borderColor='var(--border-color)';this.style.boxShadow='none'">
-        <div style="font-size: 24px; margin-bottom: 8px;">📝</div>
-        <div style="font-size: 13px; font-weight: 500; color: var(--text-primary);">评估报告</div>
+      <div style="display: flex; gap: 12px;">
+        <button class="btn btn-secondary btn-sm" onclick="showModal('data-management-modal')">📊 数据管理</button>
       </div>
     </div>
 
+    <div class="top-tabs">
+      <div class="tab-item active" onclick="switchCalcTab(this, 'calc')">🧮 政策测算</div>
+      <div class="tab-item" onclick="switchCalcTab(this, 'policy')">📚 政策库</div>
+      <div class="tab-item" onclick="switchCalcTab(this, 'service')">📋 服务事项</div>
+      <div class="tab-item" onclick="switchCalcTab(this, 'network')">🕸️ 关联网络</div>
+      <div class="tab-item gov-only" onclick="switchCalcTab(this, 'effect')">📈 效果追踪</div>
+      <div class="tab-item gov-only" onclick="switchCalcTab(this, 'report')">📝 评估报告</div>
+    </div>
+
+    <div id="tab-content-calc" class="tab-content active">
+
     <!-- 政策计算器表单 -->
-    <div class="section-header mb-32">
+    <div id="calc-form-section" class="section-header mb-32">
       <h2>政策红利测算</h2>
       <p>填写基本信息，一键计算可享受的政策红利</p>
     </div>
@@ -1891,6 +1921,27 @@ function updateBenefitGroup(policy) {
   const d = data[policy] || data['就业补贴'];
   document.querySelectorAll('#benefit-group-modal .stat-card .number')[0].textContent = d.people;
   document.querySelectorAll('#benefit-group-modal .stat-card .number')[1].textContent = d.amount;
+}
+
+// 顶部Tab切换
+function switchCalcTab(el, tabName) {
+  document.querySelectorAll('.top-tabs .tab-item').forEach(item => item.classList.remove('active'));
+  el.classList.add('active');
+  
+  const modalMap = {
+    'calc': null,
+    'policy': 'policy-library-modal',
+    'service': 'service-item-modal',
+    'network': 'policy-network-modal',
+    'effect': 'effect-tracking-modal',
+    'report': 'evaluation-report-modal'
+  };
+  
+  if (tabName === 'calc') {
+    document.getElementById('calc-form-section').scrollIntoView({ behavior: 'smooth' });
+  } else if (modalMap[tabName]) {
+    showModal(modalMap[tabName]);
+  }
 }
 
 // 模态框控制
