@@ -56,6 +56,7 @@
     .org-only { display: none; }
     .enterprise-hidden { display: block; }
     .gov-only-btn { display: none; }
+    .gov-org-only { display: none; }
 
     /* 数据源卡片样式 */
     .data-source-card {
@@ -164,11 +165,11 @@
 
     <div class="top-tabs" style="margin-top: 24px;">
       <div class="tab-item active" onclick="switchCalcTab(this, 'calc')">🧮 政策测算</div>
-      <div class="tab-item gov-only" onclick="switchCalcTab(this, 'data')">📊 数据采集</div>
       <div class="tab-item" onclick="switchCalcTab(this, 'policy')">📚 政策库</div>
       <div class="tab-item" onclick="switchCalcTab(this, 'service')">📋 服务事项</div>
       <div class="tab-item" onclick="switchCalcTab(this, 'network')">🕸️ 关联网络</div>
-      <div class="tab-item gov-only" onclick="switchCalcTab(this, 'effect')">📈 效果追踪</div>
+      <div class="tab-item gov-org-only" onclick="switchCalcTab(this, 'data')">📊 数据采集</div>
+      <div class="tab-item gov-org-only" onclick="switchCalcTab(this, 'effect')">📈 效果追踪</div>
       <div class="tab-item gov-only" onclick="switchCalcTab(this, 'report')">📝 评估报告</div>
     </div>
 
@@ -341,16 +342,22 @@
             <input type="number" class="form-input" id="calc-employees" placeholder="请输入参保人数或员工数">
           </div>
           <div class="form-group">
-            <label class="form-label">重点群体标识</label>
-            <div style="display: flex; gap: 16px; margin-top: 8px;">
+            <label class="form-label">适用对象标签</label>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px;">
               <label style="font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px;">
                 <input type="checkbox" value="graduate" id="tag-graduate"> 高校毕业生
               </label>
               <label style="font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px;">
-                <input type="checkbox" value="difficult" id="tag-difficult"> 就业困难
+                <input type="checkbox" value="difficult" id="tag-difficult"> 就业困难人员
               </label>
               <label style="font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px;">
                 <input type="checkbox" value="veteran" id="tag-veteran"> 退役军人
+              </label>
+              <label style="font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px;">
+                <input type="checkbox" value="farmer" id="tag-farmer"> 农民工
+              </label>
+              <label style="font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px;">
+                <input type="checkbox" value="enterprise" id="tag-enterprise"> 企业
               </label>
             </div>
           </div>
@@ -392,97 +399,99 @@
       </div>
     </div>
 
-    <!-- 政策覆盖率分析 -->
-    <div class="section-header mb-32">
-      <h2>政策覆盖率分析</h2>
-      <p>实时监测各类政策的覆盖情况与实施效果</p>
-    </div>
-    <div class="card">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>政策类型</th>
-            <th>政策数量</th>
-            <th>覆盖人数</th>
-            <th>覆盖率</th>
-            <th>趋势</th>
-            <th>AI预警</th>
-            <th>状态</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>就业补贴</strong></td>
-            <td>28</td>
-            <td>45,678</td>
-            <td>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 87%;"></div></div>
-                <span>87%</span>
-              </div>
-            </td>
-            <td style="color: var(--success);">↑ 上升</td>
-            <td><span style="color: var(--success); font-size: 12px;">✓ 正常</span></td>
-            <td><span class="badge badge-success">良好</span></td>
-          </tr>
-          <tr>
-            <td><strong>培训资助</strong></td>
-            <td>15</td>
-            <td>23,456</td>
-            <td>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 72%;"></div></div>
-                <span>72%</span>
-              </div>
-            </td>
-            <td style="color: var(--success);">↑ 上升 <span style="font-size: 11px;">🤖 AI预测</span></td>
-            <td><span style="color: var(--warning); font-size: 12px;">⚠️ 关注</span></td>
-            <td><span class="badge badge-warning">待提升</span></td>
-          </tr>
-          <tr>
-            <td><strong>创业扶持</strong></td>
-            <td>12</td>
-            <td>8,923</td>
-            <td>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 65%;"></div></div>
-                <span>65%</span>
-              </div>
-            </td>
-            <td style="color: var(--text-secondary);">→ 平稳</td>
-            <td><span style="color: var(--danger); font-size: 12px;">⚠️ 需关注</span></td>
-            <td><span class="badge badge-warning">待提升</span></td>
-          </tr>
-          <tr>
-            <td><strong>社保减免</strong></td>
-            <td>9</td>
-            <td>56,123</td>
-            <td>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 91%;"></div></div>
-                <span>91%</span>
-              </div>
-            </td>
-            <td style="color: var(--success);">↑ 上升 <span style="font-size: 11px;">🤖 AI预测</span></td>
-            <td><span style="color: var(--success); font-size: 12px;">✓ 正常</span></td>
-            <td><span class="badge badge-success">优秀</span></td>
-          </tr>
-          <tr>
-            <td><strong>稳岗返还</strong></td>
-            <td>8</td>
-            <td>12,345</td>
-            <td>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 68%;"></div></div>
-                <span>68%</span>
-              </div>
-            </td>
-            <td style="color: var(--text-secondary);">→ 平稳</td>
-            <td><span style="color: var(--warning); font-size: 12px;">⚠️ 关注</span></td>
-            <td><span class="badge badge-warning">待提升</span></td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- 政策覆盖率分析 - 仅机构和人社可见 -->
+    <div class="gov-org-only">
+      <div class="section-header mb-32">
+        <h2>政策覆盖率分析</h2>
+        <p>实时监测各类政策的覆盖情况与实施效果</p>
+      </div>
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>政策类型</th>
+              <th>政策数量</th>
+              <th>覆盖人数</th>
+              <th>覆盖率</th>
+              <th>趋势</th>
+              <th>AI预警</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>就业补贴</strong></td>
+              <td>28</td>
+              <td>45,678</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 87%;"></div></div>
+                  <span>87%</span>
+                </div>
+              </td>
+              <td style="color: var(--success);">↑ 上升</td>
+              <td><span style="color: var(--success); font-size: 12px;">✓ 正常</span></td>
+              <td><span class="badge badge-success">良好</span></td>
+            </tr>
+            <tr>
+              <td><strong>培训资助</strong></td>
+              <td>15</td>
+              <td>23,456</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 72%;"></div></div>
+                  <span>72%</span>
+                </div>
+              </td>
+              <td style="color: var(--success);">↑ 上升 <span style="font-size: 11px;">🤖 AI预测</span></td>
+              <td><span style="color: var(--warning); font-size: 12px;">⚠️ 关注</span></td>
+              <td><span class="badge badge-warning">待提升</span></td>
+            </tr>
+            <tr>
+              <td><strong>创业扶持</strong></td>
+              <td>12</td>
+              <td>8,923</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 65%;"></div></div>
+                  <span>65%</span>
+                </div>
+              </td>
+              <td style="color: var(--text-secondary);">→ 平稳</td>
+              <td><span style="color: var(--danger); font-size: 12px;">⚠️ 需关注</span></td>
+              <td><span class="badge badge-warning">待提升</span></td>
+            </tr>
+            <tr>
+              <td><strong>社保减免</strong></td>
+              <td>9</td>
+              <td>56,123</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 91%;"></div></div>
+                  <span>91%</span>
+                </div>
+              </td>
+              <td style="color: var(--success);">↑ 上升 <span style="font-size: 11px;">🤖 AI预测</span></td>
+              <td><span style="color: var(--success); font-size: 12px;">✓ 正常</span></td>
+              <td><span class="badge badge-success">优秀</span></td>
+            </tr>
+            <tr>
+              <td><strong>稳岗返还</strong></td>
+              <td>8</td>
+              <td>12,345</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 68%;"></div></div>
+                  <span>68%</span>
+                </div>
+              </td>
+              <td style="color: var(--text-secondary);">→ 平稳</td>
+              <td><span style="color: var(--warning); font-size: 12px;">⚠️ 关注</span></td>
+              <td><span class="badge badge-warning">待提升</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
   </div>
@@ -2023,6 +2032,11 @@ function updateRoleUI(role) {
     el.style.display = (role === 'gov' || role === 'org') ? 'block' : 'none';
   });
 
+  // 机构和人社可见（gov-org-only）
+  document.querySelectorAll('.gov-org-only').forEach(el => {
+    el.style.display = (role === 'gov' || role === 'org') ? 'block' : 'none';
+  });
+
   // 机构-only：隐藏管理按钮（仅人社可操作）
   document.querySelectorAll('.gov-only-btn').forEach(el => {
     el.style.display = (role === 'gov') ? 'inline-block' : 'none';
@@ -2072,145 +2086,188 @@ function generateAITags() {
     showNotification('已生成3个新标签：技能提升补贴、零工人员、新型学徒制', 'success');
   }, 2000);
 }
+
+// 标签搜索和筛选
+function filterTagList() {
+  const category = document.getElementById('tag-filter-category').value;
+  const searchText = document.getElementById('tag-search').value.toLowerCase();
+  const rows = document.querySelectorAll('#tag-table-body tr');
+  
+  rows.forEach(row => {
+    const categoryCell = row.cells[0].textContent;
+    const nameCell = row.cells[1].textContent.toLowerCase();
+    
+    const categoryMatch = !category || categoryCell.includes(getCategoryName(category));
+    const searchMatch = !searchText || nameCell.includes(searchText);
+    
+    row.style.display = (categoryMatch && searchMatch) ? '' : 'none';
+  });
+}
+
+function getCategoryName(category) {
+  const names = {
+    'policy-type': '政策类型',
+    'target': '适用对象',
+    'subsidy-form': '补贴形式'
+  };
+  return names[category] || '';
+}
+
+// 编辑标签（模拟）
+function editTag(btn) {
+  showNotification('标签编辑功能开发中...', 'info');
+}
+
+// 删除标签（模拟）
+function deleteTag(btn) {
+  if (confirm('确定要删除这个标签吗？')) {
+    btn.closest('tr').remove();
+    showNotification('标签已删除', 'success');
+  }
+}
 </script>
 
 <!-- 标签管理模态框 -->
 <div class="modal-overlay" id="tag-manage-modal">
-  <div class="modal" style="max-width: 900px;">
+  <div class="modal" style="max-width: 800px;">
     <div class="modal-header">
       <h3>政策标签管理</h3>
       <button class="modal-close" onclick="closeModal('tag-manage-modal')">&times;</button>
     </div>
     <div class="modal-body">
       <!-- 顶部按钮 -->
-      <div class="mb-24" style="display: flex; justify-content: flex-end;">
+      <div class="mb-24" style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; gap: 8px;">
+          <select class="form-select" style="width: 150px;" id="tag-filter-category" onchange="filterTagList()">
+            <option value="">全部分类</option>
+            <option value="policy-type">政策类型</option>
+            <option value="target">适用对象</option>
+            <option value="subsidy-form">补贴形式</option>
+          </select>
+          <input type="text" class="form-input" placeholder="搜索标签..." style="width: 200px;" id="tag-search" onkeyup="filterTagList()">
+        </div>
         <button class="btn btn-primary" onclick="generateAITags()">🤖 AI智能生成标签</button>
       </div>
-
-      <!-- 左右布局 -->
-      <div class="tag-manage-layout">
-        <!-- 左侧分类导航 -->
-        <div class="tag-manage-sidebar">
-          <ul style="list-style: none; padding: 0; margin: 0;">
-            <li class="tag-category-item active" onclick="switchTagCategory('subsidy')">
-              <span>💰 补贴类型</span>
-              <span class="badge badge-info">12</span>
-            </li>
-            <li class="tag-category-item" onclick="switchTagCategory('target')">
-              <span>👤 适用对象</span>
-              <span class="badge badge-info">8</span>
-            </li>
-            <li class="tag-category-item" onclick="switchTagCategory('condition')">
-              <span>📋 申领条件</span>
-              <span class="badge badge-info">15</span>
-            </li>
-            <li class="tag-category-item" onclick="switchTagCategory('benefit')">
-              <span>💵 优惠力度</span>
-              <span class="badge badge-info">6</span>
-            </li>
-            <li class="tag-category-item" onclick="switchTagCategory('validity')">
-              <span>⏰ 有效期限</span>
-              <span class="badge badge-info">4</span>
-            </li>
-            <li class="tag-category-item" onclick="switchTagCategory('region')">
-              <span>📍 区域限定</span>
-              <span class="badge badge-info">3</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- 右侧标签列表 -->
-        <div class="tag-manage-content">
-          <div id="tag-list-subsidy">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-              <h4>补贴类型标签</h4>
-              <button class="btn btn-secondary btn-sm">+ 添加标签</button>
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-              <span class="tag" style="background: rgba(22, 119, 255, 0.1); color: var(--primary);">就业补贴</span>
-              <span class="tag" style="background: rgba(22, 119, 255, 0.1); color: var(--primary);">培训资助</span>
-              <span class="tag" style="background: rgba(114, 46, 209, 0.1); color: var(--primary-gradient-end);">创业扶持</span>
-              <span class="tag" style="background: rgba(82, 196, 26, 0.1); color: var(--success);">社保减免</span>
-              <span class="tag" style="background: rgba(250, 173, 20, 0.1); color: var(--warning);">稳岗返还</span>
-              <span class="tag" style="background: rgba(22, 119, 255, 0.1); color: var(--primary);">🤖 技能提升补贴</span>
-            </div>
-          </div>
-
-          <div id="tag-list-target" style="display: none;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-              <h4>适用对象标签</h4>
-              <button class="btn btn-secondary btn-sm">+ 添加标签</button>
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-              <span class="tag">高校毕业生</span>
-              <span class="tag">就业困难人员</span>
-              <span class="tag">退役军人</span>
-              <span class="tag">农民工</span>
-              <span class="tag">企业</span>
-              <span class="tag">🤖 零工人员</span>
-            </div>
-          </div>
-
-          <div id="tag-list-condition" style="display: none;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-              <h4>申领条件标签</h4>
-              <button class="btn btn-secondary btn-sm">+ 添加标签</button>
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-              <span class="tag">连续缴纳社保6个月</span>
-              <span class="tag">签订1年以上劳动合同</span>
-              <span class="tag">重点群体认证</span>
-              <span class="tag">首次创业</span>
-              <span class="tag">🤖 新型学徒制</span>
-            </div>
-          </div>
-
-          <div id="tag-list-benefit" style="display: none;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-              <h4>优惠力度标签</h4>
-              <button class="btn btn-secondary btn-sm">+ 添加标签</button>
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-              <span class="tag" style="background: rgba(82, 196, 26, 0.1); color: var(--success);">2000-8000元</span>
-              <span class="tag" style="background: rgba(82, 196, 26, 0.1); color: var(--success);">最高50万元</span>
-              <span class="tag" style="background: rgba(82, 196, 26, 0.1); color: var(--success);">全额贴息</span>
-              <span class="tag" style="background: rgba(82, 196, 26, 0.1); color: var(--success);">免息贷款</span>
-            </div>
-          </div>
-
-          <div id="tag-list-validity" style="display: none;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-              <h4>有效期限标签</h4>
-              <button class="btn btn-secondary btn-sm">+ 添加标签</button>
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-              <span class="tag">长期有效</span>
-              <span class="tag">年度申报</span>
-              <span class="tag">一次性</span>
-              <span class="tag">季度申报</span>
-            </div>
-          </div>
-
-          <div id="tag-list-region" style="display: none;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-              <h4>区域限定标签</h4>
-              <button class="btn btn-secondary btn-sm">+ 添加标签</button>
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-              <span class="tag">全国适用</span>
-              <span class="tag">省级政策</span>
-              <span class="tag">🤖 市级专项</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      
+      <!-- 标签表格 -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>分类</th>
+            <th>标签名称</th>
+            <th>使用次数</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="tag-table-body">
+          <!-- 政策类型 -->
+          <tr>
+            <td><span class="badge badge-primary">政策类型</span></td>
+            <td>就业补贴</td>
+            <td>156</td>
+            <td><button class="btn btn-link btn-sm" onclick="editTag(this)">编辑</button> <button class="btn btn-link btn-sm text-danger" onclick="deleteTag(this)">删除</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-primary">政策类型</span></td>
+            <td>创业扶持</td>
+            <td>89</td>
+            <td><button class="btn btn-link btn-sm" onclick="editTag(this)">编辑</button> <button class="btn btn-link btn-sm text-danger" onclick="deleteTag(this)">删除</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-primary">政策类型</span></td>
+            <td>培训资助</td>
+            <td>124</td>
+            <td><button class="btn btn-link btn-sm" onclick="editTag(this)">编辑</button> <button class="btn btn-link btn-sm text-danger" onclick="deleteTag(this)">删除</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-primary">政策类型</span></td>
+            <td>社保减免</td>
+            <td>98</td>
+            <td><button class="btn btn-link btn-sm" onclick="editTag(this)">编辑</button> <button class="btn btn-link btn-sm text-danger" onclick="deleteTag(this)">删除</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-primary">政策类型</span></td>
+            <td>稳岗返还</td>
+            <td>67</td>
+            <td><button class="btn btn-link btn-sm" onclick="editTag(this)">编辑</button> <button class="btn btn-link btn-sm text-danger" onclick="deleteTag(this)">删除</button></td>
+          </tr>
+          <!-- 适用对象 -->
+          <tr>
+            <td><span class="badge badge-info">适用对象</span></td>
+            <td>个人求职者</td>
+            <td>234</td>
+            <td><button class="btn btn-link btn-sm" onclick="editTag(this)">编辑</button> <button class="btn btn-link btn-sm text-danger" onclick="deleteTag(this)">删除</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-info">适用对象</span></td>
+            <td>高校毕业生</td>
+            <td>312</td>
+            <td><button class="btn btn-link btn-sm" onclick="editTag(this)">编辑</button> <button class="btn btn-link btn-sm text-danger" onclick="deleteTag(this)">删除</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-info">适用对象</span></td>
+            <td>就业困难人员</td>
+            <td>187</td>
+            <td><button class="btn btn-link btn-sm" onclick="editTag(this)">编辑</button> <button class="btn btn-link btn-sm text-danger" onclick="deleteTag(this)">删除</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-info">适用对象</span></td>
+            <td>退役军人</td>
+            <td>95</td>
+            <td><button class="btn btn-link btn-sm" onclick="editTag(this)">编辑</button> <button class="btn btn-link btn-sm text-danger" onclick="deleteTag(this)">删除</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-info">适用对象</span></td>
+            <td>农民工</td>
+            <td>78</td>
+            <td><button class="btn btn-link btn-sm" onclick="editTag(this)">编辑</button> <button class="btn btn-link btn-sm text-danger" onclick="deleteTag(this)">删除</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-info">适用对象</span></td>
+            <td>企业</td>
+            <td>156</td>
+            <td><button class="btn btn-link btn-sm" onclick="editTag(this)">编辑</button> <button class="btn btn-link btn-sm text-danger" onclick="deleteTag(this)">删除</button></td>
+          </tr>
+          <!-- 补贴形式 -->
+          <tr>
+            <td><span class="badge badge-success">补贴形式</span></td>
+            <td>资金补贴</td>
+            <td>245</td>
+            <td><button class="btn btn-link btn-sm" onclick="editTag(this)">编辑</button> <button class="btn btn-link btn-sm text-danger" onclick="deleteTag(this)">删除</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-success">补贴形式</span></td>
+            <td>税费减免</td>
+            <td>112</td>
+            <td><button class="btn btn-link btn-sm" onclick="editTag(this)">编辑</button> <button class="btn btn-link btn-sm text-danger" onclick="deleteTag(this)">删除</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-success">补贴形式</span></td>
+            <td>贷款贴息</td>
+            <td>67</td>
+            <td><button class="btn btn-link btn-sm" onclick="editTag(this)">编辑</button> <button class="btn btn-link btn-sm text-danger" onclick="deleteTag(this)">删除</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-success">补贴形式</span></td>
+            <td>社保补贴</td>
+            <td>134</td>
+            <td><button class="btn btn-link btn-sm" onclick="editTag(this)">编辑</button> <button class="btn btn-link btn-sm text-danger" onclick="deleteTag(this)">删除</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-success">补贴形式</span></td>
+            <td>岗位补贴</td>
+            <td>89</td>
+            <td><button class="btn btn-link btn-sm" onclick="editTag(this)">编辑</button> <button class="btn btn-link btn-sm text-danger" onclick="deleteTag(this)">删除</button></td>
+          </tr>
+        </tbody>
+      </table>
+      
       <!-- 底部统计 -->
       <div class="mt-24" style="padding: 16px; background: var(--bg-secondary); border-radius: var(--radius-md);">
         <span style="color: var(--text-secondary);">标签统计：</span>
-        <span style="font-weight: 600;">总计 48 个</span>
-        <span class="ml-16" style="color: var(--primary);">🤖 AI生成 12 个</span>
-        <span class="ml-16">手动添加 36 个</span>
+        <span style="font-weight: 600;">总计 16 个</span>
+        <span class="ml-16" style="color: var(--primary);">🤖 AI生成 3 个</span>
+        <span class="ml-16">手动添加 13 个</span>
       </div>
     </div>
     <div class="modal-footer">
