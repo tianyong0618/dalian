@@ -716,45 +716,46 @@
     <div style="flex: 1; overflow-y: auto; padding: 20px 24px; background: linear-gradient(180deg, #0a1628 0%, #0f1f38 100%); position: relative;">
       <button class="modal-close" onclick="closeModal('person-detail-modal')" style="color: white; opacity: 1; background: none; border: none; font-size: 32px; cursor: pointer; position: absolute; top: 16px; right: 24px; z-index: 100;">&times;</button>
       
-      <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 2px solid #3a7aaa; border-radius: 12px; padding: 20px; margin-bottom: 16px;">
-        <div style="display: flex; align-items: center; gap: 20px;">
-          <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #2a5a8a 0%, #5ae8ff 100%); display: flex; align-items: center; justify-content: center; font-size: 44px; flex-shrink: 0;">👤</div>
-          <div style="flex: 1;">
-            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-              <h3 id="detail-name" style="color: #5ae8ff; margin: 0; font-size: 24px; font-weight: 700;">张三</h3>
-              <span style="background: rgba(82, 196, 26, 0.15); border: 1px solid rgba(82, 196, 26, 0.4); padding: 4px 12px; border-radius: 4px; font-size: 12px; color: #52c41a;">✅ 身份已验证</span>
+      <div id="detail-content">
+        <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 2px solid #3a7aaa; border-radius: 12px; padding: 20px; margin-bottom: 16px;">
+          <div style="display: flex; align-items: center; gap: 20px;">
+            <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #2a5a8a 0%, #5ae8ff 100%); display: flex; align-items: center; justify-content: center; font-size: 44px; flex-shrink: 0;">👤</div>
+            <div style="flex: 1;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                <h3 id="detail-name" style="color: #5ae8ff; margin: 0; font-size: 24px; font-weight: 700;">张三</h3>
+                <span style="background: rgba(82, 196, 26, 0.15); border: 1px solid rgba(82, 196, 26, 0.4); padding: 4px 12px; border-radius: 4px; font-size: 12px; color: #52c41a;">✅ 身份已验证</span>
+              </div>
+              <div style="display: flex; flex-wrap: wrap; gap: 16px; color: #8ab4d4; font-size: 13px;">
+                <span>📅 1995年06月（30岁）</span>
+                <span>👨 男 | 汉族</span>
+                <span>📞 138****8888</span>
+                <span>📧 zhangsan@example.com</span>
+              </div>
             </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 16px; color: #8ab4d4; font-size: 13px;">
-              <span>📅 1995年06月（30岁）</span>
-              <span>👨 男 | 汉族</span>
-              <span>📞 138****8888</span>
-              <span>📧 zhangsan@example.com</span>
+            <div style="display: flex; gap: 24px;">
+              <div style="text-align: center;">
+                <div style="font-size: 28px; font-weight: 700; color: #5ae8ff;">92</div>
+                <div style="font-size: 12px; color: #8ab4d4;">匹配度</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 28px; font-weight: 700; color: #52c41a;">4</div>
+                <div style="font-size: 12px; color: #8ab4d4;">帮扶指数</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 28px; font-weight: 700; color: #faad14;">85%</div>
+                <div style="font-size: 12px; color: #8ab4d4;">稳定性</div>
+              </div>
             </div>
           </div>
-          <div style="display: flex; gap: 24px;">
-            <div style="text-align: center;">
-              <div style="font-size: 28px; font-weight: 700; color: #5ae8ff;">92</div>
-              <div style="font-size: 12px; color: #8ab4d4;">匹配度</div>
-            </div>
-            <div style="text-align: center;">
-              <div style="font-size: 28px; font-weight: 700; color: #52c41a;">4</div>
-              <div style="font-size: 12px; color: #8ab4d4;">帮扶指数</div>
-            </div>
-            <div style="text-align: center;">
-              <div style="font-size: 28px; font-weight: 700; color: #faad14;">85%</div>
-              <div style="font-size: 12px; color: #8ab4d4;">稳定性</div>
-            </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(42,90,138,0.5);">
+            <span class="tag" style="background: rgba(42,90,138,0.5); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 12px;">应届毕业生</span>
+            <span class="tag" style="background: rgba(42,90,138,0.5); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 12px;">本科</span>
+            <span class="tag" style="background: rgba(42,90,138,0.5); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 12px;">计算机专业</span>
+            <span class="tag" style="background: rgba(42,90,138,0.5); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 12px;">Java开发</span>
+            <span class="tag" style="background: rgba(42,90,138,0.5); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 12px;">3年经验</span>
+            <span class="tag" style="background: rgba(42,90,138,0.5); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 12px;">社保连续缴纳</span>
           </div>
         </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(42,90,138,0.5);">
-          <span class="tag" style="background: rgba(42,90,138,0.5); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 12px;">应届毕业生</span>
-          <span class="tag" style="background: rgba(42,90,138,0.5); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 12px;">本科</span>
-          <span class="tag" style="background: rgba(42,90,138,0.5); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 12px;">计算机专业</span>
-          <span class="tag" style="background: rgba(42,90,138,0.5); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 12px;">Java开发</span>
-          <span class="tag" style="background: rgba(42,90,138,0.5); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 12px;">3年经验</span>
-          <span class="tag" style="background: rgba(42,90,138,0.5); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 12px;">社保连续缴纳</span>
-        </div>
-      </div>
       
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
         <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 1px solid #2a5a8a; border-radius: 12px; padding: 16px;">
@@ -1435,7 +1436,11 @@ function viewPersonDetail(index) {
 }
 
 function updatePersonDetail(person) {
-  const detailContent = document.querySelector('#person-detail-modal .modal-body > div:first-child');
+  const detailContent = document.querySelector('#detail-content');
+  if (!detailContent) {
+    console.error('detailContent not found');
+    return;
+  }
   const isEnterprise = currentUserType === 'enterprise';
   
   let html = `
