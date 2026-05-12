@@ -1860,6 +1860,140 @@
   <span id="notification-msg"></span>
 </div>
 
+<!-- 数据管理模态框 -->
+<div class="modal-overlay" id="data-management-modal">
+  <div class="modal" style="max-width: 800px;">
+    <div class="modal-header">
+      <h3>数据管理</h3>
+      <button class="modal-close" onclick="closeModal('data-management-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <!-- Tab导航 -->
+      <div class="tabs mb-24">
+        <button class="tab-btn active" onclick="switchDataTab('log')">采集日志</button>
+        <button class="tab-btn" onclick="switchDataTab('validate')">数据校验</button>
+        <button class="tab-btn gov-only-tab" onclick="switchDataTab('security')">安全管理</button>
+        <button class="tab-btn" onclick="switchDataTab('clean')">数据清洗</button>
+      </div>
+      
+      <!-- Tab内容 -->
+      <div id="data-tab-log">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>来源</th>
+              <th>条数</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-05-12 10:30</td>
+              <td>政策文件库</td>
+              <td>125</td>
+              <td><span class="badge badge-success">成功</span></td>
+            </tr>
+            <tr>
+              <td>2026-05-12 10:15</td>
+              <td>政策解读库</td>
+              <td>38</td>
+              <td><span class="badge badge-success">成功</span></td>
+            </tr>
+            <tr>
+              <td>2026-05-12 09:45</td>
+              <td>政策法规库</td>
+              <td>12</td>
+              <td><span class="badge badge-warning">处理中</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div id="data-tab-validate" style="display: none;">
+        <div class="row mb-24">
+          <div class="col-6">
+            <div class="card" style="padding: 16px;">
+              <h4 style="font-size: 14px; margin-bottom: 12px;">校验规则</h4>
+              <ul style="font-size: 13px; color: var(--text-secondary); padding-left: 20px; line-height: 2;">
+                <li>去重校验 - 自动过滤重复政策</li>
+                <li>格式校验 - 标准化政策文档格式</li>
+                <li>完整性校验 - 检查必填字段</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card" style="padding: 16px;">
+              <h4 style="font-size: 14px; margin-bottom: 12px;">校验结果</h4>
+              <div style="display: flex; gap: 16px;">
+                <div class="text-center">
+                  <div style="font-size: 24px; font-weight: 600; color: var(--success);">2,340</div>
+                  <div class="text-small">通过</div>
+                </div>
+                <div class="text-center">
+                  <div style="font-size: 24px; font-weight: 600; color: var(--warning);">16</div>
+                  <div class="text-small">警告</div>
+                </div>
+                <div class="text-center">
+                  <div style="font-size: 24px; font-weight: 600; color: var(--danger);">3</div>
+                  <div class="text-small">错误</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="data-tab-security" style="display: none;" class="gov-only">
+        <div class="row mb-24">
+          <div class="col-6">
+            <div class="card" style="padding: 16px;">
+              <h4 style="font-size: 14px; margin-bottom: 12px;">🔐 数据加密状态</h4>
+              <p style="font-size: 13px; color: var(--success);">✓ 已启用AES-256加密</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card" style="padding: 16px;">
+              <h4 style="font-size: 14px; margin-bottom: 12px;">👥 访问权限</h4>
+              <p style="font-size: 13px; color: var(--text-secondary);">已配置3级访问权限</p>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="padding: 16px;">
+          <h4 style="font-size: 14px; margin-bottom: 12px;">📋 操作日志</h4>
+          <table class="table">
+            <thead>
+              <tr><th>时间</th><th>操作人</th><th>操作</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>2026-05-12 10:00</td><td>管理员张三</td><td>导出数据</td></tr>
+              <tr><td>2026-05-11 15:30</td><td>操作员李四</td><td>修改配置</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div id="data-tab-clean" style="display: none;">
+        <div class="card" style="padding: 16px;">
+          <h4 style="font-size: 14px; margin-bottom: 12px;">🧹 清洗规则配置</h4>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
+              <input type="checkbox" checked> 自动去重 - 移除重复政策记录
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
+              <input type="checkbox" checked> 异常值处理 - 标记异常数据
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
+              <input type="checkbox"> 格式标准化 - 统一数据格式
+            </label>
+          </div>
+          <button class="btn btn-primary btn-sm" style="margin-top: 16px;">应用规则</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 // 政策数据
 const policyData = [
@@ -2112,6 +2246,18 @@ function closeModal(id) {
   document.getElementById(id).classList.remove('active');
 }
 
+// 数据管理Tab切换
+function switchDataTab(tabName) {
+  document.querySelectorAll('[id^="data-tab-"]').forEach(el => {
+    el.style.display = 'none';
+  });
+  document.getElementById('data-tab-' + tabName).style.display = 'block';
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  event.target.classList.add('active');
+}
+
 // 通知提示
 function showNotification(msg, type) {
   const notification = document.getElementById('notification');
@@ -2164,7 +2310,7 @@ function updateRoleUI(role) {
     calcForm.disabled = (role === 'enterprise' || role === 'personal');
   }
 }
-/* 权限控制类 */
+/* 数据源卡片样式 */
 .gov-only { display: block; }
 .org-only { display: none; }
 .enterprise-hidden { display: block; }
@@ -2199,6 +2345,31 @@ function updateRoleUI(role) {
 .tag-manage-content {
   flex: 1;
   padding-left: 16px;
+}
+
+/* Tab按钮样式 */
+.tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 12px;
+}
+.tab-btn {
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+.tab-btn:hover {
+  background: var(--bg-secondary);
+}
+.tab-btn.active {
+  background: var(--primary);
+  color: white;
 }
 </script>
 
