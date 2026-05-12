@@ -216,103 +216,31 @@
     </div>
     </div>
 
-    <!-- 功能模块入口 -->
-    <div class="section-header mb-32">
-      <h2>核心功能</h2>
-      <p>点击进入对应功能模块</p>
-    </div>
-    <div class="row mb-32">
-      <div class="col-4">
-        <div class="feature-card" style="border-left: 4px solid var(--primary);" onclick="showModal('policy-calc-modal')">
-          <div class="card-header">
-            <div class="icon">🧮</div>
-            <div class="card-content">
-              <div class="title-row"><h3>智能政策测算</h3><span class="feature-badge">核心</span><span class="feature-badge" style="background: rgba(114, 46, 209, 0.1); color: var(--primary-gradient-end); font-size: 12px;">AI驱动</span></div>
-              <p>依托多维度数据建模与算法引擎，精准计算可享受的政策红利。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div><span class="tag">智能测算</span><span class="tag">就业补贴</span><span class="tag">创业扶持</span></div>
-        </div>
+    <!-- 顶部功能导航 -->
+    <div class="mb-32" style="display: flex; gap: 16px; overflow-x: auto; padding: 8px 0;">
+      <div onclick="showModal('policy-calc-modal')" style="flex: 0 0 auto; min-width: 120px; padding: 16px 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='var(--primary)';this.style.boxShadow='var(--shadow-sm)'" onmouseout="this.style.borderColor='var(--border-color)';this.style.boxShadow='none'">
+        <div style="font-size: 24px; margin-bottom: 8px;">🧮</div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--text-primary);">政策测算</div>
       </div>
-      <div class="col-4">
-        <div class="feature-card" style="border-left: 4px solid var(--warning);" onclick="showModal('policy-library-modal')">
-          <div class="card-header">
-            <div class="icon">📚</div>
-            <div class="card-content">
-              <div class="title-row"><h3>政策文件库</h3><span class="feature-badge" style="background: rgba(250, 173, 20, 0.1); color: var(--warning); font-size: 12px;">知识图谱</span></div>
-              <p>整合政策文件库、服务事项库，自动拆解政策条款。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div><span class="tag">政策拆解</span><span class="tag">知识图谱</span><span class="tag">关联网络</span></div>
-        </div>
+      <div onclick="showModal('policy-library-modal')" style="flex: 0 0 auto; min-width: 120px; padding: 16px 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='var(--warning)';this.style.boxShadow='var(--shadow-sm)'" onmouseout="this.style.borderColor='var(--border-color)';this.style.boxShadow='none'">
+        <div style="font-size: 24px; margin-bottom: 8px;">📚</div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--text-primary);">政策库</div>
       </div>
-      <div class="col-4">
-        <div class="feature-card" style="border-left: 4px solid var(--primary);" onclick="showModal('service-item-modal')">
-          <div class="card-header">
-            <div class="icon">📋</div>
-            <div class="card-content">
-              <div class="title-row"><h3>服务事项库</h3><span class="feature-badge" style="background: rgba(22, 119, 255, 0.1); color: var(--primary); font-size: 12px;">算法引擎</span></div>
-              <p>管理政策对应的服务事项，含办理流程、材料、时限。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div><span class="tag">服务事项</span><span class="tag">办理流程</span><span class="tag">材料清单</span></div>
-        </div>
+      <div onclick="showModal('service-item-modal')" style="flex: 0 0 auto; min-width: 120px; padding: 16px 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='var(--primary)';this.style.boxShadow='var(--shadow-sm)'" onmouseout="this.style.borderColor='var(--border-color)';this.style.boxShadow='none'">
+        <div style="font-size: 24px; margin-bottom: 8px;">📋</div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--text-primary);">服务事项</div>
       </div>
-    </div>
-    <div class="row mb-32">
-      <div class="col-4">
-        <div class="feature-card" style="border-left: 4px solid var(--success);" onclick="showModal('policy-network-modal')">
-          <div class="card-header">
-            <div class="icon">🕸️</div>
-            <div class="card-content">
-              <div class="title-row"><h3>政策关联网络</h3><span class="feature-badge" style="background: rgba(82, 196, 26, 0.1); color: var(--success); font-size: 12px;">知识图谱</span></div>
-              <p>利用知识图谱构建政策—服务—对象关联网络。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div><span class="tag">知识图谱</span><span class="tag">关联分析</span><span class="tag">可视化</span></div>
-        </div>
+      <div onclick="showModal('policy-network-modal')" style="flex: 0 0 auto; min-width: 120px; padding: 16px 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='var(--success)';this.style.boxShadow='var(--shadow-sm)'" onmouseout="this.style.borderColor='var(--border-color)';this.style.boxShadow='none'">
+        <div style="font-size: 24px; margin-bottom: 8px;">🕸️</div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--text-primary);">关联网络</div>
       </div>
-      <div class="col-4">
-        <div class="feature-card" style="border-left: 4px solid var(--primary-gradient-end);" onclick="showModal('effect-tracking-modal')">
-          <div class="card-header">
-            <div class="icon">📊</div>
-            <div class="card-content">
-              <div class="title-row"><h3>效果追踪评估</h3><span class="feature-badge" style="background: rgba(114, 46, 209, 0.1); color: var(--primary-gradient-end); font-size: 12px;">大模型</span></div>
-              <p>支持政府从政策覆盖率、受益群体画像等维度量化评估。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div><span class="tag">覆盖率分析</span><span class="tag">受益群体</span><span class="tag">效果评估</span></div>
-        </div>
+      <div onclick="showModal('effect-tracking-modal')" class="gov-only-btn" style="flex: 0 0 auto; min-width: 120px; padding: 16px 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='var(--primary-gradient-end)';this.style.boxShadow='var(--shadow-sm)'" onmouseout="this.style.borderColor='var(--border-color)';this.style.boxShadow='none'">
+        <div style="font-size: 24px; margin-bottom: 8px;">📊</div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--text-primary);">效果追踪</div>
       </div>
-      <div class="col-4">
-        <div class="feature-card" style="border-left: 4px solid var(--primary);" onclick="showModal('evaluation-report-modal')">
-          <div class="card-header">
-            <div class="icon">📝</div>
-            <div class="card-content">
-              <div class="title-row"><h3>评估报告生成</h3><span class="feature-badge" style="background: rgba(22, 119, 255, 0.1); color: var(--primary); font-size: 12px;">AI生成</span></div>
-              <p>生成政策实施效果评估报告，支持下载导出。</p>
-            </div>
-            <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </div>
-          <div><span class="tag">评估报告</span><span class="tag">指标统计</span><span class="tag">优化建议</span></div>
-        </div>
+      <div onclick="showModal('evaluation-report-modal')" class="gov-only-btn" style="flex: 0 0 auto; min-width: 120px; padding: 16px 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='var(--primary)';this.style.boxShadow='var(--shadow-sm)'" onmouseout="this.style.borderColor='var(--border-color)';this.style.boxShadow='none'">
+        <div style="font-size: 24px; margin-bottom: 8px;">📝</div>
+        <div style="font-size: 13px; font-weight: 500; color: var(--text-primary);">评估报告</div>
       </div>
     </div>
 
