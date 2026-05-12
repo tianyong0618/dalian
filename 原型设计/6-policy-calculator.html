@@ -2098,6 +2098,42 @@ function updateRoleUI(role) {
     calcForm.disabled = (role === 'enterprise' || role === 'personal');
   }
 }
+/* 权限控制类 */
+.gov-only { display: block; }
+.org-only { display: none; }
+.enterprise-hidden { display: block; }
+
+/* 数据源卡片样式 */
+.data-source-card {
+  padding: 20px;
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.data-source-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+/* 标签管理模态框左右布局 */
+.tag-manage-layout {
+  display: flex;
+  gap: 24px;
+  min-height: 400px;
+}
+.tag-manage-sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--border-color);
+  padding-right: 16px;
+}
+.tag-manage-content {
+  flex: 1;
+  padding-left: 16px;
+}
 </script>
 
 </body>
