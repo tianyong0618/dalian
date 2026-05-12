@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>政策计算器 - 人社服务数字化平台</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* 功能卡片边条悬停效果 */
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+  </style>
 </head>
 <body>
 
@@ -133,7 +140,7 @@
     </div>
     <div class="row mb-32">
       <div class="col-4">
-        <div class="feature-card" onclick="showModal('policy-calc-modal')">
+        <div class="feature-card" style="border-left: 4px solid var(--primary);" onclick="showModal('policy-calc-modal')">
           <div class="card-header">
             <div class="icon">🧮</div>
             <div class="card-content">
@@ -148,7 +155,7 @@
         </div>
       </div>
       <div class="col-4">
-        <div class="feature-card" onclick="showModal('policy-library-modal')">
+        <div class="feature-card" style="border-left: 4px solid var(--warning);" onclick="showModal('policy-library-modal')">
           <div class="card-header">
             <div class="icon">📚</div>
             <div class="card-content">
@@ -163,7 +170,7 @@
         </div>
       </div>
       <div class="col-4">
-        <div class="feature-card" onclick="showModal('service-item-modal')">
+        <div class="feature-card" style="border-left: 4px solid var(--primary);" onclick="showModal('service-item-modal')">
           <div class="card-header">
             <div class="icon">📋</div>
             <div class="card-content">
@@ -180,7 +187,7 @@
     </div>
     <div class="row mb-32">
       <div class="col-4">
-        <div class="feature-card" onclick="showModal('policy-network-modal')">
+        <div class="feature-card" style="border-left: 4px solid var(--success);" onclick="showModal('policy-network-modal')">
           <div class="card-header">
             <div class="icon">🕸️</div>
             <div class="card-content">
@@ -195,7 +202,7 @@
         </div>
       </div>
       <div class="col-4">
-        <div class="feature-card" onclick="showModal('effect-tracking-modal')">
+        <div class="feature-card" style="border-left: 4px solid var(--primary-gradient-end);" onclick="showModal('effect-tracking-modal')">
           <div class="card-header">
             <div class="icon">📊</div>
             <div class="card-content">
@@ -210,7 +217,7 @@
         </div>
       </div>
       <div class="col-4">
-        <div class="feature-card" onclick="showModal('evaluation-report-modal')">
+        <div class="feature-card" style="border-left: 4px solid var(--primary);" onclick="showModal('evaluation-report-modal')">
           <div class="card-header">
             <div class="icon">📝</div>
             <div class="card-content">
