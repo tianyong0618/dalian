@@ -1355,6 +1355,24 @@ function switchUserType(type) {
   if (securityTab) {
     securityTab.style.display = type === 'gov' ? '' : 'none';
   }
+
+  filterPersonsByPermission(type);
+}
+
+function filterPersonsByPermission(type) {
+  const rows = document.querySelectorAll('#person-tbody tr');
+  rows.forEach(row => {
+    const portraitType = row.getAttribute('data-portrait-type');
+    let show = true;
+    
+    if (type === 'enterprise' && portraitType !== 'talent') {
+      show = false;
+    } else if (type === 'org' && portraitType === 'talent') {
+      show = false;
+    }
+    
+    row.style.display = show ? '' : 'none';
+  });
 }
 
 function switchRole() {
@@ -1380,11 +1398,19 @@ function filterPersons() {
   const rows = document.querySelectorAll('#person-tbody tr');
   rows.forEach(row => {
     let show = true;
-    if (search && !row.textContent.toLowerCase().includes(search)) show = false;
-    if (group && row.getAttribute('data-group') !== group) show = false;
-    if (education && row.getAttribute('data-education') !== education) show = false;
-    if (stability && row.getAttribute('data-stability') !== stability) show = false;
-    if (portraitType && row.getAttribute('data-portrait-type') !== portraitType) show = false;
+    
+    const rowPortraitType = row.getAttribute('data-portrait-type');
+    if (currentUserType === 'enterprise' && rowPortraitType !== 'talent') {
+      show = false;
+    } else if (currentUserType === 'org' && rowPortraitType === 'talent') {
+      show = false;
+    }
+    
+    if (show && search && !row.textContent.toLowerCase().includes(search)) show = false;
+    if (show && group && row.getAttribute('data-group') !== group) show = false;
+    if (show && education && row.getAttribute('data-education') !== education) show = false;
+    if (show && stability && row.getAttribute('data-stability') !== stability) show = false;
+    if (show && portraitType && row.getAttribute('data-portrait-type') !== portraitType) show = false;
     row.style.display = show ? '' : 'none';
   });
 }
