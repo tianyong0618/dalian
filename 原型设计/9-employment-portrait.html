@@ -1221,7 +1221,6 @@ let currentUserType = 'gov';
 function switchUserType(type) {
   currentUserType = type;
   const typeNames = { gov: '人社部门', org: '经营性人力资源服务机构', enterprise: '用工企业' };
-  showNotification(`已切换为：${typeNames[type]}`, 'success');
 
   // gov-only: 仅人社可见
   document.querySelectorAll('.gov-only').forEach(el => {

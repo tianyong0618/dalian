@@ -2152,7 +2152,6 @@ function switchRole() {
   const role = document.getElementById('role-switcher').value;
   // 更新各区域的显示状态
   updateRoleUI(role);
-  showNotification('已切换到' + getRoleName(role), 'success');
 }
 
 function getRoleName(role) {
