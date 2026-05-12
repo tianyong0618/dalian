@@ -1789,7 +1789,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('permission-control-modal')">关闭</button>
-      <button class="btn btn-primary" onclick="showNotification('权限配置已更新', 'success')">更新配置</button>
+      <button class="btn btn-primary" onclick="showModal('tag-manage-modal')">标签管理</button>
     </div>
   </div>
 </div>
@@ -2317,6 +2317,26 @@ function updateRoleUI(role) {
     calcForm.disabled = (role === 'enterprise' || role === 'personal');
   }
 }
+
+// 标签分类切换
+function switchTagCategory(category) {
+  document.querySelectorAll('[id^="tag-list-"]').forEach(el => {
+    el.style.display = 'none';
+  });
+  document.getElementById('tag-list-' + category).style.display = 'block';
+  document.querySelectorAll('.tag-category-item').forEach(item => {
+    item.classList.remove('active');
+  });
+  event.target.closest('.tag-category-item').classList.add('active');
+}
+
+// AI生成标签（模拟）
+function generateAITags() {
+  showNotification('🤖 AI正在分析政策数据，自动生成标签...', 'info');
+  setTimeout(() => {
+    showNotification('已生成3个新标签：技能提升补贴、零工人员、新型学徒制', 'success');
+  }, 2000);
+}
 /* 数据源卡片样式 */
 .gov-only { display: block; }
 .org-only { display: none; }
@@ -2378,7 +2398,173 @@ function updateRoleUI(role) {
   background: var(--primary);
   color: white;
 }
+
+/* 标签分类导航样式 */
+.tag-category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  margin-bottom: 4px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+.tag-category-item:hover {
+  background: var(--bg-secondary);
+}
+.tag-category-item.active {
+  background: rgba(22, 119, 255, 0.1);
+  color: var(--primary);
+  font-weight: 600;
+}
 </script>
+
+<!-- 标签管理模态框 -->
+<div class="modal-overlay" id="tag-manage-modal">
+  <div class="modal" style="max-width: 900px;">
+    <div class="modal-header">
+      <h3>政策标签管理</h3>
+      <button class="modal-close" onclick="closeModal('tag-manage-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <!-- 顶部按钮 -->
+      <div class="mb-24" style="display: flex; justify-content: flex-end;">
+        <button class="btn btn-primary" onclick="generateAITags()">🤖 AI智能生成标签</button>
+      </div>
+
+      <!-- 左右布局 -->
+      <div class="tag-manage-layout">
+        <!-- 左侧分类导航 -->
+        <div class="tag-manage-sidebar">
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li class="tag-category-item active" onclick="switchTagCategory('subsidy')">
+              <span>💰 补贴类型</span>
+              <span class="badge badge-info">12</span>
+            </li>
+            <li class="tag-category-item" onclick="switchTagCategory('target')">
+              <span>👤 适用对象</span>
+              <span class="badge badge-info">8</span>
+            </li>
+            <li class="tag-category-item" onclick="switchTagCategory('condition')">
+              <span>📋 申领条件</span>
+              <span class="badge badge-info">15</span>
+            </li>
+            <li class="tag-category-item" onclick="switchTagCategory('benefit')">
+              <span>💵 优惠力度</span>
+              <span class="badge badge-info">6</span>
+            </li>
+            <li class="tag-category-item" onclick="switchTagCategory('validity')">
+              <span>⏰ 有效期限</span>
+              <span class="badge badge-info">4</span>
+            </li>
+            <li class="tag-category-item" onclick="switchTagCategory('region')">
+              <span>📍 区域限定</span>
+              <span class="badge badge-info">3</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 右侧标签列表 -->
+        <div class="tag-manage-content">
+          <div id="tag-list-subsidy">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h4>补贴类型标签</h4>
+              <button class="btn btn-secondary btn-sm">+ 添加标签</button>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span class="tag" style="background: rgba(22, 119, 255, 0.1); color: var(--primary);">就业补贴</span>
+              <span class="tag" style="background: rgba(22, 119, 255, 0.1); color: var(--primary);">培训资助</span>
+              <span class="tag" style="background: rgba(114, 46, 209, 0.1); color: var(--primary-gradient-end);">创业扶持</span>
+              <span class="tag" style="background: rgba(82, 196, 26, 0.1); color: var(--success);">社保减免</span>
+              <span class="tag" style="background: rgba(250, 173, 20, 0.1); color: var(--warning);">稳岗返还</span>
+              <span class="tag" style="background: rgba(22, 119, 255, 0.1); color: var(--primary);">🤖 技能提升补贴</span>
+            </div>
+          </div>
+
+          <div id="tag-list-target" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h4>适用对象标签</h4>
+              <button class="btn btn-secondary btn-sm">+ 添加标签</button>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span class="tag">高校毕业生</span>
+              <span class="tag">就业困难人员</span>
+              <span class="tag">退役军人</span>
+              <span class="tag">农民工</span>
+              <span class="tag">企业</span>
+              <span class="tag">🤖 零工人员</span>
+            </div>
+          </div>
+
+          <div id="tag-list-condition" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h4>申领条件标签</h4>
+              <button class="btn btn-secondary btn-sm">+ 添加标签</button>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span class="tag">连续缴纳社保6个月</span>
+              <span class="tag">签订1年以上劳动合同</span>
+              <span class="tag">重点群体认证</span>
+              <span class="tag">首次创业</span>
+              <span class="tag">🤖 新型学徒制</span>
+            </div>
+          </div>
+
+          <div id="tag-list-benefit" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h4>优惠力度标签</h4>
+              <button class="btn btn-secondary btn-sm">+ 添加标签</button>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span class="tag" style="background: rgba(82, 196, 26, 0.1); color: var(--success);">2000-8000元</span>
+              <span class="tag" style="background: rgba(82, 196, 26, 0.1); color: var(--success);">最高50万元</span>
+              <span class="tag" style="background: rgba(82, 196, 26, 0.1); color: var(--success);">全额贴息</span>
+              <span class="tag" style="background: rgba(82, 196, 26, 0.1); color: var(--success);">免息贷款</span>
+            </div>
+          </div>
+
+          <div id="tag-list-validity" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h4>有效期限标签</h4>
+              <button class="btn btn-secondary btn-sm">+ 添加标签</button>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span class="tag">长期有效</span>
+              <span class="tag">年度申报</span>
+              <span class="tag">一次性</span>
+              <span class="tag">季度申报</span>
+            </div>
+          </div>
+
+          <div id="tag-list-region" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h4>区域限定标签</h4>
+              <button class="btn btn-secondary btn-sm">+ 添加标签</button>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span class="tag">全国适用</span>
+              <span class="tag">省级政策</span>
+              <span class="tag">🤖 市级专项</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部统计 -->
+      <div class="mt-24" style="padding: 16px; background: var(--bg-secondary); border-radius: var(--radius-md);">
+        <span style="color: var(--text-secondary);">标签统计：</span>
+        <span style="font-weight: 600;">总计 48 个</span>
+        <span class="ml-16" style="color: var(--primary);">🤖 AI生成 12 个</span>
+        <span class="ml-16">手动添加 36 个</span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('tag-manage-modal')">关闭</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
