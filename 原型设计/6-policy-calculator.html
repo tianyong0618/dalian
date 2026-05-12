@@ -11,6 +11,14 @@
 <nav class="navbar">
   <div class="container">
     <a href="index.html" class="navbar-logo">人社服务数字平台</a>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px; font-size: 14px;" id="role-switcher" onchange="switchRole()">
+        <option value="gov">人社部门（管理端）</option>
+        <option value="org">服务机构（运营端）</option>
+        <option value="enterprise">用工企业（使用端）</option>
+        <option value="personal">个人用户</option>
+      </select>
+    </div>
   </div>
 </nav>
 
@@ -2054,6 +2062,42 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
     if (e.target === this) { this.classList.remove('active'); }
   });
 });
+
+// 角色切换功能
+function switchRole() {
+  const role = document.getElementById('role-switcher').value;
+  // 更新各区域的显示状态
+  updateRoleUI(role);
+  showNotification('已切换到' + getRoleName(role), 'success');
+}
+
+function getRoleName(role) {
+  const names = {
+    'gov': '人社部门',
+    'org': '服务机构',
+    'enterprise': '用工企业',
+    'personal': '个人用户'
+  };
+  return names[role] || '未知角色';
+}
+
+function updateRoleUI(role) {
+  // 人社可见
+  document.querySelectorAll('.gov-only').forEach(el => {
+    el.style.display = (role === 'gov' || role === 'org') ? 'block' : 'none';
+  });
+
+  // 企业和个人隐藏某些功能
+  document.querySelectorAll('.enterprise-hidden').forEach(el => {
+    el.style.display = (role === 'gov' || role === 'org') ? 'block' : 'none';
+  });
+
+  // 更新表单权限
+  const calcForm = document.getElementById('calc-user-type');
+  if (calcForm) {
+    calcForm.disabled = (role === 'enterprise' || role === 'personal');
+  }
+}
 </script>
 
 </body>
