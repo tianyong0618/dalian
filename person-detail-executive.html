@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>就业人员画像分析系统</title>
+  <style>
+    /* ===== 全局重置与基础 ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --tech-cyan: #00d4ff;
+      --tech-cyan-glow: rgba(0, 212, 255, 0.4);
+      --accent-gold: #f5a623;
+      --accent-gold-light: #f8e71c;
+      --deep-space: #050810;
+      --panel-bg: #0d1525;
+      --panel-bg-alt: #111a2e;
+      --text-white: #ffffff;
+      --text-gray: #8899aa;
+      --text-dim: #556677;
+      --success-green: #00c853;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: linear-gradient(135deg, var(--deep-space) 0%, #0a0f1a 50%, #0d1525 100%);
+      min-height: 100vh;
+      color: var(--text-white);
+      overflow-x: hidden;
+    }
+    
+    /* ===== 顶部标题栏 ===== */
+    .header {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+    }
+    
+    .header::before,
+    .header::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--tech-cyan), transparent);
+    }
+    
+    .header::before { left: 15%; }
+    .header::after { right: 15%; }
+    
+    .header-title {
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--text-white);
+      letter-spacing: 4px;
+      text-shadow: 0 0 20px var(--tech-cyan-glow);
+    }
+    
+    .header-badge {
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+    
+    /* ===== 主内容区三栏布局 ===== */
+    .main-container {
+      display: grid;
+      grid-template-columns: 25% 50% 25%;
+      gap: 20px;
+      padding: 24px;
+      height: calc(100vh - 70px);
+    }
+    
+    /* ===== 通用面板样式 ===== */
+    .panel {
+      background: linear-gradient(135deg, var(--panel-bg) 0%, var(--panel-bg-alt) 100%);
+      border: 1px solid rgba(0, 212, 255, 0.25);
+      border-radius: 16px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--tech-cyan), transparent);
+    }
+    
+    .panel-glow {
+      box-shadow: 
+        0 0 30px rgba(0, 212, 255, 0.08),
+        inset 0 0 40px rgba(0, 0, 0, 0.4);
+    }
+    
+    /* ===== 左侧面板 - 个人信息 ===== */
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .panel-label {
+      font-size: 14px;
+      color: var(--tech-cyan);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .panel-label::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--tech-cyan);
+      border-radius: 2px;
+    }
+    
+    /* 头像容器 */
+    .avatar-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin-bottom: 24px;
+    }
+    
+    /* 外层发光环 - 带缺口 */
+    .avatar-ring-outer {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 6px;
+      background: conic-gradient(
+        from 135deg,
+        transparent 0deg,
+        var(--accent-gold) 90deg,
+        var(--accent-gold-light) 180deg,
+        transparent 270deg,
+        transparent 360deg
+      );
+      -webkit-mask: radial-gradient(transparent 92%, black 93%);
+      mask: radial-gradient(transparent 92%, black 93%);
+      animation: ringRotate 8s linear infinite;
+    }
+    
+    /* 内层青色环 */
+    .avatar-ring-inner {
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      border: 4px solid var(--tech-cyan);
+      box-shadow: 
+        0 0 20px var(--tech-cyan-glow),
+        0 0 40px rgba(0, 212, 255, 0.2);
+    }
+    
+    @keyframes ringRotate {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* 头像图片 */
+    .avatar-img {
+      position: absolute;
+      inset: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a2a4a, #2a3a5a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 72px;
+      overflow: hidden;
+    }
+    
+    /* 粒子效果 */
+    .particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: var(--tech-cyan);
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: particleFloat 3s ease-in-out infinite;
+    }
+    
+    @keyframes particleFloat {
+      0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+      50% { transform: translateY(-10px) scale(0.8); opacity: 0.3; }
+    }
+    
+    /* 姓名 */
+    .person-name {
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 24px;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+    }
+    
+    /* 能力进度条 */
+    .ability-section {
+      width: 100%;
+      padding: 0 10px;
+    }
+    
+    .ability-item {
+      margin-bottom: 20px;
+    }
+    
+    .ability-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    
+    .ability-label {
+      font-size: 14px;
+      color: var(--text-white);
+    }
+    
+    .ability-value {
+      font-size: 16px;
+      color: var(--tech-cyan);
+      font-weight: 600;
+    }
+    
+    .ability-bar {
+      height: 10px;
+      background: rgba(42, 90, 138, 0.3);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    
+    .ability-fill {
+      height: 100%;
+      border-radius: 5px;
+      background: linear-gradient(90deg, var(--tech-cyan), #4a90d9);
+      transition: width 1s ease-out;
+    }
+    
+    .ability-sub {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+    
+    /* ===== 中央面板 - 雷达图 ===== */
+    .center-panel {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .center-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    
+    .center-title {
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+    
+    .verified-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      padding: 4px 12px;
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--tech-cyan);
+    }
+    
+    .verified-tag::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--success-green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    
+    .update-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-gray);
+    }
+    
+    .update-badge svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--tech-cyan);
+    }
+    
+    /* 雷达图容器 */
+    .radar-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .radar-canvas-wrapper {
+      position: relative;
+    }
+    
+    #radarCanvas {
+      display: block;
+    }
+    
+    /* 金色徽章 */
+    .score-badge {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100px;
+      height: 115px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .badge-hex {
+      width: 90px;
+      height: 100px;
+      background: linear-gradient(135deg, #d4af37 0%, #f5d76e 50%, #d4af37 100%);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+    }
+    
+    .badge-score {
+      font-size: 32px;
+      font-weight: 800;
+      color: #1a1a1a;
+    }
+    
+    .badge-label {
+      font-size: 10px;
+      color: #3a3a3a;
+    }
+    
+    /* 图例 */
+    .radar-legend {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      gap: 16px;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-gray);
+    }
+    
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    
+    .legend-dot.yellow { background: var(--accent-gold); }
+    .legend-dot.cyan { background: var(--tech-cyan); }
+    
+    /* ===== 右侧面板 - 评分与推荐 ===== */
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    /* 综合评分卡片 */
+    .score-card {
+      background: rgba(13, 21, 37, 0.6);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    
+    .score-card-title {
+      font-size: 16px;
+      color: var(--text-white);
+      margin-bottom: 12px;
+    }
+    
+    .score-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .score-label {
+      font-size: 12px;
+      color: var(--text-gray);
+    }
+    
+    .score-value {
+      font-size: 14px;
+      color: var(--tech-cyan);
+    }
+    
+    .star-rating {
+      display: flex;
+      gap: 4px;
+    }
+    
+    .star {
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .star.filled {
+      color: var(--accent-gold);
+      text-shadow: 0 0 8px rgba(245, 166, 35, 0.5);
+    }
+    
+    /* 推荐列表 */
+    .recommend-list {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .recommend-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      background: linear-gradient(135deg, rgba(15, 24, 37, 0.8), rgba(26, 37, 53, 0.8));
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      border-left: 4px solid var(--tech-cyan);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .recommend-item:hover {
+      background: linear-gradient(135deg, rgba(20, 30, 50, 0.9), rgba(30, 45, 65, 0.9));
+      border-color: rgba(0, 212, 255, 0.4);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+    }
+    
+    .recommend-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a2a4a, #2a3a5a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    
+    .recommend-content {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .recommend-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+    
+    .recommend-desc {
+      font-size: 11px;
+      color: var(--text-gray);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .recommend-arrow {
+      color: var(--tech-cyan);
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 顶部标题栏 -->
+  <header class="header">
+    <h1 class="header-title">就业人员画像分析系统</h1>
+    <span class="header-badge">UI/UX 设计稿</span>
+  </header>
+  
+  <!-- 主内容区 -->
+  <main class="main-container">
+    <!-- 左侧面板 - 个人信息 -->
+    <section class="panel panel-glow left-panel">
+      <div class="panel-label">高校毕业与届别</div>
+      
+      <!-- 头像区域 -->
+      <div class="avatar-container">
+        <div class="particles">
+          <div class="particle" style="left: 20%; top: 10%; animation-delay: 0s;"></div>
+          <div class="particle" style="left: 80%; top: 15%; animation-delay: 0.5s;"></div>
+          <div class="particle" style="left: 10%; top: 70%; animation-delay: 1s;"></div>
+          <div class="particle" style="left: 90%; top: 80%; animation-delay: 1.5s;"></div>
+          <div class="particle" style="left: 50%; top: 5%; animation-delay: 2s;"></div>
+        </div>
+        <div class="avatar-ring-outer"></div>
+        <div class="avatar-ring-inner"></div>
+        <div class="avatar-img">👤</div>
+      </div>
+      
+      <!-- 姓名 -->
+      <h2 class="person-name">张三</h2>
+      
+      <!-- 能力进度条 -->
+      <div class="ability-section">
+        <div class="ability-item">
+          <div class="ability-header">
+            <span class="ability-label">就业能力</span>
+            <span class="ability-value">75%</span>
+          </div>
+          <div class="ability-bar">
+            <div class="ability-fill" style="width: 75%;"></div>
+          </div>
+          <div class="ability-sub">职业发展阶段</div>
+        </div>
+        
+        <div class="ability-item">
+          <div class="ability-header">
+            <span class="ability-label">技能匹配</span>
+            <span class="ability-value">88%</span>
+          </div>
+          <div class="ability-bar">
+            <div class="ability-fill" style="width: 88%;"></div>
+          </div>
+          <div class="ability-sub">Java开发 · 3年经验</div>
+        </div>
+        
+        <div class="ability-item">
+          <div class="ability-header">
+            <span class="ability-label">薪资竞争力</span>
+            <span class="ability-value">82%</span>
+          </div>
+          <div class="ability-bar">
+            <div class="ability-fill" style="width: 82%;"></div>
+          </div>
+          <div class="ability-sub">期望薪资 18-22K/月</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 中央面板 - 雷达图 -->
+    <section class="panel panel-glow center-panel">
+      <div class="center-header">
+        <div>
+          <h2 class="center-title">综合能力评估</h2>
+          <div class="verified-tag">身份已验证</div>
+        </div>
+        <div class="update-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          数据更新
+        </div>
+      </div>
+      
+      <div class="radar-container">
+        <div class="radar-canvas-wrapper">
+          <canvas id="radarCanvas" width="480" height="400"></canvas>
+          
+          <!-- 金色徽章 -->
+          <div class="score-badge">
+            <div class="badge-hex">
+              <span class="badge-score">92%</span>
+              <span class="badge-label">综合评分</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 图例 -->
+        <div class="radar-legend">
+          <div class="legend-item">
+            <div class="legend-dot yellow"></div>
+            <span>3年经验</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot cyan"></div>
+            <span>+35%薪资涨幅</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 右侧面板 - 评分与推荐 -->
+    <section class="right-panel">
+      <!-- 综合评分卡片 -->
+      <div class="score-card">
+        <h3 class="score-card-title">综合评估</h3>
+        <div class="score-row">
+          <span class="score-label">身份验证度</span>
+          <span class="score-value">4/5</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">帮扶指数</span>
+          <div class="star-rating">
+            <span class="star filled">★</span>
+            <span class="star filled">★</span>
+            <span class="star filled">★</span>
+            <span class="star filled">★</span>
+            <span class="star">★</span>
+          </div>
+        </div>
+        <div class="score-row">
+          <span class="score-label">就业稳定性</span>
+          <span class="score-value">85%</span>
+        </div>
+        <div class="score-row">
+          <span class="score-label">匹配岗位数</span>
+          <span class="score-value">3/41</span>
+        </div>
+      </div>
+      
+      <!-- 推荐列表 -->
+      <div class="recommend-list">
+        <div class="recommend-item">
+          <div class="recommend-avatar">🎓</div>
+          <div class="recommend-content">
+            <div class="recommend-title">应届毕业生</div>
+            <div class="recommend-desc">Java开发 · 本科 · 计算机专业</div>
+          </div>
+          <span class="recommend-arrow">»</span>
+        </div>
+        
+        <div class="recommend-item">
+          <div class="recommend-avatar">📊</div>
+          <div class="recommend-content">
+            <div class="recommend-title">帮扶指数</div>
+            <div class="recommend-desc">岗位推荐 · 职业指导 · 技能培训</div>
+          </div>
+          <span class="recommend-arrow">»</span>
+        </div>
+        
+        <div class="recommend-item">
+          <div class="recommend-avatar">💼</div>
+          <div class="recommend-content">
+            <div class="recommend-title">就业稳定性</div>
+            <div class="recommend-desc">在职求职 · 3年经验 · 社保连续</div>
+          </div>
+          <span class="recommend-arrow">»</span>
+        </div>
+        
+        <div class="recommend-item">
+          <div class="recommend-avatar">⚡</div>
+          <div class="recommend-content">
+            <div class="recommend-title">职业技能</div>
+            <div class="recommend-desc">Java精通 · Spring熟练 · MySQL熟练</div>
+          </div>
+          <span class="recommend-arrow">»</span>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <script>
+    // ===== 雷达图绘制 =====
+    function drawRadarChart() {
+      const canvas = document.getElementById('radarCanvas');
+      const ctx = canvas.getContext('2d');
+      const cx = canvas.width / 2 - 40;
+      const cy = canvas.height / 2;
+      const r = Math.min(cx, cy) - 60;
+      
+      // 8个维度数据
+      const labels = [
+        '教育竞争力', '薪资指数', '技能经验', '考公意愿',
+        '编制指数', '职称指数', '本专科', '经验专业度'
+      ];
+      const values = [85, 78, 88, 45, 55, 70, 82, 90];
+      const n = labels.length;
+      
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // 绘制背景网格（4层）
+      for (let level = 4; level >= 1; level--) {
+        ctx.beginPath();
+        for (let i = 0; i <= n; i++) {
+          const angle = (Math.PI * 2 / n * i) - Math.PI / 2;
+          const pr = r * level / 4;
+          const x = cx + pr * Math.cos(angle);
+          const y = cy + pr * Math.sin(angle);
+          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        ctx.strokeStyle = `rgba(0, 212, 255, ${0.1 + level * 0.05})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+      
+      // 绘制轴线
+      for (let i = 0; i < n; i++) {
+        const angle = (Math.PI * 2 / n * i) - Math.PI / 2;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + r * Math.cos(angle), cy + r * Math.sin(angle));
+        ctx.strokeStyle = 'rgba(0, 212, 255, 0.2)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+      
+      // 绘制数据区域
+      ctx.beginPath();
+      for (let i = 0; i < n; i++) {
+        const angle = (Math.PI * 2 / n * i) - Math.PI / 2;
+        const pr = r * values[i] / 100;
+        const x = cx + pr * Math.cos(angle);
+        const y = cy + pr * Math.sin(angle);
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      
+      // 渐变填充
+      const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+      grad.addColorStop(0, 'rgba(0, 212, 255, 0.4)');
+      grad.addColorStop(0.5, 'rgba(0, 150, 200, 0.2)');
+      grad.addColorStop(1, 'rgba(0, 100, 150, 0.1)');
+      ctx.fillStyle = grad;
+      ctx.fill();
+      
+      // 边框
+      ctx.strokeStyle = 'rgba(0, 212, 255, 0.8)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      
+      // 绘制数据点和标签
+      for (let i = 0; i < n; i++) {
+        const angle = (Math.PI * 2 / n * i) - Math.PI / 2;
+        const pr = r * values[i] / 100;
+        const x = cx + pr * Math.cos(angle);
+        const y = cy + pr * Math.sin(angle);
+        
+        // 数据点
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI * 2);
+        ctx.fillStyle = '#00d4ff';
+        ctx.fill();
+        ctx.shadowColor = '#00d4ff';
+        ctx.shadowBlur = 10;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        
+        // 标签
+        const lx = cx + (r + 35) * Math.cos(angle);
+        const ly = cy + (r + 35) * Math.sin(angle);
+        ctx.font = '12px -apple-system, sans-serif';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(labels[i], lx, ly);
+        
+        // 数值
+        const vx = cx + (pr + 20) * Math.cos(angle);
+        const vy = cy + (pr + 20) * Math.sin(angle);
+        ctx.font = '11px -apple-system, sans-serif';
+        ctx.fillStyle = '#00d4ff';
+        ctx.fillText(values[i], vx, vy);
+      }
+      
+      // 绘制中心发光点
+      ctx.beginPath();
+      ctx.arc(cx, cy, 8, 0, Math.PI * 2);
+      const centerGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 15);
+      centerGrad.addColorStop(0, 'rgba(0, 212, 255, 1)');
+      centerGrad.addColorStop(0.5, 'rgba(0, 212, 255, 0.5)');
+      centerGrad.addColorStop(1, 'rgba(0, 212, 255, 0)');
+      ctx.fillStyle = centerGrad;
+      ctx.fill();
+    }
+    
+    // 页面加载后绘制
+    window.addEventListener('load', () => {
+      drawRadarChart();
+    });
+  </script>
+</body>
+</html>
