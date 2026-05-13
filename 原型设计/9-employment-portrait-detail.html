@@ -136,44 +136,6 @@
             </div>
           </div>
         </div>
-
-        <div class="relative group">
-          <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-2xl blur-xl"></div>
-          <div class="relative backdrop-blur-xl bg-slate-900/70 border border-slate-700/50 rounded-2xl p-6">
-            <div class="flex items-center gap-2 mb-4">
-              <i class="fa-solid fa-star text-blue-400"></i>
-              <h3 class="text-lg font-semibold text-white">身份标签</h3>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-300 text-xs border border-blue-500/20">往届毕业生</span>
-              <span class="px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-300 text-xs border border-blue-500/20">在职求职</span>
-              <span class="px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-300 text-xs border border-blue-500/20">技术专家</span>
-              <span class="px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-300 text-xs border border-blue-500/20">党员</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="relative group">
-          <div class="absolute inset-0 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl blur-xl"></div>
-          <div class="relative backdrop-blur-xl bg-slate-900/70 border border-slate-700/50 rounded-2xl p-6">
-            <div class="flex items-center gap-2 mb-4">
-              <i class="fa-solid fa-heart text-green-400"></i>
-              <h3 class="text-lg font-semibold text-white">帮扶指数</h3>
-            </div>
-            <div class="mb-4">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-sm text-slate-400">综合评分</span>
-                <span class="text-lg font-bold text-green-400">2.5 / 5.0</span>
-              </div>
-              <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
-                <div class="h-full bg-gradient-to-r from-green-500 to-emerald-500" style="width: 50%"></div>
-              </div>
-            </div>
-            <div class="text-xs text-slate-400">
-              帮扶需求：<span class="text-slate-300">职业发展指导</span>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="col-span-6 space-y-6">
@@ -791,39 +753,36 @@
           <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-2xl blur-xl"></div>
           <div class="relative backdrop-blur-xl bg-slate-900/70 border border-slate-700/50 rounded-2xl p-6">
             <div class="flex items-center gap-2 mb-4">
-              <i class="fa-solid fa-trending-up text-blue-400"></i>
-              <h3 class="text-lg font-semibold text-white">求职活跃度</h3>
+              <i class="fa-solid fa-star text-blue-400"></i>
+              <h3 class="text-lg font-semibold text-white">身份标签</h3>
             </div>
-            <div class="h-56">
-              <canvas id="activityChart"></canvas>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-300 text-xs border border-blue-500/20">往届毕业生</span>
+              <span class="px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-300 text-xs border border-blue-500/20">在职求职</span>
+              <span class="px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-300 text-xs border border-blue-500/20">技术专家</span>
+              <span class="px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-300 text-xs border border-blue-500/20">党员</span>
             </div>
           </div>
         </div>
 
         <div class="relative group">
-          <div class="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl blur-xl"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl blur-xl"></div>
           <div class="relative backdrop-blur-xl bg-slate-900/70 border border-slate-700/50 rounded-2xl p-6">
             <div class="flex items-center gap-2 mb-4">
-              <i class="fa-solid fa-cog text-purple-400"></i>
-              <h3 class="text-lg font-semibold text-white">快捷操作</h3>
+              <i class="fa-solid fa-heart text-green-400"></i>
+              <h3 class="text-lg font-semibold text-white">帮扶指数</h3>
             </div>
-            <div class="grid grid-cols-2 gap-3">
-              <button onclick="showToast('推荐岗位功能')" class="p-3 rounded-xl bg-gradient-to-r from-indigo-500 to-blue-500 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-95">
-                <i class="fa-solid fa-target w-5 h-5 mx-auto mb-1"></i>
-                <div class="text-xs">推荐岗位</div>
-              </button>
-              <button onclick="showToast('导出简历功能')" class="p-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-95">
-                <i class="fa-solid fa-file-text w-5 h-5 mx-auto mb-1"></i>
-                <div class="text-xs">导出简历</div>
-              </button>
-              <button onclick="showToast('培训计划功能')" class="p-3 rounded-xl bg-gradient-to-r from-pink-500 to-orange-500 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-95">
-                <i class="fa-solid fa-graduation-cap w-5 h-5 mx-auto mb-1"></i>
-                <div class="text-xs">培训计划</div>
-              </button>
-              <button onclick="showToast('面试安排功能')" class="p-3 rounded-xl bg-gradient-to-r from-orange-500 to-yellow-500 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-95">
-                <i class="fa-solid fa-calendar w-5 h-5 mx-auto mb-1"></i>
-                <div class="text-xs">面试安排</div>
-              </button>
+            <div class="mb-4">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-sm text-slate-400">综合评分</span>
+                <span class="text-lg font-bold text-green-400">2.5 / 5.0</span>
+              </div>
+              <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-green-500 to-emerald-500" style="width: 50%"></div>
+              </div>
+            </div>
+            <div class="text-xs text-slate-400">
+              帮扶需求：<span class="text-slate-300">职业发展指导</span>
             </div>
           </div>
         </div>
@@ -857,7 +816,7 @@
       btn.classList.add('bg-gradient-to-r', 'from-indigo-500', 'to-purple-500', 'text-white', 'shadow-lg');
       btn.classList.remove('text-slate-400', 'hover:text-white', 'hover:bg-slate-800/50');
 
-      document.querySelectorAll('[id^="tab-"]').forEach(tab => {
+      document.querySelectorAll('#tab-content > div').forEach(tab => {
         tab.style.display = 'none';
       });
       document.getElementById(`tab-${tabId}`).style.display = 'block';
