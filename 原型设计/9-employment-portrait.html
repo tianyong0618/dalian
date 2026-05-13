@@ -1037,7 +1037,7 @@ let personData = [
     "id": 1,
     "name": "陈浩然",
     "idCard": "430102199805153421",
-    "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=陈浩然&backgroundColor=b6e3f4",
     "group": "高校毕业生",
     "education": "本科",
     "major": "计算机科学与技术",
@@ -1071,7 +1071,7 @@ let personData = [
     "id": 2,
     "name": "刘芳",
     "idCard": "430103198511205678",
-    "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=刘芳&backgroundColor=ffdfbf",
     "group": "就业困难人员",
     "education": "高中",
     "portraitType": "jobseeker",
@@ -1103,7 +1103,7 @@ let personData = [
     "id": 3,
     "name": "王明华",
     "idCard": "430221199203082345",
-    "avatar": "https://images.unsplash.com/photo-1508247967573-6118b4d6382f?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=王明华&backgroundColor=c0aede",
     "group": "农民工",
     "education": "中专",
     "major": "建筑工程",
@@ -1137,7 +1137,7 @@ let personData = [
     "id": 4,
     "name": "张雨婷",
     "idCard": "430102199608251234",
-    "avatar": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=张雨婷&backgroundColor=ffd5dc",
     "group": "高校毕业生",
     "education": "硕士",
     "major": "人工智能",
@@ -1171,7 +1171,7 @@ let personData = [
     "id": 5,
     "name": "刘强",
     "idCard": "430122199002145678",
-    "avatar": "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=刘强&backgroundColor=d1d4f9",
     "group": "零工人员",
     "education": "大专",
     "major": "物流管理",
@@ -1204,7 +1204,7 @@ let personData = [
     "id": 6,
     "name": "李晓燕",
     "idCard": "430321198912034567",
-    "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=李晓燕&backgroundColor=ffd5dc",
     "group": "退役军人",
     "education": "大专",
     "major": "行政管理",
@@ -1245,7 +1245,7 @@ let personData = [
     "id": 7,
     "name": "黄敏",
     "idCard": "430104199306187890",
-    "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=黄敏&backgroundColor=ffdfbf",
     "group": "高校毕业生",
     "education": "本科",
     "major": "会计学",
@@ -1285,7 +1285,7 @@ let personData = [
     "id": 8,
     "name": "周建国",
     "idCard": "430121197809123456",
-    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=周建国&backgroundColor=c0aede",
     "group": "就业困难人员",
     "education": "初中",
     "portraitType": "jobseeker",
@@ -1317,7 +1317,7 @@ let personData = [
     "id": 9,
     "name": "吴丽娟",
     "idCard": "430422199504256789",
-    "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=吴丽娟&backgroundColor=b6e3f4",
     "group": "农民工",
     "education": "高中",
     "portraitType": "keygroup",
@@ -1350,7 +1350,7 @@ let personData = [
     "id": 10,
     "name": "孙伟",
     "idCard": "430105199711302345",
-    "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=孙伟&backgroundColor=d1d4f9",
     "group": "高校毕业生",
     "education": "本科",
     "major": "电子信息工程",
@@ -1429,7 +1429,7 @@ function renderPersonTable() {
     if (person.group === '农民工') groupBadgeClass = 'badge-success';
     
     row.innerHTML = `
-      <td><img src="${person.avatar}" alt="${person.name}" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);"></td>
+      <td><img src="${person.avatar}" alt="${person.name}" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'45\' height=\'45\' viewBox=\'0 0 24 24\' fill=\'%2394a3b8\'%3E%3Cpath d=\'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z\'/%3E%3C/svg%3E';"></td>
       <td><strong>${person.name}</strong></td>
       <td>${person.education}</td>
       <td><span class="badge ${groupBadgeClass}">${person.group}</span></td>

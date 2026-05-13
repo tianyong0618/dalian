@@ -71,7 +71,7 @@
           <div class="relative backdrop-blur-xl bg-slate-900/70 border border-slate-700/50 rounded-2xl p-6 shadow-2xl">
             <div class="relative mb-6">
               <div class="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl blur-md opacity-50"></div>
-              <div class="relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-slate-700/50">
+              <div id="avatar-container" class="relative aspect-[3/4] rounded-xl overflow-hidden border-2 border-slate-700/50">
                 <div class="w-full h-full bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center">
                   <i class="fa-solid fa-user text-slate-600 text-6xl"></i>
                 </div>
@@ -787,7 +787,7 @@
     "id": 1,
     "name": "陈浩然",
     "idCard": "430102199805153421",
-    "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=陈浩然&backgroundColor=b6e3f4",
     "group": "高校毕业生",
     "education": "本科",
     "major": "计算机科学与技术",
@@ -821,7 +821,7 @@
     "id": 2,
     "name": "刘芳",
     "idCard": "430103198511205678",
-    "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=刘芳&backgroundColor=ffdfbf",
     "group": "就业困难人员",
     "education": "高中",
     "portraitType": "jobseeker",
@@ -853,7 +853,7 @@
     "id": 3,
     "name": "王明华",
     "idCard": "430221199203082345",
-    "avatar": "https://images.unsplash.com/photo-1508247967573-6118b4d6382f?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=王明华&backgroundColor=c0aede",
     "group": "农民工",
     "education": "中专",
     "major": "建筑工程",
@@ -887,7 +887,7 @@
     "id": 4,
     "name": "张雨婷",
     "idCard": "430102199608251234",
-    "avatar": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=张雨婷&backgroundColor=ffd5dc",
     "group": "高校毕业生",
     "education": "硕士",
     "major": "人工智能",
@@ -921,7 +921,7 @@
     "id": 5,
     "name": "刘强",
     "idCard": "430122199002145678",
-    "avatar": "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=刘强&backgroundColor=d1d4f9",
     "group": "零工人员",
     "education": "大专",
     "major": "物流管理",
@@ -954,7 +954,7 @@
     "id": 6,
     "name": "李晓燕",
     "idCard": "430321198912034567",
-    "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=李晓燕&backgroundColor=ffd5dc",
     "group": "退役军人",
     "education": "大专",
     "major": "行政管理",
@@ -995,7 +995,7 @@
     "id": 7,
     "name": "黄敏",
     "idCard": "430104199306187890",
-    "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=黄敏&backgroundColor=ffdfbf",
     "group": "高校毕业生",
     "education": "本科",
     "major": "会计学",
@@ -1035,7 +1035,7 @@
     "id": 8,
     "name": "周建国",
     "idCard": "430121197809123456",
-    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=周建国&backgroundColor=c0aede",
     "group": "就业困难人员",
     "education": "初中",
     "portraitType": "jobseeker",
@@ -1067,7 +1067,7 @@
     "id": 9,
     "name": "吴丽娟",
     "idCard": "430422199504256789",
-    "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=吴丽娟&backgroundColor=b6e3f4",
     "group": "农民工",
     "education": "高中",
     "portraitType": "keygroup",
@@ -1100,7 +1100,7 @@
     "id": 10,
     "name": "孙伟",
     "idCard": "430105199711302345",
-    "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=孙伟&backgroundColor=d1d4f9",
     "group": "高校毕业生",
     "education": "本科",
     "major": "电子信息工程",
@@ -1142,8 +1142,8 @@
         document.getElementById('person-name').textContent = data.name;
         document.getElementById('person-info').textContent = `${data.education} · ${data.group}`;
         
-        const avatarContainer = document.querySelector('.aspect-\[3\/4\]');
-        avatarContainer.innerHTML = `<img src="${data.avatar}" alt="${data.name}" class="w-full h-full object-cover">`;
+        const avatarContainer = document.getElementById('avatar-container');
+        avatarContainer.innerHTML = `<img src="${data.avatar}" alt="${data.name}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center" style="display:none;"><i class="fa-solid fa-user text-slate-600 text-6xl"></i></div>`;
         
         const statusEl = document.querySelector('.absolute.top-3.right-3');
         if (data.portraitType === 'talent') {
@@ -1298,7 +1298,12 @@
     }
 
     function updateAbilityChart(data) {
-      const abilityCtx = document.getElementById('abilityChart').getContext('2d');
+      const abilityCanvas = document.getElementById('abilityChart');
+      const existingChart = Chart.getChart(abilityCanvas);
+      if (existingChart) {
+        existingChart.destroy();
+      }
+      const abilityCtx = abilityCanvas.getContext('2d');
       new Chart(abilityCtx, {
         type: 'radar',
         data: {
