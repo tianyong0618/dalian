@@ -164,6 +164,7 @@
       <table class="table" id="person-table">
         <thead>
           <tr>
+            <th style="width: 60px;">头像</th>
             <th>姓名</th>
             <th>学历</th>
             <th>重点群体</th>
@@ -175,56 +176,6 @@
           </tr>
         </thead>
         <tbody id="person-tbody">
-          <tr data-group="高校毕业生" data-education="本科及以上" data-stability="high" data-portrait-type="talent">
-            <td><strong>张三</strong></td>
-            <td>本科</td>
-            <td><span class="badge badge-info">高校毕业生</span></td>
-            <td><span class="badge" style="background: rgba(114, 46, 209, 0.1); color: var(--primary-gradient-end);">人才画像</span></td>
-            <td><div class="progress-bar"><div class="progress-fill" style="width: 88%;"></div></div></td>
-            <td><div class="progress-bar"><div class="progress-fill" style="width: 78%;"></div></div></td>
-            <td><span class="tag" style="font-size: 12px;">Java开发</span> <span class="tag" style="font-size: 12px;">3年经验</span></td>
-            <td><a href="9-employment-portrait-detail.html?id=zhangsan" class="btn btn-secondary btn-sm">详情</a> <button class="btn btn-primary btn-sm" onclick="showModal('job-recommend-modal')">推荐岗位</button></td>
-          </tr>
-          <tr data-group="就业困难人员" data-education="高中及以下" data-stability="low" data-portrait-type="jobseeker">
-            <td><strong>李四</strong></td>
-            <td>高中</td>
-            <td><span class="badge badge-warning">就业困难</span></td>
-            <td><span class="badge badge-info">求职者画像</span></td>
-            <td><div class="progress-bar"><div class="progress-fill" style="width: 45%;"></div></div></td>
-            <td><div class="progress-bar"><div class="progress-fill" style="width: 32%;"></div></div></td>
-            <td><span class="tag" style="font-size: 12px;">零工人员</span> <span class="tag" style="font-size: 12px;">技能培训</span></td>
-            <td><a href="9-employment-portrait-detail.html?id=lisi" class="btn btn-secondary btn-sm">详情</a> <button class="btn btn-primary btn-sm" onclick="showModal('job-recommend-modal')">推荐岗位</button></td>
-          </tr>
-          <tr data-group="农民工" data-education="高中及以下" data-stability="medium" data-portrait-type="keygroup">
-            <td><strong>王五</strong></td>
-            <td>中专</td>
-            <td><span class="badge badge-success">农民工</span></td>
-            <td><span class="badge" style="background: rgba(250, 173, 20, 0.1); color: var(--warning);">重点群体画像</span></td>
-            <td><div class="progress-bar"><div class="progress-fill" style="width: 52%;"></div></div></td>
-            <td><div class="progress-bar"><div class="progress-fill" style="width: 55%;"></div></div></td>
-            <td><span class="tag" style="font-size: 12px;">建筑工</span> <span class="tag" style="font-size: 12px;">计件工</span></td>
-            <td><a href="9-employment-portrait-detail.html?id=wangwu" class="btn btn-secondary btn-sm">详情</a> <button class="btn btn-primary btn-sm" onclick="showModal('job-recommend-modal')">推荐岗位</button></td>
-          </tr>
-          <tr data-group="高校毕业生" data-education="本科及以上" data-stability="high" data-portrait-type="talent">
-            <td><strong>赵六</strong></td>
-            <td>硕士</td>
-            <td><span class="badge badge-info">高校毕业生</span></td>
-            <td><span class="badge" style="background: rgba(114, 46, 209, 0.1); color: var(--primary-gradient-end);">人才画像</span></td>
-            <td><div class="progress-bar"><div class="progress-fill" style="width: 92%;"></div></div></td>
-            <td><div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div></td>
-            <td><span class="tag" style="font-size: 12px;">Python</span> <span class="tag" style="font-size: 12px;">AI算法</span></td>
-            <td><a href="9-employment-portrait-detail.html?id=zhaoliu" class="btn btn-secondary btn-sm">详情</a> <button class="btn btn-primary btn-sm" onclick="showModal('job-recommend-modal')">推荐岗位</button></td>
-          </tr>
-          <tr data-group="零工人员" data-education="大专" data-stability="low" data-portrait-type="jobseeker">
-            <td><strong>孙七</strong></td>
-            <td>大专</td>
-            <td><span class="badge badge-info">零工人员</span></td>
-            <td><span class="badge badge-info">求职者画像</span></td>
-            <td><div class="progress-bar"><div class="progress-fill" style="width: 48%;"></div></div></td>
-            <td><div class="progress-bar"><div class="progress-fill" style="width: 28%;"></div></div></td>
-            <td><span class="tag" style="font-size: 12px;">外卖骑手</span> <span class="tag" style="font-size: 12px;">灵活用工</span></td>
-            <td><a href="9-employment-portrait-detail.html?id=sunqi" class="btn btn-secondary btn-sm">详情</a> <button class="btn btn-primary btn-sm" onclick="showModal('job-recommend-modal')">推荐岗位</button></td>
-          </tr>
         </tbody>
       </table>
     </div>
@@ -722,162 +673,92 @@
 
         <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 2px solid #3a7aaa; border-radius: 12px; padding: 24px; margin-bottom: 20px;">
           <div style="display: flex; align-items: center; gap: 24px;">
-            <div style="width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #2a5a8a 0%, #5ae8ff 100%); display: flex; align-items: center; justify-content: center; font-size: 56px; flex-shrink: 0; box-shadow: 0 0 30px rgba(90, 232, 255, 0.3);">👤</div>
+            <div style="width: 120px; height: 120px; border-radius: 50%; flex-shrink: 0; overflow: hidden; border: 3px solid #5ae8ff; box-shadow: 0 0 30px rgba(90, 232, 255, 0.3);" id="detail-avatar">
+              <img src="" alt="" id="detail-avatar-img" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
             <div style="flex: 1;">
               <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
-                <h2 id="detail-name" style="color: #5ae8ff; margin: 0; font-size: 28px; font-weight: 700;">张三</h2>
+                <h2 id="detail-name" style="color: #5ae8ff; margin: 0; font-size: 28px; font-weight: 700;"></h2>
                 <span style="background: rgba(82, 196, 26, 0.15); border: 1px solid rgba(82, 196, 26, 0.4); padding: 6px 14px; border-radius: 6px; font-size: 12px; color: #52c41a; font-weight: 500;">✅ 身份已验证</span>
               </div>
-              <div style="display: flex; flex-wrap: wrap; gap: 20px; color: #8ab4d4; font-size: 14px;">
-                <span>📅 1995年06月（30岁）</span>
-                <span>👨 男 | 汉族</span>
-                <span>📞 138****8888</span>
-                <span>📧 zhangsan@example.com</span>
+              <div style="display: flex; flex-wrap: wrap; gap: 20px; color: #8ab4d4; font-size: 14px;" id="detail-info">
+                <span id="detail-education-info"></span>
+                <span id="detail-group-info"></span>
               </div>
             </div>
             <div style="display: flex; gap: 32px; padding-right: 20px;">
               <div style="text-align: center;">
-                <div class="score-value" style="font-size: 32px; font-weight: 700; color: #5ae8ff;">92</div>
+                <div id="detail-score" class="score-value" style="font-size: 32px; font-weight: 700; color: #5ae8ff;"></div>
                 <div style="font-size: 13px; color: #8ab4d4; margin-top: 4px;">综合评分</div>
               </div>
               <div style="text-align: center;">
-                <div class="stability-value" style="font-size: 32px; font-weight: 700; color: #52c41a;">4</div>
+                <div id="detail-support" class="stability-value" style="font-size: 32px; font-weight: 700; color: #52c41a;"></div>
                 <div style="font-size: 13px; color: #8ab4d4; margin-top: 4px;">帮扶指数</div>
               </div>
               <div style="text-align: center;">
-                <div class="risk-value" style="font-size: 32px; font-weight: 700; color: #faad14;">低</div>
+                <div id="detail-risk" class="risk-value" style="font-size: 32px; font-weight: 700; color: #faad14;"></div>
                 <div style="font-size: 13px; color: #8ab4d4; margin-top: 4px;">离职风险</div>
               </div>
             </div>
           </div>
-          <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(42,90,138,0.5);">
-            <span style="background: rgba(42,90,138,0.6); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 13px; padding: 6px 14px; border-radius: 6px;">应届毕业生</span>
-            <span style="background: rgba(42,90,138,0.6); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 13px; padding: 6px 14px; border-radius: 6px;">本科</span>
-            <span style="background: rgba(42,90,138,0.6); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 13px; padding: 6px 14px; border-radius: 6px;">计算机专业</span>
-            <span style="background: rgba(42,90,138,0.6); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 13px; padding: 6px 14px; border-radius: 6px;">Java开发</span>
-            <span style="background: rgba(42,90,138,0.6); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 13px; padding: 6px 14px; border-radius: 6px;">3年经验</span>
-            <span style="background: rgba(42,90,138,0.6); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 13px; padding: 6px 14px; border-radius: 6px;">社保连续缴纳</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(42,90,138,0.5);" id="detail-tags">
           </div>
         </div>
 
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
           <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 16px;">
-            <div style="font-size: 12px; color: #94a3b8; margin-bottom: 4px;">户籍所在地</div>
-            <div style="font-size: 15px; color: #a0c8e8; font-weight: 500;">江苏省南京市</div>
+            <div style="font-size: 12px; color: #94a3b8; margin-bottom: 4px;">教育竞争力</div>
+            <div id="detail-competitiveness" style="font-size: 15px; color: #a0c8e8; font-weight: 500;"></div>
           </div>
           <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 16px;">
-            <div style="font-size: 12px; color: #94a3b8; margin-bottom: 4px;">现居住地</div>
-            <div style="font-size: 15px; color: #a0c8e8; font-weight: 500;">江苏省苏州市</div>
+            <div style="font-size: 12px; color: #94a3b8; margin-bottom: 4px;">就业稳定性</div>
+            <div id="detail-stability" style="font-size: 15px; color: #a0c8e8; font-weight: 500;"></div>
           </div>
           <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 16px;">
-            <div style="font-size: 12px; color: #94a3b8; margin-bottom: 4px;">可工作城市</div>
-            <div style="font-size: 15px; color: #a0c8e8; font-weight: 500;">苏州、无锡、上海</div>
+            <div style="font-size: 12px; color: #94a3b8; margin-bottom: 4px;">期望薪资</div>
+            <div id="detail-salary" style="font-size: 15px; color: #a0c8e8; font-weight: 500;"></div>
           </div>
         </div>
 
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
           <div style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px; padding: 16px;">
-            <div style="font-size: 24px; font-weight: 700; color: #c4b5fd; margin-bottom: 4px;">苏州大学</div>
-            <div style="font-size: 13px; color: #a78bfa;">计算机科学与技术 · 本科</div>
+            <div style="font-size: 24px; font-weight: 700; color: #c4b5fd; margin-bottom: 4px;" id="detail-university"></div>
+            <div style="font-size: 13px; color: #a78bfa;" id="detail-major"></div>
           </div>
           <div style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px; padding: 16px;">
-            <div style="font-size: 24px; font-weight: 700; color: #c4b5fd; margin-bottom: 4px;">3年</div>
+            <div style="font-size: 24px; font-weight: 700; color: #c4b5fd; margin-bottom: 4px;" id="detail-experience">-</div>
             <div style="font-size: 13px; color: #a78bfa;">工作经验</div>
           </div>
           <div style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px; padding: 16px;">
-            <div style="font-size: 24px; font-weight: 700; color: #c4b5fd; margin-bottom: 4px;">18-22K</div>
-            <div style="font-size: 13px; color: #a78bfa;">期望月薪</div>
+            <div style="font-size: 24px; font-weight: 700; color: #c4b5fd; margin-bottom: 4px;" id="detail-skill-level">-</div>
+            <div style="font-size: 13px; color: #a78bfa;">技能水平</div>
           </div>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 16px; margin-bottom: 16px;">
           <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px; padding: 20px;">
             <div style="font-size: 15px; font-weight: 600; color: #60a5fa; margin-bottom: 16px;">专业技能</div>
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-              <div>
-                <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
-                  <span style="color: #94a3b8;">Java/Spring</span>
-                  <span style="color: #60a5fa; font-weight: 500;">精通</span>
-                </div>
-                <div style="height: 6px; background: #334155; border-radius: 3px; overflow: hidden;">
-                  <div style="height: 100%; background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 95%;"></div>
-                </div>
-              </div>
-              <div>
-                <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
-                  <span style="color: #94a3b8;">微服务架构</span>
-                  <span style="color: #60a5fa; font-weight: 500;">精通</span>
-                </div>
-                <div style="height: 6px; background: #334155; border-radius: 3px; overflow: hidden;">
-                  <div style="height: 100%; background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 92%;"></div>
-                </div>
-              </div>
-              <div>
-                <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
-                  <span style="color: #94a3b8;">MySQL/Redis</span>
-                  <span style="color: #60a5fa; font-weight: 500;">精通</span>
-                </div>
-                <div style="height: 6px; background: #334155; border-radius: 3px; overflow: hidden;">
-                  <div style="height: 100%; background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 90%;"></div>
-                </div>
-              </div>
-              <div>
-                <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
-                  <span style="color: #94a3b8;">Docker/K8s</span>
-                  <span style="color: #60a5fa; font-weight: 500;">熟练</span>
-                </div>
-                <div style="height: 6px; background: #334155; border-radius: 3px; overflow: hidden;">
-                  <div style="height: 100%; background: linear-gradient(90deg, #6366f1, #8b5cf6); width: 75%;"></div>
-                </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;" id="detail-skills">
+            </div>
+            <div style="margin-top: 16px;">
+              <div style="font-size: 13px; color: #94a3b8; margin-bottom: 8px;">资格证书</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;" id="detail-certificates">
               </div>
             </div>
           </div>
 
           <div style="background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 12px; padding: 20px;">
             <div style="font-size: 15px; font-weight: 600; color: #a78bfa; margin-bottom: 16px;">职业经历</div>
-            <div style="display: flex; flex-direction: column; gap: 16px;">
-              <div style="background: rgba(168, 85, 247, 0.15); border-left: 3px solid #8b5cf6; padding: 16px;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="font-weight: 600; color: #fff;">XX科技有限公司</span>
-                  <span style="font-size: 12px; color: #94a3b8;">2022-07 至 2025-06</span>
-                </div>
-                <div style="font-size: 14px; color: #c4b5fd; font-weight: 500;">Java开发工程师</div>
-                <div style="font-size: 12px; color: #94a3b8; margin-top: 6px;">负责核心业务模块开发，参与系统架构设计，代码质量优秀</div>
-              </div>
-              <div style="background: rgba(168, 85, 247, 0.15); border-left: 3px solid #8b5cf6; padding: 16px;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="font-weight: 600; color: #fff;">XX软件公司</span>
-                  <span style="font-size: 12px; color: #94a3b8;">2021-07 至 2022-06</span>
-                </div>
-                <div style="font-size: 14px; color: #c4b5fd; font-weight: 500;">初级开发工程师</div>
-                <div style="font-size: 12px; color: #94a3b8; margin-top: 6px;">参与项目开发，学习能力强，快速成长为团队核心成员</div>
-              </div>
+            <div style="display: flex; flex-direction: column; gap: 16px;" id="detail-workexp">
             </div>
           </div>
         </div>
 
         <div style="background: rgba(236, 72, 153, 0.1); border: 1px solid rgba(236, 72, 153, 0.2); border-radius: 12px; padding: 20px;">
-          <div style="font-size: 15px; font-weight: 600; color: #f472b6; margin-bottom: 16px;">就业意向</div>
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
-            <div style="background: rgba(236, 72, 153, 0.15); padding: 14px; border-radius: 10px;">
-              <div style="font-size: 11px; color: #f9a8d4; margin-bottom: 4px;">行业意向</div>
-              <div style="font-size: 14px; color: #fff; font-weight: 500;">互联网</div>
-            </div>
-            <div style="background: rgba(236, 72, 153, 0.15); padding: 14px; border-radius: 10px;">
-              <div style="font-size: 11px; color: #f9a8d4; margin-bottom: 4px;">岗位意向</div>
-              <div style="font-size: 14px; color: #fff; font-weight: 500;">Java开发工程师</div>
-            </div>
-            <div style="background: rgba(236, 72, 153, 0.15); padding: 14px; border-radius: 10px;">
-              <div style="font-size: 11px; color: #f9a8d4; margin-bottom: 4px;">工作地点</div>
-              <div style="font-size: 14px; color: #fff; font-weight: 500;">苏州、上海</div>
-            </div>
-            <div style="background: rgba(236, 72, 153, 0.15); padding: 14px; border-radius: 10px;">
-              <div style="font-size: 11px; color: #f9a8d4; margin-bottom: 4px;">工作性质</div>
-              <div style="font-size: 14px; color: #fff; font-weight: 500;">全职</div>
-            </div>
+          <div style="font-size: 15px; font-weight: 600; color: #f472b6; margin-bottom: 16px;">个性化服务</div>
+          <div style="display: flex; flex-direction: column; gap: 12px;" id="detail-services">
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -1253,13 +1134,99 @@ function switchRole() {
   const type = select.value;
   switchUserType(type);
 }
-const personData = [
-  { name: "张三", idCard: "410xxxxxxxxxxxx1234", group: "高校毕业生", education: "本科", portraitType: "talent", competitiveness: 88, stability: 78, skill: 82, match: 91, salaryExp: "15K", tags: ["Java开发", "本科及以上", "3年经验", "社保连续缴纳", "求职意向：互联网"], services: ["📩 推荐岗位：高级Java开发（98%）", "📚 推荐培训：Java进阶（免费）", "💰 可申请补贴：2000元", "🎓 职业路径：Java→专家→架构师"] },
-  { name: "李四", idCard: "410xxxxxxxxxxxx5678", group: "就业困难人员", education: "高中", portraitType: "jobseeker", competitiveness: 45, stability: 32, skill: 38, supportIndex: 75, salaryTrend: 65, tags: ["零工人员", "技能培训", "就业帮扶", "高中及以下"], services: ["📩 推荐岗位：仓管员（85%）", "📚 推荐培训：叉车证（免费）", "💰 可申请补贴：就业困难补贴1500元", "🆘 帮扶计划：一对一就业指导"] },
-  { name: "王五", idCard: "410xxxxxxxxxxxx9012", group: "农民工", education: "中专", portraitType: "keygroup", competitiveness: 52, stability: 55, skill: 48, groupScale: "28,345", groupRate: 88.7, groupDemand: "欠薪维权", tags: ["建筑工", "计件工", "农民工", "中专学历"], services: ["📩 推荐岗位：建筑工长（82%）", "📚 推荐培训：安全员证", "💰 维权通道：在线投诉", "🆘 帮扶计划：法律援助"] },
-  { name: "赵六", idCard: "410xxxxxxxxxxxx3456", group: "高校毕业生", education: "硕士", portraitType: "talent", competitiveness: 92, stability: 85, skill: 90, match: 95, salaryExp: "20K", tags: ["Python", "AI算法", "硕士", "社保连续缴纳"], services: ["📩 推荐岗位：AI工程师（95%）", "📚 推荐培训：深度学习（免费）", "💰 可申请补贴：人才引进5000元", "🎓 职业路径：AI→架构师"] },
-  { name: "孙七", idCard: "410xxxxxxxxxxxx7890", group: "零工人员", education: "大专", portraitType: "jobseeker", competitiveness: 48, stability: 28, skill: 42, supportIndex: 68, salaryTrend: 55, tags: ["外卖骑手", "灵活用工", "零工人员", "大专"], services: ["📩 推荐岗位：骑手队长（78%）", "📚 推荐培训：物流管理", "💰 可申请补贴：灵活就业补贴800元", "🆘 帮扶计划：职业转型指导"] }
-];
+let personData = [];
+
+async function loadPersonData() {
+  try {
+    const response = await fetch('assets/person-data.json');
+    personData = await response.json();
+    renderPersonTable();
+    showNotification('人员数据加载成功', 'success');
+  } catch (error) {
+    console.error('加载数据失败:', error);
+    showNotification('数据加载失败，请刷新页面重试', 'error');
+  }
+}
+
+function renderPersonTable() {
+  const tbody = document.getElementById('person-tbody');
+  tbody.innerHTML = '';
+  
+  personData.forEach((person, index) => {
+    const stabilityLabel = person.stability >= 70 ? 'high' : person.stability >= 40 ? 'medium' : 'low';
+    const educationLabel = ['硕士', '本科'].includes(person.education) ? '本科及以上' : 
+                          person.education === '大专' ? '大专' : '高中及以下';
+    
+    const row = document.createElement('tr');
+    row.setAttribute('data-group', person.group);
+    row.setAttribute('data-education', educationLabel);
+    row.setAttribute('data-stability', stabilityLabel);
+    row.setAttribute('data-portrait-type', person.portraitType);
+    row.setAttribute('data-index', index);
+    
+    let portraitTypeLabel = '';
+    let portraitTypeStyle = '';
+    switch(person.portraitType) {
+      case 'talent':
+        portraitTypeLabel = '人才画像';
+        portraitTypeStyle = 'background: rgba(114, 46, 209, 0.1); color: var(--primary-gradient-end);';
+        break;
+      case 'jobseeker':
+        portraitTypeLabel = '求职者画像';
+        portraitTypeStyle = '';
+        break;
+      case 'keygroup':
+        portraitTypeLabel = '重点群体画像';
+        portraitTypeStyle = 'background: rgba(250, 173, 20, 0.1); color: var(--warning);';
+        break;
+    }
+    
+    let groupBadgeClass = 'badge-info';
+    if (person.group === '就业困难人员') groupBadgeClass = 'badge-warning';
+    if (person.group === '农民工') groupBadgeClass = 'badge-success';
+    
+    row.innerHTML = `
+      <td><img src="${person.avatar}" alt="${person.name}" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);"></td>
+      <td><strong>${person.name}</strong></td>
+      <td>${person.education}</td>
+      <td><span class="badge ${groupBadgeClass}">${person.group}</span></td>
+      <td><span class="badge" style="${portraitTypeStyle}">${portraitTypeLabel}</span></td>
+      <td><div class="progress-bar"><div class="progress-fill" style="width: ${person.competitiveness}%;"></div></div></td>
+      <td><div class="progress-bar"><div class="progress-fill" style="width: ${person.stability}%;"></div></div></td>
+      <td>${person.tags.slice(0, 2).map(tag => `<span class="tag" style="font-size: 12px;">${tag}</span>`).join(' ')}</td>
+      <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(${index})">详情</button> <button class="btn btn-primary btn-sm" onclick="showJobRecommend(${index})">推荐岗位</button></td>
+    `;
+    
+    tbody.appendChild(row);
+  });
+  
+  filterPersons();
+}
+
+function showJobRecommend(index) {
+  showModal('job-recommend-modal');
+  updateJobRecommendContent(personData[index]);
+}
+
+function updateJobRecommendContent(person) {
+  const modalBody = document.querySelector('#job-recommend-modal .modal-body');
+  if (modalBody && person.services) {
+    modalBody.innerHTML = `
+      <p class="text-body mb-16">基于${person.name}的画像数据，智能推荐以下岗位：</p>
+      ${person.services.filter(s => s.includes('推荐岗位')).map(service => `
+        <div class="card mb-16" style="border-left: 4px solid var(--primary);">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+              <h4 style="margin: 0 0 4px 0;">${service.replace('📩 推荐岗位：', '')} <span class="badge" style="background: rgba(22, 119, 255, 0.1); color: var(--primary); font-size: 11px; margin-left: 8px;">🎯 AI精准匹配</span></h4>
+              <p class="text-small">匹配度：${(person.match || person.competitiveness)}%</p>
+            </div>
+            <button class="btn btn-primary btn-sm">投递简历</button>
+          </div>
+        </div>
+      `).join('')}
+    `;
+  }
+}
 
 function filterPersons() {
   const search = document.getElementById('person-search').value.toLowerCase();
@@ -1301,21 +1268,75 @@ function viewPersonDetail(index) {
     return;
   }
   
-  document.getElementById('detail-name').textContent = person.name;
-  updatePersonDetail(person);
-  showModal('person-detail-modal');
+  window.location.href = `9-employment-portrait-detail.html?id=${person.id}`;
 }
 
 function updatePersonDetail(person) {
+  const riskLevel = person.stability >= 70 ? '低' : person.stability >= 40 ? '中' : '高';
+  const riskColor = person.stability >= 70 ? '#52c41a' : person.stability >= 40 ? '#faad14' : '#ff4d4f';
+  
+  document.getElementById('detail-avatar-img').src = person.avatar;
+  document.getElementById('detail-avatar-img').alt = person.name;
   document.getElementById('detail-name').textContent = person.name;
+  document.getElementById('detail-education-info').textContent = `🎓 ${person.education}`;
+  document.getElementById('detail-group-info').textContent = `📍 ${person.group}`;
+  document.getElementById('detail-score').textContent = person.match || person.competitiveness;
+  document.getElementById('detail-support').textContent = person.supportIndex ? `${person.supportIndex}%` : '-';
+  document.getElementById('detail-risk').textContent = riskLevel;
+  document.getElementById('detail-risk').style.color = riskColor;
+  document.getElementById('detail-competitiveness').textContent = `${person.competitiveness}%`;
+  document.getElementById('detail-stability').textContent = `${person.stability}%`;
+  document.getElementById('detail-salary').textContent = person.salaryExp || '面议';
+  document.getElementById('detail-university').textContent = person.university || '未填写';
+  document.getElementById('detail-major').textContent = `${person.major || '未知专业'} · ${person.education}`;
+  document.getElementById('detail-skill-level').textContent = person.skill ? `${person.skill}%` : '-';
   
-  const scoreElement = document.querySelector('#detail-content .score-value');
-  const stabilityElement = document.querySelector('#detail-content .stability-value');
-  const riskElement = document.querySelector('#detail-content .risk-value');
+  const tagsContainer = document.getElementById('detail-tags');
+  tagsContainer.innerHTML = person.tags.map(tag => 
+    `<span style="background: rgba(42,90,138,0.6); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 13px; padding: 6px 14px; border-radius: 6px;">${tag}</span>`
+  ).join('');
   
-  if (scoreElement) scoreElement.textContent = person.match || person.competitiveness || 92;
-  if (stabilityElement) stabilityElement.textContent = person.supportIndex || 4;
-  if (riskElement) riskElement.textContent = person.stability >= 70 ? '低' : person.stability >= 40 ? '中' : '高';
+  const skillLevels = ['精通', '熟练', '良好', '了解'];
+  const skillsContainer = document.getElementById('detail-skills');
+  skillsContainer.innerHTML = (person.skills || []).map((skill, i) => `
+    <div>
+      <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
+        <span style="color: #94a3b8;">${skill}</span>
+        <span style="color: #60a5fa; font-weight: 500;">${skillLevels[i % skillLevels.length]}</span>
+      </div>
+      <div style="height: 6px; background: #334155; border-radius: 3px; overflow: hidden;">
+        <div style="height: 100%; background: linear-gradient(90deg, #6366f1, #8b5cf6); width: ${85 - i * 10}%;"></div>
+      </div>
+    </div>
+  `).join('');
+  
+  const certContainer = document.getElementById('detail-certificates');
+  if (person.certificates && person.certificates.length > 0) {
+    certContainer.innerHTML = person.certificates.map(cert => 
+      `<span style="background: rgba(59, 130, 246, 0.2); color: #60a5fa; padding: 4px 12px; border-radius: 4px; font-size: 12px;">${cert}</span>`
+    ).join('');
+  } else {
+    certContainer.innerHTML = '<span style="color: #94a3b8; font-size: 13px;">暂无证书</span>';
+  }
+  
+  const workexpContainer = document.getElementById('detail-workexp');
+  workexpContainer.innerHTML = (person.workExperience || []).map(exp => `
+    <div style="background: rgba(168, 85, 247, 0.15); border-left: 3px solid #8b5cf6; padding: 16px;">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+        <span style="font-weight: 600; color: #fff;">${exp.company}</span>
+        <span style="font-size: 12px; color: #94a3b8;">${exp.startDate} 至 ${exp.endDate || '至今'}</span>
+      </div>
+      <div style="font-size: 14px; color: #c4b5fd; font-weight: 500;">${exp.position}</div>
+      <div style="font-size: 12px; color: #94a3b8; margin-top: 6px;">${exp.description || ''}</div>
+    </div>
+  `).join('');
+  
+  const servicesContainer = document.getElementById('detail-services');
+  servicesContainer.innerHTML = (person.services || []).map(service => `
+    <div style="background: rgba(236, 72, 153, 0.15); padding: 12px; border-radius: 8px; font-size: 14px; color: #fff;">
+      ${service}
+    </div>
+  `).join('');
 }
 
 function getAgeFromGroup(group) {
@@ -1515,7 +1536,7 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
 
 document.addEventListener('DOMContentLoaded', function() {
   switchUserType('gov');
-  filterPersonsByPermission('gov');
+  loadPersonData();
 });
 
 function switchDataTab(tab, btn) {
