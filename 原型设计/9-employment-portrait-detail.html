@@ -1232,6 +1232,7 @@
         updateRiskTab(data);
         updateIdentityTags(data);
         updateAbilityChart(data);
+      updateSalaryChart(data);
         
       } catch (error) {
         console.error('加载数据失败:', error);
@@ -1252,16 +1253,47 @@
     }
 
     function updateSkillsTab(data) {
+      // 更新专业技能
       const skillsContainer = document.querySelector('#tab-ability .grid-cols-2 .space-y-2');
-      if (skillsContainer && data.skills) {
-        skillsContainer.innerHTML = data.skills.map((skill, i) => `
+      if (skillsContainer) {
+        if (data.skills && data.skills.length > 0) {
+          skillsContainer.innerHTML = data.skills.slice(0, 4).map((skill, i) => {
+            const levels = ['精通', '熟练', '良好', '了解'];
+            const level = data.competitiveness >= 80 ? levels[0] : data.competitiveness >= 60 ? levels[1] : levels[2];
+            return `
+              <div>
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-sm text-slate-300">${skill}</span>
+                  <span class="text-xs text-indigo-400">${level}</span>
+                </div>
+                <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-indigo-500 to-purple-500" style="width: ${data.skill || 70}%"></div>
+                </div>
+              </div>
+            `;
+          }).join('');
+        } else {
+          skillsContainer.innerHTML = '<div class="text-sm text-slate-500">暂无专业技能记录</div>';
+        }
+      }
+      
+      // 更新通用能力 - 根据competitiveness和stability动态显示
+      const generalSkillsContainer = document.querySelector('#tab-ability .grid-cols-2:nth-child(2) .space-y-2');
+      if (generalSkillsContainer) {
+        const generalSkills = [
+          { name: '沟通表达', score: data.competitiveness || 70 },
+          { name: '团队协作', score: data.stability || 65 },
+          { name: '问题解决', score: data.skill || 60 },
+          { name: '学习能力', score: data.competitiveness ? Math.min(100, data.competitiveness + 5) : 75 }
+        ];
+        generalSkillsContainer.innerHTML = generalSkills.map(s => `
           <div>
             <div class="flex items-center justify-between mb-1">
-              <span class="text-sm text-slate-300">${skill}</span>
-              <span class="text-xs text-indigo-400">${['精通', '熟练', '良好', '了解'][i % 4]}</span>
+              <span class="text-sm text-slate-300">${s.name}</span>
+              <span class="text-xs text-purple-400">${s.score}分</span>
             </div>
             <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
-              <div class="h-full bg-gradient-to-r from-indigo-500 to-purple-500" style="width: ${90 - i * 8}%"></div>
+              <div class="h-full bg-gradient-to-r from-purple-500 to-pink-500" style="width: ${s.score}%"></div>
             </div>
           </div>
         `).join('');
@@ -1288,8 +1320,24 @@
         `).join('');
       }
       
-      const totalYears = data.workExperience ? calculateExperience(data.workExperience[0]?.startDate) : 0;
-      document.querySelector('#tab-career .grid-cols-3 .text-3xl').textContent = `${totalYears}年`;
+      // 更新职业经历统计
+      if (data.workExperience && data.workExperience.length > 0) {
+        const totalYears = calculateExperience(data.workExperience[0].startDate);
+        document.querySelector('#tab-career .grid-cols-3 > div:nth-child(1) .text-3xl').textContent = `${totalYears}年`;
+        
+        // 计算平均任职时长和跳槽次数
+        const jobCount = data.workExperience.length;
+        const avgTenure = jobCount > 1 ? Math.round(totalYears / jobCount * 10) / 10 : totalYears;
+        document.querySelector('#tab-career .grid-cols-3 > div:nth-child(2) .text-3xl').textContent = `${avgTenure}年`;
+        
+        // 跳槽次数 = 工作经历数 - 1（当前工作不算跳槽）
+        const changeCount = Math.max(0, jobCount - 1);
+        document.querySelector('#tab-career .grid-cols-3 > div:nth-child(3) .text-3xl').textContent = `${changeCount}次`;
+      } else {
+        document.querySelector('#tab-career .grid-cols-3 > div:nth-child(1) .text-3xl').textContent = '0年';
+        document.querySelector('#tab-career .grid-cols-3 > div:nth-child(2) .text-3xl').textContent = '0年';
+        document.querySelector('#tab-career .grid-cols-3 > div:nth-child(3) .text-3xl').textContent = '0次';
+      }
     }
 
     function updateEmploymentTab(data) {
@@ -1323,18 +1371,19 @@
         activityDescEl.textContent = '需要更多就业帮扶和指导';
       }
       
-      // 帮扶指数
-      const supportIndex = data.supportIndex || (100 - data.competitiveness);
-      document.getElementById('support-index').textContent = `${supportIndex} / 5.0`;
-      document.getElementById('support-bar').style.width = `${(supportIndex / 5 * 100)}%`;
+      // 帮扶指数 - 将0-100范围转换为0-10范围
+      const rawSupportIndex = data.supportIndex || (100 - data.competitiveness);
+      const supportIndex = Math.min(10, Math.max(1, Math.round(rawSupportIndex / 10)));
+      document.getElementById('support-index').textContent = `${supportIndex} / 10`;
+      document.getElementById('support-bar').style.width = `${(supportIndex / 10 * 100)}%`;
       
       // 帮扶等级
       const supportLevelEl = document.querySelector('#tab-employment .rounded-full.bg-yellow-500\\/20');
-      if (supportIndex >= 80) {
+      if (supportIndex >= 8) {
         supportLevelEl.textContent = '特别困难';
-      } else if (supportIndex >= 60) {
+      } else if (supportIndex >= 6) {
         supportLevelEl.textContent = '比较困难';
-      } else if (supportIndex >= 40) {
+      } else if (supportIndex >= 4) {
         supportLevelEl.textContent = '一般困难';
       } else {
         supportLevelEl.textContent = '轻度困难';
@@ -1763,7 +1812,47 @@
     }
 
     function updateIdentityTags(data) {
-      const identityTagsHtml = data.tags.map(tag => 
+      // 根据人员数据生成合理的身份标签
+      const tags = [];
+      
+      // 群体标签
+      if (data.group) {
+        tags.push(data.group);
+      }
+      
+      // 画像类型标签
+      if (data.portraitType === 'talent') {
+        tags.push('人才');
+      } else if (data.portraitType === 'jobseeker') {
+        tags.push('求职者');
+      }
+      
+      // 学历标签
+      if (data.education) {
+        if (data.education === '硕士') {
+          tags.push('硕士学历');
+        } else if (data.education === '本科') {
+          tags.push('本科学历');
+        } else if (data.education === '大专') {
+          tags.push('大专学历');
+        }
+      }
+      
+      // 稳定性标签
+      if (data.stability >= 70) {
+        tags.push('稳定就业');
+      } else if (data.stability >= 40) {
+        tags.push('就业中');
+      } else {
+        tags.push('待就业');
+      }
+      
+      // 技能标签 - 取前2个skills
+      if (data.skills && data.skills.length > 0) {
+        tags.push(...data.skills.slice(0, 2));
+      }
+      
+      const identityTagsHtml = tags.slice(0, 6).map(tag => 
         `<span class="px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-300 text-xs border border-blue-500/20">${tag}</span>`
       ).join('');
       document.getElementById('identity-tags').innerHTML = identityTagsHtml;
@@ -1779,12 +1868,14 @@
       const competitiveness = data.competitiveness || 50;
       const stability = data.stability || 50;
       const skill = data.skill || 50;
-      const match = data.match || 50;
-      const supportIndex = data.supportIndex || 50;
+      const match = data.match || data.competitiveness || 50;
+      // 将supportIndex从0-100范围转换为0-100范围
+      const supportIndex = (data.supportIndex ? data.supportIndex : (100 - data.competitiveness)) || 50;
+      
       new Chart(abilityCtx, {
         type: 'radar',
         data: {
-          labels: ['竞争力', '稳定性', '技能水平', '岗位匹配', '帮扶指数'],
+          labels: ['竞争力', '稳定性', '技能水平', '岗位匹配', '帮扶需求'],
           datasets: [{
             label: '能力评分',
             data: [competitiveness, stability, skill, match, supportIndex],
@@ -1853,15 +1944,27 @@
 
     window.onload = function() {
       loadPersonData();
-
-      const salaryCtx = document.getElementById('salaryChart').getContext('2d');
+    }
+    
+    function updateSalaryChart(data) {
+      const salaryCanvas = document.getElementById('salaryChart');
+      const existingChart = Chart.getChart(salaryCanvas);
+      if (existingChart) {
+        existingChart.destroy();
+      }
+      const salaryCtx = salaryCanvas.getContext('2d');
+      
+      // 根据competitiveness生成薪资趋势数据
+      const baseSalary = data.competitiveness ? Math.round(data.competitiveness / 10) : 5;
+      const salaryData = [baseSalary, baseSalary + 2, baseSalary + 4, baseSalary + 6, baseSalary + 8, baseSalary + 10];
+      
       new Chart(salaryCtx, {
         type: 'line',
         data: {
           labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
           datasets: [{
             label: '月薪(K)',
-            data: [12, 15, 18, 22, 26, 30],
+            data: salaryData,
             borderColor: 'rgba(16, 185, 129, 1)',
             backgroundColor: 'rgba(16, 185, 129, 0.1)',
             borderWidth: 3,
