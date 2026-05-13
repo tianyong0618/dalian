@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>就业人员画像 - 人社服务数字化平台</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="navbar-logo">人社服务数字平台</a>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px;" id="role-switcher" onchange="switchRole()">
+        <option value="gov">人社部门（管理端）</option>
+        <option value="org">服务机构（运营端）</option>
+        <option value="enterprise">用工企业（使用端）</option>
+      </select>
+    </div>
+  </div>
+</nav>
+
+<div class="page-content">
+  <div class="container">
+
+    <div class="page-header mb-48">
+      <h1>就业人员画像</h1>
+      <p>构建多维标签化的就业主体数字画像，激活精准识别引擎。基于多维度数据采集与动态标签体系，运用知识图谱技术构建就业人员全息画像，赋能精准服务。</p>
+    </div>
+
+    <div class="row mb-48">
+      <div class="col-3">
+        <div class="stat-card">
+          <div class="number" id="stat-total">86,452</div>
+          <div class="label">已建档人数</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="stat-card">
+          <div class="number" id="stat-tags">128</div>
+          <div class="label">标签维度</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="stat-card">
+          <div class="number" id="stat-accuracy">94.7%</div>
+          <div class="label">匹配准确率</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="stat-card">
+          <div class="number" id="stat-groups">12</div>
+          <div class="label">重点群体</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gov-only">
+    <div class="section-header mb-32">
+      <h2>📊 数据采集与整合</h2>
+      <p>整合社保、就业、人才、维权等多领域数据，实时同步更新</p>
+    </div>
+    <div class="row mb-32">
+      <div class="col-3">
+        <div class="data-source-card" data-source="social-security" onclick="showModal('data-management-modal')">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span style="font-size: 24px;">📚</span>
+            <span class="badge badge-success" style="font-size: 11px;">实时同步</span>
+          </div>
+          <h4 style="font-size: 15px; font-weight: 600; margin-bottom: 8px;">社保数据</h4>
+          <p class="text-small" style="color: var(--text-tertiary); margin-bottom: 4px;">最近更新：2026-05-08 10:30</p>
+          <p class="text-small" style="color: var(--text-tertiary);">数据量：1,234,567 条</p>
+          <div style="margin-top: 8px; font-size: 11px; color: var(--primary);">🤖 AI自动采集</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="data-source-card" data-source="employment" onclick="showModal('data-management-modal')">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span style="font-size: 24px;">💼</span>
+            <span class="badge badge-success" style="font-size: 11px;">实时同步</span>
+          </div>
+          <h4 style="font-size: 15px; font-weight: 600; margin-bottom: 8px;">就业数据</h4>
+          <p class="text-small" style="color: var(--text-tertiary); margin-bottom: 4px;">最近更新：2026-05-08 10:28</p>
+          <p class="text-small" style="color: var(--text-tertiary);">数据量：856,432 条</p>
+          <div style="margin-top: 8px; font-size: 11px; color: var(--primary);">🤖 AI自动采集</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="data-source-card" data-source="talent" onclick="showModal('data-management-modal')">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span style="font-size: 24px;">🎓</span>
+            <span class="badge badge-warning" style="font-size: 11px;">同步中</span>
+          </div>
+          <h4 style="font-size: 15px; font-weight: 600; margin-bottom: 8px;">人才数据</h4>
+          <p class="text-small" style="color: var(--text-tertiary); margin-bottom: 4px;">最近更新：2026-05-08 09:15</p>
+          <p class="text-small" style="color: var(--text-tertiary);">数据量：432,109 条</p>
+          <div style="margin-top: 8px; font-size: 11px; color: var(--primary);">🤖 AI自动采集</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="data-source-card" data-source="rights" onclick="showModal('data-management-modal')">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span style="font-size: 24px;">⚖️</span>
+            <span class="badge badge-success" style="font-size: 11px;">实时同步</span>
+          </div>
+          <h4 style="font-size: 15px; font-weight: 600; margin-bottom: 8px;">维权数据</h4>
+          <p class="text-small" style="color: var(--text-tertiary); margin-bottom: 4px;">最近更新：2026-05-08 10:25</p>
+          <p class="text-small" style="color: var(--text-tertiary);">数据量：98,765 条</p>
+          <div style="margin-top: 8px; font-size: 11px; color: var(--primary);">🤖 AI自动采集</div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-48" style="display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; background: rgba(22, 119, 255, 0.05); border-radius: var(--radius-md); border: 1px solid rgba(22, 119, 255, 0.2);">
+      <div>
+        <span style="color: var(--primary); font-weight: 600;">📡 数据同步状态：实时同步中</span>
+        <span class="text-small ml-16" style="color: var(--text-tertiary);">上次完整同步：2026-05-08 08:00</span>
+      </div>
+      <button class="btn btn-secondary btn-sm" onclick="showModal('data-management-modal')">数据管理</button>
+    </div>
+    </div>
+
+    <div class="section-header mb-32">
+      <h2>👥 人员画像管理</h2>
+      <p>搜索、查看、管理就业人员画像</p>
+    </div>
+
+    <div class="search-bar mb-24">
+      <input type="text" class="form-input" placeholder="搜索姓名、身份证号、标签..." id="person-search" onkeyup="filterPersons()">
+      <button class="btn btn-primary gov-org-only" onclick="showModal('portrait-generate-modal')">➕ 一键生成画像</button>
+      <button class="btn btn-secondary gov-org-only" onclick="showModal('tag-manage-modal')">🏷️ 标签管理</button>
+    </div>
+
+    <div class="filter-bar mb-24">
+      <select class="form-select" id="filter-group" onchange="filterPersons()">
+        <option value="">全部群体</option>
+        <option value="高校毕业生">高校毕业生</option>
+        <option value="就业困难人员">就业困难人员</option>
+        <option value="农民工">农民工</option>
+        <option value="零工人员">零工人员</option>
+        <option value="退役军人">退役军人</option>
+      </select>
+      <select class="form-select" id="filter-education" onchange="filterPersons()">
+        <option value="">全部学历</option>
+        <option value="本科及以上">本科及以上</option>
+        <option value="大专">大专</option>
+        <option value="高中及以下">高中及以下</option>
+      </select>
+      <select class="form-select" id="filter-stability" onchange="filterPersons()">
+        <option value="">稳定性排序</option>
+        <option value="high">高稳定性</option>
+        <option value="medium">中等稳定性</option>
+        <option value="low">低稳定性</option>
+      </select>
+      <select class="form-select" id="filter-portrait-type" onchange="filterPersons()">
+        <option value="">全部画像类型</option>
+        <option value="jobseeker">求职者画像</option>
+        <option value="talent">人才画像</option>
+        <option value="keygroup">重点群体画像</option>
+      </select>
+    </div>
+
+    <div class="card mb-48">
+      <table class="table" id="person-table">
+        <thead>
+          <tr>
+            <th>姓名</th>
+            <th>学历</th>
+            <th>重点群体</th>
+            <th>画像类型</th>
+            <th>教育竞争力</th>
+            <th>就业稳定性</th>
+            <th>标签</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="person-tbody">
+          <tr data-group="高校毕业生" data-education="本科及以上" data-stability="high" data-portrait-type="talent">
+            <td><strong>张三</strong></td>
+            <td>本科</td>
+            <td><span class="badge badge-info">高校毕业生</span></td>
+            <td><span class="badge" style="background: rgba(114, 46, 209, 0.1); color: var(--primary-gradient-end);">人才画像</span></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 88%;"></div></div></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 78%;"></div></div></td>
+            <td><span class="tag" style="font-size: 12px;">Java开发</span> <span class="tag" style="font-size: 12px;">3年经验</span></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(0)">详情</button> <button class="btn btn-primary btn-sm" onclick="showModal('job-recommend-modal')">推荐岗位</button></td>
+          </tr>
+          <tr data-group="就业困难人员" data-education="高中及以下" data-stability="low" data-portrait-type="jobseeker">
+            <td><strong>李四</strong></td>
+            <td>高中</td>
+            <td><span class="badge badge-warning">就业困难</span></td>
+            <td><span class="badge badge-info">求职者画像</span></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 45%;"></div></div></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 32%;"></div></div></td>
+            <td><span class="tag" style="font-size: 12px;">零工人员</span> <span class="tag" style="font-size: 12px;">技能培训</span></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(1)">详情</button> <button class="btn btn-primary btn-sm" onclick="showModal('job-recommend-modal')">推荐岗位</button></td>
+          </tr>
+          <tr data-group="农民工" data-education="高中及以下" data-stability="medium" data-portrait-type="keygroup">
+            <td><strong>王五</strong></td>
+            <td>中专</td>
+            <td><span class="badge badge-success">农民工</span></td>
+            <td><span class="badge" style="background: rgba(250, 173, 20, 0.1); color: var(--warning);">重点群体画像</span></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 52%;"></div></div></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 55%;"></div></div></td>
+            <td><span class="tag" style="font-size: 12px;">建筑工</span> <span class="tag" style="font-size: 12px;">计件工</span></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(2)">详情</button> <button class="btn btn-primary btn-sm" onclick="showModal('job-recommend-modal')">推荐岗位</button></td>
+          </tr>
+          <tr data-group="高校毕业生" data-education="本科及以上" data-stability="high" data-portrait-type="talent">
+            <td><strong>赵六</strong></td>
+            <td>硕士</td>
+            <td><span class="badge badge-info">高校毕业生</span></td>
+            <td><span class="badge" style="background: rgba(114, 46, 209, 0.1); color: var(--primary-gradient-end);">人才画像</span></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 92%;"></div></div></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div></td>
+            <td><span class="tag" style="font-size: 12px;">Python</span> <span class="tag" style="font-size: 12px;">AI算法</span></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(3)">详情</button> <button class="btn btn-primary btn-sm" onclick="showModal('job-recommend-modal')">推荐岗位</button></td>
+          </tr>
+          <tr data-group="零工人员" data-education="大专" data-stability="low" data-portrait-type="jobseeker">
+            <td><strong>孙七</strong></td>
+            <td>大专</td>
+            <td><span class="badge badge-info">零工人员</span></td>
+            <td><span class="badge badge-info">求职者画像</span></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 48%;"></div></div></td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 28%;"></div></div></td>
+            <td><span class="tag" style="font-size: 12px;">外卖骑手</span> <span class="tag" style="font-size: 12px;">灵活用工</span></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="viewPersonDetail(4)">详情</button> <button class="btn btn-primary btn-sm" onclick="showModal('job-recommend-modal')">推荐岗位</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="gov-only">
+      <div class="section-header mb-32">
+        <h2>📈 重点群体监测</h2>
+        <p>动态识别和深入分析各类重点就业群体</p>
+      </div>
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>群体类型</th>
+              <th>人数规模</th>
+              <th>就业率</th>
+              <th>主要需求</th>
+              <th>AI预警</th>
+              <th>趋势</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>高校毕业生</strong></td>
+              <td>12,456</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 91.2%;"></div></div>
+                  <span>91.2%</span>
+                </div>
+              </td>
+              <td>岗位匹配、就业指导</td>
+              <td><span style="font-size: 12px; color: var(--primary);">🤖 AI预测持续上升 ↑</span></td>
+              <td style="color: var(--success);">↑ 上升</td>
+              <td><span class="badge badge-success">监测中</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showModal('group-analysis-modal')">分析</button></td>
+            </tr>
+            <tr>
+              <td><strong>就业困难人员</strong></td>
+              <td>3,892</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 76.5%; background: var(--warning);"></div></div>
+                  <span>76.5%</span>
+                </div>
+              </td>
+              <td>技能培训、兜底安置</td>
+              <td><span style="font-size: 12px; color: var(--danger);">⚠️ AI预警：需重点关注</span></td>
+              <td style="color: var(--warning);">→ 平稳</td>
+              <td><span class="badge badge-warning">重点关注</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showModal('group-analysis-modal')">分析</button></td>
+            </tr>
+            <tr>
+              <td><strong>农民工群体</strong></td>
+              <td>28,345</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 88.7%;"></div></div>
+                  <span>88.7%</span>
+                </div>
+              </td>
+              <td>欠薪维权、技能培训</td>
+              <td><span style="font-size: 12px; color: var(--primary);">🤖 AI预测稳定</span></td>
+              <td style="color: var(--success);">↑ 上升</td>
+              <td><span class="badge badge-success">监测中</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showModal('group-analysis-modal')">分析</button></td>
+            </tr>
+            <tr>
+              <td><strong>零工从业人员</strong></td>
+              <td>15,678</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 82.3%; background: var(--warning);"></div></div>
+                  <span>82.3%</span>
+                </div>
+              </td>
+              <td>权益保障、职业培训</td>
+              <td><span style="font-size: 12px; color: var(--danger);">⚠️ AI预警：权益风险</span></td>
+              <td style="color: var(--success);">↑ 上升</td>
+              <td><span class="badge badge-warning">重点关注</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showModal('group-analysis-modal')">分析</button></td>
+            </tr>
+            <tr>
+              <td><strong>退役军人</strong></td>
+              <td>2,345</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 93.5%;"></div></div>
+                  <span>93.5%</span>
+                </div>
+              </td>
+              <td>创业扶持、技能培训</td>
+              <td><span style="font-size: 12px; color: var(--primary);">🤖 AI预测持续上升 ↑</span></td>
+              <td style="color: var(--success);">↑ 上升</td>
+              <td><span class="badge badge-success">监测中</span></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showModal('group-analysis-modal')">分析</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal-overlay" id="portrait-generate-modal">
+  <div class="modal" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3>一键生成画像</h3>
+      <button class="modal-close" onclick="closeModal('portrait-generate-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="steps mb-32">
+        <div class="step active" id="portrait-step-1">
+          <div class="step-circle">1</div>
+          <div class="step-label">选择人员</div>
+        </div>
+        <div class="step" id="portrait-step-2">
+          <div class="step-circle">2</div>
+          <div class="step-label">数据采集</div>
+        </div>
+        <div class="step" id="portrait-step-3">
+          <div class="step-circle">3</div>
+          <div class="step-label">标签生成</div>
+        </div>
+        <div class="step" id="portrait-step-4">
+          <div class="step-circle">4</div>
+          <div class="step-label">完成</div>
+        </div>
+      </div>
+
+      <div id="portrait-form-1">
+        <div class="form-group">
+          <label class="form-label">身份证号/姓名</label>
+          <input type="text" class="form-input" placeholder="请输入身份证号或姓名" id="portrait-search-input">
+        </div>
+        <div class="card" style="background: var(--bg-secondary); cursor: pointer;" onclick="selectPersonForPortrait('张三', '410xxxxxxxxxxxx1234')">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <strong>张三</strong>
+              <span class="text-small m110-8">410xxxxxxxxxxxx1234</span>
+            </div>
+            <span class="badge badge-info">高校毕业生</span>
+          </div>
+        </div>
+        <div class="card mt-8" style="background: var(--bg-secondary); cursor: pointer;" onclick="selectPersonForPortrait('李四', '410xxxxxxxxxxxx5678')">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <strong>李四</strong>
+              <span class="text-small ml-8">410xxxxxxxxxxxx5678</span>
+            </div>
+            <span class="badge badge-warning">就业困难</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="portrait-form-2" style="display: none;">
+        <h4 class="mb-16">正在采集多维度数据... <span class="badge" style="background: rgba(22, 119, 255, 0.1); color: var(--primary); font-size: 11px;">🤖 AI数据采集与分析</span></h4>
+        <div class="mb-16">
+          <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;">
+            <span>📚 社保数据</span><span style="color: var(--success);">✓ 已采集</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div>
+        </div>
+        <div class="mb-16">
+          <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;">
+            <span>💼 就业数据</span><span style="color: var(--success);">✓ 已采集</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div>
+        </div>
+        <div class="mb-16">
+          <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;">
+            <span>🎓 人才数据</span><span style="color: var(--success);">✓ 已采集</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div>
+        </div>
+        <div class="mb-16">
+          <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;">
+            <span>⚖️ 维权数据</span><span style="color: var(--success);">✓ 已采集</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div>
+        </div>
+      </div>
+
+      <div id="portrait-form-3" style="display: none;">
+        <h4 class="mb-16">正在生成动态标签... <span class="badge" style="background: rgba(114, 46, 209, 0.1); color: var(--primary-gradient-end); font-size: 11px;">🏷️ 智能标签生成中...</span></h4>
+        <div class="row mb-16">
+          <div class="col-6">
+            <div class="stat-card" style="padding: 20px;">
+              <div class="number" style="font-size: 28px;">88%</div>
+              <div class="label">教育竞争力</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="stat-card" style="padding: 20px;">
+              <div class="number" style="font-size: 28px;">78%</div>
+              <div class="label">就业稳定性</div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-16">
+          <div class="col-6">
+            <div class="stat-card" style="padding: 20px;">
+              <div class="number" style="font-size: 28px;">82%</div>
+              <div class="label">职业技能</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="stat-card" style="padding: 20px;">
+              <div class="number" style="font-size: 28px;">71%</div>
+              <div class="label">薪资趋势</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <strong class="form-label">生成标签：</strong>
+          <div style="margin-top: 8px;">
+            <span class="tag">Java开发</span>
+            <span class="tag">本科及以上</span>
+            <span class="tag">3年经验</span>
+            <span class="tag">社保连续缴纳</span>
+            <span class="tag">求职意向：互联网</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="portrait-form-4" style="display: none; text-align: center; padding: 40px 0;">
+        <div style="font-size: 64px; margin-bottom: 16px;">✨</div>
+        <h3 class="mb-8">画像生成成功！</h3>
+        <p class="text-body">张三的全息画像已生成，包含128个标签维度，匹配准确率94.7%</p>
+        <div class="mt-24" style="display: flex; gap: 12px; justify-content: center;">
+          <button class="btn btn-secondary" onclick="closeModal('portrait-generate-modal'); resetPortraitSteps()">关闭</button>
+          <button class="btn btn-primary" onclick="closeModal('portrait-generate-modal'); resetPortraitSteps(); viewPersonDetail(0)">查看画像</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" id="portrait-prev-btn" style="display: none;" onclick="prevPortraitStep()">上一步</button>
+      <button class="btn btn-primary" id="portrait-next-btn" onclick="nextPortraitStep()">下一步</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="tag-manage-modal">
+  <div class="modal" style="max-width: 900px;">
+    <div class="modal-header">
+      <h3>动态标签体系管理</h3>
+      <button class="modal-close" onclick="closeModal('tag-manage-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div style="display: flex; gap: 24px; min-height: 400px;">
+        <div style="width: 200px; border-right: 1px solid var(--border-color); padding-right: 16px;">
+          <h4 class="mb-16" style="font-size: 14px; color: var(--text-secondary);">标签分类</h4>
+          <div class="tag-category-nav" style="display: flex; flex-direction: column; gap: 4px;">
+            <button class="tag-cat-btn active" onclick="switchTagCategory('basic', this)" style="text-align: left; padding: 8px 12px; border: none; background: rgba(22, 119, 255, 0.1); color: var(--primary); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;">📋 基础信息标签</button>
+            <button class="tag-cat-btn" onclick="switchTagCategory('education', this)" style="text-align: left; padding: 8px 12px; border: none; background: none; color: var(--text-secondary); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;">🎓 教育特征标签</button>
+            <button class="tag-cat-btn" onclick="switchTagCategory('employment', this)" style="text-align: left; padding: 8px 12px; border: none; background: none; color: var(--text-secondary); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;">💼 就业特征标签</button>
+            <button class="tag-cat-btn" onclick="switchTagCategory('skill', this)" style="text-align: left; padding: 8px 12px; border: none; background: none; color: var(--text-secondary); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;">⚡ 技能标签</button>
+            <button class="tag-cat-btn" onclick="switchTagCategory('support', this)" style="text-align: left; padding: 8px 12px; border: none; background: none; color: var(--text-secondary); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;">🆘 帮扶标签</button>
+            <button class="tag-cat-btn" onclick="switchTagCategory('intent', this)" style="text-align: left; padding: 8px 12px; border: none; background: none; color: var(--text-secondary); border-radius: var(--radius-sm); cursor: pointer; font-size: 13px;">🎯 意向标签</button>
+          </div>
+          <div class="mt-16" style="padding-top: 16px; border-top: 1px solid var(--border-color);">
+            <button class="btn btn-primary btn-sm" style="width: 100%;" onclick="showNotification('AI正在智能生成标签...', 'success')">🤖 AI智能生成标签</button>
+          </div>
+        </div>
+        <div style="flex: 1;">
+          <div class="form-group">
+            <label class="form-label">添加新标签</label>
+            <div style="display: flex; gap: 8px;">
+              <input type="text" class="form-input" id="new-tag-input" placeholder="输入新标签名称">
+              <button class="btn btn-primary" onclick="addTag()">添加</button>
+            </div>
+          </div>
+          <div id="tag-list-by-category">
+            <div data-tag-category="basic">
+              <div class="mb-8"><span class="tag">年龄：25-35岁 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-8"><span class="tag">大专学历 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-8"><span class="tag">本地户籍 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+            </div>
+            <div data-tag-category="education" style="display: none;">
+              <div class="mb-8"><span class="tag">本科及以上 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--primary);">🤖 AI</span></div>
+              <div class="mb-8"><span class="tag">计算机专业 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--primary);">🤖 AI</span></div>
+              <div class="mb-8"><span class="tag">教育竞争力：高 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+            </div>
+            <div data-tag-category="employment" style="display: none;">
+              <div class="mb-8"><span class="tag">社保连续缴纳 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--primary);">🤖 AI</span></div>
+              <div class="mb-8"><span class="tag">就业稳定性：高 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-8"><span class="tag">工作年限：3-5年 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+            </div>
+            <div data-tag-category="skill" style="display: none;">
+              <div class="mb-8"><span class="tag">Java开发 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--primary);">🤖 AI</span></div>
+              <div class="mb-8"><span class="tag">Python <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-8"><span class="tag">SQL <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+            </div>
+            <div data-tag-category="support" style="display: none;">
+              <div class="mb-8"><span class="tag">就业困难人员 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-8"><span class="tag">帮扶等级：C级 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-8"><span class="tag">需技能培训 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+            </div>
+            <div data-tag-category="intent" style="display: none;">
+              <div class="mb-8"><span class="tag">求职意向：互联网 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--primary);">🤖 AI</span></div>
+              <div class="mb-8"><span class="tag">薪资期望：15-20K <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-8"><span class="tag">工作地点：本地 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+            </div>
+          </div>
+          <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-color); display: flex; gap: 16px; font-size: 13px; color: var(--text-tertiary);">
+            <span>标签总数：<strong>128</strong></span>
+            <span>AI自动生成：<strong>96</strong></span>
+            <span>手动添加：<strong>32</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('tag-manage-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="knowledge-graph-modal">
+  <div class="modal" style="max-width: 800px;">
+    <div class="modal-header">
+      <h3>知识图谱可视化</h3>
+      <button class="modal-close" onclick="closeModal('knowledge-graph-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="text-body mb-24">展示就业人员画像的多维度关联关系</p>
+<div class="mb-16" style="padding: 12px 16px; background: rgba(22, 119, 255, 0.05); border-radius: var(--radius-sm); border: 1px solid rgba(22, 119, 255, 0.2); font-size: 13px; color: var(--primary);">
+  🤖 运用知识图谱技术整合多维度数据，挖掘数据关联关系，精准提取就业人员特征
+</div>
+      <div class="card" style="background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%); min-height: 400px; position: relative; overflow: hidden;">
+        <div style="text-align: center; padding: 40px 0;">
+          <div style="display: inline-block; background: var(--primary); color: white; padding: 16px 32px; border-radius: 50px; font-weight: 600; margin-bottom: 40px;">张三（中心节点）</div>
+          <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
+            <div style="background: rgba(22, 119, 255, 0.1); padding: 16px 24px; border-radius: var(--radius-md); border: 1px solid rgba(22, 119, 255, 0.3);">
+              <div style="font-weight: 600; color: var(--primary); margin-bottom: 8px;">🎓 教育背景</div>
+              <div class="text-small">本科 / 计算机科学</div>
+            </div>
+            <div style="background: rgba(114, 46, 209, 0.1); padding: 16px 24px; border-radius: var(--radius-md); border: 1px solid rgba(114, 46, 209, 0.3);">
+              <div style="font-weight: 600; color: var(--primary-gradient-end); margin-bottom: 8px;">💼 就业信息</div>
+              <div class="text-small">Java开发 / 3年经验</div>
+            </div>
+            <div style="background: rgba(82, 196, 26, 0.1); padding: 16px 24px; border-radius: var(--radius-md); border: 1px solid rgba(82, 196, 26, 0.3);">
+              <div style="font-weight: 600; color: var(--success); margin-bottom: 8px;">🏷️ 技能标签</div>
+              <div class="text-small">Java / SQL / 项目管理</div>
+            </div>
+            <div style="background: rgba(250, 173, 20, 0.1); padding: 16px 24px; border-radius: var(--radius-md); border: 1px solid rgba(250, 173, 20, 0.3);">
+              <div style="font-weight: 600; color: var(--warning); margin-bottom: 8px;">📈 薪资趋势</div>
+              <div class="text-small">月均 15K / 年增长 12%</div>
+            </div>
+            <div style="background: rgba(255, 77, 79, 0.1); padding: 16px 24px; border-radius: var(--radius-md); border: 1px solid rgba(255, 77, 79, 0.3);">
+              <div style="font-weight: 600; color: var(--danger); margin-bottom: 8px;">👥 群体属性</div>
+              <div class="text-small">高校毕业生 / 重点帮扶</div>
+            </div>
+            <div style="background: rgba(22, 119, 255, 0.1); padding: 16px 24px; border-radius: var(--radius-md); border: 1px solid rgba(22, 119, 255, 0.3);">
+              <div style="font-weight: 600; color: var(--primary); margin-bottom: 8px;">⚖️ 维权记录</div>
+              <div class="text-small">无纠纷记录 / 信用良好</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('knowledge-graph-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="job-recommend-modal">
+  <div class="modal" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3>岗位精准推荐</h3>
+      <button class="modal-close" onclick="closeModal('job-recommend-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="text-body mb-16">基于张三的画像数据，智能推荐以下岗位：</p>
+      <div class="card mb-16" style="border-left: 4px solid var(--primary);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 4px 0;">高级Java开发工程师<span class="badge" style="background: rgba(22, 119, 255, 0.1); color: var(--primary); font-size: 11px; margin-left: 8px;">🎯 AI精准匹配 98%</span></h4>
+            <p class="text-small">XX科技有限公司 | 15-25K | 匹配度：98%</p>
+          </div>
+          <button class="btn btn-primary btn-sm">投递简历</button>
+        </div>
+      </div>
+      <div class="card mb-16" style="border-left: 4px solid var(--primary);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 4px 0;">后端开发工程师（Python）<span class="badge" style="background: rgba(22, 119, 255, 0.1); color: var(--primary); font-size: 11px; margin-left: 8px;">🎯 AI精准匹配 95%</span></h4>
+            <p class="text-small">XX互联网公司 | 12-20K | 匹配度：95%</p>
+          </div>
+          <button class="btn btn-primary btn-sm">投递简历</button>
+        </div>
+      </div>
+      <div class="card mb-16" style="border-left: 4px solid var(--primary);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 4px 0;">全栈开发工程师<span class="badge" style="background: rgba(22, 119, 255, 0.1); color: var(--primary); font-size: 11px; margin-left: 8px;">🎯 AI精准匹配 92%</span></h4>
+            <p class="text-small">XX创业公司 | 10-18K | 匹配度：92%</p>
+          </div>
+          <button class="btn btn-primary btn-sm">投递简历</button>
+        </div>
+      </div>
+      <div class="card" style="border-left: 4px solid var(--primary);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h4 style="margin: 0 0 4px 0;">技术项目经理<span class="badge" style="background: rgba(22, 119, 255, 0.1); color: var(--primary); font-size: 11px; margin-left: 8px;">🎯 AI精准匹配 88%</span></h4>
+            <p class="text-small">XX软件公司 | 18-30K | 匹配度：88%</p>
+          </div>
+          <button class="btn btn-primary btn-sm">投递简历</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('job-recommend-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="group-analysis-modal">
+  <div class="modal" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3>重点群体分析</h3>
+      <button class="modal-close" onclick="closeModal('group-analysis-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">选择分析群体</label>
+        <select class="form-select" onchange="updateGroupAnalysis(this.value)">
+          <option value="高校毕业生">高校毕业生</option>
+          <option value="就业困难人员">就业困难人员</option>
+          <option value="农民工">农民工</option>
+          <option value="零工人员">零工人员</option>
+          <option value="退役军人">退役军人</option>
+        </select>
+      </div>
+      <div class="row mb-16">
+        <div class="col-6">
+          <div class="stat-card" style="padding: 20px;">
+            <div class="number" style="font-size: 28px;">12,456</div>
+            <div class="label">群体规模</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="stat-card" style="padding: 20px;">
+            <div class="number" style="font-size: 28px;">91.2%</div>
+            <div class="label">就业率</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h4 class="mb-16">群体特征分析</h4>
+        <div class="mb-12">
+          <span class="tag">平均年龄：24岁</span>
+          <span class="tag">本科及以上：78%</span>
+          <span class="tag">平均薪资：8.5K</span>
+        </div>
+        <div class="mb-12">
+          <span class="tag">求职意向：互联网（45%）</span>
+          <span class="tag">求职意向：金融（23%）</span>
+          <span class="tag">求职意向：教育（18%）</span>
+        </div>
+        <div>
+          <span class="tag">主要需求：岗位匹配</span>
+          <span class="tag">主要需求：就业指导</span>
+          <span class="tag">主要需求：技能培训</span>
+        </div>
+      </div>
+        <div class="mt-16">
+          <h4 class="mb-8">AI智能分析</h4>
+          <div class="card mb-8" style="padding: 12px; background: rgba(22, 119, 255, 0.05); font-size: 13px;">
+            🤖 <strong>就业率预测：</strong>基于历史数据，预计下季度就业率将<span style="color: var(--success);">上升2%</span>
+          </div>
+          <div class="card" style="padding: 12px; background: rgba(22, 119, 255, 0.05); font-size: 13px;">
+            🤖 <strong>帮扶建议：</strong>建议增加互联网行业岗位推荐，预计可提升匹配率<span style="color: var(--success);">15%</span>
+          </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('group-analysis-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="person-detail-modal" style="padding: 0;">
+  <div class="modal" style="width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh; border-radius: 0; overflow: hidden; display: flex; flex-direction: column; background: #050810;">
+    <style>
+      .detail-container { display: grid; grid-template-columns: 25% 50% 25%; gap: 20px; padding: 24px; height: 100%; }
+      .d-panel { background: linear-gradient(135deg, #0d1525 0%, #111a2e 100%); border: 1px solid rgba(0,212,255,0.25); border-radius: 16px; padding: 24px; position: relative; }
+      .d-panel::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #00d4ff, transparent); }
+      .d-left { display: flex; flex-direction: column; align-items: center; }
+      .d-label { font-size: 14px; color: #00d4ff; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+      .d-label::before { content: ''; width: 8px; height: 8px; background: #00d4ff; border-radius: 2px; }
+      .d-avatar-wrap { position: relative; width: 180px; height: 180px; margin-bottom: 20px; }
+      .d-avatar-ring-o { position: absolute; inset: 0; border-radius: 50%; padding: 6px; background: conic-gradient(from 135deg, transparent 0deg, #f5a623 90deg, #f8e71c 180deg, transparent 270deg, transparent 360deg); -webkit-mask: radial-gradient(transparent 92%, black 93%); mask: radial-gradient(transparent 92%, black 93%); animation: d-ring-rotate 8s linear infinite; }
+      @keyframes d-ring-rotate { to { transform: rotate(360deg); } }
+      .d-avatar-ring-i { position: absolute; inset: 8px; border-radius: 50%; border: 4px solid #00d4ff; box-shadow: 0 0 20px rgba(0,212,255,0.4), 0 0 40px rgba(0,212,255,0.2); }
+      .d-avatar { position: absolute; inset: 16px; border-radius: 50%; background: linear-gradient(135deg, #1a2a4a, #2a3a5a); display: flex; align-items: center; justify-content: center; font-size: 64px; }
+      .d-particles { position: absolute; inset: 0; pointer-events: none; }
+      .d-particle { position: absolute; width: 3px; height: 3px; background: #00d4ff; border-radius: 50%; opacity: 0.6; animation: d-float 3s ease-in-out infinite; }
+      @keyframes d-float { 0%,100% { transform: translateY(0); opacity: 0.6; } 50% { transform: translateY(-10px); opacity: 0.3; } }
+      .d-name { font-size: 48px; font-weight: 700; color: #fff; margin-bottom: 20px; text-shadow: 0 0 30px rgba(255,255,255,0.2); }
+      .d-ability { width: 100%; padding: 0 10px; }
+      .d-ability-item { margin-bottom: 16px; }
+      .d-ability-h { display: flex; justify-content: space-between; margin-bottom: 6px; }
+      .d-ability-l { font-size: 13px; color: #fff; }
+      .d-ability-v { font-size: 15px; color: #00d4ff; font-weight: 600; }
+      .d-ability-bar { height: 8px; background: rgba(42,90,138,0.3); border-radius: 4px; overflow: hidden; }
+      .d-ability-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #00d4ff, #4a90d9); }
+      .d-ability-sub { font-size: 11px; color: #556677; margin-top: 4px; }
+      .d-center { display: flex; flex-direction: column; }
+      .d-center-h { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+      .d-center-t { font-size: 32px; font-weight: 700; color: #fff; }
+      .d-verified { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 4px 12px; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; font-size: 12px; color: #00d4ff; }
+      .d-verified::before { content: ''; width: 8px; height: 8px; background: #00c853; border-radius: 50%; animation: d-pulse 2s infinite; }
+      @keyframes d-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+      .d-radar-wrap { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; }
+      .d-radar-canvas { position: relative; }
+      #radarCanvas { display: block; }
+      .d-badge { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 90px; height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .d-badge-h { width: 80px; height: 90px; background: linear-gradient(135deg, #d4af37, #f5d76e, #d4af37); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .d-badge-s { font-size: 28px; font-weight: 800; color: #1a1a1a; }
+      .d-badge-l { font-size: 10px; color: #3a3a3a; }
+      .d-legend { position: absolute; bottom: 20px; right: 20px; display: flex; gap: 16px; }
+      .d-legend-i { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #8899aa; }
+      .d-legend-d { width: 8px; height: 8px; border-radius: 50%; }
+      .d-right { display: flex; flex-direction: column; gap: 16px; }
+      .d-score-card { background: rgba(13,21,37,0.6); border: 1px solid rgba(0,212,255,0.2); border-radius: 12px; padding: 16px; }
+      .d-score-t { font-size: 16px; color: #fff; margin-bottom: 12px; }
+      .d-score-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+      .d-score-l { font-size: 12px; color: #8899aa; }
+      .d-score-v { font-size: 14px; color: #00d4ff; }
+      .d-stars { display: flex; gap: 4px; }
+      .d-star { font-size: 18px; color: rgba(255,255,255,0.2); }
+      .d-star.f { color: #f5a623; text-shadow: 0 0 8px rgba(245,166,35,0.5); }
+      .d-rec-list { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+      .d-rec-item { display: flex; align-items: center; gap: 12px; padding: 14px; background: linear-gradient(135deg, rgba(15,24,37,0.8), rgba(26,37,53,0.8)); border: 1px solid rgba(0,212,255,0.15); border-left: 4px solid #00d4ff; border-radius: 10px; }
+      .d-rec-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #1a2a4a, #2a3a5a); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+      .d-rec-c { flex: 1; min-width: 0; }
+      .d-rec-t { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+      .d-rec-d { font-size: 11px; color: #8899aa; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .d-rec-arrow { color: #00d4ff; font-size: 18px; }
+    </style>
+    <div class="detail-container" id="detail-content"></div>
+    <button class="modal-close" onclick="closeModal('person-detail-modal')" style="position: fixed; top: 20px; right: 28px; z-index: 200; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.7); font-size: 24px; cursor: pointer;">&times;</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="data-management-modal">
+  <div class="modal" style="max-width: 900px;">
+    <div class="modal-header">
+      <h3>数据管理</h3>
+      <button class="modal-close" onclick="closeModal('data-management-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="tabs" style="display: flex; border-bottom: 1px solid var(--border-color); margin-bottom: 24px;">
+        <button class="tab-btn active" onclick="switchDataTab('log', this)" style="padding: 12px 24px; border: none; background: none; cursor: pointer; border-bottom: 2px solid var(--primary); color: var(--primary); font-weight: 600;">采集日志</button>
+        <button class="tab-btn" onclick="switchDataTab('verify', this)" style="padding: 12px 24px; border: none; background: none; cursor: pointer; color: var(--text-secondary);">数据校验</button>
+        <button class="tab-btn" onclick="switchDataTab('security', this)" style="padding: 12px 24px; border: none; background: none; cursor: pointer; color: var(--text-secondary);">安全管理</button>
+        <button class="tab-btn" onclick="switchDataTab('clean', this)" style="padding: 12px 24px; border: none; background: none; cursor: pointer; color: var(--text-secondary);">数据清洗</button>
+      </div>
+
+      <div id="data-tab-log">
+        <table class="table">
+          <thead><tr><th>采集时间</th><th>数据来源</th><th>数据条数</th><th>状态</th></tr></thead>
+          <tbody>
+            <tr><td>2026-05-08 10:30</td><td>社保数据</td><td>1,234</td><td><span class="badge badge-success">成功</span></td></tr>
+            <tr><td>2026-05-08 10:28</td><td>就业数据</td><td>856</td><td><span class="badge badge-success">成功</span></td></tr>
+            <tr><td>2026-05-08 09:15</td><td>人才数据</td><td>432</td><td><span class="badge badge-warning">部分成功</span></td></tr>
+            <tr><td>2026-05-08 10:25</td><td>维权数据</td><td>98</td><td><span class="badge badge-success">成功</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="data-tab-verify" style="display: none;">
+        <div class="row mb-16">
+          <div class="col-4"><div class="stat-card" style="padding: 16px;"><div class="number" style="font-size: 24px;">99.2%</div><div class="label">格式校验通过率</div></div></div>
+          <div class="col-4"><div class="stat-card" style="padding: 16px;"><div class="number" style="font-size: 24px;">98.7%</div><div class="label">完整性校验</div></div></div>
+          <div class="col-4"><div class="stat-card" style="padding: 16px;"><div class="number" style="font-size: 24px;">97.5%</div><div class="label">去重成功率</div></div></div>
+        </div>
+        
+        <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+          <button class="btn btn-primary" onclick="runDataVerification()">🔄 执行校验</button>
+          <button class="btn btn-secondary" onclick="viewVerificationHistory()">📋 校验历史</button>
+        </div>
+
+        <h4 class="mb-16">校验规则配置</h4>
+        <div class="card mb-8" style="padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-weight: 600; margin-bottom: 4px;">✅ 身份证号格式校验</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">自动校验18位身份证号格式</div>
+            </div>
+            <label class="form-label" style="margin-bottom: 0;">
+              <input type="checkbox" checked style="accent-color: var(--primary);">
+            </label>
+          </div>
+        </div>
+        <div class="card mb-8" style="padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-weight: 600; margin-bottom: 4px;">✅ 必填字段完整性检查</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">检查姓名、身份证号等必填字段</div>
+            </div>
+            <label class="form-label" style="margin-bottom: 0;">
+              <input type="checkbox" checked style="accent-color: var(--primary);">
+            </label>
+          </div>
+        </div>
+        <div class="card mb-8" style="padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-weight: 600; margin-bottom: 4px;">✅ 重复数据自动去重</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">基于身份证号自动识别重复记录</div>
+            </div>
+            <label class="form-label" style="margin-bottom: 0;">
+              <input type="checkbox" checked style="accent-color: var(--primary);">
+            </label>
+          </div>
+        </div>
+        <div class="card mb-16" style="padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-weight: 600; margin-bottom: 4px;">✅ 异常值检测与标记</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">识别年龄、薪资等字段异常值</div>
+            </div>
+            <label class="form-label" style="margin-bottom: 0;">
+              <input type="checkbox" checked style="accent-color: var(--primary);">
+            </label>
+          </div>
+        </div>
+
+        <div id="verify-result" style="display: none;" class="card" style="padding: 16px; border-left: 4px solid var(--success);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <span style="font-size: 24px;">✅</span>
+            <div>
+              <div style="font-weight: 600;">校验完成</div>
+              <div style="font-size: 13px; color: var(--text-secondary);" id="verify-time"></div>
+            </div>
+          </div>
+          <table class="table" style="font-size: 13px;">
+            <thead><tr><th>校验项</th><th>总数</th><th>通过</th><th>失败</th><th>通过率</th></tr></thead>
+            <tbody>
+              <tr><td>格式校验</td><td>1,234</td><td>1,224</td><td>10</td><td><span style="color: var(--success);">99.2%</span></td></tr>
+              <tr><td>完整性校验</td><td>1,234</td><td>1,218</td><td>16</td><td><span style="color: var(--success);">98.7%</span></td></tr>
+              <tr><td>去重校验</td><td>1,234</td><td>1,203</td><td>31</td><td><span style="color: var(--success);">97.5%</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="data-tab-security" style="display: none;" class="gov-only">
+        <div class="mb-16">
+          <h4 class="mb-8">数据加密状态</h4>
+          <div class="card" style="padding: 16px; background: rgba(82, 196, 26, 0.1); border: 1px solid rgba(82, 196, 26, 0.3);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-weight: 600; display: flex; align-items: center; gap: 8px;">🔒 敏感数据已加密存储</div>
+                <div style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">加密方式：AES-256 | 最后更新：2026-05-08 08:00</div>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="showNotification('加密状态已验证', 'success')">验证加密</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-16">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <h4>访问权限设置</h4>
+            <button class="btn btn-primary btn-sm" onclick="showNotification('权限配置已保存', 'success')">保存配置</button>
+          </div>
+          <div class="card mb-8" style="padding: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-weight: 600;">人社部门</div>
+                <div style="font-size: 13px; color: var(--text-secondary);">全部权限（查看/修改/删除/导出）</div>
+              </div>
+              <span class="badge badge-success">全部权限</span>
+            </div>
+          </div>
+          <div class="card mb-8" style="padding: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-weight: 600;">服务机构</div>
+                <div style="font-size: 13px; color: var(--text-secondary);">读取权限（仅查看数据）</div>
+              </div>
+              <select class="form-select" style="width: auto; padding: 6px 12px; font-size: 13px;" onchange="updateOrgPermission(this)">
+                <option value="read">仅读取</option>
+                <option value="read-export">读取+导出</option>
+              </select>
+            </div>
+          </div>
+          <div class="card" style="padding: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-weight: 600;">用工企业</div>
+                <div style="font-size: 13px; color: var(--text-secondary);">仅人才画像数据（脱敏处理）</div>
+              </div>
+              <select class="form-select" style="width: auto; padding: 6px 12px; font-size: 13px;" onchange="updateEnterprisePermission(this)">
+                <option value="talent-only">仅人才画像</option>
+                <option value="none">无权限</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <h4>操作日志（最近5条）</h4>
+            <button class="btn btn-secondary btn-sm" onclick="showNotification('日志已导出', 'success')">导出日志</button>
+          </div>
+          <div class="card mb-8" style="padding: 16px; font-size: 13px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="color: var(--primary);">张三</span>（人社部门）查看了李四的画像
+              </div>
+              <span style="color: var(--text-tertiary);">2026-05-08 10:30</span>
+            </div>
+          </div>
+          <div class="card mb-8" style="padding: 16px; font-size: 13px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="color: var(--primary);">王五</span>（机构）导出了群体数据
+              </div>
+              <span style="color: var(--text-tertiary);">2026-05-08 09:15</span>
+            </div>
+          </div>
+          <div class="card mb-8" style="padding: 16px; font-size: 13px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="color: var(--primary);">系统</span> 自动完成数据备份
+              </div>
+              <span style="color: var(--text-tertiary);">2026-05-08 08:00</span>
+            </div>
+          </div>
+          <div class="card mb-8" style="padding: 16px; font-size: 13px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="color: var(--primary);">赵六</span>（人社部门）修改了标签配置
+              </div>
+              <span style="color: var(--text-tertiary);">2026-05-08 07:30</span>
+            </div>
+          </div>
+          <div class="card" style="padding: 16px; font-size: 13px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="color: var(--primary);">孙七</span>（企业）查看了张三的人才画像
+              </div>
+              <span style="color: var(--text-tertiary);">2026-05-08 09:45</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="data-tab-clean" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <h4>清洗规则配置</h4>
+          <div style="display: flex; gap: 12px;">
+            <button class="btn btn-secondary" onclick="resetCleanConfig()">🔄 重置默认</button>
+            <button class="btn btn-primary" onclick="saveCleanConfig()">💾 保存配置</button>
+          </div>
+        </div>
+        
+        <div class="card mb-16" style="padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-weight: 600; margin-bottom: 4px;">✅ 自动去重</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">基于身份证号和姓名自动识别并合并重复记录</div>
+            </div>
+            <label class="form-label" style="margin-bottom: 0;">
+              <input type="checkbox" checked style="accent-color: var(--primary);" id="clean-dedup">
+            </label>
+          </div>
+        </div>
+        
+        <div class="card mb-16" style="padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-weight: 600; margin-bottom: 4px;">✅ 异常值处理</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">识别并标记年龄、薪资等字段的异常值</div>
+            </div>
+            <label class="form-label" style="margin-bottom: 0;">
+              <input type="checkbox" checked style="accent-color: var(--primary);" id="clean-anomaly">
+            </label>
+          </div>
+        </div>
+        
+        <div class="card mb-16" style="padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-weight: 600; margin-bottom: 4px;">✅ 格式标准化</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">统一日期格式、学历名称等数据格式</div>
+            </div>
+            <label class="form-label" style="margin-bottom: 0;">
+              <input type="checkbox" checked style="accent-color: var(--primary);" id="clean-format">
+            </label>
+          </div>
+        </div>
+        
+        <div class="card mb-16" style="padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-weight: 600; margin-bottom: 4px;">⚠️ 空值填充（谨慎使用）</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">使用默认值填充空字段，可能影响数据准确性</div>
+            </div>
+            <label class="form-label" style="margin-bottom: 0;">
+              <input type="checkbox" style="accent-color: var(--primary);" id="clean-fill">
+            </label>
+          </div>
+        </div>
+
+        <div class="mb-16">
+          <h4 class="mb-12">执行数据清洗</h4>
+          <div style="background: rgba(22, 119, 255, 0.05); border: 1px solid rgba(22, 119, 255, 0.2); border-radius: var(--radius-md); padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <div>
+                <div style="font-weight: 600; color: var(--primary);">上次清洗：2026-05-08 08:00</div>
+                <div style="font-size: 13px; color: var(--text-secondary);">处理记录数：1,234 条 | 清洗成功率：99.1%</div>
+              </div>
+              <div id="clean-progress" style="display: none;">
+                <div style="width: 200px; height: 8px; background: rgba(22, 119, 255, 0.2); border-radius: 4px; overflow: hidden;">
+                  <div id="clean-progress-bar" style="height: 100%; background: var(--primary); width: 0%; transition: width 0.3s ease;"></div>
+                </div>
+                <div style="font-size: 12px; color: var(--text-secondary); text-align: center; margin-top: 4px;" id="clean-progress-text"></div>
+              </div>
+            </div>
+            <button class="btn btn-primary" onclick="executeClean()" style="width: 100%;">🚀 立即执行清洗</button>
+          </div>
+        </div>
+
+        <div id="clean-result" style="display: none;" class="card">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <span style="font-size: 24px;">✅</span>
+            <div>
+              <div style="font-weight: 600;">清洗完成</div>
+              <div style="font-size: 13px; color: var(--text-secondary);">共处理 1,234 条记录</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4"><div class="stat-card" style="padding: 12px;"><div class="number" style="font-size: 20px;">99.1%</div><div class="label">成功率</div></div></div>
+            <div class="col-4"><div class="stat-card" style="padding: 12px;"><div class="number" style="font-size: 20px;">12</div><div class="label">去重数量</div></div></div>
+            <div class="col-4"><div class="stat-card" style="padding: 12px;"><div class="number" style="font-size: 20px;">8</div><div class="label">异常值标记</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="notification" id="notification" style="display: none;">
+  <span id="notification-msg"></span>
+</div>
+
+<script>
+let currentUserType = 'gov';
+function switchUserType(type) {
+  currentUserType = type;
+  const typeNames = { gov: '人社部门', org: '经营性人力资源服务机构', enterprise: '用工企业' };
+
+  document.querySelectorAll('.gov-only').forEach(el => {
+    el.style.display = type === 'gov' ? '' : 'none';
+  });
+
+  document.querySelectorAll('.org-only').forEach(el => {
+    el.style.display = type === 'org' ? '' : 'none';
+  });
+
+  document.querySelectorAll('.gov-org-only').forEach(el => {
+    el.style.display = (type === 'gov' || type === 'org') ? '' : 'none';
+  });
+
+  document.querySelectorAll('.enterprise-hidden').forEach(el => {
+    el.style.display = type === 'enterprise' ? 'none' : '';
+  });
+
+  document.querySelectorAll('.gov-org-enterprise-all').forEach(el => {
+    el.style.display = '';
+  });
+
+  document.querySelectorAll('.portrait-tab').forEach((btn, idx) => {
+    if (type === 'gov') {
+      btn.style.display = '';
+    } else if (type === 'org') {
+      btn.style.display = idx === 0 || idx === 2 ? '' : 'none';
+    } else {
+      btn.style.display = idx === 1 ? '' : 'none';
+    }
+  });
+
+  const securityTab = document.querySelector('#data-tab-security');
+  if (securityTab) {
+    securityTab.style.display = type === 'gov' ? '' : 'none';
+  }
+
+  filterPersonsByPermission(type);
+}
+
+function filterPersonsByPermission(type) {
+  const rows = document.querySelectorAll('#person-tbody tr');
+  
+  rows.forEach(row => {
+    const portraitType = row.getAttribute('data-portrait-type');
+    let show = true;
+    
+    if (type === 'enterprise') {
+      show = (portraitType === 'talent');
+    } else if (type === 'org') {
+      show = (portraitType !== 'talent');
+    }
+    
+    row.style.display = show ? '' : 'none';
+  });
+}
+
+function switchRole() {
+  const select = document.getElementById('role-switcher');
+  const type = select.value;
+  switchUserType(type);
+}
+const personData = [
+  { name: "张三", idCard: "410xxxxxxxxxxxx1234", group: "高校毕业生", education: "本科", portraitType: "talent", competitiveness: 88, stability: 78, skill: 82, match: 91, salaryExp: "15K", tags: ["Java开发", "本科及以上", "3年经验", "社保连续缴纳", "求职意向：互联网"], services: ["📩 推荐岗位：高级Java开发（98%）", "📚 推荐培训：Java进阶（免费）", "💰 可申请补贴：2000元", "🎓 职业路径：Java→专家→架构师"] },
+  { name: "李四", idCard: "410xxxxxxxxxxxx5678", group: "就业困难人员", education: "高中", portraitType: "jobseeker", competitiveness: 45, stability: 32, skill: 38, supportIndex: 75, salaryTrend: 65, tags: ["零工人员", "技能培训", "就业帮扶", "高中及以下"], services: ["📩 推荐岗位：仓管员（85%）", "📚 推荐培训：叉车证（免费）", "💰 可申请补贴：就业困难补贴1500元", "🆘 帮扶计划：一对一就业指导"] },
+  { name: "王五", idCard: "410xxxxxxxxxxxx9012", group: "农民工", education: "中专", portraitType: "keygroup", competitiveness: 52, stability: 55, skill: 48, groupScale: "28,345", groupRate: 88.7, groupDemand: "欠薪维权", tags: ["建筑工", "计件工", "农民工", "中专学历"], services: ["📩 推荐岗位：建筑工长（82%）", "📚 推荐培训：安全员证", "💰 维权通道：在线投诉", "🆘 帮扶计划：法律援助"] },
+  { name: "赵六", idCard: "410xxxxxxxxxxxx3456", group: "高校毕业生", education: "硕士", portraitType: "talent", competitiveness: 92, stability: 85, skill: 90, match: 95, salaryExp: "20K", tags: ["Python", "AI算法", "硕士", "社保连续缴纳"], services: ["📩 推荐岗位：AI工程师（95%）", "📚 推荐培训：深度学习（免费）", "💰 可申请补贴：人才引进5000元", "🎓 职业路径：AI→架构师"] },
+  { name: "孙七", idCard: "410xxxxxxxxxxxx7890", group: "零工人员", education: "大专", portraitType: "jobseeker", competitiveness: 48, stability: 28, skill: 42, supportIndex: 68, salaryTrend: 55, tags: ["外卖骑手", "灵活用工", "零工人员", "大专"], services: ["📩 推荐岗位：骑手队长（78%）", "📚 推荐培训：物流管理", "💰 可申请补贴：灵活就业补贴800元", "🆘 帮扶计划：职业转型指导"] }
+];
+
+function filterPersons() {
+  const search = document.getElementById('person-search').value.toLowerCase();
+  const group = document.getElementById('filter-group').value;
+  const education = document.getElementById('filter-education').value;
+  const stability = document.getElementById('filter-stability').value;
+  const portraitType = document.getElementById('filter-portrait-type').value;
+
+  const rows = document.querySelectorAll('#person-tbody tr');
+  rows.forEach(row => {
+    let show = true;
+    
+    const rowPortraitType = row.getAttribute('data-portrait-type');
+    if (currentUserType === 'enterprise' && rowPortraitType !== 'talent') {
+      show = false;
+    } else if (currentUserType === 'org' && rowPortraitType === 'talent') {
+      show = false;
+    }
+    
+    if (show && search && !row.textContent.toLowerCase().includes(search)) show = false;
+    if (show && group && row.getAttribute('data-group') !== group) show = false;
+    if (show && education && row.getAttribute('data-education') !== education) show = false;
+    if (show && stability && row.getAttribute('data-stability') !== stability) show = false;
+    if (show && portraitType && row.getAttribute('data-portrait-type') !== portraitType) show = false;
+    row.style.display = show ? '' : 'none';
+  });
+}
+
+function viewPersonDetail(index) {
+  const person = personData[index];
+  
+  if (currentUserType === 'enterprise' && person.portraitType !== 'talent') {
+    showNotification('企业用户仅能查看人才画像，请选择标注为"人才画像"的人员', 'warning');
+    return;
+  }
+  
+  if (currentUserType === 'org' && person.portraitType === 'talent') {
+    showNotification('服务机构用户暂无法查看人才画像，请选择求职者画像或重点群体画像', 'warning');
+    return;
+  }
+  
+  updatePersonDetail(person);
+  showModal('person-detail-modal');
+}
+
+function updatePersonDetail(person) {
+  const detailContent = document.querySelector('#detail-content');
+  if (!detailContent) {
+    console.error('detailContent not found');
+    return;
+  }
+  const isEnterprise = currentUserType === 'enterprise';
+  
+  // 生成左侧面板HTML - 高科技设计
+  let html = `
+    <div class="d-panel d-left">
+      <div class="d-label">个人档案</div>
+      <div class="d-avatar-wrap">
+        <div class="d-avatar-ring-o"></div>
+        <div class="d-avatar-ring-i"></div>
+        <div class="d-avatar">👤</div>
+        <div class="d-particles">
+          <div class="d-particle" style="top:20%;left:10%;animation-delay:0s;"></div>
+          <div class="d-particle" style="top:60%;left:5%;animation-delay:0.5s;"></div>
+          <div class="d-particle" style="top:80%;left:20%;animation-delay:1s;"></div>
+          <div class="d-particle" style="top:30%;left:85%;animation-delay:1.5s;"></div>
+          <div class="d-particle" style="top:70%;left:90%;animation-delay:2s;"></div>
+        </div>
+      </div>
+      <div class="d-name">${person.name}</div>
+      <div class="d-ability">
+        <div class="d-ability-item">
+          <div class="d-ability-h">
+            <span class="d-ability-l">教育竞争力</span>
+            <span class="d-ability-v">${person.competitiveness}%</span>
+          </div>
+          <div class="d-ability-bar"><div class="d-ability-fill" style="width:${person.competitiveness}%"></div></div>
+          <div class="d-ability-sub">高于同群体 ${Math.round(person.competitiveness - 50)}%</div>
+        </div>
+        <div class="d-ability-item">
+          <div class="d-ability-h">
+            <span class="d-ability-l">就业稳定性</span>
+            <span class="d-ability-v">${person.stability}%</span>
+          </div>
+          <div class="d-ability-bar"><div class="d-ability-fill" style="width:${person.stability}%"></div></div>
+          <div class="d-ability-sub">${person.stability >= 70 ? '稳定性良好' : '需关注'}</div>
+        </div>
+        <div class="d-ability-item">
+          <div class="d-ability-h">
+            <span class="d-ability-l">职业技能</span>
+            <span class="d-ability-v">${person.skill || 60}%</span>
+          </div>
+          <div class="d-ability-bar"><div class="d-ability-fill" style="width:${person.skill || 60}%"></div></div>
+          <div class="d-ability-sub">${getSkillLevel(person.skill || 60)}</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // 中间面板 - 雷达图
+  html += `
+    <div class="d-panel d-center">
+      <div class="d-center-h">
+        <div>
+          <div class="d-center-t">能力雷达</div>
+          <div class="d-verified">身份已验证</div>
+        </div>
+      </div>
+      <div class="d-radar-wrap">
+        <div class="d-radar-canvas">
+          <canvas id="radarCanvas" width="350" height="350"></canvas>
+        </div>
+        <div class="d-badge">
+          <div class="d-badge-h">
+            <div class="d-badge-s">${person.match || person.competitiveness || 85}</div>
+            <div class="d-badge-l">匹配度</div>
+          </div>
+        </div>
+        <div class="d-legend">
+          <div class="d-legend-i"><div class="d-legend-d" style="background:#00d4ff;"></div>当前人员</div>
+          <div class="d-legend-i"><div class="d-legend-d" style="background:rgba(255,255,255,0.3);"></div>群体平均</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // 右侧面板
+  html += `
+    <div class="d-right">
+      <div class="d-score-card">
+        <div class="d-score-t">综合评分</div>
+        <div class="d-score-row">
+          <span class="d-score-l">学历等级</span>
+          <div class="d-stars">
+            ${getStars(getEducationLevel(person.education))}
+          </div>
+        </div>
+        <div class="d-score-row">
+          <span class="d-score-l">技能水平</span>
+          <div class="d-stars">
+            ${getStars(Math.round((person.skill || 60) / 20))}
+          </div>
+        </div>
+        <div class="d-score-row">
+          <span class="d-score-l">经验年限</span>
+          <span class="d-score-v">${getExperienceYears(person.tags)}</span>
+        </div>
+      </div>
+      
+      <div class="d-panel" style="flex:1;">
+        <div class="d-label">推荐服务</div>
+        <div class="d-rec-list">
+          ${person.services.map(service => `
+            <div class="d-rec-item">
+              <div class="d-rec-avatar">${service.charAt(0)}</div>
+              <div class="d-rec-c">
+                <div class="d-rec-t">${service.split('：')[0]}</div>
+                <div class="d-rec-d">${service.split('：')[1] || ''}</div>
+              </div>
+              <div class="d-rec-arrow">›</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+
+  detailContent.innerHTML = html;
+  
+  // 绘制雷达图
+  setTimeout(() => drawRadarChart(person), 100);
+}
+
+function getSkillLevel(score) {
+  if (score >= 90) return '专家级';
+  if (score >= 80) return '高级';
+  if (score >= 70) return '中级';
+  if (score >= 60) return '初级';
+  return '入门';
+}
+
+function getEducationLevel(education) {
+  const levels = { '硕士': 5, '本科': 4, '大专': 3, '中专': 2, '高中': 2, '初中': 1 };
+  return levels[education] || 3;
+}
+
+function getStars(count) {
+  let html = '';
+  for (let i = 0; i < 5; i++) {
+    html += `<span class="d-star ${i < count ? 'f' : ''}">★</span>`;
+  }
+  return html;
+}
+
+function getExperienceYears(tags) {
+  for (const tag of tags) {
+    if (tag.includes('年经验')) {
+      return tag.replace('经验', '');
+    }
+  }
+  return '1-2年';
+}
+
+function drawRadarChart(person) {
+  const canvas = document.getElementById('radarCanvas');
+  if (!canvas) return;
+  
+  const ctx = canvas.getContext('2d');
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  const radius = 120;
+  
+  // 清空画布
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  // 数据
+  const labels = ['教育', '技能', '稳定性', '经验', '匹配度'];
+  const data = [
+    person.competitiveness / 100,
+    (person.skill || 60) / 100,
+    person.stability / 100,
+    0.7,
+    (person.match || person.competitiveness || 85) / 100
+  ];
+  const avgData = [0.6, 0.55, 0.65, 0.5, 0.6];
+  
+  const angleStep = (Math.PI * 2) / 5;
+  
+  // 绘制网格
+  ctx.strokeStyle = 'rgba(0,212,255,0.2)';
+  ctx.lineWidth = 1;
+  for (let i = 1; i <= 5; i++) {
+    ctx.beginPath();
+    for (let j = 0; j < 5; j++) {
+      const angle = j * angleStep - Math.PI / 2;
+      const x = centerX + Math.cos(angle) * radius * i / 5;
+      const y = centerY + Math.sin(angle) * radius * i / 5;
+      if (j === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.stroke();
+  }
+  
+  // 绘制轴线
+  for (let i = 0; i < 5; i++) {
+    const angle = i * angleStep - Math.PI / 2;
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.lineTo(centerX + Math.cos(angle) * radius, centerY + Math.sin(angle) * radius);
+    ctx.stroke();
+    
+    // 标签
+    ctx.fillStyle = '#8899aa';
+    ctx.font = '12px sans-serif';
+    ctx.textAlign = 'center';
+    const labelX = centerX + Math.cos(angle) * (radius + 20);
+    const labelY = centerY + Math.sin(angle) * (radius + 20);
+    ctx.fillText(labels[i], labelX, labelY + 4);
+  }
+  
+  // 绘制平均线
+  ctx.beginPath();
+  ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+  ctx.lineWidth = 1;
+  for (let i = 0; i < 5; i++) {
+    const angle = i * angleStep - Math.PI / 2;
+    const x = centerX + Math.cos(angle) * radius * avgData[i];
+    const y = centerY + Math.sin(angle) * radius * avgData[i];
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.stroke();
+  
+  // 绘制数据区域
+  ctx.beginPath();
+  ctx.fillStyle = 'rgba(0,212,255,0.2)';
+  ctx.strokeStyle = '#00d4ff';
+  ctx.lineWidth = 2;
+  for (let i = 0; i < 5; i++) {
+    const angle = i * angleStep - Math.PI / 2;
+    const x = centerX + Math.cos(angle) * radius * data[i];
+    const y = centerY + Math.sin(angle) * radius * data[i];
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+  
+  // 绘制数据点
+  ctx.fillStyle = '#00d4ff';
+  for (let i = 0; i < 5; i++) {
+    const angle = i * angleStep - Math.PI / 2;
+    const x = centerX + Math.cos(angle) * radius * data[i];
+    const y = centerY + Math.sin(angle) * radius * data[i];
+    ctx.beginPath();
+    ctx.arc(x, y, 4, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function getAgeFromGroup(group) {
+  const ages = { '高校毕业生': 24, '就业困难人员': 45, '农民工': 38, '零工人员': 32, '退役军人': 30 };
+  return ages[group] || 30;
+}
+
+function getMajorFromTags(tags) {
+  const majors = { 'Java开发': '计算机科学', 'Python': '人工智能', '建筑工': '土木工程', '外卖骑手': '物流管理' };
+  for (const tag of tags) {
+    if (majors[tag]) return majors[tag];
+  }
+  return '相关专业';
+}
+
+function getWorkExperience(person) {
+  const experiences = {
+    '张三': 'XX科技有限公司 - Java开发工程师（3年）',
+    '李四': '零工就业 - 仓库管理员（灵活就业）',
+    '王五': 'XX建筑公司 - 建筑工人（10年）',
+    '赵六': 'XX互联网公司 - AI算法工程师（2年）',
+    '孙七': '外卖平台 - 骑手（2年）'
+  };
+  return experiences[person.name] || '相关工作经验';
+}
+
+function getSkillItems(person) {
+  const skills = {
+    '张三': [['Java', '精通'], ['Spring Boot', '熟练'], ['MySQL', '熟练']],
+    '李四': [['仓储管理', '熟练'], ['物流操作', '良好'], ['沟通协调', '良好']],
+    '王五': [['建筑施工', '精通'], ['安全管理', '熟练'], ['团队管理', '良好']],
+    '赵六': [['Python', '精通'], ['机器学习', '熟练'], ['深度学习', '熟练']],
+    '孙七': [['物流配送', '熟练'], ['客户服务', '良好'], ['时间管理', '良好']]
+  };
+  return (skills[person.name] || [['专业技能', '良好']]).map(([skill, level]) => `
+    <div style="display: flex; justify-content: space-between;">
+      <span style="font-size: 12px; color: #a0c8e8;">${skill}</span>
+      <span style="font-size: 12px; color: #5ae8ff;">${level}</span>
+    </div>
+  `).join('');
+}
+
+function getDifficultyLevel(person) {
+  if (person.group === '就业困难人员') return '重点困难';
+  if (person.group === '零工人员') return '一般困难';
+  if (person.supportIndex && person.supportIndex >= 70) return '需关注';
+  return '正常';
+}
+
+function getSupportNeeds(person) {
+  const needs = {
+    '张三': ['岗位推荐', '职业发展指导'],
+    '李四': ['技能培训', '就业帮扶', '岗位推荐'],
+    '王五': ['维权服务', '技能提升', '岗位推荐'],
+    '赵六': ['人才引进政策', '岗位推荐'],
+    '孙七': ['灵活就业保障', '职业转型指导']
+  };
+  return needs[person.name] || ['岗位推荐'];
+}
+
+function switchPortraitType(type, btn) {
+  document.querySelectorAll('.portrait-content').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.portrait-tab').forEach(b => {
+    b.style.borderColor = 'var(--border-color)';
+    b.style.background = 'none';
+    b.style.color = 'var(--text-secondary)';
+  });
+  document.getElementById(`portrait-${type}`).style.display = 'block';
+  if (btn) {
+    btn.style.borderColor = 'var(--primary)';
+    btn.style.background = 'rgba(22, 119, 255, 0.1)';
+    btn.style.color = 'var(--primary)';
+  }
+}
+
+let currentPortraitStep = 1;
+function nextPortraitStep() {
+  if (currentPortraitStep < 4) {
+    document.getElementById(`portrait-step-${currentPortraitStep}`).classList.remove('active');
+    if (currentPortraitStep < 3) {
+      document.getElementById(`portrait-step-${currentPortraitStep}`).classList.add('completed');
+    }
+    currentPortraitStep++;
+    document.getElementById(`portrait-step-${currentPortraitStep}`).classList.add('active');
+
+    document.getElementById('portrait-form-1').style.display = 'none';
+    document.getElementById('portrait-form-2').style.display = 'none';
+    document.getElementById('portrait-form-3').style.display = 'none';
+    document.getElementById('portrait-form-4').style.display = 'none';
+    document.getElementById(`portrait-form-${currentPortraitStep}`).style.display = 'block';
+
+    document.getElementById('portrait-prev-btn').style.display = 'inline-flex';
+    if (currentPortraitStep === 4) {
+      document.getElementById('portrait-next-btn').textContent = '完成';
+    }
+  } else {
+    closeModal('portrait-generate-modal');
+    showNotification('画像生成完成！', 'success');
+    currentPortraitStep = 1;
+    resetPortraitSteps();
+  }
+}
+
+function prevPortraitStep() {
+  if (currentPortraitStep > 1) {
+    document.getElementById(`portrait-step-${currentPortraitStep}`).classList.remove('active');
+    currentPortraitStep--;
+    document.getElementById(`portrait-step-${currentPortraitStep}`).classList.remove('completed');
+    document.getElementById(`portrait-step-${currentPortraitStep}`).classList.add('active');
+
+    document.getElementById('portrait-form-1').style.display = 'none';
+    document.getElementById('portrait-form-2').style.display = 'none';
+    document.getElementById('portrait-form-3').style.display = 'none';
+    document.getElementById('portrait-form-4').style.display = 'none';
+    document.getElementById(`portrait-form-${currentPortraitStep}`).style.display = 'block';
+
+    document.getElementById('portrait-next-btn').textContent = '下一步';
+    if (currentPortraitStep === 1) {
+      document.getElementById('portrait-prev-btn').style.display = 'none';
+    }
+  }
+}
+
+function resetPortraitSteps() {
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById(`portrait-step-${i}`).classList.remove('active', 'completed');
+  }
+  document.getElementById('portrait-step-1').classList.add('active');
+  document.getElementById('portrait-form-1').style.display = 'block';
+  document.getElementById('portrait-form-2').style.display = 'none';
+  document.getElementById('portrait-form-3').style.display = 'none';
+  document.getElementById('portrait-form-4').style.display = 'none';
+  document.getElementById('portrait-prev-btn').style.display = 'none';
+  document.getElementById('portrait-next-btn').textContent = '下一步';
+}
+
+function selectPersonForPortrait(name, idCard) {
+  document.getElementById('portrait-search-input').value = `${name} ${idCard}`;
+  showNotification(`已选择人员：${name}`, 'success');
+}
+
+function addTag() {
+  const input = document.getElementById('new-tag-input');
+  const tagText = input.value.trim();
+  if (!tagText) {
+    showNotification('请输入标签名称', 'error');
+    return;
+  }
+  const tagHtml = `<div class="mb-8" data-category="自定义"><span class="tag">${tagText} <span style="cursor: pointer;" onclick="removeTag(this)">×</span></span></div>`;
+  document.getElementById('tag-list').insertAdjacentHTML('beforeend', tagHtml);
+  input.value = '';
+  showNotification(`标签"${tagText}"已添加`, 'success');
+}
+
+function removeTag(el) {
+  el.parentElement.parentElement.remove();
+}
+
+function updateGroupAnalysis(group) {
+  const data = {
+    '高校毕业生': { scale: '12,456', rate: '91.2%' },
+    '就业困难人员': { scale: '3,892', rate: '76.5%' },
+    '农民工': { scale: '28,345', rate: '88.7%' },
+    '零工人员': { scale: '15,678', rate: '82.3%' },
+    '退役军人': { scale: '2,345', rate: '93.5%' }
+  };
+  const groupData = data[group] || data['高校毕业生'];
+  document.querySelector('#group-analysis-modal .stat-card .number').textContent = groupData.scale;
+  document.querySelectorAll('#group-analysis-modal .stat-card .number')[1].textContent = groupData.rate;
+}
+
+function showModal(id) {
+  document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+    modal.classList.remove('active');
+  });
+  document.getElementById(id).classList.add('active');
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('active');
+}
+
+function showNotification(msg, type) {
+  const notification = document.getElementById('notification');
+  const msgEl = document.getElementById('notification-msg');
+  notification.className = 'notification ' + (type || '');
+  msgEl.textContent = msg;
+  notification.style.display = 'flex';
+  setTimeout(() => { notification.style.display = 'none'; }, 3000);
+}
+
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === this) { this.classList.remove('active'); }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  switchUserType('gov');
+  filterPersonsByPermission('gov');
+});
+
+function switchDataTab(tab, btn) {
+  const tabs = ['log', 'verify', 'security', 'clean'];
+  tabs.forEach(t => {
+    const el = document.getElementById(`data-tab-${t}`);
+    if (el) el.style.display = 'none';
+  });
+  document.getElementById(`data-tab-${tab}`).style.display = 'block';
+
+  document.querySelectorAll('#data-management-modal .tab-btn').forEach(b => {
+    b.style.color = 'var(--text-secondary)';
+    b.style.borderBottom = 'none';
+  });
+  btn.style.color = 'var(--primary)';
+  btn.style.borderBottom = '2px solid var(--primary)';
+}
+
+function switchTagCategory(category, btn) {
+  document.querySelectorAll('[data-tag-category]').forEach(el => el.style.display = 'none');
+  document.querySelectorAll(`[data-tag-category="${category}"]`).forEach(el => el.style.display = 'block');
+
+  document.querySelectorAll('.tag-cat-btn').forEach(b => {
+    b.style.background = 'none';
+    b.style.color = 'var(--text-secondary)';
+  });
+  btn.style.background = 'rgba(22, 119, 255, 0.1)';
+  btn.style.color = 'var(--primary)';
+}
+
+function runDataVerification() {
+  const result = document.getElementById('verify-result');
+  const time = document.getElementById('verify-time');
+  time.textContent = `校验时间：${new Date().toLocaleString('zh-CN')}`;
+  result.style.display = 'block';
+  showNotification('数据校验完成', 'success');
+}
+
+function viewVerificationHistory() {
+  showNotification('正在加载校验历史...', 'success');
+}
+
+function updateOrgPermission(select) {
+  const value = select.value;
+  showNotification(`服务机构权限已更新为：${value === 'read' ? '仅读取' : '读取+导出'}`, 'success');
+}
+
+function updateEnterprisePermission(select) {
+  const value = select.value;
+  showNotification(`用工企业权限已更新为：${value === 'talent-only' ? '仅人才画像' : '无权限'}`, 'success');
+}
+
+function saveCleanConfig() {
+  const dedup = document.getElementById('clean-dedup').checked;
+  const anomaly = document.getElementById('clean-anomaly').checked;
+  const format = document.getElementById('clean-format').checked;
+  const fill = document.getElementById('clean-fill').checked;
+  
+  showNotification(`清洗配置已保存：去重(${dedup}) 异常值(${anomaly}) 格式(${format}) 空值(${fill})`, 'success');
+}
+
+function resetCleanConfig() {
+  document.getElementById('clean-dedup').checked = true;
+  document.getElementById('clean-anomaly').checked = true;
+  document.getElementById('clean-format').checked = true;
+  document.getElementById('clean-fill').checked = false;
+  showNotification('清洗配置已重置为默认值', 'success');
+}
+
+function executeClean() {
+  const progress = document.getElementById('clean-progress');
+  const progressBar = document.getElementById('clean-progress-bar');
+  const progressText = document.getElementById('clean-progress-text');
+  const result = document.getElementById('clean-result');
+  
+  result.style.display = 'none';
+  progress.style.display = 'block';
+  
+  let percent = 0;
+  const interval = setInterval(() => {
+    percent += 10;
+    progressBar.style.width = `${percent}%`;
+    progressText.textContent = `清洗中... ${percent}%`;
+    
+    if (percent >= 100) {
+      clearInterval(interval);
+      progress.style.display = 'none';
+      result.style.display = 'block';
+      showNotification('数据清洗完成', 'success');
+    }
+  }, 200);
+}
+</script>
+
+</body>
+</html>
