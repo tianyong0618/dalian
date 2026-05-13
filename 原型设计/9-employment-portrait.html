@@ -662,108 +662,6 @@
   </div>
 </div>
 
-<div class="modal-overlay" id="person-detail-modal" style="padding: 0;">
-  <div class="modal" style="width: 100vw; height: 100vh; max-width: 100vw; max-height: 100vh; border-radius: 0; overflow: hidden; display: flex; flex-direction: column;">
-    <div style="flex: 1; overflow-y: auto; padding: 0; background: linear-gradient(180deg, #0a1628 0%, #0f1f38 100%);">
-      <div id="detail-content" style="padding: 24px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-          <h3 style="color: #5ae8ff; font-size: 24px; font-weight: 600; margin: 0;">人员画像详情</h3>
-          <button class="modal-close" onclick="closeModal('person-detail-modal')" style="color: #94a3b8; background: none; border: none; font-size: 28px; cursor: pointer;">&times;</button>
-        </div>
-
-        <div style="background: linear-gradient(135deg, #0d1f3a 0%, #1a3a5c 100%); border: 2px solid #3a7aaa; border-radius: 12px; padding: 24px; margin-bottom: 20px;">
-          <div style="display: flex; align-items: center; gap: 24px;">
-            <div style="width: 120px; height: 120px; border-radius: 50%; flex-shrink: 0; overflow: hidden; border: 3px solid #5ae8ff; box-shadow: 0 0 30px rgba(90, 232, 255, 0.3);" id="detail-avatar">
-              <img src="" alt="" id="detail-avatar-img" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div style="flex: 1;">
-              <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
-                <h2 id="detail-name" style="color: #5ae8ff; margin: 0; font-size: 28px; font-weight: 700;"></h2>
-                <span style="background: rgba(82, 196, 26, 0.15); border: 1px solid rgba(82, 196, 26, 0.4); padding: 6px 14px; border-radius: 6px; font-size: 12px; color: #52c41a; font-weight: 500;">✅ 身份已验证</span>
-              </div>
-              <div style="display: flex; flex-wrap: wrap; gap: 20px; color: #8ab4d4; font-size: 14px;" id="detail-info">
-                <span id="detail-education-info"></span>
-                <span id="detail-group-info"></span>
-              </div>
-            </div>
-            <div style="display: flex; gap: 32px; padding-right: 20px;">
-              <div style="text-align: center;">
-                <div id="detail-score" class="score-value" style="font-size: 32px; font-weight: 700; color: #5ae8ff;"></div>
-                <div style="font-size: 13px; color: #8ab4d4; margin-top: 4px;">综合评分</div>
-              </div>
-              <div style="text-align: center;">
-                <div id="detail-support" class="stability-value" style="font-size: 32px; font-weight: 700; color: #52c41a;"></div>
-                <div style="font-size: 13px; color: #8ab4d4; margin-top: 4px;">帮扶指数</div>
-              </div>
-              <div style="text-align: center;">
-                <div id="detail-risk" class="risk-value" style="font-size: 32px; font-weight: 700; color: #faad14;"></div>
-                <div style="font-size: 13px; color: #8ab4d4; margin-top: 4px;">离职风险</div>
-              </div>
-            </div>
-          </div>
-          <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(42,90,138,0.5);" id="detail-tags">
-          </div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
-          <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 16px;">
-            <div style="font-size: 12px; color: #94a3b8; margin-bottom: 4px;">教育竞争力</div>
-            <div id="detail-competitiveness" style="font-size: 15px; color: #a0c8e8; font-weight: 500;"></div>
-          </div>
-          <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 16px;">
-            <div style="font-size: 12px; color: #94a3b8; margin-bottom: 4px;">就业稳定性</div>
-            <div id="detail-stability" style="font-size: 15px; color: #a0c8e8; font-weight: 500;"></div>
-          </div>
-          <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 16px;">
-            <div style="font-size: 12px; color: #94a3b8; margin-bottom: 4px;">期望薪资</div>
-            <div id="detail-salary" style="font-size: 15px; color: #a0c8e8; font-weight: 500;"></div>
-          </div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
-          <div style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px; padding: 16px;">
-            <div style="font-size: 24px; font-weight: 700; color: #c4b5fd; margin-bottom: 4px;" id="detail-university"></div>
-            <div style="font-size: 13px; color: #a78bfa;" id="detail-major"></div>
-          </div>
-          <div style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px; padding: 16px;">
-            <div style="font-size: 24px; font-weight: 700; color: #c4b5fd; margin-bottom: 4px;" id="detail-experience">-</div>
-            <div style="font-size: 13px; color: #a78bfa;">工作经验</div>
-          </div>
-          <div style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px; padding: 16px;">
-            <div style="font-size: 24px; font-weight: 700; color: #c4b5fd; margin-bottom: 4px;" id="detail-skill-level">-</div>
-            <div style="font-size: 13px; color: #a78bfa;">技能水平</div>
-          </div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 16px; margin-bottom: 16px;">
-          <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px; padding: 20px;">
-            <div style="font-size: 15px; font-weight: 600; color: #60a5fa; margin-bottom: 16px;">专业技能</div>
-            <div style="display: flex; flex-direction: column; gap: 8px;" id="detail-skills">
-            </div>
-            <div style="margin-top: 16px;">
-              <div style="font-size: 13px; color: #94a3b8; margin-bottom: 8px;">资格证书</div>
-              <div style="display: flex; flex-wrap: wrap; gap: 8px;" id="detail-certificates">
-              </div>
-            </div>
-          </div>
-
-          <div style="background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 12px; padding: 20px;">
-            <div style="font-size: 15px; font-weight: 600; color: #a78bfa; margin-bottom: 16px;">职业经历</div>
-            <div style="display: flex; flex-direction: column; gap: 16px;" id="detail-workexp">
-            </div>
-          </div>
-        </div>
-
-        <div style="background: rgba(236, 72, 153, 0.1); border: 1px solid rgba(236, 72, 153, 0.2); border-radius: 12px; padding: 20px;">
-          <div style="font-size: 15px; font-weight: 600; color: #f472b6; margin-bottom: 16px;">个性化服务</div>
-          <div style="display: flex; flex-direction: column; gap: 12px;" id="detail-services">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="modal-overlay" id="data-management-modal">
   <div class="modal" style="max-width: 900px;">
     <div class="modal-header">
@@ -1134,14 +1032,359 @@ function switchRole() {
   const type = select.value;
   switchUserType(type);
 }
-let personData = [];
+let personData = [
+  {
+    "id": 1,
+    "name": "陈浩然",
+    "idCard": "430102199805153421",
+    "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face",
+    "group": "高校毕业生",
+    "education": "本科",
+    "major": "计算机科学与技术",
+    "university": "湖南大学",
+    "portraitType": "talent",
+    "competitiveness": 88,
+    "stability": 78,
+    "skill": 82,
+    "match": 91,
+    "salaryExp": "15K-20K",
+    "tags": ["Java开发", "本科及以上", "3年经验", "社保连续缴纳", "求职意向：互联网"],
+    "services": [
+      "📩 推荐岗位：高级Java开发（98%）",
+      "📚 推荐培训：Java进阶（免费）",
+      "💰 可申请补贴：2000元",
+      "🎓 职业路径：Java→专家→架构师"
+    ],
+    "workExperience": [
+      {
+        "company": "长沙科创有限公司",
+        "position": "Java开发工程师",
+        "startDate": "2021-07",
+        "endDate": "至今",
+        "description": "负责企业管理系统后端开发"
+      }
+    ],
+    "skills": ["Java", "Spring Boot", "MySQL", "Redis"],
+    "certificates": ["计算机二级", "英语四级"]
+  },
+  {
+    "id": 2,
+    "name": "刘芳",
+    "idCard": "430103198511205678",
+    "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face",
+    "group": "就业困难人员",
+    "education": "高中",
+    "portraitType": "jobseeker",
+    "competitiveness": 45,
+    "stability": 32,
+    "skill": 38,
+    "supportIndex": 75,
+    "salaryTrend": 65,
+    "tags": ["零工人员", "技能培训", "就业帮扶", "高中及以下"],
+    "services": [
+      "📩 推荐岗位：仓管员（85%）",
+      "📚 推荐培训：叉车证（免费）",
+      "💰 可申请补贴：就业困难补贴1500元",
+      "🆘 帮扶计划：一对一就业指导"
+    ],
+    "workExperience": [
+      {
+        "company": "个体户",
+        "position": "临时帮工",
+        "startDate": "2019-01",
+        "endDate": "至今",
+        "description": "从事各类零工工作"
+      }
+    ],
+    "skills": ["仓库管理", "货物搬运"],
+    "certificates": []
+  },
+  {
+    "id": 3,
+    "name": "王明华",
+    "idCard": "430221199203082345",
+    "avatar": "https://images.unsplash.com/photo-1508247967573-6118b4d6382f?w=200&h=200&fit=crop&crop=face",
+    "group": "农民工",
+    "education": "中专",
+    "major": "建筑工程",
+    "portraitType": "keygroup",
+    "competitiveness": 52,
+    "stability": 55,
+    "skill": 48,
+    "groupScale": "28,345",
+    "groupRate": 88.7,
+    "groupDemand": "欠薪维权",
+    "tags": ["建筑工", "计件工", "农民工", "中专学历"],
+    "services": [
+      "📩 推荐岗位：建筑工长（82%）",
+      "📚 推荐培训：安全员证",
+      "💰 维权通道：在线投诉",
+      "🆘 帮扶计划：法律援助"
+    ],
+    "workExperience": [
+      {
+        "company": "长沙建筑工程公司",
+        "position": "建筑工人",
+        "startDate": "2015-03",
+        "endDate": "至今",
+        "description": "从事房屋建筑施工工作"
+      }
+    ],
+    "skills": ["瓦工", "钢筋工", "架子工"],
+    "certificates": ["建筑施工特种作业操作证"]
+  },
+  {
+    "id": 4,
+    "name": "张雨婷",
+    "idCard": "430102199608251234",
+    "avatar": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=200&fit=crop&crop=face",
+    "group": "高校毕业生",
+    "education": "硕士",
+    "major": "人工智能",
+    "university": "中南大学",
+    "portraitType": "talent",
+    "competitiveness": 92,
+    "stability": 85,
+    "skill": 90,
+    "match": 95,
+    "salaryExp": "20K-30K",
+    "tags": ["Python", "AI算法", "硕士", "社保连续缴纳"],
+    "services": [
+      "📩 推荐岗位：AI工程师（95%）",
+      "📚 推荐培训：深度学习（免费）",
+      "💰 可申请补贴：人才引进5000元",
+      "🎓 职业路径：AI→架构师"
+    ],
+    "workExperience": [
+      {
+        "company": "湖南人工智能研究院",
+        "position": "算法工程师",
+        "startDate": "2020-09",
+        "endDate": "至今",
+        "description": "负责机器学习模型研发"
+      }
+    ],
+    "skills": ["Python", "TensorFlow", "PyTorch", "自然语言处理"],
+    "certificates": ["计算机三级", "英语六级", "软件设计师"]
+  },
+  {
+    "id": 5,
+    "name": "刘强",
+    "idCard": "430122199002145678",
+    "avatar": "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=200&h=200&fit=crop&crop=face",
+    "group": "零工人员",
+    "education": "大专",
+    "major": "物流管理",
+    "portraitType": "jobseeker",
+    "competitiveness": 48,
+    "stability": 28,
+    "skill": 42,
+    "supportIndex": 68,
+    "salaryTrend": 55,
+    "tags": ["外卖骑手", "灵活用工", "零工人员", "大专"],
+    "services": [
+      "📩 推荐岗位：骑手队长（78%）",
+      "📚 推荐培训：物流管理",
+      "💰 可申请补贴：灵活就业补贴800元",
+      "🆘 帮扶计划：职业转型指导"
+    ],
+    "workExperience": [
+      {
+        "company": "美团外卖",
+        "position": "外卖骑手",
+        "startDate": "2022-01",
+        "endDate": "至今",
+        "description": "负责外卖配送工作"
+      }
+    ],
+    "skills": ["路线规划", "电动车维修", "客户沟通"],
+    "certificates": ["驾驶证C1"]
+  },
+  {
+    "id": 6,
+    "name": "李晓燕",
+    "idCard": "430321198912034567",
+    "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face",
+    "group": "退役军人",
+    "education": "大专",
+    "major": "行政管理",
+    "portraitType": "keygroup",
+    "competitiveness": 75,
+    "stability": 90,
+    "skill": 68,
+    "groupScale": "2,345",
+    "groupRate": 93.5,
+    "groupDemand": "创业扶持",
+    "tags": ["退役军人", "党员", "大专学历", "纪律性强"],
+    "services": [
+      "📩 推荐岗位：企业安保主管（90%）",
+      "📚 推荐培训：创业指导",
+      "💰 可申请补贴：退役军人创业贷款",
+      "🎓 职业路径：安保→管理→创业"
+    ],
+    "workExperience": [
+      {
+        "company": "中国人民解放军某部",
+        "position": "班长",
+        "startDate": "2008-12",
+        "endDate": "2016-12",
+        "description": "服役8年，担任班长职务"
+      },
+      {
+        "company": "长沙保安公司",
+        "position": "保安队长",
+        "startDate": "2017-03",
+        "endDate": "至今",
+        "description": "负责小区安保管理工作"
+      }
+    ],
+    "skills": ["安保管理", "应急处置", "军事训练"],
+    "certificates": ["退伍证", "保安员证", "党员证"]
+  },
+  {
+    "id": 7,
+    "name": "黄敏",
+    "idCard": "430104199306187890",
+    "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face",
+    "group": "高校毕业生",
+    "education": "本科",
+    "major": "会计学",
+    "university": "湖南工商大学",
+    "portraitType": "talent",
+    "competitiveness": 78,
+    "stability": 82,
+    "skill": 75,
+    "match": 88,
+    "salaryExp": "10K-15K",
+    "tags": ["财务会计", "本科及以上", "5年经验", "中级会计师"],
+    "services": [
+      "📩 推荐岗位：财务主管（88%）",
+      "📚 推荐培训：注册会计师备考",
+      "💰 可申请补贴：技能提升补贴1200元",
+      "🎓 职业路径：会计→主管→财务经理"
+    ],
+    "workExperience": [
+      {
+        "company": "湖南天健会计师事务所",
+        "position": "审计助理",
+        "startDate": "2016-07",
+        "endDate": "2019-03"
+      },
+      {
+        "company": "长沙三一重工",
+        "position": "会计",
+        "startDate": "2019-04",
+        "endDate": "至今",
+        "description": "负责成本核算与财务报表"
+      }
+    ],
+    "skills": ["财务会计", "审计", "Excel高级", "税务申报"],
+    "certificates": ["中级会计师", "初级经济师", "英语六级"]
+  },
+  {
+    "id": 8,
+    "name": "周建国",
+    "idCard": "430121197809123456",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
+    "group": "就业困难人员",
+    "education": "初中",
+    "portraitType": "jobseeker",
+    "competitiveness": 35,
+    "stability": 25,
+    "skill": 30,
+    "supportIndex": 85,
+    "salaryTrend": 45,
+    "tags": ["大龄就业困难", "技能单一", "需重点帮扶", "初中学历"],
+    "services": [
+      "📩 推荐岗位：物业保洁（80%）",
+      "📚 推荐培训：家政服务（免费）",
+      "💰 可申请补贴：社保补贴300元/月",
+      "🆘 帮扶计划：公益岗位安置"
+    ],
+    "workExperience": [
+      {
+        "company": "长沙机床厂",
+        "position": "工人",
+        "startDate": "1998-08",
+        "endDate": "2015-12",
+        "description": "工厂倒闭下岗"
+      }
+    ],
+    "skills": ["机械操作", "设备维护"],
+    "certificates": []
+  },
+  {
+    "id": 9,
+    "name": "吴丽娟",
+    "idCard": "430422199504256789",
+    "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&h=200&fit=crop&crop=face",
+    "group": "农民工",
+    "education": "高中",
+    "portraitType": "keygroup",
+    "competitiveness": 48,
+    "stability": 60,
+    "skill": 52,
+    "groupScale": "28,345",
+    "groupRate": 88.7,
+    "groupDemand": "子女教育",
+    "tags": ["家政服务", "月嫂", "农民工", "高中学历"],
+    "services": [
+      "📩 推荐岗位：高级月嫂（85%）",
+      "📚 推荐培训：育婴师证",
+      "💰 维权通道：劳动监察",
+      "🆘 帮扶计划：子女就学咨询"
+    ],
+    "workExperience": [
+      {
+        "company": "长沙家政服务公司",
+        "position": "月嫂",
+        "startDate": "2018-06",
+        "endDate": "至今",
+        "description": "从事母婴护理工作"
+      }
+    ],
+    "skills": ["母婴护理", "月子餐制作", "婴儿抚触"],
+    "certificates": ["育婴师证", "健康证"]
+  },
+  {
+    "id": 10,
+    "name": "孙伟",
+    "idCard": "430105199711302345",
+    "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face",
+    "group": "高校毕业生",
+    "education": "本科",
+    "major": "电子信息工程",
+    "university": "长沙理工大学",
+    "portraitType": "talent",
+    "competitiveness": 82,
+    "stability": 75,
+    "skill": 80,
+    "match": 85,
+    "salaryExp": "12K-18K",
+    "tags": ["嵌入式开发", "本科", "4年经验", "硬件设计"],
+    "services": [
+      "📩 推荐岗位：嵌入式工程师（85%）",
+      "📚 推荐培训：ARM架构进阶",
+      "💰 可申请补贴：住房补贴600元/月",
+      "🎓 职业路径：工程师→技术主管"
+    ],
+    "workExperience": [
+      {
+        "company": "湖南长城信息",
+        "position": "嵌入式开发工程师",
+        "startDate": "2020-07",
+        "endDate": "至今",
+        "description": "负责金融设备嵌入式软件开发"
+      }
+    ],
+    "skills": ["C语言", "ARM", "Linux", "PCB设计"],
+    "certificates": ["英语四级", "计算机二级"]
+  }
+];
 
-async function loadPersonData() {
+function loadPersonData() {
   try {
-    const response = await fetch('assets/person-data.json');
-    personData = await response.json();
     renderPersonTable();
-    showNotification('人员数据加载成功', 'success');
   } catch (error) {
     console.error('加载数据失败:', error);
     showNotification('数据加载失败，请刷新页面重试', 'error');
@@ -1269,74 +1512,6 @@ function viewPersonDetail(index) {
   }
   
   window.location.href = `9-employment-portrait-detail.html?id=${person.id}`;
-}
-
-function updatePersonDetail(person) {
-  const riskLevel = person.stability >= 70 ? '低' : person.stability >= 40 ? '中' : '高';
-  const riskColor = person.stability >= 70 ? '#52c41a' : person.stability >= 40 ? '#faad14' : '#ff4d4f';
-  
-  document.getElementById('detail-avatar-img').src = person.avatar;
-  document.getElementById('detail-avatar-img').alt = person.name;
-  document.getElementById('detail-name').textContent = person.name;
-  document.getElementById('detail-education-info').textContent = `🎓 ${person.education}`;
-  document.getElementById('detail-group-info').textContent = `📍 ${person.group}`;
-  document.getElementById('detail-score').textContent = person.match || person.competitiveness;
-  document.getElementById('detail-support').textContent = person.supportIndex ? `${person.supportIndex}%` : '-';
-  document.getElementById('detail-risk').textContent = riskLevel;
-  document.getElementById('detail-risk').style.color = riskColor;
-  document.getElementById('detail-competitiveness').textContent = `${person.competitiveness}%`;
-  document.getElementById('detail-stability').textContent = `${person.stability}%`;
-  document.getElementById('detail-salary').textContent = person.salaryExp || '面议';
-  document.getElementById('detail-university').textContent = person.university || '未填写';
-  document.getElementById('detail-major').textContent = `${person.major || '未知专业'} · ${person.education}`;
-  document.getElementById('detail-skill-level').textContent = person.skill ? `${person.skill}%` : '-';
-  
-  const tagsContainer = document.getElementById('detail-tags');
-  tagsContainer.innerHTML = person.tags.map(tag => 
-    `<span style="background: rgba(42,90,138,0.6); border: 1px solid #3a7aaa; color: #8ab4d4; font-size: 13px; padding: 6px 14px; border-radius: 6px;">${tag}</span>`
-  ).join('');
-  
-  const skillLevels = ['精通', '熟练', '良好', '了解'];
-  const skillsContainer = document.getElementById('detail-skills');
-  skillsContainer.innerHTML = (person.skills || []).map((skill, i) => `
-    <div>
-      <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
-        <span style="color: #94a3b8;">${skill}</span>
-        <span style="color: #60a5fa; font-weight: 500;">${skillLevels[i % skillLevels.length]}</span>
-      </div>
-      <div style="height: 6px; background: #334155; border-radius: 3px; overflow: hidden;">
-        <div style="height: 100%; background: linear-gradient(90deg, #6366f1, #8b5cf6); width: ${85 - i * 10}%;"></div>
-      </div>
-    </div>
-  `).join('');
-  
-  const certContainer = document.getElementById('detail-certificates');
-  if (person.certificates && person.certificates.length > 0) {
-    certContainer.innerHTML = person.certificates.map(cert => 
-      `<span style="background: rgba(59, 130, 246, 0.2); color: #60a5fa; padding: 4px 12px; border-radius: 4px; font-size: 12px;">${cert}</span>`
-    ).join('');
-  } else {
-    certContainer.innerHTML = '<span style="color: #94a3b8; font-size: 13px;">暂无证书</span>';
-  }
-  
-  const workexpContainer = document.getElementById('detail-workexp');
-  workexpContainer.innerHTML = (person.workExperience || []).map(exp => `
-    <div style="background: rgba(168, 85, 247, 0.15); border-left: 3px solid #8b5cf6; padding: 16px;">
-      <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-        <span style="font-weight: 600; color: #fff;">${exp.company}</span>
-        <span style="font-size: 12px; color: #94a3b8;">${exp.startDate} 至 ${exp.endDate || '至今'}</span>
-      </div>
-      <div style="font-size: 14px; color: #c4b5fd; font-weight: 500;">${exp.position}</div>
-      <div style="font-size: 12px; color: #94a3b8; margin-top: 6px;">${exp.description || ''}</div>
-    </div>
-  `).join('');
-  
-  const servicesContainer = document.getElementById('detail-services');
-  servicesContainer.innerHTML = (person.services || []).map(service => `
-    <div style="background: rgba(236, 72, 153, 0.15); padding: 12px; border-radius: 8px; font-size: 14px; color: #fff;">
-      ${service}
-    </div>
-  `).join('');
 }
 
 function getAgeFromGroup(group) {

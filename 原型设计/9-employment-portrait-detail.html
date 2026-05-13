@@ -150,7 +150,7 @@
                 <div class="text-xs">核心能力</div>
               </button>
               <button onclick="switchTab('employment')" id="tab-btn-employment" class="tab-btn p-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 transition-all">
-                <i class="fa-solid fa-target w-5 h-5 mx-auto mb-1"></i>
+                <i class="fa-solid fa-briefcase-clock w-5 h-5 mx-auto mb-1"></i>
                 <div class="text-xs">就业状态</div>
               </button>
               <button onclick="switchTab('salary')" id="tab-btn-salary" class="tab-btn p-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 transition-all">
@@ -782,15 +782,360 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-    let personData = {};
+    let personData = [
+  {
+    "id": 1,
+    "name": "陈浩然",
+    "idCard": "430102199805153421",
+    "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face",
+    "group": "高校毕业生",
+    "education": "本科",
+    "major": "计算机科学与技术",
+    "university": "湖南大学",
+    "portraitType": "talent",
+    "competitiveness": 88,
+    "stability": 78,
+    "skill": 82,
+    "match": 91,
+    "salaryExp": "15K-20K",
+    "tags": ["Java开发", "本科及以上", "3年经验", "社保连续缴纳", "求职意向：互联网"],
+    "services": [
+      "📩 推荐岗位：高级Java开发（98%）",
+      "📚 推荐培训：Java进阶（免费）",
+      "💰 可申请补贴：2000元",
+      "🎓 职业路径：Java→专家→架构师"
+    ],
+    "workExperience": [
+      {
+        "company": "长沙科创有限公司",
+        "position": "Java开发工程师",
+        "startDate": "2021-07",
+        "endDate": "至今",
+        "description": "负责企业管理系统后端开发"
+      }
+    ],
+    "skills": ["Java", "Spring Boot", "MySQL", "Redis"],
+    "certificates": ["计算机二级", "英语四级"]
+  },
+  {
+    "id": 2,
+    "name": "刘芳",
+    "idCard": "430103198511205678",
+    "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face",
+    "group": "就业困难人员",
+    "education": "高中",
+    "portraitType": "jobseeker",
+    "competitiveness": 45,
+    "stability": 32,
+    "skill": 38,
+    "supportIndex": 75,
+    "salaryTrend": 65,
+    "tags": ["零工人员", "技能培训", "就业帮扶", "高中及以下"],
+    "services": [
+      "📩 推荐岗位：仓管员（85%）",
+      "📚 推荐培训：叉车证（免费）",
+      "💰 可申请补贴：就业困难补贴1500元",
+      "🆘 帮扶计划：一对一就业指导"
+    ],
+    "workExperience": [
+      {
+        "company": "个体户",
+        "position": "临时帮工",
+        "startDate": "2019-01",
+        "endDate": "至今",
+        "description": "从事各类零工工作"
+      }
+    ],
+    "skills": ["仓库管理", "货物搬运"],
+    "certificates": []
+  },
+  {
+    "id": 3,
+    "name": "王明华",
+    "idCard": "430221199203082345",
+    "avatar": "https://images.unsplash.com/photo-1508247967573-6118b4d6382f?w=200&h=200&fit=crop&crop=face",
+    "group": "农民工",
+    "education": "中专",
+    "major": "建筑工程",
+    "portraitType": "keygroup",
+    "competitiveness": 52,
+    "stability": 55,
+    "skill": 48,
+    "groupScale": "28,345",
+    "groupRate": 88.7,
+    "groupDemand": "欠薪维权",
+    "tags": ["建筑工", "计件工", "农民工", "中专学历"],
+    "services": [
+      "📩 推荐岗位：建筑工长（82%）",
+      "📚 推荐培训：安全员证",
+      "💰 维权通道：在线投诉",
+      "🆘 帮扶计划：法律援助"
+    ],
+    "workExperience": [
+      {
+        "company": "长沙建筑工程公司",
+        "position": "建筑工人",
+        "startDate": "2015-03",
+        "endDate": "至今",
+        "description": "从事房屋建筑施工工作"
+      }
+    ],
+    "skills": ["瓦工", "钢筋工", "架子工"],
+    "certificates": ["建筑施工特种作业操作证"]
+  },
+  {
+    "id": 4,
+    "name": "张雨婷",
+    "idCard": "430102199608251234",
+    "avatar": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=200&fit=crop&crop=face",
+    "group": "高校毕业生",
+    "education": "硕士",
+    "major": "人工智能",
+    "university": "中南大学",
+    "portraitType": "talent",
+    "competitiveness": 92,
+    "stability": 85,
+    "skill": 90,
+    "match": 95,
+    "salaryExp": "20K-30K",
+    "tags": ["Python", "AI算法", "硕士", "社保连续缴纳"],
+    "services": [
+      "📩 推荐岗位：AI工程师（95%）",
+      "📚 推荐培训：深度学习（免费）",
+      "💰 可申请补贴：人才引进5000元",
+      "🎓 职业路径：AI→架构师"
+    ],
+    "workExperience": [
+      {
+        "company": "湖南人工智能研究院",
+        "position": "算法工程师",
+        "startDate": "2020-09",
+        "endDate": "至今",
+        "description": "负责机器学习模型研发"
+      }
+    ],
+    "skills": ["Python", "TensorFlow", "PyTorch", "自然语言处理"],
+    "certificates": ["计算机三级", "英语六级", "软件设计师"]
+  },
+  {
+    "id": 5,
+    "name": "刘强",
+    "idCard": "430122199002145678",
+    "avatar": "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=200&h=200&fit=crop&crop=face",
+    "group": "零工人员",
+    "education": "大专",
+    "major": "物流管理",
+    "portraitType": "jobseeker",
+    "competitiveness": 48,
+    "stability": 28,
+    "skill": 42,
+    "supportIndex": 68,
+    "salaryTrend": 55,
+    "tags": ["外卖骑手", "灵活用工", "零工人员", "大专"],
+    "services": [
+      "📩 推荐岗位：骑手队长（78%）",
+      "📚 推荐培训：物流管理",
+      "💰 可申请补贴：灵活就业补贴800元",
+      "🆘 帮扶计划：职业转型指导"
+    ],
+    "workExperience": [
+      {
+        "company": "美团外卖",
+        "position": "外卖骑手",
+        "startDate": "2022-01",
+        "endDate": "至今",
+        "description": "负责外卖配送工作"
+      }
+    ],
+    "skills": ["路线规划", "电动车维修", "客户沟通"],
+    "certificates": ["驾驶证C1"]
+  },
+  {
+    "id": 6,
+    "name": "李晓燕",
+    "idCard": "430321198912034567",
+    "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face",
+    "group": "退役军人",
+    "education": "大专",
+    "major": "行政管理",
+    "portraitType": "keygroup",
+    "competitiveness": 75,
+    "stability": 90,
+    "skill": 68,
+    "groupScale": "2,345",
+    "groupRate": 93.5,
+    "groupDemand": "创业扶持",
+    "tags": ["退役军人", "党员", "大专学历", "纪律性强"],
+    "services": [
+      "📩 推荐岗位：企业安保主管（90%）",
+      "📚 推荐培训：创业指导",
+      "💰 可申请补贴：退役军人创业贷款",
+      "🎓 职业路径：安保→管理→创业"
+    ],
+    "workExperience": [
+      {
+        "company": "中国人民解放军某部",
+        "position": "班长",
+        "startDate": "2008-12",
+        "endDate": "2016-12",
+        "description": "服役8年，担任班长职务"
+      },
+      {
+        "company": "长沙保安公司",
+        "position": "保安队长",
+        "startDate": "2017-03",
+        "endDate": "至今",
+        "description": "负责小区安保管理工作"
+      }
+    ],
+    "skills": ["安保管理", "应急处置", "军事训练"],
+    "certificates": ["退伍证", "保安员证", "党员证"]
+  },
+  {
+    "id": 7,
+    "name": "黄敏",
+    "idCard": "430104199306187890",
+    "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face",
+    "group": "高校毕业生",
+    "education": "本科",
+    "major": "会计学",
+    "university": "湖南工商大学",
+    "portraitType": "talent",
+    "competitiveness": 78,
+    "stability": 82,
+    "skill": 75,
+    "match": 88,
+    "salaryExp": "10K-15K",
+    "tags": ["财务会计", "本科及以上", "5年经验", "中级会计师"],
+    "services": [
+      "📩 推荐岗位：财务主管（88%）",
+      "📚 推荐培训：注册会计师备考",
+      "💰 可申请补贴：技能提升补贴1200元",
+      "🎓 职业路径：会计→主管→财务经理"
+    ],
+    "workExperience": [
+      {
+        "company": "湖南天健会计师事务所",
+        "position": "审计助理",
+        "startDate": "2016-07",
+        "endDate": "2019-03"
+      },
+      {
+        "company": "长沙三一重工",
+        "position": "会计",
+        "startDate": "2019-04",
+        "endDate": "至今",
+        "description": "负责成本核算与财务报表"
+      }
+    ],
+    "skills": ["财务会计", "审计", "Excel高级", "税务申报"],
+    "certificates": ["中级会计师", "初级经济师", "英语六级"]
+  },
+  {
+    "id": 8,
+    "name": "周建国",
+    "idCard": "430121197809123456",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
+    "group": "就业困难人员",
+    "education": "初中",
+    "portraitType": "jobseeker",
+    "competitiveness": 35,
+    "stability": 25,
+    "skill": 30,
+    "supportIndex": 85,
+    "salaryTrend": 45,
+    "tags": ["大龄就业困难", "技能单一", "需重点帮扶", "初中学历"],
+    "services": [
+      "📩 推荐岗位：物业保洁（80%）",
+      "📚 推荐培训：家政服务（免费）",
+      "💰 可申请补贴：社保补贴300元/月",
+      "🆘 帮扶计划：公益岗位安置"
+    ],
+    "workExperience": [
+      {
+        "company": "长沙机床厂",
+        "position": "工人",
+        "startDate": "1998-08",
+        "endDate": "2015-12",
+        "description": "工厂倒闭下岗"
+      }
+    ],
+    "skills": ["机械操作", "设备维护"],
+    "certificates": []
+  },
+  {
+    "id": 9,
+    "name": "吴丽娟",
+    "idCard": "430422199504256789",
+    "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&h=200&fit=crop&crop=face",
+    "group": "农民工",
+    "education": "高中",
+    "portraitType": "keygroup",
+    "competitiveness": 48,
+    "stability": 60,
+    "skill": 52,
+    "groupScale": "28,345",
+    "groupRate": 88.7,
+    "groupDemand": "子女教育",
+    "tags": ["家政服务", "月嫂", "农民工", "高中学历"],
+    "services": [
+      "📩 推荐岗位：高级月嫂（85%）",
+      "📚 推荐培训：育婴师证",
+      "💰 维权通道：劳动监察",
+      "🆘 帮扶计划：子女就学咨询"
+    ],
+    "workExperience": [
+      {
+        "company": "长沙家政服务公司",
+        "position": "月嫂",
+        "startDate": "2018-06",
+        "endDate": "至今",
+        "description": "从事母婴护理工作"
+      }
+    ],
+    "skills": ["母婴护理", "月子餐制作", "婴儿抚触"],
+    "certificates": ["育婴师证", "健康证"]
+  },
+  {
+    "id": 10,
+    "name": "孙伟",
+    "idCard": "430105199711302345",
+    "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face",
+    "group": "高校毕业生",
+    "education": "本科",
+    "major": "电子信息工程",
+    "university": "长沙理工大学",
+    "portraitType": "talent",
+    "competitiveness": 82,
+    "stability": 75,
+    "skill": 80,
+    "match": 85,
+    "salaryExp": "12K-18K",
+    "tags": ["嵌入式开发", "本科", "4年经验", "硬件设计"],
+    "services": [
+      "📩 推荐岗位：嵌入式工程师（85%）",
+      "📚 推荐培训：ARM架构进阶",
+      "💰 可申请补贴：住房补贴600元/月",
+      "🎓 职业路径：工程师→技术主管"
+    ],
+    "workExperience": [
+      {
+        "company": "湖南长城信息",
+        "position": "嵌入式开发工程师",
+        "startDate": "2020-07",
+        "endDate": "至今",
+        "description": "负责金融设备嵌入式软件开发"
+      }
+    ],
+    "skills": ["C语言", "ARM", "Linux", "PCB设计"],
+    "certificates": ["英语四级", "计算机二级"]
+  }
+];
 
-    async function loadPersonData() {
+    function loadPersonData() {
       try {
-        const response = await fetch('assets/person-data.json');
-        const allData = await response.json();
-        
         const personId = getPersonId();
-        const data = allData.find(p => p.id == personId) || allData[0];
+        const data = personData.find(p => p.id == personId) || personData[0];
         
         personData = data;
         
@@ -830,7 +1175,7 @@
         document.getElementById('person-email').textContent = `${data.name.toLowerCase().replace(/\s/g, '.')}@email.com`;
         document.getElementById('person-address').textContent = data.group;
         
-        document.getElementById('id-card').textContent = data.idCard || '未填写';
+        document.getElementById('id-card').textContent = maskIdCard(data.idCard) || '未填写';
         document.getElementById('household').textContent = '江苏省';
         document.getElementById('residence').textContent = '江苏省';
         document.getElementById('work-cities').textContent = '江苏、上海、浙江';
@@ -854,6 +1199,11 @@
       } catch (error) {
         console.error('加载数据失败:', error);
       }
+    }
+    
+    function maskIdCard(idCard) {
+      if (!idCard || idCard.length < 10) return idCard;
+      return idCard.substring(0, 6) + '********' + idCard.substring(14);
     }
 
     function calculateExperience(startDate) {
