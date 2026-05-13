@@ -1293,38 +1293,473 @@
     }
 
     function updateEmploymentTab(data) {
-      const supportIndex = data.supportIndex || 2.5;
+      // 就业状态
+      const hasWork = data.workExperience && data.workExperience[0] && data.workExperience[0].endDate !== '至今';
+      const currentStatusEl = document.getElementById('current-status');
+      if (data.portraitType === 'talent') {
+        currentStatusEl.textContent = data.stability >= 50 ? '在职（稳定）' : '在职（观望）';
+      } else if (data.stability >= 60) {
+        currentStatusEl.textContent = '在职';
+      } else if (data.stability >= 30) {
+        currentStatusEl.textContent = '灵活就业';
+      } else {
+        currentStatusEl.textContent = '待业';
+      }
+      
+      // 求职活跃度
+      const activityEl = document.getElementById('activity-level');
+      const activityDescEl = document.getElementById('activity-desc');
+      if (data.portraitType === 'talent') {
+        activityEl.textContent = '高';
+        activityDescEl.textContent = '定期查看高薪岗位，主动投递简历';
+      } else if (data.supportIndex && data.supportIndex >= 70) {
+        activityEl.textContent = '积极';
+        activityDescEl.textContent = '积极参与就业培训，主动求职';
+      } else if (data.supportIndex && data.supportIndex >= 40) {
+        activityEl.textContent = '一般';
+        activityDescEl.textContent = '偶尔参与招聘活动';
+      } else {
+        activityEl.textContent = '低';
+        activityDescEl.textContent = '需要更多就业帮扶和指导';
+      }
+      
+      // 帮扶指数
+      const supportIndex = data.supportIndex || (100 - data.competitiveness);
       document.getElementById('support-index').textContent = `${supportIndex} / 5.0`;
       document.getElementById('support-bar').style.width = `${(supportIndex / 5 * 100)}%`;
-      document.getElementById('support-need').textContent = data.group;
       
-      if (data.workExperience && data.workExperience[0]) {
-        document.getElementById('current-status').textContent = '在职';
+      // 帮扶等级
+      const supportLevelEl = document.querySelector('#tab-employment .rounded-full.bg-yellow-500\\/20');
+      if (supportIndex >= 80) {
+        supportLevelEl.textContent = '特别困难';
+      } else if (supportIndex >= 60) {
+        supportLevelEl.textContent = '比较困难';
+      } else if (supportIndex >= 40) {
+        supportLevelEl.textContent = '一般困难';
       } else {
-        document.getElementById('current-status').textContent = '待业';
+        supportLevelEl.textContent = '轻度困难';
+      }
+      
+      // 帮扶需求
+      document.getElementById('support-need').textContent = data.group;
+      const supportDescEl = document.querySelector('#tab-employment .text-xs.text-slate-400:last-of-type');
+      if (data.portraitType === 'talent') {
+        supportDescEl.textContent = '主要需求：人才政策、高端岗位推荐';
+      } else if (data.group === '就业困难人员') {
+        supportDescEl.textContent = '主要需求：技能培训、岗位推荐、社保补贴';
+      } else if (data.group === '农民工') {
+        supportDescEl.textContent = '主要需求：欠薪维权、技能培训、子女教育';
+      } else if (data.group === '零工人员') {
+        supportDescEl.textContent = '主要需求：权益保障、职业培训、社保缴纳';
+      } else if (data.group === '退役军人') {
+        supportDescEl.textContent = '主要需求：创业扶持、技能培训、就业推荐';
+      } else {
+        supportDescEl.textContent = '主要需求：岗位匹配、就业指导';
+      }
+      
+      // 已享受帮扶情况 - 根据group显示不同内容
+      const supportHistoryEl = document.querySelector('#tab-employment .space-y-2');
+      if (data.portraitType === 'talent') {
+        supportHistoryEl.innerHTML = `
+          <div class="flex items-center justify-between p-3 rounded-lg bg-slate-800/50 border border-slate-700/30">
+            <div class="flex items-center gap-3">
+              <span class="px-2 py-1 rounded bg-indigo-500/20 text-indigo-300 text-xs">人才政策</span>
+              <span class="text-sm text-slate-300">人才引进补贴申请</span>
+            </div>
+            <span class="text-xs text-slate-500">2025.04</span>
+          </div>
+          <div class="flex items-center justify-between p-3 rounded-lg bg-slate-800/50 border border-slate-700/30">
+            <div class="flex items-center gap-3">
+              <span class="px-2 py-1 rounded bg-indigo-500/20 text-indigo-300 text-xs">岗位推荐</span>
+              <span class="text-sm text-slate-300">企业面试邀请</span>
+            </div>
+            <span class="text-xs text-slate-500">2025.03</span>
+          </div>
+        `;
+      } else if (data.group === '就业困难人员' || data.group === '零工人员') {
+        supportHistoryEl.innerHTML = `
+          <div class="flex items-center justify-between p-3 rounded-lg bg-slate-800/50 border border-slate-700/30">
+            <div class="flex items-center gap-3">
+              <span class="px-2 py-1 rounded bg-indigo-500/20 text-indigo-300 text-xs">技能培训</span>
+              <span class="text-sm text-slate-300">${data.education === '高中' ? '叉车证培训' : '职业技能培训'}</span>
+            </div>
+            <span class="text-xs text-slate-500">2025.03</span>
+          </div>
+          <div class="flex items-center justify-between p-3 rounded-lg bg-slate-800/50 border border-slate-700/30">
+            <div class="flex items-center gap-3">
+              <span class="px-2 py-1 rounded bg-indigo-500/20 text-indigo-300 text-xs">就业帮扶</span>
+              <span class="text-sm text-slate-300">一对一就业指导</span>
+            </div>
+            <span class="text-xs text-slate-500">2025.02</span>
+          </div>
+        `;
+      } else if (data.group === '农民工') {
+        supportHistoryEl.innerHTML = `
+          <div class="flex items-center justify-between p-3 rounded-lg bg-slate-800/50 border border-slate-700/30">
+            <div class="flex items-center gap-3">
+              <span class="px-2 py-1 rounded bg-indigo-500/20 text-indigo-300 text-xs">维权服务</span>
+              <span class="text-sm text-slate-300">劳动法律咨询</span>
+            </div>
+            <span class="text-xs text-slate-500">2025.01</span>
+          </div>
+        `;
+      } else if (data.group === '退役军人') {
+        supportHistoryEl.innerHTML = `
+          <div class="flex items-center justify-between p-3 rounded-lg bg-slate-800/50 border border-slate-700/30">
+            <div class="flex items-center gap-3">
+              <span class="px-2 py-1 rounded bg-indigo-500/20 text-indigo-300 text-xs">创业扶持</span>
+              <span class="text-sm text-slate-300">创业贷款政策咨询</span>
+            </div>
+            <span class="text-xs text-slate-500">2025.02</span>
+          </div>
+        `;
+      } else {
+        supportHistoryEl.innerHTML = `
+          <div class="flex items-center justify-between p-3 rounded-lg bg-slate-800/50 border border-slate-700/30">
+            <div class="flex items-center gap-3">
+              <span class="px-2 py-1 rounded bg-indigo-500/20 text-indigo-300 text-xs">就业服务</span>
+              <span class="text-sm text-slate-300">职业指导服务</span>
+            </div>
+            <span class="text-xs text-slate-500">2025.03</span>
+          </div>
+        `;
       }
     }
 
     function updateSalaryTab(data) {
+      // 期望薪资
       document.getElementById('expected-salary').textContent = data.salaryExp || '面议';
+      
+      // 当前月薪 - 根据competitiveness估算
+      const currentSalaryEl = document.getElementById('current-salary');
+      if (data.competitiveness >= 80) {
+        currentSalaryEl.textContent = '25K';
+      } else if (data.competitiveness >= 60) {
+        currentSalaryEl.textContent = '15K';
+      } else if (data.competitiveness >= 40) {
+        currentSalaryEl.textContent = '8K';
+      } else {
+        currentSalaryEl.textContent = '5K';
+      }
+      
+      // 市场价值 - 根据competitiveness估算
+      const marketValueEl = document.getElementById('market-value');
+      if (data.competitiveness >= 80) {
+        marketValueEl.textContent = '28K';
+      } else if (data.competitiveness >= 60) {
+        marketValueEl.textContent = '18K';
+      } else if (data.competitiveness >= 40) {
+        marketValueEl.textContent = '10K';
+      } else {
+        marketValueEl.textContent = '6K';
+      }
+      
+      // 薪资变化趋势描述
+      const salaryTrendDesc = document.querySelector('#tab-salary .text-xs.text-slate-400');
+      if (data.salaryTrend && data.salaryTrend >= 70) {
+        salaryTrendDesc.innerHTML = `近5年薪资年均涨幅：<span class="text-green-400 font-semibold">20%</span>，高于行业平均水平`;
+      } else if (data.salaryTrend && data.salaryTrend >= 40) {
+        salaryTrendDesc.innerHTML = `近5年薪资年均涨幅：<span class="text-yellow-400 font-semibold">10%</span>，与行业持平`;
+      } else {
+        salaryTrendDesc.innerHTML = `近5年薪资年均涨幅：<span class="text-orange-400 font-semibold">5%</span>，低于行业平均，需要提升技能`;
+      }
+      
+      // 薪资结构偏好 - 根据group动态显示
+      const salaryStructureEl = document.querySelector('#tab-salary .grid-cols-2 .space-y-2');
+      if (data.portraitType === 'talent') {
+        salaryStructureEl.innerHTML = `
+          <div class="flex items-center justify-between"><span>基本工资</span><span class="text-indigo-400">60%</span></div>
+          <div class="flex items-center justify-between"><span>绩效奖金</span><span class="text-indigo-400">25%</span></div>
+          <div class="flex items-center justify-between"><span>股权激励</span><span class="text-indigo-400">15%</span></div>
+        `;
+      } else if (data.group === '就业困难人员' || data.group === '零工人员') {
+        salaryStructureEl.innerHTML = `
+          <div class="flex items-center justify-between"><span>基本工资</span><span class="text-indigo-400">90%</span></div>
+          <div class="flex items-center justify-between"><span>绩效奖金</span><span class="text-indigo-400">10%</span></div>
+          <div class="flex items-center justify-between"><span>加班费</span><span class="text-indigo-400">按工时</span></div>
+        `;
+      } else {
+        salaryStructureEl.innerHTML = `
+          <div class="flex items-center justify-between"><span>基本工资</span><span class="text-indigo-400">80%</span></div>
+          <div class="flex items-center justify-between"><span>绩效奖金</span><span class="text-indigo-400">15%</span></div>
+          <div class="flex items-center justify-between"><span>补贴</span><span class="text-indigo-400">5%</span></div>
+        `;
+      }
+      
+      // 福利偏好 - 根据group动态显示
+      const welfareEl = document.querySelector('#tab-salary .flex.flex-wrap');
+      if (data.portraitType === 'talent') {
+        welfareEl.innerHTML = `
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">股权激励</span>
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">弹性工作</span>
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">带薪年假</span>
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">培训机会</span>
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">定期体检</span>
+        `;
+      } else if (data.group === '就业困难人员' || data.group === '零工人员') {
+        welfareEl.innerHTML = `
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">五险一金</span>
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">包吃住</span>
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">加班补贴</span>
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">高温补贴</span>
+        `;
+      } else if (data.group === '退役军人') {
+        welfareEl.innerHTML = `
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">五险一金</span>
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">退役金</span>
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">创业支持</span>
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">技能培训</span>
+        `;
+      } else {
+        welfareEl.innerHTML = `
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">五险一金</span>
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">带薪年假</span>
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">定期体检</span>
+          <span class="px-2 py-1 rounded bg-purple-500/20 text-purple-300 text-xs">节日福利</span>
+        `;
+      }
     }
 
     function updateMatchTab(data) {
+      // 行业意向 - 根据group动态显示
       const industryContainer = document.getElementById('industry-intention');
-      if (industryContainer && data.tags) {
-        industryContainer.innerHTML = data.tags.slice(0, 2).map((tag, i) => `
-          <div class="flex items-center justify-between p-2 rounded ${i === 0 ? 'bg-indigo-500/10 border border-indigo-500/20' : 'bg-slate-700/30'}">
-            <span class="text-sm text-white">${tag}</span>
-            <span class="text-xs ${i === 0 ? 'text-indigo-400' : 'text-slate-500'}">${i === 0 ? '首选' : '可接受'}</span>
-          </div>
-        `).join('');
+      let industries = [];
+      if (data.portraitType === 'talent' || data.group === '高校毕业生') {
+        industries = [
+          { name: '互联网', type: '首选' },
+          { name: '金融科技', type: '可接受' },
+          { name: '人工智能', type: '可接受' }
+        ];
+      } else if (data.group === '农民工') {
+        industries = [
+          { name: '建筑业', type: '首选' },
+          { name: '制造业', type: '可接受' },
+          { name: '服务业', type: '可接受' }
+        ];
+      } else if (data.group === '零工人员') {
+        industries = [
+          { name: '外卖配送', type: '首选' },
+          { name: '物流仓储', type: '可接受' },
+          { name: '商超服务', type: '可接受' }
+        ];
+      } else if (data.group === '退役军人') {
+        industries = [
+          { name: '安保物业', type: '首选' },
+          { name: '企业管理', type: '可接受' },
+          { name: '物流运输', type: '可接受' }
+        ];
+      } else {
+        industries = [
+          { name: '服务业', type: '首选' },
+          { name: '制造业', type: '可接受' },
+          { name: '零售业', type: '可接受' }
+        ];
+      }
+      industryContainer.innerHTML = industries.map((ind, i) => `
+        <div class="flex items-center justify-between p-2 rounded ${i === 0 ? 'bg-indigo-500/10 border border-indigo-500/20' : 'bg-slate-700/30'}">
+          <span class="text-sm text-white">${ind.name}</span>
+          <span class="text-xs ${i === 0 ? 'text-indigo-400' : 'text-slate-500'}">${ind.type}</span>
+        </div>
+      `).join('');
+      
+      // 岗位意向 - 根据skills动态显示
+      const positionContainer = document.getElementById('position-intention');
+      let positions = [];
+      if (data.skills && data.skills.some(s => ['Java', 'Python', 'C语言'].includes(s))) {
+        positions = [
+          { name: '开发工程师', type: '首选' },
+          { name: '技术专家', type: '可接受' },
+          { name: '架构师', type: '可接受' }
+        ];
+      } else if (data.group === '就业困难人员' || data.group === '零工人员') {
+        positions = [
+          { name: '仓库管理', type: '首选' },
+          { name: '普工', type: '可接受' },
+          { name: '服务员', type: '可接受' }
+        ];
+      } else if (data.group === '农民工') {
+        positions = [
+          { name: '建筑工', type: '首选' },
+          { name: '质检员', type: '可接受' },
+          { name: '工长', type: '可接受' }
+        ];
+      } else if (data.group === '退役军人') {
+        positions = [
+          { name: '安保主管', type: '首选' },
+          { name: '物业经理', type: '可接受' },
+          { name: '行政后勤', type: '可接受' }
+        ];
+      } else {
+        positions = [
+          { name: '技术岗', type: '首选' },
+          { name: '管理岗', type: '可接受' },
+          { name: '销售岗', type: '可接受' }
+        ];
+      }
+      positionContainer.innerHTML = positions.map((pos, i) => `
+        <div class="flex items-center justify-between p-2 rounded ${i === 0 ? 'bg-purple-500/10 border border-purple-500/20' : 'bg-slate-700/30'}">
+          <span class="text-sm text-white">${pos.name}</span>
+          <span class="text-xs ${i === 0 ? 'text-purple-400' : 'text-slate-500'}">${pos.type}</span>
+        </div>
+      `).join('');
+      
+      // 工作性质
+      const workNatureEl = document.getElementById('work-nature');
+      if (data.group === '零工人员') {
+        workNatureEl.textContent = '兼职/灵活用工';
+      } else if (data.portraitType === 'talent') {
+        workNatureEl.textContent = '全职';
+      } else {
+        workNatureEl.textContent = '全职';
+      }
+      
+      // 工作地点 - 根据group动态
+      const workLocationEl = document.getElementById('work-location');
+      if (data.portraitType === 'talent') {
+        workLocationEl.textContent = '北京、上海、深圳、杭州';
+      } else if (data.group === '就业困难人员' || data.group === '零工人员') {
+        workLocationEl.textContent = '本地优先';
+      } else {
+        workLocationEl.textContent = '省内';
+      }
+      
+      // 通勤时间
+      const commuteTimeEl = document.getElementById('commute-time');
+      if (data.portraitType === 'talent') {
+        commuteTimeEl.textContent = '≤ 1小时';
+      } else {
+        commuteTimeEl.textContent = '可接受';
       }
     }
 
     function updateRiskTab(data) {
+      // 离职风险
       const riskLevel = data.stability >= 70 ? '低' : data.stability >= 40 ? '中' : '高';
       document.getElementById('risk-level').textContent = riskLevel;
-      document.getElementById('match-score').textContent = `${((data.match || data.competitiveness) / 10).toFixed(1)} / 10`;
+      
+      // 风险描述更新
+      const riskDescEl = document.querySelector('#tab-risk .bg-gradient-to-br.from-green-500');
+      if (riskLevel === '低') {
+        riskDescEl.innerHTML = `
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-shield w-5 h-5 text-green-400"></i>
+              <div class="text-sm font-semibold text-slate-300">离职风险</div>
+            </div>
+            <span class="text-2xl font-bold text-green-400">低</span>
+          </div>
+          <div class="space-y-2 text-xs text-slate-400">
+            <div class="flex items-center justify-between"><span>稳定性评分</span><span class="text-slate-300">${data.stability}分</span></div>
+            <div class="flex items-center justify-between"><span>家庭稳定性</span><span class="text-green-400">${data.stability >= 60 ? '高' : '中'}</span></div>
+            <div class="flex items-center justify-between"><span>职业满意度</span><span class="text-green-400">${data.competitiveness}分</span></div>
+          </div>
+          <div class="mt-3 pt-3 border-t border-slate-700/30 text-xs text-slate-400">综合评估：就业稳定，长期发展意愿强</div>
+        `;
+      } else if (riskLevel === '中') {
+        riskDescEl.innerHTML = `
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-shield w-5 h-5 text-yellow-400"></i>
+              <div class="text-sm font-semibold text-slate-300">离职风险</div>
+            </div>
+            <span class="text-2xl font-bold text-yellow-400">中</span>
+          </div>
+          <div class="space-y-2 text-xs text-slate-400">
+            <div class="flex items-center justify-between"><span>稳定性评分</span><span class="text-slate-300">${data.stability}分</span></div>
+            <div class="flex items-center justify-between"><span>家庭稳定性</span><span class="text-yellow-400">中</span></div>
+            <div class="flex items-center justify-between"><span>职业满意度</span><span class="text-yellow-400">${data.competitiveness}分</span></div>
+          </div>
+          <div class="mt-3 pt-3 border-t border-slate-700/30 text-xs text-slate-400">综合评估：有一定稳定性，可能考虑更好的机会</div>
+        `;
+      } else {
+        riskDescEl.innerHTML = `
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-shield w-5 h-5 text-red-400"></i>
+              <div class="text-sm font-semibold text-slate-300">离职风险</div>
+            </div>
+            <span class="text-2xl font-bold text-red-400">高</span>
+          </div>
+          <div class="space-y-2 text-xs text-slate-400">
+            <div class="flex items-center justify-between"><span>稳定性评分</span><span class="text-slate-300">${data.stability}分</span></div>
+            <div class="flex items-center justify-between"><span>家庭稳定性</span><span class="text-red-400">需关注</span></div>
+            <div class="flex items-center justify-between"><span>职业满意度</span><span class="text-red-400">${data.competitiveness}分</span></div>
+          </div>
+          <div class="mt-3 pt-3 border-t border-slate-700/30 text-xs text-slate-400">综合评估：需要更多就业支持，建议重点帮扶</div>
+        `;
+      }
+      
+      // 成长潜力
+      const potentialLevelEl = document.getElementById('potential-level');
+      const potentialDescEl = document.querySelector('#tab-risk .bg-gradient-to-br.from-purple-500');
+      if (data.competitiveness >= 80) {
+        potentialLevelEl.textContent = '高';
+        potentialDescEl.innerHTML = `
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-trending-up w-5 h-5 text-purple-400"></i>
+              <div class="text-sm font-semibold text-slate-300">成长潜力</div>
+            </div>
+            <span class="text-2xl font-bold text-purple-400">高</span>
+          </div>
+          <div class="space-y-2 text-xs text-slate-400">
+            <div class="flex items-center justify-between"><span>学习能力</span><span class="text-purple-400">${data.skill || data.competitiveness}分</span></div>
+            <div class="flex items-center justify-between"><span>成长速度</span><span class="text-purple-400">快速</span></div>
+            <div class="flex items-center justify-between"><span>可培养性</span><span class="text-purple-400">优秀</span></div>
+          </div>
+          <div class="mt-3 pt-3 border-t border-slate-700/30 text-xs text-slate-400">综合评估：具有优秀的发展潜力，值得重点培养</div>
+        `;
+      } else if (data.competitiveness >= 50) {
+        potentialLevelEl.textContent = '中';
+        potentialDescEl.innerHTML = `
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-trending-up w-5 h-5 text-yellow-400"></i>
+              <div class="text-sm font-semibold text-slate-300">成长潜力</div>
+            </div>
+            <span class="text-2xl font-bold text-yellow-400">中</span>
+          </div>
+          <div class="space-y-2 text-xs text-slate-400">
+            <div class="flex items-center justify-between"><span>学习能力</span><span class="text-yellow-400">${data.skill || data.competitiveness}分</span></div>
+            <div class="flex items-center justify-between"><span>成长速度</span><span class="text-yellow-400">稳定</span></div>
+            <div class="flex items-center justify-between"><span>可培养性</span><span class="text-yellow-400">良好</span></div>
+          </div>
+          <div class="mt-3 pt-3 border-t border-slate-700/30 text-xs text-slate-400">综合评估：具备一定发展潜力，建议技能培训提升</div>
+        `;
+      } else {
+        potentialLevelEl.textContent = '待提升';
+        potentialDescEl.innerHTML = `
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-trending-up w-5 h-5 text-orange-400"></i>
+              <div class="text-sm font-semibold text-slate-300">成长潜力</div>
+            </div>
+            <span class="text-2xl font-bold text-orange-400">待提升</span>
+          </div>
+          <div class="space-y-2 text-xs text-slate-400">
+            <div class="flex items-center justify-between"><span>学习能力</span><span class="text-orange-400">${data.skill || data.competitiveness}分</span></div>
+            <div class="flex items-center justify-between"><span>成长速度</span><span class="text-orange-400">较慢</span></div>
+            <div class="flex items-center justify-between"><span>可培养性</span><span class="text-orange-400">需加强培训</span></div>
+          </div>
+          <div class="mt-3 pt-3 border-t border-slate-700/30 text-xs text-slate-400">综合评估：需要更多帮扶和技能培训支持</div>
+        `;
+      }
+      
+      // 综合适配度评分
+      const matchScore = (data.match || data.competitiveness) / 10;
+      document.getElementById('match-score').textContent = `${matchScore.toFixed(1)} / 10`;
+      
+      // 各项评分更新
+      const scoreItems = document.querySelectorAll('#tab-risk .grid-cols-5 gap-3.text-center.text-xs');
+      if (scoreItems.length > 0) {
+        scoreItems[0].innerHTML = `
+          <div><div class="text-2xl font-bold text-indigo-400 mb-1">${(data.competitiveness / 10).toFixed(1)}</div><div class="text-slate-400">技能匹配</div></div>
+          <div><div class="text-2xl font-bold text-purple-400 mb-1">${(data.stability / 10).toFixed(1)}</div><div class="text-slate-400">经验匹配</div></div>
+          <div><div class="text-2xl font-bold text-pink-400 mb-1">${(data.skill ? data.skill / 10 : 7).toFixed(1)}</div><div class="text-slate-400">文化契合</div></div>
+          <div><div class="text-2xl font-bold text-orange-400 mb-1">${(data.competitiveness > 60 ? 8.5 : 6).toFixed(1)}</div><div class="text-slate-400">薪资匹配</div></div>
+          <div><div class="text-2xl font-bold text-yellow-400 mb-1">${(data.competitiveness / 10 + 0.5).toFixed(1)}</div><div class="text-slate-400">发展潜力</div></div>
+        `;
+      }
     }
 
     function updateIdentityTags(data) {
