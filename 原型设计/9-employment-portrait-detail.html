@@ -793,10 +793,10 @@
     "major": "计算机科学与技术",
     "university": "湖南大学",
     "portraitType": "talent",
-    "competitiveness": 88,
-    "stability": 78,
-    "skill": 82,
-    "match": 91,
+    "competitiveness": 85,
+    "stability": 65,
+    "skill": 88,
+    "match": 72,
     "salaryExp": "15K-20K",
     "tags": ["Java开发", "本科及以上", "3年经验", "社保连续缴纳", "求职意向：互联网"],
     "services": [
@@ -825,11 +825,11 @@
     "group": "就业困难人员",
     "education": "高中",
     "portraitType": "jobseeker",
-    "competitiveness": 45,
-    "stability": 32,
-    "skill": 38,
-    "supportIndex": 75,
-    "salaryTrend": 65,
+    "competitiveness": 42,
+    "stability": 28,
+    "skill": 55,
+    "supportIndex": 82,
+    "salaryTrend": 45,
     "tags": ["零工人员", "技能培训", "就业帮扶", "高中及以下"],
     "services": [
       "📩 推荐岗位：仓管员（85%）",
@@ -858,9 +858,9 @@
     "education": "中专",
     "major": "建筑工程",
     "portraitType": "keygroup",
-    "competitiveness": 52,
-    "stability": 55,
-    "skill": 48,
+    "competitiveness": 58,
+    "stability": 72,
+    "skill": 68,
     "groupScale": "28,345",
     "groupRate": 88.7,
     "groupDemand": "欠薪维权",
@@ -893,10 +893,10 @@
     "major": "人工智能",
     "university": "中南大学",
     "portraitType": "talent",
-    "competitiveness": 92,
-    "stability": 85,
-    "skill": 90,
-    "match": 95,
+    "competitiveness": 90,
+    "stability": 62,
+    "skill": 94,
+    "match": 78,
     "salaryExp": "20K-30K",
     "tags": ["Python", "AI算法", "硕士", "社保连续缴纳"],
     "services": [
@@ -926,11 +926,11 @@
     "education": "大专",
     "major": "物流管理",
     "portraitType": "jobseeker",
-    "competitiveness": 48,
-    "stability": 28,
-    "skill": 42,
-    "supportIndex": 68,
-    "salaryTrend": 55,
+    "competitiveness": 52,
+    "stability": 25,
+    "skill": 65,
+    "supportIndex": 78,
+    "salaryTrend": 42,
     "tags": ["外卖骑手", "灵活用工", "零工人员", "大专"],
     "services": [
       "📩 推荐岗位：骑手队长（78%）",
@@ -959,9 +959,9 @@
     "education": "大专",
     "major": "行政管理",
     "portraitType": "keygroup",
-    "competitiveness": 75,
-    "stability": 90,
-    "skill": 68,
+    "competitiveness": 65,
+    "stability": 94,
+    "skill": 72,
     "groupScale": "2,345",
     "groupRate": 93.5,
     "groupDemand": "创业扶持",
@@ -1001,10 +1001,10 @@
     "major": "会计学",
     "university": "湖南工商大学",
     "portraitType": "talent",
-    "competitiveness": 78,
-    "stability": 82,
-    "skill": 75,
-    "match": 88,
+    "competitiveness": 72,
+    "stability": 88,
+    "skill": 85,
+    "match": 58,
     "salaryExp": "10K-15K",
     "tags": ["财务会计", "本科及以上", "5年经验", "中级会计师"],
     "services": [
@@ -1039,11 +1039,11 @@
     "group": "就业困难人员",
     "education": "初中",
     "portraitType": "jobseeker",
-    "competitiveness": 35,
-    "stability": 25,
-    "skill": 30,
-    "supportIndex": 85,
-    "salaryTrend": 45,
+    "competitiveness": 42,
+    "stability": 38,
+    "skill": 45,
+    "supportIndex": 88,
+    "salaryTrend": 35,
     "tags": ["大龄就业困难", "技能单一", "需重点帮扶", "初中学历"],
     "services": [
       "📩 推荐岗位：物业保洁（80%）",
@@ -1071,9 +1071,9 @@
     "group": "农民工",
     "education": "高中",
     "portraitType": "keygroup",
-    "competitiveness": 48,
-    "stability": 60,
-    "skill": 52,
+    "competitiveness": 55,
+    "stability": 78,
+    "skill": 45,
     "groupScale": "28,345",
     "groupRate": 88.7,
     "groupDemand": "子女教育",
@@ -1106,10 +1106,10 @@
     "major": "电子信息工程",
     "university": "长沙理工大学",
     "portraitType": "talent",
-    "competitiveness": 82,
-    "stability": 75,
-    "skill": 80,
-    "match": 85,
+    "competitiveness": 78,
+    "stability": 58,
+    "skill": 88,
+    "match": 65,
     "salaryExp": "12K-18K",
     "tags": ["嵌入式开发", "本科", "4年经验", "硬件设计"],
     "services": [
@@ -1304,13 +1304,18 @@
         existingChart.destroy();
       }
       const abilityCtx = abilityCanvas.getContext('2d');
+      const competitiveness = data.competitiveness || 50;
+      const stability = data.stability || 50;
+      const skill = data.skill || 50;
+      const match = data.match || 50;
+      const supportIndex = data.supportIndex || 50;
       new Chart(abilityCtx, {
         type: 'radar',
         data: {
-          labels: ['专业技能', '通用能力', '管理能力', '工具系统', '学习能力'],
+          labels: ['竞争力', '稳定性', '技能水平', '岗位匹配', '帮扶指数'],
           datasets: [{
             label: '能力评分',
-            data: [data.skill || 80, 82, 75, 78, 85],
+            data: [competitiveness, stability, skill, match, supportIndex],
             backgroundColor: 'rgba(99, 102, 241, 0.3)',
             borderColor: 'rgba(99, 102, 241, 1)',
             borderWidth: 2,
@@ -1376,37 +1381,6 @@
 
     window.onload = function() {
       loadPersonData();
-
-      const abilityCtx = document.getElementById('abilityChart').getContext('2d');
-      new Chart(abilityCtx, {
-        type: 'radar',
-        data: {
-          labels: ['专业技能', '通用能力', '管理能力', '工具系统', '学习能力'],
-          datasets: [{
-            label: '能力评分',
-            data: [92, 88, 85, 90, 86],
-            backgroundColor: 'rgba(99, 102, 241, 0.3)',
-            borderColor: 'rgba(99, 102, 241, 1)',
-            borderWidth: 2,
-            pointBackgroundColor: 'rgba(99, 102, 241, 1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(99, 102, 241, 1)'
-          }]
-        },
-        options: {
-          scales: {
-            r: {
-              angleLines: { color: '#475569' },
-              grid: { color: '#475569' },
-              pointLabels: { color: '#94a3b8', font: { size: 11 } },
-              ticks: { color: '#64748b', backdropColor: 'transparent', font: { size: 10 } },
-              suggestedMin: 0,
-              suggestedMax: 100
-            }
-          }
-        }
-      });
 
       const activityCtx = document.getElementById('activityChart').getContext('2d');
       new Chart(activityCtx, {
