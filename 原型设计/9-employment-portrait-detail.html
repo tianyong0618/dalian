@@ -1686,10 +1686,11 @@
       const riskLevel = data.stability >= 70 ? '低' : data.stability >= 40 ? '中' : '高';
       document.getElementById('risk-level').textContent = riskLevel;
       
-      // 风险描述更新
-      const riskDescEl = document.querySelector('#tab-risk .bg-gradient-to-br.from-green-500');
-      if (riskLevel === '低') {
-        riskDescEl.innerHTML = `
+      // 风险描述更新 - 使用更可靠的选择器
+      const riskDescEl = document.querySelector('#tab-risk .grid-cols-2 > div:first-child');
+      if (riskDescEl) {
+        if (riskLevel === '低') {
+          riskDescEl.innerHTML = `
           <div class="flex items-center justify-between mb-4">
             <div class="flex items-center gap-2">
               <i class="fa-solid fa-shield w-5 h-5 text-green-400"></i>
@@ -1737,11 +1738,13 @@
           <div class="mt-3 pt-3 border-t border-slate-700/30 text-xs text-slate-400">综合评估：需要更多就业支持，建议重点帮扶</div>
         `;
       }
+      }
       
       // 成长潜力
       const potentialLevelEl = document.getElementById('potential-level');
-      const potentialDescEl = document.querySelector('#tab-risk .bg-gradient-to-br.from-purple-500');
-      if (data.competitiveness >= 80) {
+      const potentialDescEl = document.querySelector('#tab-risk .grid-cols-2 > div:nth-child(2)');
+      if (potentialLevelEl && potentialDescEl) {
+        if (data.competitiveness >= 80) {
         potentialLevelEl.textContent = '高';
         potentialDescEl.innerHTML = `
           <div class="flex items-center justify-between mb-4">
@@ -1792,6 +1795,7 @@
           </div>
           <div class="mt-3 pt-3 border-t border-slate-700/30 text-xs text-slate-400">综合评估：需要更多帮扶和技能培训支持</div>
         `;
+        }
       }
       
       // 综合适配度评分
