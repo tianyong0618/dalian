@@ -100,10 +100,6 @@
                 <i class="fa-solid fa-envelope text-purple-400"></i>
                 <span class="text-slate-300" id="person-email">zhang.wei@email.com</span>
               </div>
-              <div class="flex items-center gap-3 text-sm p-2 rounded-lg hover:bg-slate-800/50 transition-colors">
-                <i class="fa-solid fa-map-pin text-pink-400"></i>
-                <span class="text-slate-300" id="person-address">北京市 · 海淀区</span>
-              </div>
             </div>
 
             <div class="grid grid-cols-2 gap-3">
@@ -1173,7 +1169,6 @@
         
         document.getElementById('person-phone').textContent = '138-****-****';
         document.getElementById('person-email').textContent = `${data.name.toLowerCase().replace(/\s/g, '.')}@email.com`;
-        document.getElementById('person-address').textContent = data.group;
         
         document.getElementById('id-card').textContent = maskIdCard(data.idCard) || '未填写';
         document.getElementById('household').textContent = '江苏省';
