@@ -210,7 +210,7 @@
 
               <div id="tab-education" style="display: none;" class="tab-content">
                 <h3 class="text-xl font-bold text-white mb-6">教育背景与学习能力维度</h3>
-                <div class="space-y-4">
+                <div id="education-list" class="space-y-4">
                   <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700/30 hover:border-indigo-500/50 transition-all">
                     <div class="flex items-start justify-between mb-3">
                       <div>
@@ -226,7 +226,7 @@
                       <div><div class="text-slate-500 text-xs mb-1">荣誉</div><div class="text-slate-300">国家奖学金、优秀毕业生</div></div>
                     </div>
                   </div>
-                  <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700/30 hover:border-indigo-500/50 transition-all">
+                  <div class="p-5 rounded-xl bg-slate-800/50 border border-slate-700/30 hover:border-indigo-500/50 transition-all" id="second-education" style="display: none;">
                     <div class="flex items-start justify-between mb-3">
                       <div>
                         <div class="text-lg font-semibold text-white mb-1">北京大学</div>
@@ -242,17 +242,22 @@
                     </div>
                   </div>
                 </div>
+                <div id="no-education" style="display: none;" class="p-8 text-center">
+                  <div class="text-5xl mb-4">📚</div>
+                  <div class="text-lg text-slate-400 mb-2">暂无高等教育信息</div>
+                  <div class="text-sm text-slate-500">该人员当前学历为高中及以下，可推荐技能培训提升学历</div>
+                </div>
                 <div class="mt-6 grid grid-cols-2 gap-4">
                   <div class="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20">
                     <div class="text-sm text-slate-400 mb-2">语言能力</div>
                     <div class="space-y-1 text-sm text-white">
-                      <div>英语：CET-6 (580分) / 雅思 7.5</div>
+                      <div id="language-ability">英语：CET-6 (580分) / 雅思 7.5</div>
                       <div>普通话：二级甲等</div>
                     </div>
                   </div>
                   <div class="p-4 rounded-xl bg-pink-500/10 border border-pink-500/20">
                     <div class="text-sm text-slate-400 mb-2">继续教育</div>
-                    <div class="space-y-1 text-sm text-white">
+                    <div class="space-y-1 text-sm text-white" id="continuing-education">
                       <div>PMP项目管理认证</div>
                       <div>AWS云架构师认证</div>
                     </div>
@@ -820,13 +825,15 @@
     "avatar": "assets/images/女1.webp",
     "group": "就业困难人员",
     "education": "高中",
+    "major": "无专业",
+    "university": "无",
     "portraitType": "jobseeker",
     "competitiveness": 42,
     "stability": 28,
     "skill": 55,
     "supportIndex": 82,
     "salaryTrend": 45,
-    "tags": ["零工人员", "技能培训", "就业帮扶", "高中及以下"],
+    "tags": ["零工人员", "技能培训", "就业帮扶", "高中及以下", "需要技能提升"],
     "services": [
       "📩 推荐岗位：仓管员（85%）",
       "📚 推荐培训：叉车证（免费）",
@@ -840,9 +847,16 @@
         "startDate": "2019-01",
         "endDate": "至今",
         "description": "从事各类零工工作"
+      },
+      {
+        "company": "某超市",
+        "position": "理货员",
+        "startDate": "2015-03",
+        "endDate": "2018-12",
+        "description": "负责商品陈列和库存管理"
       }
     ],
-    "skills": ["仓库管理", "货物搬运"],
+    "skills": ["仓库管理", "货物搬运", "理货"],
     "certificates": []
   },
   {
@@ -1177,9 +1191,37 @@
         document.getElementById('marital').textContent = '未婚';
         document.getElementById('children').textContent = '无';
         
-        if (data.university) {
+        // 教育背景处理
+        const hasUniversity = data.university && data.university !== '无' && data.university !== '';
+        if (hasUniversity && data.education && ['硕士', '本科', '大专'].includes(data.education)) {
+          // 有大学学历，显示教育背景
+          document.getElementById('education-list').style.display = 'block';
+          document.getElementById('no-education').style.display = 'none';
           document.getElementById('university-name').textContent = data.university;
-          document.getElementById('university-major').textContent = `${data.major} · ${data.education}`;
+          document.getElementById('university-major').textContent = `${data.major || '无专业'} · ${data.education}`;
+          // 根据学历显示学位标签
+          const degreeMap = { '硕士': '硕士研究生', '本科': '本科', '大专': '大专' };
+          document.getElementById('education-degree').textContent = degreeMap[data.education] || data.education;
+          // 隐藏第二学历（示例中的北京大学）
+          document.getElementById('second-education').style.display = 'none';
+          // 显示语言能力和继续教育（如果有证书）
+          if (data.certificates && data.certificates.length > 0) {
+            document.getElementById('continuing-education').innerHTML = data.certificates.map(c => `<div>${c}</div>`).join('');
+          }
+        } else {
+          // 无大学学历，显示暂无信息
+          document.getElementById('education-list').style.display = 'none';
+          document.getElementById('no-education').style.display = 'block';
+          // 但仍然显示语言能力和继续教育区域（内容根据数据）
+          const langAbility = document.getElementById('language-ability');
+          const contEdu = document.getElementById('continuing-education');
+          if (data.certificates && data.certificates.length > 0) {
+            contEdu.innerHTML = data.certificates.map(c => `<div>${c}</div>`).join('');
+            langAbility.textContent = '暂无语言能力证明';
+          } else {
+            langAbility.textContent = '暂无语言能力证明';
+            contEdu.innerHTML = '<div>无可记录的培训经历</div>';
+          }
         }
         
         updateSkillsTab(data);
