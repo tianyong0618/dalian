@@ -141,7 +141,11 @@
   <nav class="navbar">
     <div class="container">
       <a href="index.html" class="navbar-logo">人社服务数字平台</a>
-      <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换主题" style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--text-secondary); transition: all 0.3s ease;">
+          <span class="theme-icon" style="font-size: 16px;">🌙</span>
+          <span class="theme-text">深色</span>
+        </button>
         <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px;" id="role-select">
           <option value="arbitration" selected>⚖ 仲裁机构端</option>
           <option value="laborer">👷 劳动者端</option>
@@ -384,6 +388,110 @@
     sendMessage: sendMessageToFrame,
     sharedData: sharedData
   };
+
+  // 主题切换功能
+  function toggleTheme() {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeToggle(newTheme);
+    applyThemeStyles(newTheme);
+  }
+
+  function updateThemeToggle(theme) {
+    const icon = document.querySelector('.theme-icon');
+    const text = document.querySelector('.theme-text');
+    const btn = document.querySelector('.theme-toggle');
+    
+    if (!icon || !text || !btn) return;
+    
+    if (theme === 'dark') {
+      icon.textContent = '☀️';
+      text.textContent = '浅色';
+      btn.style.background = 'rgba(99, 102, 241, 0.15)';
+      btn.style.borderColor = 'rgba(99, 102, 241, 0.3)';
+      btn.style.color = '#a5b4fc';
+    } else {
+      icon.textContent = '🌙';
+      text.textContent = '深色';
+      btn.style.background = 'rgba(22, 119, 255, 0.1)';
+      btn.style.borderColor = '#1677ff';
+      btn.style.color = '#1677ff';
+    }
+  }
+
+  function applyThemeStyles(theme) {
+    const body = document.body;
+    
+    if (theme === 'dark') {
+      body.style.setProperty('--text-primary', '#e2e8f0');
+      body.style.setProperty('--text-secondary', '#94a3b8');
+      body.style.setProperty('--bg-primary', '#0f172a');
+      body.style.setProperty('--bg-secondary', '#1e293b');
+      body.style.setProperty('--border-color', '#334155');
+      body.style.backgroundColor = '#0f172a';
+      body.style.color = '#e2e8f0';
+      
+      document.querySelectorAll('.navbar').forEach(el => {
+        el.style.background = 'rgba(30, 41, 59, 0.8)';
+        el.style.borderColor = 'rgba(99, 102, 241, 0.2)';
+      });
+      
+      document.querySelectorAll('.spa-header').forEach(el => {
+        el.style.background = 'rgba(30, 41, 59, 0.8)';
+      });
+      
+      document.querySelectorAll('.spa-content').forEach(el => {
+        el.style.background = '#1e293b';
+      });
+      
+      document.querySelectorAll('.quick-nav-btn').forEach(btn => {
+        btn.style.background = 'rgba(30, 41, 59, 0.8)';
+        btn.style.borderColor = 'rgba(99, 102, 241, 0.3)';
+        btn.style.color = '#94a3b8';
+      });
+      
+    } else {
+      body.style.setProperty('--text-primary', '#1f2937');
+      body.style.setProperty('--text-secondary', '#4b5563');
+      body.style.setProperty('--bg-primary', '#ffffff');
+      body.style.setProperty('--bg-secondary', '#f9fafb');
+      body.style.setProperty('--border-color', '#e5e7eb');
+      body.style.backgroundColor = '#ffffff';
+      body.style.color = '#1f2937';
+      
+      document.querySelectorAll('.navbar').forEach(el => {
+        el.style.background = 'rgba(255, 255, 255, 0.8)';
+        el.style.borderColor = 'rgba(22, 119, 255, 0.1)';
+      });
+      
+      document.querySelectorAll('.spa-header').forEach(el => {
+        el.style.background = 'white';
+      });
+      
+      document.querySelectorAll('.spa-content').forEach(el => {
+        el.style.background = '#f9fafb';
+      });
+      
+      document.querySelectorAll('.quick-nav-btn').forEach(btn => {
+        btn.style.background = 'white';
+        btn.style.borderColor = '#e5e7eb';
+        btn.style.color = '#4b5563';
+      });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const savedTheme = localStorage.getItem('theme');
+    const theme = savedTheme || 'light';
+    
+    document.documentElement.setAttribute('data-theme', theme);
+    updateThemeToggle(theme);
+    applyThemeStyles(theme);
+  });
 </script>
 
 </body>

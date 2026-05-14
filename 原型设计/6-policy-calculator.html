@@ -2174,51 +2174,7 @@ function deleteTag(btn) {
   </div>
 </div>
 
-<script>
-// 主题切换功能
-function toggleTheme() {
-  const html = document.documentElement;
-  const currentTheme = html.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  
-  // 设置新主题
-  html.setAttribute('data-theme', newTheme);
-  
-  // 更新按钮显示
-  const icon = document.querySelector('.theme-icon');
-  const text = document.querySelector('.theme-text');
-  
-  if (newTheme === 'dark') {
-    icon.textContent = '☀️';
-    text.textContent = '浅色';
-  } else {
-    icon.textContent = '🌙';
-    text.textContent = '深色';
-  }
-  
-  // 保存主题偏好到 localStorage
-  localStorage.setItem('theme', newTheme);
-}
-
-// 页面加载时恢复保存的主题
-document.addEventListener('DOMContentLoaded', function() {
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    
-    const icon = document.querySelector('.theme-icon');
-    const text = document.querySelector('.theme-text');
-    
-    if (savedTheme === 'dark') {
-      icon.textContent = '☀️';
-      text.textContent = '浅色';
-    } else {
-      icon.textContent = '🌙';
-      text.textContent = '深色';
-    }
-  }
-});
-</script>
+<script src="assets/theme-switch.js"></script>
 
 </body>
 </html>
