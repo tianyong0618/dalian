@@ -239,22 +239,15 @@
   function updateThemeToggle(theme) {
     const icon = document.querySelector('.theme-icon');
     const text = document.querySelector('.theme-text');
-    const btn = document.querySelector('.theme-toggle');
     
-    if (!icon || !text || !btn) return;
+    if (!icon || !text) return;
     
     if (theme === 'dark') {
       icon.textContent = '☀️';
       text.textContent = '浅色';
-      btn.style.background = 'rgba(99, 102, 241, 0.15)';
-      btn.style.borderColor = 'rgba(99, 102, 241, 0.3)';
-      btn.style.color = '#a5b4fc';
     } else {
       icon.textContent = '🌙';
       text.textContent = '深色';
-      btn.style.background = 'rgba(22, 119, 255, 0.1)';
-      btn.style.borderColor = '#1677ff';
-      btn.style.color = '#1677ff';
     }
   }
 

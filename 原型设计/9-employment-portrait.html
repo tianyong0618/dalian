@@ -145,8 +145,10 @@
       background-image: radial-gradient(circle at 2px 2px, rgba(22, 119, 255, 0.05) 1px, transparent 0) !important;
     }
     [data-theme="light"] .gradient-text {
-      background: linear-gradient(to right, #1677ff, #096dd9) !important;
-      -webkit-text-fill-color: transparent;
+      background: linear-gradient(to right, #1677ff, #7c3aed) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
     }
     [data-theme="light"] .form-select {
       background: #ffffff !important;

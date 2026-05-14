@@ -144,8 +144,8 @@
     <div class="container">
       <a href="index.html" class="navbar-logo">人社服务数字平台</a>
       <div style="display: flex; align-items: center; gap: 12px;">
-        <button class="theme-toggle" onclick="toggleTheme()" title="切换主题" style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--text-secondary); transition: all 0.3s ease;">
-          <span class="theme-icon" style="font-size: 16px;">🌙</span>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">
+          <span class="theme-icon">🌙</span>
           <span class="theme-text">深色</span>
         </button>
         <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px;" id="role-select">
@@ -406,22 +406,15 @@
   function updateThemeToggle(theme) {
     const icon = document.querySelector('.theme-icon');
     const text = document.querySelector('.theme-text');
-    const btn = document.querySelector('.theme-toggle');
     
-    if (!icon || !text || !btn) return;
+    if (!icon || !text) return;
     
     if (theme === 'dark') {
       icon.textContent = '☀️';
       text.textContent = '浅色';
-      btn.style.background = 'rgba(99, 102, 241, 0.15)';
-      btn.style.borderColor = 'rgba(99, 102, 241, 0.3)';
-      btn.style.color = '#a5b4fc';
     } else {
       icon.textContent = '🌙';
       text.textContent = '深色';
-      btn.style.background = 'rgba(22, 119, 255, 0.1)';
-      btn.style.borderColor = '#1677ff';
-      btn.style.color = '#1677ff';
     }
   }
 

@@ -1426,34 +1426,50 @@ tr.enterprise-hidden {
   }
 }
 
-/* 主题切换器样式 */
-.theme-switcher {
+/* 主题切换器样式 - 与调解仲裁页面一致 */
+.theme-switcher,
+.theme-toggle {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
-  background: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(22, 119, 255, 0.1);
+  border: 1px solid #1677ff;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: #1677ff;
 }
 
-.theme-switcher:hover {
-  border-color: var(--primary);
-  color: var(--primary);
+.theme-switcher:hover,
+.theme-toggle:hover {
+  background: rgba(22, 119, 255, 0.15);
 }
 
-.theme-switcher .theme-icon {
+.theme-switcher .theme-icon,
+.theme-toggle .theme-icon {
   font-size: 16px;
   transition: transform 0.3s ease;
 }
 
-.theme-switcher:hover .theme-icon {
+.theme-switcher:hover .theme-icon,
+.theme-toggle:hover .theme-icon {
   transform: rotate(15deg);
+}
+
+/* 深色主题样式 */
+[data-theme="dark"] .theme-switcher,
+[data-theme="dark"] .theme-toggle {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.3);
+  color: #a5b4fc;
+}
+
+[data-theme="dark"] .theme-switcher:hover,
+[data-theme="dark"] .theme-toggle:hover {
+  background: rgba(99, 102, 241, 0.25);
 }
 
 /* 主题切换按钮组 */

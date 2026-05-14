@@ -70,8 +70,10 @@
       border-color: #e5e7eb !important;
     }
     [data-theme="light"] .gradient-text {
-      background: linear-gradient(to right, #1677ff, #096dd9) !important;
-      -webkit-text-fill-color: transparent;
+      background: linear-gradient(to right, #1677ff, #7c3aed) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
     }
     [data-theme="light"] .bg-grid-pattern {
       background-image: radial-gradient(circle at 2px 2px, rgba(22, 119, 255, 0.05) 1px, transparent 0) !important;
@@ -91,6 +93,45 @@
       background: #ffffff !important;
       border-color: #e5e7eb !important;
     }
+
+    /* 主题切换按钮样式（与调解仲裁一致） */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: rgba(22, 119, 255, 0.1);
+      border: 1px solid #1677ff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 13px;
+      font-weight: 500;
+      color: #1677ff;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(22, 119, 255, 0.15);
+    }
+
+    .theme-toggle .theme-icon {
+      font-size: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover .theme-icon {
+      transform: rotate(15deg);
+    }
+
+    [data-theme="dark"] .theme-toggle {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+    }
+
+    [data-theme="dark"] .theme-toggle:hover {
+      background: rgba(99, 102, 241, 0.25);
+    }
   </style>
 </head>
 <body class="min-h-screen bg-[#0a0e1a] relative">
@@ -100,21 +141,27 @@
   <header class="relative z-10 backdrop-blur-xl bg-slate-900/60 border-b border-indigo-500/20">
     <div class="px-8 py-5">
       <div class="flex items-center justify-between">
-        <div class="flex items-center gap-4">
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl blur-lg opacity-75"></div>
-            <div class="relative w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center">
-              <i class="fa-solid fa-users text-white text-xl"></i>
+          <div class="flex items-center gap-4">
+            <div class="relative">
+              <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl blur-lg opacity-75"></div>
+              <div class="relative w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center">
+                <i class="fa-solid fa-users text-white text-xl"></i>
+              </div>
+            </div>
+            <div>
+              <div class="text-xs text-slate-400 mb-1 tracking-widest">UNIFIED TALENT PROFILE SYSTEM</div>
+              <div class="text-2xl font-bold gradient-text">人才画像体系</div>
             </div>
           </div>
-          <div>
-            <div class="text-xs text-slate-400 mb-1 tracking-widest">UNIFIED TALENT PROFILE SYSTEM</div>
-            <div class="text-2xl font-bold gradient-text">人才画像体系</div>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">
+              <span class="theme-icon">🌙</span>
+              <span class="theme-text">深色</span>
+            </button>
+            <button onclick="closePage()" class="p-2 rounded-lg hover:bg-slate-800/50 transition-colors hover:text-red-400">
+              <i class="fa-solid fa-xmark text-slate-400 text-xl"></i>
+            </button>
           </div>
-        </div>
-        <button onclick="closePage()" class="p-2 rounded-lg hover:bg-slate-800/50 transition-colors hover:text-red-400">
-          <i class="fa-solid fa-xmark text-slate-400 text-xl"></i>
-        </button>
       </div>
     </div>
   </header>
