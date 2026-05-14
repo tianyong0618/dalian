@@ -12,21 +12,45 @@
     /* CSS变量 - 浅色主题（默认） */
     :root {
       --primary: #1677ff;
+      --primary-dark: #4f46e5;
+      --secondary: #6366f1;
       --text-primary: #1f2937;
-      --text-secondary: #4b5563;
+      --text-secondary: #6b7280;
+      --text-muted: #9ca3af;
       --bg-primary: #ffffff;
       --bg-secondary: #f9fafb;
+      --bg-tertiary: #f3f4f6;
       --border-color: #e5e7eb;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --success: #16a34a;
+      --success-light: #86efac;
+      --warning: #d97706;
+      --warning-light: #fde047;
+      --danger: #dc2626;
+      --danger-light: #fca5a5;
     }
 
     /* CSS变量 - 深色主题 */
     [data-theme="dark"] {
       --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #8b5cf6;
       --text-primary: #e2e8f0;
       --text-secondary: #94a3b8;
+      --text-muted: #64748b;
       --bg-primary: #0a0e1a;
       --bg-secondary: #0f172a;
+      --bg-tertiary: #1e293b;
       --border-color: rgba(99, 102, 241, 0.2);
+      --accent: #60a5fa;
+      --accent-light: #818cf8;
+      --success: #22c55e;
+      --success-light: #86efac;
+      --warning: #f59e0b;
+      --warning-light: #fde047;
+      --danger: #ef4444;
+      --danger-light: #fca5a5;
     }
 
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; }
@@ -79,7 +103,7 @@
     .logo-icon-glow {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, #6366f1, #a855f7);
+      background: linear-gradient(to right, var(--primary), #a855f7);
       border-radius: 12px;
       filter: blur(12px);
       opacity: 0.75;
@@ -89,7 +113,7 @@
       width: 56px;
       height: 56px;
       border-radius: 12px;
-      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      background: linear-gradient(135deg, var(--primary) 0%, #a855f7 50%, #ec4899 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -106,7 +130,7 @@
     .navbar-logo .logo-english {
       font-size: 12px;
       font-weight: 400;
-      color: #94a3b8;
+      color: var(--text-secondary);
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
@@ -114,12 +138,12 @@
       font-size: 28px;
       font-weight: 700;
       letter-spacing: -0.02em;
-      background: linear-gradient(to right, #818cf8, #a78bfa, #f472b6);
+      background: linear-gradient(to right, var(--accent-light), var(--secondary), #f472b6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    .gradient-text { background: linear-gradient(to right, #818cf8, #a78bfa, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .gradient-text { background: linear-gradient(to right, var(--accent-light), var(--secondary), #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .bg-grid-pattern { background-image: radial-gradient(circle at 2px 2px, rgba(99, 102, 241, 0.1) 1px, transparent 0); background-size: 48px 48px; }
     .stat-card { background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%); border: 1px solid rgba(99, 102, 241, 0.2); }
     .data-source-card { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(99, 102, 241, 0.15); }
@@ -127,30 +151,30 @@
     .table-dark th { background: rgba(30, 41, 59, 0.8); border-bottom: 1px solid rgba(99, 102, 241, 0.2); }
     .table-dark tr:hover { background: rgba(99, 102, 241, 0.08); }
     .progress-bar { height: 8px; background: rgba(51, 65, 85, 0.8); border-radius: 4px; overflow: hidden; }
-    .progress-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #6366f1); border-radius: 4px; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--primary)); border-radius: 4px; }
     .modal-overlay { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); }
     .modal { background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(99, 102, 241, 0.2); }
-    .tag { background: rgba(99, 102, 241, 0.15); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.3); }
+    .tag { background: rgba(99, 102, 241, 0.15); color: var(--primary); border: 1px solid rgba(99, 102, 241, 0.3); }
     .badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; }
-    .badge-success { background: rgba(34, 197, 94, 0.15); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.3); }
-    .badge-warning { background: rgba(251, 191, 36, 0.15); color: #fde047; border: 1px solid rgba(251, 191, 36, 0.3); }
-    .badge-danger { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
-    .badge-info { background: rgba(59, 130, 246, 0.15); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.3); }
-    .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #ffffff; }
-    .btn-primary:hover { background: linear-gradient(135deg, #4f46e5, #7c3aed); }
-    .btn-secondary { background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2)); border: 1px solid rgba(99, 102, 241, 0.4); color: #e2e8f0; }
+    .badge-success { background: rgba(34, 197, 94, 0.15); color: var(--success-light); border: 1px solid rgba(34, 197, 94, 0.3); }
+    .badge-warning { background: rgba(251, 191, 36, 0.15); color: var(--warning-light); border: 1px solid rgba(251, 191, 36, 0.3); }
+    .badge-danger { background: rgba(239, 68, 68, 0.15); color: var(--danger-light); border: 1px solid rgba(239, 68, 68, 0.3); }
+    .badge-info { background: rgba(59, 130, 246, 0.15); color: var(--accent); border: 1px solid rgba(59, 130, 246, 0.3); }
+    .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: var(--bg-primary); }
+    .btn-primary:hover { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); }
+    .btn-secondary { background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2)); border: 1px solid rgba(99, 102, 241, 0.4); color: var(--text-primary); }
     .btn-secondary:hover { background: linear-gradient(135deg, rgba(99, 102, 241, 0.35), rgba(168, 85, 247, 0.35)); border-color: rgba(99, 102, 241, 0.6); }
-    .form-input { background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(99, 102, 241, 0.2); color: #e2e8f0; }
-    .form-input:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1); }
-    .form-select { background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(99, 102, 241, 0.2); color: #e2e8f0; }
-    .form-select:focus { border-color: #6366f1; }
-    .nav-btn { background: rgba(99, 102, 241, 0.1); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.3); }
-    .nav-btn.active { background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(147, 51, 234, 0.3)); color: #e0e7ff; }
-    .step.active .step-circle { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; }
-    .step .step-circle { width: 36px; height: 36px; border-radius: 50%; background: rgba(71, 85, 105, 0.8); color: #94a3b8; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+    .form-input { background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(99, 102, 241, 0.2); color: var(--text-primary); }
+    .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1); }
+    .form-select { background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(99, 102, 241, 0.2); color: var(--text-primary); }
+    .form-select:focus { border-color: var(--primary); }
+    .nav-btn { background: rgba(99, 102, 241, 0.1); color: var(--primary); border: 1px solid rgba(99, 102, 241, 0.3); }
+    .nav-btn.active { background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(147, 51, 234, 0.3)); color: var(--text-primary); }
+    .step.active .step-circle { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; }
+    .step .step-circle { width: 36px; height: 36px; border-radius: 50%; background: rgba(71, 85, 105, 0.8); color: var(--text-secondary); display: flex; align-items: center; justify-content: center; font-weight: 600; }
     .notification { position: fixed; top: 20px; right: 20px; z-index: 9999; padding: 12px 24px; border-radius: 8px; color: white; font-size: 14px; }
-    .notification-success { background: linear-gradient(135deg, #16a34a, #22c55e); }
-    .notification-error { background: linear-gradient(135deg, #dc2626, #ef4444); }
+    .notification-success { background: linear-gradient(135deg, var(--success), var(--success)); }
+    .notification-error { background: linear-gradient(135deg, var(--danger), var(--danger)); }
     
     /* 主题切换按钮样式（与调解仲裁一致） */
     .theme-toggle {
@@ -159,13 +183,13 @@
       gap: 6px;
       padding: 8px 14px;
       background: rgba(22, 119, 255, 0.1);
-      border: 1px solid #1677ff;
+      border: 1px solid var(--primary);
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.3s ease;
       font-size: 13px;
       font-weight: 500;
-      color: #1677ff;
+      color: var(--primary);
     }
 
     .theme-toggle:hover {
@@ -184,7 +208,7 @@
     [data-theme="dark"] .theme-toggle {
       background: rgba(99, 102, 241, 0.15);
       border-color: rgba(99, 102, 241, 0.3);
-      color: #a5b4fc;
+      color: var(--primary);
     }
 
     [data-theme="dark"] .theme-toggle:hover {
@@ -193,207 +217,220 @@
     
     /* 浅色主题覆盖样式 */
     [data-theme="light"] body {
-      background: #f8fafc !important;
-      color: #1f2937 !important;
+      background: var(--bg-secondary) !important;
+      color: var(--text-primary) !important;
     }
-    [data-theme="light"] body.bg-\[\#0a0e1a\] {
-      background: #f8fafc !important;
+    [data-theme="light"] .navbar {
+      background: rgba(255, 255, 255, 0.8) !important;
+      border-bottom: 1px solid var(--border-color) !important;
+    }
+    [data-theme="light"] .logo-icon-glow {
+      background: linear-gradient(to right, rgba(22, 119, 255, 0.3), rgba(114, 46, 209, 0.3)) !important;
+    }
+    [data-theme="light"] .logo-icon {
+      background: linear-gradient(135deg, #1677ff 0%, #722ed1 50%, #ec4899 100%) !important;
+    }
+    [data-theme="light"] body.bg-\[\var(--bg-primary)\] {
+      background: var(--bg-secondary) !important;
     }
     [data-theme="light"] .text-white {
-      color: #1f2937 !important;
+      color: var(--text-primary) !important;
     }
     [data-theme="light"] .text-slate-400 {
-      color: #6b7280 !important;
+      color: var(--text-secondary) !important;
     }
     [data-theme="light"] .bg-slate-900\/60 {
       background: rgba(255, 255, 255, 0.9) !important;
     }
     [data-theme="light"] .bg-gradient-to-br {
-      background: linear-gradient(to bottom right, #eff6ff, #ffffff) !important;
+      background: linear-gradient(to bottom right, #eff6ff, var(--bg-primary)) !important;
     }
     [data-theme="light"] .border-indigo-500\/20 {
-      border-color: #e5e7eb !important;
+      border-color: var(--border-color) !important;
     }
     [data-theme="light"] .stat-card {
-      background: #ffffff !important;
-      border-color: #e5e7eb !important;
+      background: var(--bg-primary) !important;
+      border-color: var(--border-color) !important;
     }
     [data-theme="light"] .stat-card .text-indigo-400,
     [data-theme="light"] .stat-card .text-purple-400,
     [data-theme="light"] .stat-card .text-pink-400,
     [data-theme="light"] .stat-card .text-orange-400 {
-      color: #1677ff !important;
+      color: var(--primary) !important;
     }
     [data-theme="light"] .data-source-card {
-      background: #ffffff !important;
-      border-color: #e5e7eb !important;
+      background: var(--bg-primary) !important;
+      border-color: var(--border-color) !important;
     }
     [data-theme="light"] .data-source-card h4 {
-      color: #1f2937 !important;
+      color: var(--text-primary) !important;
     }
     [data-theme="light"] .bg-grid-pattern {
       background-image: radial-gradient(circle at 2px 2px, rgba(22, 119, 255, 0.05) 1px, transparent 0) !important;
     }
+    [data-theme="light"] .bg-gradient-to-br.from-blue-950\/30 {
+      background: linear-gradient(to bottom right, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.03), rgba(156, 163, 175, 0.05)) !important;
+    }
     [data-theme="light"] .gradient-text {
-      background: linear-gradient(to right, #1677ff, #7c3aed) !important;
+      background: linear-gradient(to right, var(--primary), var(--primary)) !important;
       -webkit-background-clip: text !important;
       -webkit-text-fill-color: transparent !important;
       background-clip: text !important;
     }
     [data-theme="light"] .form-select {
-      background: #ffffff !important;
-      border-color: #d9d9d9 !important;
-      color: #1f2937 !important;
+      background: var(--bg-primary) !important;
+      border-color: var(--border-color) !important;
+      color: var(--text-primary) !important;
     }
     [data-theme="light"] .table-dark th,
     [data-theme="light"] .table-dark td {
-      background: #f5f5f5 !important;
-      color: #1f2937 !important;
-      border-color: #e5e7eb !important;
+      background: var(--bg-tertiary) !important;
+      color: var(--text-primary) !important;
+      border-color: var(--border-color) !important;
     }
     [data-theme="light"] .table-dark tr:hover {
-      background: #f0f9ff !important;
+      background: var(--bg-secondary) !important;
     }
     [data-theme="light"] .badge {
       border-color: currentColor;
     }
     [data-theme="light"] .badge-success {
       background: rgba(34, 197, 94, 0.1) !important;
-      color: #16a34a !important;
+      color: var(--success) !important;
     }
     [data-theme="light"] .badge-warning {
       background: rgba(250, 173, 20, 0.1) !important;
-      color: #d97706 !important;
+      color: var(--warning) !important;
     }
     [data-theme="light"] .badge-danger {
       background: rgba(239, 68, 68, 0.1) !important;
-      color: #dc2626 !important;
+      color: var(--danger) !important;
     }
     [data-theme="light"] .progress-bar {
-      background: #f0f0f0 !important;
+      background: var(--bg-tertiary) !important;
     }
     [data-theme="light"] .modal-overlay {
       background: rgba(0, 0, 0, 0.5) !important;
     }
     [data-theme="light"] .modal {
-      background: #ffffff !important;
-      border-color: #e5e7eb !important;
+      background: var(--bg-primary) !important;
+      border-color: var(--border-color) !important;
     }
     [data-theme="light"] .modal h3 {
-      color: #1f2937 !important;
+      color: var(--text-primary) !important;
     }
     [data-theme="light"] .modal p {
-      color: #6b7280 !important;
+      color: var(--text-secondary) !important;
     }
     [data-theme="light"] .nav-btn {
       background: transparent !important;
-      border-color: #d9d9d9 !important;
-      color: #6b7280 !important;
+      border-color: var(--border-color) !important;
+      color: var(--text-secondary) !important;
     }
     [data-theme="light"] .nav-btn.active {
       background: rgba(22, 119, 255, 0.1) !important;
-      border-color: #1677ff !important;
-      color: #1677ff !important;
+      border-color: var(--primary) !important;
+      color: var(--primary) !important;
     }
     [data-theme="light"] .step .step-circle {
-      background: #f5f5f5 !important;
-      color: #6b7280 !important;
-      border-color: #d9d9d9 !important;
+      background: var(--bg-tertiary) !important;
+      color: var(--text-secondary) !important;
+      border-color: var(--border-color) !important;
     }
     [data-theme="light"] .step.active .step-circle {
-      background: #1677ff !important;
-      color: #ffffff !important;
+      background: var(--primary) !important;
+      color: var(--bg-primary) !important;
     }
     [data-theme="light"] .form-input {
-      background: #ffffff !important;
-      border-color: #d9d9d9 !important;
-      color: #1f2937 !important;
+      background: var(--bg-primary) !important;
+      border-color: var(--border-color) !important;
+      color: var(--text-primary) !important;
     }
     [data-theme="light"] .form-input:focus {
-      border-color: #1677ff !important;
+      border-color: var(--primary) !important;
     }
     [data-theme="light"] .btn-primary {
-      background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
-      color: #ffffff !important;
+      background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+      color: var(--bg-primary) !important;
     }
     [data-theme="light"] .btn-primary:hover {
-      background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary)) !important;
     }
     [data-theme="light"] .btn-secondary {
       background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(168, 85, 247, 0.12)) !important;
       border: 1px solid rgba(99, 102, 241, 0.4) !important;
-      color: #1f2937 !important;
+      color: var(--text-primary) !important;
     }
     [data-theme="light"] .btn-secondary:hover {
       background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(168, 85, 247, 0.25)) !important;
       border-color: rgba(99, 102, 241, 0.6) !important;
-      color: #0f172a !important;
+      color: var(--bg-secondary) !important;
     }
     [data-theme="light"] .navbar {
       background: rgba(255, 255, 255, 0.75) !important;
       border-bottom: 1px solid rgba(99, 102, 241, 0.15) !important;
     }
     [data-theme="light"] .navbar-logo .logo-english {
-      color: #64748b !important;
+      color: var(--text-muted) !important;
     }
     [data-theme="light"] .theme-toggle {
       background: rgba(99, 102, 241, 0.1) !important;
       border: 1px solid rgba(99, 102, 241, 0.3) !important;
-      color: #6366f1 !important;
+      color: var(--primary) !important;
     }
     [data-theme="light"] .theme-toggle:hover {
       background: rgba(99, 102, 241, 0.2) !important;
     }
     [data-theme="light"] .stat-card {
-      background: #ffffff !important;
-      border-color: #e5e7eb !important;
+      background: var(--bg-primary) !important;
+      border-color: var(--border-color) !important;
     }
     [data-theme="light"] .stat-card h3,
     [data-theme="light"] .stat-card p,
     [data-theme="light"] .stat-card span {
-      color: #1f2937 !important;
+      color: var(--text-primary) !important;
     }
     [data-theme="light"] .stat-card .text-indigo-400,
     [data-theme="light"] .stat-card .text-purple-400,
     [data-theme="light"] .stat-card .text-pink-400,
     [data-theme="light"] .stat-card .text-orange-400 {
-      color: #1677ff !important;
+      color: var(--primary) !important;
     }
     [data-theme="light"] .data-source-card {
-      background: #ffffff !important;
-      border-color: #e5e7eb !important;
+      background: var(--bg-primary) !important;
+      border-color: var(--border-color) !important;
     }
     [data-theme="light"] .data-source-card h4,
     [data-theme="light"] .data-source-card p,
     [data-theme="light"] .data-source-card span {
-      color: #1f2937 !important;
+      color: var(--text-primary) !important;
     }
     [data-theme="light"] .table-dark th,
     [data-theme="light"] .table-dark td {
-      background: #ffffff !important;
-      color: #1f2937 !important;
-      border-color: #e5e7eb !important;
+      background: var(--bg-primary) !important;
+      color: var(--text-primary) !important;
+      border-color: var(--border-color) !important;
     }
     [data-theme="light"] .table-dark th {
-      background: #f9fafb !important;
-      color: #374151 !important;
+      background: var(--bg-secondary) !important;
+      color: var(--text-secondary) !important;
     }
     [data-theme="light"] .table-dark tr:hover td {
-      background: #f3f4f6 !important;
+      background: var(--bg-tertiary) !important;
     }
     [data-theme="light"] .tag {
       background: rgba(99, 102, 241, 0.1) !important;
-      color: #6366f1 !important;
+      color: var(--primary) !important;
       border-color: rgba(99, 102, 241, 0.3) !important;
     }
     [data-theme="light"] .text-white {
-      color: #1f2937 !important;
+      color: var(--text-primary) !important;
     }
     [data-theme="light"] .text-slate-400,
     [data-theme="light"] .text-slate-300,
     [data-theme="light"] .text-slate-200,
     [data-theme="light"] .text-slate-100 {
-      color: #6b7280 !important;
+      color: var(--text-secondary) !important;
     }
     [data-theme="light"] h1,
     [data-theme="light"] h2,
@@ -401,14 +438,14 @@
     [data-theme="light"] h4,
     [data-theme="light"] h5,
     [data-theme="light"] h6 {
-      color: #111827 !important;
+      color: var(--text-primary) !important;
     }
     [data-theme="light"] .stat-card .text-sm {
-      color: #6b7280 !important;
+      color: var(--text-secondary) !important;
     }
   </style>
 </head>
-<body class="min-h-screen bg-[#0a0e1a] relative">
+<body class="min-h-screen bg-[var(--bg-primary)] relative">
   <div class="absolute inset-0 bg-gradient-to-br from-blue-950/30 via-purple-950/20 to-slate-950/30"></div>
   <div class="absolute inset-0 bg-grid-pattern"></div>
 
@@ -479,45 +516,45 @@
               <span style="font-size: 24px;">📚</span>
               <span class="badge badge-success">实时同步</span>
             </div>
-            <h4 style="font-size: 15px; font-weight: 600; color: #e2e8f0; margin-bottom: 8px;">社保数据</h4>
+            <h4 style="font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">社保数据</h4>
             <p class="text-xs text-slate-400 mb-1">最近更新：2026-05-08 10:30</p>
             <p class="text-xs text-slate-400">数据量：1,234,567 条</p>
-            <div style="margin-top: 8px; font-size: 11px; color: #818cf8;">🤖 AI自动采集</div>
+            <div style="margin-top: 8px; font-size: 11px; color: var(--accent-light);">🤖 AI自动采集</div>
           </div>
           <div class="data-source-card p-4 rounded-xl cursor-pointer" data-source="employment" onclick="showModal('data-management-modal')">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
               <span style="font-size: 24px;">💼</span>
               <span class="badge badge-success">实时同步</span>
             </div>
-            <h4 style="font-size: 15px; font-weight: 600; color: #e2e8f0; margin-bottom: 8px;">就业数据</h4>
+            <h4 style="font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">就业数据</h4>
             <p class="text-xs text-slate-400 mb-1">最近更新：2026-05-08 10:28</p>
             <p class="text-xs text-slate-400">数据量：856,432 条</p>
-            <div style="margin-top: 8px; font-size: 11px; color: #818cf8;">🤖 AI自动采集</div>
+            <div style="margin-top: 8px; font-size: 11px; color: var(--accent-light);">🤖 AI自动采集</div>
           </div>
           <div class="data-source-card p-4 rounded-xl cursor-pointer" data-source="talent" onclick="showModal('data-management-modal')">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
               <span style="font-size: 24px;">🎓</span>
               <span class="badge badge-warning">同步中</span>
             </div>
-            <h4 style="font-size: 15px; font-weight: 600; color: #e2e8f0; margin-bottom: 8px;">人才数据</h4>
+            <h4 style="font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">人才数据</h4>
             <p class="text-xs text-slate-400 mb-1">最近更新：2026-05-08 09:15</p>
             <p class="text-xs text-slate-400">数据量：432,109 条</p>
-            <div style="margin-top: 8px; font-size: 11px; color: #818cf8;">🤖 AI自动采集</div>
+            <div style="margin-top: 8px; font-size: 11px; color: var(--accent-light);">🤖 AI自动采集</div>
           </div>
           <div class="data-source-card p-4 rounded-xl cursor-pointer" data-source="rights" onclick="showModal('data-management-modal')">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
               <span style="font-size: 24px;">⚖️</span>
               <span class="badge badge-success">实时同步</span>
             </div>
-            <h4 style="font-size: 15px; font-weight: 600; color: #e2e8f0; margin-bottom: 8px;">维权数据</h4>
+            <h4 style="font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">维权数据</h4>
             <p class="text-xs text-slate-400 mb-1">最近更新：2026-05-08 10:25</p>
             <p class="text-xs text-slate-400">数据量：98,765 条</p>
-            <div style="margin-top: 8px; font-size: 11px; color: #818cf8;">🤖 AI自动采集</div>
+            <div style="margin-top: 8px; font-size: 11px; color: var(--accent-light);">🤖 AI自动采集</div>
           </div>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; background: rgba(99, 102, 241, 0.1); border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.2);">
           <div>
-            <span style="color: #818cf8; font-weight: 600;">📡 数据同步状态：实时同步中</span>
+            <span style="color: var(--accent-light); font-weight: 600;">📡 数据同步状态：实时同步中</span>
             <span class="text-xs ml-4 text-slate-400">上次完整同步：2026-05-08 08:00</span>
           </div>
           <button class="btn-secondary px-4 py-2 rounded-lg text-sm" onclick="showModal('data-management-modal')">数据管理</button>
@@ -568,15 +605,15 @@
         <table class="table-dark w-full">
           <thead>
             <tr>
-              <th style="width: 60px; padding: 12px; text-align: left; color: #94a3b8;">头像</th>
-              <th style="padding: 12px; text-align: left; color: #94a3b8;">姓名</th>
-              <th style="padding: 12px; text-align: left; color: #94a3b8;">学历</th>
-              <th style="padding: 12px; text-align: left; color: #94a3b8;">重点群体</th>
-              <th style="padding: 12px; text-align: left; color: #94a3b8;">画像类型</th>
-              <th style="padding: 12px; text-align: left; color: #94a3b8;">竞争力</th>
-              <th style="padding: 12px; text-align: left; color: #94a3b8;">稳定性</th>
-              <th style="padding: 12px; text-align: left; color: #94a3b8;">标签</th>
-              <th style="padding: 12px; text-align: left; color: #94a3b8;">操作</th>
+              <th style="width: 60px; padding: 12px; text-align: left; color: var(--text-secondary);">头像</th>
+              <th style="padding: 12px; text-align: left; color: var(--text-secondary);">姓名</th>
+              <th style="padding: 12px; text-align: left; color: var(--text-secondary);">学历</th>
+              <th style="padding: 12px; text-align: left; color: var(--text-secondary);">重点群体</th>
+              <th style="padding: 12px; text-align: left; color: var(--text-secondary);">画像类型</th>
+              <th style="padding: 12px; text-align: left; color: var(--text-secondary);">竞争力</th>
+              <th style="padding: 12px; text-align: left; color: var(--text-secondary);">稳定性</th>
+              <th style="padding: 12px; text-align: left; color: var(--text-secondary);">标签</th>
+              <th style="padding: 12px; text-align: left; color: var(--text-secondary);">操作</th>
             </tr>
           </thead>
           <tbody id="person-tbody">
@@ -593,64 +630,64 @@
           <table class="table-dark w-full">
             <thead>
               <tr>
-                <th style="padding: 12px; text-align: left; color: #94a3b8;">群体类型</th>
-                <th style="padding: 12px; text-align: left; color: #94a3b8;">人数规模</th>
-                <th style="padding: 12px; text-align: left; color: #94a3b8;">就业率</th>
-                <th style="padding: 12px; text-align: left; color: #94a3b8;">主要需求</th>
-                <th style="padding: 12px; text-align: left; color: #94a3b8;">AI预警</th>
-                <th style="padding: 12px; text-align: left; color: #94a3b8;">趋势</th>
-                <th style="padding: 12px; text-align: left; color: #94a3b8;">状态</th>
-                <th style="padding: 12px; text-align: left; color: #94a3b8;">操作</th>
+                <th style="padding: 12px; text-align: left; color: var(--text-secondary);">群体类型</th>
+                <th style="padding: 12px; text-align: left; color: var(--text-secondary);">人数规模</th>
+                <th style="padding: 12px; text-align: left; color: var(--text-secondary);">就业率</th>
+                <th style="padding: 12px; text-align: left; color: var(--text-secondary);">主要需求</th>
+                <th style="padding: 12px; text-align: left; color: var(--text-secondary);">AI预警</th>
+                <th style="padding: 12px; text-align: left; color: var(--text-secondary);">趋势</th>
+                <th style="padding: 12px; text-align: left; color: var(--text-secondary);">状态</th>
+                <th style="padding: 12px; text-align: left; color: var(--text-secondary);">操作</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td style="padding: 12px;"><strong style="color: #e2e8f0;">高校毕业生</strong></td>
-                <td style="padding: 12px; color: #cbd5e1;">12,456</td>
-                <td style="padding: 12px;"><div style="display: flex; align-items: center; gap: 8px;"><div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 91.2%;"></div></div><span style="color: #22c55e;">91.2%</span></div></td>
-                <td style="padding: 12px; color: #cbd5e1;">岗位匹配、就业指导</td>
-                <td style="padding: 12px;"><span style="font-size: 12px; color: #818cf8;">🤖 AI预测持续上升 ↑</span></td>
-                <td style="padding: 12px; color: #22c55e;">↑ 上升</td>
+                <td style="padding: 12px;"><strong style="color: var(--text-primary);">高校毕业生</strong></td>
+                <td style="padding: 12px; color: var(--text-secondary);">12,456</td>
+                <td style="padding: 12px;"><div style="display: flex; align-items: center; gap: 8px;"><div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 91.2%;"></div></div><span style="color: var(--success);">91.2%</span></div></td>
+                <td style="padding: 12px; color: var(--text-secondary);">岗位匹配、就业指导</td>
+                <td style="padding: 12px;"><span style="font-size: 12px; color: var(--accent-light);">🤖 AI预测持续上升 ↑</span></td>
+                <td style="padding: 12px; color: var(--success);">↑ 上升</td>
                 <td style="padding: 12px;"><span class="badge badge-success">监测中</span></td>
                 <td style="padding: 12px;"><button class="btn-secondary px-3 py-1 rounded text-xs" onclick="showModal('group-analysis-modal')">分析</button></td>
               </tr>
               <tr>
-                <td style="padding: 12px;"><strong style="color: #e2e8f0;">就业困难人员</strong></td>
-                <td style="padding: 12px; color: #cbd5e1;">3,892</td>
-                <td style="padding: 12px;"><div style="display: flex; align-items: center; gap: 8px;"><div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 76.5%; background: #f59e0b;"></div></div><span style="color: #f59e0b;">76.5%</span></div></td>
-                <td style="padding: 12px; color: #cbd5e1;">技能培训、兜底安置</td>
-                <td style="padding: 12px;"><span style="font-size: 12px; color: #ef4444;">⚠️ AI预警：需重点关注</span></td>
-                <td style="padding: 12px; color: #f59e0b;">→ 平稳</td>
+                <td style="padding: 12px;"><strong style="color: var(--text-primary);">就业困难人员</strong></td>
+                <td style="padding: 12px; color: var(--text-secondary);">3,892</td>
+                <td style="padding: 12px;"><div style="display: flex; align-items: center; gap: 8px;"><div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 76.5%; background: var(--warning);"></div></div><span style="color: var(--warning);">76.5%</span></div></td>
+                <td style="padding: 12px; color: var(--text-secondary);">技能培训、兜底安置</td>
+                <td style="padding: 12px;"><span style="font-size: 12px; color: var(--danger);">⚠️ AI预警：需重点关注</span></td>
+                <td style="padding: 12px; color: var(--warning);">→ 平稳</td>
                 <td style="padding: 12px;"><span class="badge badge-warning">重点关注</span></td>
                 <td style="padding: 12px;"><button class="btn-secondary px-3 py-1 rounded text-xs" onclick="showModal('group-analysis-modal')">分析</button></td>
               </tr>
               <tr>
-                <td style="padding: 12px;"><strong style="color: #e2e8f0;">农民工群体</strong></td>
-                <td style="padding: 12px; color: #cbd5e1;">28,345</td>
-                <td style="padding: 12px;"><div style="display: flex; align-items: center; gap: 8px;"><div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 88.7%;"></div></div><span style="color: #22c55e;">88.7%</span></div></td>
-                <td style="padding: 12px; color: #cbd5e1;">欠薪维权、技能培训</td>
-                <td style="padding: 12px;"><span style="font-size: 12px; color: #818cf8;">🤖 AI预测稳定</span></td>
-                <td style="padding: 12px; color: #22c55e;">↑ 上升</td>
+                <td style="padding: 12px;"><strong style="color: var(--text-primary);">农民工群体</strong></td>
+                <td style="padding: 12px; color: var(--text-secondary);">28,345</td>
+                <td style="padding: 12px;"><div style="display: flex; align-items: center; gap: 8px;"><div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 88.7%;"></div></div><span style="color: var(--success);">88.7%</span></div></td>
+                <td style="padding: 12px; color: var(--text-secondary);">欠薪维权、技能培训</td>
+                <td style="padding: 12px;"><span style="font-size: 12px; color: var(--accent-light);">🤖 AI预测稳定</span></td>
+                <td style="padding: 12px; color: var(--success);">↑ 上升</td>
                 <td style="padding: 12px;"><span class="badge badge-success">监测中</span></td>
                 <td style="padding: 12px;"><button class="btn-secondary px-3 py-1 rounded text-xs" onclick="showModal('group-analysis-modal')">分析</button></td>
               </tr>
               <tr>
-                <td style="padding: 12px;"><strong style="color: #e2e8f0;">零工从业人员</strong></td>
-                <td style="padding: 12px; color: #cbd5e1;">15,678</td>
-                <td style="padding: 12px;"><div style="display: flex; align-items: center; gap: 8px;"><div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 82.3%; background: #f59e0b;"></div></div><span style="color: #f59e0b;">82.3%</span></div></td>
-                <td style="padding: 12px; color: #cbd5e1;">权益保障、职业培训</td>
-                <td style="padding: 12px;"><span style="font-size: 12px; color: #ef4444;">⚠️ AI预警：权益风险</span></td>
-                <td style="padding: 12px; color: #22c55e;">↑ 上升</td>
+                <td style="padding: 12px;"><strong style="color: var(--text-primary);">零工从业人员</strong></td>
+                <td style="padding: 12px; color: var(--text-secondary);">15,678</td>
+                <td style="padding: 12px;"><div style="display: flex; align-items: center; gap: 8px;"><div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 82.3%; background: var(--warning);"></div></div><span style="color: var(--warning);">82.3%</span></div></td>
+                <td style="padding: 12px; color: var(--text-secondary);">权益保障、职业培训</td>
+                <td style="padding: 12px;"><span style="font-size: 12px; color: var(--danger);">⚠️ AI预警：权益风险</span></td>
+                <td style="padding: 12px; color: var(--success);">↑ 上升</td>
                 <td style="padding: 12px;"><span class="badge badge-warning">重点关注</span></td>
                 <td style="padding: 12px;"><button class="btn-secondary px-3 py-1 rounded text-xs" onclick="showModal('group-analysis-modal')">分析</button></td>
               </tr>
               <tr>
-                <td style="padding: 12px;"><strong style="color: #e2e8f0;">退役军人</strong></td>
-                <td style="padding: 12px; color: #cbd5e1;">2,345</td>
-                <td style="padding: 12px;"><div style="display: flex; align-items: center; gap: 8px;"><div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 93.5%;"></div></div><span style="color: #22c55e;">93.5%</span></div></td>
-                <td style="padding: 12px; color: #cbd5e1;">创业扶持、技能培训</td>
-                <td style="padding: 12px;"><span style="font-size: 12px; color: #818cf8;">🤖 AI预测持续上升 ↑</span></td>
-                <td style="padding: 12px; color: #22c55e;">↑ 上升</td>
+                <td style="padding: 12px;"><strong style="color: var(--text-primary);">退役军人</strong></td>
+                <td style="padding: 12px; color: var(--text-secondary);">2,345</td>
+                <td style="padding: 12px;"><div style="display: flex; align-items: center; gap: 8px;"><div class="progress-bar" style="width: 120px;"><div class="progress-fill" style="width: 93.5%;"></div></div><span style="color: var(--success);">93.5%</span></div></td>
+                <td style="padding: 12px; color: var(--text-secondary);">创业扶持、技能培训</td>
+                <td style="padding: 12px;"><span style="font-size: 12px; color: var(--accent-light);">🤖 AI预测持续上升 ↑</span></td>
+                <td style="padding: 12px; color: var(--success);">↑ 上升</td>
                 <td style="padding: 12px;"><span class="badge badge-success">监测中</span></td>
                 <td style="padding: 12px;"><button class="btn-secondary px-3 py-1 rounded text-xs" onclick="showModal('group-analysis-modal')">分析</button></td>
               </tr>
@@ -680,26 +717,26 @@
         </div>
         <div class="bg-slate-800/50 p-4 rounded-lg cursor-pointer" onclick="selectPersonForPortrait('张三', '410xxxxxxxxxxxx1234')">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div><strong style="color: #e2e8f0;">张三</strong><span class="text-xs ml-4 text-slate-400">410xxxxxxxxxxxx1234</span></div>
+            <div><strong style="color: var(--text-primary);">张三</strong><span class="text-xs ml-4 text-slate-400">410xxxxxxxxxxxx1234</span></div>
             <span class="badge badge-info">高校毕业生</span>
           </div>
         </div>
         <div class="bg-slate-800/50 p-4 rounded-lg cursor-pointer mt-2" onclick="selectPersonForPortrait('李四', '410xxxxxxxxxxxx5678')">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div><strong style="color: #e2e8f0;">李四</strong><span class="text-xs ml-4 text-slate-400">410xxxxxxxxxxxx5678</span></div>
+            <div><strong style="color: var(--text-primary);">李四</strong><span class="text-xs ml-4 text-slate-400">410xxxxxxxxxxxx5678</span></div>
             <span class="badge badge-warning">就业困难</span>
           </div>
         </div>
       </div>
       <div id="portrait-form-2" style="display: none;">
-        <h4 class="mb-4">正在采集多维度数据... <span class="badge" style="background: rgba(99, 102, 241, 0.1); color: #818cf8; font-size: 11px;">🤖 AI数据采集与分析</span></h4>
-        <div class="mb-4"><div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;"><span>📚 社保数据</span><span style="color: #22c55e;">✓ 已采集</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%; background: #22c55e;"></div></div></div>
-        <div class="mb-4"><div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;"><span>💼 就业数据</span><span style="color: #22c55e;">✓ 已采集</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%; background: #22c55e;"></div></div></div>
-        <div class="mb-4"><div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;"><span>🎓 人才数据</span><span style="color: #22c55e;">✓ 已采集</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%; background: #22c55e;"></div></div></div>
-        <div class="mb-4"><div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;"><span>⚖️ 维权数据</span><span style="color: #22c55e;">✓ 已采集</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%; background: #22c55e;"></div></div></div>
+        <h4 class="mb-4">正在采集多维度数据... <span class="badge" style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); font-size: 11px;">🤖 AI数据采集与分析</span></h4>
+        <div class="mb-4"><div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;"><span>📚 社保数据</span><span style="color: var(--success);">✓ 已采集</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div></div>
+        <div class="mb-4"><div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;"><span>💼 就业数据</span><span style="color: var(--success);">✓ 已采集</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div></div>
+        <div class="mb-4"><div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;"><span>🎓 人才数据</span><span style="color: var(--success);">✓ 已采集</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div></div>
+        <div class="mb-4"><div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;"><span>⚖️ 维权数据</span><span style="color: var(--success);">✓ 已采集</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div></div>
       </div>
       <div id="portrait-form-3" style="display: none;">
-        <h4 class="mb-4">正在生成动态标签... <span class="badge" style="background: rgba(147, 51, 234, 0.1); color: #a78bfa; font-size: 11px;">🏷️ 智能标签生成中...</span></h4>
+        <h4 class="mb-4">正在生成动态标签... <span class="badge" style="background: rgba(147, 51, 234, 0.1); color: var(--secondary); font-size: 11px;">🏷️ 智能标签生成中...</span></h4>
         <div class="grid grid-cols-2 gap-4 mb-4">
           <div class="stat-card p-4 rounded-lg"><div class="text-2xl font-bold text-indigo-400">88%</div><div class="text-xs text-slate-400">教育竞争力</div></div>
           <div class="stat-card p-4 rounded-lg"><div class="text-2xl font-bold text-purple-400">78%</div><div class="text-xs text-slate-400">就业稳定性</div></div>
@@ -761,40 +798,40 @@
           </div>
           <div id="tag-list-by-category">
             <div data-tag-category="basic">
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">年龄：25-35岁 <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span></div>
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">大专学历 <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span></div>
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">本地户籍 <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">年龄：25-35岁 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">大专学历 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">本地户籍 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
             </div>
             <div data-tag-category="education" style="display: none;">
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">本科及以上 <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: #818cf8;">🤖 AI</span></div>
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">计算机专业 <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: #818cf8;">🤖 AI</span></div>
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">教育竞争力：高 <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">本科及以上 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--accent-light);">🤖 AI</span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">计算机专业 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--accent-light);">🤖 AI</span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">教育竞争力：高 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
             </div>
             <div data-tag-category="employment" style="display: none;">
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">社保连续缴纳 <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: #818cf8;">🤖 AI</span></div>
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">就业稳定性：高 <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span></div>
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">工作年限：3-5年 <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">社保连续缴纳 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--accent-light);">🤖 AI</span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">就业稳定性：高 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">工作年限：3-5年 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
             </div>
             <div data-tag-category="skill" style="display: none;">
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">Java开发 <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: #818cf8;">🤖 AI</span></div>
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">Python <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span></div>
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">SQL <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">Java开发 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--accent-light);">🤖 AI</span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">Python <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">SQL <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
             </div>
             <div data-tag-category="support" style="display: none;">
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">就业困难人员 <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span></div>
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">帮扶等级：C级 <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span></div>
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">需技能培训 <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">就业困难人员 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">帮扶等级：C级 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">需技能培训 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
             </div>
             <div data-tag-category="intent" style="display: none;">
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">求职意向：互联网 <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: #818cf8;">🤖 AI</span></div>
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">薪资期望：15-20K <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span></div>
-              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">工作地点：本地 <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">求职意向：互联网 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span> <span style="font-size: 11px; color: var(--accent-light);">🤖 AI</span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">薪资期望：15-20K <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
+              <div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">工作地点：本地 <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>
             </div>
           </div>
-          <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(99, 102, 241, 0.2); display: flex; gap: 16px; font-size: 13px; color: #94a3b8;">
-            <span>标签总数：<strong style="color: #e2e8f0;">128</strong></span>
-            <span>AI自动生成：<strong style="color: #e2e8f0;">96</strong></span>
-            <span>手动添加：<strong style="color: #e2e8f0;">32</strong></span>
+          <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(99, 102, 241, 0.2); display: flex; gap: 16px; font-size: 13px; color: var(--text-secondary);">
+            <span>标签总数：<strong style="color: var(--text-primary);">128</strong></span>
+            <span>AI自动生成：<strong style="color: var(--text-primary);">96</strong></span>
+            <span>手动添加：<strong style="color: var(--text-primary);">32</strong></span>
           </div>
         </div>
       </div>
@@ -816,30 +853,30 @@
       </div>
       <div class="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-xl p-8 min-h-[350px]">
         <div style="text-align: center;">
-          <div style="display: inline-block; background: linear-gradient(to right, #6366f1, #8b5cf6); color: white; padding: 16px 32px; border-radius: 50px; font-weight: 600; margin-bottom: 32px;">张三（中心节点）</div>
+          <div style="display: inline-block; background: linear-gradient(to right, var(--primary), var(--secondary)); color: white; padding: 16px 32px; border-radius: 50px; font-weight: 600; margin-bottom: 32px;">张三（中心节点）</div>
           <div class="grid grid-cols-3 gap-4">
             <div class="bg-indigo-500/10 p-4 rounded-lg border border-indigo-500/20">
-              <div style="font-weight: 600; color: #93c5fd; margin-bottom: 4px;">🎓 教育背景</div>
+              <div style="font-weight: 600; color: var(--accent); margin-bottom: 4px;">🎓 教育背景</div>
               <div class="text-xs text-slate-400">本科 / 计算机科学</div>
             </div>
             <div class="bg-purple-500/10 p-4 rounded-lg border border-purple-500/20">
-              <div style="font-weight: 600; color: #c4b5fd; margin-bottom: 4px;">💼 就业信息</div>
+              <div style="font-weight: 600; color: var(--accent-light); margin-bottom: 4px;">💼 就业信息</div>
               <div class="text-xs text-slate-400">Java开发 / 3年经验</div>
             </div>
             <div class="bg-green-500/10 p-4 rounded-lg border border-green-500/20">
-              <div style="font-weight: 600; color: #86efac; margin-bottom: 4px;">🏷️ 技能标签</div>
+              <div style="font-weight: 600; color: var(--success-light); margin-bottom: 4px;">🏷️ 技能标签</div>
               <div class="text-xs text-slate-400">Java / SQL / 项目管理</div>
             </div>
             <div class="bg-yellow-500/10 p-4 rounded-lg border border-yellow-500/20">
-              <div style="font-weight: 600; color: #fde047; margin-bottom: 4px;">📈 薪资趋势</div>
+              <div style="font-weight: 600; color: var(--warning-light); margin-bottom: 4px;">📈 薪资趋势</div>
               <div class="text-xs text-slate-400">月均 15K / 年增长 12%</div>
             </div>
             <div class="bg-red-500/10 p-4 rounded-lg border border-red-500/20">
-              <div style="font-weight: 600; color: #fca5a5; margin-bottom: 4px;">👥 群体属性</div>
+              <div style="font-weight: 600; color: var(--danger-light); margin-bottom: 4px;">👥 群体属性</div>
               <div class="text-xs text-slate-400">高校毕业生 / 重点帮扶</div>
             </div>
             <div class="bg-blue-500/10 p-4 rounded-lg border border-blue-500/20">
-              <div style="font-weight: 600; color: #93c5fd; margin-bottom: 4px;">⚖️ 维权记录</div>
+              <div style="font-weight: 600; color: var(--accent); margin-bottom: 4px;">⚖️ 维权记录</div>
               <div class="text-xs text-slate-400">无纠纷记录 / 信用良好</div>
             </div>
           </div>
@@ -861,7 +898,7 @@
       <div class="bg-slate-800/50 p-4 rounded-lg mb-4 border-l-4 border-indigo-500">
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
           <div>
-            <h4 style="color: #e2e8f0; margin: 0 0 4px 0;">高级Java开发工程师<span class="badge" style="background: rgba(99, 102, 241, 0.1); color: #818cf8; font-size: 11px; margin-left: 8px;">🎯 AI精准匹配 98%</span></h4>
+            <h4 style="color: var(--text-primary); margin: 0 0 4px 0;">高级Java开发工程师<span class="badge" style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); font-size: 11px; margin-left: 8px;">🎯 AI精准匹配 98%</span></h4>
             <p class="text-xs text-slate-400">XX科技有限公司 | 15-25K | 匹配度：98%</p>
           </div>
           <button class="btn-primary px-4 py-1 rounded text-sm" onclick="showNotification('简历投递成功！', 'success')">投递简历</button>
@@ -870,7 +907,7 @@
       <div class="bg-slate-800/50 p-4 rounded-lg mb-4 border-l-4 border-indigo-500">
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
           <div>
-            <h4 style="color: #e2e8f0; margin: 0 0 4px 0;">后端开发工程师（Python）<span class="badge" style="background: rgba(99, 102, 241, 0.1); color: #818cf8; font-size: 11px; margin-left: 8px;">🎯 AI精准匹配 95%</span></h4>
+            <h4 style="color: var(--text-primary); margin: 0 0 4px 0;">后端开发工程师（Python）<span class="badge" style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); font-size: 11px; margin-left: 8px;">🎯 AI精准匹配 95%</span></h4>
             <p class="text-xs text-slate-400">XX互联网公司 | 12-20K | 匹配度：95%</p>
           </div>
           <button class="btn-primary px-4 py-1 rounded text-sm" onclick="showNotification('简历投递成功！', 'success')">投递简历</button>
@@ -879,7 +916,7 @@
       <div class="bg-slate-800/50 p-4 rounded-lg mb-4 border-l-4 border-indigo-500">
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
           <div>
-            <h4 style="color: #e2e8f0; margin: 0 0 4px 0;">全栈开发工程师<span class="badge" style="background: rgba(99, 102, 241, 0.1); color: #818cf8; font-size: 11px; margin-left: 8px;">🎯 AI精准匹配 92%</span></h4>
+            <h4 style="color: var(--text-primary); margin: 0 0 4px 0;">全栈开发工程师<span class="badge" style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); font-size: 11px; margin-left: 8px;">🎯 AI精准匹配 92%</span></h4>
             <p class="text-xs text-slate-400">XX创业公司 | 10-18K | 匹配度：92%</p>
           </div>
           <button class="btn-primary px-4 py-1 rounded text-sm" onclick="showNotification('简历投递成功！', 'success')">投递简历</button>
@@ -888,7 +925,7 @@
       <div class="bg-slate-800/50 p-4 rounded-lg border-l-4 border-indigo-500">
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
           <div>
-            <h4 style="color: #e2e8f0; margin: 0 0 4px 0;">技术项目经理<span class="badge" style="background: rgba(99, 102, 241, 0.1); color: #818cf8; font-size: 11px; margin-left: 8px;">🎯 AI精准匹配 88%</span></h4>
+            <h4 style="color: var(--text-primary); margin: 0 0 4px 0;">技术项目经理<span class="badge" style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); font-size: 11px; margin-left: 8px;">🎯 AI精准匹配 88%</span></h4>
             <p class="text-xs text-slate-400">XX软件公司 | 18-30K | 匹配度：88%</p>
           </div>
           <button class="btn-primary px-4 py-1 rounded text-sm" onclick="showNotification('简历投递成功！', 'success')">投递简历</button>
@@ -921,7 +958,7 @@
         <div class="stat-card p-4 rounded-lg"><div class="text-2xl font-bold text-green-400">91.2%</div><div class="text-xs text-slate-400">就业率</div></div>
       </div>
       <div class="bg-slate-800/50 p-4 rounded-lg mb-4">
-        <h4 style="color: #e2e8f0; margin: 0 0 8px 0;">群体特征分析</h4>
+        <h4 style="color: var(--text-primary); margin: 0 0 8px 0;">群体特征分析</h4>
         <div class="flex flex-wrap gap-2 mb-3">
           <span class="tag px-3 py-1 rounded-lg text-xs">平均年龄：24岁</span>
           <span class="tag px-3 py-1 rounded-lg text-xs">本科及以上：78%</span>
@@ -939,9 +976,9 @@
         </div>
       </div>
       <div>
-        <h4 style="color: #e2e8f0; margin: 0 0 8px 0;">AI智能分析</h4>
-        <div class="bg-indigo-500/10 p-3 rounded-lg mb-3 text-sm">🤖 <strong style="color: #818cf8;">就业率预测：</strong>基于历史数据，预计下季度就业率将<span style="color: #22c55e;">上升2%</span></div>
-        <div class="bg-indigo-500/10 p-3 rounded-lg text-sm">🤖 <strong style="color: #818cf8;">帮扶建议：</strong>建议增加互联网行业岗位推荐，预计可提升匹配率<span style="color: #22c55e;">15%</span></div>
+        <h4 style="color: var(--text-primary); margin: 0 0 8px 0;">AI智能分析</h4>
+        <div class="bg-indigo-500/10 p-3 rounded-lg mb-3 text-sm">🤖 <strong style="color: var(--accent-light);">就业率预测：</strong>基于历史数据，预计下季度就业率将<span style="color: var(--success);">上升2%</span></div>
+        <div class="bg-indigo-500/10 p-3 rounded-lg text-sm">🤖 <strong style="color: var(--accent-light);">帮扶建议：</strong>建议增加互联网行业岗位推荐，预计可提升匹配率<span style="color: var(--success);">15%</span></div>
       </div>
       <div class="flex justify-end mt-6">
         <button class="btn-secondary px-4 py-2 rounded-lg" onclick="closeModal('group-analysis-modal')">关闭</button>
@@ -966,18 +1003,18 @@
         <table class="table-dark w-full">
           <thead>
             <tr>
-              <th style="padding: 12px; text-align: left; color: #94a3b8;">时间</th>
-              <th style="padding: 12px; text-align: left; color: #94a3b8;">数据源</th>
-              <th style="padding: 12px; text-align: left; color: #94a3b8;">操作</th>
-              <th style="padding: 12px; text-align: left; color: #94a3b8;">状态</th>
-              <th style="padding: 12px; text-align: left; color: #94a3b8;">详情</th>
+              <th style="padding: 12px; text-align: left; color: var(--text-secondary);">时间</th>
+              <th style="padding: 12px; text-align: left; color: var(--text-secondary);">数据源</th>
+              <th style="padding: 12px; text-align: left; color: var(--text-secondary);">操作</th>
+              <th style="padding: 12px; text-align: left; color: var(--text-secondary);">状态</th>
+              <th style="padding: 12px; text-align: left; color: var(--text-secondary);">详情</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td style="padding: 12px; color: #cbd5e1;">2026-05-08 10:30:25</td><td style="padding: 12px; color: #cbd5e1;">社保数据</td><td style="padding: 12px; color: #cbd5e1;">同步更新</td><td style="padding: 12px;"><span class="badge badge-success">成功</span></td><td style="padding: 12px; color: #818cf8; cursor: pointer;" onclick="showNotification('查看日志详情', 'success')">查看</td></tr>
-            <tr><td style="padding: 12px; color: #cbd5e1;">2026-05-08 10:28:12</td><td style="padding: 12px; color: #cbd5e1;">就业数据</td><td style="padding: 12px; color: #cbd5e1;">同步更新</td><td style="padding: 12px;"><span class="badge badge-success">成功</span></td><td style="padding: 12px; color: #818cf8; cursor: pointer;" onclick="showNotification('查看日志详情', 'success')">查看</td></tr>
-            <tr><td style="padding: 12px; color: #cbd5e1;">2026-05-08 10:25:45</td><td style="padding: 12px; color: #cbd5e1;">维权数据</td><td style="padding: 12px; color: #cbd5e1;">同步更新</td><td style="padding: 12px;"><span class="badge badge-success">成功</span></td><td style="padding: 12px; color: #818cf8; cursor: pointer;" onclick="showNotification('查看日志详情', 'success')">查看</td></tr>
-            <tr><td style="padding: 12px; color: #cbd5e1;">2026-05-08 09:15:30</td><td style="padding: 12px; color: #cbd5e1;">人才数据</td><td style="padding: 12px; color: #cbd5e1;">同步更新</td><td style="padding: 12px;"><span class="badge badge-success">成功</span></td><td style="padding: 12px; color: #818cf8; cursor: pointer;" onclick="showNotification('查看日志详情', 'success')">查看</td></tr>
+            <tr><td style="padding: 12px; color: var(--text-secondary);">2026-05-08 10:30:25</td><td style="padding: 12px; color: var(--text-secondary);">社保数据</td><td style="padding: 12px; color: var(--text-secondary);">同步更新</td><td style="padding: 12px;"><span class="badge badge-success">成功</span></td><td style="padding: 12px; color: var(--accent-light); cursor: pointer;" onclick="showNotification('查看日志详情', 'success')">查看</td></tr>
+            <tr><td style="padding: 12px; color: var(--text-secondary);">2026-05-08 10:28:12</td><td style="padding: 12px; color: var(--text-secondary);">就业数据</td><td style="padding: 12px; color: var(--text-secondary);">同步更新</td><td style="padding: 12px;"><span class="badge badge-success">成功</span></td><td style="padding: 12px; color: var(--accent-light); cursor: pointer;" onclick="showNotification('查看日志详情', 'success')">查看</td></tr>
+            <tr><td style="padding: 12px; color: var(--text-secondary);">2026-05-08 10:25:45</td><td style="padding: 12px; color: var(--text-secondary);">维权数据</td><td style="padding: 12px; color: var(--text-secondary);">同步更新</td><td style="padding: 12px;"><span class="badge badge-success">成功</span></td><td style="padding: 12px; color: var(--accent-light); cursor: pointer;" onclick="showNotification('查看日志详情', 'success')">查看</td></tr>
+            <tr><td style="padding: 12px; color: var(--text-secondary);">2026-05-08 09:15:30</td><td style="padding: 12px; color: var(--text-secondary);">人才数据</td><td style="padding: 12px; color: var(--text-secondary);">同步更新</td><td style="padding: 12px;"><span class="badge badge-success">成功</span></td><td style="padding: 12px; color: var(--accent-light); cursor: pointer;" onclick="showNotification('查看日志详情', 'success')">查看</td></tr>
           </tbody>
         </table>
       </div>
@@ -1070,16 +1107,20 @@
 
     function renderPersonTable(data) {
       const tbody = document.getElementById('person-tbody');
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const textPrimary = isDark ? 'var(--text-primary)' : 'var(--text-primary)';
+      const textSecondary = isDark ? 'var(--text-secondary)' : 'var(--text-secondary)';
+      const accentColor = isDark ? 'var(--accent)' : 'var(--accent)';
       tbody.innerHTML = data.map(p => `
         <tr>
           <td style="padding: 12px;"><img src="${p.avatar}" alt="${p.name}" class="w-10 h-10 rounded-full object-cover" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=${p.id}'"></td>
-          <td style="padding: 12px;"><strong style="color: #e2e8f0;">${p.name}</strong></td>
-          <td style="padding: 12px; color: #cbd5e1;">${p.education}</td>
-          <td style="padding: 12px; color: #cbd5e1;">${p.group}</td>
+          <td style="padding: 12px;"><strong style="color: ${textPrimary};">${p.name}</strong></td>
+          <td style="padding: 12px; color: ${textSecondary};">${p.education}</td>
+          <td style="padding: 12px; color: ${textSecondary};">${p.group}</td>
           <td style="padding: 12px;"><span class="${getPortraitTypeBadge(p.portraitType).cls}">${getPortraitTypeBadge(p.portraitType).text}</span></td>
-          <td style="padding: 12px;"><div style="display: flex; align-items: center; gap: 8px;"><div class="progress-bar" style="width: 80px;"><div class="progress-fill" style="width: ${p.competitiveness}%"></div></div><span style="color: #60a5fa;">${p.competitiveness}%</span></div></td>
-          <td style="padding: 12px;"><div style="display: flex; align-items: center; gap: 8px;"><div class="progress-bar" style="width: 80px;"><div class="progress-fill" style="width: ${p.stability}%; background: ${p.stability >= 70 ? '#22c55e' : p.stability >= 40 ? '#f59e0b' : '#ef4444'}"></div></div><span style="color: ${p.stability >= 70 ? '#86efac' : p.stability >= 40 ? '#fde047' : '#fca5a5'}">${p.stability}%</span></div></td>
-          <td style="padding: 12px;"><div style="display: flex; flex-wrap: wrap; gap: 4px;">${p.tags.slice(0, 3).map(t => `<span class="tag px-2 py-0.5 rounded text-xs">${t}</span>`).join('')}${p.tags.length > 3 ? `<span class="text-xs text-slate-500">+${p.tags.length - 3}</span>` : ''}</div></td>
+          <td style="padding: 12px;"><div style="display: flex; align-items: center; gap: 8px;"><div class="progress-bar" style="width: 80px;"><div class="progress-fill" style="width: ${p.competitiveness}%"></div></div><span style="color: ${accentColor};">${p.competitiveness}%</span></div></td>
+          <td style="padding: 12px;"><div style="display: flex; align-items: center; gap: 8px;"><div class="progress-bar" style="width: 80px;"><div class="progress-fill" style="width: ${p.stability}%; background: ${p.stability >= 70 ? 'var(--success)' : p.stability >= 40 ? 'var(--warning)' : 'var(--danger)'}"></div></div><span style="color: ${p.stability >= 70 ? (isDark ? 'var(--success-light)' : 'var(--success)') : p.stability >= 40 ? (isDark ? 'var(--warning-light)' : 'var(--warning)') : (isDark ? 'var(--danger-light)' : 'var(--danger)')}">${p.stability}%</span></div></td>
+          <td style="padding: 12px;"><div style="display: flex; flex-wrap: wrap; gap: 4px;">${p.tags.slice(0, 3).map(t => `<span class="tag px-2 py-0.5 rounded text-xs">${t}</span>`).join('')}${p.tags.length > 3 ? `<span class="text-xs ${isDark ? 'text-slate-500' : 'text-gray-400'}">+${p.tags.length - 3}</span>` : ''}</div></td>
           <td style="padding: 12px;">
             <button type="button" class="btn-secondary px-3 py-1 rounded text-xs mr-2" onclick="window.location.href='9-employment-portrait-detail.html'">查看</button>
             <button class="btn-primary px-3 py-1 rounded text-xs" onclick="showModal('job-recommend-modal')">推荐</button>
@@ -1181,7 +1222,7 @@
       if (tag) {
         const activeCategory = document.querySelector('.nav-btn.active').getAttribute('onclick').match(/'(\w+)'/)[1];
         const container = document.querySelector(`[data-tag-category="${activeCategory}"]`);
-        container.innerHTML += `<div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">${tag} <span style="cursor: pointer; color: #ef4444;" onclick="removeTag(this)">×</span></span></div>`;
+        container.innerHTML += `<div class="mb-2"><span class="tag px-3 py-1 rounded-lg text-xs">${tag} <span style="cursor: pointer; color: var(--danger);" onclick="removeTag(this)">×</span></span></div>`;
         input.value = '';
         showNotification('标签添加成功！', 'success');
       }
