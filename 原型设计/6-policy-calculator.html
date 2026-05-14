@@ -143,6 +143,10 @@
   <div class="container">
     <a href="index.html" class="navbar-logo">人社服务数字平台</a>
     <div style="display: flex; align-items: center; gap: 12px;">
+      <button class="theme-toggle" onclick="toggleTheme()" title="切换主题" style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--text-secondary); transition: all 0.3s ease;">
+        <span class="theme-icon" style="font-size: 16px;">🌙</span>
+        <span class="theme-text">深色</span>
+      </button>
       <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px; font-size: 14px;" id="role-switcher" onchange="switchRole()">
         <option value="gov">人社部门（管理端）</option>
         <option value="org">服务机构（运营端）</option>
@@ -2169,6 +2173,52 @@ function deleteTag(btn) {
     </div>
   </div>
 </div>
+
+<script>
+// 主题切换功能
+function toggleTheme() {
+  const html = document.documentElement;
+  const currentTheme = html.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  
+  // 设置新主题
+  html.setAttribute('data-theme', newTheme);
+  
+  // 更新按钮显示
+  const icon = document.querySelector('.theme-icon');
+  const text = document.querySelector('.theme-text');
+  
+  if (newTheme === 'dark') {
+    icon.textContent = '☀️';
+    text.textContent = '浅色';
+  } else {
+    icon.textContent = '🌙';
+    text.textContent = '深色';
+  }
+  
+  // 保存主题偏好到 localStorage
+  localStorage.setItem('theme', newTheme);
+}
+
+// 页面加载时恢复保存的主题
+document.addEventListener('DOMContentLoaded', function() {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    const icon = document.querySelector('.theme-icon');
+    const text = document.querySelector('.theme-text');
+    
+    if (savedTheme === 'dark') {
+      icon.textContent = '☀️';
+      text.textContent = '浅色';
+    } else {
+      icon.textContent = '🌙';
+      text.textContent = '深色';
+    }
+  }
+});
+</script>
 
 </body>
 </html>

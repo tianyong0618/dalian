@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>主题切换功能</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      padding: 40px;
+      background: linear-gradient(135deg, #e8eaf0 0%, #d5d8e0 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 24px;
+      color: #1d1d1f;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      color: #1d1d1f;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #424245;
+      margin-bottom: 16px;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .feature-list li {
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      background: #f5f5f7;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #424245;
+    }
+
+    .feature-list li::before {
+      content: '✓ ';
+      color: #34c759;
+      font-weight: bold;
+    }
+
+    .code-block {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #007aff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      margin-top: 16px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #0056cc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 主题切换功能说明</h1>
+    
+    <h2>功能概述</h2>
+    <p>
+      已成功为主页（index.html）实现了主题切换功能。用户现在可以在浅色和深色主题之间自由切换，
+      并且主题偏好会自动保存到浏览器本地存储中，下次访问时会自动恢复用户选择的主题。
+    </p>
+
+    <h2>已实现的功能</h2>
+    <ul class="feature-list">
+      <li>浅色主题：基于现有 style.css 的配色方案</li>
+      <li>深色主题：基于人员画像页面的紫蓝渐变配色</li>
+      <li>一键切换：点击导航栏中的主题按钮即可切换</li>
+      <li>自动保存：选择的主题会自动保存到 localStorage</li>
+      <li>平滑过渡：主题切换带有流畅的动画效果</li>
+      <li>响应式设计：适配桌面和移动设备</li>
+    </ul>
+
+    <h2>如何使用</h2>
+    <p>
+      在主页（index.html）的右上角导航栏中，点击"🌙 深色"按钮即可切换到深色主题，
+      按钮会变为"☀️ 浅色"。再次点击可切换回浅色主题。
+    </p>
+
+    <h2>技术实现</h2>
+    <p>
+      主题切换功能通过 CSS 变量（CSS Variables）和 data-theme 属性实现：
+    </p>
+    
+    <div class="code-block">
+      <strong>CSS 变量定义位置：</strong><br>
+      - 浅色主题变量：style.css 第 9-33 行<br>
+      - 深色主题变量：style.css 第 1197-1221 行<br><br>
+      
+      <strong>HTML 属性：</strong><br>
+      - &lt;html data-theme="light"&gt;  浅色主题<br>
+      - &lt;html data-theme="dark"&gt;   深色主题
+    </div>
+
+    <h2>扩展到其他页面</h2>
+    <p>
+      如需在其他模块页面（如调解仲裁、就业画像等）也实现主题切换功能，
+      需要执行以下步骤：
+    </p>
+
+    <div class="code-block">
+      <strong>步骤 1：在 &lt;head&gt; 中添加主题样式</strong><br>
+      复制 index.html 中第 248-332 行的深色主题 CSS 样式到目标页面
+
+      <br><br>
+      <strong>步骤 2：在导航栏添加切换按钮</strong><br>
+      &lt;button class="theme-toggle" onclick="toggleTheme()"&gt;<br>
+      &nbsp;&nbsp;&lt;span class="icon"&gt;🌙&lt;/span&gt;<br>
+      &nbsp;&nbsp;&lt;span class="text"&gt;深色&lt;/span&gt;<br>
+      &lt;/button&gt;
+
+      <br><br>
+      <strong>步骤 3：在 &lt;/body&gt; 前添加 JavaScript</strong><br>
+      复制 index.html 中第 395-441 行的脚本代码
+    </div>
+
+    <h2>适用页面</h2>
+    <ul class="feature-list">
+      <li>14-mediation-arbitration.html（调解仲裁）</li>
+      <li>14a-arbitration.html（仲裁页面）</li>
+      <li>14b-employer.html（用人单位）</li>
+      <li>14c-laborer.html（劳动者）</li>
+      <li>14d-legal-aid.html（法律援助）</li>
+      <li>14e-supervisor.html（人社监管）</li>
+      <li>6-policy-calculator.html（政策计算器）</li>
+      <li>9-employment-portrait.html（就业画像）</li>
+      <li>9-employment-portrait-detail.html（画像详情）</li>
+    </ul>
+
+    <h2>设计参考</h2>
+    <p>
+      浅色主题保持了原有调解仲裁模块的清新专业风格，深色主题则采用了人员画像页面的
+      紫蓝渐变配色方案，两者都支持所有标准组件（卡片、按钮、表单、表格等）的样式适配。
+    </p>
+
+    <a href="index.html" class="btn">← 返回主页体验主题切换</a>
+  </div>
+</body>
+</html>
