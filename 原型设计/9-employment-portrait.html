@@ -9,6 +9,26 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
+    /* CSS变量 - 浅色主题（默认） */
+    :root {
+      --primary: #1677ff;
+      --text-primary: #1f2937;
+      --text-secondary: #4b5563;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f9fafb;
+      --border-color: #e5e7eb;
+    }
+
+    /* CSS变量 - 深色主题 */
+    [data-theme="dark"] {
+      --primary: #6366f1;
+      --text-primary: #e2e8f0;
+      --text-secondary: #94a3b8;
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #0f172a;
+      --border-color: rgba(99, 102, 241, 0.2);
+    }
+
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; }
     .gradient-text { background: linear-gradient(to right, #818cf8, #a78bfa, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .bg-grid-pattern { background-image: radial-gradient(circle at 2px 2px, rgba(99, 102, 241, 0.1) 1px, transparent 0); background-size: 48px 48px; }
@@ -42,6 +62,45 @@
     .notification { position: fixed; top: 20px; right: 20px; z-index: 9999; padding: 12px 24px; border-radius: 8px; color: white; font-size: 14px; }
     .notification-success { background: linear-gradient(135deg, #16a34a, #22c55e); }
     .notification-error { background: linear-gradient(135deg, #dc2626, #ef4444); }
+    
+    /* 主题切换按钮样式（与调解仲裁一致） */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: rgba(22, 119, 255, 0.1);
+      border: 1px solid #1677ff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 13px;
+      font-weight: 500;
+      color: #1677ff;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(22, 119, 255, 0.15);
+    }
+
+    .theme-toggle .theme-icon {
+      font-size: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover .theme-icon {
+      transform: rotate(15deg);
+    }
+
+    [data-theme="dark"] .theme-toggle {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+    }
+
+    [data-theme="dark"] .theme-toggle:hover {
+      background: rgba(99, 102, 241, 0.25);
+    }
     
     /* 浅色主题覆盖样式 */
     [data-theme="light"] body {
@@ -88,11 +147,6 @@
     [data-theme="light"] .gradient-text {
       background: linear-gradient(to right, #1677ff, #096dd9) !important;
       -webkit-text-fill-color: transparent;
-    }
-    [data-theme="light"] .theme-toggle {
-      background: rgba(22, 119, 255, 0.1) !important;
-      border-color: #1677ff !important;
-      color: #1677ff !important;
     }
     [data-theme="light"] .form-select {
       background: #ffffff !important;
@@ -188,9 +242,9 @@
           </div>
         </div>
         <div style="display: flex; align-items: center; gap: 12px;">
-          <button class="theme-toggle" onclick="toggleTheme()" title="切换主题" style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500; color: #a5b4fc; transition: all 0.3s ease;">
-            <span class="theme-icon" style="font-size: 16px;">☀️</span>
-            <span class="theme-text">浅色</span>
+          <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">
+            <span class="theme-icon">🌙</span>
+            <span class="theme-text">深色</span>
           </button>
           <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px; border-radius: 8px;" id="role-switcher" onchange="switchRole()">
             <option value="gov">人社部门（管理端）</option>
