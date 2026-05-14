@@ -9,251 +9,528 @@
   <!-- 防止闪烁：在页面渲染前立即设置主题 -->
   <script>(function(){var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* SPA 容器样式 */
+    .spa-container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* 顶部导航区 */
+    .spa-header {
+      flex-shrink: 0;
+      background: var(--bg-primary);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      z-index: 100;
+    }
+
+    /* iframe 内容区 */
+    .spa-content {
+      flex: 1;
+      overflow: hidden;
+      background: var(--bg-secondary);
+    }
+
+    /* 导航栏logo样式 */
+    .navbar-logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo-icon-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-icon-glow {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #6366f1, #a855f7);
+      border-radius: 12px;
+      filter: blur(12px);
+      opacity: 0.75;
+    }
+
+    .logo-icon {
+      position: relative;
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon i {
+      color: white;
+      font-size: 24px;
+    }
+
+    .navbar-logo .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .navbar-logo .logo-english {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .navbar-logo .logo-chinese {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #818cf8, #a78bfa, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Tab 标签栏样式 */
+    .tab-navigation {
+      display: flex;
+      gap: 4px;
+      background: var(--bg-secondary);
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--border-color);
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      padding: 10px 20px;
+      background: transparent;
+      border: none;
+      border-radius: 8px 8px 0 0;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover {
+      background: var(--bg-primary);
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: var(--bg-primary);
+      color: var(--primary);
+      border-bottom: 3px solid var(--primary);
+    }
+
+    .tab-btn .tab-icon {
+      font-size: 16px;
+    }
+
+    /* 内容区域 */
+    #content-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* 渐变文字效果 */
+    .gradient-text {
+      background: linear-gradient(to right, #818cf8, #a78bfa, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* 全局通知样式 */
+    .global-notification {
+      position: fixed;
+      top: 80px;
+      right: 24px;
+      padding: 16px 24px;
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 1000;
+      transform: translateX(120%);
+      transition: transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .global-notification.show {
+      transform: translateX(0);
+    }
+
+    .global-notification.success {
+      background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);
+    }
+
+    .global-notification.warning {
+      background: linear-gradient(135deg, #faad14 0%, #ffc53d 100%);
+    }
+
+    .global-notification.error {
+      background: linear-gradient(135deg, #ff4d4f 0%, #ff7875 100%);
+    }
+
+    .global-notification.info {
+      background: linear-gradient(135deg, #1677ff 0%, #40a9ff 100%);
+    }
+
+    .notification-icon {
+      font-size: 18px;
+    }
+
+    /* 主题切换按钮 */
+    .theme-toggle {
+      padding: 8px 16px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .theme-icon {
+      font-size: 16px;
+    }
+
+    /* 返回首页链接 */
+    .back-home {
+      padding: 8px 16px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .back-home:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+  </style>
 </head>
 <body>
 
-<nav class="navbar">
-  <div class="container">
+<div class="spa-container">
+  <nav class="spa-header">
     <a href="index.html" class="navbar-logo">
-        <div class="logo-icon-wrapper">
-          <div class="logo-icon-glow"></div>
-          <div class="logo-icon">
-            <i class="fa-solid fa-users"></i>
-          </div>
+      <div class="logo-icon-wrapper">
+        <div class="logo-icon-glow"></div>
+        <div class="logo-icon">
+          <i class="fa-solid fa-store"></i>
         </div>
-        <div class="logo-text">
-          <div class="logo-english">Human Resources and Social Security</div>
-          <div class="logo-chinese">人社智能服务系统</div>
-        </div>
-      </a>
+      </div>
+      <div class="logo-text">
+        <div class="logo-english">Human Resources and Social Security</div>
+        <div class="logo-chinese">人社智能服务系统</div>
+      </div>
+    </a>
     <div style="display: flex; align-items: center; gap: 12px;">
-        <button class="theme-switcher" onclick="toggleTheme()" title="切换主题">
-          <span class="theme-icon">🌙</span>
-          <span class="theme-text">深色</span>
-        </button>
-        <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px;" id="role-switcher">
-          <option value="gov">人社部门（管理端）</option>
-          <option value="org">服务机构（运营端）</option>
-          <option value="enterprise">用工企业（使用端）</option>
-        </select>
-      </div>
-  </div>
-</nav>
+      <a href="index.html" class="back-home">
+        <i class="fa-solid fa-home"></i>
+        <span>返回首页</span>
+      </a>
+      <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-text">深色</span>
+      </button>
+    </div>
+  </nav>
 
-<!-- 页面内容 -->
-<div class="page-content">
-  <div class="container">
-    
-    <!-- 页面标题 -->
-    <div class="page-header mb-48">
-      <h1>人力资源服务旗舰店系统</h1>
-      <p>强化经营性人力资源服务机构监管，规范从业人员管理，拓展线上服务场景，通过AI技术实现供需高效撮合，健全服务监管与诚信体系，实时监测稳就业服务效能。</p>
-      <div class="mt-16">
-        <span class="tag">机构管理</span>
-        <span class="tag">从业人员</span>
-        <span class="tag">服务网店</span>
-        <span class="tag">供需撮合</span>
-        <span class="tag">争议调解</span>
-        <span class="tag">诚信评价</span>
-        <span class="tag">效能监测</span>
-        <span class="tag">AI赋能</span>
-      </div>
-    </div>
-    
-    <!-- 核心指标 -->
-    <div class="row mb-48">
-      <div class="col-3">
-        <div class="stat-card">
-          <div class="number">128</div>
-          <div class="label">入驻机构数量</div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="stat-card">
-          <div class="number">2,456</div>
-          <div class="label">发布岗位总数</div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="stat-card">
-          <div class="number">94.6%</div>
-          <div class="label">服务满意度</div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="stat-card">
-          <div class="number">1,892</div>
-          <div class="label">本月成功撮合</div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- 功能模块入口 -->
-    <div class="section-header mb-32">
-      <h2>核心功能</h2>
-      <p>点击功能卡片进入对应服务模块</p>
-    </div>
-    <div class="row mb-48">
-      <div class="col-4" data-roles="gov">
-        <a href="12a-org-management.html" style="text-decoration: none; color: inherit;">
-          <div class="feature-card">
-            <div class="card-header">
-              <div class="icon">🏢</div>
-              <div class="card-content">
-                <div class="title-row"><h3>机构管理</h3><span class="feature-badge">AI赋能</span></div>
-                <p>机构准入备案、日常运营监测、违规处理、年度审核全流程管理。</p>
-              </div>
-              <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </div>
-            <div><span class="tag">准入备案</span><span class="tag">运营监测</span><span class="tag">年度审核</span></div>
-          </div>
-        </a>
-      </div>
-      <div class="col-4" data-roles="gov org">
-        <a href="12b-employee-management.html" style="text-decoration: none; color: inherit;">
-          <div class="feature-card">
-            <div class="card-header">
-              <div class="icon">👥</div>
-              <div class="card-content">
-                <div class="title-row"><h3>从业人员管理</h3><span class="feature-badge">AI核验</span></div>
-                <p>从业人员信息采集、AI资质核验、全生命周期管理与诚信档案。</p>
-              </div>
-              <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </div>
-            <div><span class="tag">信息入库</span><span class="tag">培训管理</span><span class="tag">诚信档案</span></div>
-          </div>
-        </a>
-      </div>
-      <div class="col-4" data-roles="gov org enterprise">
-        <a href="12c-online-store.html" style="text-decoration: none; color: inherit;">
-          <div class="feature-card">
-            <div class="card-header">
-              <div class="icon">🛒</div>
-              <div class="card-content">
-                <div class="title-row"><h3>线上服务网店</h3><span class="feature-badge">核心服务</span></div>
-                <p>优质机构开设网店，整合岗位发布、视频面试、政策咨询等功能。</p>
-              </div>
-              <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </div>
-            <div><span class="tag">网店运营</span><span class="tag">视频面试</span><span class="tag">政策咨询</span></div>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="row mb-48">
-      <div class="col-4" data-roles="gov org enterprise">
-        <a href="12d-demand-matching.html" style="text-decoration: none; color: inherit;">
-          <div class="feature-card">
-            <div class="card-header">
-              <div class="icon">🤝</div>
-              <div class="card-content">
-                <div class="title-row"><h3>供需撮合</h3><span class="feature-badge">AI匹配</span></div>
-                <p>AI智能画像匹配、人才库检索、线下专场对接洽谈会。</p>
-              </div>
-              <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </div>
-            <div><span class="tag">智能撮合</span><span class="tag">专场对接</span><span class="tag">人才检索</span></div>
-          </div>
-        </a>
-      </div>
-      <div class="col-4" data-roles="gov org enterprise">
-        <a href="12e-dispute-mediation.html" style="text-decoration: none; color: inherit;">
-          <div class="feature-card">
-            <div class="card-header">
-              <div class="icon">⚖️</div>
-              <div class="card-content">
-                <div class="title-row"><h3>争议调解</h3><span class="feature-badge">在线处理</span></div>
-                <p>线上争议申请、AI调解员分配、在线调解、电子协议签署。</p>
-              </div>
-              <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </div>
-            <div><span class="tag">在线申请</span><span class="tag">智能分配</span><span class="tag">电子协议</span></div>
-          </div>
-        </a>
-      </div>
-      <div class="col-4" data-roles="gov">
-        <a href="12f-credit-evaluation.html" style="text-decoration: none; color: inherit;">
-          <div class="feature-card">
-            <div class="card-header">
-              <div class="icon">⭐</div>
-              <div class="card-content">
-                <div class="title-row"><h3>诚信评价</h3><span class="feature-badge">星级推介</span></div>
-                <p>多维度诚信评价、AI自动评分、星级动态管理、激励政策。</p>
-              </div>
-              <svg class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </div>
-            <div><span class="tag">AI评分</span><span class="tag">星级评定</span><span class="tag">动态管理</span></div>
-          </div>
-        </a>
-      </div>
-    </div>
-    
+  <!-- Tab 标签导航 -->
+  <div class="tab-navigation">
+    <button class="tab-btn active" data-tab="org" onclick="switchTab('org')">
+      <span class="tab-icon">🏢</span>
+      <span>机构管理</span>
+    </button>
+    <button class="tab-btn" data-tab="employee" onclick="switchTab('employee')">
+      <span class="tab-icon">👥</span>
+      <span>从业人员管理</span>
+    </button>
+    <button class="tab-btn" data-tab="store" onclick="switchTab('store')">
+      <span class="tab-icon">🛒</span>
+      <span>线上服务网店</span>
+    </button>
+    <button class="tab-btn" data-tab="matching" onclick="switchTab('matching')">
+      <span class="tab-icon">🤝</span>
+      <span>供需撮合</span>
+    </button>
+    <button class="tab-btn" data-tab="dispute" onclick="switchTab('dispute')">
+      <span class="tab-icon">⚖️</span>
+      <span>争议调解</span>
+    </button>
+    <button class="tab-btn" data-tab="credit" onclick="switchTab('credit')">
+      <span class="tab-icon">⭐</span>
+      <span>诚信评价</span>
+    </button>
   </div>
+
+  <!-- 内容区域 -->
+  <main class="spa-content">
+    <iframe id="content-frame" src="12a-org-management.html" frameborder="0"></iframe>
+  </main>
 </div>
 
-<style>
-  .row.mb-48 { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
-  .row.mb-48 > [class*="col-"] { flex: 0 0 auto; width: 31%; }
-</style>
+<!-- 全局通知容器 -->
+<div id="notification-container"></div>
+
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var roleSwitcher = document.getElementById('role-switcher');
-    var featureCards = document.querySelectorAll('.col-4[data-roles]');
-    
-    function updateFeatureVisibility() {
-      var currentRole = roleSwitcher.value;
-      
-      featureCards.forEach(function(card) {
-        var roles = card.getAttribute('data-roles');
-        if (roles && roles.split(' ').indexOf(currentRole) !== -1) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-      
-      var rows = document.querySelectorAll('.row.mb-48');
-      rows.forEach(function(row) {
-        var visibleCards = Array.from(row.querySelectorAll('.col-4[data-roles]')).filter(function(card) {
-          return card.style.display !== 'none';
-        });
-        row.style.display = visibleCards.length > 0 ? 'flex' : 'none';
-      });
+  // Tab与页面映射
+  const TAB_PAGES = {
+    'org': '12a-org-management.html',
+    'employee': '12b-employee-management.html',
+    'store': '12c-online-store.html',
+    'matching': '12d-demand-matching.html',
+    'dispute': '12e-dispute-mediation.html',
+    'credit': '12f-credit-evaluation.html'
+  };
+
+  // Tab显示名称
+  const TAB_LABELS = {
+    'org': '🏢 机构管理',
+    'employee': '👥 从业人员管理',
+    'store': '🛒 线上服务网店',
+    'matching': '🤝 供需撮合',
+    'dispute': '⚖️ 争议调解',
+    'credit': '⭐ 诚信评价'
+  };
+
+  // 当前Tab
+  let currentTab = 'org';
+
+  // 共享数据存储
+  const sharedData = {
+    currentCase: null,
+    notificationCount: {
+      org: 0,
+      employee: 0,
+      store: 0,
+      matching: 0,
+      dispute: 0,
+      credit: 0
+    },
+    recentActivities: []
+  };
+
+  // 切换Tab
+  function switchTab(tab) {
+    console.log('switchTab called with:', tab);
+
+    if (!tab || !TAB_PAGES[tab]) {
+      console.error('Invalid tab:', tab);
+      return;
     }
-    
-    updateFeatureVisibility();
-    roleSwitcher.addEventListener('change', updateFeatureVisibility);
+
+    currentTab = tab;
+
+    // 更新Tab按钮状态
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    const activeBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+    if (activeBtn) {
+      activeBtn.classList.add('active');
+    }
+
+    // 加载页面 - 添加时间戳避免缓存
+    const frame = document.getElementById('content-frame');
+    if (frame) {
+      const url = TAB_PAGES[tab] + '?t=' + Date.now();
+      console.log('Setting iframe src to:', url);
+      frame.src = url;
+    } else {
+      console.error('content-frame element not found!');
+    }
+
+    // 发送初始化消息到子页面
+    setTimeout(() => {
+      sendMessageToFrame({
+        type: 'TAB_CHANGE',
+        tab: tab,
+        data: sharedData
+      });
+    }, 100);
+  }
+
+  // 向 iframe 发送消息
+  function sendMessageToFrame(message) {
+    const frame = document.getElementById('content-frame');
+    if (frame && frame.contentWindow) {
+      frame.contentWindow.postMessage(message, '*');
+    }
+  }
+
+  // 从 iframe 内调用切换Tab
+  window.switchToTab = function(tab) {
+    if (tab && TAB_PAGES[tab]) {
+      switchTab(tab);
+    }
+  };
+
+  // 从 iframe 发送数据
+  window.sendDataFromFrame = function(data) {
+    if (data.type === 'SET_CURRENT_CASE') {
+      sharedData.currentCase = data.payload;
+      showNotification(`当前记录已更新`, 'success');
+    } else if (data.type === 'ADD_NOTIFICATION') {
+      if (sharedData.notificationCount[data.tab]) {
+        sharedData.notificationCount[data.tab]++;
+      }
+    } else if (data.type === 'ADD_ACTIVITY') {
+      sharedData.recentActivities.unshift({
+        ...data.payload,
+        timestamp: new Date().toISOString()
+      });
+      if (sharedData.recentActivities.length > 10) {
+        sharedData.recentActivities.pop();
+      }
+    }
+  };
+
+  // 显示全局通知
+  function showNotification(message, type = 'info') {
+    const container = document.getElementById('notification-container');
+    const notification = document.createElement('div');
+    notification.className = `global-notification ${type}`;
+
+    const icons = {
+      success: '✓',
+      warning: '⚠',
+      error: '✕',
+      info: 'ℹ'
+    };
+
+    notification.innerHTML = `
+      <span class="notification-icon">${icons[type] || 'ℹ'}</span>
+      <span>${message}</span>
+    `;
+
+    container.appendChild(notification);
+
+    setTimeout(() => {
+      notification.classList.add('show');
+    }, 10);
+
+    setTimeout(() => {
+      notification.classList.remove('show');
+      setTimeout(() => {
+        notification.remove();
+      }, 300);
+    }, 4000);
+  }
+
+  // 监听来自 iframe 的消息
+  window.addEventListener('message', function(event) {
+    const message = event.data;
+
+    if (message.type === 'REQUEST_SHARED_DATA') {
+      sendMessageToFrame({
+        type: 'SHARED_DATA',
+        data: sharedData
+      });
+    } else if (message.type === 'NOTIFY') {
+      showNotification(message.message, message.level || 'info');
+    } else if (message.type === 'SWITCH_TAB') {
+      switchTab(message.tab);
+    } else if (message.type === 'SET_CASE_DATA') {
+      sharedData.currentCase = message.data;
+    }
   });
+
+  // 页面加载完成后初始化
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOMContentLoaded triggered');
+
+    const params = new URLSearchParams(window.location.search);
+    const tab = params.get('tab');
+
+    if (tab && TAB_PAGES[tab]) {
+      currentTab = tab;
+      // 使用时间戳避免缓存
+      document.getElementById('content-frame').src = TAB_PAGES[tab] + '?t=' + Date.now();
+
+      // 更新Tab按钮状态
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      const activeBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+      }
+    }
+  });
+
+  // 暴露给子页面的接口
+  window.platform = {
+    switchTab: switchTab,
+    showNotification: showNotification,
+    sendMessage: sendMessageToFrame,
+    sharedData: sharedData
+  };
 
   // 主题切换功能
   function toggleTheme() {
     const html = document.documentElement;
     const currentTheme = html.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
+
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     updateThemeToggle(newTheme);
+
+    // 向 iframe 发送主题切换消息
+    const frame = document.getElementById('content-frame');
+    if (frame && frame.contentWindow) {
+      frame.contentWindow.postMessage({ type: 'THEME_CHANGE', theme: newTheme }, '*');
+    }
   }
 
   function updateThemeToggle(theme) {
     const icon = document.querySelector('.theme-icon');
     const text = document.querySelector('.theme-text');
-    
+
     if (!icon || !text) return;
-    
+
     if (theme === 'dark') {
       icon.textContent = '☀️';
       text.textContent = '浅色';
@@ -266,7 +543,7 @@
   document.addEventListener('DOMContentLoaded', function() {
     const savedTheme = localStorage.getItem('theme');
     const theme = savedTheme || 'light';
-    
+
     document.documentElement.setAttribute('data-theme', theme);
     updateThemeToggle(theme);
   });
