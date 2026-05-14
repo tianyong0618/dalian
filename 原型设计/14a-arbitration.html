@@ -1085,14 +1085,7 @@
     </div>
 
     <main class="main-content">
-      <!-- 工作台头部（始终显示） -->
-      <div class="workspace-header">
 
-        <div class="header-right">
-          <button class="btn btn-secondary btn-sm" onclick="showNotification('刷新数据', 'info')">🔄 刷新</button>
-          <button class="btn btn-primary btn-sm" onclick="showNotification('新建案件功能', 'info')">+ 新建案件</button>
-        </div>
-      </div>
 
       <!-- 我的工作台模块 -->
       <div class="module-section" id="module-dashboard">
@@ -1297,7 +1290,6 @@
       <!-- 案件管理模块 -->
       <div class="module-section" id="module-case-management" style="display:none;">
         <div class="content-card-header">
-          <h3>📋 待处理案件列表</h3>
           <div class="filter-bar">
             <select class="form-select" onchange="filterCases(this.value)">
               <option value="all">全部状态</option>
@@ -1311,6 +1303,7 @@
               <option value="injury">工伤待遇</option>
               <option value="social">社会保险</option>
             </select>
+            <button class="btn btn-primary btn-sm" onclick="showNotification('新建案件功能', 'info')">+ 新建案件</button>
           </div>
         </div>
         <div class="content-card-body" style="padding: 0;">
