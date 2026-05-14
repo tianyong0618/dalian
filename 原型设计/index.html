@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>人社智能服务系统</title>
   <!-- Font Awesome图标库 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <!-- 防止闪烁：在页面渲染前立即设置主题 -->
   <script>(function(){var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
   <style>
@@ -76,7 +76,7 @@
     .logo-wrapper {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
     }
 
     .logo-icon-wrapper {
@@ -90,18 +90,18 @@
     .logo-icon-glow {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, #6366f1, #8b5cf6);
+      background: linear-gradient(to right, #6366f1, #a855f7);
       border-radius: 12px;
-      filter: blur(8px);
-      opacity: 0.6;
+      filter: blur(12px);
+      opacity: 0.75;
     }
 
     .logo-icon {
       position: relative;
-      width: 40px;
-      height: 40px;
+      width: 56px;
+      height: 56px;
       border-radius: 12px;
-      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -109,28 +109,38 @@
 
     .logo-icon i {
       color: white;
-      font-size: 18px;
+      font-size: 24px;
     }
 
     .logo-container {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 4px;
     }
 
     .logo-english {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 400;
-      color: #6e7a8a;
-      letter-spacing: 0.5px;
+      color: #64748b;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
     .logo-chinese {
-      font-size: 18px;
-      font-weight: 600;
-      color: #1d1d1f;
-      letter-spacing: -0.3px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #818cf8, #a78bfa, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-text {
+      background: linear-gradient(to right, #818cf8, #a78bfa, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .nav-links {
@@ -331,8 +341,17 @@
       color: #94a3b8;
     }
 
-    [data-theme="dark"] .logo-chinese {
-      color: #e2e8f0;
+    [data-theme="dark"] .logo-chinese,
+    [data-theme="dark"] .navbar-logo .logo-chinese {
+      background: linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #f472b6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    [data-theme="dark"] .logo-icon-glow {
+      background: linear-gradient(to right, #818cf8, #a78bfa);
     }
 
     [data-theme="dark"] .nav-links a {

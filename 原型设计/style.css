@@ -47,12 +47,12 @@ body {
   padding: 0 32px;
 }
 
-/* 导航栏样式 */
+/* 导航栏样式 - 参考人员画像页面 */
 .navbar {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(22, 119, 255, 0.1);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -62,15 +62,17 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 32px;
+  padding-right: 32px;
 }
 
 .navbar-logo {
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .logo-icon-wrapper {
@@ -84,18 +86,18 @@ body {
 .logo-icon-glow {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, #6366f1, #8b5cf6);
+  background: linear-gradient(to right, #6366f1, #a855f7);
   border-radius: 12px;
-  filter: blur(8px);
-  opacity: 0.6;
+  filter: blur(12px);
+  opacity: 0.75;
 }
 
 .logo-icon {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,29 +105,36 @@ body {
 
 .logo-icon i {
   color: white;
-  font-size: 18px;
+  font-size: 24px;
 }
 
 .navbar-logo .logo-text {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .navbar-logo .logo-english {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   color: var(--text-secondary);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .navbar-logo .logo-chinese {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--primary);
-  letter-spacing: -0.3px;
-  background: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(to right, #818cf8, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 渐变文字效果 */
+.gradient-text {
+  background: linear-gradient(to right, #818cf8, #a78bfa, #f472b6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1322,6 +1331,25 @@ tr.enterprise-hidden {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+[data-theme="dark"] .navbar-logo .logo-chinese {
+  background: linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .navbar-logo .logo-english {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .logo-icon-glow {
+  background: linear-gradient(to right, #818cf8, #a78bfa);
+}
+
+[data-theme="dark"] .logo-icon {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
 }
 
 [data-theme="dark"] .btn-primary {
