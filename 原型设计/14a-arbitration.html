@@ -1302,17 +1302,17 @@
         <div class="content-card-header">
           <h3>📋 待处理案件列表</h3>
           <div class="filter-bar">
-            <select class="form-select">
-              <option>全部状态</option>
-              <option>待分配</option>
-              <option>调解中</option>
-              <option>仲裁审理</option>
+            <select class="form-select" onchange="filterCases(this.value)">
+              <option value="all">全部状态</option>
+              <option value="pending">待分配</option>
+              <option value="mediation">调解中</option>
+              <option value="arbitration">仲裁审理</option>
             </select>
-            <select class="form-select">
-              <option>全部类型</option>
-              <option>劳动争议</option>
-              <option>工伤待遇</option>
-              <option>社会保险</option>
+            <select class="form-select" onchange="filterCaseType(this.value)">
+              <option value="all">全部类型</option>
+              <option value="labor">劳动争议</option>
+              <option value="injury">工伤待遇</option>
+              <option value="social">社会保险</option>
             </select>
           </div>
         </div>
@@ -1341,7 +1341,7 @@
                 <td>2024-03-01</td>
                 <td>
                   <button class="btn btn-secondary btn-sm" style="margin-right:4px;" onclick="viewCaseDetail('LA2024-0892')">查看</button>
-                  <!-- <button class="btn btn-primary btn-sm" onclick="openCloudTrial('LA2024-0892')">开始庭审</button> -->
+                  <button class="btn btn-primary btn-sm" onclick="openCloudTrial('LA2024-0892')">开始庭审</button>
                 </td>
               </tr>
               <tr>
@@ -2310,6 +2310,66 @@
           }, 2000);
         }, 300);
       }
+    }
+
+    // 案件筛选功能（支持组合筛选：同时过滤状态和案由）
+    function getFilterState() {
+      const statusSelect = document.querySelector('#module-case-management .filter-bar .form-select:first-child');
+      const typeSelect = document.querySelector('#module-case-management .filter-bar .form-select:nth-child(2)');
+      return {
+        status: statusSelect ? statusSelect.value : 'all',
+        type: typeSelect ? typeSelect.value : 'all'
+      };
+    }
+
+    function applyFilters() {
+      const state = getFilterState();
+      const table = document.querySelector('#module-case-management .data-table');
+      if (!table) return;
+      const rows = table.querySelectorAll('tbody tr');
+      rows.forEach(row => {
+        let show = true;
+
+        // 状态筛选
+        if (state.status !== 'all') {
+          const statusCell = row.querySelector('td:nth-child(6)');
+          if (statusCell) {
+            const statusText = statusCell.textContent.trim();
+            const statusMap = {
+              'pending': '待分配',
+              'mediation': '调解中',
+              'arbitration': '仲裁审理'
+            };
+            if (!statusText.includes(statusMap[state.status])) show = false;
+          }
+        }
+
+        // 案由筛选
+        if (show && state.type !== 'all') {
+          const typeCell = row.querySelector('td:nth-child(4)');
+          if (typeCell) {
+            const typeText = typeCell.textContent.trim();
+            const typeMap = {
+              'labor': '劳动争议',
+              'injury': '工伤待遇',
+              'social': '社会保险'
+            };
+            if (!typeText.includes(typeMap[state.type])) show = false;
+          }
+        }
+
+        row.style.display = show ? '' : 'none';
+      });
+    }
+
+    function filterCases(status) {
+      applyFilters();
+      showNotification(status === 'all' ? '显示全部案件' : '已按状态筛选', 'info');
+    }
+
+    function filterCaseType(type) {
+      applyFilters();
+      showNotification(type === 'all' ? '显示全部类型' : '已按案由筛选', 'info');
     }
 
     // 云庭审功能

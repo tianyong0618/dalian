@@ -227,25 +227,30 @@
       font-size: 16px;
     }
 
-    /* 返回首页链接 */
-    .back-home {
-      padding: 8px 16px;
+    /* 角色选择器样式 */
+    .role-select {
+      padding: 8px 32px 8px 12px;
       background: var(--bg-secondary);
       border: 1px solid var(--border-color);
       border-radius: 8px;
-      cursor: pointer;
       font-size: 14px;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      color: var(--text-primary);
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+      background-size: 16px;
     }
 
-    .back-home:hover {
+    .role-select:hover {
       border-color: var(--primary);
-      color: var(--primary);
+    }
+
+    .role-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
     }
   </style>
 </head>
@@ -266,40 +271,41 @@
       </div>
     </a>
     <div style="display: flex; align-items: center; gap: 12px;">
-      <a href="index.html" class="back-home">
-        <i class="fa-solid fa-home"></i>
-        <span>返回首页</span>
-      </a>
       <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">
         <span class="theme-icon">🌙</span>
         <span class="theme-text">深色</span>
       </button>
     </div>
+    <select class="role-select" id="role-select" onchange="switchRole(this.value)">
+      <option value="gov" selected>人社部门</option>
+      <option value="org">服务机构</option>
+      <option value="enterprise">用工企业</option>
+    </select>
   </nav>
 
   <!-- Tab 标签导航 -->
   <div class="tab-navigation">
-    <button class="tab-btn active" data-tab="org" onclick="switchTab('org')">
+    <button class="tab-btn active" data-tab="org" data-roles="gov" onclick="switchTab('org')">
       <span class="tab-icon">🏢</span>
       <span>机构管理</span>
     </button>
-    <button class="tab-btn" data-tab="employee" onclick="switchTab('employee')">
+    <button class="tab-btn" data-tab="employee" data-roles="gov org" onclick="switchTab('employee')">
       <span class="tab-icon">👥</span>
       <span>从业人员管理</span>
     </button>
-    <button class="tab-btn" data-tab="store" onclick="switchTab('store')">
+    <button class="tab-btn" data-tab="store" data-roles="gov org enterprise" onclick="switchTab('store')">
       <span class="tab-icon">🛒</span>
       <span>线上服务网店</span>
     </button>
-    <button class="tab-btn" data-tab="matching" onclick="switchTab('matching')">
+    <button class="tab-btn" data-tab="matching" data-roles="gov org enterprise" onclick="switchTab('matching')">
       <span class="tab-icon">🤝</span>
       <span>供需撮合</span>
     </button>
-    <button class="tab-btn" data-tab="dispute" onclick="switchTab('dispute')">
+    <button class="tab-btn" data-tab="dispute" data-roles="gov org enterprise" onclick="switchTab('dispute')">
       <span class="tab-icon">⚖️</span>
       <span>争议调解</span>
     </button>
-    <button class="tab-btn" data-tab="credit" onclick="switchTab('credit')">
+    <button class="tab-btn" data-tab="credit" data-roles="gov" onclick="switchTab('credit')">
       <span class="tab-icon">⭐</span>
       <span>诚信评价</span>
     </button>
@@ -337,6 +343,16 @@
 
   // 当前Tab
   let currentTab = 'org';
+
+  // 当前角色
+  let currentRole = 'gov';
+
+  // 角色显示名称
+  const ROLE_LABELS = {
+    'gov': '👔 人社部门',
+    'org': '🏢 服务机构',
+    'enterprise': '💼 用工企业'
+  };
 
   // 共享数据存储
   const sharedData = {
@@ -390,6 +406,47 @@
         data: sharedData
       });
     }, 100);
+  }
+
+  // 切换角色
+  function switchRole(role) {
+    console.log('switchRole called with:', role);
+
+    if (!role) {
+      console.error('Invalid role:', role);
+      return;
+    }
+
+    currentRole = role;
+
+    // 更新Tab可见性
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      const roles = btn.getAttribute('data-roles');
+      if (roles && roles.split(' ').includes(role)) {
+        btn.style.display = 'flex';
+      } else {
+        btn.style.display = 'none';
+      }
+      btn.classList.remove('active');
+    });
+
+    // 找到第一个可见的Tab并激活
+    const visibleTabs = document.querySelectorAll('.tab-btn[data-roles]:not([style*="display: none"])');
+    if (visibleTabs.length > 0) {
+      const firstTab = visibleTabs[0];
+      firstTab.classList.add('active');
+      const tabId = firstTab.getAttribute('data-tab');
+      if (tabId) {
+        currentTab = tabId;
+        const frame = document.getElementById('content-frame');
+        if (frame) {
+          const url = TAB_PAGES[tabId] + '?t=' + Date.now();
+          frame.src = url;
+        }
+      }
+    }
+
+    showNotification(`已切换至 ${ROLE_LABELS[role]}`, 'info');
   }
 
   // 向 iframe 发送消息

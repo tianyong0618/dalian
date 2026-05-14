@@ -1832,27 +1832,6 @@
       showNotification('合同已发送给员工签署', 'success');
     }
 
-    function switchTab(tabName) {
-      document.querySelectorAll('.tab-item').forEach(function(tab) {
-        tab.classList.remove('active');
-        if (tab.textContent === tabName) {
-          tab.classList.add('active');
-        }
-      });
-      var contractWizard = document.getElementById('contract-wizard');
-      var wageSection = document.getElementById('wage-confirm-section');
-      var complaintSection = document.getElementById('complaint-section');
-      contractWizard.classList.remove('active');
-      wageSection.classList.remove('active');
-      complaintSection.classList.remove('active');
-      if (tabName === '合同管理') {
-      } else if (tabName === '工资确认') {
-        wageSection.classList.add('active');
-      } else if (tabName === '欠薪投诉处理') {
-        complaintSection.classList.add('active');
-      }
-    }
-
     document.querySelectorAll('.tab-item').forEach(function(tab) {
       tab.addEventListener('click', function() {
         var tabName = this.getAttribute('data-tab');
@@ -1877,8 +1856,6 @@
         targetContent.style.display = 'block';
       }
 
-      if (tabName === 'contracts') {
-      }
     }
 
     function confirmWage(btn, name) {
