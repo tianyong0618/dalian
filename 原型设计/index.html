@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>人社智能服务系统</title>
+  <!-- Font Awesome图标库 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <!-- 防止闪烁：在页面渲染前立即设置主题 -->
   <script>(function(){var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
   <style>
@@ -71,17 +73,64 @@
       box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
     }
 
-    .logo {
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-icon-glow {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #6366f1, #8b5cf6);
+      border-radius: 12px;
+      filter: blur(8px);
+      opacity: 0.6;
+    }
+
+    .logo-icon {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon i {
+      color: white;
+      font-size: 18px;
+    }
+
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .logo-english {
+      font-size: 11px;
+      font-weight: 400;
+      color: #6e7a8a;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .logo-chinese {
       font-size: 18px;
       font-weight: 600;
       color: #1d1d1f;
       letter-spacing: -0.3px;
-    }
-
-    .logo span {
-      color: #6e7a8a;
-      font-weight: 400;
-      margin-left: 8px;
     }
 
     .nav-links {
@@ -278,12 +327,12 @@
       border: 1px solid rgba(99, 102, 241, 0.2);
     }
 
-    [data-theme="dark"] .logo {
-      color: #e2e8f0;
+    [data-theme="dark"] .logo-english {
+      color: #94a3b8;
     }
 
-    [data-theme="dark"] .logo span {
-      color: #94a3b8;
+    [data-theme="dark"] .logo-chinese {
+      color: #e2e8f0;
     }
 
     [data-theme="dark"] .nav-links a {
@@ -350,7 +399,18 @@
   <div class="page-wrapper">
     <!-- 顶部导航 -->
     <nav class="top-nav">
-      <div class="logo">人社智能服务<span>System</span></div>
+      <div class="logo-wrapper">
+        <div class="logo-icon-wrapper">
+          <div class="logo-icon-glow"></div>
+          <div class="logo-icon">
+            <i class="fa-solid fa-users"></i>
+          </div>
+        </div>
+        <div class="logo-container">
+          <div class="logo-english">Human Resources and Social Security</div>
+          <div class="logo-chinese">人社智能服务系统</div>
+        </div>
+      </div>
       <ul class="nav-links">
         <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">
           <span class="theme-icon">🌙</span>

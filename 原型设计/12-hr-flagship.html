@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>人力资源服务旗舰店 - 人社服务数字化平台</title>
+  <!-- Font Awesome图标库 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <!-- 防止闪烁：在页面渲染前立即设置主题 -->
   <script>(function(){var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
   <link rel="stylesheet" href="style.css">
@@ -12,7 +14,18 @@
 
 <nav class="navbar">
   <div class="container">
-    <a href="index.html" class="navbar-logo">人社服务数字平台</a>
+    <a href="index.html" class="navbar-logo">
+        <div class="logo-icon-wrapper">
+          <div class="logo-icon-glow"></div>
+          <div class="logo-icon">
+            <i class="fa-solid fa-users"></i>
+          </div>
+        </div>
+        <div class="logo-text">
+          <div class="logo-english">Human Resources and Social Security</div>
+          <div class="logo-chinese">人社智能服务系统</div>
+        </div>
+      </a>
     <div style="display: flex; align-items: center; gap: 12px;">
         <button class="theme-switcher" onclick="toggleTheme()" title="切换主题">
           <span class="theme-icon">🌙</span>

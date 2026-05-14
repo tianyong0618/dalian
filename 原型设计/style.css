@@ -67,13 +67,68 @@ body {
 }
 
 .navbar-logo {
-  font-size: 20px;
-  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-icon-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #6366f1, #8b5cf6);
+  border-radius: 12px;
+  filter: blur(8px);
+  opacity: 0.6;
+}
+
+.logo-icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-icon i {
+  color: white;
+  font-size: 18px;
+}
+
+.navbar-logo .logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navbar-logo .logo-english {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.navbar-logo .logo-chinese {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: -0.3px;
   background: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-decoration: none;
 }
 
 .navbar-nav {

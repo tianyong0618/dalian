@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>调解仲裁服务 - 人社服务数字化平台</title>
+  <!-- Font Awesome图标库 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <!-- 防止闪烁：在页面渲染前立即设置主题 -->
   <script>(function(){var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
   <link rel="stylesheet" href="style.css">
@@ -35,6 +37,68 @@
       flex: 1;
       overflow: hidden;
       background: var(--bg-secondary);
+    }
+
+    /* 导航栏logo样式 */
+    .navbar-logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-icon-glow {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #6366f1, #8b5cf6);
+      border-radius: 12px;
+      filter: blur(8px);
+      opacity: 0.6;
+    }
+
+    .logo-icon {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon i {
+      color: white;
+      font-size: 18px;
+    }
+
+    .navbar-logo .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .navbar-logo .logo-english {
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .navbar-logo .logo-chinese {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
     }
 
     #content-frame {
@@ -142,7 +206,18 @@
 <div class="spa-container">
   <nav class="navbar">
     <div class="container">
-      <a href="index.html" class="navbar-logo">人社服务数字平台</a>
+      <a href="index.html" class="navbar-logo">
+        <div class="logo-icon-wrapper">
+          <div class="logo-icon-glow"></div>
+          <div class="logo-icon">
+            <i class="fa-solid fa-users"></i>
+          </div>
+        </div>
+        <div class="logo-text">
+          <div class="logo-english"> Human Resources and Social Security</div>
+          <div class="logo-chinese">人社智能服务系统</div>
+        </div>
+      </a>
       <div style="display: flex; align-items: center; gap: 12px;">
         <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">
           <span class="theme-icon">🌙</span>
