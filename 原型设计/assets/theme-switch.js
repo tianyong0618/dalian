@@ -1,13 +1,29 @@
-// 主题切换功能 - 统一脚本 v5.0
-// 基于人员画像(深色)和调解仲裁(浅色)样式设计
+// 主题切换功能 - 统一脚本 v6.0
+// 解决闪烁问题：在页面渲染前立即设置主题
 (function() {
-  // 初始化主题
-  function initTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    const theme = savedTheme || 'light';
+  // 立即执行：在页面渲染前设置主题，避免闪烁
+  const savedTheme = localStorage.getItem('theme');
+  const theme = savedTheme || 'light';
+  document.documentElement.setAttribute('data-theme', theme);
+
+  // 更新切换按钮显示
+  function updateThemeToggle(theme) {
+    const buttons = document.querySelectorAll('.theme-toggle, .theme-switcher');
     
-    document.documentElement.setAttribute('data-theme', theme);
-    updateThemeToggle(theme);
+    buttons.forEach(btn => {
+      const icon = btn.querySelector('.theme-icon, .icon');
+      const text = btn.querySelector('.theme-text, .text');
+      
+      if (!icon && !text) return;
+      
+      if (theme === 'dark') {
+        if (icon) icon.textContent = '☀️';
+        if (text) text.textContent = '浅色';
+      } else {
+        if (icon) icon.textContent = '🌙';
+        if (text) text.textContent = '深色';
+      }
+    });
   }
 
   // 切换主题
@@ -28,27 +44,6 @@
     }
   }
 
-  // 更新切换按钮显示
-  function updateThemeToggle(theme) {
-    // 查找所有可能的切换按钮
-    const buttons = document.querySelectorAll('.theme-toggle, .theme-switcher');
-    
-    buttons.forEach(btn => {
-      const icon = btn.querySelector('.theme-icon, .icon');
-      const text = btn.querySelector('.theme-text, .text');
-      
-      if (!icon && !text) return;
-      
-      if (theme === 'dark') {
-        if (icon) icon.textContent = '☀️';
-        if (text) text.textContent = '浅色';
-      } else {
-        if (icon) icon.textContent = '🌙';
-        if (text) text.textContent = '深色';
-      }
-    });
-  }
-
   // 监听来自父页面的主题变化消息
   window.addEventListener('message', function(event) {
     if (event.data && event.data.type === 'THEME_CHANGE') {
@@ -58,12 +53,15 @@
     }
   });
 
-  // DOM加载完成后初始化
-  document.addEventListener('DOMContentLoaded', function() {
-    initTheme();
-  });
+  // DOM加载完成后更新按钮状态
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      updateThemeToggle(theme);
+    });
+  } else {
+    updateThemeToggle(theme);
+  }
 
   // 暴露全局函数供直接调用
   window.toggleTheme = toggleTheme;
-  window.initTheme = initTheme;
 })();
