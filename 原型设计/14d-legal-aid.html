@@ -135,7 +135,7 @@
     }
 
     .application-section {
-      background: white;
+      background: var(--bg-primary);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-color);
       overflow: hidden;
@@ -175,11 +175,12 @@
     }
 
     .form-select {
-      padding: 8px 16px;
+      width: 100%;
+      padding: 10px 16px;
       border: 1px solid var(--border-color);
       border-radius: var(--radius-md);
       font-size: 14px;
-      background: white;
+      background: var(--bg-secondary);
       color: var(--text-primary);
       min-width: 140px;
     }
@@ -291,7 +292,7 @@
     }
 
     .btn-secondary {
-      background: white;
+      background: var(--bg-primary);
       color: var(--text-primary);
       border: 1px solid var(--border-color);
     }
@@ -318,7 +319,7 @@
     }
 
     .lawyer-assign-section {
-      background: white;
+      background: var(--bg-primary);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-color);
       overflow: hidden;
@@ -402,7 +403,7 @@
       top: 24px;
       right: 24px;
       padding: 12px 24px;
-      background: white;
+      background: var(--bg-primary);
       border-radius: 8px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
       z-index: 10002;
@@ -424,7 +425,7 @@
     .notification.info { border-left: 4px solid #1677ff; }
     .notification.error { border-left: 4px solid #ff4d4f; }
 
-    .card { background: white; border-radius: var(--radius-lg); border: 1px solid var(--border-color); overflow: hidden; margin-bottom: 24px; }
+    .card { background: var(--bg-primary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); overflow: hidden; margin-bottom: 24px; }
     .table { width: 100%; border-collapse: collapse; }
     .table thead { background: linear-gradient(135deg, rgba(19, 194, 194, 0.05) 0%, rgba(54, 207, 193, 0.05) 100%); }
     .table th { text-align: left; padding: 14px 16px; font-size: 13px; font-weight: 600; color: var(--text-primary); border-bottom: 2px solid rgba(19, 194, 194, 0.1); }
@@ -438,14 +439,14 @@
     .mb-16 { margin-bottom: 16px; }
     .col-6 { flex: 0 0 50%; max-width: 50%; padding: 0 8px; box-sizing: border-box; }
     .form-row { display: flex; flex-wrap: wrap; margin: 0 -8px; }
-    .form-input { width: 100%; padding: 10px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 14px; background: white; color: var(--text-primary); transition: all 0.3s ease; box-sizing: border-box; }
+    .form-input { width: 100%; padding: 10px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 14px; background: var(--bg-secondary); color: var(--text-primary); transition: all 0.3s ease; box-sizing: border-box; }
     .form-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(19, 194, 194, 0.1); }
     .form-group { margin-bottom: 16px; }
     .form-label { display: block; font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
 
     .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; }
     .modal-overlay.active { display: flex; }
-    .modal { background: white; border-radius: var(--radius-lg); max-width: 700px; width: 90%; max-height: 90vh; overflow: auto; }
+    .modal { background: var(--bg-primary); border-radius: var(--radius-lg); max-width: 700px; width: 90%; max-height: 90vh; overflow: auto; }
     .modal-header { padding: 20px 24px; background: linear-gradient(135deg, #13c2c2 0%, #36cfc1 100%); color: white; display: flex; justify-content: space-between; align-items: center; }
     .modal-header h3 { margin: 0; font-size: 18px; }
     .modal-close { width: 32px; height: 32px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); color: white; cursor: pointer; font-size: 20px; }
@@ -477,7 +478,7 @@
     .upload-icon { font-size: 32px; margin-bottom: 8px; }
     .upload-area p { font-size: 14px; color: var(--text-secondary); margin: 0; }
 
-    .card { background: white; border-radius: var(--radius-lg); border: 1px solid var(--border-color); overflow: hidden; margin-bottom: 24px; }
+    .card { background: var(--bg-primary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); overflow: hidden; margin-bottom: 24px; }
 
     @media (max-width: 1200px) {
       .stats-grid {
