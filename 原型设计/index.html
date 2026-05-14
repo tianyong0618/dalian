@@ -220,29 +220,41 @@
       .nav-links { display: none; }
     }
 
-    /* 主题切换器样式 */
+    /* 主题切换器样式 - 浅色主题（调解仲裁风格） */
     .theme-toggle {
       display: flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 12px;
-      background: rgba(255, 255, 255, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      padding: 8px 14px;
+      background: rgba(22, 119, 255, 0.1);
+      border: 1px solid #1677ff;
       border-radius: 8px;
       cursor: pointer;
       font-size: 13px;
       font-weight: 500;
-      color: #424245;
+      color: #1677ff;
       transition: all 0.3s ease;
     }
 
     .theme-toggle:hover {
-      background: rgba(255, 255, 255, 0.6);
-      color: #1d1d1f;
+      background: rgba(22, 119, 255, 0.2);
+      color: #1677ff;
     }
 
-    .theme-toggle .icon {
+    .theme-toggle .theme-icon {
       font-size: 16px;
+    }
+
+    /* 深色主题样式（人员画像风格） */
+    [data-theme="dark"] .theme-toggle {
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+    }
+
+    [data-theme="dark"] .theme-toggle:hover {
+      background: rgba(99, 102, 241, 0.2);
+      color: #e0e7ff;
     }
 
     /* 深色主题样式 */
@@ -338,8 +350,8 @@
     <nav class="top-nav">
       <div class="logo">人社智能服务<span>System</span></div>
       <ul class="nav-links">
-        <button class="theme-toggle" onclick="toggleTheme()" title="切换主题" style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: rgba(22, 119, 255, 0.1); border: 1px solid #1677ff; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500; color: #1677ff; transition: all 0.3s ease;">
-          <span class="theme-icon" style="font-size: 16px;">🌙</span>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">
+          <span class="theme-icon">🌙</span>
           <span class="theme-text">深色</span>
         </button>
         <!-- <li><a href="#modules">服务模块</a></li>
