@@ -47,10 +47,10 @@
     .badge-warning { background: rgba(251, 191, 36, 0.15); color: #fde047; border: 1px solid rgba(251, 191, 36, 0.3); }
     .badge-danger { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
     .badge-info { background: rgba(59, 130, 246, 0.15); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.3); }
-    .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+    .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #ffffff; }
     .btn-primary:hover { background: linear-gradient(135deg, #4f46e5, #7c3aed); }
-    .btn-secondary { background: rgba(51, 65, 85, 0.8); border: 1px solid rgba(99, 102, 241, 0.3); }
-    .btn-secondary:hover { background: rgba(51, 65, 85, 1); border-color: rgba(99, 102, 241, 0.5); }
+    .btn-secondary { background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2)); border: 1px solid rgba(99, 102, 241, 0.4); color: #e2e8f0; }
+    .btn-secondary:hover { background: linear-gradient(135deg, rgba(99, 102, 241, 0.35), rgba(168, 85, 247, 0.35)); border-color: rgba(99, 102, 241, 0.6); }
     .form-input { background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(99, 102, 241, 0.2); color: #e2e8f0; }
     .form-input:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1); }
     .form-select { background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(99, 102, 241, 0.2); color: #e2e8f0; }
@@ -898,7 +898,6 @@
           <td style="padding: 12px;"><div style="display: flex; flex-wrap: wrap; gap: 4px;">${p.tags.slice(0, 3).map(t => `<span class="tag px-2 py-0.5 rounded text-xs">${t}</span>`).join('')}${p.tags.length > 3 ? `<span class="text-xs text-slate-500">+${p.tags.length - 3}</span>` : ''}</div></td>
           <td style="padding: 12px;">
             <button class="btn-secondary px-3 py-1 rounded text-xs mr-2" onclick="window.open('9-employment-portrait-detail.html', '_blank')">查看</button>
-            <button class="btn-secondary px-3 py-1 rounded text-xs mr-2" onclick="showModal('knowledge-graph-modal')">图谱</button>
             <button class="btn-primary px-3 py-1 rounded text-xs" onclick="showModal('job-recommend-modal')">推荐</button>
           </td>
         </tr>
