@@ -400,7 +400,12 @@
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     updateThemeToggle(newTheme);
-    applyThemeStyles(newTheme);
+    
+    // 向 iframe 发送主题切换消息
+    const frame = document.getElementById('content-frame');
+    if (frame && frame.contentWindow) {
+      frame.contentWindow.postMessage({ type: 'THEME_CHANGE', theme: newTheme }, '*');
+    }
   }
 
   function updateThemeToggle(theme) {
@@ -418,74 +423,12 @@
     }
   }
 
-  function applyThemeStyles(theme) {
-    const body = document.body;
-    
-    if (theme === 'dark') {
-      body.style.setProperty('--text-primary', '#e2e8f0');
-      body.style.setProperty('--text-secondary', '#94a3b8');
-      body.style.setProperty('--bg-primary', '#0f172a');
-      body.style.setProperty('--bg-secondary', '#1e293b');
-      body.style.setProperty('--border-color', '#334155');
-      body.style.backgroundColor = '#0f172a';
-      body.style.color = '#e2e8f0';
-      
-      document.querySelectorAll('.navbar').forEach(el => {
-        el.style.background = 'rgba(30, 41, 59, 0.8)';
-        el.style.borderColor = 'rgba(99, 102, 241, 0.2)';
-      });
-      
-      document.querySelectorAll('.spa-header').forEach(el => {
-        el.style.background = 'rgba(30, 41, 59, 0.8)';
-      });
-      
-      document.querySelectorAll('.spa-content').forEach(el => {
-        el.style.background = '#1e293b';
-      });
-      
-      document.querySelectorAll('.quick-nav-btn').forEach(btn => {
-        btn.style.background = 'rgba(30, 41, 59, 0.8)';
-        btn.style.borderColor = 'rgba(99, 102, 241, 0.3)';
-        btn.style.color = '#94a3b8';
-      });
-      
-    } else {
-      body.style.setProperty('--text-primary', '#1f2937');
-      body.style.setProperty('--text-secondary', '#4b5563');
-      body.style.setProperty('--bg-primary', '#ffffff');
-      body.style.setProperty('--bg-secondary', '#f9fafb');
-      body.style.setProperty('--border-color', '#e5e7eb');
-      body.style.backgroundColor = '#ffffff';
-      body.style.color = '#1f2937';
-      
-      document.querySelectorAll('.navbar').forEach(el => {
-        el.style.background = 'rgba(255, 255, 255, 0.8)';
-        el.style.borderColor = 'rgba(22, 119, 255, 0.1)';
-      });
-      
-      document.querySelectorAll('.spa-header').forEach(el => {
-        el.style.background = 'white';
-      });
-      
-      document.querySelectorAll('.spa-content').forEach(el => {
-        el.style.background = '#f9fafb';
-      });
-      
-      document.querySelectorAll('.quick-nav-btn').forEach(btn => {
-        btn.style.background = 'white';
-        btn.style.borderColor = '#e5e7eb';
-        btn.style.color = '#4b5563';
-      });
-    }
-  }
-
   document.addEventListener('DOMContentLoaded', function() {
     const savedTheme = localStorage.getItem('theme');
     const theme = savedTheme || 'light';
     
     document.documentElement.setAttribute('data-theme', theme);
     updateThemeToggle(theme);
-    applyThemeStyles(theme);
   });
 </script>
 

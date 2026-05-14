@@ -233,7 +233,6 @@
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     updateThemeToggle(newTheme);
-    applyThemeStyles(newTheme);
   }
 
   function updateThemeToggle(theme) {
@@ -251,124 +250,12 @@
     }
   }
 
-  function applyThemeStyles(theme) {
-    const body = document.body;
-    
-    if (theme === 'dark') {
-      body.style.setProperty('--text-primary', '#e2e8f0');
-      body.style.setProperty('--text-secondary', '#94a3b8');
-      body.style.setProperty('--bg-primary', '#0f172a');
-      body.style.setProperty('--bg-secondary', '#1e293b');
-      body.style.setProperty('--border-color', '#334155');
-      body.style.backgroundColor = '#0f172a';
-      body.style.color = '#e2e8f0';
-      
-      document.querySelectorAll('.navbar').forEach(el => {
-        el.style.background = 'rgba(30, 41, 59, 0.8)';
-        el.style.borderColor = 'rgba(99, 102, 241, 0.2)';
-      });
-      
-      document.querySelectorAll('.card, .stat-card, .feature-card').forEach(el => {
-        el.style.background = 'rgba(30, 41, 59, 0.8)';
-        el.style.borderColor = 'rgba(99, 102, 241, 0.2)';
-      });
-      
-      document.querySelectorAll('table').forEach(table => {
-        table.querySelectorAll('th').forEach(th => {
-          th.style.background = 'rgba(30, 41, 59, 0.8)';
-          th.style.color = '#e2e8f0';
-          th.style.borderColor = 'rgba(99, 102, 241, 0.2)';
-        });
-        table.querySelectorAll('td').forEach(td => {
-          td.style.color = '#94a3b8';
-          td.style.borderColor = 'rgba(99, 102, 241, 0.1)';
-        });
-      });
-      
-      document.querySelectorAll('input, select, textarea').forEach(el => {
-        el.style.background = 'rgba(30, 41, 59, 0.8)';
-        el.style.borderColor = 'rgba(99, 102, 241, 0.2)';
-        el.style.color = '#e2e8f0';
-      });
-      
-      document.querySelectorAll('.btn-secondary').forEach(btn => {
-        btn.style.background = 'rgba(51, 65, 85, 0.8)';
-        btn.style.borderColor = 'rgba(99, 102, 241, 0.3)';
-        btn.style.color = '#e2e8f0';
-      });
-      
-      document.querySelectorAll('.tag').forEach(tag => {
-        tag.style.background = 'rgba(99, 102, 241, 0.15)';
-        tag.style.color = '#a5b4fc';
-        tag.style.borderColor = 'rgba(99, 102, 241, 0.3)';
-      });
-      
-      document.querySelectorAll('h1, h2, h3').forEach(h => {
-        h.style.color = '#e2e8f0';
-      });
-      
-    } else {
-      body.style.setProperty('--text-primary', '#1f2937');
-      body.style.setProperty('--text-secondary', '#4b5563');
-      body.style.setProperty('--bg-primary', '#ffffff');
-      body.style.setProperty('--bg-secondary', '#f9fafb');
-      body.style.setProperty('--border-color', '#e5e7eb');
-      body.style.backgroundColor = '#ffffff';
-      body.style.color = '#1f2937';
-      
-      document.querySelectorAll('.navbar').forEach(el => {
-        el.style.background = 'rgba(255, 255, 255, 0.8)';
-        el.style.borderColor = 'rgba(22, 119, 255, 0.1)';
-      });
-      
-      document.querySelectorAll('.card, .stat-card, .feature-card').forEach(el => {
-        el.style.background = 'white';
-        el.style.borderColor = '#e5e7eb';
-      });
-      
-      document.querySelectorAll('table').forEach(table => {
-        table.querySelectorAll('th').forEach(th => {
-          th.style.background = '#f3f4f6';
-          th.style.color = '#1f2937';
-          th.style.borderColor = '#e5e7eb';
-        });
-        table.querySelectorAll('td').forEach(td => {
-          td.style.color = '#4b5563';
-          td.style.borderColor = '#e5e7eb';
-        });
-      });
-      
-      document.querySelectorAll('input, select, textarea').forEach(el => {
-        el.style.background = 'white';
-        el.style.borderColor = '#e5e7eb';
-        el.style.color = '#1f2937';
-      });
-      
-      document.querySelectorAll('.btn-secondary').forEach(btn => {
-        btn.style.background = 'white';
-        btn.style.borderColor = '#e5e7eb';
-        btn.style.color = '#1f2937';
-      });
-      
-      document.querySelectorAll('.tag').forEach(tag => {
-        tag.style.background = 'rgba(22, 119, 255, 0.1)';
-        tag.style.color = '#1677ff';
-        tag.style.borderColor = 'rgba(22, 119, 255, 0.2)';
-      });
-      
-      document.querySelectorAll('h1, h2, h3').forEach(h => {
-        h.style.color = '#1f2937';
-      });
-    }
-  }
-
   document.addEventListener('DOMContentLoaded', function() {
     const savedTheme = localStorage.getItem('theme');
     const theme = savedTheme || 'light';
     
     document.documentElement.setAttribute('data-theme', theme);
     updateThemeToggle(theme);
-    applyThemeStyles(theme);
   });
 </script>
 
