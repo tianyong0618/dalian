@@ -37,6 +37,60 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    
+    /* 浅色主题覆盖样式 */
+    [data-theme="light"] body {
+      background: #ffffff;
+    }
+    [data-theme="light"] body.bg-\[\#0a0e1a\] {
+      background: #ffffff !important;
+    }
+    [data-theme="light"] .text-white {
+      color: #1f2937 !important;
+    }
+    [data-theme="light"] .text-slate-400 {
+      color: #6b7280 !important;
+    }
+    [data-theme="light"] .bg-slate-900\/60 {
+      background: rgba(255, 255, 255, 0.9) !important;
+    }
+    [data-theme="light"] .bg-slate-900\/70 {
+      background: rgba(255, 255, 255, 0.95) !important;
+    }
+    [data-theme="light"] .bg-slate-800\/50 {
+      background: rgba(0, 0, 0, 0.05) !important;
+    }
+    [data-theme="light"] .bg-gradient-to-br {
+      background: linear-gradient(to bottom right, #eff6ff, #ffffff) !important;
+    }
+    [data-theme="light"] .border-indigo-500\/20 {
+      border-color: #e5e7eb !important;
+    }
+    [data-theme="light"] .border-slate-700\/50 {
+      border-color: #e5e7eb !important;
+    }
+    [data-theme="light"] .gradient-text {
+      background: linear-gradient(to right, #1677ff, #096dd9) !important;
+      -webkit-text-fill-color: transparent;
+    }
+    [data-theme="light"] .bg-grid-pattern {
+      background-image: radial-gradient(circle at 2px 2px, rgba(22, 119, 255, 0.05) 1px, transparent 0) !important;
+    }
+    [data-theme="light"] .stat-card {
+      background: #ffffff !important;
+      border-color: #e5e7eb !important;
+    }
+    [data-theme="light"] .profile-card {
+      background: #ffffff !important;
+      border-color: #e5e7eb !important;
+    }
+    [data-theme="light"] .modal-overlay {
+      background: rgba(0, 0, 0, 0.5) !important;
+    }
+    [data-theme="light"] .modal {
+      background: #ffffff !important;
+      border-color: #e5e7eb !important;
+    }
   </style>
 </head>
 <body class="min-h-screen bg-[#0a0e1a] relative">
