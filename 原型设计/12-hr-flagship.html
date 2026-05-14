@@ -226,61 +226,37 @@
     .theme-icon {
       font-size: 16px;
     }
-
-    /* 角色选择器样式 */
-    .role-select {
-      padding: 8px 32px 8px 12px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      font-size: 14px;
-      color: var(--text-primary);
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 8px center;
-      background-size: 16px;
-    }
-
-    .role-select:hover {
-      border-color: var(--primary);
-    }
-
-    .role-select:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-    }
   </style>
 </head>
 <body>
 
 <div class="spa-container">
-  <nav class="spa-header">
-    <a href="index.html" class="navbar-logo">
-      <div class="logo-icon-wrapper">
-        <div class="logo-icon-glow"></div>
-        <div class="logo-icon">
-          <i class="fa-solid fa-store"></i>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-logo">
+        <div class="logo-icon-wrapper">
+          <div class="logo-icon-glow"></div>
+          <div class="logo-icon">
+            <i class="fa-solid fa-users"></i>
+          </div>
         </div>
+        <div class="logo-text">
+          <div class="logo-english">Human Resources and Social Security</div>
+          <div class="logo-chinese">人社智能服务系统</div>
+        </div>
+      </a>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">
+          <span class="theme-icon">🌙</span>
+          <span class="theme-text">深色</span>
+        </button>
+        <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px;" id="role-select" onchange="switchRole(this.value)">
+          <option value="gov" selected>人社部门</option>
+          <option value="org">服务机构</option>
+          <option value="enterprise">用工企业</option>
+        </select>
       </div>
-      <div class="logo-text">
-        <div class="logo-english">Human Resources and Social Security</div>
-        <div class="logo-chinese">人社智能服务系统</div>
-      </div>
-    </a>
-    <div style="display: flex; align-items: center; gap: 12px;">
-      <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">
-        <span class="theme-icon">🌙</span>
-        <span class="theme-text">深色</span>
-      </button>
     </div>
-    <select class="role-select" id="role-select" onchange="switchRole(this.value)">
-      <option value="gov" selected>人社部门</option>
-      <option value="org">服务机构</option>
-      <option value="enterprise">用工企业</option>
-    </select>
   </nav>
 
   <!-- Tab 标签导航 -->
@@ -445,8 +421,6 @@
         }
       }
     }
-
-    showNotification(`已切换至 ${ROLE_LABELS[role]}`, 'info');
   }
 
   // 向 iframe 发送消息
