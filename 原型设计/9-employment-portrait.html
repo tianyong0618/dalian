@@ -6,7 +6,9 @@
   <title>就业人员画像 - 人社服务数字化平台</title>
   <!-- 防止闪烁：在页面渲染前立即设置主题 -->
   <script>(function(){var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <!-- Tailwind CSS for development -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome图标库 -->
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     /* CSS变量 - 浅色主题（默认） */
@@ -1100,9 +1102,24 @@
 
     let currentPortraitStep = 1;
 
+    function getGroupStyle(group) {
+      const styles = {
+        '高校毕业生': { bg: 'rgba(59, 130, 246, 0.15)', color: 'var(--accent)', border: 'rgba(59, 130, 246, 0.3)' },
+        '就业困难人员': { bg: 'rgba(251, 191, 36, 0.15)', color: 'var(--warning)', border: 'rgba(251, 191, 36, 0.3)' },
+        '农民工': { bg: 'rgba(34, 197, 94, 0.15)', color: 'var(--success)', border: 'rgba(34, 197, 94, 0.3)' },
+        '零工人员': { bg: 'rgba(168, 85, 247, 0.15)', color: 'var(--secondary)', border: 'rgba(168, 85, 247, 0.3)' },
+        '退役军人': { bg: 'rgba(239, 68, 68, 0.15)', color: 'var(--danger)', border: 'rgba(239, 68, 68, 0.3)' }
+      };
+      return styles[group] || { bg: 'rgba(99, 102, 241, 0.15)', color: 'var(--primary)', border: 'rgba(99, 102, 241, 0.3)' };
+    }
+
     function getPortraitTypeBadge(type) {
-      const badges = { talent: { cls: 'badge-info', text: '人才画像' }, jobseeker: { cls: 'badge-warning', text: '求职者画像' }, keygroup: { cls: 'badge-danger', text: '重点群体' } };
-      return badges[type] || { cls: 'badge', text: type };
+      const badges = { 
+        talent: { text: '人才画像', bg: 'rgba(99, 102, 241, 0.15)', color: 'var(--primary)', border: 'rgba(99, 102, 241, 0.3)' }, 
+        jobseeker: { text: '求职者画像', bg: 'rgba(251, 191, 36, 0.15)', color: 'var(--warning)', border: 'rgba(251, 191, 36, 0.3)' }, 
+        keygroup: { text: '重点群体画像', bg: 'rgba(239, 68, 68, 0.15)', color: 'var(--danger)', border: 'rgba(239, 68, 68, 0.3)' } 
+      };
+      return badges[type] || { text: type, bg: 'rgba(99, 102, 241, 0.15)', color: 'var(--primary)', border: 'rgba(99, 102, 241, 0.3)' };
     }
 
     function renderPersonTable(data) {
@@ -1116,8 +1133,8 @@
           <td style="padding: 12px;"><img src="${p.avatar}" alt="${p.name}" class="w-10 h-10 rounded-full object-cover" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=${p.id}'"></td>
           <td style="padding: 12px;"><strong style="color: ${textPrimary};">${p.name}</strong></td>
           <td style="padding: 12px; color: ${textSecondary};">${p.education}</td>
-          <td style="padding: 12px; color: ${textSecondary};">${p.group}</td>
-          <td style="padding: 12px;"><span class="${getPortraitTypeBadge(p.portraitType).cls}">${getPortraitTypeBadge(p.portraitType).text}</span></td>
+          <td style="padding: 12px;"><span style="display: inline-block; padding: 6px 12px; background: ${getGroupStyle(p.group).bg}; color: ${getGroupStyle(p.group).color}; border: 1px solid ${getGroupStyle(p.group).border}; border-radius: 8px; font-size: 13px; white-space: nowrap;">${p.group}</span></td>
+          <td style="padding: 12px;"><span style="display: inline-block; padding: 6px 12px; background: ${getPortraitTypeBadge(p.portraitType).bg}; color: ${getPortraitTypeBadge(p.portraitType).color}; border: 1px solid ${getPortraitTypeBadge(p.portraitType).border}; border-radius: 8px; font-size: 13px; white-space: nowrap;">${getPortraitTypeBadge(p.portraitType).text}</span></td>
           <td style="padding: 12px;"><div style="display: flex; align-items: center; gap: 8px;"><div class="progress-bar" style="width: 80px;"><div class="progress-fill" style="width: ${p.competitiveness}%"></div></div><span style="color: ${accentColor};">${p.competitiveness}%</span></div></td>
           <td style="padding: 12px;"><div style="display: flex; align-items: center; gap: 8px;"><div class="progress-bar" style="width: 80px;"><div class="progress-fill" style="width: ${p.stability}%; background: ${p.stability >= 70 ? 'var(--success)' : p.stability >= 40 ? 'var(--warning)' : 'var(--danger)'}"></div></div><span style="color: ${p.stability >= 70 ? (isDark ? 'var(--success-light)' : 'var(--success)') : p.stability >= 40 ? (isDark ? 'var(--warning-light)' : 'var(--warning)') : (isDark ? 'var(--danger-light)' : 'var(--danger)')}">${p.stability}%</span></div></td>
           <td style="padding: 12px;"><div style="display: flex; flex-wrap: wrap; gap: 4px;">${p.tags.slice(0, 3).map(t => `<span class="tag px-2 py-0.5 rounded text-xs">${t}</span>`).join('')}${p.tags.length > 3 ? `<span class="text-xs ${isDark ? 'text-slate-500' : 'text-gray-400'}">+${p.tags.length - 3}</span>` : ''}</div></td>
