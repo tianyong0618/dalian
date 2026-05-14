@@ -30,6 +30,95 @@
     }
 
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; }
+    /* 导航栏样式 - 与其他页面一致 */
+    .navbar {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 32px;
+      padding-right: 32px;
+      width: calc(100% - 64px);
+      max-width: none;
+      margin: 0;
+    }
+    .navbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .navbar-logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .logo-icon-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-icon-glow {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #6366f1, #a855f7);
+      border-radius: 12px;
+      filter: blur(12px);
+      opacity: 0.75;
+    }
+    .logo-icon {
+      position: relative;
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-icon i {
+      color: white;
+      font-size: 24px;
+    }
+    .navbar-logo .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .navbar-logo .logo-english {
+      font-size: 12px;
+      font-weight: 400;
+      color: #94a3b8;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .navbar-logo .logo-chinese {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #818cf8, #a78bfa, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     .gradient-text { background: linear-gradient(to right, #818cf8, #a78bfa, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .bg-grid-pattern { background-image: radial-gradient(circle at 2px 2px, rgba(99, 102, 241, 0.1) 1px, transparent 0); background-size: 48px 48px; }
     .stat-card { background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%); border: 1px solid rgba(99, 102, 241, 0.2); }
@@ -104,10 +193,11 @@
     
     /* 浅色主题覆盖样式 */
     [data-theme="light"] body {
-      background: #ffffff;
+      background: #f8fafc !important;
+      color: #1f2937 !important;
     }
     [data-theme="light"] body.bg-\[\#0a0e1a\] {
-      background: #ffffff !important;
+      background: #f8fafc !important;
     }
     [data-theme="light"] .text-white {
       color: #1f2937 !important;
@@ -222,38 +312,132 @@
     [data-theme="light"] .form-input:focus {
       border-color: #1677ff !important;
     }
+    [data-theme="light"] .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .btn-primary:hover {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+    }
+    [data-theme="light"] .btn-secondary {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(168, 85, 247, 0.12)) !important;
+      border: 1px solid rgba(99, 102, 241, 0.4) !important;
+      color: #1f2937 !important;
+    }
+    [data-theme="light"] .btn-secondary:hover {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(168, 85, 247, 0.25)) !important;
+      border-color: rgba(99, 102, 241, 0.6) !important;
+      color: #0f172a !important;
+    }
+    [data-theme="light"] .navbar {
+      background: rgba(255, 255, 255, 0.75) !important;
+      border-bottom: 1px solid rgba(99, 102, 241, 0.15) !important;
+    }
+    [data-theme="light"] .navbar-logo .logo-english {
+      color: #64748b !important;
+    }
+    [data-theme="light"] .theme-toggle {
+      background: rgba(99, 102, 241, 0.1) !important;
+      border: 1px solid rgba(99, 102, 241, 0.3) !important;
+      color: #6366f1 !important;
+    }
+    [data-theme="light"] .theme-toggle:hover {
+      background: rgba(99, 102, 241, 0.2) !important;
+    }
+    [data-theme="light"] .stat-card {
+      background: #ffffff !important;
+      border-color: #e5e7eb !important;
+    }
+    [data-theme="light"] .stat-card h3,
+    [data-theme="light"] .stat-card p,
+    [data-theme="light"] .stat-card span {
+      color: #1f2937 !important;
+    }
+    [data-theme="light"] .stat-card .text-indigo-400,
+    [data-theme="light"] .stat-card .text-purple-400,
+    [data-theme="light"] .stat-card .text-pink-400,
+    [data-theme="light"] .stat-card .text-orange-400 {
+      color: #1677ff !important;
+    }
+    [data-theme="light"] .data-source-card {
+      background: #ffffff !important;
+      border-color: #e5e7eb !important;
+    }
+    [data-theme="light"] .data-source-card h4,
+    [data-theme="light"] .data-source-card p,
+    [data-theme="light"] .data-source-card span {
+      color: #1f2937 !important;
+    }
+    [data-theme="light"] .table-dark th,
+    [data-theme="light"] .table-dark td {
+      background: #ffffff !important;
+      color: #1f2937 !important;
+      border-color: #e5e7eb !important;
+    }
+    [data-theme="light"] .table-dark th {
+      background: #f9fafb !important;
+      color: #374151 !important;
+    }
+    [data-theme="light"] .table-dark tr:hover td {
+      background: #f3f4f6 !important;
+    }
+    [data-theme="light"] .tag {
+      background: rgba(99, 102, 241, 0.1) !important;
+      color: #6366f1 !important;
+      border-color: rgba(99, 102, 241, 0.3) !important;
+    }
+    [data-theme="light"] .text-white {
+      color: #1f2937 !important;
+    }
+    [data-theme="light"] .text-slate-400,
+    [data-theme="light"] .text-slate-300,
+    [data-theme="light"] .text-slate-200,
+    [data-theme="light"] .text-slate-100 {
+      color: #6b7280 !important;
+    }
+    [data-theme="light"] h1,
+    [data-theme="light"] h2,
+    [data-theme="light"] h3,
+    [data-theme="light"] h4,
+    [data-theme="light"] h5,
+    [data-theme="light"] h6 {
+      color: #111827 !important;
+    }
+    [data-theme="light"] .stat-card .text-sm {
+      color: #6b7280 !important;
+    }
   </style>
 </head>
 <body class="min-h-screen bg-[#0a0e1a] relative">
   <div class="absolute inset-0 bg-gradient-to-br from-blue-950/30 via-purple-950/20 to-slate-950/30"></div>
   <div class="absolute inset-0 bg-grid-pattern"></div>
 
-  <header class="relative z-10 backdrop-blur-xl bg-slate-900/60 border-b border-indigo-500/20">
-    <div class="px-8 py-5">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-4">
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl blur-lg opacity-75"></div>
-            <div class="relative w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center">
-              <i class="fa-solid fa-users text-white text-xl"></i>
-            </div>
-          </div>
-          <div>
-            <div class="text-xs text-slate-400 mb-1 tracking-widest">Human Resources and Social Security</div>
-            <a href="index.html" class="text-2xl font-bold gradient-text hover:opacity-80 transition-opacity">人社智能服务系统</a>
+  <header class="navbar relative z-10 w-full">
+    <div class="navbar-inner w-full px-8 py-5 flex justify-between items-center">
+      <div class="navbar-logo flex items-center gap-4">
+        <a href="index.html" class="navbar-logo">
+        <div class="logo-icon-wrapper">
+          <div class="logo-icon-glow"></div>
+          <div class="logo-icon">
+            <i class="fa-solid fa-users"></i>
           </div>
         </div>
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">
-            <span class="theme-icon">🌙</span>
-            <span class="theme-text">深色</span>
-          </button>
-          <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px; border-radius: 8px;" id="role-switcher" onchange="switchRole()">
-            <option value="gov">人社部门（管理端）</option>
-            <option value="org">服务机构（运营端）</option>
-            <option value="enterprise">用工企业（使用端）</option>
-          </select>
+        <div class="logo-text">
+          <div class="logo-english text-xs tracking-widest mb-1">Human Resources and Social Security</div>
+          <div class="logo-chinese">人社智能服务系统</div>
         </div>
+        </a>
+      </div>
+      <div class="navbar-right flex items-center gap-4 ml-auto">
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">
+          <span class="theme-icon">🌙</span>
+          <span class="theme-text">深色</span>
+        </button>
+        <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px; border-radius: 8px;" id="role-switcher" onchange="switchRole()">
+          <option value="gov">人社部门（管理端）</option>
+          <option value="org">服务机构（运营端）</option>
+          <option value="enterprise">用工企业（使用端）</option>
+        </select>
       </div>
     </div>
   </header>
