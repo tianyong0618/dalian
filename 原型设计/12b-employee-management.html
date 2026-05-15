@@ -9,52 +9,43 @@
   <!-- 防止闪烁：在页面渲染前立即设置主题 -->
   <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .action-dropdown { position: relative; display: inline-block; }
+    .action-btn {
+      background: var(--bg-secondary, #f5f5f5); border: 1px solid var(--border-color, #e0e0e0);
+      padding: 4px 12px; border-radius: 6px; cursor: pointer;
+      font-size: 13px; color: var(--text-primary, #333);
+      display: inline-flex; align-items: center; gap: 4px;
+      transition: background 0.2s;
+    }
+    .action-btn:hover { background: var(--bg-tertiary, #e8e8e8); }
+    .action-btn i { font-size: 10px; color: var(--text-secondary, #999); }
+    .action-menu {
+      display: none; position: absolute; right: 0; top: 100%; z-index: 100;
+      background: var(--bg-primary, #fff); border: 1px solid var(--border-color, #e0e0e0);
+      border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      min-width: 100px; padding: 4px; margin-top: 4px;
+    }
+    .action-menu.show { display: block; }
+    .action-menu a {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 12px; font-size: 13px; color: var(--text-primary, #333);
+      text-decoration: none; border-radius: 4px; cursor: pointer;
+      transition: background 0.15s;
+    }
+    .action-menu a:hover { background: var(--bg-secondary, #f0f0f0); }
+    .action-menu a i { width: 16px; text-align: center; font-size: 13px; color: var(--text-secondary, #888); }
+    .action-menu a.danger { color: #ff4d4f; }
+    .action-menu a.danger i { color: #ff4d4f; }
+    /* 待审核行的审核按钮突出 */
+    .btn-audit { padding: 4px 16px; font-size: 13px; }
+  </style>
 </head>
 <body>
 
 <!-- 页面内容 -->
 <div class="page-content">
   <div class="container">
-
-    <!-- 从业人员信息入库 -->
-    <div class="card mb-24 p-24">
-      <h3 class="mb-16">从业人员信息入库</h3>
-      <div class="row">
-        <div class="col-4">
-          <div class="feature-card" onclick="showModal('employee-add-modal')">
-            <div class="card-header">
-              <div class="icon">📥</div>
-              <div class="card-content">
-                <h4>信息采集</h4>
-                <p class="text-small">批量导入/单个添加，采集基本信息、从业资质、经历等</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="feature-card" onclick="showModal('employee-verify-modal')">
-            <div class="card-header">
-              <div class="icon">🤖</div>
-              <div class="card-content">
-                <h4>AI信息核验</h4>
-                <p class="text-small">OCR识别+AI比对，自动校验身份证、资质证书真实性</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="feature-card" onclick="showModal('employee-update-modal')">
-            <div class="card-header">
-              <div class="icon">🔄</div>
-              <div class="card-content">
-                <h4>信息更新</h4>
-                <p class="text-small">机构在线更新从业人员信息，实时同步</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- 从业人员列表 -->
       <div class="mt-24">
@@ -84,8 +75,13 @@
               <td>16课时</td>
               <td><span class="badge badge-info">待审核</span></td>
               <td>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('林小华')">查看</button>
-                <button class="btn btn-primary btn-sm" onclick="showAuditModal('林小华')">审核</button>
+                <button class="btn btn-primary btn-sm btn-audit mr-8" onclick="showAuditModal('林小华')"><i class="fas fa-check-circle"></i> 审核</button>
+                <div class="action-dropdown" style="display:inline-block;vertical-align:middle;">
+                  <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showEmpDetail('林小华')"><i class="fas fa-eye"></i>查看</a>
+                  </div>
+                </div>
               </td>
             </tr>
             <tr>
@@ -96,8 +92,13 @@
               <td>20课时</td>
               <td><span class="badge badge-info">待审核</span></td>
               <td>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('杨雪梅')">查看</button>
-                <button class="btn btn-primary btn-sm" onclick="showAuditModal('杨雪梅')">审核</button>
+                <button class="btn btn-primary btn-sm btn-audit mr-8" onclick="showAuditModal('杨雪梅')"><i class="fas fa-check-circle"></i> 审核</button>
+                <div class="action-dropdown" style="display:inline-block;vertical-align:middle;">
+                  <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showEmpDetail('杨雪梅')"><i class="fas fa-eye"></i>查看</a>
+                  </div>
+                </div>
               </td>
             </tr>
             <tr>
@@ -108,11 +109,16 @@
               <td>36课时</td>
               <td><span class="badge badge-success">在职</span></td>
               <td>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('陈浩然')">查看</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('陈浩然')">培训</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('陈浩然')">岗位</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('陈浩然')">离职</button>
-                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('陈浩然')">诚信</button>
+                <div class="action-dropdown">
+                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showEmpDetail('陈浩然')"><i class="fas fa-eye"></i>查看</a>
+                    <a onclick="showTrainingModal('陈浩然')"><i class="fas fa-graduation-cap"></i>培训</a>
+                    <a onclick="showPositionModal('陈浩然')"><i class="fas fa-briefcase"></i>岗位</a>
+                    <a onclick="showResignModal('陈浩然')"><i class="fas fa-sign-out-alt"></i>离职</a>
+                    <a onclick="showCreditModal('陈浩然')" class="danger"><i class="fas fa-shield-alt"></i>诚信</a>
+                  </div>
+                </div>
               </td>
             </tr>
             <tr>
@@ -123,11 +129,16 @@
               <td>8课时</td>
               <td><span class="badge badge-warning">待就业</span></td>
               <td>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('刘芳')">查看</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('刘芳')">培训</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('刘芳')">岗位</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('刘芳')">离职</button>
-                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('刘芳')">诚信</button>
+                <div class="action-dropdown">
+                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showEmpDetail('刘芳')"><i class="fas fa-eye"></i>查看</a>
+                    <a onclick="showTrainingModal('刘芳')"><i class="fas fa-graduation-cap"></i>培训</a>
+                    <a onclick="showPositionModal('刘芳')"><i class="fas fa-briefcase"></i>岗位</a>
+                    <a onclick="showResignModal('刘芳')"><i class="fas fa-sign-out-alt"></i>离职</a>
+                    <a onclick="showCreditModal('刘芳')" class="danger"><i class="fas fa-shield-alt"></i>诚信</a>
+                  </div>
+                </div>
               </td>
             </tr>
             <tr>
@@ -138,11 +149,16 @@
               <td>24课时</td>
               <td><span class="badge badge-success">在职</span></td>
               <td>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('王明华')">查看</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('王明华')">培训</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('王明华')">岗位</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('王明华')">离职</button>
-                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('王明华')">诚信</button>
+                <div class="action-dropdown">
+                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showEmpDetail('王明华')"><i class="fas fa-eye"></i>查看</a>
+                    <a onclick="showTrainingModal('王明华')"><i class="fas fa-graduation-cap"></i>培训</a>
+                    <a onclick="showPositionModal('王明华')"><i class="fas fa-briefcase"></i>岗位</a>
+                    <a onclick="showResignModal('王明华')"><i class="fas fa-sign-out-alt"></i>离职</a>
+                    <a onclick="showCreditModal('王明华')" class="danger"><i class="fas fa-shield-alt"></i>诚信</a>
+                  </div>
+                </div>
               </td>
             </tr>
             <tr>
@@ -153,11 +169,16 @@
               <td>48课时</td>
               <td><span class="badge badge-success">在职</span></td>
               <td>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('张雨婷')">查看</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('张雨婷')">培训</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('张雨婷')">岗位</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('张雨婷')">离职</button>
-                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('张雨婷')">诚信</button>
+                <div class="action-dropdown">
+                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showEmpDetail('张雨婷')"><i class="fas fa-eye"></i>查看</a>
+                    <a onclick="showTrainingModal('张雨婷')"><i class="fas fa-graduation-cap"></i>培训</a>
+                    <a onclick="showPositionModal('张雨婷')"><i class="fas fa-briefcase"></i>岗位</a>
+                    <a onclick="showResignModal('张雨婷')"><i class="fas fa-sign-out-alt"></i>离职</a>
+                    <a onclick="showCreditModal('张雨婷')" class="danger"><i class="fas fa-shield-alt"></i>诚信</a>
+                  </div>
+                </div>
               </td>
             </tr>
             <tr>
@@ -168,11 +189,16 @@
               <td>6课时</td>
               <td><span class="badge badge-success">在职</span></td>
               <td>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('刘强')">查看</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('刘强')">培训</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('刘强')">岗位</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('刘强')">离职</button>
-                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('刘强')">诚信</button>
+                <div class="action-dropdown">
+                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showEmpDetail('刘强')"><i class="fas fa-eye"></i>查看</a>
+                    <a onclick="showTrainingModal('刘强')"><i class="fas fa-graduation-cap"></i>培训</a>
+                    <a onclick="showPositionModal('刘强')"><i class="fas fa-briefcase"></i>岗位</a>
+                    <a onclick="showResignModal('刘强')"><i class="fas fa-sign-out-alt"></i>离职</a>
+                    <a onclick="showCreditModal('刘强')" class="danger"><i class="fas fa-shield-alt"></i>诚信</a>
+                  </div>
+                </div>
               </td>
             </tr>
             <tr>
@@ -183,11 +209,16 @@
               <td>32课时</td>
               <td><span class="badge badge-success">在职</span></td>
               <td>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('李晓燕')">查看</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('李晓燕')">培训</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('李晓燕')">岗位</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('李晓燕')">离职</button>
-                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('李晓燕')">诚信</button>
+                <div class="action-dropdown">
+                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showEmpDetail('李晓燕')"><i class="fas fa-eye"></i>查看</a>
+                    <a onclick="showTrainingModal('李晓燕')"><i class="fas fa-graduation-cap"></i>培训</a>
+                    <a onclick="showPositionModal('李晓燕')"><i class="fas fa-briefcase"></i>岗位</a>
+                    <a onclick="showResignModal('李晓燕')"><i class="fas fa-sign-out-alt"></i>离职</a>
+                    <a onclick="showCreditModal('李晓燕')" class="danger"><i class="fas fa-shield-alt"></i>诚信</a>
+                  </div>
+                </div>
               </td>
             </tr>
             <tr>
@@ -198,11 +229,16 @@
               <td>40课时</td>
               <td><span class="badge badge-success">在职</span></td>
               <td>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('黄敏')">查看</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('黄敏')">培训</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('黄敏')">岗位</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('黄敏')">离职</button>
-                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('黄敏')">诚信</button>
+                <div class="action-dropdown">
+                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showEmpDetail('黄敏')"><i class="fas fa-eye"></i>查看</a>
+                    <a onclick="showTrainingModal('黄敏')"><i class="fas fa-graduation-cap"></i>培训</a>
+                    <a onclick="showPositionModal('黄敏')"><i class="fas fa-briefcase"></i>岗位</a>
+                    <a onclick="showResignModal('黄敏')"><i class="fas fa-sign-out-alt"></i>离职</a>
+                    <a onclick="showCreditModal('黄敏')" class="danger"><i class="fas fa-shield-alt"></i>诚信</a>
+                  </div>
+                </div>
               </td>
             </tr>
             <tr>
@@ -213,11 +249,16 @@
               <td>4课时</td>
               <td><span class="badge badge-warning">待就业</span></td>
               <td>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('周建国')">查看</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('周建国')">培训</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('周建国')">岗位</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('周建国')">离职</button>
-                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('周建国')">诚信</button>
+                <div class="action-dropdown">
+                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showEmpDetail('周建国')"><i class="fas fa-eye"></i>查看</a>
+                    <a onclick="showTrainingModal('周建国')"><i class="fas fa-graduation-cap"></i>培训</a>
+                    <a onclick="showPositionModal('周建国')"><i class="fas fa-briefcase"></i>岗位</a>
+                    <a onclick="showResignModal('周建国')"><i class="fas fa-sign-out-alt"></i>离职</a>
+                    <a onclick="showCreditModal('周建国')" class="danger"><i class="fas fa-shield-alt"></i>诚信</a>
+                  </div>
+                </div>
               </td>
             </tr>
             <tr>
@@ -228,11 +269,16 @@
               <td>12课时</td>
               <td><span class="badge badge-success">在职</span></td>
               <td>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('吴丽娟')">查看</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('吴丽娟')">培训</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('吴丽娟')">岗位</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('吴丽娟')">离职</button>
-                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('吴丽娟')">诚信</button>
+                <div class="action-dropdown">
+                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showEmpDetail('吴丽娟')"><i class="fas fa-eye"></i>查看</a>
+                    <a onclick="showTrainingModal('吴丽娟')"><i class="fas fa-graduation-cap"></i>培训</a>
+                    <a onclick="showPositionModal('吴丽娟')"><i class="fas fa-briefcase"></i>岗位</a>
+                    <a onclick="showResignModal('吴丽娟')"><i class="fas fa-sign-out-alt"></i>离职</a>
+                    <a onclick="showCreditModal('吴丽娟')" class="danger"><i class="fas fa-shield-alt"></i>诚信</a>
+                  </div>
+                </div>
               </td>
             </tr>
             <tr>
@@ -243,11 +289,16 @@
               <td>42课时</td>
               <td><span class="badge badge-success">在职</span></td>
               <td>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('赵磊')">查看</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('赵磊')">培训</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('赵磊')">岗位</button>
-                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('赵磊')">离职</button>
-                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('赵磊')">诚信</button>
+                <div class="action-dropdown">
+                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showEmpDetail('赵磊')"><i class="fas fa-eye"></i>查看</a>
+                    <a onclick="showTrainingModal('赵磊')"><i class="fas fa-graduation-cap"></i>培训</a>
+                    <a onclick="showPositionModal('赵磊')"><i class="fas fa-briefcase"></i>岗位</a>
+                    <a onclick="showResignModal('赵磊')"><i class="fas fa-sign-out-alt"></i>离职</a>
+                    <a onclick="showCreditModal('赵磊')" class="danger"><i class="fas fa-shield-alt"></i>诚信</a>
+                  </div>
+                </div>
               </td>
           </tr>
         </tbody>
@@ -687,7 +738,22 @@
     document.body.style.overflow = '';
   }
   
+  // 操作下拉菜单
+  function toggleActionMenu(btn) {
+    const menu = btn.parentElement.querySelector('.action-menu');
+    // 关闭其他所有菜单
+    document.querySelectorAll('.action-menu.show').forEach(m => {
+      if (m !== menu) m.classList.remove('show');
+    });
+    menu.classList.toggle('show');
+  }
+
   document.addEventListener('click', function(e) {
+    // 关闭下拉菜单（点击外部时）
+    if (!e.target.closest('.action-dropdown')) {
+      document.querySelectorAll('.action-menu.show').forEach(m => m.classList.remove('show'));
+    }
+    // 关闭弹窗（点击遮罩层）
     if (e.target.classList.contains('modal-overlay')) {
       e.target.style.display = 'none';
       document.body.style.overflow = '';
@@ -744,8 +810,13 @@
       <td>${hours}课时</td>
       <td><span class="badge badge-info">待审核</span></td>
       <td>
-        <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('${name}')">查看</button>
-        <button class="btn btn-primary btn-sm" onclick="showAuditModal('${name}')">审核</button>
+        <button class="btn btn-primary btn-sm btn-audit mr-8" onclick="showAuditModal('${name}')"><i class="fas fa-check-circle"></i> 审核</button>
+        <div class="action-dropdown" style="display:inline-block;vertical-align:middle;">
+          <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i></button>
+          <div class="action-menu">
+            <a onclick="showEmpDetail('${name}')"><i class="fas fa-eye"></i>查看</a>
+          </div>
+        </div>
       </td>
     `;
     tbody.appendChild(newRow);
