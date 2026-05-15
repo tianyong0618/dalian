@@ -37,6 +37,15 @@
       transition: all 0.3s ease;
     }
 
+    /* 模块区域 - 默认隐藏，只有激活的显示 */
+    .module-section {
+      display: none;
+    }
+
+    .module-section.active {
+      display: block;
+    }
+
     .tab-item:hover {
       color: var(--primary);
       background: rgba(22, 119, 255, 0.05);
@@ -136,13 +145,15 @@
 
     /* AI预警卡片 */
     .warning-card {
-      background: linear-gradient(135deg, #fff1f0 0%, #fff7f6 100%);
-      border: 1px solid #ffccc7;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
       border-radius: var(--radius-lg);
       padding: 24px;
       margin-bottom: 32px;
       position: relative;
       overflow: hidden;
+      border-top: 4px solid #ff4d4f;
+      box-shadow: 0 4px 12px rgba(255, 77, 79, 0.15);
     }
 
     .warning-card::before {
@@ -340,6 +351,46 @@
       height: 20px;
       background: linear-gradient(180deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
       border-radius: 2px;
+    }
+
+    /* 筛选容器样式 */
+    .filter-container {
+      padding: 16px 24px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .filter-select {
+      min-width: 160px;
+      padding: 10px 16px;
+      font-size: 14px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-select:hover {
+      border-color: var(--primary);
+    }
+
+    .filter-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.1);
+    }
+
+    .filter-btn {
+      padding: 10px 24px;
     }
 
     .table-wrapper {
@@ -753,6 +804,10 @@
       <div class="module-section active" id="tab-dashboard">
         <div class="top-nav">
           <h1 class="page-title">人社监管端</h1>
+          <button class="theme-toggle" onclick="toggleTheme()">
+            <span class="theme-icon">🌙</span>
+            <span class="theme-text">深色</span>
+          </button>
         </div>
 
         <div class="stats-grid">
@@ -902,20 +957,22 @@
         <div class="project-table-section">
           <div class="section-header-bar">
             <h2 class="section-title">在建项目全要素监管</h2>
-            <div class="report-filter-bar">
-              <select class="form-select">
+          </div>
+          <div class="filter-container">
+            <div class="filter-group">
+              <select class="form-select filter-select">
                 <option>全部区域</option>
                 <option>主城区</option>
                 <option>高新区</option>
                 <option>开发区</option>
               </select>
-              <select class="form-select">
+              <select class="form-select filter-select">
                 <option>全部状态</option>
                 <option>正常</option>
                 <option>中风险</option>
                 <option>高风险</option>
               </select>
-              <button class="btn btn-secondary btn-sm">筛选</button>
+              <button class="btn btn-primary btn-sm filter-btn">筛选</button>
             </div>
           </div>
           <div class="table-wrapper">
@@ -1283,24 +1340,29 @@
         </div>
 
         <div class="report-section">
-          <div class="report-filter-bar">
-            <select class="form-select">
-              <option>本月</option>
-              <option>上月</option>
-              <option>本季度</option>
-              <option>本年度</option>
-            </select>
-            <select class="form-select">
-              <option>全部区域</option>
-              <option>主城区</option>
-              <option>高新区</option>
-            </select>
-            <select class="form-select">
-              <option>全部格式</option>
-              <option>Excel</option>
-              <option>PDF</option>
-            </select>
-            <button class="btn btn-primary btn-sm">生成报表</button>
+          <div class="section-header-bar">
+            <h2 class="section-title">报表查询</h2>
+          </div>
+          <div class="filter-container">
+            <div class="filter-group">
+              <select class="form-select filter-select">
+                <option>本月</option>
+                <option>上月</option>
+                <option>本季度</option>
+                <option>本年度</option>
+              </select>
+              <select class="form-select filter-select">
+                <option>全部区域</option>
+                <option>主城区</option>
+                <option>高新区</option>
+              </select>
+              <select class="form-select filter-select">
+                <option>全部格式</option>
+                <option>Excel</option>
+                <option>PDF</option>
+              </select>
+              <button class="btn btn-primary btn-sm filter-btn">生成报表</button>
+            </div>
           </div>
 
           <div class="report-card-grid">

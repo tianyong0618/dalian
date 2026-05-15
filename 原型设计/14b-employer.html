@@ -1138,7 +1138,7 @@
       <div class="attendance-section">
         <div class="section-header-bar">
           <h2 class="section-title">考勤上报</h2>
-<button class="btn btn-primary" onclick="openContractModal(); return false;">
+            <button class="btn btn-primary" onclick="submitAttendance()">
               <span>📤</span>
               提交考勤
             </button>
@@ -1231,6 +1231,191 @@
           </table>
         </div>
       </div>
+      </div>
+
+      <!-- 合同签署向导 -->
+      <div class="contract-wizard" id="contract-wizard">
+        <div class="wizard-steps">
+          <div class="wizard-step active" id="step-1">
+            <span class="step-num">1</span>
+            <span>选择模板</span>
+          </div>
+          <div class="wizard-step" id="step-2">
+            <span class="step-num">2</span>
+            <span>填写信息</span>
+          </div>
+          <div class="wizard-step" id="step-3">
+            <span class="step-num">3</span>
+            <span>发送签署</span>
+          </div>
+          <div class="wizard-step" id="step-4">
+            <span class="step-num">4</span>
+            <span>完成</span>
+          </div>
+        </div>
+
+        <!-- 步骤1: 选择模板 -->
+        <div class="wizard-content" id="wizard-step-1">
+          <h3 style="margin: 0 0 20px 0; font-size: 16px;">请选择合同模板</h3>
+          <div class="template-grid">
+            <div class="template-card" onclick="selectTemplate(this, 'fixed')">
+              <div class="icon">📄</div>
+              <h4>固定期限劳动合同</h4>
+              <p>适用于标准用工场景</p>
+            </div>
+            <div class="template-card" onclick="selectTemplate(this, 'unlimited')">
+              <div class="icon">📑</div>
+              <h4>无固定期限劳动合同</h4>
+              <p>适用于长期稳定用工</p>
+            </div>
+            <div class="template-card" onclick="selectTemplate(this, 'dispatch')">
+              <div class="icon">📋</div>
+              <h4>劳务派遣合同</h4>
+              <p>适用于劳务派遣用工</p>
+            </div>
+            <div class="template-card" onclick="selectTemplate(this, 'flexible')">
+              <div class="icon">📝</div>
+              <h4>灵活用工协议</h4>
+              <p>适用于临时/兼职用工</p>
+            </div>
+            <div class="template-card" onclick="selectTemplate(this, 'parttime')">
+              <div class="icon">⏰</div>
+              <h4>兼职协议</h4>
+              <p>适用于非全日制用工</p>
+            </div>
+            <div class="template-card" onclick="selectTemplate(this, 'project')">
+              <div class="icon">🎯</div>
+              <h4>项目制合同</h4>
+              <p>适用于项目制用工</p>
+            </div>
+          </div>
+          <div class="wizard-actions">
+            <div></div>
+            <button class="btn btn-primary" onclick="nextStep(2)">下一步</button>
+          </div>
+        </div>
+
+        <!-- 步骤2: 填写信息 -->
+        <div class="wizard-content" id="wizard-step-2" style="display: none;">
+          <h3 style="margin: 0 0 20px 0; font-size: 16px;">填写合同信息</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">员工姓名 <span style="color: var(--danger);">*</span></label>
+              <input type="text" class="form-input" id="emp-name" placeholder="请输入员工姓名">
+            </div>
+            <div class="form-group">
+              <label class="form-label">身份证号 <span style="color: var(--danger);">*</span></label>
+              <input type="text" class="form-input" id="emp-idcard" placeholder="请输入身份证号">
+            </div>
+            <div class="form-group">
+              <label class="form-label">联系电话</label>
+              <input type="tel" class="form-input" id="emp-phone" placeholder="请输入联系电话">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">合同期限 <span style="color: var(--danger);">*</span></label>
+              <select class="form-select" id="emp-duration">
+                <option value="">请选择期限</option>
+                <option>1年</option>
+                <option>2年</option>
+                <option>3年</option>
+                <option>无固定期限</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">月薪（元）<span style="color: var(--danger);">*</span></label>
+              <input type="number" class="form-input" id="emp-salary" placeholder="请输入月薪">
+            </div>
+            <div class="form-group">
+              <label class="form-label">工作岗位</label>
+              <input type="text" class="form-input" id="emp-position" placeholder="请输入工作岗位">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">合同开始日期 <span style="color: var(--danger);">*</span></label>
+              <input type="date" class="form-input" id="emp-start-date">
+            </div>
+            <div class="form-group">
+              <label class="form-label">合同结束日期</label>
+              <input type="date" class="form-input" id="emp-end-date">
+            </div>
+            <div class="form-group">
+              <label class="form-label">试用期</label>
+              <select class="form-select" id="emp-probation">
+                <option value="">无试用期</option>
+                <option>1个月</option>
+                <option>2个月</option>
+                <option>3个月</option>
+                <option>6个月</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">工作内容描述</label>
+            <textarea class="form-input" id="emp-work-desc" placeholder="请描述工作内容" rows="3"></textarea>
+          </div>
+          <div class="wizard-actions">
+            <button class="btn btn-secondary" onclick="prevStep(1)">上一步</button>
+            <button class="btn btn-primary" onclick="nextStep(3)">下一步</button>
+          </div>
+        </div>
+
+        <!-- 步骤3: 发送签署 -->
+        <div class="wizard-content" id="wizard-step-3" style="display: none;">
+          <h3 style="margin: 0 0 20px 0; font-size: 16px;">确认并发送签署</h3>
+          <div style="background: var(--bg-primary); padding: 20px; border-radius: var(--radius-md); margin-bottom: 20px;">
+            <h4 style="margin: 0 0 16px 0; font-size: 14px; color: var(--text-primary);">合同预览</h4>
+            <div id="contract-preview">
+              <div class="form-row mb-16">
+                <div class="col-6"><strong>合同类型：</strong><span id="preview-type">-</span></div>
+                <div class="col-6"><strong>员工姓名：</strong><span id="preview-name">-</span></div>
+              </div>
+              <div class="form-row mb-16">
+                <div class="col-6"><strong>合同期限：</strong><span id="preview-duration">-</span></div>
+                <div class="col-6"><strong>月薪：</strong><span id="preview-salary">-</span></div>
+              </div>
+              <div class="form-row mb-16">
+                <div class="col-6"><strong>开始日期：</strong><span id="preview-start">-</span></div>
+                <div class="col-6"><strong>结束日期：</strong><span id="preview-end">-</span></div>
+              </div>
+              <div><strong>工作岗位：</strong><span id="preview-position">-</span></div>
+            </div>
+          </div>
+          <div class="signature-area" id="employer-signature" onclick="signDocument('employer')">
+            <div style="font-size: 32px; margin-bottom: 12px;">✍️</div>
+            <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">点击此处进行电子签章</p>
+            <p style="font-size: 12px; color: var(--text-tertiary); margin: 8px 0 0 0;">请用人单位法定代表人或授权人签字</p>
+          </div>
+          <div class="wizard-actions">
+            <button class="btn btn-secondary" onclick="prevStep(2)">上一步</button>
+            <button class="btn btn-primary" onclick="sendForSigning()">发送签署</button>
+          </div>
+        </div>
+
+        <!-- 步骤4: 完成 -->
+        <div class="wizard-content" id="wizard-step-4" style="display: none;">
+          <div style="text-align: center; padding: 40px;">
+            <div style="font-size: 64px; margin-bottom: 20px;">✅</div>
+            <h3 style="margin: 0 0 12px 0; font-size: 18px; color: var(--success);">合同已发送</h3>
+            <p style="font-size: 14px; color: var(--text-secondary); margin: 0 0 24px 0;">合同已成功发送给员工签署，请等待员工确认</p>
+            <div style="background: var(--bg-primary); padding: 16px; border-radius: var(--radius-md); display: inline-block;">
+              <p style="margin: 0; font-size: 14px; color: var(--text-secondary);">
+                签署链接已发送至员工手机/邮箱<br>
+                员工需在 <strong style="color: var(--warning);">7天内</strong> 完成签署
+              </p>
+            </div>
+          </div>
+          <div class="wizard-actions">
+            <button class="btn btn-secondary" onclick="closeWizard()">返回合同列表</button>
+            <button class="btn btn-primary" onclick="showNotification('短信提醒已发送', 'success')">发送提醒</button>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+          <button class="btn btn-secondary btn-sm" onclick="closeWizard()">取消</button>
+        </div>
       </div>
 
       <!-- 合同管理标签页 -->
@@ -1468,191 +1653,8 @@
           </div>
         </div>
       </div>
-
-      <!-- 合同签署向导 -->
-      <div class="contract-wizard" id="contract-wizard">
-        <div class="wizard-steps">
-          <div class="wizard-step active" id="step-1">
-            <span class="step-num">1</span>
-            <span>选择模板</span>
-          </div>
-          <div class="wizard-step" id="step-2">
-            <span class="step-num">2</span>
-            <span>填写信息</span>
-          </div>
-          <div class="wizard-step" id="step-3">
-            <span class="step-num">3</span>
-            <span>发送签署</span>
-          </div>
-          <div class="wizard-step" id="step-4">
-            <span class="step-num">4</span>
-            <span>完成</span>
-          </div>
-        </div>
-
-        <!-- 步骤1: 选择模板 -->
-        <div class="wizard-content" id="wizard-step-1">
-          <h3 style="margin: 0 0 20px 0; font-size: 16px;">请选择合同模板</h3>
-          <div class="template-grid">
-            <div class="template-card" onclick="selectTemplate(this, 'fixed')">
-              <div class="icon">📄</div>
-              <h4>固定期限劳动合同</h4>
-              <p>适用于标准用工场景</p>
-            </div>
-            <div class="template-card" onclick="selectTemplate(this, 'unlimited')">
-              <div class="icon">📑</div>
-              <h4>无固定期限劳动合同</h4>
-              <p>适用于长期稳定用工</p>
-            </div>
-            <div class="template-card" onclick="selectTemplate(this, 'dispatch')">
-              <div class="icon">📋</div>
-              <h4>劳务派遣合同</h4>
-              <p>适用于劳务派遣用工</p>
-            </div>
-            <div class="template-card" onclick="selectTemplate(this, 'flexible')">
-              <div class="icon">📝</div>
-              <h4>灵活用工协议</h4>
-              <p>适用于临时/兼职用工</p>
-            </div>
-            <div class="template-card" onclick="selectTemplate(this, 'parttime')">
-              <div class="icon">⏰</div>
-              <h4>兼职协议</h4>
-              <p>适用于非全日制用工</p>
-            </div>
-            <div class="template-card" onclick="selectTemplate(this, 'project')">
-              <div class="icon">🎯</div>
-              <h4>项目制合同</h4>
-              <p>适用于项目制用工</p>
-            </div>
-          </div>
-          <div class="wizard-actions">
-            <div></div>
-            <button class="btn btn-primary" onclick="nextStep(2)">下一步</button>
-          </div>
-        </div>
-
-        <!-- 步骤2: 填写信息 -->
-        <div class="wizard-content" id="wizard-step-2" style="display: none;">
-          <h3 style="margin: 0 0 20px 0; font-size: 16px;">填写合同信息</h3>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">员工姓名 <span style="color: var(--danger);">*</span></label>
-              <input type="text" class="form-input" id="emp-name" placeholder="请输入员工姓名">
-            </div>
-            <div class="form-group">
-              <label class="form-label">身份证号 <span style="color: var(--danger);">*</span></label>
-              <input type="text" class="form-input" id="emp-idcard" placeholder="请输入身份证号">
-            </div>
-            <div class="form-group">
-              <label class="form-label">联系电话</label>
-              <input type="tel" class="form-input" id="emp-phone" placeholder="请输入联系电话">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">合同期限 <span style="color: var(--danger);">*</span></label>
-              <select class="form-select" id="emp-duration">
-                <option value="">请选择期限</option>
-                <option>1年</option>
-                <option>2年</option>
-                <option>3年</option>
-                <option>无固定期限</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">月薪（元）<span style="color: var(--danger);">*</span></label>
-              <input type="number" class="form-input" id="emp-salary" placeholder="请输入月薪">
-            </div>
-            <div class="form-group">
-              <label class="form-label">工作岗位</label>
-              <input type="text" class="form-input" id="emp-position" placeholder="请输入工作岗位">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">合同开始日期 <span style="color: var(--danger);">*</span></label>
-              <input type="date" class="form-input" id="emp-start-date">
-            </div>
-            <div class="form-group">
-              <label class="form-label">合同结束日期</label>
-              <input type="date" class="form-input" id="emp-end-date">
-            </div>
-            <div class="form-group">
-              <label class="form-label">试用期</label>
-              <select class="form-select" id="emp-probation">
-                <option value="">无试用期</option>
-                <option>1个月</option>
-                <option>2个月</option>
-                <option>3个月</option>
-                <option>6个月</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">工作内容描述</label>
-            <textarea class="form-input" id="emp-work-desc" placeholder="请描述工作内容" rows="3"></textarea>
-          </div>
-          <div class="wizard-actions">
-            <button class="btn btn-secondary" onclick="prevStep(1)">上一步</button>
-            <button class="btn btn-primary" onclick="nextStep(3)">下一步</button>
-          </div>
-        </div>
-
-        <!-- 步骤3: 发送签署 -->
-        <div class="wizard-content" id="wizard-step-3" style="display: none;">
-          <h3 style="margin: 0 0 20px 0; font-size: 16px;">确认并发送签署</h3>
-          <div style="background: var(--bg-primary); padding: 20px; border-radius: var(--radius-md); margin-bottom: 20px;">
-            <h4 style="margin: 0 0 16px 0; font-size: 14px; color: var(--text-primary);">合同预览</h4>
-            <div id="contract-preview">
-              <div class="form-row mb-16">
-                <div class="col-6"><strong>合同类型：</strong><span id="preview-type">-</span></div>
-                <div class="col-6"><strong>员工姓名：</strong><span id="preview-name">-</span></div>
-              </div>
-              <div class="form-row mb-16">
-                <div class="col-6"><strong>合同期限：</strong><span id="preview-duration">-</span></div>
-                <div class="col-6"><strong>月薪：</strong><span id="preview-salary">-</span></div>
-              </div>
-              <div class="form-row mb-16">
-                <div class="col-6"><strong>开始日期：</strong><span id="preview-start">-</span></div>
-                <div class="col-6"><strong>结束日期：</strong><span id="preview-end">-</span></div>
-              </div>
-              <div><strong>工作岗位：</strong><span id="preview-position">-</span></div>
-            </div>
-          </div>
-          <div class="signature-area" id="employer-signature" onclick="signDocument('employer')">
-            <div style="font-size: 32px; margin-bottom: 12px;">✍️</div>
-            <p style="font-size: 14px; color: var(--text-secondary); margin: 0;">点击此处进行电子签章</p>
-            <p style="font-size: 12px; color: var(--text-tertiary); margin: 8px 0 0 0;">请用人单位法定代表人或授权人签字</p>
-          </div>
-          <div class="wizard-actions">
-            <button class="btn btn-secondary" onclick="prevStep(2)">上一步</button>
-            <button class="btn btn-primary" onclick="sendForSigning()">发送签署</button>
-          </div>
-        </div>
-
-        <!-- 步骤4: 完成 -->
-        <div class="wizard-content" id="wizard-step-4" style="display: none;">
-          <div style="text-align: center; padding: 40px;">
-            <div style="font-size: 64px; margin-bottom: 20px;">✅</div>
-            <h3 style="margin: 0 0 12px 0; font-size: 18px; color: var(--success);">合同已发送</h3>
-            <p style="font-size: 14px; color: var(--text-secondary); margin: 0 0 24px 0;">合同已成功发送给员工签署，请等待员工确认</p>
-            <div style="background: var(--bg-primary); padding: 16px; border-radius: var(--radius-md); display: inline-block;">
-              <p style="margin: 0; font-size: 14px; color: var(--text-secondary);">
-                签署链接已发送至员工手机/邮箱<br>
-                员工需在 <strong style="color: var(--warning);">7天内</strong> 完成签署
-              </p>
-            </div>
-          </div>
-          <div class="wizard-actions">
-            <button class="btn btn-secondary" onclick="closeWizard()">返回合同列表</button>
-            <button class="btn btn-primary" onclick="showNotification('短信提醒已发送', 'success')">发送提醒</button>
-          </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 20px;">
-          <button class="btn btn-secondary btn-sm" onclick="closeWizard()">取消</button>
-        </div>
       </div>
+
     </main>
   </div>
 
@@ -1917,6 +1919,10 @@
 
     function viewComplaintDetail(complaintId) {
       showNotification('正在加载投诉详情...', 'info');
+    }
+
+    function submitAttendance() {
+      showNotification('考勤数据已提交成功！', 'success');
     }
 
     function showNotification(message, type) {
