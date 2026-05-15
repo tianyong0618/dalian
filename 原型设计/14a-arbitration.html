@@ -447,7 +447,6 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      height: calc(100vh - 180px);
       min-height: 500px;
     }
 
@@ -557,78 +556,7 @@
       font-weight: 500;
     }
 
-/* 视频区 */
-    .video-area {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      height: 100%;
-    }
-
-    .video-main {
-      flex: 1;
-      background: #1a1a2e;
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      min-height: 150px;
-    }
-
-    .video-placeholder {
-      color: rgba(255, 255, 255, 0.5);
-      text-align: center;
-    }
-
-    .video-placeholder .icon {
-      font-size: 48px;
-      margin-bottom: 8px;
-    }
-
-    .video-controls {
-      display: flex;
-      gap: 6px;
-      justify-content: center;
-      padding: 8px;
-      background: #2a2a3e;
-      border-radius: var(--radius-md);
-    }
-
-    .video-btn {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: none;
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--text-on-primary);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      transition: all 0.3s ease;
-    }
-
-    .video-sub {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      height: 50px;
-      flex-shrink: 0;
-    }
-
-    .video-sub-item {
-      background: #1a1a2e;
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255, 255, 255, 0.5);
-      font-size: 10px;
-    }
-
-    .video-main {
+.video-main {
       flex: 1;
       background: #1a1a2e;
       border-radius: var(--radius-md);
@@ -1371,10 +1299,7 @@
 
       
       <div class="module-section" id="module-mediation" style="display:none;">
-        <!-- <div class="module-header"> -->
-          <!-- <h2>调解管理</h2> -->
-          <!-- <button class="btn btn-primary" onclick="showNotification('新建调解任务', 'info')">+ 分配调解任务</button> -->
-        <!-- </div> -->
+
 
         
         <div class="content-card">
@@ -2391,6 +2316,15 @@
       const target = document.getElementById('module-' + module);
       if (target) {
         target.style.display = 'block';
+        
+        // 同步顶部标签高亮
+        const tabMap = { 'dashboard': 0, 'case-management': 1, 'mediation': 2, 'cloud-trial': 3, 'documents': 4, 'linkage': 5 };
+        const tabIdx = tabMap[module];
+        if (tabIdx !== undefined) {
+          document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+          const tabs = document.querySelectorAll('.tab-item');
+          if (tabs[tabIdx]) tabs[tabIdx].classList.add('active');
+        }
         
         // 添加激活状态高亮
         setTimeout(() => {

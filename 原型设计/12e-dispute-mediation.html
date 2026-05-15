@@ -20,7 +20,7 @@
     <div class="card mb-24 p-24">
       <h3 class="mb-16">争议申请与受理</h3>
       <div class="row">
-        <div class="col-4">
+        <div class="col-12">
           <div class="feature-card" onclick="showModal('dispute-apply-modal')">
             <div class="card-header">
               <div class="icon">📝</div>
@@ -31,84 +31,13 @@
             </div>
           </div>
         </div>
-        <div class="col-4">
-          <div class="feature-card" onclick="showModal('dispute-audit-modal')">
-            <div class="card-header">
-              <div class="icon">✅</div>
-              <div class="card-content">
-                <h4>申请审核</h4>
-                <p class="text-small">人社部门审核真实性，驳回不符申请并说明理由</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="feature-card" onclick="showModal('mediator-assign-modal')">
-            <div class="card-header">
-              <div class="icon">👨⚖️</div>
-              <div class="card-content">
-                <h4>调解员分配</h4>
-                <p class="text-small">AI根据争议类型、所在地智能分配调解员</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="mt-24 text-center">
         <button class="btn btn-primary" onclick="showModal('dispute-apply-modal')">申请争议调解</button>
       </div>
     </div>
 
-    <!-- 线上调解流程 -->
-    <div class="card p-24">
-      <h3 class="mb-16">线上调解流程</h3>
-      <div class="row">
-        <div class="col-3">
-          <div class="feature-card" onclick="showModal('mediation-notice-modal')">
-            <div class="card-header">
-              <div class="icon">📢</div>
-              <div class="card-content">
-                <h4>调解通知</h4>
-                <p class="text-small">自动发送通知，告知调解时间、入口</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="feature-card" onclick="showModal('mediation-online-modal')">
-            <div class="card-header">
-              <div class="icon">💻</div>
-              <div class="card-content">
-                <h4>线上调解</h4>
-                <p class="text-small">视频/文字调解，上传补充证据，全程记录</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="feature-card" onclick="showModal('mediation-agreement-modal')">
-            <div class="card-header">
-              <div class="icon">📄</div>
-              <div class="card-content">
-                <h4>调解协议</h4>
-                <p class="text-small">在线签署电子协议，具备法律效力</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="feature-card" onclick="showModal('mediation-archive-modal')">
-            <div class="card-header">
-              <div class="icon">🗃️</div>
-              <div class="card-content">
-                <h4>调解归档</h4>
-                <p class="text-small">自动归档记录、协议、证据，支持查询</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
 
     <!-- 争议案件列表 -->
     <div class="card p-24 mt-24">
@@ -136,71 +65,73 @@
               <td>张三</td>
               <td>XX科技有限公司</td>
               <td>工资纠纷</td>
-              <td>—</td>
-              <td><span class="badge badge-warning">待审核</span></td>
-              <td>
-                <div class="action-dropdown">
-                  <button class="btn btn-primary btn-audit" onclick="showNotification('已进入审核流程', 'success')">审核</button>
-                  <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i></button>
-                  <div class="action-menu">
-                    <a onclick="showNotification('查看案件详情', 'info')"><i class="fas fa-eye"></i>查看</a>
+                <td>—</td>
+                <td><span class="badge badge-warning">待审核</span></td>
+                <td>
+                  <div class="action-dropdown">
+                    <button class="btn btn-primary btn-audit" onclick="showNotification('已进入审核流程', 'success')">审核</button>
+                    <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i></button>
+                    <div class="action-menu">
+                      <a onclick="showNotification('查看案件详情', 'info')"><i class="fas fa-eye"></i>查看详情</a>
+                      <a onclick="showModal('mediator-assign-modal')"><i class="fas fa-user-tie"></i>分配调解员</a>
+                    </div>
                   </div>
-                </div>
-              </td>
+                </td>
             </tr>
             <tr>
               <td><span style="font-family: monospace; color: var(--primary);">TJ-20260513002</span></td>
               <td>李四</td>
               <td>YY人力资源公司</td>
               <td>劳动合同</td>
-              <td>李明华</td>
-              <td><span class="badge badge-info">调解中</span></td>
-              <td>
-                <div class="action-dropdown">
-                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
-                  <div class="action-menu">
-                    <a onclick="showNotification('查看案件详情', 'info')"><i class="fas fa-eye"></i>查看详情</a>
-                    <a onclick="showNotification('查看调解记录', 'info')"><i class="fas fa-file-alt"></i>调解记录</a>
-                    <a onclick="showNotification('案件已归档', 'success')"><i class="fas fa-archive"></i>归档</a>
+                <td>李明华</td>
+                <td><span class="badge badge-info">调解中</span></td>
+                <td>
+                  <div class="action-dropdown">
+                    <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                    <div class="action-menu">
+                      <a onclick="showNotification('查看案件详情', 'info')"><i class="fas fa-eye"></i>查看详情</a>
+                      <a onclick="showModal('mediation-notice-modal')"><i class="fas fa-bell"></i>调解通知</a>
+                      <a onclick="showModal('mediation-online-modal')"><i class="fas fa-laptop"></i>线上调解</a>
+                      <a onclick="showModal('mediation-agreement-modal')"><i class="fas fa-file-signature"></i>调解协议</a>
+                    </div>
                   </div>
-                </div>
-              </td>
+                </td>
             </tr>
             <tr>
               <td><span style="font-family: monospace; color: var(--primary);">TJ-20260512003</span></td>
               <td>王五</td>
               <td>ZZ制造有限公司</td>
               <td>工伤赔偿</td>
-              <td>赵晓峰</td>
-              <td><span class="badge badge-info">调解中</span></td>
-              <td>
-                <div class="action-dropdown">
-                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
-                  <div class="action-menu">
-                    <a onclick="showNotification('查看案件详情', 'info')"><i class="fas fa-eye"></i>查看详情</a>
-                    <a onclick="showNotification('查看调解记录', 'info')"><i class="fas fa-file-alt"></i>调解记录</a>
-                    <a onclick="showNotification('案件已归档', 'success')"><i class="fas fa-archive"></i>归档</a>
+                <td>赵晓峰</td>
+                <td><span class="badge badge-info">调解中</span></td>
+                <td>
+                  <div class="action-dropdown">
+                    <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                    <div class="action-menu">
+                      <a onclick="showNotification('查看案件详情', 'info')"><i class="fas fa-eye"></i>查看详情</a>
+                      <a onclick="showModal('mediation-notice-modal')"><i class="fas fa-bell"></i>调解通知</a>
+                      <a onclick="showModal('mediation-online-modal')"><i class="fas fa-laptop"></i>线上调解</a>
+                      <a onclick="showModal('mediation-agreement-modal')"><i class="fas fa-file-signature"></i>调解协议</a>
+                    </div>
                   </div>
-                </div>
-              </td>
+                </td>
             </tr>
             <tr>
               <td><span style="font-family: monospace; color: var(--primary);">TJ-20260510004</span></td>
               <td>赵六</td>
               <td>WW商贸有限公司</td>
               <td>其他</td>
-              <td>陈思远</td>
-              <td><span class="badge badge-success">已结案</span></td>
-              <td>
-                <div class="action-dropdown">
-                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
-                  <div class="action-menu">
-                    <a onclick="showNotification('查看案件详情', 'info')"><i class="fas fa-eye"></i>查看详情</a>
-                    <a onclick="showNotification('查看调解记录', 'info')"><i class="fas fa-file-alt"></i>调解记录</a>
-                    <a onclick="showNotification('案件已归档', 'success')"><i class="fas fa-archive"></i>归档</a>
+                <td>陈思远</td>
+                <td><span class="badge badge-success">已结案</span></td>
+                <td>
+                  <div class="action-dropdown">
+                    <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                    <div class="action-menu">
+                      <a onclick="showNotification('查看案件详情', 'info')"><i class="fas fa-eye"></i>查看详情</a>
+                      <a onclick="showModal('mediation-archive-modal')"><i class="fas fa-archive"></i>调解归档</a>
+                    </div>
                   </div>
-                </div>
-              </td>
+                </td>
             </tr>
           </tbody>
         </table>

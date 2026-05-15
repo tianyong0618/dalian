@@ -478,6 +478,8 @@
     .upload-area p { font-size: 14px; color: var(--text-secondary); margin: 0; }
 
     .card { background: var(--bg-primary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); overflow: hidden; margin-bottom: 24px; }
+    .tab-content { display: block; }
+    .tab-content.hidden { display: none; }
 
     @media (max-width: 1200px) {
       .stats-grid {
@@ -527,10 +529,10 @@
 <body>
   <div class="app-layout">
     <div class="top-tabs">
-      <div class="tab-item active">我的工作台</div>
-      <div class="tab-item">援助申请</div>
-      <div class="tab-item">案件管理</div>
-      <div class="tab-item">统计分析</div>
+      <div class="tab-item active" data-tab="dashboard">我的工作台</div>
+      <div class="tab-item" data-tab="applications">援助申请</div>
+      <div class="tab-item" data-tab="cases">案件管理</div>
+      <div class="tab-item" data-tab="stats">统计分析</div>
     </div>
 
     <main class="main-content">
@@ -538,224 +540,286 @@
         <h1 class="page-title">法律援助端</h1>
       </div>
 
-      <div class="stats-grid">
-        <div class="stat-card legal-aid-stat">
-          <div class="number">48</div>
-          <div class="label">待审核申请</div>
+      <div class="tab-content" id="tab-dashboard">
+        <div class="stats-grid">
+          <div class="stat-card legal-aid-stat">
+            <div class="number">48</div>
+            <div class="label">待审核申请</div>
+          </div>
+          <div class="stat-card legal-aid-stat">
+            <div class="number">126</div>
+            <div class="label">在办案件</div>
+          </div>
+          <div class="stat-card legal-aid-stat">
+            <div class="number">35</div>
+            <div class="label">援助律师</div>
+          </div>
+          <div class="stat-card legal-aid-stat">
+            <div class="number">89%</div>
+            <div class="label">结案率</div>
+          </div>
         </div>
-        <div class="stat-card legal-aid-stat">
-          <div class="number">126</div>
-          <div class="label">在办案件</div>
+
+        <div class="application-section">
+          <div class="section-header-bar">
+            <h2 class="section-title">援助申请审核列表</h2>
+            <button class="btn btn-primary" onclick="showNotification('新建申请功能', 'info')">
+              <span>🔍</span>
+              新建申请
+            </button>
+          </div>
+          <div class="filter-bar">
+            <select class="form-select">
+              <option>全部状态</option>
+              <option>待审核</option>
+              <option>已通过</option>
+              <option>已驳回</option>
+            </select>
+            <select class="form-select">
+              <option>全部类型</option>
+              <option>劳动仲裁</option>
+              <option>诉讼代理</option>
+              <option>非诉调解</option>
+            </select>
+            <select class="form-select">
+              <option>本月</option>
+              <option>本季度</option>
+              <option>本年</option>
+            </select>
+          </div>
+          <div class="table-wrapper">
+            <table class="application-table">
+              <thead>
+                <tr>
+                  <th>申请人</th>
+                  <th>联系电话</th>
+                  <th>案件类型</th>
+                  <th>申请金额</th>
+                  <th>申请日期</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="applicant-name">陈某</td>
+                  <td>138****1234</td>
+                  <td>劳动仲裁</td>
+                  <td>¥ 28,000</td>
+                  <td>2026-05-10</td>
+                  <td><span class="status-badge pending">待审核</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" onclick="reviewApplication('陈某')">审核</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="applicant-name">刘某</td>
+                  <td>139****5678</td>
+                  <td>诉讼代理</td>
+                  <td>¥ 45,000</td>
+                  <td>2026-05-09</td>
+                  <td><span class="status-badge processing">审核中</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-secondary" onclick="viewApplication('刘某')">查看</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="applicant-name">张某</td>
+                  <td>137****9012</td>
+                  <td>劳动仲裁</td>
+                  <td>¥ 15,000</td>
+                  <td>2026-05-08</td>
+                  <td><span class="status-badge approved">已通过</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-success" onclick="assignLawyer('张某')">指派律师</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="applicant-name">王某</td>
+                  <td>136****3456</td>
+                  <td>非诉调解</td>
+                  <td>¥ 8,000</td>
+                  <td>2026-05-07</td>
+                  <td><span class="status-badge assigned">已指派</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-secondary" onclick="viewApplication('王某')">查看</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="applicant-name">周某</td>
+                  <td>135****7890</td>
+                  <td>诉讼代理</td>
+                  <td>¥ 62,000</td>
+                  <td>2026-05-06</td>
+                  <td><span class="status-badge rejected">已驳回</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-secondary" onclick="viewApplicationDetail('周某')">详情</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="applicant-name">吴某</td>
+                  <td>134****2345</td>
+                  <td>劳动仲裁</td>
+                  <td>¥ 22,000</td>
+                  <td>2026-05-05</td>
+                  <td><span class="status-badge approved">已通过</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-success" onclick="assignLawyer('吴某')">指派律师</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="applicant-name">郑某</td>
+                  <td>133****6789</td>
+                  <td>劳动仲裁</td>
+                  <td>¥ 18,500</td>
+                  <td>2026-05-04</td>
+                  <td><span class="status-badge assigned">已指派</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-secondary" onclick="viewApplication('郑某')">查看</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="stat-card legal-aid-stat">
-          <div class="number">35</div>
-          <div class="label">援助律师</div>
-        </div>
-        <div class="stat-card legal-aid-stat">
-          <div class="number">89%</div>
-          <div class="label">结案率</div>
+
+        <div class="lawyer-assign-section">
+          <div class="section-header-bar">
+            <h2 class="section-title">律师指派</h2>
+          </div>
+          <div class="lawyer-list">
+            <div class="lawyer-card">
+              <div class="lawyer-avatar">👨‍⚖️</div>
+              <div class="lawyer-info">
+                <div class="lawyer-name">李律师</div>
+                <div class="lawyer-detail">执业年限：12年 | 擅长：劳动争议、合同纠纷</div>
+              </div>
+              <div class="lawyer-stats">
+                <div class="lawyer-stat">
+                  <div class="count">8</div>
+                  <div class="label">在办案件</div>
+                </div>
+                <div class="lawyer-stat">
+                  <div class="count">156</div>
+                  <div class="label">历史案件</div>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-primary assign-btn" onclick="assignToLawyer('李律师')">指派</button>
+            </div>
+            <div class="lawyer-card">
+              <div class="lawyer-avatar">👩‍⚖️</div>
+              <div class="lawyer-info">
+                <div class="lawyer-name">王律师</div>
+                <div class="lawyer-detail">执业年限：8年 | 擅长：劳动仲裁、工伤赔偿</div>
+              </div>
+              <div class="lawyer-stats">
+                <div class="lawyer-stat">
+                  <div class="count">5</div>
+                  <div class="label">在办案件</div>
+                </div>
+                <div class="lawyer-stat">
+                  <div class="count">98</div>
+                  <div class="label">历史案件</div>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-primary assign-btn" onclick="assignToLawyer('王律师')">指派</button>
+            </div>
+            <div class="lawyer-card">
+              <div class="lawyer-avatar">👨‍⚖️</div>
+              <div class="lawyer-info">
+                <div class="lawyer-name">张律师</div>
+                <div class="lawyer-detail">执业年限：15年 | 擅长：复杂劳动争议、集体案件</div>
+              </div>
+              <div class="lawyer-stats">
+                <div class="lawyer-stat">
+                  <div class="count">12</div>
+                  <div class="label">在办案件</div>
+                </div>
+                <div class="lawyer-stat">
+                  <div class="count">234</div>
+                  <div class="label">历史案件</div>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-primary assign-btn" onclick="assignToLawyer('张律师')">指派</button>
+            </div>
+            <div class="lawyer-card">
+              <div class="lawyer-avatar">👩‍⚖️</div>
+              <div class="lawyer-info">
+                <div class="lawyer-name">赵律师</div>
+                <div class="lawyer-detail">执业年限：6年 | 擅长：劳动仲裁、调解谈判</div>
+              </div>
+              <div class="lawyer-stats">
+                <div class="lawyer-stat">
+                  <div class="count">3</div>
+                  <div class="label">在办案件</div>
+                </div>
+                <div class="lawyer-stat">
+                  <div class="count">67</div>
+                  <div class="label">历史案件</div>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-primary assign-btn" onclick="assignToLawyer('赵律师')">指派</button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="application-section">
-        <div class="section-header-bar">
-          <h2 class="section-title">援助申请审核列表</h2>
-          <button class="btn btn-primary" onclick="showNotification('新建申请功能', 'info')">
-            <span>🔍</span>
-            新建申请
-          </button>
-        </div>
-        <div class="filter-bar">
-          <select class="form-select">
-            <option>全部状态</option>
-            <option>待审核</option>
-            <option>已通过</option>
-            <option>已驳回</option>
-          </select>
-          <select class="form-select">
-            <option>全部类型</option>
-            <option>劳动仲裁</option>
-            <option>诉讼代理</option>
-            <option>非诉调解</option>
-          </select>
-          <select class="form-select">
-            <option>本月</option>
-            <option>本季度</option>
-            <option>本年</option>
-          </select>
-        </div>
-        <div class="table-wrapper">
-          <table class="application-table">
-            <thead>
-              <tr>
-                <th>申请人</th>
-                <th>联系电话</th>
-                <th>案件类型</th>
-                <th>申请金额</th>
-                <th>申请日期</th>
-                <th>状态</th>
-                <th>操作</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="applicant-name">陈某</td>
-                <td>138****1234</td>
-                <td>劳动仲裁</td>
-                <td>¥ 28,000</td>
-                <td>2026-05-10</td>
-                <td><span class="status-badge pending">待审核</span></td>
-                <td>
-                  <button class="btn btn-sm btn-primary" onclick="reviewApplication('陈某')">审核</button>
-                </td>
-              </tr>
-              <tr>
-                <td class="applicant-name">刘某</td>
-                <td>139****5678</td>
-                <td>诉讼代理</td>
-                <td>¥ 45,000</td>
-                <td>2026-05-09</td>
-                <td><span class="status-badge processing">审核中</span></td>
-                <td>
-                  <button class="btn btn-sm btn-secondary" onclick="viewApplication('刘某')">查看</button>
-                </td>
-              </tr>
-              <tr>
-                <td class="applicant-name">张某</td>
-                <td>137****9012</td>
-                <td>劳动仲裁</td>
-                <td>¥ 15,000</td>
-                <td>2026-05-08</td>
-                <td><span class="status-badge approved">已通过</span></td>
-                <td>
-                  <button class="btn btn-sm btn-success" onclick="assignLawyer('张某')">指派律师</button>
-                </td>
-              </tr>
-              <tr>
-                <td class="applicant-name">王某</td>
-                <td>136****3456</td>
-                <td>非诉调解</td>
-                <td>¥ 8,000</td>
-                <td>2026-05-07</td>
-                <td><span class="status-badge assigned">已指派</span></td>
-                <td>
-                  <button class="btn btn-sm btn-secondary" onclick="viewApplication('王某')">查看</button>
-                </td>
-              </tr>
-              <tr>
-                <td class="applicant-name">周某</td>
-                <td>135****7890</td>
-                <td>诉讼代理</td>
-                <td>¥ 62,000</td>
-                <td>2026-05-06</td>
-                <td><span class="status-badge rejected">已驳回</span></td>
-                <td>
-                  <button class="btn btn-sm btn-secondary" onclick="viewApplicationDetail('周某')">详情</button>
-                </td>
-              </tr>
-              <tr>
-                <td class="applicant-name">吴某</td>
-                <td>134****2345</td>
-                <td>劳动仲裁</td>
-                <td>¥ 22,000</td>
-                <td>2026-05-05</td>
-                <td><span class="status-badge approved">已通过</span></td>
-                <td>
-                  <button class="btn btn-sm btn-success" onclick="assignLawyer('吴某')">指派律师</button>
-                </td>
-              </tr>
-              <tr>
-                <td class="applicant-name">郑某</td>
-                <td>133****6789</td>
-                <td>劳动仲裁</td>
-                <td>¥ 18,500</td>
-                <td>2026-05-04</td>
-                <td><span class="status-badge assigned">已指派</span></td>
-                <td>
-                  <button class="btn btn-sm btn-secondary" onclick="viewApplication('郑某')">查看</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="tab-content" id="tab-applications" style="display:none;">
+        <div class="application-section">
+          <div class="section-header-bar">
+            <h2 class="section-title">援助申请管理</h2>
+            <button class="btn btn-primary" onclick="showNotification('新建申请功能', 'info')">
+              <span>🔍</span> 新建申请
+            </button>
+          </div>
+          <div class="filter-bar">
+            <select class="form-select"><option>全部状态</option><option>待审核</option><option>已通过</option><option>已驳回</option></select>
+            <select class="form-select"><option>全部类型</option><option>劳动仲裁</option><option>诉讼代理</option><option>非诉调解</option></select>
+          </div>
+          <div style="padding:0 24px 24px;">
+            <table class="application-table">
+              <thead><tr><th>申请人</th><th>联系电话</th><th>案件类型</th><th>申请金额</th><th>申请日期</th><th>状态</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td class="applicant-name">陈某</td><td>138****1234</td><td>劳动仲裁</td><td>¥ 28,000</td><td>2026-05-10</td><td><span class="status-badge pending">待审核</span></td><td><button class="btn btn-sm btn-primary">审核</button></td></tr>
+                <tr><td class="applicant-name">刘某</td><td>139****5678</td><td>诉讼代理</td><td>¥ 45,000</td><td>2026-05-09</td><td><span class="status-badge processing">审核中</span></td><td><button class="btn btn-sm btn-secondary">查看</button></td></tr>
+                <tr><td class="applicant-name">周某</td><td>135****7890</td><td>诉讼代理</td><td>¥ 62,000</td><td>2026-05-06</td><td><span class="status-badge rejected">已驳回</span></td><td><button class="btn btn-sm btn-secondary">详情</button></td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
-      <div class="lawyer-assign-section">
-        <div class="section-header-bar">
-          <h2 class="section-title">律师指派</h2>
+      <div class="tab-content" id="tab-cases" style="display:none;">
+        <div class="application-section">
+          <div class="section-header-bar">
+            <h2 class="section-title">案件管理</h2>
+          </div>
+          <div style="padding:0 24px 24px;">
+            <table class="application-table">
+              <thead><tr><th>案件编号</th><th>当事人</th><th>案件类型</th><th>承办律师</th><th>立案日期</th><th>状态</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td class="applicant-name">LA-2026-001</td><td>张某</td><td>劳动仲裁</td><td>李律师</td><td>2026-05-08</td><td><span class="status-badge assigned">已指派</span></td><td><button class="btn btn-sm btn-secondary">查看</button></td></tr>
+                <tr><td class="applicant-name">LA-2026-002</td><td>王某</td><td>非诉调解</td><td>王律师</td><td>2026-05-07</td><td><span class="status-badge assigned">已指派</span></td><td><button class="btn btn-sm btn-secondary">查看</button></td></tr>
+                <tr><td class="applicant-name">LA-2026-003</td><td>陈某</td><td>劳动仲裁</td><td>张律师</td><td>2026-05-10</td><td><span class="status-badge processing">审核中</span></td><td><button class="btn btn-sm btn-secondary">查看</button></td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="lawyer-list">
-          <div class="lawyer-card">
-            <div class="lawyer-avatar">👨‍⚖️</div>
-            <div class="lawyer-info">
-              <div class="lawyer-name">李律师</div>
-              <div class="lawyer-detail">执业年限：12年 | 擅长：劳动争议、合同纠纷</div>
-            </div>
-            <div class="lawyer-stats">
-              <div class="lawyer-stat">
-                <div class="count">8</div>
-                <div class="label">在办案件</div>
-              </div>
-              <div class="lawyer-stat">
-                <div class="count">156</div>
-                <div class="label">历史案件</div>
-              </div>
-            </div>
-            <button class="btn btn-sm btn-primary assign-btn" onclick="assignToLawyer('李律师')">指派</button>
+      </div>
+
+      <div class="tab-content" id="tab-stats" style="display:none;">
+        <div class="application-section">
+          <div class="section-header-bar">
+            <h2 class="section-title">统计分析</h2>
           </div>
-          <div class="lawyer-card">
-            <div class="lawyer-avatar">👩‍⚖️</div>
-            <div class="lawyer-info">
-              <div class="lawyer-name">王律师</div>
-              <div class="lawyer-detail">执业年限：8年 | 擅长：劳动仲裁、工伤赔偿</div>
+          <div style="padding:24px;">
+            <div class="stats-grid" style="margin-bottom:24px;">
+              <div class="stat-card legal-aid-stat"><div class="number">48</div><div class="label">待审核</div></div>
+              <div class="stat-card legal-aid-stat"><div class="number">126</div><div class="label">在办案件</div></div>
+              <div class="stat-card legal-aid-stat"><div class="number">35</div><div class="label">援助律师</div></div>
+              <div class="stat-card legal-aid-stat"><div class="number">89%</div><div class="label">结案率</div></div>
             </div>
-            <div class="lawyer-stats">
-              <div class="lawyer-stat">
-                <div class="count">5</div>
-                <div class="label">在办案件</div>
-              </div>
-              <div class="lawyer-stat">
-                <div class="count">98</div>
-                <div class="label">历史案件</div>
-              </div>
-            </div>
-            <button class="btn btn-sm btn-primary assign-btn" onclick="assignToLawyer('王律师')">指派</button>
-          </div>
-          <div class="lawyer-card">
-            <div class="lawyer-avatar">👨‍⚖️</div>
-            <div class="lawyer-info">
-              <div class="lawyer-name">张律师</div>
-              <div class="lawyer-detail">执业年限：15年 | 擅长：复杂劳动争议、集体案件</div>
-            </div>
-            <div class="lawyer-stats">
-              <div class="lawyer-stat">
-                <div class="count">12</div>
-                <div class="label">在办案件</div>
-              </div>
-              <div class="lawyer-stat">
-                <div class="count">234</div>
-                <div class="label">历史案件</div>
-              </div>
-            </div>
-            <button class="btn btn-sm btn-primary assign-btn" onclick="assignToLawyer('张律师')">指派</button>
-          </div>
-          <div class="lawyer-card">
-            <div class="lawyer-avatar">👩‍⚖️</div>
-            <div class="lawyer-info">
-              <div class="lawyer-name">赵律师</div>
-              <div class="lawyer-detail">执业年限：6年 | 擅长：劳动仲裁、调解谈判</div>
-            </div>
-            <div class="lawyer-stats">
-              <div class="lawyer-stat">
-                <div class="count">3</div>
-                <div class="label">在办案件</div>
-              </div>
-              <div class="lawyer-stat">
-                <div class="count">67</div>
-                <div class="label">历史案件</div>
-              </div>
-            </div>
-            <button class="btn btn-sm btn-primary assign-btn" onclick="assignToLawyer('赵律师')">指派</button>
+            <p style="color:var(--text-secondary);font-size:14px;text-align:center;padding:40px;">统计图表功能开发中，敬请期待...</p>
           </div>
         </div>
       </div>
@@ -1015,8 +1079,8 @@
         'supervisor': '14e-supervisor.html',
         'legal-aid': '14d-legal-aid.html'
       };
-      if (roleUrls[role]) {
-        window.location.href = roleUrls[role];
+      if (roleUrls[role] && window.parent) {
+        window.parent.postMessage({type: 'SWITCH_ROLE', role: role}, '*');
       }
     }
 
@@ -1221,6 +1285,19 @@
                      '<td><button class="btn btn-sm btn-primary" onclick="reviewApplication(\'' + app.name + '\')">审核</button></td>';
       tbody.insertBefore(tr, tbody.firstChild);
     }
+
+    // Tab switching
+    document.querySelectorAll('.tab-item').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var tabName = this.getAttribute('data-tab');
+        if (!tabName) return;
+        document.querySelectorAll('.tab-item').forEach(function(t) { t.classList.remove('active'); });
+        this.classList.add('active');
+        document.querySelectorAll('.tab-content').forEach(function(content) { content.style.display = 'none'; });
+        var target = document.getElementById('tab-' + tabName);
+        if (target) target.style.display = 'block';
+      });
+    });
   </script>
   <script src="assets/theme-switch.js"></script>
 </body>

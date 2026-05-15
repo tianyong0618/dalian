@@ -20,7 +20,7 @@
     <div class="card mb-24 p-24">
       <h3 class="mb-16">AI智能撮合</h3>
       <div class="row">
-        <div class="col-3">
+        <div class="col-4">
           <div class="feature-card" onclick="showModal('demand-analysis-modal')">
             <div class="card-header">
               <div class="icon">📊</div>
@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-4">
           <div class="feature-card" onclick="showModal('match-result-modal')">
             <div class="card-header">
               <div class="icon">🎯</div>
@@ -42,18 +42,7 @@
             </div>
           </div>
         </div>
-        <div class="col-3">
-          <div class="feature-card" onclick="showModal('track-modal')">
-            <div class="card-header">
-              <div class="icon">📈</div>
-              <div class="card-content">
-                <h4>撮合跟踪</h4>
-                <p class="text-small">记录对接进度，分析未合作原因，推送优化建议</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
+        <div class="col-4">
           <div class="feature-card" onclick="showModal('talent-search-modal')">
             <div class="card-header">
               <div class="icon">🔎</div>
@@ -74,7 +63,7 @@
     <div class="card p-24">
       <h3 class="mb-16">线下专场对接与洽谈会</h3>
       <div class="row">
-        <div class="col-4">
+        <div class="col-6">
           <div class="feature-card" onclick="showModal('fair-organize-modal')">
             <div class="card-header">
               <div class="icon">📅</div>
@@ -85,18 +74,7 @@
             </div>
           </div>
         </div>
-        <div class="col-4">
-          <div class="feature-card" onclick="showModal('match-participant-modal')">
-            <div class="card-header">
-              <div class="icon">🤝</div>
-              <div class="card-content">
-                <h4>参会匹配</h4>
-                <p class="text-small">AI提前匹配对接对象，生成对接清单</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-4">
+        <div class="col-6">
           <div class="feature-card" onclick="showModal('special-event-modal')">
             <div class="card-header">
               <div class="icon">📝</div>
@@ -136,6 +114,7 @@
                   <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
                   <div class="action-menu">
                     <a onclick="showModal('fair-detail-modal')"><i class="fas fa-eye"></i>查看详情</a>
+                    <a onclick="showModal('match-participant-modal')"><i class="fas fa-handshake"></i>参会匹配</a>
                     <a onclick="showNotification('报名已提交', 'success')"><i class="fas fa-user-plus"></i>报名参与</a>
                   </div>
                 </div>
@@ -153,6 +132,7 @@
                   <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
                   <div class="action-menu">
                     <a onclick="showModal('fair-detail-modal')"><i class="fas fa-eye"></i>查看详情</a>
+                    <a onclick="showModal('match-participant-modal')"><i class="fas fa-handshake"></i>参会匹配</a>
                     <a onclick="showNotification('报名已提交', 'success')"><i class="fas fa-user-plus"></i>报名参与</a>
                   </div>
                 </div>
@@ -218,6 +198,79 @@
             <td>产品经理</td>
             <td>3人</td>
             <td>2026-05-12</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 撮合记录 -->
+    <div class="card p-24 mt-24">
+      <h3 class="mb-16">撮合记录</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>需求企业</th>
+            <th>匹配机构</th>
+            <th>状态</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>XX科技有限公司</td>
+            <td>XX人力资源有限公司</td>
+            <td><span class="badge badge-info">对接中</span></td>
+            <td>
+              <div class="action-dropdown">
+                <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                <div class="action-menu">
+                  <a onclick="showModal('track-modal')"><i class="fas fa-search"></i>查看撮合详情</a>
+                  <a onclick="showModal('track-modal')"><i class="fas fa-chart-line"></i>跟踪进度</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>XX制造集团</td>
+            <td>XX劳务派遣公司</td>
+            <td><span class="badge badge-success">已对接</span></td>
+            <td>
+              <div class="action-dropdown">
+                <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                <div class="action-menu">
+                  <a onclick="showModal('track-modal')"><i class="fas fa-search"></i>查看撮合详情</a>
+                  <a onclick="showModal('track-modal')"><i class="fas fa-chart-line"></i>跟踪进度</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>XX互联网公司</td>
+            <td>XX人才服务集团</td>
+            <td><span class="badge badge-primary">已成功</span></td>
+            <td>
+              <div class="action-dropdown">
+                <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                <div class="action-menu">
+                  <a onclick="showModal('track-modal')"><i class="fas fa-search"></i>查看撮合详情</a>
+                  <a onclick="showModal('track-modal')"><i class="fas fa-chart-line"></i>跟踪进度</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>XX物流有限公司</td>
+            <td>XX人力服务集团</td>
+            <td><span class="badge badge-info">对接中</span></td>
+            <td>
+              <div class="action-dropdown">
+                <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                <div class="action-menu">
+                  <a onclick="showModal('track-modal')"><i class="fas fa-search"></i>查看撮合详情</a>
+                  <a onclick="showModal('track-modal')"><i class="fas fa-chart-line"></i>跟踪进度</a>
+                </div>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -20,46 +20,13 @@
     <div class="card mb-24 p-24">
       <h3 class="mb-16">服务网店开设与管理</h3>
       <div class="row">
-        <div class="col-3">
+        <div class="col-4">
           <div class="feature-card" onclick="showModal('store-apply-modal')">
             <div class="card-header">
               <div class="icon">📝</div>
               <div class="card-content">
                 <h4>网店申请</h4>
                 <p class="text-small">优质机构申请开设网店，提交服务范围、收费标准等</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="feature-card" onclick="showModal('store-audit-modal')">
-            <div class="card-header">
-              <div class="icon">✅</div>
-              <div class="card-content">
-                <h4>网店审核</h4>
-                <p class="text-small">人社部门审核，规范服务范围，禁止超资质服务</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="feature-card" onclick="showModal('store-manage-modal')">
-            <div class="card-header">
-              <div class="icon">🏪</div>
-              <div class="card-content">
-                <h4>网店运营</h4>
-                <p class="text-small">维护网店信息、发布动态、回复咨询、管理订单</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="feature-card" onclick="showModal('store-supervise-modal')">
-            <div class="card-header">
-              <div class="icon">🔍</div>
-              <div class="card-content">
-                <h4>网店监管</h4>
-                <p class="text-small">实时监测运营，处理违规，暂停/关闭违规网店</p>
               </div>
             </div>
           </div>
@@ -183,8 +150,8 @@
                 <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
                 <div class="action-menu">
                   <a onclick="showNotification('正在查看网店详情...', 'info')"><i class="fas fa-eye"></i> 查看</a>
-                  <a onclick="showNotification('正在审核该网店...', 'info')"><i class="fas fa-check-circle"></i> 审核</a>
-                  <a onclick="showNotification('正在加载监管信息...', 'info')"><i class="fas fa-shield-alt"></i> 监管</a>
+                  <a onclick="showModal('store-manage-modal')"><i class="fas fa-store"></i> 运营</a>
+                  <a onclick="showModal('store-supervise-modal')"><i class="fas fa-shield-alt"></i> 监管</a>
                 </div>
               </div>
             </td>
@@ -201,8 +168,8 @@
                 <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
                 <div class="action-menu">
                   <a onclick="showNotification('正在查看网店详情...', 'info')"><i class="fas fa-eye"></i> 查看</a>
-                  <a onclick="showNotification('正在审核该网店...', 'info')"><i class="fas fa-check-circle"></i> 审核</a>
-                  <a onclick="showNotification('正在加载监管信息...', 'info')"><i class="fas fa-shield-alt"></i> 监管</a>
+                  <a onclick="showModal('store-manage-modal')"><i class="fas fa-store"></i> 运营</a>
+                  <a onclick="showModal('store-supervise-modal')"><i class="fas fa-shield-alt"></i> 监管</a>
                 </div>
               </div>
             </td>

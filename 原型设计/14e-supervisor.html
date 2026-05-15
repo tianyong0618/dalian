@@ -804,10 +804,6 @@
       <div class="module-section active" id="tab-dashboard">
         <div class="top-nav">
           <h1 class="page-title">人社监管端</h1>
-          <button class="theme-toggle" onclick="toggleTheme()">
-            <span class="theme-icon">🌙</span>
-            <span class="theme-text">深色</span>
-          </button>
         </div>
 
         <div class="stats-grid">
@@ -1417,8 +1413,8 @@
         'supervisor': '14e-supervisor.html',
         'legal-aid': '14d-legal-aid.html'
       };
-      if (roleUrls[role]) {
-        window.location.href = roleUrls[role];
+      if (roleUrls[role] && window.parent) {
+        window.parent.postMessage({type: 'SWITCH_ROLE', role: role}, '*');
       }
     }
 
