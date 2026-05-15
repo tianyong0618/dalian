@@ -1287,7 +1287,7 @@
               <option value="injury">工伤待遇</option>
               <option value="social">社会保险</option>
             </select>
-            <button class="btn btn-primary btn-sm" onclick="showNotification('新建案件功能', 'info')">+ 新建案件</button>
+            <button class="btn btn-primary btn-sm" onclick="showNewCaseModal()">+ 新建案件</button>
           </div>
         </div>
         <div class="content-card-body" style="padding: 0;">
@@ -1351,7 +1351,7 @@
                 <td>2024-02-24</td>
                 <td>
                   <button class="btn btn-secondary btn-sm" onclick="viewCaseDetail('LA2024-0889')">查看</button>
-                  <button class="btn btn-warning btn-sm" onclick="showAssignModal('LA2024-0889')">分配调解员</button>
+                  <button class="btn btn-warning btn-sm" onclick="showAssignModal('LA2024-0889')">分配</button>
                 </td>
               </tr>
               <tr>
@@ -1371,16 +1371,16 @@
 
       
       <div class="module-section" id="module-mediation" style="display:none;">
-        <div class="module-header">
-          <h2>调解管理</h2>
-          <button class="btn btn-primary" onclick="showNotification('新建调解任务', 'info')">+ 分配调解任务</button>
-        </div>
+        <!-- <div class="module-header"> -->
+          <!-- <h2>调解管理</h2> -->
+          <!-- <button class="btn btn-primary" onclick="showNotification('新建调解任务', 'info')">+ 分配调解任务</button> -->
+        <!-- </div> -->
 
         
         <div class="content-card">
           <div class="content-card-header">
             <h3>👤 调解员管理</h3>
-            <button class="btn btn-secondary btn-sm" onclick="showNotification('查看全部', 'info')">查看全部</button>
+            <!-- <button class="btn btn-secondary btn-sm" onclick="showNotification('查看全部', 'info')">查看全部</button> -->
           </div>
           <div class="content-card-body">
             <div class="mediator-card">
@@ -1404,7 +1404,7 @@
                 </div>
               </div>
               <div class="mediator-actions">
-                <button class="btn btn-primary btn-sm" onclick="smartAssign('LA2024-0889')">智能分配</button>
+                <button class="btn btn-secondary btn-sm" onclick="showAssignCaseModal('陈调解员')">分配案件</button>
               </div>
             </div>
 
@@ -1429,7 +1429,7 @@
                 </div>
               </div>
               <div class="mediator-actions">
-                <button class="btn btn-secondary btn-sm" onclick="showAssignModal('LA2024-0891')">分配案件</button>
+                <button class="btn btn-secondary btn-sm" onclick="showAssignCaseModal('李调解员')">分配案件</button>
               </div>
             </div>
 
@@ -1454,7 +1454,7 @@
                 </div>
               </div>
               <div class="mediator-actions">
-                <button class="btn btn-secondary btn-sm" onclick="showAssignModal('LA2024-0889')">分配案件</button>
+                <button class="btn btn-secondary btn-sm" onclick="showAssignCaseModal('王调解员')">分配案件</button>
               </div>
             </div>
           </div>
@@ -1492,7 +1492,7 @@
                   </td>
                   <td>2024-02-28</td>
                   <td>
-                    <button class="btn btn-secondary btn-sm" onclick="showNotification('查看详情', 'info')">查看详情</button>
+                    <button class="btn btn-secondary btn-sm" onclick="viewCaseDetail('LA2024-0891')">查看详情</button>
                   </td>
                 </tr>
                 <tr>
@@ -1508,7 +1508,7 @@
                   </td>
                   <td>2024-02-23</td>
                   <td>
-                    <button class="btn btn-secondary btn-sm" onclick="showNotification('查看详情', 'info')">查看详情</button>
+                    <button class="btn btn-secondary btn-sm" onclick="viewCaseDetail('LA2024-0888')">查看详情</button>
                   </td>
                 </tr>
               </tbody>
@@ -1564,7 +1564,7 @@
                   <td>张仲裁员</td>
                   <td><span class="badge badge-warning">待开庭</span></td>
                   <td>
-                    <button class="btn btn-secondary btn-sm" onclick="showNotification('查看详情', 'info')">查看详情</button>
+                    <button class="btn btn-secondary btn-sm" onclick="viewCaseDetail('LA2024-0891')">查看详情</button>
                   </td>
                 </tr>
                 <tr>
@@ -1576,7 +1576,7 @@
                   <td>李仲裁员</td>
                   <td><span class="badge badge-warning">待开庭</span></td>
                   <td>
-                    <button class="btn btn-secondary btn-sm" onclick="showNotification('查看详情', 'info')">查看详情</button>
+                    <button class="btn btn-secondary btn-sm" onclick="viewCaseDetail('LA2024-0891')">查看详情</button>
                   </td>
                 </tr>
               </tbody>
@@ -1629,7 +1629,7 @@
                   <td>2024-03-04</td>
                   <td><span class="badge badge-info">送达中</span></td>
                   <td>
-                    <button class="btn btn-secondary btn-sm" onclick="showNotification('查看详情', 'info')">查看详情</button>
+                    <button class="btn btn-secondary btn-sm" onclick="viewCaseDetail('LA2024-0891')">查看详情</button>
                   </td>
                 </tr>
                 <tr>
@@ -1640,7 +1640,7 @@
                   <td>2024-02-25</td>
                   <td><span class="badge badge-success">已送达</span></td>
                   <td>
-                    <button class="btn btn-secondary btn-sm" onclick="showNotification('查看详情', 'info')">查看详情</button>
+                    <button class="btn btn-secondary btn-sm" onclick="viewCaseDetail('LA2024-0891')">查看详情</button>
                   </td>
                 </tr>
               </tbody>
@@ -2153,6 +2153,124 @@
       <div class="assign-modal-footer">
         <button class="btn btn-secondary" onclick="closeAssignModal()">取消</button>
         <button class="btn btn-primary" onclick="confirmAssign()">确认分配</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-detail-modal" id="new-case-modal">
+    <div class="modal-overlay" onclick="closeNewCaseModal()"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📝 新建案件</h3>
+        <button class="modal-close" onclick="closeNewCaseModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-section">
+          <h4>案件基本信息</h4>
+          <div class="detail-grid">
+            <div class="detail-item">
+              <span class="detail-label">案件类型</span>
+              <select class="form-select" id="new-case-type">
+                <option value="劳动争议">劳动争议</option>
+                <option value="工伤赔偿">工伤赔偿</option>
+                <option value="工资拖欠">工资拖欠</option>
+                <option value="社会保险">社会保险</option>
+                <option value="经济补偿">经济补偿</option>
+              </select>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">立案日期</span>
+              <input type="date" class="form-input" id="new-case-date" value="">
+            </div>
+          </div>
+        </div>
+        
+        <div class="detail-section">
+          <h4>申请人信息</h4>
+          <div class="detail-grid">
+            <div class="detail-item">
+              <span class="detail-label">姓名</span>
+              <input type="text" class="form-input" id="new-applicant-name" placeholder="请输入姓名">
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">身份证号</span>
+              <input type="text" class="form-input" id="new-applicant-id" placeholder="请输入身份证号">
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">联系电话</span>
+              <input type="text" class="form-input" id="new-applicant-phone" placeholder="请输入联系电话">
+            </div>
+          </div>
+        </div>
+        
+        <div class="detail-section">
+          <h4>被申请人信息</h4>
+          <div class="detail-grid">
+            <div class="detail-item">
+              <span class="detail-label">单位名称</span>
+              <input type="text" class="form-input" id="new-respondent-name" placeholder="请输入单位名称">
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">统一社会信用代码</span>
+              <input type="text" class="form-input" id="new-respondent-code" placeholder="请输入统一社会信用代码">
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">法定代表人</span>
+              <input type="text" class="form-input" id="new-respondent-contact" placeholder="请输入法定代表人">
+            </div>
+          </div>
+        </div>
+        
+        <div class="detail-section">
+          <h4>诉求详情</h4>
+          <textarea class="form-input" id="new-claim" rows="4" placeholder="请详细描述案件情况和诉求"></textarea>
+        </div>
+        
+        <div class="detail-section">
+          <h4>请求金额</h4>
+          <input type="number" class="form-input" id="new-amount" placeholder="请输入请求金额（元）">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeNewCaseModal()">取消</button>
+        <button class="btn btn-primary" onclick="submitNewCase()">提交</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-detail-modal" id="assign-case-to-mediator-modal">
+    <div class="modal-overlay" onclick="closeAssignCaseModal()"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📋 分配案件给 <span id="assign-mediator-name">调解员</span></h3>
+        <button class="modal-close" onclick="closeAssignCaseModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-section">
+          <h4>选择待分配案件</h4>
+          <div class="case-select-list" id="pending-case-list">
+            <div class="case-select-item" onclick="selectCaseForAssign('LA2024-0889')">
+              <div class="case-select-info">
+                <span class="case-select-id">LA2024-0889</span>
+                <span class="case-select-parties">赵某 vs 某物流公司</span>
+                <span class="case-select-type">劳动争议 | ¥28,000</span>
+              </div>
+              <input type="radio" name="selected-case" value="LA2024-0889">
+            </div>
+            <div class="case-select-item" onclick="selectCaseForAssign('LA2024-0890')">
+              <div class="case-select-info">
+                <span class="case-select-id">LA2024-0890</span>
+                <span class="case-select-parties">王某 vs 某贸易公司</span>
+                <span class="case-select-type">工资拖欠 | ¥35,000</span>
+              </div>
+              <input type="radio" name="selected-case" value="LA2024-0890">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeAssignCaseModal()">取消</button>
+        <button class="btn btn-primary" onclick="confirmAssignCaseToMediator()">确认分配</button>
       </div>
     </div>
   </div>
@@ -2877,6 +2995,155 @@
       setTimeout(() => {
         showNotification('已通知仲裁员和当事人', 'info');
         closeScheduleModal();
+      }, 1000);
+    }
+
+    // 新建案件相关
+    let newCaseCount = 0;
+
+    function showNewCaseModal() {
+      // 初始化日期为今天
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('new-case-date').value = today;
+      
+      // 清空表单
+      document.getElementById('new-applicant-name').value = '';
+      document.getElementById('new-applicant-id').value = '';
+      document.getElementById('new-applicant-phone').value = '';
+      document.getElementById('new-respondent-name').value = '';
+      document.getElementById('new-respondent-code').value = '';
+      document.getElementById('new-respondent-contact').value = '';
+      document.getElementById('new-claim').value = '';
+      document.getElementById('new-amount').value = '';
+      
+      document.getElementById('new-case-modal').classList.add('active');
+    }
+
+    function closeNewCaseModal() {
+      document.getElementById('new-case-modal').classList.remove('active');
+    }
+
+    function submitNewCase() {
+      const caseType = document.getElementById('new-case-type').value;
+      const caseDate = document.getElementById('new-case-date').value;
+      const applicantName = document.getElementById('new-applicant-name').value;
+      const applicantId = document.getElementById('new-applicant-id').value;
+      const applicantPhone = document.getElementById('new-applicant-phone').value;
+      const respondentName = document.getElementById('new-respondent-name').value;
+      const respondentCode = document.getElementById('new-respondent-code').value;
+      const respondentContact = document.getElementById('new-respondent-contact').value;
+      const claim = document.getElementById('new-claim').value;
+      const amount = document.getElementById('new-amount').value;
+      
+      // 验证必填项
+      if (!applicantName || !respondentName) {
+        showNotification('请填写申请人和被申请人信息', 'warning');
+        return;
+      }
+      
+      // 生成案件编号
+      newCaseCount++;
+      const caseNo = 'LA' + new Date().getFullYear() + String(new Date().getMonth() + 1).padStart(2, '0') + String(newCaseCount).padStart(3, '0');
+      
+      // 添加到caseDetails
+      caseDetails[caseNo] = {
+        caseNo: caseNo,
+        caseType: caseType,
+        filingDate: caseDate,
+        status: '待分配',
+        statusClass: 'badge-warning',
+        applicant: applicantName,
+        applicantId: applicantId || '-',
+        applicantPhone: applicantPhone || '-',
+        respondent: respondentName,
+        respondentCode: respondentCode || '-',
+        respondentContact: respondentContact || '-',
+        claim: claim || '案件详情待补充',
+        evidence: ['📄 申请书.pdf']
+      };
+      
+      // 添加到案件管理表格
+      const tbody = document.querySelector('#module-case-management .data-table tbody');
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>${caseNo}</td>
+        <td>${applicantName}</td>
+        <td>${respondentName}</td>
+        <td>${caseType}</td>
+        <td>¥${amount || '0'}</td>
+        <td><span class="badge badge-warning">待分配</span></td>
+        <td>${caseDate}</td>
+        <td>
+          <button class="btn btn-secondary btn-sm" onclick="viewCaseDetail('${caseNo}')">查看</button>
+          <button class="btn btn-warning btn-sm" onclick="showAssignModal('${caseNo}')">分配</button>
+        </td>
+      `;
+      tbody.insertBefore(newRow, tbody.firstChild);
+      
+      // 也添加到工作台待处理案件列表
+      const caseList = document.querySelector('.case-list');
+      const newCaseItem = document.createElement('div');
+      newCaseItem.className = 'case-item';
+      newCaseItem.onclick = function() { viewCaseDetail('${caseNo}'); };
+      newCaseItem.innerHTML = `
+        <div class="case-info">
+          <div class="case-title">
+            <span class="case-id">${caseNo}</span>
+            <span class="case-type badge badge-warning">待分配</span>
+          </div>
+          <div class="case-parties">${applicantName} vs ${respondentName}</div>
+          <div class="case-meta">${caseType} | 立案日期：${caseDate}</div>
+        </div>
+        <div class="case-actions">
+          <button class="btn btn-secondary btn-xs" onclick="event.stopPropagation(); viewCaseDetail('${caseNo}')">查看</button>
+          <button class="btn btn-primary btn-xs" onclick="event.stopPropagation(); showAssignModal('${caseNo}')">分配</button>
+        </div>
+      `;
+      caseList.insertBefore(newCaseItem, caseList.firstChild);
+      
+      closeNewCaseModal();
+      showNotification('案件 ' + caseNo + ' 创建成功！', 'success');
+    }
+
+    // 分配案件给调解员相关
+    let currentMediatorForAssign = '';
+    let selectedCaseForAssign = '';
+
+    function showAssignCaseModal(mediatorName) {
+      currentMediatorForAssign = mediatorName;
+      document.getElementById('assign-mediator-name').textContent = mediatorName;
+      document.getElementById('assign-case-to-mediator-modal').classList.add('active');
+    }
+
+    function closeAssignCaseModal() {
+      document.getElementById('assign-case-to-mediator-modal').classList.remove('active');
+      selectedCaseForAssign = '';
+    }
+
+    function selectCaseForAssign(caseId) {
+      selectedCaseForAssign = caseId;
+      // 更新选中状态
+      document.querySelectorAll('.case-select-item').forEach(item => {
+        item.classList.remove('selected');
+        const radio = item.querySelector('input[type="radio"]');
+        if (radio && radio.value === caseId) {
+          item.classList.add('selected');
+          radio.checked = true;
+        }
+      });
+    }
+
+    function confirmAssignCaseToMediator() {
+      if (!selectedCaseForAssign) {
+        showNotification('请选择要分配的案件', 'warning');
+        return;
+      }
+      
+      showNotification('案件 ' + selectedCaseForAssign + ' 已分配给 ' + currentMediatorForAssign, 'success');
+      closeAssignCaseModal();
+      
+      setTimeout(() => {
+        showNotification('调解员已收到任务通知', 'info');
       }, 1000);
     }
 
@@ -5190,6 +5457,54 @@
       padding: 20px 24px;
       border-top: 1px solid var(--border-color);
       background: var(--bg-secondary);
+    }
+
+    .case-select-list {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .case-select-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .case-select-item:hover {
+      border-color: var(--primary);
+      background: rgba(22, 119, 255, 0.03);
+    }
+
+    .case-select-item.selected {
+      border-color: var(--primary);
+      background: rgba(22, 119, 255, 0.08);
+    }
+
+    .case-select-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .case-select-id {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .case-select-parties {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .case-select-type {
+      font-size: 12px;
+      color: var(--text-tertiary);
     }
 
     .detail-section {
