@@ -15,49 +15,10 @@
 <!-- 页面内容 -->
 <div class="page-content">
   <div class="container">
-    <!-- 机构准入与备案 -->
-    <div class="card mb-24 p-24">
-      <h3 class="mb-16">机构准入与备案</h3>
-      <div class="row">
-        <div class="col-4">
-          <div class="feature-card" onclick="showModal('org-register-modal')">
-            <div class="card-header">
-              <div class="icon">📝</div>
-              <div class="card-content">
-                <h4>机构注册</h4>
-                <p class="text-small">在线提交注册申请，上传资质材料，填写基本信息</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="feature-card" onclick="openAuditModal()">
-            <div class="card-header">
-              <div class="icon">✅</div>
-              <div class="card-content">
-                <h4>资质审核</h4>
-                <p class="text-small">人社部门在线审核，留痕可追溯，支持退回修改</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="feature-card" onclick="openRecordModal()">
-            <div class="card-header">
-              <div class="icon">📋</div>
-              <div class="card-content">
-                <h4>备案管理</h4>
-                <p class="text-small">自动生成备案编号，支持变更申请与状态更新</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- 机构日常管理 -->
+    <!-- 机构管理 -->
     <div class="card mb-24 p-24">
-      <h3 class="mb-16">机构日常管理</h3>
+      <h3 class="mb-16">机构管理</h3>
       <div class="row mb-16">
         <div class="col-3">
           <div class="stat-card" style="padding: 20px 16px;">
@@ -134,6 +95,41 @@
           </tr>
         </thead>
         <tbody>
+          <!-- 审核中 -->
+          <tr>
+            <td><strong>XX劳务派遣有限公司</strong></td>
+            <td>劳务派遣</td>
+            <td><span class="star-rating">★★★☆☆</span> 3.0</td>
+            <td>0</td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div><span class="text-small">80%</span></td>
+            <td><span class="badge badge-info">审核中</span></td>
+            <td>
+              <button class="btn btn-primary btn-sm btn-audit mr-8" onclick="showOrgAuditModal('XX劳务派遣有限公司')"><i class="fas fa-check-circle"></i> 审核</button>
+              <div class="action-dropdown" style="display:inline-block;vertical-align:middle;">
+                <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i></button>
+                <div class="action-menu">
+                  <a onclick="showOrgDetail('XX劳务派遣有限公司')"><i class="fas fa-eye"></i>查看</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>XX家政服务有限公司</strong></td>
+            <td>培训服务</td>
+            <td><span class="star-rating">★★★☆☆</span> 3.0</td>
+            <td>0</td>
+            <td><div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div><span class="text-small">80%</span></td>
+            <td><span class="badge badge-info">审核中</span></td>
+            <td>
+              <button class="btn btn-primary btn-sm btn-audit mr-8" onclick="showOrgAuditModal('XX家政服务有限公司')"><i class="fas fa-check-circle"></i> 审核</button>
+              <div class="action-dropdown" style="display:inline-block;vertical-align:middle;">
+                <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i></button>
+                <div class="action-menu">
+                  <a onclick="showOrgDetail('XX家政服务有限公司')"><i class="fas fa-eye"></i>查看</a>
+                </div>
+              </div>
+            </td>
+          </tr>
           <tr>
             <td><strong>XX人力资源有限公司</strong></td>
             <td>劳务派遣 / 招聘外包</td>
@@ -141,7 +137,16 @@
             <td>286</td>
             <td><div class="progress-bar"><div class="progress-fill" style="width: 96%;"></div></div><span class="text-small">96%</span></td>
             <td><span class="badge badge-success">营业中</span></td>
-            <td><button class="btn btn-secondary btn-sm" onclick="showOrgDetail('XX人力资源有限公司')">查看</button></td>
+            <td>
+              <div class="action-dropdown">
+                <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                <div class="action-menu">
+                  <a onclick="showOrgDetail('XX人力资源有限公司')"><i class="fas fa-eye"></i>查看</a>
+                  <a onclick="showOrgAuditModal('XX人力资源有限公司')"><i class="fas fa-check-circle"></i>资质审核</a>
+                  <a onclick="showOrgRecordModal('XX人力资源有限公司')"><i class="fas fa-file-alt"></i>备案管理</a>
+                </div>
+              </div>
+            </td>
           </tr>
           <tr>
             <td><strong>XX人才服务集团</strong></td>
@@ -150,7 +155,16 @@
             <td>198</td>
             <td><div class="progress-bar"><div class="progress-fill" style="width: 92%;"></div></div><span class="text-small">92%</span></td>
             <td><span class="badge badge-success">营业中</span></td>
-            <td><button class="btn btn-secondary btn-sm" onclick="showOrgDetail('XX人才服务集团')">查看</button></td>
+            <td>
+              <div class="action-dropdown">
+                <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                <div class="action-menu">
+                  <a onclick="showOrgDetail('XX人才服务集团')"><i class="fas fa-eye"></i>查看</a>
+                  <a onclick="showOrgAuditModal('XX人才服务集团')"><i class="fas fa-check-circle"></i>资质审核</a>
+                  <a onclick="showOrgRecordModal('XX人才服务集团')"><i class="fas fa-file-alt"></i>备案管理</a>
+                </div>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -261,38 +275,30 @@
     </div>
     <div class="modal-body">
       <div class="form-group">
-        <label>选择机构</label>
-        <select class="form-select" id="record-org-select" onchange="loadRecordInfo()">
-          <option value="">请选择机构</option>
+        <label>备案编号</label>
+        <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;" id="record-number">HRBA-2026-0001</div>
+      </div>
+      <div class="form-group">
+        <label>备案日期</label>
+        <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;" id="record-date">2026-01-15</div>
+      </div>
+      <div class="form-group">
+        <label>有效期至</label>
+        <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;" id="record-expire">2027-01-14</div>
+      </div>
+      <div class="form-group">
+        <label>变更类型</label>
+        <select class="form-select" id="record-change-type">
+          <option value="">请选择变更类型</option>
+          <option value="信息变更">信息变更</option>
+          <option value="服务范围变更">服务范围变更</option>
+          <option value="地址变更">地址变更</option>
+          <option value="负责人变更">负责人变更</option>
         </select>
       </div>
-      <div id="record-info-container" style="display: none;">
-        <div class="form-group">
-          <label>备案编号</label>
-          <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;" id="record-number">HRBA-2026-0001</div>
-        </div>
-        <div class="form-group">
-          <label>备案日期</label>
-          <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;" id="record-date">2026-01-15</div>
-        </div>
-        <div class="form-group">
-          <label>有效期至</label>
-          <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;" id="record-expire">2027-01-14</div>
-        </div>
-        <div class="form-group">
-          <label>变更类型</label>
-          <select class="form-select" id="record-change-type">
-            <option value="">请选择变更类型</option>
-            <option value="信息变更">信息变更</option>
-            <option value="服务范围变更">服务范围变更</option>
-            <option value="地址变更">地址变更</option>
-            <option value="负责人变更">负责人变更</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>变更说明</label>
-          <textarea class="form-textarea" id="record-change-reason" rows="3" placeholder="请填写变更说明"></textarea>
-        </div>
+      <div class="form-group">
+        <label>变更说明</label>
+        <textarea class="form-textarea" id="record-change-reason" rows="3" placeholder="请填写变更说明"></textarea>
       </div>
     </div>
     <div class="modal-footer">
@@ -354,24 +360,20 @@
       <button class="modal-close" onclick="closeModal('org-audit-modal')">×</button>
     </div>
     <div class="modal-body">
-      <div class="form-group">
-        <label>选择待审核机构</label>
-        <select class="form-select" id="audit-org-select" onchange="loadAuditOrgInfo()">
-          <option value="">请选择机构</option>
-        </select>
-      </div>
-      <div class="audit-info" id="audit-info-container" style="display: none;">
-        <div class="info-row">
-          <span class="label">机构名称：</span>
-          <span id="audit-org-name">XX人力资源有限公司</span>
-        </div>
-        <div class="info-row">
-          <span class="label">申请时间：</span>
-          <span id="audit-org-time">2026-05-14 10:30</span>
-        </div>
-        <div class="info-row">
-          <span class="label">服务类型：</span>
-          <span id="audit-org-type">劳务派遣 / 招聘外包</span>
+      <div id="audit-info-container">
+        <div class="audit-info">
+          <div class="info-row">
+            <span class="label">机构名称：</span>
+            <span id="audit-org-name">--</span>
+          </div>
+          <div class="info-row">
+            <span class="label">申请时间：</span>
+            <span id="audit-org-time">--</span>
+          </div>
+          <div class="info-row">
+            <span class="label">服务类型：</span>
+            <span id="audit-org-type">--</span>
+          </div>
         </div>
       </div>
       <div class="form-group mt-16">
@@ -389,113 +391,82 @@
 
 <script src="assets/theme-switch.js"></script>
 <script>
-  let orgListData = [];
-  
+  let currentAuditOrg = null;
+  let currentRecordOrg = null;
+
   function showModal(modalId) {
     const modal = document.getElementById(modalId);
     modal.style.display = 'flex';
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
-  
-  function openAuditModal() {
-    refreshAuditOrgList();
-    showModal('org-audit-modal');
-  }
-  
-  function openRecordModal() {
-    refreshRecordOrgList();
-    showModal('record-modal');
-  }
-  
-  function refreshRecordOrgList() {
-    const select = document.getElementById('record-org-select');
-    select.innerHTML = '<option value="">请选择机构</option>';
-    
+
+  function showOrgAuditModal(orgName) {
+    currentAuditOrg = orgName;
     const rows = document.querySelectorAll('.table tbody tr');
     rows.forEach(row => {
       const name = row.querySelector('td:first-child strong').textContent;
-      const statusBadge = row.querySelector('td:nth-child(6) .badge');
-      
-      if (statusBadge && statusBadge.textContent.includes('营业中')) {
-        const option = document.createElement('option');
-        option.value = name;
-        option.textContent = name;
-        select.appendChild(option);
+      if (name === orgName) {
+        document.getElementById('audit-org-name').textContent = name;
+        document.getElementById('audit-org-type').textContent = row.querySelectorAll('td')[1].textContent;
+        document.getElementById('audit-org-time').textContent = new Date().toLocaleString('zh-CN');
       }
     });
+    document.getElementById('audit-opinion').value = '';
+    showModal('org-audit-modal');
   }
-  
-  function loadRecordInfo() {
-    const select = document.getElementById('record-org-select');
-    const infoContainer = document.getElementById('record-info-container');
-    
-    if (!select.value) {
-      infoContainer.style.display = 'none';
-      return;
-    }
-    
+
+  function showOrgRecordModal(orgName) {
+    currentRecordOrg = orgName;
     document.getElementById('record-number').textContent = 'HRBA-2026-' + String(Math.floor(Math.random() * 9999)).padStart(4, '0');
     document.getElementById('record-date').textContent = new Date().toISOString().split('T')[0];
     const nextYear = new Date();
     nextYear.setFullYear(nextYear.getFullYear() + 1);
     document.getElementById('record-expire').textContent = nextYear.toISOString().split('T')[0];
-    infoContainer.style.display = 'block';
-  }
-  
-  function submitRecordChange() {
-    const select = document.getElementById('record-org-select');
-    const changeType = document.getElementById('record-change-type').value;
-    const reason = document.getElementById('record-change-reason').value;
-    
-    if (!select.value) {
-      showNotification('请选择要变更的机构', 'error');
-      return;
-    }
-    
-    if (!changeType) {
-      showNotification('请选择变更类型', 'error');
-      return;
-    }
-    
-    if (!reason) {
-      showNotification('请填写变更说明', 'error');
-      return;
-    }
-    
     document.getElementById('record-change-type').value = '';
     document.getElementById('record-change-reason').value = '';
-    closeModal('record-modal');
-    showNotification(`机构"${select.value}"的${changeType}申请已提交`, 'success');
+    showModal('record-modal');
   }
-  
+
   function closeModal(modalId) {
     const modal = document.getElementById(modalId);
     modal.style.display = 'none';
     modal.classList.remove('active');
     document.body.style.overflow = '';
   }
-  
+
+  // 操作下拉菜单
+  function toggleActionMenu(btn) {
+    const menu = btn.parentElement.querySelector('.action-menu');
+    document.querySelectorAll('.action-menu.show').forEach(m => {
+      if (m !== menu) m.classList.remove('show');
+    });
+    menu.classList.toggle('show');
+  }
+
   document.addEventListener('click', function(e) {
+    if (!e.target.closest('.action-dropdown')) {
+      document.querySelectorAll('.action-menu.show').forEach(m => m.classList.remove('show'));
+    }
     if (e.target.classList.contains('modal-overlay')) {
       e.target.style.display = 'none';
       e.target.classList.remove('active');
       document.body.style.overflow = '';
     }
   });
-  
+
   function submitOrgRegister() {
     const name = document.getElementById('reg-org-name').value;
     const code = document.getElementById('reg-org-code').value;
     const type = document.getElementById('reg-org-type').value;
     const contact = document.getElementById('reg-org-contact').value;
     const phone = document.getElementById('reg-org-phone').value;
-    
+
     if (!name || !code || !type || !contact || !phone) {
       showNotification('请填写完整信息', 'error');
       return;
     }
-    
+
     const tbody = document.querySelector('.table tbody');
     const newRow = document.createElement('tr');
     newRow.innerHTML = `
@@ -505,88 +476,68 @@
       <td>0</td>
       <td><div class="progress-bar"><div class="progress-fill" style="width: 0%;"></div></div><span class="text-small">0%</span></td>
       <td><span class="badge badge-info">审核中</span></td>
-      <td><button class="btn btn-secondary btn-sm" onclick="showOrgDetail('${name}')">查看</button></td>
+      <td>
+        <button class="btn btn-primary btn-sm btn-audit mr-8" onclick="showOrgAuditModal('${name}')"><i class="fas fa-check-circle"></i> 审核</button>
+        <div class="action-dropdown" style="display:inline-block;vertical-align:middle;">
+          <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i></button>
+          <div class="action-menu">
+            <a onclick="showOrgDetail('${name}')"><i class="fas fa-eye"></i>查看</a>
+          </div>
+        </div>
+      </td>
     `;
     tbody.appendChild(newRow);
-    
+
     document.getElementById('reg-org-name').value = '';
     document.getElementById('reg-org-code').value = '';
     document.getElementById('reg-org-type').value = '';
     document.getElementById('reg-org-contact').value = '';
     document.getElementById('reg-org-phone').value = '';
-    
+
     closeModal('org-register-modal');
     showNotification('机构注册申请已提交，等待审核', 'success');
   }
-  
+
   function filterOrgList() {
     const search = document.getElementById('org-search').value.toLowerCase();
     const type = document.getElementById('filter-type').value;
     const status = document.getElementById('filter-status').value;
     const star = document.getElementById('filter-star').value;
-    
+
     const rows = document.querySelectorAll('.table tbody tr');
     rows.forEach(row => {
       const name = row.querySelector('td:first-child strong').textContent.toLowerCase();
       const serviceType = row.querySelectorAll('td')[1].textContent;
       const rowStar = row.querySelectorAll('td')[2].textContent;
       const rowStatus = row.querySelectorAll('td')[5].textContent;
-      
+
       let visible = true;
       if (search && !name.includes(search) && !serviceType.toLowerCase().includes(search)) visible = false;
       if (type && !serviceType.includes(type)) visible = false;
       if (status && !rowStatus.includes(status)) visible = false;
       if (star && !rowStar.includes(star)) visible = false;
-      
+
       row.style.display = visible ? '' : 'none';
     });
-    showNotification('筛选完成', 'success');
   }
-  
+
   function showOrgDetail(orgName) {
     document.getElementById('detail-org-name').textContent = orgName;
     showModal('org-detail-modal');
   }
-  
-  function loadAuditOrgInfo() {
-    const select = document.getElementById('audit-org-select');
-    const infoContainer = document.getElementById('audit-info-container');
-    
-    if (!select.value) {
-      infoContainer.style.display = 'none';
-      return;
-    }
-    
-    const rows = document.querySelectorAll('.table tbody tr');
-    rows.forEach(row => {
-      const name = row.querySelector('td:first-child strong').textContent;
-      const statusBadge = row.querySelector('td:nth-child(6) .badge');
-      
-      if (name === select.value && statusBadge && statusBadge.textContent.includes('审核中')) {
-        const serviceType = row.querySelectorAll('td')[1].textContent;
-        document.getElementById('audit-org-name').textContent = name;
-        document.getElementById('audit-org-type').textContent = serviceType;
-        document.getElementById('audit-org-time').textContent = new Date().toLocaleString('zh-CN');
-        infoContainer.style.display = 'block';
-      }
-    });
-  }
-  
+
   function approveOrgAudit() {
-    const select = document.getElementById('audit-org-select');
-    const opinion = document.getElementById('audit-opinion').value;
-    
-    if (!select.value) {
+    if (!currentAuditOrg) {
       showNotification('请选择要审核的机构', 'error');
       return;
     }
-    
+
     const rows = document.querySelectorAll('.table tbody tr');
     rows.forEach(row => {
       const name = row.querySelector('td:first-child strong').textContent;
       const statusBadge = row.querySelector('td:nth-child(6) .badge');
-      
-      if (name === select.value && statusBadge && statusBadge.textContent.includes('审核中')) {
+
+      if (name === currentAuditOrg && statusBadge && statusBadge.textContent.includes('审核中')) {
         statusBadge.textContent = '营业中';
         statusBadge.className = 'badge badge-success';
         row.querySelectorAll('td')[2].innerHTML = '<span class="star-rating">★★★☆☆</span> 3.0';
@@ -594,70 +545,79 @@
         row.querySelectorAll('td')[4].innerHTML = '<div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div><span class="text-small">80%</span>';
       }
     });
-    
+
     document.getElementById('audit-opinion').value = '';
+    currentAuditOrg = null;
     closeModal('org-audit-modal');
     showNotification('机构审核已通过', 'success');
   }
-  
+
   function rejectOrgAudit() {
-    const select = document.getElementById('audit-org-select');
-    const opinion = document.getElementById('audit-opinion').value;
-    
-    if (!select.value) {
+    if (!currentAuditOrg) {
       showNotification('请选择要审核的机构', 'error');
       return;
     }
-    
+
+    const opinion = document.getElementById('audit-opinion').value;
     if (!opinion) {
       showNotification('请填写退回修改的原因', 'error');
       return;
     }
-    
+
     const rows = document.querySelectorAll('.table tbody tr');
     rows.forEach(row => {
       const name = row.querySelector('td:first-child strong').textContent;
       const statusBadge = row.querySelector('td:nth-child(6) .badge');
-      
-      if (name === select.value && statusBadge && statusBadge.textContent.includes('审核中')) {
+
+      if (name === currentAuditOrg && statusBadge && statusBadge.textContent.includes('审核中')) {
         row.remove();
       }
     });
-    
+
     document.getElementById('audit-opinion').value = '';
+    currentAuditOrg = null;
     closeModal('org-audit-modal');
     showNotification('机构申请已退回，要求修改', 'warning');
   }
-  
-  function refreshAuditOrgList() {
-    const select = document.getElementById('audit-org-select');
-    select.innerHTML = '<option value="">请选择机构</option>';
-    
-    const rows = document.querySelectorAll('.table tbody tr');
-    rows.forEach(row => {
-      const name = row.querySelector('td:first-child strong').textContent;
-      const statusBadge = row.querySelector('td:nth-child(6) .badge');
-      
-      if (statusBadge && statusBadge.textContent.includes('审核中')) {
-        const option = document.createElement('option');
-        option.value = name;
-        option.textContent = name;
-        select.appendChild(option);
-      }
-    });
+
+  function submitRecordChange() {
+    if (!currentRecordOrg) {
+      showNotification('请选择要变更的机构', 'error');
+      return;
+    }
+
+    const changeType = document.getElementById('record-change-type').value;
+    const reason = document.getElementById('record-change-reason').value;
+
+    if (!changeType) {
+      showNotification('请选择变更类型', 'error');
+      return;
+    }
+
+    if (!reason) {
+      showNotification('请填写变更说明', 'error');
+      return;
+    }
+
+    const orgName = currentRecordOrg;
+    document.getElementById('record-change-type').value = '';
+    document.getElementById('record-change-reason').value = '';
+    currentRecordOrg = null;
+    closeModal('record-modal');
+    showNotification(`机构"${orgName}"的${changeType}申请已提交`, 'success');
   }
-  
+
   function processAllWarnings() {
     const reason = document.getElementById('warning-handle-reason').value;
-    
+
     if (!reason) {
       showNotification('请填写处理说明', 'error');
       return;
     }
-    
+
     const warningItems = document.querySelectorAll('.warning-item');
     let processedCount = 0;
-    
+
     warningItems.forEach(item => {
       const statusBadge = item.querySelector('.warning-status');
       if (statusBadge && statusBadge.textContent.includes('待处理')) {
@@ -666,15 +626,15 @@
         processedCount++;
       }
     });
-    
+
     const currentCount = parseInt(document.querySelectorAll('.stat-card .number')[2].textContent);
     document.querySelectorAll('.stat-card .number')[2].textContent = Math.max(0, currentCount - processedCount);
-    
+
     document.getElementById('warning-handle-reason').value = '';
     closeModal('warning-modal');
     showNotification(`已处理 ${processedCount} 条预警`, 'success');
   }
-  
+
   function showNotification(message, type) {
     if (parent && parent.showNotification) {
       parent.showNotification(message, type);

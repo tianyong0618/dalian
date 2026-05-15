@@ -9,37 +9,6 @@
   <!-- 防止闪烁：在页面渲染前立即设置主题 -->
   <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .action-dropdown { position: relative; display: inline-block; }
-    .action-btn {
-      background: var(--bg-secondary, #f5f5f5); border: 1px solid var(--border-color, #e0e0e0);
-      padding: 4px 12px; border-radius: 6px; cursor: pointer;
-      font-size: 13px; color: var(--text-primary, #333);
-      display: inline-flex; align-items: center; gap: 4px;
-      transition: background 0.2s;
-    }
-    .action-btn:hover { background: var(--bg-tertiary, #e8e8e8); }
-    .action-btn i { font-size: 10px; color: var(--text-secondary, #999); }
-    .action-menu {
-      display: none; position: absolute; right: 0; top: 100%; z-index: 100;
-      background: var(--bg-primary, #fff); border: 1px solid var(--border-color, #e0e0e0);
-      border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-      min-width: 100px; padding: 4px; margin-top: 4px;
-    }
-    .action-menu.show { display: block; }
-    .action-menu a {
-      display: flex; align-items: center; gap: 8px;
-      padding: 8px 12px; font-size: 13px; color: var(--text-primary, #333);
-      text-decoration: none; border-radius: 4px; cursor: pointer;
-      transition: background 0.15s;
-    }
-    .action-menu a:hover { background: var(--bg-secondary, #f0f0f0); }
-    .action-menu a i { width: 16px; text-align: center; font-size: 13px; color: var(--text-secondary, #888); }
-    .action-menu a.danger { color: #ff4d4f; }
-    .action-menu a.danger i { color: #ff4d4f; }
-    /* 待审核行的审核按钮突出 */
-    .btn-audit { padding: 4px 16px; font-size: 13px; }
-  </style>
 </head>
 <body>
 
