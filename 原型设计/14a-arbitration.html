@@ -46,9 +46,8 @@
     }
 
     .tab-item.active {
-      color: var(--primary);
       background: var(--primary);
-      color: white;
+      color: var(--text-on-primary);
     }
 
     .tab-item .badge {
@@ -188,7 +187,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: var(--text-on-primary);
       flex-shrink: 0;
     }
 
@@ -602,7 +601,7 @@
       border-radius: 50%;
       border: none;
       background: rgba(255, 255, 255, 0.1);
-      color: white;
+      color: var(--text-on-primary);
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -665,7 +664,7 @@
       border-radius: 50%;
       border: none;
       background: rgba(255, 255, 255, 0.1);
-      color: white;
+      color: var(--text-on-primary);
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -722,7 +721,7 @@
       height: 40px;
       border-radius: var(--radius-sm);
       background: var(--primary);
-      color: white;
+      color: var(--text-on-primary);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -805,7 +804,7 @@
     .record-input button {
       padding: 10px 16px;
       background: var(--primary);
-      color: white;
+      color: var(--text-on-primary);
       border: none;
       border-radius: var(--radius-md);
       cursor: pointer;
@@ -874,7 +873,7 @@
       height: 40px;
       border-radius: var(--radius-md);
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%);
-      color: white;
+      color: var(--text-on-primary);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -3424,7 +3423,7 @@
     }
 
     .ct-title {
-      color: #fff;
+      color: var(--text-primary);
       font-size: 16px;
       font-weight: 600;
     }
@@ -3457,8 +3456,8 @@
 
     .ct-btn-end {
       padding: 8px 20px;
-      background: #ef4444;
-      color: #fff;
+      background: var(--danger);
+      color: var(--text-on-primary);
       border: none;
       border-radius: 6px;
       cursor: pointer;
@@ -3546,8 +3545,8 @@
       padding: 12px 16px;
       font-size: 13px;
       font-weight: 600;
-      color: #fff;
-      background: #252540;
+      color: var(--text-primary);
+      background: var(--bg-tertiary);
       flex-shrink: 0;
     }
 
@@ -3596,8 +3595,8 @@
 
     .ct-action-btn {
       padding: 10px 16px;
-      background: #333;
-      color: #fff;
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
       border: none;
       border-radius: 6px;
       cursor: pointer;
@@ -3606,7 +3605,7 @@
     }
 
     .ct-action-btn:hover {
-      background: #444;
+      background: var(--border-color);
     }
 
     /* 云庭审完整五分区样式 */
@@ -3661,9 +3660,9 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      border: 1px solid #444;
+      border: 1px solid var(--border-color);
       background: transparent;
-      color: #fff;
+      color: var(--text-primary);
       cursor: pointer;
       margin-right: 8px;
       font-size: 16px;
@@ -3671,7 +3670,7 @@
     }
 
     .ct-btn:hover {
-      background: #444;
+      background: var(--bg-tertiary);
     }
 
     .ct-video-section {
@@ -3688,9 +3687,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #252540;
+      background: var(--bg-tertiary);
       font-size: 14px;
-      color: #fff;
+      color: var(--text-primary);
       flex-shrink: 0;
     }
 
@@ -3705,7 +3704,7 @@
       border-radius: 6px;
       border: none;
       background: rgba(255,255,255,0.1);
-      color: #fff;
+      color: var(--text-on-primary);
       cursor: pointer;
       font-size: 14px;
       transition: all 0.2s;
@@ -3748,7 +3747,7 @@
       align-items: center;
       justify-content: center;
       font-size: 28px;
-      color: white;
+      color: var(--text-on-primary);
       margin: 0 auto 12px;
     }
 
@@ -3760,13 +3759,13 @@
     }
 
     .ct-participant-name {
-      color: #fff;
+      color: var(--text-primary);
       font-size: 14px;
       font-weight: 500;
     }
 
     .ct-participant-role {
-      color: #888;
+      color: var(--text-secondary);
       font-size: 12px;
       margin-top: 4px;
     }
@@ -3834,7 +3833,7 @@
 
     .ct-trial-step.active {
       background: var(--primary);
-      color: white;
+      color: var(--text-on-primary);
     }
 
     .ct-trial-step .step-num {
@@ -3849,8 +3848,8 @@
     }
 
     .ct-trial-step.completed .step-num {
-      background: #4ade80;
-      color: #000;
+      background: var(--success);
+      color: var(--text-on-primary);
     }
 
     .ct-trial-step.active .step-num {
@@ -3894,9 +3893,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #252540;
+      background: var(--bg-tertiary);
       font-size: 14px;
-      color: #fff;
+      color: var(--text-primary);
       flex-shrink: 0;
       border-radius: 8px 8px 0 0;
     }
@@ -4073,7 +4072,7 @@
 
     .evidence-name {
       font-size: 13px;
-      color: #fff;
+      color: var(--text-primary);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -4081,14 +4080,14 @@
 
     .evidence-meta {
       font-size: 11px;
-      color: #888;
+      color: var(--text-secondary);
       margin-top: 2px;
     }
 
     .evidence-action {
       padding: 4px 8px;
       background: var(--primary);
-      color: white;
+      color: var(--text-on-primary);
       border: none;
       border-radius: 4px;
       font-size: 11px;
@@ -4116,8 +4115,8 @@
       padding: 12px 16px;
       font-size: 13px;
       font-weight: 600;
-      color: #fff;
-      background: #252540;
+      color: var(--text-primary);
+      background: var(--bg-tertiary);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -4155,17 +4154,17 @@
 
     .ct-transcript-msg.arbiter {
       background: rgba(114, 46, 209, 0.3);
-      color: #fff;
+      color: var(--text-primary);
     }
 
     .ct-transcript-msg.applicant {
       background: rgba(22, 119, 255, 0.3);
-      color: #fff;
+      color: var(--text-primary);
     }
 
     .ct-transcript-msg.respondent {
       background: rgba(82, 196, 26, 0.3);
-      color: #fff;
+      color: var(--text-primary);
     }
 
     .msg-role {
@@ -4184,10 +4183,10 @@
     .ct-transcript-input input {
       flex: 1;
       padding: 8px 12px;
-      background: #333;
-      border: 1px solid #444;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
       border-radius: 6px;
-      color: #fff;
+      color: var(--text-primary);
       font-size: 13px;
     }
 
@@ -4211,17 +4210,17 @@
       align-items: center;
       gap: 10px;
       padding: 12px 16px;
-      background: #333;
-      border: 1px solid #444;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
       border-radius: 6px;
-      color: #fff;
+      color: var(--text-primary);
       cursor: pointer;
       font-size: 13px;
       transition: all 0.2s;
     }
 
     .ct-action-btn:hover {
-      background: #444;
+      background: var(--border-color);
       border-color: var(--primary);
     }
 
@@ -4297,7 +4296,7 @@
       justify-content: space-between;
       align-items: center;
       font-size: 16px;
-      color: #fff;
+      color: var(--text-primary);
     }
 
     .evidence-preview-close {
@@ -4305,8 +4304,8 @@
       height: 32px;
       border-radius: 50%;
       border: none;
-      background: #333;
-      color: #fff;
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
       cursor: pointer;
       font-size: 20px;
     }
@@ -4370,7 +4369,7 @@
     .sign-modal-header {
       padding: 16px 20px;
       background: var(--primary);
-      color: white;
+      color: var(--text-on-primary);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -4387,7 +4386,7 @@
       border-radius: 50%;
       border: none;
       background: rgba(255,255,255,0.2);
-      color: white;
+      color: var(--text-on-primary);
       cursor: pointer;
       font-size: 18px;
     }
@@ -4450,7 +4449,7 @@
     .upload-evidence-header {
       padding: 16px 20px;
       background: var(--primary);
-      color: white;
+      color: var(--text-on-primary);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -4467,7 +4466,7 @@
       border-radius: 50%;
       border: none;
       background: rgba(255,255,255,0.2);
-      color: white;
+      color: var(--text-on-primary);
       cursor: pointer;
       font-size: 18px;
     }
@@ -4550,7 +4549,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: var(--text-on-primary);
       font-size: 20px;
       flex-shrink: 0;
     }
@@ -4730,7 +4729,7 @@
     .task-item.completed .task-checkbox {
       background: linear-gradient(135deg, var(--success) 0%, #3cb371 100%);
       border-color: var(--success);
-      color: white;
+      color: var(--text-on-primary);
     }
 
     .task-text {
@@ -4742,7 +4741,7 @@
 
     .task-org {
       font-size: 12px;
-      color: white;
+      color: var(--text-on-primary);
       font-weight: 500;
       padding: 5px 12px;
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%);
@@ -4813,7 +4812,7 @@
     .method-option input[type="radio"]:checked + .method-icon {
       border-color: var(--primary);
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%);
-      color: white;
+      color: var(--text-on-primary);
     }
 
     .method-option input[type="radio"]:checked ~ .method-text {
@@ -4983,7 +4982,7 @@
     }
 
     .schedule-modal .modal-header h3 {
-      color: white;
+      color: var(--text-on-primary);
       font-size: 18px;
       margin: 0;
       font-weight: 600;
@@ -4994,7 +4993,7 @@
       height: 36px;
       border: none;
       background: rgba(255, 255, 255, 0.2);
-      color: white;
+      color: var(--text-on-primary);
       font-size: 24px;
       cursor: pointer;
       border-radius: 50%;
@@ -5049,7 +5048,7 @@
     .schedule-modal .btn-primary {
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%);
       border: none;
-      color: white;
+      color: var(--text-on-primary);
       padding: 12px 24px;
       border-radius: var(--radius-md);
       font-weight: 600;
@@ -5382,7 +5381,7 @@
     .assign-modal-header {
       padding: 16px 20px;
       background: var(--primary);
-      color: white;
+      color: var(--text-on-primary);
     }
 
 .modal-close {
@@ -5391,7 +5390,7 @@
       border-radius: 50%;
       border: none;
       background: rgba(255,255,255,0.2);
-      color: white;
+      color: var(--text-on-primary);
       cursor: pointer;
       font-size: 18px;
       position: absolute;

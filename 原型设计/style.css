@@ -17,6 +17,8 @@
   --text-primary: #111827;
   --text-secondary: #4b5563;
   --text-tertiary: #9ca3af;
+  --text-on-primary: #ffffff;
+  --text-on-dark: #ffffff;
   --bg-primary: #ffffff;
   --bg-secondary: #f9fafb;
   --bg-gradient-start: #ffffff;
@@ -104,7 +106,7 @@ body {
 }
 
 .logo-icon i {
-  color: white;
+  color: var(--text-on-dark);
   font-size: 24px;
 }
 
@@ -390,7 +392,7 @@ body {
   padding: 2px 8px;
   border-radius: 9999px;
   background: var(--primary-gradient-end);
-  color: white;
+  color: var(--text-on-primary);
   flex-shrink: 0;
 }
 
@@ -507,7 +509,7 @@ body {
 
 .btn-primary {
   background: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
-  color: white;
+  color: var(--text-on-primary);
   box-shadow: 0 4px 14px rgba(22, 119, 255, 0.3);
 }
 
@@ -535,7 +537,7 @@ body {
 
 .btn-danger {
   background: var(--danger);
-  color: white;
+  color: var(--text-on-primary);
 }
 
 .btn-danger:hover {
@@ -911,13 +913,13 @@ body {
 .step.active .step-circle {
   background: var(--primary);
   border-color: var(--primary);
-  color: white;
+  color: var(--text-on-primary);
 }
 
 .step.completed .step-circle {
   background: var(--success);
   border-color: var(--success);
-  color: white;
+  color: var(--text-on-primary);
 }
 
 .step-label {
@@ -1360,13 +1362,13 @@ tr.enterprise-hidden {
 [data-theme="dark"] .btn-secondary {
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
   border: 1px solid rgba(99, 102, 241, 0.4);
-  color: #e2e8f0;
+  color: var(--text-primary);
 }
 
 [data-theme="dark"] .btn-secondary:hover {
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.35), rgba(168, 85, 247, 0.35));
   border-color: rgba(99, 102, 241, 0.6);
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 [data-theme="dark"] .form-input,
@@ -1374,7 +1376,7 @@ tr.enterprise-hidden {
 [data-theme="dark"] .form-textarea {
   background: rgba(30, 41, 59, 0.8);
   border: 1px solid rgba(99, 102, 241, 0.2);
-  color: #e2e8f0;
+  color: var(--text-primary);
 }
 
 [data-theme="dark"] .form-input:focus,
@@ -1429,7 +1431,7 @@ tr.enterprise-hidden {
 
 [data-theme="dark"] .tag {
   background: rgba(99, 102, 241, 0.15);
-  color: #a5b4fc;
+  color: var(--primary);
   border: 1px solid rgba(99, 102, 241, 0.3);
 }
 
@@ -1465,13 +1467,13 @@ tr.enterprise-hidden {
 [data-theme="dark"] .step-circle {
   background: rgba(51, 65, 85, 0.8);
   border-color: rgba(99, 102, 241, 0.3);
-  color: #94a3b8;
+  color: var(--text-secondary);
 }
 
 [data-theme="dark"] .step.active .step-circle {
   background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
   border-color: var(--primary);
-  color: white;
+  color: var(--text-on-primary);
 }
 
 [data-theme="dark"] .upload-area {
@@ -1589,7 +1591,7 @@ tr.enterprise-hidden {
 
 .theme-toggle-btn.active {
   background: var(--primary);
-  color: white;
+  color: var(--text-on-primary);
   box-shadow: 0 2px 8px rgba(22, 119, 255, 0.3);
 }
 

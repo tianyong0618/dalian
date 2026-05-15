@@ -41,9 +41,8 @@
     }
 
     .tab-item.active {
-      color: var(--primary);
       background: var(--primary);
-      color: white;
+      color: var(--text-on-primary);
     }
 
     .sidebar-menu {
@@ -282,7 +281,7 @@
 
     .btn-primary {
       background: linear-gradient(135deg, #13c2c2 0%, #36cfc1 100%);
-      color: white;
+      color: var(--text-on-primary);
       box-shadow: 0 4px 14px rgba(19, 194, 194, 0.3);
     }
 
@@ -310,7 +309,7 @@
 
     .btn-success {
       background: var(--success);
-      color: white;
+      color: var(--text-on-primary);
     }
 
     .btn-success:hover {
@@ -447,9 +446,9 @@
     .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; }
     .modal-overlay.active { display: flex; }
     .modal { background: var(--bg-primary); border-radius: var(--radius-lg); max-width: 700px; width: 90%; max-height: 90vh; overflow: auto; }
-    .modal-header { padding: 20px 24px; background: linear-gradient(135deg, #13c2c2 0%, #36cfc1 100%); color: white; display: flex; justify-content: space-between; align-items: center; }
+    .modal-header { padding: 20px 24px; background: linear-gradient(135deg, #13c2c2 0%, #36cfc1 100%); color: var(--text-on-primary); display: flex; justify-content: space-between; align-items: center; }
     .modal-header h3 { margin: 0; font-size: 18px; }
-    .modal-close { width: 32px; height: 32px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); color: white; cursor: pointer; font-size: 20px; }
+    .modal-close { width: 32px; height: 32px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); color: var(--text-on-primary); cursor: pointer; font-size: 20px; }
     .modal-body { padding: 24px; }
     .modal-footer { padding: 16px 24px; background: var(--bg-secondary); display: flex; justify-content: flex-end; gap: 12px; }
 
