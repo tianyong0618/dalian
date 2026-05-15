@@ -1248,7 +1248,7 @@
     function loadPersonData() {
       try {
         const personId = getPersonId();
-        const data = personData.find(p => p.id == personId) || personData[0];
+        const data = personData.find(p => p.id == personId || p.idCard == personId) || personData[0];
         
         personData = data;
         
