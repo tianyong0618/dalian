@@ -724,21 +724,21 @@
         </div>
       </div>
       <div id="portrait-form-2" style="display: none;">
-        <h4 class="mb-4">正在采集多维度数据... <span class="badge" style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); font-size: 11px;">🤖 AI数据采集与分析</span></h4>
-        <div class="mb-4"><div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;"><span>📚 社保数据</span><span style="color: var(--success);">✓ 已采集</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div></div>
-        <div class="mb-4"><div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;"><span>💼 就业数据</span><span style="color: var(--success);">✓ 已采集</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div></div>
-        <div class="mb-4"><div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;"><span>🎓 人才数据</span><span style="color: var(--success);">✓ 已采集</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div></div>
-        <div class="mb-4"><div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;"><span>⚖️ 维权数据</span><span style="color: var(--success);">✓ 已采集</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div></div>
+        <h4 class="mb-4" style="color: var(--text-primary);">正在采集多维度数据... <span class="badge" style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); font-size: 11px;">🤖 AI数据采集与分析</span></h4>
+        <div class="mb-4"><div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;"><span style="color: var(--text-primary);">📚 社保数据</span><span style="color: var(--success);">✓ 已采集</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div></div>
+        <div class="mb-4"><div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;"><span style="color: var(--text-primary);">💼 就业数据</span><span style="color: var(--success);">✓ 已采集</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div></div>
+        <div class="mb-4"><div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;"><span style="color: var(--text-primary);">🎓 人才数据</span><span style="color: var(--success);">✓ 已采集</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div></div>
+        <div class="mb-4"><div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;"><span style="color: var(--text-primary);">⚖️ 维权数据</span><span style="color: var(--success);">✓ 已采集</span></div><div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--success);"></div></div></div>
       </div>
       <div id="portrait-form-3" style="display: none;">
-        <h4 class="mb-4">正在生成动态标签... <span class="badge" style="background: rgba(147, 51, 234, 0.1); color: var(--secondary); font-size: 11px;">🏷️ 智能标签生成中...</span></h4>
+        <h4 class="mb-4" style="color: var(--text-primary);">正在生成动态标签... <span class="badge" style="background: rgba(147, 51, 234, 0.1); color: var(--secondary); font-size: 11px;">🏷️ 智能标签生成中...</span></h4>
         <div class="grid grid-cols-2 gap-4 mb-4">
           <div class="stat-card p-4 rounded-lg"><div class="text-2xl font-bold text-indigo-400">88%</div><div class="text-xs text-slate-400">教育竞争力</div></div>
           <div class="stat-card p-4 rounded-lg"><div class="text-2xl font-bold text-purple-400">78%</div><div class="text-xs text-slate-400">就业稳定性</div></div>
           <div class="stat-card p-4 rounded-lg"><div class="text-2xl font-bold text-pink-400">82%</div><div class="text-xs text-slate-400">职业技能</div></div>
           <div class="stat-card p-4 rounded-lg"><div class="text-2xl font-bold text-orange-400">71%</div><div class="text-xs text-slate-400">薪资趋势</div></div>
         </div>
-        <div><strong class="text-sm text-slate-300">生成标签：</strong><div style="margin-top: 8px;">
+        <div><strong class="text-sm" style="color: var(--text-secondary);">生成标签：</strong><div style="margin-top: 8px;">
           <span class="tag px-3 py-1 rounded-lg text-xs">Java开发</span>
           <span class="tag px-3 py-1 rounded-lg text-xs">本科及以上</span>
           <span class="tag px-3 py-1 rounded-lg text-xs">3年经验</span>
@@ -1250,14 +1250,14 @@
       
       const form3 = document.getElementById('portrait-form-3');
       form3.innerHTML = `
-        <h4 class="mb-4">正在生成动态标签... <span class="badge" style="background: rgba(147, 51, 234, 0.1); color: var(--secondary); font-size: 11px;">🏷️ 智能标签生成中...</span></h4>
+        <h4 class="mb-4" style="color: var(--text-primary);">正在生成动态标签... <span class="badge" style="background: rgba(147, 51, 234, 0.1); color: var(--secondary); font-size: 11px;">🏷️ 智能标签生成中...</span></h4>
         <div class="grid grid-cols-2 gap-4 mb-4">
           <div class="stat-card p-4 rounded-lg"><div class="text-2xl font-bold text-indigo-400">${person.competitiveness}%</div><div class="text-xs text-slate-400">教育竞争力</div></div>
           <div class="stat-card p-4 rounded-lg"><div class="text-2xl font-bold text-purple-400">${person.stability}%</div><div class="text-xs text-slate-400">就业稳定性</div></div>
           <div class="stat-card p-4 rounded-lg"><div class="text-2xl font-bold text-pink-400">${Math.round((person.competitiveness + person.stability) / 2)}%</div><div class="text-xs text-slate-400">职业技能</div></div>
           <div class="stat-card p-4 rounded-lg"><div class="text-2xl font-bold text-orange-400">${Math.round(person.competitiveness * 0.85)}%</div><div class="text-xs text-slate-400">薪资趋势</div></div>
         </div>
-        <div><strong class="text-sm text-slate-300">生成标签：</strong><div style="margin-top: 8px;">
+        <div><strong class="text-sm" style="color: var(--text-secondary);">生成标签：</strong><div style="margin-top: 8px;">
           ${person.tags.map(tag => `<span class="tag px-3 py-1 rounded-lg text-xs">${tag}</span>`).join('')}
         </div></div>
       `;
@@ -1271,8 +1271,8 @@
       const matchRate = Math.round(90 + Math.random() * 10);
       form4.innerHTML = `
         <div style="font-size: 64px; margin-bottom: 16px;">✨</div>
-        <h3 class="text-xl font-bold text-white mb-2">画像生成成功！</h3>
-        <p class="text-slate-400">${person.name}的全息画像已生成，包含${person.tags.length}个标签维度，匹配准确率${matchRate}%</p>
+        <h3 class="text-xl font-bold" style="color: var(--text-primary); margin-bottom: 8px;">画像生成成功！</h3>
+        <p style="color: var(--text-secondary);">${person.name}的全息画像已生成，包含${person.tags.length}个标签维度，匹配准确率${matchRate}%</p>
       `;
     }
 
