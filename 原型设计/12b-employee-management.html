@@ -67,57 +67,7 @@
       </div>
     </div>
 
-    <!-- 从业人员全生命周期管理 -->
-    <div class="card p-24">
-      <h3 class="mb-16">从业人员全生命周期管理</h3>
-      <div class="row">
-        <div class="col-3">
-          <div class="feature-card" onclick="showModal('training-modal')">
-            <div class="card-header">
-              <div class="icon">🎓</div>
-              <div class="card-content">
-                <h4>培训管理</h4>
-                <p class="text-small">AI推荐培训课程，记录时长与考核结果，确保年培训≥10课时</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="feature-card" onclick="showModal('position-modal')">
-            <div class="card-header">
-              <div class="icon">💼</div>
-              <div class="card-content">
-                <h4>岗位管理</h4>
-                <p class="text-small">记录岗位分配变动，关联机构服务项目</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="feature-card" onclick="showModal('resign-modal')">
-            <div class="card-header">
-              <div class="icon">🚪</div>
-              <div class="card-content">
-                <h4>离职管理</h4>
-                <p class="text-small">标记离职状态，保留历史记录，支持重新入库</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="feature-card" onclick="showModal('credit-modal')">
-            <div class="card-header">
-              <div class="icon">📋</div>
-              <div class="card-content">
-                <h4>诚信档案</h4>
-                <p class="text-small">记录从业行为，关联机构诚信评级，违规者限制入库</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- 从业人员列表 -->
+    <!-- 从业人员列表 -->
       <div class="mt-24">
         <div class="search-bar">
           <input type="text" class="form-input" id="emp-search" placeholder="搜索从业人员姓名、身份证号、资质..." onkeyup="filterEmpList()">
@@ -143,7 +93,13 @@
               <td><span class="tag">Java开发工程师</span></td>
               <td>36课时</td>
               <td><span class="badge badge-success">在职</span></td>
-              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('陈浩然')">查看</button></td>
+              <td>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('陈浩然')">查看</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('陈浩然')">培训</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('陈浩然')">岗位</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('陈浩然')">离职</button>
+                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('陈浩然')">诚信</button>
+              </td>
             </tr>
             <tr>
               <td><strong>刘芳</strong></td>
@@ -152,7 +108,13 @@
               <td><span class="tag">技能培训中</span></td>
               <td>8课时</td>
               <td><span class="badge badge-warning">待就业</span></td>
-              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('刘芳')">查看</button></td>
+              <td>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('刘芳')">查看</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('刘芳')">培训</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('刘芳')">岗位</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('刘芳')">离职</button>
+                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('刘芳')">诚信</button>
+              </td>
             </tr>
             <tr>
               <td><strong>王明华</strong></td>
@@ -161,7 +123,13 @@
               <td><span class="tag">建筑施工员</span></td>
               <td>24课时</td>
               <td><span class="badge badge-success">在职</span></td>
-              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('王明华')">查看</button></td>
+              <td>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('王明华')">查看</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('王明华')">培训</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('王明华')">岗位</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('王明华')">离职</button>
+                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('王明华')">诚信</button>
+              </td>
             </tr>
             <tr>
               <td><strong>张雨婷</strong></td>
@@ -170,7 +138,13 @@
               <td><span class="tag">AI算法工程师</span></td>
               <td>48课时</td>
               <td><span class="badge badge-success">在职</span></td>
-              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('张雨婷')">查看</button></td>
+              <td>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('张雨婷')">查看</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('张雨婷')">培训</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('张雨婷')">岗位</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('张雨婷')">离职</button>
+                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('张雨婷')">诚信</button>
+              </td>
             </tr>
             <tr>
               <td><strong>刘强</strong></td>
@@ -179,7 +153,13 @@
               <td><span class="tag">外卖骑手</span></td>
               <td>6课时</td>
               <td><span class="badge badge-success">在职</span></td>
-              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('刘强')">查看</button></td>
+              <td>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('刘强')">查看</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('刘强')">培训</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('刘强')">岗位</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('刘强')">离职</button>
+                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('刘强')">诚信</button>
+              </td>
             </tr>
             <tr>
               <td><strong>李晓燕</strong></td>
@@ -188,7 +168,13 @@
               <td><span class="tag">安保主管</span></td>
               <td>32课时</td>
               <td><span class="badge badge-success">在职</span></td>
-              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('李晓燕')">查看</button></td>
+              <td>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('李晓燕')">查看</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('李晓燕')">培训</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('李晓燕')">岗位</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('李晓燕')">离职</button>
+                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('李晓燕')">诚信</button>
+              </td>
             </tr>
             <tr>
               <td><strong>黄敏</strong></td>
@@ -197,7 +183,13 @@
               <td><span class="tag">中级会计师</span></td>
               <td>40课时</td>
               <td><span class="badge badge-success">在职</span></td>
-              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('黄敏')">查看</button></td>
+              <td>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('黄敏')">查看</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('黄敏')">培训</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('黄敏')">岗位</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('黄敏')">离职</button>
+                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('黄敏')">诚信</button>
+              </td>
             </tr>
             <tr>
               <td><strong>周建国</strong></td>
@@ -206,7 +198,13 @@
               <td><span class="tag">保洁员</span></td>
               <td>4课时</td>
               <td><span class="badge badge-warning">待就业</span></td>
-              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('周建国')">查看</button></td>
+              <td>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('周建国')">查看</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('周建国')">培训</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('周建国')">岗位</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('周建国')">离职</button>
+                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('周建国')">诚信</button>
+              </td>
             </tr>
             <tr>
               <td><strong>吴丽娟</strong></td>
@@ -215,7 +213,13 @@
               <td><span class="tag">家政服务</span></td>
               <td>12课时</td>
               <td><span class="badge badge-success">在职</span></td>
-              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('吴丽娟')">查看</button></td>
+              <td>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('吴丽娟')">查看</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('吴丽娟')">培训</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('吴丽娟')">岗位</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('吴丽娟')">离职</button>
+                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('吴丽娟')">诚信</button>
+              </td>
             </tr>
             <tr>
               <td><strong>赵磊</strong></td>
@@ -224,7 +228,13 @@
               <td><span class="tag">前端开发工程师</span></td>
               <td>42课时</td>
               <td><span class="badge badge-success">在职</span></td>
-              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('赵磊')">查看</button></td>
+              <td>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('赵磊')">查看</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showTrainingModal('赵磊')">培训</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showPositionModal('赵磊')">岗位</button>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showResignModal('赵磊')">离职</button>
+                <button class="btn btn-secondary btn-sm" onclick="showCreditModal('赵磊')">诚信</button>
+              </td>
           </tr>
         </tbody>
         </table>
@@ -371,32 +381,28 @@
     </div>
     <div class="modal-body">
       <div class="form-group">
-        <label>选择人员</label>
-        <select class="form-select" id="training-emp-select" onchange="loadTrainingInfo()">
-          <option value="">请选择人员</option>
-        </select>
+        <label>人员姓名</label>
+        <input type="text" class="form-input" id="training-emp-name" readonly>
       </div>
-      <div id="training-info" style="display: none;">
-        <div class="form-group">
-          <label>年度培训要求</label>
-          <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">每年≥10课时</div>
+      <div class="form-group">
+        <label>年度培训要求</label>
+        <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">每年≥10课时</div>
+      </div>
+      <div class="form-group">
+        <label>已完成课时</label>
+        <div style="padding: 10px; background: rgba(82, 196, 26, 0.1); border-radius: 8px; color: #52c41a;" id="training-hours">36课时</div>
+      </div>
+      <div class="form-group">
+        <label>推荐课程</label>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <span class="tag">人工智能基础</span>
+          <span class="tag">劳动法规培训</span>
+          <span class="tag">职业技能提升</span>
         </div>
-        <div class="form-group">
-          <label>已完成课时</label>
-          <div style="padding: 10px; background: rgba(82, 196, 26, 0.1); border-radius: 8px; color: #52c41a;" id="training-hours">36课时</div>
-        </div>
-        <div class="form-group">
-          <label>推荐课程</label>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="tag">人工智能基础</span>
-            <span class="tag">劳动法规培训</span>
-            <span class="tag">职业技能提升</span>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>新增课时</label>
-          <input type="number" class="form-input" id="add-training-hours" placeholder="请输入新增课时" min="1">
-        </div>
+      </div>
+      <div class="form-group">
+        <label>新增课时</label>
+        <input type="number" class="form-input" id="add-training-hours" placeholder="请输入新增课时" min="1">
       </div>
     </div>
     <div class="modal-footer">
@@ -415,36 +421,32 @@
     </div>
     <div class="modal-body">
       <div class="form-group">
-        <label>选择人员</label>
-        <select class="form-select" id="position-emp-select" onchange="loadPositionInfo()">
-          <option value="">请选择人员</option>
-        </select>
+        <label>人员姓名</label>
+        <input type="text" class="form-input" id="position-emp-name" readonly>
       </div>
-      <div id="position-info" style="display: none;">
-        <div class="form-group">
-          <label>当前岗位</label>
-          <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;" id="current-position">Java开发工程师</div>
+      <div class="form-group">
+        <label>当前岗位</label>
+        <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;" id="current-position">Java开发工程师</div>
+      </div>
+      <div class="form-group">
+        <label>所属部门</label>
+        <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">技术研发部</div>
+      </div>
+      <div class="form-group">
+        <label>岗位变动记录</label>
+        <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+          <p>2026-01-15：入职技术研发部</p>
+          <p>2026-03-01：晋升为高级工程师</p>
         </div>
-        <div class="form-group">
-          <label>所属部门</label>
-          <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">技术研发部</div>
-        </div>
-        <div class="form-group">
-          <label>岗位变动记录</label>
-          <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
-            <p>2026-01-15：入职技术研发部</p>
-            <p>2026-03-01：晋升为高级工程师</p>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>新岗位</label>
-          <select class="form-select" id="new-position">
-            <option value="">请选择新岗位</option>
-            <option value="高级Java工程师">高级Java工程师</option>
-            <option value="技术经理">技术经理</option>
-            <option value="架构师">架构师</option>
-          </select>
-        </div>
+      </div>
+      <div class="form-group">
+        <label>新岗位</label>
+        <select class="form-select" id="new-position">
+          <option value="">请选择新岗位</option>
+          <option value="高级Java工程师">高级Java工程师</option>
+          <option value="技术经理">技术经理</option>
+          <option value="架构师">架构师</option>
+        </select>
       </div>
     </div>
     <div class="modal-footer">
@@ -463,34 +465,26 @@
     </div>
     <div class="modal-body">
       <div class="form-group">
-        <label>选择人员</label>
-        <select class="form-select" id="resign-emp-select" onchange="loadResignInfo()">
-          <option value="">请选择人员</option>
+        <label>姓名</label>
+        <input type="text" class="form-input" id="resign-emp-name" readonly>
+      </div>
+      <div class="form-group">
+        <label>离职原因</label>
+        <select class="form-select" id="resign-reason" required>
+          <option value="">请选择离职原因</option>
+          <option value="个人原因">个人原因</option>
+          <option value="合同到期">合同到期</option>
+          <option value="公司裁员">公司裁员</option>
+          <option value="其他">其他</option>
         </select>
       </div>
-      <div id="resign-form" style="display: none;">
-        <div class="form-group">
-          <label>姓名</label>
-          <input type="text" class="form-input" id="resign-emp-name" readonly>
-        </div>
-        <div class="form-group">
-          <label>离职原因</label>
-          <select class="form-select" id="resign-reason" required>
-            <option value="">请选择离职原因</option>
-            <option value="个人原因">个人原因</option>
-            <option value="合同到期">合同到期</option>
-            <option value="公司裁员">公司裁员</option>
-            <option value="其他">其他</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>离职日期</label>
-          <input type="date" class="form-input" id="resign-date" required>
-        </div>
-        <div class="form-group">
-          <label>备注</label>
-          <textarea class="form-textarea" id="resign-note" rows="2" placeholder="请填写备注（可选）"></textarea>
-        </div>
+      <div class="form-group">
+        <label>离职日期</label>
+        <input type="date" class="form-input" id="resign-date" required>
+      </div>
+      <div class="form-group">
+        <label>备注</label>
+        <textarea class="form-textarea" id="resign-note" rows="2" placeholder="请填写备注（可选）"></textarea>
       </div>
     </div>
     <div class="modal-footer">
@@ -509,30 +503,26 @@
     </div>
     <div class="modal-body">
       <div class="form-group">
-        <label>选择人员</label>
-        <select class="form-select" id="credit-emp-select" onchange="loadCreditInfo()">
-          <option value="">请选择人员</option>
-        </select>
+        <label>人员姓名</label>
+        <input type="text" class="form-input" id="credit-emp-name" readonly>
       </div>
-      <div id="credit-info" style="display: none;">
-        <div class="form-group">
-          <label>诚信评级</label>
-          <div style="padding: 10px; background: rgba(82, 196, 26, 0.1); border-radius: 8px; color: #52c41a; font-size: 18px; font-weight: 600;" id="credit-rating">⭐⭐⭐⭐⭐ 优秀</div>
+      <div class="form-group">
+        <label>诚信评级</label>
+        <div style="padding: 10px; background: rgba(82, 196, 26, 0.1); border-radius: 8px; color: #52c41a; font-size: 18px; font-weight: 600;" id="credit-rating">⭐⭐⭐⭐⭐ 优秀</div>
+      </div>
+      <div class="form-group">
+        <label>从业记录</label>
+        <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+          <p>入职时间：2026-01-15</p>
+          <p>从业年限：0年5个月</p>
+          <p>服务机构：XX科技有限公司</p>
         </div>
-        <div class="form-group">
-          <label>从业记录</label>
-          <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
-            <p>入职时间：2026-01-15</p>
-            <p>从业年限：0年5个月</p>
-            <p>服务机构：XX科技有限公司</p>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>奖惩记录</label>
-          <div style="padding: 12px; background: rgba(82, 196, 26, 0.1); border-radius: 8px;">
-            <p>无违规记录</p>
-            <p>2026-04-01：获得月度优秀员工</p>
-          </div>
+      </div>
+      <div class="form-group">
+        <label>奖惩记录</label>
+        <div style="padding: 12px; background: rgba(82, 196, 26, 0.1); border-radius: 8px;">
+          <p>无违规记录</p>
+          <p>2026-04-01：获得月度优秀员工</p>
         </div>
       </div>
     </div>
@@ -619,19 +609,49 @@
     document.getElementById(modalId).style.display = 'flex';
     document.body.style.overflow = 'hidden';
     
-    if (modalId === 'training-modal') {
-      refreshTrainingEmpList();
-    } else if (modalId === 'position-modal') {
-      refreshPositionEmpList();
-    } else if (modalId === 'resign-modal') {
-      refreshResignEmpList();
-    } else if (modalId === 'credit-modal') {
-      refreshCreditEmpList();
-    } else if (modalId === 'employee-audit-modal') {
+    if (modalId === 'employee-audit-modal') {
       refreshAuditEmpList();
     } else if (modalId === 'employee-update-modal') {
       refreshUpdateEmpList();
     }
+  }
+  
+  function showTrainingModal(empName) {
+    document.getElementById('training-emp-name').value = empName;
+    const rows = document.querySelectorAll('.table tbody tr');
+    rows.forEach(row => {
+      const name = row.querySelector('td:first-child strong').textContent;
+      if (name === empName) {
+        document.getElementById('training-hours').textContent = row.querySelectorAll('td')[4].textContent;
+      }
+    });
+    showModal('training-modal');
+  }
+  
+  function showPositionModal(empName) {
+    document.getElementById('position-emp-name').value = empName;
+    const rows = document.querySelectorAll('.table tbody tr');
+    rows.forEach(row => {
+      const name = row.querySelector('td:first-child strong').textContent;
+      if (name === empName) {
+        const qualification = row.querySelectorAll('td')[3].textContent.replace(/<[^>]*>/g, '');
+        document.getElementById('current-position').textContent = qualification;
+      }
+    });
+    showModal('position-modal');
+  }
+  
+  function showResignModal(empName) {
+    document.getElementById('resign-emp-name').value = empName;
+    document.getElementById('resign-reason').value = '';
+    document.getElementById('resign-date').value = '';
+    document.getElementById('resign-note').value = '';
+    showModal('resign-modal');
+  }
+  
+  function showCreditModal(empName) {
+    document.getElementById('credit-emp-name').value = empName;
+    showModal('credit-modal');
   }
   
   function closeModal(modalId) {
@@ -865,51 +885,11 @@
     showNotification('信息更新成功', 'success');
   }
   
-  function refreshTrainingEmpList() {
-    const select = document.getElementById('training-emp-select');
-    select.innerHTML = '<option value="">请选择人员</option>';
-    
-    const rows = document.querySelectorAll('.table tbody tr');
-    rows.forEach(row => {
-      const name = row.querySelector('td:first-child strong').textContent;
-      const statusBadge = row.querySelectorAll('td')[5].querySelector('.badge');
-      
-      if (statusBadge && statusBadge.textContent.includes('在职')) {
-        const option = document.createElement('option');
-        option.value = name;
-        option.textContent = name;
-        select.appendChild(option);
-      }
-    });
-  }
   
-  function loadTrainingInfo() {
-    const select = document.getElementById('training-emp-select');
-    const infoContainer = document.getElementById('training-info');
-    
-    if (!select.value) {
-      infoContainer.style.display = 'none';
-      return;
-    }
-    
-    const rows = document.querySelectorAll('.table tbody tr');
-    rows.forEach(row => {
-      const name = row.querySelector('td:first-child strong').textContent;
-      if (name === select.value) {
-        document.getElementById('training-hours').textContent = row.querySelectorAll('td')[4].textContent;
-        infoContainer.style.display = 'block';
-      }
-    });
-  }
   
   function submitTraining() {
-    const select = document.getElementById('training-emp-select');
+    const empName = document.getElementById('training-emp-name').value;
     const addHours = document.getElementById('add-training-hours').value;
-    
-    if (!select.value) {
-      showNotification('请选择人员', 'error');
-      return;
-    }
     
     if (!addHours || parseInt(addHours) <= 0) {
       showNotification('请输入有效的课时数', 'error');
@@ -919,64 +899,24 @@
     const rows = document.querySelectorAll('.table tbody tr');
     rows.forEach(row => {
       const name = row.querySelector('td:first-child strong').textContent;
-      if (name === select.value) {
+      if (name === empName) {
         const currentHours = parseInt(row.querySelectorAll('td')[4].textContent);
         const newHours = currentHours + parseInt(addHours);
         row.querySelectorAll('td')[4].textContent = newHours + '课时';
+        document.getElementById('training-hours').textContent = newHours + '课时';
       }
     });
     
     document.getElementById('add-training-hours').value = '';
     closeModal('training-modal');
-    showNotification(`已添加 ${addHours} 课时`, 'success');
+    showNotification(`已为 ${empName} 添加 ${addHours} 课时`, 'success');
   }
   
-  function refreshPositionEmpList() {
-    const select = document.getElementById('position-emp-select');
-    select.innerHTML = '<option value="">请选择人员</option>';
-    
-    const rows = document.querySelectorAll('.table tbody tr');
-    rows.forEach(row => {
-      const name = row.querySelector('td:first-child strong').textContent;
-      const statusBadge = row.querySelectorAll('td')[5].querySelector('.badge');
-      
-      if (statusBadge && statusBadge.textContent.includes('在职')) {
-        const option = document.createElement('option');
-        option.value = name;
-        option.textContent = name;
-        select.appendChild(option);
-      }
-    });
-  }
   
-  function loadPositionInfo() {
-    const select = document.getElementById('position-emp-select');
-    const infoContainer = document.getElementById('position-info');
-    
-    if (!select.value) {
-      infoContainer.style.display = 'none';
-      return;
-    }
-    
-    const rows = document.querySelectorAll('.table tbody tr');
-    rows.forEach(row => {
-      const name = row.querySelector('td:first-child strong').textContent;
-      if (name === select.value) {
-        const qualification = row.querySelectorAll('td')[3].textContent.replace(/<[^>]*>/g, '');
-        document.getElementById('current-position').textContent = qualification;
-        infoContainer.style.display = 'block';
-      }
-    });
-  }
   
   function submitPosition() {
-    const select = document.getElementById('position-emp-select');
+    const empName = document.getElementById('position-emp-name').value;
     const newPosition = document.getElementById('new-position').value;
-    
-    if (!select.value) {
-      showNotification('请选择人员', 'error');
-      return;
-    }
     
     if (!newPosition) {
       showNotification('请选择新岗位', 'error');
@@ -986,59 +926,23 @@
     const rows = document.querySelectorAll('.table tbody tr');
     rows.forEach(row => {
       const name = row.querySelector('td:first-child strong').textContent;
-      if (name === select.value) {
+      if (name === empName) {
         row.querySelectorAll('td')[3].innerHTML = `<span class="tag">${newPosition}</span>`;
+        document.getElementById('current-position').textContent = newPosition;
       }
     });
     
     document.getElementById('new-position').value = '';
     closeModal('position-modal');
-    showNotification(`岗位调整为 ${newPosition}`, 'success');
+    showNotification(`已为 ${empName} 调整岗位为 ${newPosition}`, 'success');
   }
   
-  function refreshResignEmpList() {
-    const select = document.getElementById('resign-emp-select');
-    select.innerHTML = '<option value="">请选择人员</option>';
-    
-    const rows = document.querySelectorAll('.table tbody tr');
-    rows.forEach(row => {
-      const name = row.querySelector('td:first-child strong').textContent;
-      const statusBadge = row.querySelectorAll('td')[5].querySelector('.badge');
-      
-      if (statusBadge && statusBadge.textContent.includes('在职')) {
-        const option = document.createElement('option');
-        option.value = name;
-        option.textContent = name;
-        select.appendChild(option);
-      }
-    });
-  }
   
-  function loadResignInfo() {
-    const select = document.getElementById('resign-emp-select');
-    const formContainer = document.getElementById('resign-form');
-    
-    if (!select.value) {
-      formContainer.style.display = 'none';
-      return;
-    }
-    
-    document.getElementById('resign-emp-name').value = select.value;
-    document.getElementById('resign-reason').value = '';
-    document.getElementById('resign-date').value = '';
-    document.getElementById('resign-note').value = '';
-    formContainer.style.display = 'block';
-  }
   
   function submitResign() {
-    const select = document.getElementById('resign-emp-select');
+    const empName = document.getElementById('resign-emp-name').value;
     const reason = document.getElementById('resign-reason').value;
     const date = document.getElementById('resign-date').value;
-    
-    if (!select.value) {
-      showNotification('请选择人员', 'error');
-      return;
-    }
     
     if (!reason) {
       showNotification('请选择离职原因', 'error');
@@ -1055,7 +959,7 @@
       const name = row.querySelector('td:first-child strong').textContent;
       const statusBadge = row.querySelectorAll('td')[5].querySelector('.badge');
       
-      if (name === select.value && statusBadge) {
+      if (name === empName && statusBadge) {
         statusBadge.textContent = '已离职';
         statusBadge.className = 'badge badge-danger';
       }
@@ -1065,34 +969,10 @@
     document.getElementById('resign-date').value = '';
     document.getElementById('resign-note').value = '';
     closeModal('resign-modal');
-    showNotification(`${select.value} 已标记为离职`, 'warning');
+    showNotification(`${empName} 已标记为离职`, 'warning');
   }
   
-  function refreshCreditEmpList() {
-    const select = document.getElementById('credit-emp-select');
-    select.innerHTML = '<option value="">请选择人员</option>';
-    
-    const rows = document.querySelectorAll('.table tbody tr');
-    rows.forEach(row => {
-      const name = row.querySelector('td:first-child strong').textContent;
-      const option = document.createElement('option');
-      option.value = name;
-      option.textContent = name;
-      select.appendChild(option);
-    });
-  }
   
-  function loadCreditInfo() {
-    const select = document.getElementById('credit-emp-select');
-    const infoContainer = document.getElementById('credit-info');
-    
-    if (!select.value) {
-      infoContainer.style.display = 'none';
-      return;
-    }
-    
-    infoContainer.style.display = 'block';
-  }
   
   function startVerify() {
     const fileInput = document.getElementById('verify-file');
