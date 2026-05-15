@@ -618,6 +618,20 @@
   function showModal(modalId) {
     document.getElementById(modalId).style.display = 'flex';
     document.body.style.overflow = 'hidden';
+    
+    if (modalId === 'training-modal') {
+      refreshTrainingEmpList();
+    } else if (modalId === 'position-modal') {
+      refreshPositionEmpList();
+    } else if (modalId === 'resign-modal') {
+      refreshResignEmpList();
+    } else if (modalId === 'credit-modal') {
+      refreshCreditEmpList();
+    } else if (modalId === 'employee-audit-modal') {
+      refreshAuditEmpList();
+    } else if (modalId === 'employee-update-modal') {
+      refreshUpdateEmpList();
+    }
   }
   
   function closeModal(modalId) {
