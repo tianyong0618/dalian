@@ -21,7 +21,7 @@
       <h3 class="mb-16">争议申请与受理</h3>
       <div class="row">
         <div class="col-4">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('dispute-apply-modal')">
             <div class="card-header">
               <div class="icon">📝</div>
               <div class="card-content">
@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="col-4">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('dispute-audit-modal')">
             <div class="card-header">
               <div class="icon">✅</div>
               <div class="card-content">
@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="col-4">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('mediator-assign-modal')">
             <div class="card-header">
               <div class="icon">👨⚖️</div>
               <div class="card-content">
@@ -64,7 +64,7 @@
       <h3 class="mb-16">线上调解流程</h3>
       <div class="row">
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('mediation-notice-modal')">
             <div class="card-header">
               <div class="icon">📢</div>
               <div class="card-content">
@@ -75,7 +75,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('mediation-online-modal')">
             <div class="card-header">
               <div class="icon">💻</div>
               <div class="card-content">
@@ -86,7 +86,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('mediation-agreement-modal')">
             <div class="card-header">
               <div class="icon">📄</div>
               <div class="card-content">
@@ -97,7 +97,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('mediation-archive-modal')">
             <div class="card-header">
               <div class="icon">🗃️</div>
               <div class="card-content">
@@ -229,6 +229,131 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('mediation-online-modal')">结束调解</button>
+    </div>
+  </div>
+</div>
+
+<!-- 调解员分配模态框 -->
+<div id="mediator-assign-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>调解员分配</h3>
+      <button class="modal-close" onclick="closeModal('mediator-assign-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>争议信息</label>
+        <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+          <p>争议类型：工资纠纷</p>
+          <p>所在地：XX市XX区</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>AI推荐调解员</label>
+        <div style="padding: 12px; background: rgba(82, 196, 26, 0.1); border-radius: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-weight: 600;">李明华</div>
+              <p class="text-small">擅长领域：工资纠纷、劳动合同</p>
+            </div>
+            <button class="btn btn-primary">分配此调解员</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('mediator-assign-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 调解通知模态框 -->
+<div id="mediation-notice-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>调解通知</h3>
+      <button class="modal-close" onclick="closeModal('mediation-notice-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="padding: 12px; background: rgba(24, 144, 255, 0.1); border-radius: 8px;">
+        <p><strong>调解时间：</strong>2026-05-16 14:00</p>
+        <p><strong>调解方式：</strong>视频调解</p>
+        <p><strong>调解员：</strong>李明华</p>
+        <p><strong>会议链接：</strong><a href="#" style="color: #3b82f6;">点击进入调解室</a></p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('mediation-notice-modal')">关闭</button>
+      <button class="btn btn-primary">确认参加</button>
+    </div>
+  </div>
+</div>
+
+<!-- 调解协议模态框 -->
+<div id="mediation-agreement-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>调解协议</h3>
+      <button class="modal-close" onclick="closeModal('mediation-agreement-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px; max-height: 300px; overflow-y: auto;">
+        <h4 style="margin-bottom: 12px;">劳动争议调解协议书</h4>
+        <p>甲方（申请人）：张三</p>
+        <p>乙方（被申请人）：XX科技有限公司</p>
+        <p style="margin-top: 12px;">经调解，双方达成如下协议：</p>
+        <ol>
+          <li>乙方同意于2026年5月20日前支付甲方工资差额人民币5000元整。</li>
+          <li>双方同意不再就此事提出任何异议。</li>
+          <li>本协议自双方签署之日起生效。</li>
+        </ol>
+      </div>
+      <div style="margin-top: 16px; display: flex; gap: 16px;">
+        <div>
+          <div style="padding: 8px 16px; background: rgba(82, 196, 26, 0.1); border-radius: 8px; text-align: center;">
+            <div style="font-weight: 600;">张三</div>
+            <p class="text-small">已签署</p>
+          </div>
+        </div>
+        <div>
+          <div style="padding: 8px 16px; background: rgba(24, 144, 255, 0.1); border-radius: 8px; text-align: center;">
+            <div style="font-weight: 600;">XX科技有限公司</div>
+            <p class="text-small">待签署</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('mediation-agreement-modal')">关闭</button>
+      <button class="btn btn-primary">签署协议</button>
+    </div>
+  </div>
+</div>
+
+<!-- 调解归档模态框 -->
+<div id="mediation-archive-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>调解归档</h3>
+      <button class="modal-close" onclick="closeModal('mediation-archive-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="search-bar mb-16">
+        <input type="text" class="form-input" placeholder="搜索调解编号、申请人...">
+        <button class="btn btn-primary">搜索</button>
+      </div>
+      <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-weight: 600;">TJ-20260516001</div>
+            <p class="text-small">申请人：张三 | 状态：已结案</p>
+          </div>
+          <button class="btn btn-secondary btn-sm">查看详情</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('mediation-archive-modal')">关闭</button>
     </div>
   </div>
 </div>

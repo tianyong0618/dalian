@@ -21,7 +21,7 @@
       <h3 class="mb-16">AI智能撮合</h3>
       <div class="row">
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('demand-analysis-modal')">
             <div class="card-header">
               <div class="icon">📊</div>
               <div class="card-content">
@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('match-result-modal')">
             <div class="card-header">
               <div class="icon">🎯</div>
               <div class="card-content">
@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('track-modal')">
             <div class="card-header">
               <div class="icon">📈</div>
               <div class="card-content">
@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('talent-search-modal')">
             <div class="card-header">
               <div class="icon">🔎</div>
               <div class="card-content">
@@ -75,7 +75,7 @@
       <h3 class="mb-16">线下专场对接与洽谈会</h3>
       <div class="row">
         <div class="col-4">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('fair-organize-modal')">
             <div class="card-header">
               <div class="icon">📅</div>
               <div class="card-content">
@@ -86,7 +86,7 @@
           </div>
         </div>
         <div class="col-4">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('match-participant-modal')">
             <div class="card-header">
               <div class="icon">🤝</div>
               <div class="card-content">
@@ -97,7 +97,7 @@
           </div>
         </div>
         <div class="col-4">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('special-event-modal')">
             <div class="card-header">
               <div class="icon">📝</div>
               <div class="card-content">
@@ -140,7 +140,7 @@
               <td>56家</td>
               <td>24家</td>
               <td><span class="badge badge-info">筹备中</span></td>
-              <td><button class="btn btn-secondary btn-sm">查看</button></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showModal('fair-detail-modal')">查看</button></td>
             </tr>
           </tbody>
         </table>
@@ -231,6 +231,258 @@
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('fair-detail-modal')">关闭</button>
       <button class="btn btn-primary">立即报名</button>
+    </div>
+  </div>
+</div>
+
+<!-- 需求采集分析模态框 -->
+<div id="demand-analysis-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>需求采集分析</h3>
+      <button class="modal-close" onclick="closeModal('demand-analysis-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>企业需求画像</label>
+        <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+          <p>用工类型：全职 / 兼职 / 劳务派遣</p>
+          <p>岗位类型：技术岗 / 管理岗 / 服务岗</p>
+          <p>薪资范围：8K-30K</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>机构供给画像</label>
+        <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+          <p>服务范围：招聘外包 / 劳务派遣 / 高端猎头</p>
+          <p>覆盖行业：互联网 / 制造业 / 服务业</p>
+          <p>服务能力：★★★★★</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('demand-analysis-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 智能匹配结果模态框 -->
+<div id="match-result-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>智能匹配结果</h3>
+      <button class="modal-close" onclick="closeModal('match-result-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="padding: 12px; background: rgba(82, 196, 26, 0.1); border-radius: 8px; margin-bottom: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-weight: 600;">XX人力资源有限公司</div>
+            <p class="text-small">匹配度：95%</p>
+          </div>
+          <button class="btn btn-primary">立即对接</button>
+        </div>
+      </div>
+      <div style="padding: 12px; background: rgba(24, 144, 255, 0.1); border-radius: 8px; margin-bottom: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-weight: 600;">XX人才服务集团</div>
+            <p class="text-small">匹配度：88%</p>
+          </div>
+          <button class="btn btn-primary">立即对接</button>
+        </div>
+      </div>
+      <div style="padding: 12px; background: rgba(250, 204, 21, 0.1); border-radius: 8px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-weight: 600;">XX劳务派遣公司</div>
+            <p class="text-small">匹配度：75%</p>
+          </div>
+          <button class="btn btn-primary">立即对接</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('match-result-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 撮合跟踪模态框 -->
+<div id="track-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>撮合跟踪</h3>
+      <button class="modal-close" onclick="closeModal('track-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>对接进度</label>
+        <div class="steps">
+          <div class="step completed">
+            <div class="step-circle">1</div>
+            <div class="step-label">需求提交</div>
+          </div>
+          <div class="step completed">
+            <div class="step-circle">2</div>
+            <div class="step-label">匹配分析</div>
+          </div>
+          <div class="step active">
+            <div class="step-circle">3</div>
+            <div class="step-label">机构对接</div>
+          </div>
+          <div class="step">
+            <div class="step-circle">4</div>
+            <div class="step-label">成功签约</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>对接记录</label>
+        <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+          <p>2026-05-14 10:00：需求已提交</p>
+          <p>2026-05-14 14:00：匹配分析完成</p>
+          <p>2026-05-15 09:00：正在与XX人力资源有限公司对接</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('track-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 人才库检索模态框 -->
+<div id="talent-search-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>人才库检索</h3>
+      <button class="modal-close" onclick="closeModal('talent-search-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="search-bar mb-16">
+        <input type="text" class="form-input" placeholder="搜索人才姓名、技能、资质...">
+        <button class="btn btn-primary">搜索</button>
+      </div>
+      <div class="filter-bar mb-16">
+        <select class="form-select">
+          <option value="">全部行业</option>
+          <option value="互联网">互联网</option>
+          <option value="制造业">制造业</option>
+        </select>
+        <select class="form-select">
+          <option value="">全部技能</option>
+          <option value="Java">Java</option>
+          <option value="前端">前端</option>
+        </select>
+      </div>
+      <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-weight: 600;">陈浩然</div>
+            <p class="text-small">Java开发工程师 | 3年经验</p>
+          </div>
+          <button class="btn btn-secondary btn-sm">查看详情</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('talent-search-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 洽谈会组织模态框 -->
+<div id="fair-organize-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>洽谈会组织</h3>
+      <button class="modal-close" onclick="closeModal('fair-organize-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label>洽谈会主题</label>
+          <input type="text" class="form-input" placeholder="请输入洽谈会主题">
+        </div>
+        <div class="form-group">
+          <label>时间</label>
+          <input type="datetime-local" class="form-input">
+        </div>
+        <div class="form-group">
+          <label>地点</label>
+          <input type="text" class="form-input" placeholder="请输入地点">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('fair-organize-modal')">取消</button>
+      <button class="btn btn-primary">发布洽谈会</button>
+    </div>
+  </div>
+</div>
+
+<!-- 参会匹配模态框 -->
+<div id="match-participant-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>参会匹配</h3>
+      <button class="modal-close" onclick="closeModal('match-participant-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>匹配企业</label>
+        <div style="padding: 12px; background: rgba(82, 196, 26, 0.1); border-radius: 8px;">
+          <p>XX科技有限公司 - 需求：Java开发工程师 5人</p>
+          <p>XX制造集团 - 需求：技术工人 20人</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>匹配机构</label>
+        <div style="padding: 12px; background: rgba(24, 144, 255, 0.1); border-radius: 8px;">
+          <p>XX人力资源有限公司 - 擅长：技术人才招聘</p>
+          <p>XX劳务派遣公司 - 擅长：蓝领工人派遣</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('match-participant-modal')">关闭</button>
+      <button class="btn btn-primary">生成对接清单</button>
+    </div>
+  </div>
+</div>
+
+<!-- 专场对接模态框 -->
+<div id="special-event-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>专场对接</h3>
+      <button class="modal-close" onclick="closeModal('special-event-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label>专场主题</label>
+          <input type="text" class="form-input" placeholder="请输入专场主题">
+        </div>
+        <div class="form-group">
+          <label>目标行业</label>
+          <select class="form-select">
+            <option value="">请选择目标行业</option>
+            <option value="互联网">互联网</option>
+            <option value="制造业">制造业</option>
+            <option value="服务业">服务业</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>时间</label>
+          <input type="datetime-local" class="form-input">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('special-event-modal')">取消</button>
+      <button class="btn btn-primary">发起专场</button>
     </div>
   </div>
 </div>

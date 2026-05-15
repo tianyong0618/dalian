@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('employee-audit-modal')">
             <div class="card-header">
               <div class="icon">✅</div>
               <div class="card-content">
@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('employee-update-modal')">
             <div class="card-header">
               <div class="icon">🔄</div>
               <div class="card-content">
@@ -72,7 +72,7 @@
       <h3 class="mb-16">从业人员全生命周期管理</h3>
       <div class="row">
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('training-modal')">
             <div class="card-header">
               <div class="icon">🎓</div>
               <div class="card-content">
@@ -83,7 +83,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('position-modal')">
             <div class="card-header">
               <div class="icon">💼</div>
               <div class="card-content">
@@ -94,7 +94,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('resign-modal')">
             <div class="card-header">
               <div class="icon">🚪</div>
               <div class="card-content">
@@ -105,7 +105,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('credit-modal')">
             <div class="card-header">
               <div class="icon">📋</div>
               <div class="card-content">
@@ -152,7 +152,7 @@
               <td><span class="tag">技能培训中</span></td>
               <td>8课时</td>
               <td><span class="badge badge-warning">待就业</span></td>
-              <td><button class="btn btn-secondary btn-sm">查看</button></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('刘芳')">查看</button></td>
             </tr>
             <tr>
               <td><strong>王明华</strong></td>
@@ -161,7 +161,7 @@
               <td><span class="tag">建筑施工员</span></td>
               <td>24课时</td>
               <td><span class="badge badge-success">在职</span></td>
-              <td><button class="btn btn-secondary btn-sm">查看</button></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('王明华')">查看</button></td>
             </tr>
             <tr>
               <td><strong>张雨婷</strong></td>
@@ -170,7 +170,7 @@
               <td><span class="tag">AI算法工程师</span></td>
               <td>48课时</td>
               <td><span class="badge badge-success">在职</span></td>
-              <td><button class="btn btn-secondary btn-sm">查看</button></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('张雨婷')">查看</button></td>
             </tr>
             <tr>
               <td><strong>刘强</strong></td>
@@ -179,7 +179,7 @@
               <td><span class="tag">外卖骑手</span></td>
               <td>6课时</td>
               <td><span class="badge badge-success">在职</span></td>
-              <td><button class="btn btn-secondary btn-sm">查看</button></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('刘强')">查看</button></td>
             </tr>
             <tr>
               <td><strong>李晓燕</strong></td>
@@ -188,7 +188,7 @@
               <td><span class="tag">安保主管</span></td>
               <td>32课时</td>
               <td><span class="badge badge-success">在职</span></td>
-              <td><button class="btn btn-secondary btn-sm">查看</button></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('李晓燕')">查看</button></td>
             </tr>
             <tr>
               <td><strong>黄敏</strong></td>
@@ -197,7 +197,7 @@
               <td><span class="tag">中级会计师</span></td>
               <td>40课时</td>
               <td><span class="badge badge-success">在职</span></td>
-              <td><button class="btn btn-secondary btn-sm">查看</button></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('黄敏')">查看</button></td>
             </tr>
             <tr>
               <td><strong>周建国</strong></td>
@@ -206,7 +206,7 @@
               <td><span class="tag">保洁员</span></td>
               <td>4课时</td>
               <td><span class="badge badge-warning">待就业</span></td>
-              <td><button class="btn btn-secondary btn-sm">查看</button></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('周建国')">查看</button></td>
             </tr>
             <tr>
               <td><strong>吴丽娟</strong></td>
@@ -215,7 +215,7 @@
               <td><span class="tag">家政服务</span></td>
               <td>12课时</td>
               <td><span class="badge badge-success">在职</span></td>
-              <td><button class="btn btn-secondary btn-sm">查看</button></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('吴丽娟')">查看</button></td>
             </tr>
             <tr>
               <td><strong>赵磊</strong></td>
@@ -224,9 +224,9 @@
               <td><span class="tag">前端开发工程师</span></td>
               <td>42课时</td>
               <td><span class="badge badge-success">在职</span></td>
-              <td><button class="btn btn-secondary btn-sm">查看</button></td>
-            </tr>
-          </tbody>
+              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('赵磊')">查看</button></td>
+          </tr>
+        </tbody>
         </table>
       </div>
     </div>
@@ -273,6 +273,205 @@
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('employee-add-modal')">取消</button>
       <button class="btn btn-primary">提交审核</button>
+    </div>
+  </div>
+</div>
+
+<!-- 入库审核模态框 -->
+<div id="employee-audit-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>入库审核</h3>
+      <button class="modal-close" onclick="closeModal('employee-audit-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="audit-info">
+        <div class="info-row">
+          <span class="label">申请人：</span>
+          <span>陈浩然</span>
+        </div>
+        <div class="info-row">
+          <span class="label">身份证号：</span>
+          <span>430102********3421</span>
+        </div>
+        <div class="info-row">
+          <span class="label">所属机构：</span>
+          <span>XX科技有限公司</span>
+        </div>
+      </div>
+      <div class="form-group mt-16">
+        <label>审核意见</label>
+        <textarea class="form-textarea" rows="3" placeholder="请填写审核意见"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('employee-audit-modal')">关闭</button>
+      <button class="btn btn-warning">退回修改</button>
+      <button class="btn btn-primary">审核通过</button>
+    </div>
+  </div>
+</div>
+
+<!-- 信息更新模态框 -->
+<div id="employee-update-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>信息更新</h3>
+      <button class="modal-close" onclick="closeModal('employee-update-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label>姓名</label>
+          <input type="text" class="form-input" value="陈浩然">
+        </div>
+        <div class="form-group">
+          <label>所属机构</label>
+          <select class="form-select">
+            <option value="XX科技有限公司">XX科技有限公司</option>
+            <option value="XX零工服务中心">XX零工服务中心</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>从业资质</label>
+          <input type="text" class="form-input" value="Java开发工程师">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('employee-update-modal')">取消</button>
+      <button class="btn btn-primary">保存更新</button>
+    </div>
+  </div>
+</div>
+
+<!-- 培训管理模态框 -->
+<div id="training-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>培训管理</h3>
+      <button class="modal-close" onclick="closeModal('training-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>年度培训要求</label>
+        <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">每年≥10课时</div>
+      </div>
+      <div class="form-group">
+        <label>已完成课时</label>
+        <div style="padding: 10px; background: rgba(82, 196, 26, 0.1); border-radius: 8px; color: #52c41a;">36课时</div>
+      </div>
+      <div class="form-group">
+        <label>推荐课程</label>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <span class="tag">人工智能基础</span>
+          <span class="tag">劳动法规培训</span>
+          <span class="tag">职业技能提升</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('training-modal')">关闭</button>
+      <button class="btn btn-primary">报名课程</button>
+    </div>
+  </div>
+</div>
+
+<!-- 岗位管理模态框 -->
+<div id="position-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>岗位管理</h3>
+      <button class="modal-close" onclick="closeModal('position-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>当前岗位</label>
+        <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">Java开发工程师</div>
+      </div>
+      <div class="form-group">
+        <label>所属部门</label>
+        <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">技术研发部</div>
+      </div>
+      <div class="form-group">
+        <label>岗位变动记录</label>
+        <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+          <p>2026-01-15：入职技术研发部</p>
+          <p>2026-03-01：晋升为高级工程师</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('position-modal')">关闭</button>
+      <button class="btn btn-primary">申请调岗</button>
+    </div>
+  </div>
+</div>
+
+<!-- 离职管理模态框 -->
+<div id="resign-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>离职管理</h3>
+      <button class="modal-close" onclick="closeModal('resign-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>姓名</label>
+        <input type="text" class="form-input" placeholder="请输入姓名">
+      </div>
+      <div class="form-group">
+        <label>离职原因</label>
+        <select class="form-select">
+          <option value="">请选择离职原因</option>
+          <option value="个人原因">个人原因</option>
+          <option value="合同到期">合同到期</option>
+          <option value="公司裁员">公司裁员</option>
+          <option value="其他">其他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>离职日期</label>
+        <input type="date" class="form-input">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('resign-modal')">取消</button>
+      <button class="btn btn-primary">确认离职</button>
+    </div>
+  </div>
+</div>
+
+<!-- 诚信档案模态框 -->
+<div id="credit-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>诚信档案</h3>
+      <button class="modal-close" onclick="closeModal('credit-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>诚信评级</label>
+        <div style="padding: 10px; background: rgba(82, 196, 26, 0.1); border-radius: 8px; color: #52c41a; font-size: 18px; font-weight: 600;">⭐⭐⭐⭐⭐ 优秀</div>
+      </div>
+      <div class="form-group">
+        <label>从业记录</label>
+        <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+          <p>入职时间：2026-01-15</p>
+          <p>从业年限：0年5个月</p>
+          <p>服务机构：XX科技有限公司</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>奖惩记录</label>
+        <div style="padding: 12px; background: rgba(82, 196, 26, 0.1); border-radius: 8px;">
+          <p>无违规记录</p>
+          <p>2026-04-01：获得月度优秀员工</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('credit-modal')">关闭</button>
     </div>
   </div>
 </div>

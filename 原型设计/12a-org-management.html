@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="col-4">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('record-modal')">
             <div class="card-header">
               <div class="icon">📋</div>
               <div class="card-content">
@@ -94,7 +94,7 @@
           </div>
           <div class="col-6 text-right">
             <span class="badge badge-warning">2条异常预警</span>
-            <button class="btn btn-primary ml-8">查看预警</button>
+            <button class="btn btn-primary ml-8" onclick="showModal('warning-modal')">查看预警</button>
           </div>
         </div>
       </div>
@@ -150,7 +150,7 @@
             <td>198</td>
             <td><div class="progress-bar"><div class="progress-fill" style="width: 92%;"></div></div><span class="text-small">92%</span></td>
             <td><span class="badge badge-success">营业中</span></td>
-            <td><button class="btn btn-secondary btn-sm">查看</button></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="showOrgDetail('XX人才服务集团')">查看</button></td>
           </tr>
         </tbody>
       </table>
@@ -248,6 +248,68 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('org-detail-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 备案管理模态框 -->
+<div id="record-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>备案管理</h3>
+      <button class="modal-close" onclick="closeModal('record-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>备案编号</label>
+        <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">HRBA-2026-0001</div>
+      </div>
+      <div class="form-group">
+        <label>备案日期</label>
+        <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">2026-01-15</div>
+      </div>
+      <div class="form-group">
+        <label>有效期至</label>
+        <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">2027-01-14</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('record-modal')">关闭</button>
+      <button class="btn btn-primary">申请变更</button>
+    </div>
+  </div>
+</div>
+
+<!-- 预警查看模态框 -->
+<div id="warning-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>运营预警</h3>
+      <button class="modal-close" onclick="closeModal('warning-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="padding: 12px; background: rgba(245, 108, 108, 0.1); border-radius: 8px; margin-bottom: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-weight: 600; color: #f56c6c;">⚠️ 服务质量预警</div>
+            <p class="text-small">XX人才服务集团 连续3个月满意度低于90%</p>
+          </div>
+          <span class="badge badge-danger">待处理</span>
+        </div>
+      </div>
+      <div style="padding: 12px; background: rgba(245, 108, 108, 0.1); border-radius: 8px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-weight: 600; color: #f56c6c;">⚠️ 合规预警</div>
+            <p class="text-small">XX劳务派遣公司 年度审核材料未提交</p>
+          </div>
+          <span class="badge badge-danger">待处理</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('warning-modal')">关闭</button>
+      <button class="btn btn-primary">处理预警</button>
     </div>
   </div>
 </div>

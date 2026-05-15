@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('store-audit-modal')">
             <div class="card-header">
               <div class="icon">✅</div>
               <div class="card-content">
@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('store-manage-modal')">
             <div class="card-header">
               <div class="icon">🏪</div>
               <div class="card-content">
@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('store-supervise-modal')">
             <div class="card-header">
               <div class="icon">🔍</div>
               <div class="card-content">
@@ -145,7 +145,7 @@
                 </div>
               </div>
             </div>
-            <button class="btn btn-primary w-100">进入网店</button>
+            <button class="btn btn-primary w-100" onclick="showModal('enter-store-modal')">进入网店</button>
           </div>
         </div>
       </div>
@@ -234,6 +234,146 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('video-interview-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 网店审核模态框 -->
+<div id="store-audit-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>网店审核</h3>
+      <button class="modal-close" onclick="closeModal('store-audit-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="audit-info">
+        <div class="info-row">
+          <span class="label">申请网店：</span>
+          <span>XX人力资源旗舰店</span>
+        </div>
+        <div class="info-row">
+          <span class="label">申请时间：</span>
+          <span>2026-05-10 14:30</span>
+        </div>
+        <div class="info-row">
+          <span class="label">服务范围：</span>
+          <span>岗位招聘 / 劳务派遣 / 视频面试</span>
+        </div>
+      </div>
+      <div class="form-group mt-16">
+        <label>审核意见</label>
+        <textarea class="form-textarea" rows="3" placeholder="请填写审核意见"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('store-audit-modal')">关闭</button>
+      <button class="btn btn-warning">驳回申请</button>
+      <button class="btn btn-primary">审核通过</button>
+    </div>
+  </div>
+</div>
+
+<!-- 网店运营模态框 -->
+<div id="store-manage-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>网店运营管理</h3>
+      <button class="modal-close" onclick="closeModal('store-manage-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>网店名称</label>
+        <input type="text" class="form-input" value="XX人力资源旗舰店">
+      </div>
+      <div class="form-group">
+        <label>网店简介</label>
+        <textarea class="form-textarea" rows="3" placeholder="请填写网店简介"></textarea>
+      </div>
+      <div class="form-group">
+        <label>服务项目</label>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <span class="tag">岗位招聘</span>
+          <span class="tag">劳务派遣</span>
+          <span class="tag">视频面试</span>
+          <button class="btn btn-outline btn-sm">+ 添加</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('store-manage-modal')">关闭</button>
+      <button class="btn btn-primary">保存修改</button>
+    </div>
+  </div>
+</div>
+
+<!-- 网店监管模态框 -->
+<div id="store-supervise-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>网店监管</h3>
+      <button class="btn btn-danger ml-auto">暂停网店</button>
+      <button class="modal-close" onclick="closeModal('store-supervise-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="padding: 12px; background: rgba(245, 108, 108, 0.1); border-radius: 8px; margin-bottom: 12px;">
+        <div style="font-weight: 600; color: #f56c6c;">⚠️ 违规记录</div>
+        <p class="text-small">2026-05-08：发布虚假岗位信息</p>
+      </div>
+      <div class="form-group">
+        <label>监管备注</label>
+        <textarea class="form-textarea" rows="3" placeholder="请填写监管意见"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('store-supervise-modal')">关闭</button>
+      <button class="btn btn-primary">保存记录</button>
+    </div>
+  </div>
+</div>
+
+<!-- 进入网店模态框 -->
+<div id="enter-store-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>XX人力资源旗舰店</h3>
+      <button class="modal-close" onclick="closeModal('enter-store-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>店铺评分</label>
+            <div style="font-size: 24px; color: #faad14;">★★★★★ 4.9</div>
+          </div>
+          <div class="form-group">
+            <label>服务数量</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">128个岗位</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label>服务满意度</label>
+            <div style="padding: 10px; background: rgba(82, 196, 26, 0.1); border-radius: 8px; color: #52c41a;">96%</div>
+          </div>
+          <div class="form-group">
+            <label>服务时长</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">3年</div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-16">
+        <h5>服务项目</h5>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <span class="tag">岗位招聘</span>
+          <span class="tag">劳务派遣</span>
+          <span class="tag">视频面试</span>
+          <span class="tag">政策咨询</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('enter-store-modal')">关闭</button>
+      <button class="btn btn-primary">立即咨询</button>
     </div>
   </div>
 </div>

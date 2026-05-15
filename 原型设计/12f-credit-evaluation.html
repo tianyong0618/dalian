@@ -21,7 +21,7 @@
       <h3 class="mb-16">诚信评价体系</h3>
       <div class="row">
         <div class="col-4">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('evaluation-indicators-modal')">
             <div class="card-header">
               <div class="icon">📊</div>
               <div class="card-content">
@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="col-4">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('evaluation-level-modal')">
             <div class="card-header">
               <div class="icon">📈</div>
               <div class="card-content">
@@ -118,7 +118,7 @@
       </div>
       <div class="row">
         <div class="col-6">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('star-display-modal')">
             <div class="card-header">
               <div class="icon">⭐</div>
               <div class="card-content">
@@ -129,7 +129,7 @@
           </div>
         </div>
         <div class="col-6">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('dynamic-management-modal')">
             <div class="card-header">
               <div class="icon">🔄</div>
               <div class="card-content">
@@ -195,6 +195,149 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('ai-score-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 评价指标模态框 -->
+<div id="evaluation-indicators-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>评价指标体系</h3>
+      <button class="modal-close" onclick="closeModal('evaluation-indicators-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+        <h4 style="margin-bottom: 12px;">一级指标（满分100分）</h4>
+        <div style="display: flex; gap: 24px;">
+          <div style="flex: 1;">
+            <div style="padding: 8px; background: rgba(24, 144, 255, 0.1); border-radius: 8px;">
+              <div style="font-weight: 600;">合规运营（30分）</div>
+              <p class="text-small">资质合规、合同规范、收费透明</p>
+            </div>
+          </div>
+          <div style="flex: 1;">
+            <div style="padding: 8px; background: rgba(82, 196, 26, 0.1); border-radius: 8px;">
+              <div style="font-weight: 600;">服务质量（30分）</div>
+              <p class="text-small">响应速度、服务满意度、成功率</p>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 24px; margin-top: 12px;">
+          <div style="flex: 1;">
+            <div style="padding: 8px; background: rgba(250, 204, 21, 0.1); border-radius: 8px;">
+              <div style="font-weight: 600;">争议处理（25分）</div>
+              <p class="text-small">争议率、处理时效、满意度</p>
+            </div>
+          </div>
+          <div style="flex: 1;">
+            <div style="padding: 8px; background: rgba(251, 146, 60, 0.1); border-radius: 8px;">
+              <div style="font-weight: 600;">稳就业贡献（15分）</div>
+              <p class="text-small">就业人数、困难群体帮扶</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('evaluation-indicators-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 评价等级模态框 -->
+<div id="evaluation-level-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>评价等级说明</h3>
+      <button class="modal-close" onclick="closeModal('evaluation-level-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+        <div style="padding: 12px; background: rgba(250, 204, 21, 0.1); border-radius: 8px; margin-bottom: 12px;">
+          <div style="font-weight: 600;">★★★★★ 五星级（优秀）</div>
+          <p class="text-small">服务优质、诚信合规、稳就业贡献突出</p>
+          <p class="text-small" style="color: #f59e0b;">权益：优先推荐、专项扶持、绿色通道</p>
+        </div>
+        <div style="padding: 12px; background: rgba(24, 144, 255, 0.1); border-radius: 8px; margin-bottom: 12px;">
+          <div style="font-weight: 600;">★★★★☆ 四星级（良好）</div>
+          <p class="text-small">服务良好、诚信合规、稳就业贡献显著</p>
+          <p class="text-small" style="color: #1890ff;">权益：重点推荐、政策支持</p>
+        </div>
+        <div style="padding: 12px; background: rgba(82, 196, 26, 0.1); border-radius: 8px;">
+          <div style="font-weight: 600;">★★★☆☆ 三星级（合格）</div>
+          <p class="text-small">服务合格、诚信合规、有一定稳就业贡献</p>
+          <p class="text-small" style="color: #52c41a;">权益：正常服务、培训支持</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('evaluation-level-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 星级展示模态框 -->
+<div id="star-display-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>星级展示</h3>
+      <button class="modal-close" onclick="closeModal('star-display-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+        <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+          <div style="width: 80px; height: 80px; background: rgba(250, 204, 21, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 32px;">★★★★★</div>
+          <div>
+            <div style="font-weight: 600;">XX人力资源有限公司</div>
+            <p class="text-small">五星级机构</p>
+            <p class="text-small">本月评分：245分</p>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight: 600; margin-bottom: 8px;">展示位置</div>
+          <ul style="margin: 0; padding-left: 20px;">
+            <li>平台首页星级机构推荐区</li>
+            <li>机构网店首页显著位置</li>
+            <li>搜索结果优先展示</li>
+            <li>企业采购优先推荐</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('star-display-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 动态管理模态框 -->
+<div id="dynamic-management-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>动态管理</h3>
+      <button class="modal-close" onclick="closeModal('dynamic-management-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+        <div style="font-weight: 600; margin-bottom: 12px;">复核周期</div>
+        <p>每月自动评分更新，每季度人工复核，每年全面评估</p>
+        
+        <div style="font-weight: 600; margin-top: 16px; margin-bottom: 12px;">升降级规则</div>
+        <div style="display: flex; gap: 16px;">
+          <div style="flex: 1; padding: 8px; background: rgba(82, 196, 26, 0.1); border-radius: 8px;">
+            <div style="font-weight: 600;">升级</div>
+            <p class="text-small">连续3个月评分达标</p>
+          </div>
+          <div style="flex: 1; padding: 8px; background: rgba(245, 108, 108, 0.1); border-radius: 8px;">
+            <div style="font-weight: 600;">降级</div>
+            <p class="text-small">连续2个月评分不达标</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('dynamic-management-modal')">关闭</button>
     </div>
   </div>
 </div>
