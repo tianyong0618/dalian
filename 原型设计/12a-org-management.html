@@ -275,6 +275,10 @@
     </div>
     <div class="modal-body">
       <div class="form-group">
+        <label>当前机构</label>
+        <div style="padding:10px;background:rgba(99,102,241,0.1);border-radius:8px;font-weight:600;" id="record-org-name-display">--</div>
+      </div>
+      <div class="form-group">
         <label>备案编号</label>
         <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;" id="record-number">HRBA-2026-0001</div>
       </div>
@@ -418,6 +422,7 @@
 
   function showOrgRecordModal(orgName) {
     currentRecordOrg = orgName;
+    document.getElementById('record-org-name-display').textContent = orgName;
     document.getElementById('record-number').textContent = 'HRBA-2026-' + String(Math.floor(Math.random() * 9999)).padStart(4, '0');
     document.getElementById('record-date').textContent = new Date().toISOString().split('T')[0];
     const nextYear = new Date();

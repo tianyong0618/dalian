@@ -131,7 +131,15 @@
               <td>32家</td>
               <td>18家</td>
               <td><span class="badge badge-info">报名中</span></td>
-              <td><button class="btn btn-secondary btn-sm" onclick="showModal('fair-detail-modal')">查看</button></td>
+              <td>
+                <div class="action-dropdown">
+                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showModal('fair-detail-modal')"><i class="fas fa-eye"></i>查看详情</a>
+                    <a onclick="showNotification('报名已提交', 'success')"><i class="fas fa-user-plus"></i>报名参与</a>
+                  </div>
+                </div>
+              </td>
             </tr>
             <tr>
               <td><strong>应届生就业对接会</strong></td>
@@ -140,11 +148,79 @@
               <td>56家</td>
               <td>24家</td>
               <td><span class="badge badge-info">筹备中</span></td>
-              <td><button class="btn btn-secondary btn-sm" onclick="showModal('fair-detail-modal')">查看</button></td>
+              <td>
+                <div class="action-dropdown">
+                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showModal('fair-detail-modal')"><i class="fas fa-eye"></i>查看详情</a>
+                    <a onclick="showNotification('报名已提交', 'success')"><i class="fas fa-user-plus"></i>报名参与</a>
+                  </div>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
+    </div>
+
+    <!-- 本月撮合概览 -->
+    <div class="card p-24 mt-24">
+      <h3 class="mb-16">本月撮合概览</h3>
+      <div class="row mb-24">
+        <div class="col-4">
+          <div class="stat-card" style="text-align:center;padding:20px;">
+            <div style="font-size:32px;font-weight:700;color:var(--primary,#6366f1);">156</div>
+            <div style="font-size:14px;color:var(--text-secondary,#888);margin-top:4px;">撮合成功 <span style="color:var(--text-primary);">对</span></div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-card" style="text-align:center;padding:20px;">
+            <div style="font-size:32px;font-weight:700;color:#f59e0b;">23</div>
+            <div style="font-size:14px;color:var(--text-secondary,#888);margin-top:4px;">对接中 <span style="color:var(--text-primary);">对</span></div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-card" style="text-align:center;padding:20px;">
+            <div style="font-size:32px;font-weight:700;color:#10b981;">87%</div>
+            <div style="font-size:14px;color:var(--text-secondary,#888);margin-top:4px;">匹配成功率</div>
+          </div>
+        </div>
+      </div>
+      <h4 class="mb-12">最近匹配成功</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>企业名称</th>
+            <th>对接机构</th>
+            <th>对接岗位</th>
+            <th>匹配人数</th>
+            <th>完成时间</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>XX科技有限公司</td>
+            <td>XX人力资源有限公司</td>
+            <td>Java开发工程师</td>
+            <td>5人</td>
+            <td>2026-05-14</td>
+          </tr>
+          <tr>
+            <td>XX制造集团</td>
+            <td>XX劳务派遣公司</td>
+            <td>技术工人</td>
+            <td>20人</td>
+            <td>2026-05-13</td>
+          </tr>
+          <tr>
+            <td>XX互联网公司</td>
+            <td>XX人才服务集团</td>
+            <td>产品经理</td>
+            <td>3人</td>
+            <td>2026-05-12</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
   </div>
@@ -184,7 +260,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('match-demand-modal')">取消</button>
-      <button class="btn btn-primary">开始匹配</button>
+      <button class="btn btn-primary" onclick="showNotification('匹配任务已提交', 'success');closeModal('match-demand-modal')">开始匹配</button>
     </div>
   </div>
 </div>
@@ -230,7 +306,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('fair-detail-modal')">关闭</button>
-      <button class="btn btn-primary">立即报名</button>
+      <button class="btn btn-primary" onclick="showNotification('报名已提交，等待审核', 'success');closeModal('fair-detail-modal')">立即报名</button>
     </div>
   </div>
 </div>
@@ -280,7 +356,7 @@
             <div style="font-weight: 600;">XX人力资源有限公司</div>
             <p class="text-small">匹配度：95%</p>
           </div>
-          <button class="btn btn-primary">立即对接</button>
+          <button class="btn btn-primary" onclick="showNotification('对接请求已发送', 'success')">立即对接</button>
         </div>
       </div>
       <div style="padding: 12px; background: rgba(24, 144, 255, 0.1); border-radius: 8px; margin-bottom: 12px;">
@@ -289,7 +365,7 @@
             <div style="font-weight: 600;">XX人才服务集团</div>
             <p class="text-small">匹配度：88%</p>
           </div>
-          <button class="btn btn-primary">立即对接</button>
+          <button class="btn btn-primary" onclick="showNotification('对接请求已发送', 'success')">立即对接</button>
         </div>
       </div>
       <div style="padding: 12px; background: rgba(250, 204, 21, 0.1); border-radius: 8px;">
@@ -298,7 +374,7 @@
             <div style="font-weight: 600;">XX劳务派遣公司</div>
             <p class="text-small">匹配度：75%</p>
           </div>
-          <button class="btn btn-primary">立即对接</button>
+          <button class="btn btn-primary" onclick="showNotification('对接请求已发送', 'success')">立即对接</button>
         </div>
       </div>
     </div>
@@ -362,7 +438,7 @@
     <div class="modal-body">
       <div class="search-bar mb-16">
         <input type="text" class="form-input" placeholder="搜索人才姓名、技能、资质...">
-        <button class="btn btn-primary">搜索</button>
+          <button class="btn btn-primary" onclick="showNotification('搜索已完成', 'success')">搜索</button>
       </div>
       <div class="filter-bar mb-16">
         <select class="form-select">
@@ -382,7 +458,7 @@
             <div style="font-weight: 600;">陈浩然</div>
             <p class="text-small">Java开发工程师 | 3年经验</p>
           </div>
-          <button class="btn btn-secondary btn-sm">查看详情</button>
+          <button class="btn btn-secondary btn-sm" onclick="showNotification('正在打开人才详情', 'success')">查看详情</button>
         </div>
       </div>
     </div>
@@ -417,7 +493,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('fair-organize-modal')">取消</button>
-      <button class="btn btn-primary">发布洽谈会</button>
+      <button class="btn btn-primary" onclick="showNotification('洽谈会已发布', 'success');closeModal('fair-organize-modal')">发布洽谈会</button>
     </div>
   </div>
 </div>
@@ -447,7 +523,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('match-participant-modal')">关闭</button>
-      <button class="btn btn-primary">生成对接清单</button>
+      <button class="btn btn-primary" onclick="showNotification('对接清单已生成', 'success');closeModal('match-participant-modal')">生成对接清单</button>
     </div>
   </div>
 </div>
@@ -482,7 +558,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('special-event-modal')">取消</button>
-      <button class="btn btn-primary">发起专场</button>
+      <button class="btn btn-primary" onclick="showNotification('专场已发起', 'success');closeModal('special-event-modal')">发起专场</button>
     </div>
   </div>
 </div>
@@ -498,8 +574,27 @@
     document.getElementById(modalId).style.display = 'none';
     document.body.style.overflow = '';
   }
+
+  function toggleActionMenu(btn) {
+    const menu = btn.parentElement.querySelector('.action-menu');
+    document.querySelectorAll('.action-menu.show').forEach(m => {
+      if (m !== menu) m.classList.remove('show');
+    });
+    menu.classList.toggle('show');
+  }
+
+  function showNotification(message, type) {
+    if (parent && parent.showNotification) {
+      parent.showNotification(message, type);
+    } else {
+      alert(message);
+    }
+  }
   
   document.addEventListener('click', function(e) {
+    if (!e.target.closest('.action-dropdown')) {
+      document.querySelectorAll('.action-menu.show').forEach(m => m.classList.remove('show'));
+    }
     if (e.target.classList.contains('modal-overlay')) {
       e.target.style.display = 'none';
       document.body.style.overflow = '';

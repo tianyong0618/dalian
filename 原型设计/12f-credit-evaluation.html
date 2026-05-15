@@ -142,6 +142,133 @@
       </div>
     </div>
 
+    <!-- 机构评分列表 -->
+    <div class="card p-24 mt-24">
+      <div class="mb-16" style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="margin: 0;">机构评分列表</h3>
+      </div>
+      <div class="search-bar">
+        <input type="text" class="form-input" placeholder="搜索机构名称、服务类型...">
+        <button class="btn btn-primary btn-sm" onclick="showNotification('搜索功能开发中')"><i class="fas fa-search"></i> 搜索</button>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>机构名称</th>
+            <th>服务类型</th>
+            <th>本月评分</th>
+            <th>星级</th>
+            <th>评价等级</th>
+            <th style="width: 100px;">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>大连智联人力资源有限公司</strong></td>
+            <td>人才招聘</td>
+            <td><span style="color: #52c41a; font-weight: 600;">248分</span></td>
+            <td style="color: #f59e0b;">★★★★★</td>
+            <td><span class="badge badge-success">优秀</span></td>
+            <td>
+              <div class="action-dropdown">
+                <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                <div class="action-menu">
+                  <a onclick="showModal('ai-score-modal')"><i class="fas fa-chart-bar"></i> 查看评分明细</a>
+                  <a onclick="showModal('star-display-modal')"><i class="fas fa-star"></i> 星级展示</a>
+                  <a onclick="showModal('evaluation-level-modal')"><i class="fas fa-tag"></i> 评价等级</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>大连博信人才服务有限公司</strong></td>
+            <td>劳务派遣</td>
+            <td><span style="color: #52c41a; font-weight: 600;">242分</span></td>
+            <td style="color: #f59e0b;">★★★★★</td>
+            <td><span class="badge badge-success">优秀</span></td>
+            <td>
+              <div class="action-dropdown">
+                <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                <div class="action-menu">
+                  <a onclick="showModal('ai-score-modal')"><i class="fas fa-chart-bar"></i> 查看评分明细</a>
+                  <a onclick="showModal('star-display-modal')"><i class="fas fa-star"></i> 星级展示</a>
+                  <a onclick="showModal('evaluation-level-modal')"><i class="fas fa-tag"></i> 评价等级</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>大连锐仕达管理咨询有限公司</strong></td>
+            <td>管理咨询</td>
+            <td><span style="color: #1890ff; font-weight: 600;">218分</span></td>
+            <td style="color: #f59e0b;">★★★★☆</td>
+            <td><span class="badge badge-warning">良好</span></td>
+            <td>
+              <div class="action-dropdown">
+                <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                <div class="action-menu">
+                  <a onclick="showModal('ai-score-modal')"><i class="fas fa-chart-bar"></i> 查看评分明细</a>
+                  <a onclick="showModal('star-display-modal')"><i class="fas fa-star"></i> 星级展示</a>
+                  <a onclick="showModal('evaluation-level-modal')"><i class="fas fa-tag"></i> 评价等级</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>大连万宝利人力资源有限公司</strong></td>
+            <td>服务外包</td>
+            <td><span style="color: #1890ff; font-weight: 600;">205分</span></td>
+            <td style="color: #f59e0b;">★★★★☆</td>
+            <td><span class="badge badge-warning">良好</span></td>
+            <td>
+              <div class="action-dropdown">
+                <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                <div class="action-menu">
+                  <a onclick="showModal('ai-score-modal')"><i class="fas fa-chart-bar"></i> 查看评分明细</a>
+                  <a onclick="showModal('star-display-modal')"><i class="fas fa-star"></i> 星级展示</a>
+                  <a onclick="showModal('evaluation-level-modal')"><i class="fas fa-tag"></i> 评价等级</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>大连众合人力资源有限公司</strong></td>
+            <td>人才培训</td>
+            <td><span style="color: #666; font-weight: 600;">168分</span></td>
+            <td style="color: #f59e0b;">★★★☆☆</td>
+            <td><span class="badge badge-info">合格</span></td>
+            <td>
+              <div class="action-dropdown">
+                <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                <div class="action-menu">
+                  <a onclick="showModal('ai-score-modal')"><i class="fas fa-chart-bar"></i> 查看评分明细</a>
+                  <a onclick="showModal('star-display-modal')"><i class="fas fa-star"></i> 星级展示</a>
+                  <a onclick="showModal('evaluation-level-modal')"><i class="fas fa-tag"></i> 评价等级</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>大连广源劳务服务有限公司</strong></td>
+            <td>劳务派遣</td>
+            <td><span style="color: #666; font-weight: 600;">152分</span></td>
+            <td style="color: #f59e0b;">★★★☆☆</td>
+            <td><span class="badge badge-info">合格</span></td>
+            <td>
+              <div class="action-dropdown">
+                <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                <div class="action-menu">
+                  <a onclick="showModal('ai-score-modal')"><i class="fas fa-chart-bar"></i> 查看评分明细</a>
+                  <a onclick="showModal('star-display-modal')"><i class="fas fa-star"></i> 星级展示</a>
+                  <a onclick="showModal('evaluation-level-modal')"><i class="fas fa-tag"></i> 评价等级</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </div>
 
@@ -354,7 +481,29 @@
     document.body.style.overflow = '';
   }
   
+  /* 通知提示 */
+  function showNotification(msg) {
+    var n = document.createElement('div');
+    n.textContent = msg;
+    n.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:12px 24px;border-radius:8px;font-size:14px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.2);transition:opacity 0.3s;opacity:0;';
+    document.body.appendChild(n);
+    setTimeout(function(){n.style.opacity='1';},10);
+    setTimeout(function(){n.style.opacity='0';setTimeout(function(){n.remove();},300);},2000);
+  }
+
+  /* 操作下拉菜单切换 */
+  function toggleActionMenu(btn) {
+    var menu = btn.parentElement.querySelector('.action-menu');
+    var isShow = menu.classList.contains('show');
+    document.querySelectorAll('.action-menu.show').forEach(function(m){m.classList.remove('show');});
+    if (!isShow) menu.classList.add('show');
+  }
+
+  /* 点击外部关闭下拉菜单 */
   document.addEventListener('click', function(e) {
+    if (!e.target.closest('.action-dropdown')) {
+      document.querySelectorAll('.action-menu.show').forEach(function(m){m.classList.remove('show');});
+    }
     if (e.target.classList.contains('modal-overlay')) {
       e.target.style.display = 'none';
       document.body.style.overflow = '';

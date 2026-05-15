@@ -110,6 +110,103 @@
       </div>
     </div>
 
+    <!-- 争议案件列表 -->
+    <div class="card p-24 mt-24">
+      <h3 class="mb-16">争议案件列表</h3>
+      <div class="search-bar mb-16" style="display: flex; gap: 12px;">
+        <input type="text" class="form-input" placeholder="搜索案件编号、申请人..." style="flex: 1; max-width: 360px;">
+        <button class="btn btn-primary" onclick="showNotification('搜索完成', 'success')"><i class="fas fa-search mr-4"></i>搜索</button>
+      </div>
+      <div style="overflow-x: auto;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>案件编号</th>
+              <th>申请人</th>
+              <th>被申请人</th>
+              <th>争议类型</th>
+              <th>调解员</th>
+              <th>状态</th>
+              <th style="width: 120px;">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span style="font-family: monospace; color: var(--primary);">TJ-20260514001</span></td>
+              <td>张三</td>
+              <td>XX科技有限公司</td>
+              <td>工资纠纷</td>
+              <td>—</td>
+              <td><span class="badge badge-warning">待审核</span></td>
+              <td>
+                <div class="action-dropdown">
+                  <button class="btn btn-primary btn-audit" onclick="showNotification('已进入审核流程', 'success')">审核</button>
+                  <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showNotification('查看案件详情', 'info')"><i class="fas fa-eye"></i>查看</a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span style="font-family: monospace; color: var(--primary);">TJ-20260513002</span></td>
+              <td>李四</td>
+              <td>YY人力资源公司</td>
+              <td>劳动合同</td>
+              <td>李明华</td>
+              <td><span class="badge badge-info">调解中</span></td>
+              <td>
+                <div class="action-dropdown">
+                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showNotification('查看案件详情', 'info')"><i class="fas fa-eye"></i>查看详情</a>
+                    <a onclick="showNotification('查看调解记录', 'info')"><i class="fas fa-file-alt"></i>调解记录</a>
+                    <a onclick="showNotification('案件已归档', 'success')"><i class="fas fa-archive"></i>归档</a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span style="font-family: monospace; color: var(--primary);">TJ-20260512003</span></td>
+              <td>王五</td>
+              <td>ZZ制造有限公司</td>
+              <td>工伤赔偿</td>
+              <td>赵晓峰</td>
+              <td><span class="badge badge-info">调解中</span></td>
+              <td>
+                <div class="action-dropdown">
+                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showNotification('查看案件详情', 'info')"><i class="fas fa-eye"></i>查看详情</a>
+                    <a onclick="showNotification('查看调解记录', 'info')"><i class="fas fa-file-alt"></i>调解记录</a>
+                    <a onclick="showNotification('案件已归档', 'success')"><i class="fas fa-archive"></i>归档</a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span style="font-family: monospace; color: var(--primary);">TJ-20260510004</span></td>
+              <td>赵六</td>
+              <td>WW商贸有限公司</td>
+              <td>其他</td>
+              <td>陈思远</td>
+              <td><span class="badge badge-success">已结案</span></td>
+              <td>
+                <div class="action-dropdown">
+                  <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
+                  <div class="action-menu">
+                    <a onclick="showNotification('查看案件详情', 'info')"><i class="fas fa-eye"></i>查看详情</a>
+                    <a onclick="showNotification('查看调解记录', 'info')"><i class="fas fa-file-alt"></i>调解记录</a>
+                    <a onclick="showNotification('案件已归档', 'success')"><i class="fas fa-archive"></i>归档</a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -159,7 +256,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('dispute-apply-modal')">取消</button>
-      <button class="btn btn-primary">提交申请</button>
+      <button class="btn btn-primary" onclick="submitActionAndClose('dispute-apply-modal')">提交申请</button>
     </div>
   </div>
 </div>
@@ -193,8 +290,8 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('dispute-audit-modal')">关闭</button>
-      <button class="btn btn-warning">驳回申请</button>
-      <button class="btn btn-primary">审核通过</button>
+      <button class="btn btn-warning" onclick="submitActionAndClose('dispute-audit-modal')">驳回申请</button>
+      <button class="btn btn-primary" onclick="submitActionAndClose('dispute-audit-modal')">审核通过</button>
     </div>
   </div>
 </div>
@@ -222,13 +319,13 @@
         </div>
       </div>
       <div style="margin-top: 16px; display: flex; gap: 12px; justify-content: center;">
-        <button class="btn btn-secondary" style="padding: 8px 24px;">🔇 静音</button>
-        <button class="btn btn-secondary" style="padding: 8px 24px;">📹 关闭摄像头</button>
-        <button class="btn btn-danger" style="padding: 8px 24px;">🚪 离开</button>
+        <button class="btn btn-secondary" style="padding: 8px 24px;" onclick="showNotification('操作已提交', 'success')">🔇 静音</button>
+        <button class="btn btn-secondary" style="padding: 8px 24px;" onclick="showNotification('操作已提交', 'success')">📹 关闭摄像头</button>
+        <button class="btn btn-danger" style="padding: 8px 24px;" onclick="submitActionAndClose('mediation-online-modal')">🚪 离开</button>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-secondary" onclick="closeModal('mediation-online-modal')">结束调解</button>
+      <button class="btn btn-secondary" onclick="submitActionAndClose('mediation-online-modal')">结束调解</button>
     </div>
   </div>
 </div>
@@ -256,7 +353,7 @@
               <div style="font-weight: 600;">李明华</div>
               <p class="text-small">擅长领域：工资纠纷、劳动合同</p>
             </div>
-            <button class="btn btn-primary">分配此调解员</button>
+            <button class="btn btn-primary" onclick="submitActionAndClose('mediator-assign-modal')">分配此调解员</button>
           </div>
         </div>
       </div>
@@ -284,7 +381,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('mediation-notice-modal')">关闭</button>
-      <button class="btn btn-primary">确认参加</button>
+      <button class="btn btn-primary" onclick="submitActionAndClose('mediation-notice-modal')">确认参加</button>
     </div>
   </div>
 </div>
@@ -325,7 +422,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('mediation-agreement-modal')">关闭</button>
-      <button class="btn btn-primary">签署协议</button>
+      <button class="btn btn-primary" onclick="submitActionAndClose('mediation-agreement-modal')">签署协议</button>
     </div>
   </div>
 </div>
@@ -340,7 +437,7 @@
     <div class="modal-body">
       <div class="search-bar mb-16">
         <input type="text" class="form-input" placeholder="搜索调解编号、申请人...">
-        <button class="btn btn-primary">搜索</button>
+        <button class="btn btn-primary" onclick="showNotification('搜索完成', 'success')">搜索</button>
       </div>
       <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -348,7 +445,7 @@
             <div style="font-weight: 600;">TJ-20260516001</div>
             <p class="text-small">申请人：张三 | 状态：已结案</p>
           </div>
-          <button class="btn btn-secondary btn-sm">查看详情</button>
+          <button class="btn btn-secondary btn-sm" onclick="showNotification('查看详情', 'info')">查看详情</button>
         </div>
       </div>
     </div>
@@ -356,6 +453,11 @@
       <button class="btn btn-secondary" onclick="closeModal('mediation-archive-modal')">关闭</button>
     </div>
   </div>
+</div>
+
+<!-- 通知提示 -->
+<div class="notification" id="notification" style="display: none;">
+  <span id="notification-msg"></span>
 </div>
 
 <script src="assets/theme-switch.js"></script>
@@ -369,8 +471,40 @@
     document.getElementById(modalId).style.display = 'none';
     document.body.style.overflow = '';
   }
+
+  // 通知提示
+  function showNotification(msg, type) {
+    const notification = document.getElementById('notification');
+    const msgEl = document.getElementById('notification-msg');
+    notification.className = 'notification ' + (type || '');
+    msgEl.textContent = msg;
+    notification.style.display = 'flex';
+    setTimeout(function() { notification.style.display = 'none'; }, 3000);
+  }
+
+  // 提交操作并关闭模态框
+  function submitActionAndClose(modalId) {
+    showNotification('操作已提交', 'success');
+    closeModal(modalId);
+  }
+
+  // 切换操作下拉菜单
+  function toggleActionMenu(btn) {
+    const menu = btn.parentElement.querySelector('.action-menu');
+    document.querySelectorAll('.action-menu.show').forEach(function(m) {
+      if (m !== menu) m.classList.remove('show');
+    });
+    menu.classList.toggle('show');
+  }
   
   document.addEventListener('click', function(e) {
+    // 关闭下拉菜单（点击外部）
+    if (!e.target.closest('.action-dropdown')) {
+      document.querySelectorAll('.action-menu.show').forEach(function(m) {
+        m.classList.remove('show');
+      });
+    }
+    // 点击模态框外部关闭
     if (e.target.classList.contains('modal-overlay')) {
       e.target.style.display = 'none';
       document.body.style.overflow = '';
