@@ -1178,7 +1178,8 @@
     }
 
     function filterPersons() {
-      const search = document.getElementById('person-search').value.toLowerCase();
+      const search = document.getElementById('person-search').value;
+      const searchLower = search.toLowerCase();
       const group = document.getElementById('filter-group').value;
       const education = document.getElementById('filter-education').value;
       const stability = document.getElementById('filter-stability').value;
@@ -1186,7 +1187,7 @@
 
       let filtered = [...personData];
 
-      if (search) filtered = filtered.filter(p => p.name.toLowerCase().includes(search) || p.tags.some(t => t.toLowerCase().includes(search)));
+      if (search) filtered = filtered.filter(p => p.name.toLowerCase().includes(searchLower) || p.idCard.includes(search) || p.tags.some(t => t.toLowerCase().includes(searchLower)));
       if (group) filtered = filtered.filter(p => p.group === group);
       if (education) {
         const mapping = { '本科及以上': ['本科', '硕士'], '大专': ['大专'], '高中及以下': ['高中', '中专', '初中'] };
