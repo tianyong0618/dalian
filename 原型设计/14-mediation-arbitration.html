@@ -7,7 +7,7 @@
   <!-- Font Awesome图标库 -->
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <!-- 防止闪烁：在页面渲染前立即设置主题 -->
-  <script>(function(){var t=localStorage.getItem('theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
   <link rel="stylesheet" href="style.css">
   <style>
     /* SPA 容器样式 */
@@ -481,7 +481,7 @@
   function toggleTheme() {
     const html = document.documentElement;
     const currentTheme = html.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    const newTheme = currentTheme === 'dark' ? 'dark' : 'dark';
     
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
@@ -511,7 +511,7 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     const savedTheme = localStorage.getItem('theme');
-    const theme = savedTheme || 'light';
+    const theme = savedTheme || 'dark';
     
     document.documentElement.setAttribute('data-theme', theme);
     updateThemeToggle(theme);
