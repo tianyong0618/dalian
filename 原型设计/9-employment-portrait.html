@@ -1220,16 +1220,60 @@
     }
 
     function nextPortraitStep() {
+      if (currentPortraitStep === 1 && !selectedPerson) {
+        showNotification('请先选择人员', 'error');
+        return;
+      }
+      
       if (currentPortraitStep < 4) {
         document.getElementById(`portrait-form-${currentPortraitStep}`).style.display = 'none';
         currentPortraitStep++;
+        
+        if (currentPortraitStep === 3) {
+          renderPortraitStep3();
+        } else if (currentPortraitStep === 4) {
+          renderPortraitStep4();
+        }
+        
         document.getElementById(`portrait-form-${currentPortraitStep}`).style.display = '';
         document.querySelectorAll('.step').forEach((s, i) => s.classList.toggle('active', i + 1 <= currentPortraitStep));
         document.getElementById('portrait-prev-btn').style.display = currentPortraitStep > 1 ? '' : 'none';
         document.getElementById('portrait-next-btn').textContent = currentPortraitStep === 4 ? '完成' : '下一步';
       } else {
-        window.location.href = '9-employment-portrait-detail.html';
+        window.location.href = `9-employment-portrait-detail.html?id=${selectedPerson.id}`;
       }
+    }
+    
+    function renderPortraitStep3() {
+      const person = personData.find(p => p.idCard === selectedPerson.id);
+      if (!person) return;
+      
+      const form3 = document.getElementById('portrait-form-3');
+      form3.innerHTML = `
+        <h4 class="mb-4">正在生成动态标签... <span class="badge" style="background: rgba(147, 51, 234, 0.1); color: var(--secondary); font-size: 11px;">🏷️ 智能标签生成中...</span></h4>
+        <div class="grid grid-cols-2 gap-4 mb-4">
+          <div class="stat-card p-4 rounded-lg"><div class="text-2xl font-bold text-indigo-400">${person.competitiveness}%</div><div class="text-xs text-slate-400">教育竞争力</div></div>
+          <div class="stat-card p-4 rounded-lg"><div class="text-2xl font-bold text-purple-400">${person.stability}%</div><div class="text-xs text-slate-400">就业稳定性</div></div>
+          <div class="stat-card p-4 rounded-lg"><div class="text-2xl font-bold text-pink-400">${Math.round((person.competitiveness + person.stability) / 2)}%</div><div class="text-xs text-slate-400">职业技能</div></div>
+          <div class="stat-card p-4 rounded-lg"><div class="text-2xl font-bold text-orange-400">${Math.round(person.competitiveness * 0.85)}%</div><div class="text-xs text-slate-400">薪资趋势</div></div>
+        </div>
+        <div><strong class="text-sm text-slate-300">生成标签：</strong><div style="margin-top: 8px;">
+          ${person.tags.map(tag => `<span class="tag px-3 py-1 rounded-lg text-xs">${tag}</span>`).join('')}
+        </div></div>
+      `;
+    }
+    
+    function renderPortraitStep4() {
+      const person = personData.find(p => p.idCard === selectedPerson.id);
+      if (!person) return;
+      
+      const form4 = document.getElementById('portrait-form-4');
+      const matchRate = Math.round(90 + Math.random() * 10);
+      form4.innerHTML = `
+        <div style="font-size: 64px; margin-bottom: 16px;">✨</div>
+        <h3 class="text-xl font-bold text-white mb-2">画像生成成功！</h3>
+        <p class="text-slate-400">${person.name}的全息画像已生成，包含${person.tags.length}个标签维度，匹配准确率${matchRate}%</p>
+      `;
     }
 
     function prevPortraitStep() {
