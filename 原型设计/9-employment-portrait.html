@@ -750,10 +750,6 @@
         <div style="font-size: 64px; margin-bottom: 16px;">✨</div>
         <h3 class="text-xl font-bold text-white mb-2">画像生成成功！</h3>
         <p class="text-slate-400">张三的全息画像已生成，包含128个标签维度，匹配准确率94.7%</p>
-        <div class="mt-6" style="display: flex; gap: 12px; justify-content: center;">
-          <button class="btn-secondary px-6 py-2 rounded-lg" onclick="closeModal('portrait-generate-modal'); resetPortraitSteps()">关闭</button>
-          <a href="9-employment-portrait-detail.html" class="btn-primary px-6 py-2 rounded-lg text-white">查看画像</a>
-        </div>
       </div>
       <div class="flex justify-end gap-4 mt-6">
         <button class="btn-secondary px-4 py-2 rounded-lg" id="portrait-prev-btn" style="display: none;" onclick="prevPortraitStep()">上一步</button>
@@ -1232,8 +1228,7 @@
         document.getElementById('portrait-prev-btn').style.display = currentPortraitStep > 1 ? '' : 'none';
         document.getElementById('portrait-next-btn').textContent = currentPortraitStep === 4 ? '完成' : '下一步';
       } else {
-        document.getElementById(`portrait-form-${currentPortraitStep}`).style.display = 'none';
-        document.getElementById('portrait-form-4').style.display = '';
+        window.location.href = '9-employment-portrait-detail.html';
       }
     }
 
