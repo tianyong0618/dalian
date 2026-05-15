@@ -715,19 +715,12 @@
       <div id="portrait-form-1">
         <div class="mb-4">
           <label class="block text-sm text-slate-400 mb-2">身份证号/姓名</label>
-          <input type="text" class="form-input w-full px-4 py-2 rounded-lg" placeholder="请输入身份证号或姓名" id="portrait-search-input">
+          <input type="text" class="form-input w-full px-4 py-2 rounded-lg" placeholder="请输入身份证号或姓名，例如：410" id="portrait-search-input" onkeyup="searchPersonForPortrait()">
         </div>
-        <div class="bg-slate-800/50 p-4 rounded-lg cursor-pointer" onclick="selectPersonForPortrait('张三', '410xxxxxxxxxxxx1234')">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div><strong style="color: var(--text-primary);">张三</strong><span class="text-xs ml-4 text-slate-400">410xxxxxxxxxxxx1234</span></div>
-            <span class="badge badge-info">高校毕业生</span>
-          </div>
+        <div id="portrait-person-list" style="display: none;" id="portrait-person-list-container">
         </div>
-        <div class="bg-slate-800/50 p-4 rounded-lg cursor-pointer mt-2" onclick="selectPersonForPortrait('李四', '410xxxxxxxxxxxx5678')">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div><strong style="color: var(--text-primary);">李四</strong><span class="text-xs ml-4 text-slate-400">410xxxxxxxxxxxx5678</span></div>
-            <span class="badge badge-warning">就业困难</span>
-          </div>
+        <div id="portrait-no-result" style="display: none; text-align: center; padding: 20px; color: var(--text-secondary);">
+          未找到匹配的人员，请尝试其他关键词
         </div>
       </div>
       <div id="portrait-form-2" style="display: none;">
@@ -1088,19 +1081,60 @@
 
   <script>
     const personData = [
-      { id: 1, name: '陈浩然', education: '本科', group: '高校毕业生', portraitType: 'talent', competitiveness: 85, stability: 65, tags: ['Java开发', '本科及以上', '3年经验', '社保连续缴纳', '求职意向：互联网'], avatar: 'assets/images/男1.webp' },
-      { id: 2, name: '刘芳', education: '高中', group: '就业困难人员', portraitType: 'jobseeker', competitiveness: 42, stability: 28, tags: ['零工人员', '技能培训', '就业帮扶', '高中及以下', '需要技能提升'], avatar: 'assets/images/女1.webp' },
-      { id: 3, name: '王明华', education: '中专', group: '农民工', portraitType: 'keygroup', competitiveness: 58, stability: 72, tags: ['建筑工', '计件工', '农民工', '中专学历'], avatar: 'assets/images/男2.webp' },
-      { id: 4, name: '张雨婷', education: '硕士', group: '高校毕业生', portraitType: 'talent', competitiveness: 90, stability: 62, tags: ['Python', 'AI算法', '硕士', '社保连续缴纳'], avatar: 'assets/images/女2.webp' },
-      { id: 5, name: '刘强', education: '大专', group: '零工人员', portraitType: 'jobseeker', competitiveness: 52, stability: 25, tags: ['外卖骑手', '灵活用工', '零工人员', '大专'], avatar: 'assets/images/男3.webp' },
-      { id: 6, name: '李晓燕', education: '大专', group: '退役军人', portraitType: 'keygroup', competitiveness: 65, stability: 94, tags: ['退役军人', '党员', '大专学历', '纪律性强'], avatar: 'assets/images/女3.webp' },
-      { id: 7, name: '黄敏', education: '本科', group: '高校毕业生', portraitType: 'talent', competitiveness: 72, stability: 88, tags: ['财务会计', '本科及以上', '5年经验', '中级会计师'], avatar: 'assets/images/女4.webp' },
-      { id: 8, name: '周建国', education: '初中', group: '就业困难人员', portraitType: 'jobseeker', competitiveness: 42, stability: 38, tags: ['大龄就业困难', '技能单一', '需重点帮扶', '初中学历'], avatar: 'assets/images/男4.webp' },
-      { id: 9, name: '吴丽娟', education: '高中', group: '农民工', portraitType: 'keygroup', competitiveness: 55, stability: 68, tags: ['家政服务', '农民工', '高中', '灵活就业'], avatar: 'assets/images/女5.webp' },
-      { id: 10, name: '赵磊', education: '本科', group: '高校毕业生', portraitType: 'talent', competitiveness: 88, stability: 75, tags: ['前端开发', '本科及以上', '4年经验', 'Vue/React'], avatar: 'assets/images/男5.webp' }
+      { id: 1, name: '陈浩然', idCard: '410102199503121234', education: '本科', group: '高校毕业生', portraitType: 'talent', competitiveness: 85, stability: 65, tags: ['Java开发', '本科及以上', '3年经验', '社保连续缴纳', '求职意向：互联网'], avatar: 'assets/images/男1.webp' },
+      { id: 2, name: '刘芳', idCard: '320504198807235678', education: '高中', group: '就业困难人员', portraitType: 'jobseeker', competitiveness: 42, stability: 28, tags: ['零工人员', '技能培训', '就业帮扶', '高中及以下', '需要技能提升'], avatar: 'assets/images/女1.webp' },
+      { id: 3, name: '王明华', idCard: '410305197811089012', education: '中专', group: '农民工', portraitType: 'keygroup', competitiveness: 58, stability: 72, tags: ['建筑工', '计件工', '农民工', '中专学历'], avatar: 'assets/images/男2.webp' },
+      { id: 4, name: '张雨婷', idCard: '420106199805163456', education: '硕士', group: '高校毕业生', portraitType: 'talent', competitiveness: 90, stability: 62, tags: ['Python', 'AI算法', '硕士', '社保连续缴纳'], avatar: 'assets/images/女2.webp' },
+      { id: 5, name: '刘强', idCard: '330102199209287890', education: '大专', group: '零工人员', portraitType: 'jobseeker', competitiveness: 52, stability: 25, tags: ['外卖骑手', '灵活用工', '零工人员', '大专'], avatar: 'assets/images/男3.webp' },
+      { id: 6, name: '李晓燕', idCard: '410103198504152345', education: '大专', group: '退役军人', portraitType: 'keygroup', competitiveness: 65, stability: 94, tags: ['退役军人', '党员', '大专学历', '纪律性强'], avatar: 'assets/images/女3.webp' },
+      { id: 7, name: '黄敏', idCard: '320104199012086789', education: '本科', group: '高校毕业生', portraitType: 'talent', competitiveness: 72, stability: 88, tags: ['财务会计', '本科及以上', '5年经验', '中级会计师'], avatar: 'assets/images/女4.webp' },
+      { id: 8, name: '周建国', idCard: '410201196806153456', education: '初中', group: '就业困难人员', portraitType: 'jobseeker', competitiveness: 42, stability: 38, tags: ['大龄就业困难', '技能单一', '需重点帮扶', '初中学历'], avatar: 'assets/images/男4.webp' },
+      { id: 9, name: '吴丽娟', idCard: '430105197508227890', education: '高中', group: '农民工', portraitType: 'keygroup', competitiveness: 55, stability: 68, tags: ['家政服务', '农民工', '高中', '灵活就业'], avatar: 'assets/images/女5.webp' },
+      { id: 10, name: '赵磊', idCard: '410102199301151234', education: '本科', group: '高校毕业生', portraitType: 'talent', competitiveness: 88, stability: 75, tags: ['前端开发', '本科及以上', '4年经验', 'Vue/React'], avatar: 'assets/images/男5.webp' }
     ];
 
     let currentPortraitStep = 1;
+    let selectedPerson = null;
+
+    function searchPersonForPortrait() {
+      const input = document.getElementById('portrait-search-input');
+      const keyword = input.value.trim().toLowerCase();
+      const personList = document.getElementById('portrait-person-list');
+      const noResult = document.getElementById('portrait-no-result');
+      
+      if (!keyword) {
+        personList.style.display = 'none';
+        noResult.style.display = 'none';
+        return;
+      }
+      
+      const filtered = personData.filter(p => 
+        p.name.toLowerCase().includes(keyword) || 
+        p.idCard.toLowerCase().startsWith(keyword)
+      );
+      
+      if (filtered.length === 0) {
+        personList.style.display = 'none';
+        noResult.style.display = '';
+        return;
+      }
+      
+      personList.innerHTML = filtered.map(p => {
+        const tagStyle = getGroupStyle(p.group);
+        const maskedIdCard = p.idCard.slice(0, 6) + '********' + p.idCard.slice(-4);
+        return `
+          <div class="bg-slate-800/50 p-4 rounded-lg cursor-pointer" onclick="selectPersonForPortrait('${p.name}', '${p.idCard}')">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div><strong style="color: var(--text-primary);">${p.name}</strong><span class="text-xs ml-4 text-slate-400">${maskedIdCard}</span></div>
+              <span style="display: inline-block; padding: 4px 10px; background: ${tagStyle.bg}; color: ${tagStyle.color}; border: 1px solid ${tagStyle.border}; border-radius: 6px; font-size: 12px;">${p.group}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+      
+      personList.style.display = '';
+      noResult.style.display = 'none';
+    }
 
     function getGroupStyle(group) {
       const styles = {
@@ -1216,6 +1250,10 @@
 
     function resetPortraitSteps() {
       currentPortraitStep = 1;
+      selectedPerson = null;
+      document.getElementById('portrait-search-input').value = '';
+      document.getElementById('portrait-person-list').style.display = 'none';
+      document.getElementById('portrait-no-result').style.display = 'none';
       document.querySelectorAll('.step').forEach((s, i) => s.classList.toggle('active', i === 0));
       document.querySelectorAll('[id^="portrait-form-"]').forEach((f, i) => f.style.display = i === 0 ? '' : 'none');
       document.getElementById('portrait-prev-btn').style.display = 'none';
@@ -1223,7 +1261,9 @@
     }
 
     function selectPersonForPortrait(name, id) {
+      selectedPerson = { name, id };
       document.getElementById('portrait-search-input').value = `${name} (${id})`;
+      document.getElementById('portrait-person-list').style.display = 'none';
     }
 
     function switchTagCategory(category, btn) {
