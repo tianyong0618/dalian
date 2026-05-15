@@ -20,7 +20,7 @@
     <div class="card mb-24 p-24">
       <h3 class="mb-16">从业人员信息入库</h3>
       <div class="row">
-        <div class="col-3">
+        <div class="col-4">
           <div class="feature-card" onclick="showModal('employee-add-modal')">
             <div class="card-header">
               <div class="icon">📥</div>
@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-4">
           <div class="feature-card" onclick="showModal('employee-verify-modal')">
             <div class="card-header">
               <div class="icon">🤖</div>
@@ -42,18 +42,7 @@
             </div>
           </div>
         </div>
-        <div class="col-3">
-          <div class="feature-card" onclick="showModal('employee-audit-modal')">
-            <div class="card-header">
-              <div class="icon">✅</div>
-              <div class="card-content">
-                <h4>入库审核</h4>
-                <p class="text-small">人社部门在线审核，生成唯一入库编号</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
+        <div class="col-4">
           <div class="feature-card" onclick="showModal('employee-update-modal')">
             <div class="card-header">
               <div class="icon">🔄</div>
@@ -86,6 +75,31 @@
             </tr>
           </thead>
           <tbody>
+            <!-- 待审核人员 -->
+            <tr>
+              <td><strong>林小华</strong></td>
+              <td>430105********6789</td>
+              <td>XX科技服务公司</td>
+              <td><span class="tag">网络工程师</span></td>
+              <td>16课时</td>
+              <td><span class="badge badge-info">待审核</span></td>
+              <td>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('林小华')">查看</button>
+                <button class="btn btn-primary btn-sm" onclick="showAuditModal('林小华')">审核</button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>杨雪梅</strong></td>
+              <td>430106********2345</td>
+              <td>XX人力资源公司</td>
+              <td><span class="tag">人力资源专员</span></td>
+              <td>20课时</td>
+              <td><span class="badge badge-info">待审核</span></td>
+              <td>
+                <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('杨雪梅')">查看</button>
+                <button class="btn btn-primary btn-sm" onclick="showAuditModal('杨雪梅')">审核</button>
+              </td>
+            </tr>
             <tr>
               <td><strong>陈浩然</strong></td>
               <td>430102********3421</td>
@@ -302,31 +316,25 @@
       <button class="modal-close" onclick="closeModal('employee-audit-modal')">×</button>
     </div>
     <div class="modal-body">
-      <div class="form-group">
-        <label>选择待审核人员</label>
-        <select class="form-select" id="emp-audit-select" onchange="loadEmpAuditInfo()">
-          <option value="">请选择人员</option>
-        </select>
-      </div>
-      <div id="emp-audit-info" style="display: none;">
+      <div id="emp-audit-info">
         <div class="audit-info">
           <div class="info-row">
             <span class="label">申请人：</span>
-            <span id="audit-emp-name">陈浩然</span>
+            <span id="audit-emp-name">--</span>
           </div>
           <div class="info-row">
             <span class="label">身份证号：</span>
-            <span id="audit-emp-idcard">430102********3421</span>
+            <span id="audit-emp-idcard">--</span>
           </div>
           <div class="info-row">
             <span class="label">所属机构：</span>
-            <span id="audit-emp-org">XX科技有限公司</span>
+            <span id="audit-emp-org">--</span>
           </div>
         </div>
       </div>
       <div class="form-group mt-16">
         <label>审核意见</label>
-        <textarea class="form-textarea" id="emp-audit-opinion" rows="3" placeholder="请填写审核意见"></textarea>
+        <textarea class="form-textarea" id="emp-audit-opinion" rows="3" placeholder="请填写审核意见（退回时必填）"></textarea>
       </div>
     </div>
     <div class="modal-footer">
@@ -610,15 +618,30 @@
 
 <script src="assets/theme-switch.js"></script>
 <script>
+  let currentAuditEmp = null;
+
   function showModal(modalId) {
     document.getElementById(modalId).style.display = 'flex';
     document.body.style.overflow = 'hidden';
     
-    if (modalId === 'employee-audit-modal') {
-      refreshAuditEmpList();
-    } else if (modalId === 'employee-update-modal') {
+    if (modalId === 'employee-update-modal') {
       refreshUpdateEmpList();
     }
+  }
+
+  function showAuditModal(empName) {
+    currentAuditEmp = empName;
+    const rows = document.querySelectorAll('.table tbody tr');
+    rows.forEach(row => {
+      const name = row.querySelector('td:first-child strong').textContent;
+      if (name === empName) {
+        document.getElementById('audit-emp-name').textContent = name;
+        document.getElementById('audit-emp-idcard').textContent = row.querySelectorAll('td')[1].textContent;
+        document.getElementById('audit-emp-org').textContent = row.querySelectorAll('td')[2].textContent;
+      }
+    });
+    document.getElementById('emp-audit-opinion').value = '';
+    showModal('employee-audit-modal');
   }
   
   function showTrainingModal(empName) {
@@ -720,7 +743,10 @@
       <td><span class="tag">${qualification}</span></td>
       <td>${hours}课时</td>
       <td><span class="badge badge-info">待审核</span></td>
-      <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('${name}')">查看</button></td>
+      <td>
+        <button class="btn btn-secondary btn-sm mr-4" onclick="showEmpDetail('${name}')">查看</button>
+        <button class="btn btn-primary btn-sm" onclick="showAuditModal('${name}')">审核</button>
+      </td>
     `;
     tbody.appendChild(newRow);
     
@@ -734,50 +760,8 @@
     showNotification('从业人员信息已提交，等待审核', 'success');
   }
   
-  function refreshAuditEmpList() {
-    const select = document.getElementById('emp-audit-select');
-    select.innerHTML = '<option value="">请选择人员</option>';
-    
-    const rows = document.querySelectorAll('.table tbody tr');
-    rows.forEach(row => {
-      const name = row.querySelector('td:first-child strong').textContent;
-      const statusBadge = row.querySelectorAll('td')[5].querySelector('.badge');
-      
-      if (statusBadge && statusBadge.textContent.includes('待审核')) {
-        const option = document.createElement('option');
-        option.value = name;
-        option.textContent = name;
-        select.appendChild(option);
-      }
-    });
-  }
-  
-  function loadEmpAuditInfo() {
-    const select = document.getElementById('emp-audit-select');
-    const infoContainer = document.getElementById('emp-audit-info');
-    
-    if (!select.value) {
-      infoContainer.style.display = 'none';
-      return;
-    }
-    
-    const rows = document.querySelectorAll('.table tbody tr');
-    rows.forEach(row => {
-      const name = row.querySelector('td:first-child strong').textContent;
-      if (name === select.value) {
-        document.getElementById('audit-emp-name').textContent = name;
-        document.getElementById('audit-emp-idcard').textContent = row.querySelectorAll('td')[1].textContent;
-        document.getElementById('audit-emp-org').textContent = row.querySelectorAll('td')[2].textContent;
-        infoContainer.style.display = 'block';
-      }
-    });
-  }
-  
   function approveEmpAudit() {
-    const select = document.getElementById('emp-audit-select');
-    const opinion = document.getElementById('emp-audit-opinion').value;
-    
-    if (!select.value) {
+    if (!currentAuditEmp) {
       showNotification('请选择要审核的人员', 'error');
       return;
     }
@@ -787,26 +771,25 @@
       const name = row.querySelector('td:first-child strong').textContent;
       const statusBadge = row.querySelectorAll('td')[5].querySelector('.badge');
       
-      if (name === select.value && statusBadge && statusBadge.textContent.includes('待审核')) {
+      if (name === currentAuditEmp && statusBadge && statusBadge.textContent.includes('待审核')) {
         statusBadge.textContent = '在职';
         statusBadge.className = 'badge badge-success';
       }
     });
     
     document.getElementById('emp-audit-opinion').value = '';
+    currentAuditEmp = null;
     closeModal('employee-audit-modal');
     showNotification('审核通过，人员已入库', 'success');
   }
   
   function rejectEmpAudit() {
-    const select = document.getElementById('emp-audit-select');
-    const opinion = document.getElementById('emp-audit-opinion').value;
-    
-    if (!select.value) {
+    if (!currentAuditEmp) {
       showNotification('请选择要审核的人员', 'error');
       return;
     }
     
+    const opinion = document.getElementById('emp-audit-opinion').value;
     if (!opinion) {
       showNotification('请填写退回原因', 'error');
       return;
@@ -817,12 +800,13 @@
       const name = row.querySelector('td:first-child strong').textContent;
       const statusBadge = row.querySelectorAll('td')[5].querySelector('.badge');
       
-      if (name === select.value && statusBadge && statusBadge.textContent.includes('待审核')) {
+      if (name === currentAuditEmp && statusBadge && statusBadge.textContent.includes('待审核')) {
         row.remove();
       }
     });
     
     document.getElementById('emp-audit-opinion').value = '';
+    currentAuditEmp = null;
     closeModal('employee-audit-modal');
     showNotification('已退回并通知申请人修改', 'warning');
   }
