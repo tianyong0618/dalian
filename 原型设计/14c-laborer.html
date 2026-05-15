@@ -1185,139 +1185,368 @@
   </div>
 </div>
 
-<!-- 全屏云庭审 -->
-<div class="cloud-trial-fullscreen" id="cloud-trial-fullscreen">
-  <div class="ct-header">
-    <div class="ct-header-left">
-      <span class="ct-logo">⚖️</span>
-      <span class="ct-title">劳动人事争议仲裁庭</span>
-      <span class="ct-divider">|</span>
-      <span class="ct-case">案件编号：<span id="ct-case-id">ZC20260503005</span></span>
+<!-- 云庭审完整五分区弹窗 -->
+  <div class="cloud-trial-fullscreen" id="cloud-trial-fullscreen">
+    <!-- 区域1: 顶部信息栏 -->
+    <div class="ct-header">
+      <div class="ct-header-left">
+        <span class="ct-logo">⚖️</span>
+        <span class="ct-title">劳动人事争议仲裁庭</span>
+        <span class="ct-court-name">杭州市劳动人事争议仲裁委员会</span>
+      </div>
+      <div class="ct-header-center">
+        <div class="ct-case-info">
+          <span><strong>案件编号：</strong><span id="ct-case-id">LA2024-0892</span></span>
+          <span class="ct-divider">|</span>
+          <span><strong>案由：</strong><span id="ct-case-type">劳动争议</span></span>
+          <span class="ct-divider">|</span>
+          <span><strong>申请人：</strong><span id="ct-applicant">张某</span></span>
+          <span class="ct-divider">|</span>
+          <span><strong>被申请人：</strong><span id="ct-respondent">某科技公司</span></span>
+        </div>
+      </div>
+      <div class="ct-header-right">
+        <div class="ct-timer">
+          <span class="ct-timer-label">庭审时长</span>
+          <span class="ct-timer-value" id="ct-duration">00:00:00</span>
+        </div>
+        <span class="ct-status">
+          <span class="ct-status-dot"></span>
+          <span id="ct-trial-status">庭审中</span>
+        </span>
+        <button class="ct-btn" onclick="toggleMute()">
+          <span id="mic-icon">🎤</span>
+        </button>
+        <button class="ct-btn" onclick="toggleCamera()">
+          <span id="camera-icon">📹</span>
+        </button>
+        <button class="ct-btn-end" onclick="closeCloudTrial()">退出庭审</button>
+      </div>
     </div>
-    <div class="ct-header-right">
-      <span class="ct-timer" id="ct-timer">00:00:00</span>
-      <button class="ct-btn ct-btn-exit" onclick="closeCloudTrial()">退出庭审</button>
+
+    <!-- 主内容区 - 五分区布局 -->
+    <div class="ct-main">
+      <!-- 左侧区域：视频会议区 -->
+      <div class="ct-left-panel">
+        <!-- 区域2: 视频会议区 -->
+        <div class="ct-video-section">
+          <div class="ct-section-header">
+            <span class="section-icon">📹</span>
+            <span class="section-title">视频会议</span>
+            <div class="ct-video-controls">
+              <button class="ct-control-btn" onclick="shareScreen()" title="共享屏幕">🖥️</button>
+              <button class="ct-control-btn" onclick="toggleRecording()" title="录制">⏺</button>
+              <button class="ct-control-btn" onclick="fullscreenVideo()" title="全屏">⛶</button>
+            </div>
+          </div>
+          <div class="ct-video-area">
+            <!-- 主画面: 仲裁员 -->
+            <div class="ct-video-main" id="arbiter-video">
+              <div class="ct-video-placeholder">
+                <div class="ct-participant-avatar">仲</div>
+                <div class="ct-participant-name">王仲裁员</div>
+                <div class="ct-participant-role">仲裁员</div>
+              </div>
+              <div class="ct-video-active-indicator"></div>
+            </div>
+            <!-- 底部: 当事人画面 -->
+            <div class="ct-video-sub-grid">
+              <div class="ct-video-thumb active" id="applicant-video">
+                <div class="ct-participant-avatar small">申</div>
+                <div class="ct-participant-name">张某</div>
+                <div class="ct-video-badge applicant">申请人</div>
+                <div class="ct-speaking-indicator"></div>
+              </div>
+              <div class="ct-video-thumb" id="respondent-video">
+                <div class="ct-participant-avatar small">被</div>
+                <div class="ct-participant-name">某科技公司</div>
+                <div class="ct-video-badge respondent">被申请人</div>
+              </div>
+              <div class="ct-video-thumb" id="clerk-video">
+                <div class="ct-participant-avatar small">书</div>
+                <div class="ct-participant-name">李书记员</div>
+                <div class="ct-video-badge clerk">书记员</div>
+              </div>
+              <div class="ct-video-thumb" id="lawyer-video">
+                <div class="ct-participant-avatar small">律</div>
+                <div class="ct-participant-name">陈律师</div>
+                <div class="ct-video-badge lawyer">代理人</div>
+              </div>
+            </div>
+          </div>
+          <!-- 庭审流程控制条 -->
+          <div class="ct-trial-progress">
+            <div class="ct-trial-step completed" data-step="1">
+              <span class="step-num">1</span>
+              <span class="step-name">宣布开庭</span>
+            </div>
+            <div class="ct-trial-step active" data-step="2">
+              <span class="step-num">2</span>
+              <span class="step-name">身份核实</span>
+            </div>
+            <div class="ct-trial-step" data-step="3">
+              <span class="step-num">3</span>
+              <span class="step-name">陈述答辩</span>
+            </div>
+            <div class="ct-trial-step" data-step="4">
+              <span class="step-num">4</span>
+              <span class="step-name">举证质证</span>
+            </div>
+            <div class="ct-trial-step" data-step="5">
+              <span class="step-num">5</span>
+              <span class="step-name">辩论陈述</span>
+            </div>
+            <div class="ct-trial-step" data-step="6">
+              <span class="step-num">6</span>
+              <span class="step-name">最后陈述</span>
+            </div>
+            <div class="ct-trial-step" data-step="7">
+              <span class="step-num">7</span>
+              <span class="step-name">调解/宣判</span>
+            </div>
+            <button class="btn btn-sm btn-primary" onclick="nextTrialStep()">下一步 →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 中间区域：证据展示区 -->
+      <div class="ct-middle-panel">
+        <!-- 区域3: 证据展示区 -->
+        <div class="ct-evidence-section">
+          <div class="ct-section-header">
+            <span class="section-icon">📁</span>
+            <span class="section-title">证据材料</span>
+            <button class="btn btn-sm btn-primary" onclick="showUploadEvidenceModal()">+ 上传</button>
+          </div>
+          <div class="ct-evidence-list" id="evidence-list">
+            <div class="ct-evidence-item active" onclick="showEvidence('劳动合同.pdf')">
+              <div class="evidence-icon">📄</div>
+              <div class="evidence-info">
+                <div class="evidence-name">劳动合同.pdf</div>
+                <div class="evidence-meta">申请人提交 | 2024-02-28</div>
+              </div>
+              <button class="evidence-action" onclick="event.stopPropagation(); showEvidence('劳动合同.pdf')">展示</button>
+            </div>
+            <div class="ct-evidence-item" onclick="showEvidence('工资流水.pdf')">
+              <div class="evidence-icon">💳</div>
+              <div class="evidence-info">
+                <div class="evidence-name">工资流水.pdf</div>
+                <div class="evidence-meta">申请人提交 | 2024-02-28</div>
+              </div>
+              <button class="evidence-action" onclick="event.stopPropagation(); showEvidence('工资流水.pdf')">展示</button>
+            </div>
+            <div class="ct-evidence-item" onclick="showEvidence('社保缴纳记录.pdf')">
+              <div class="evidence-icon">📋</div>
+              <div class="evidence-info">
+                <div class="evidence-name">社保缴纳记录.pdf</div>
+                <div class="evidence-meta">被申请人提交 | 2024-03-01</div>
+              </div>
+              <button class="evidence-action" onclick="event.stopPropagation(); showEvidence('社保缴纳记录.pdf')">展示</button>
+            </div>
+            <div class="ct-evidence-item" onclick="showEvidence('解除劳动合同通知书.pdf')">
+              <div class="evidence-icon">📨</div>
+              <div class="evidence-info">
+                <div class="evidence-name">解除劳动合同通知书.pdf</div>
+                <div class="evidence-meta">被申请人提交 | 2024-03-01</div>
+              </div>
+              <button class="evidence-action" onclick="event.stopPropagation(); showEvidence('解除劳动合同通知书.pdf')">展示</button>
+            </div>
+            <div class="ct-evidence-item" onclick="showEvidence('考勤记录.xlsx')">
+              <div class="evidence-icon">📊</div>
+              <div class="evidence-info">
+                <div class="evidence-name">考勤记录.xlsx</div>
+                <div class="evidence-meta">申请人提交 | 2024-02-28</div>
+              </div>
+              <button class="evidence-action" onclick="event.stopPropagation(); showEvidence('考勤记录.xlsx')">展示</button>
+            </div>
+          </div>
+          <!-- 证据预览窗口 -->
+          <div class="ct-evidence-preview">
+            <div class="preview-header">
+              <span>当前展示: 劳动合同.pdf</span>
+            </div>
+            <div class="preview-content">
+              <div class="document-preview">
+                <div class="doc-icon">📄</div>
+                <div class="doc-placeholder">证据预览区域</div>
+                <div class="doc-pages">第 1 / 5 页</div>
+              </div>
+            </div>
+            <div class="preview-controls">
+              <button class="btn btn-xs btn-secondary" onclick="prevEvidence()">←</button>
+              <button class="btn btn-xs btn-secondary" onclick="nextEvidence()">→</button>
+              <button class="btn btn-xs btn-secondary" onclick="zoomEvidence(1)">放大</button>
+              <button class="btn btn-xs btn-secondary" onclick="zoomEvidence(-1)">缩小</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧边栏：庭审笔录 + 操作区 -->
+      <div class="ct-right-panel">
+        <!-- 区域4: 庭审笔录区 -->
+        <div class="ct-transcript-section">
+          <div class="ct-section-header">
+            <span class="section-icon">📝</span>
+            <span class="section-title">庭审笔录</span>
+            <button class="btn btn-sm btn-secondary" onclick="exportTranscript()">导出</button>
+          </div>
+          <div class="ct-transcript-body" id="transcript-body">
+            <div class="ct-transcript-time">2024-03-05 09:00:00</div>
+            <div class="ct-transcript-msg system">【系统】庭审正式开始</div>
+            
+            <div class="ct-transcript-time">2024-03-05 09:00:15</div>
+            <div class="ct-transcript-msg arbiter">
+              <span class="msg-role">仲裁员：</span>
+              <span class="msg-text">现在宣布开庭。本案为张某诉某科技公司劳动争议案，案号LA2024-0892。请各方确认网络状态良好。</span>
+            </div>
+            
+            <div class="ct-transcript-time">2024-03-05 09:00:32</div>
+            <div class="ct-transcript-msg applicant">
+              <span class="msg-role">申请人：</span>
+              <span class="msg-text">确认网络良好，已就位。</span>
+            </div>
+            
+            <div class="ct-transcript-time">2024-03-05 09:00:45</div>
+            <div class="ct-transcript-msg respondent">
+              <span class="msg-role">被申请人：</span>
+              <span class="msg-text">确认网络良好，已就位。</span>
+            </div>
+            
+            <div class="ct-transcript-time">2024-03-05 09:01:00</div>
+            <div class="ct-transcript-msg arbiter">
+              <span class="msg-role">仲裁员：</span>
+              <span class="msg-text">根据《劳动争议调解仲裁法》，本案适用简易程序。现在核实当事人身份。</span>
+            </div>
+            
+            <div class="ct-transcript-time">2024-03-05 09:01:20</div>
+            <div class="ct-transcript-msg system">【系统】请各方保持安静，等待身份核实</div>
+          </div>
+          <div class="ct-transcript-input">
+            <input type="text" id="transcript-input" placeholder="输入笔录内容..." onkeypress="handleTranscriptInput(event)">
+            <button class="btn btn-primary btn-sm" onclick="sendTranscript()">发送</button>
+          </div>
+        </div>
+
+        <!-- 区域5: 操作按钮区 -->
+        <div class="ct-actions-section">
+          <div class="ct-section-header">
+            <span class="section-icon">⚡</span>
+            <span class="section-title">庭审操作</span>
+          </div>
+          <div class="ct-action-buttons">
+            <button class="ct-action-btn primary" onclick="showUploadEvidenceModal()">
+              <span class="action-icon">📤</span>
+              <span class="action-text">上传证据</span>
+            </button>
+            <button class="ct-action-btn" onclick="startCrossExamine()">
+              <span class="action-icon">⚔️</span>
+              <span class="action-text">举证质证</span>
+            </button>
+            <button class="ct-action-btn" onclick="addStatement()">
+              <span class="action-icon">💬</span>
+              <span class="action-text">补充发言</span>
+            </button>
+            <button class="ct-action-btn warning" onclick="adjournTrial()">
+              <span class="action-icon">⏸️</span>
+              <span class="action-text">申请休庭</span>
+            </button>
+            <button class="ct-action-btn success" onclick="startMediation()">
+              <span class="action-icon">🤝</span>
+              <span class="action-text">调解程序</span>
+            </button>
+            <button class="ct-action-btn danger" onclick="announceJudgment()">
+              <span class="action-icon">⚖️</span>
+              <span class="action-text">宣判</span>
+            </button>
+            <div class="ct-sign-section">
+              <button class="ct-action-btn sign" onclick="showSignModal()">
+                <span class="action-icon">✍️</span>
+                <span class="action-text">电子签字</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 证据预览弹窗 -->
+    <div class="evidence-preview-modal" id="evidence-preview-modal">
+      <div class="evidence-preview-content">
+        <div class="evidence-preview-header">
+          <span id="evidence-preview-title">证据预览</span>
+          <button class="evidence-preview-close" onclick="closeEvidencePreview()">×</button>
+        </div>
+        <div class="evidence-preview-body">
+          <div class="evidence-preview-placeholder">
+            <div class="evidence-icon large">📄</div>
+            <div id="evidence-preview-name">劳动合同.pdf</div>
+            <div class="evidence-preview-hint">证据内容预览区域</div>
+          </div>
+        </div>
+        <div class="evidence-preview-footer">
+          <button class="btn btn-secondary" onclick="prevEvidence()">← 上一个</button>
+          <button class="btn btn-secondary" onclick="nextEvidence()">下一个 →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 电子签字弹窗 -->
+    <div class="sign-modal" id="sign-modal">
+      <div class="sign-modal-content">
+        <div class="sign-modal-header">
+          <h3>✍️ 电子签字确认</h3>
+          <button class="sign-modal-close" onclick="closeSignModal()">×</button>
+        </div>
+        <div class="sign-modal-body">
+          <p class="sign-notice">请在下方区域内签名，确认庭审笔录内容属实</p>
+          <div class="sign-area" id="sign-area" onmousedown="startSign(event)" onmousemove="doSign(event)" onmouseup="endSign(event)" onmouseleave="endSign(event)">
+            <canvas id="sign-canvas" width="400" height="150"></canvas>
+          </div>
+          <div class="sign-actions">
+            <button class="btn btn-secondary" onclick="clearSign()">清除</button>
+            <button class="btn btn-primary" onclick="confirmSign()">确认签字</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 上传证据弹窗 -->
+    <div class="upload-evidence-modal" id="upload-evidence-modal">
+      <div class="upload-evidence-content">
+        <div class="upload-evidence-header">
+          <h3>📤 上传证据材料</h3>
+          <button class="upload-evidence-close" onclick="closeUploadModal()">×</button>
+        </div>
+        <div class="upload-evidence-body">
+          <div class="upload-dropzone" id="upload-dropzone">
+            <div class="upload-icon">📁</div>
+            <div class="upload-text">拖拽文件到此处，或点击上传</div>
+            <div class="upload-hint">支持 PDF、Word、图片格式，单文件不超过10MB</div>
+            <input type="file" id="evidence-file-input" style="display:none" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" onchange="handleFileUpload(this)">
+            <button class="btn btn-primary" onclick="document.getElementById('evidence-file-input').click()">选择文件</button>
+          </div>
+          <div class="upload-info">
+            <div class="form-group">
+              <label>证据名称</label>
+              <input type="text" class="form-input" id="evidence-name" placeholder="请输入证据名称">
+            </div>
+            <div class="form-group">
+              <label>证据来源</label>
+              <select class="form-select" id="evidence-source">
+                <option value="applicant">申请人提交</option>
+                <option value="respondent">被申请人提交</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="upload-evidence-footer">
+          <button class="btn btn-secondary" onclick="closeUploadModal()">取消</button>
+          <button class="btn btn-primary" onclick="submitEvidence()">上传</button>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="ct-main">
-    <div class="ct-sidebar">
-      <div class="ct-panel">
-        <div class="ct-panel-title">👥 参会人员</div>
-        <div class="ct-participant">
-          <div class="ct-avatar ct-avatar-arbitrator">仲裁员</div>
-          <div class="ct-participant-info">
-            <div class="ct-participant-name">王仲裁员</div>
-            <div class="ct-participant-role">首席仲裁员</div>
-          </div>
-          <div class="ct-participant-status online"></div>
-        </div>
-        <div class="ct-participant">
-          <div class="ct-avatar ct-avatar-clerk">书记</div>
-          <div class="ct-participant-info">
-            <div class="ct-participant-name">李书记</div>
-            <div class="ct-participant-role">书记员</div>
-          </div>
-          <div class="ct-participant-status online"></div>
-        </div>
-        <div class="ct-participant">
-          <div class="ct-avatar ct-avatar-applicant">申请人</div>
-          <div class="ct-participant-info">
-            <div class="ct-participant-name">张三（您）</div>
-            <div class="ct-participant-role">劳动者</div>
-          </div>
-          <div class="ct-participant-status online"></div>
-        </div>
-        <div class="ct-participant">
-          <div class="ct-avatar ct-avatar-respondent">被申请人</div>
-          <div class="ct-participant-info">
-            <div class="ct-participant-name">XX制造公司</div>
-            <div class="ct-participant-role">用人单位</div>
-          </div>
-          <div class="ct-participant-status offline"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="ct-content">
-      <div class="ct-video-grid">
-        <div class="ct-video-main">
-          <div class="ct-video-placeholder">
-            <div class="ct-video-icon">🎥</div>
-            <div class="ct-video-text">王仲裁员</div>
-          </div>
-          <div class="ct-video-controls">
-            <button class="ct-control-btn" onclick="this.classList.toggle('active')">🎤</button>
-            <button class="ct-control-btn" onclick="this.classList.toggle('active')">📹</button>
-            <button class="ct-control-btn">🖥️</button>
-          </div>
-        </div>
-        <div class="ct-video-small">
-          <div class="ct-video-placeholder ct-video-sm">
-            <div class="ct-video-icon">👤</div>
-            <div class="ct-video-text">张三（您）</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ct-timeline">
-        <div class="ct-timeline-header">
-          <span>📝 庭审笔录</span>
-          <button class="ct-btn ct-btn-sm">导出</button>
-        </div>
-        <div class="ct-timeline-content">
-          <div class="ct-record">[09:00:00] 书记员宣布：仲裁庭现在开始开庭。</div>
-          <div class="ct-record">[09:00:15] 书记员宣布当事人权利义务。</div>
-          <div class="ct-record">[09:01:00] 仲裁员宣布仲裁庭组成人员。</div>
-          <div class="ct-record">[09:02:00] 询问双方是否申请回避。</div>
-          <div class="ct-record">[09:02:30] 双方均表示不申请回避。</div>
-        </div>
-        <div class="ct-timeline-input">
-          <input type="text" class="ct-input" placeholder="输入笔录内容...">
-          <button class="ct-btn ct-btn-primary">发送</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="ct-sidebar">
-      <div class="ct-panel">
-        <div class="ct-panel-title">📎 证据材料</div>
-        <div class="ct-evidence-list">
-          <div class="ct-evidence-item">
-            <span class="ct-evidence-icon">📄</span>
-            <div class="ct-evidence-info">
-              <div class="ct-evidence-name">劳动合同.pdf</div>
-              <div class="ct-evidence-status">已质证</div>
-            </div>
-          </div>
-          <div class="ct-evidence-item">
-            <span class="ct-evidence-icon">📄</span>
-            <div class="ct-evidence-info">
-              <div class="ct-evidence-name">工资流水.pdf</div>
-              <div class="ct-evidence-status">质证中</div>
-            </div>
-          </div>
-          <div class="ct-evidence-item">
-            <span class="ct-evidence-icon">📄</span>
-            <div class="ct-evidence-info">
-              <div class="ct-evidence-name">工伤认定书.pdf</div>
-              <div class="ct-evidence-status">待质证</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ct-panel">
-        <div class="ct-panel-title">⚡ 快捷操作</div>
-        <div class="ct-actions">
-          <button class="ct-action-btn">📤 上传证据</button>
-          <button class="ct-action-btn">✋ 申请发言</button>
-          <button class="ct-action-btn">⏸️ 申请休庭</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <style>
   .cloud-trial-fullscreen {
@@ -1338,25 +1567,54 @@
   }
 
   .ct-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 24px;
+    height: 56px;
     background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
     border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
   }
 
   .ct-header-left {
     display: flex;
     align-items: center;
     gap: 12px;
-    color: var(--text-primary);
   }
 
-  .ct-logo { font-size: 24px; }
-  .ct-title { font-size: 16px; font-weight: 600; }
-  .ct-divider { color: var(--border-color); }
-  .ct-case { font-size: 14px; color: var(--text-secondary); }
+  .ct-logo {
+    font-size: 24px;
+  }
+
+  .ct-title {
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .ct-court-name {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-left: 16px;
+    padding-left: 16px;
+    border-left: 1px solid var(--border-color);
+  }
+
+  .ct-header-center {
+    flex: 1;
+    text-align: center;
+  }
+
+  .ct-case-info {
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+
+  .ct-divider {
+    margin: 0 12px;
+    color: var(--border-color);
+  }
 
   .ct-header-right {
     display: flex;
@@ -1365,225 +1623,364 @@
   }
 
   .ct-timer {
-    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 16px;
+  }
+
+  .ct-timer-label {
+    font-size: 10px;
+    color: var(--text-secondary);
+  }
+
+  .ct-timer-value {
+    font-size: 16px;
     font-weight: 600;
     color: var(--success);
     font-family: monospace;
   }
 
+  .ct-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--success);
+  }
+
+  .ct-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--success);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
   .ct-btn {
-    padding: 8px 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
     border: 1px solid var(--border-color);
-    background: var(--bg-tertiary);
+    background: transparent;
     color: var(--text-primary);
-    border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
+    margin-right: 8px;
+    font-size: 16px;
+    transition: all 0.2s;
   }
 
   .ct-btn:hover {
-    background: var(--bg-hover);
+    background: var(--bg-tertiary);
   }
 
-  .ct-btn-exit {
+  .ct-btn-end {
+    padding: 8px 20px;
     background: var(--danger);
-    border-color: var(--danger);
-    color: white;
+    color: var(--text-on-primary);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
   }
 
   .ct-main {
     flex: 1;
     display: flex;
-    padding: 16px;
-    gap: 16px;
     overflow: hidden;
+    gap: 12px;
+    padding: 12px;
   }
 
-  .ct-sidebar {
-    width: 280px;
+  .ct-left-panel {
+    flex: 2;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    min-width: 0;
   }
 
-  .ct-panel {
+  .ct-middle-panel {
+    width: 320px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ct-right-panel {
+    width: 340px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
     background: var(--bg-secondary);
     border-radius: 8px;
-    padding: 16px;
     border: 1px solid var(--border-color);
   }
 
-  .ct-panel-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 12px;
-  }
-
-  .ct-participant {
+  .ct-section-header {
+    padding: 12px 16px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 12px;
-    padding: 8px;
     background: var(--bg-tertiary);
-    border-radius: 4px;
-    margin-bottom: 8px;
-  }
-
-  .ct-avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 14px;
-    color: white;
+    color: var(--text-primary);
+    flex-shrink: 0;
+    border-radius: 8px 8px 0 0;
   }
 
-  .ct-avatar-arbitrator { background: #722ed1; }
-  .ct-avatar-clerk { background: #13c2c2; }
-  .ct-avatar-applicant { background: #1890ff; }
-  .ct-avatar-respondent { background: #faad14; }
-
-  .ct-participant-info { flex: 1; }
-  .ct-participant-name { font-size: 13px; color: var(--text-primary); }
-  .ct-participant-role { font-size: 11px; color: var(--text-secondary); }
-
-  .ct-participant-status {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+  .section-icon {
+    margin-right: 8px;
   }
 
-  .ct-participant-status.online { background: var(--success); }
-  .ct-participant-status.offline { background: var(--danger); }
+  .section-title {
+    font-weight: 600;
+  }
 
-  .ct-content {
+  .ct-video-section {
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .ct-video-area {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-  }
-
-  .ct-video-grid {
-    flex: 1;
-    display: grid;
-    grid-template-columns: 1fr 200px;
-    gap: 16px;
+    padding: 16px;
+    gap: 12px;
+    min-height: 0;
   }
 
   .ct-video-main {
-    position: relative;
-    background: var(--bg-secondary);
+    flex: 1;
+    background: var(--bg-tertiary);
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    min-height: 200px;
     border: 1px solid var(--border-color);
   }
 
   .ct-video-placeholder {
     text-align: center;
-    color: var(--text-secondary);
   }
 
-  .ct-video-icon { font-size: 64px; margin-bottom: 12px; }
-  .ct-video-text { font-size: 14px; }
+  .ct-participant-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: var(--text-on-primary);
+    margin: 0 auto 12px;
+  }
+
+  .ct-participant-avatar.small {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    margin: 0 auto 8px;
+  }
+
+  .ct-participant-name {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .ct-participant-role {
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+  .ct-video-active-indicator {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--success);
+    animation: pulse 2s infinite;
+  }
+
+  .ct-video-sub-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    height: 100px;
+    flex-shrink: 0;
+  }
+
+  .ct-video-thumb {
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .ct-video-thumb.active {
+    border: 2px solid var(--primary);
+  }
+
+  .ct-video-thumb.active .ct-participant-avatar {
+    box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.5);
+  }
+
+  .ct-video-badge {
+    font-size: 10px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .ct-video-badge.applicant {
+    background: rgba(22, 119, 255, 0.15);
+    color: var(--primary);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .ct-video-badge.respondent {
+    background: rgba(82, 196, 26, 0.15);
+    color: var(--success);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .ct-video-badge.clerk {
+    background: rgba(250, 173, 20, 0.15);
+    color: var(--warning);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .ct-video-badge.lawyer {
+    background: rgba(114, 46, 209, 0.15);
+    color: #8b5cf6;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .ct-speaking-indicator {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse 1s infinite;
+  }
 
   .ct-video-controls {
-    position: absolute;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     gap: 8px;
   }
 
   .ct-control-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: none;
     background: var(--bg-tertiary);
-    border: 1px solid var(--border-color);
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s;
     color: var(--text-primary);
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
   }
 
-  .ct-control-btn:hover { background: var(--border-color); }
-  .ct-control-btn.active { background: var(--danger); color: white; }
+  .ct-control-btn:hover {
+    background: var(--border-color);
+  }
 
-  .ct-video-small {
+  .ct-trial-progress {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .ct-video-sm {
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
     background: var(--bg-tertiary);
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    border: 1px solid var(--border-color);
+    flex-shrink: 0;
+    overflow-x: auto;
+    border-top: 1px solid var(--border-color);
   }
 
-  .ct-timeline {
-    height: 200px;
+  .ct-trial-step {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+
+  .ct-trial-step.completed {
+    color: var(--success);
+  }
+
+  .ct-trial-step.active {
+    background: var(--primary);
+    color: var(--text-on-primary);
+  }
+
+  .ct-trial-step .step-num {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+  }
+
+  .ct-trial-step.completed .step-num {
+    background: var(--success);
+    color: white;
+    border-color: var(--success);
+  }
+
+  .ct-trial-step.active .step-num {
+    background: var(--bg-tertiary);
+    border-color: var(--primary);
+  }
+
+  .ct-evidence-section {
     background: var(--bg-secondary);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    overflow: hidden;
     border: 1px solid var(--border-color);
-  }
-
-  .ct-timeline-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--text-primary);
-    font-size: 14px;
-  }
-
-  .ct-timeline-content {
-    flex: 1;
-    padding: 12px 16px;
-    overflow-y: auto;
-  }
-
-  .ct-record {
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-bottom: 8px;
-    line-height: 1.5;
-  }
-
-  .ct-timeline-input {
-    display: flex;
-    gap: 8px;
-    padding: 12px 16px;
-    border-top: 1px solid var(--border-color);
-  }
-
-  .ct-input {
-    flex: 1;
-    padding: 8px 12px;
-    background: var(--bg-primary);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    color: var(--text-primary);
-    font-size: 13px;
-  }
-
-  .ct-input:focus {
-    outline: none;
-    border-color: var(--primary);
   }
 
   .ct-evidence-list {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -1592,41 +1989,516 @@
   .ct-evidence-item {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px;
+    gap: 12px;
+    padding: 12px;
     background: var(--bg-tertiary);
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
+    transition: all 0.2s;
     border: 1px solid var(--border-color);
   }
 
-  .ct-evidence-icon { font-size: 20px; }
-  .ct-evidence-name { font-size: 12px; color: var(--text-primary); }
-  .ct-evidence-status { font-size: 10px; color: var(--text-secondary); }
+  .ct-evidence-item:hover {
+    background: var(--bg-secondary);
+  }
 
-  .ct-actions {
+  .ct-evidence-item.active {
+    background: rgba(22, 119, 255, 0.2);
+    border: 1px solid var(--primary);
+  }
+
+  .evidence-icon {
+    font-size: 24px;
+    width: 40px;
+    text-align: center;
+  }
+
+  .evidence-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .evidence-name {
+    font-size: 13px;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .evidence-meta {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  .evidence-action {
+    padding: 4px 8px;
+    background: var(--primary);
+    color: var(--text-on-primary);
+    border: none;
+    border-radius: 4px;
+    font-size: 11px;
+    cursor: pointer;
+  }
+
+  .ct-evidence-preview {
+    border-top: 1px solid var(--border-color);
+    padding: 12px;
+    flex-shrink: 0;
+  }
+
+  .preview-header {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+
+  .preview-content {
+    background: var(--bg-tertiary);
+    border-radius: 6px;
+    padding: 20px;
+    min-height: 120px;
+    border: 1px solid var(--border-color);
+  }
+
+  .document-preview {
+    text-align: center;
+  }
+
+  .doc-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  .doc-placeholder {
+    color: var(--text-secondary);
+    font-size: 12px;
+  }
+
+  .doc-pages {
+    color: var(--text-secondary);
+    font-size: 11px;
+    margin-top: 8px;
+  }
+
+  .preview-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    justify-content: center;
+  }
+
+  .btn-xs {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  .ct-transcript-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .ct-transcript-body {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ct-transcript-time {
+    font-size: 10px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+
+  .ct-transcript-msg {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .ct-transcript-msg.system {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    text-align: center;
+    font-size: 11px;
+    border: 1px solid var(--border-color);
+  }
+
+  .ct-transcript-msg.arbiter {
+    background: rgba(114, 46, 209, 0.15);
+    color: var(--text-primary);
+    border: 1px solid rgba(114, 46, 209, 0.3);
+  }
+
+  .ct-transcript-msg.applicant {
+    background: rgba(22, 119, 255, 0.15);
+    color: var(--text-primary);
+    border: 1px solid rgba(22, 119, 255, 0.3);
+  }
+
+  .ct-transcript-msg.respondent {
+    background: rgba(82, 196, 26, 0.15);
+    color: var(--text-primary);
+    border: 1px solid rgba(82, 196, 26, 0.3);
+  }
+
+  .msg-role {
+    font-weight: 600;
+    margin-right: 8px;
+  }
+
+  .ct-transcript-input {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    background: var(--bg-tertiary);
+    flex-shrink: 0;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .ct-transcript-input input {
+    flex: 1;
+    padding: 8px 12px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 13px;
+  }
+
+  .ct-transcript-input input:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+
+  .ct-actions-section {
+    padding: 12px;
+  }
+
+  .ct-action-buttons {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
 
   .ct-action-btn {
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
     background: var(--bg-tertiary);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 6px;
     color: var(--text-primary);
-    font-size: 13px;
     cursor: pointer;
-    text-align: center;
+    font-size: 13px;
+    transition: all 0.2s;
   }
 
   .ct-action-btn:hover {
     background: var(--border-color);
+    border-color: var(--primary);
   }
 
-  .ct-btn-sm { padding: 4px 8px; font-size: 12px; }
-  .ct-btn-primary { background: var(--primary); border-color: var(--primary); color: white; }
+  .ct-action-btn.primary {
+    background: var(--primary);
+    border-color: var(--primary);
+  }
+
+  .ct-action-btn.primary:hover {
+    background: var(--primary-hover);
+  }
+
+  .ct-action-btn.warning {
+    background: var(--warning);
+    border-color: var(--warning);
+  }
+
+  .ct-action-btn.success {
+    background: var(--success);
+    border-color: var(--success);
+  }
+
+  .ct-action-btn.danger {
+    background: var(--danger);
+    border-color: var(--danger);
+  }
+
+  .ct-action-btn.sign {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-gradient-end) 100%);
+    border-color: transparent;
+  }
+
+  .action-icon {
+    font-size: 18px;
+  }
+
+  .ct-sign-section {
+    margin-top: 8px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 8px;
+  }
+
+  .evidence-preview-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 10001;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .evidence-preview-modal.active {
+    display: flex;
+  }
+
+  .evidence-preview-content {
+    width: 80%;
+    max-width: 800px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .evidence-preview-header {
+    padding: 16px 20px;
+    background: var(--bg-tertiary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    color: var(--text-primary);
+  }
+
+  .evidence-preview-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .evidence-preview-body {
+    padding: 40px;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .evidence-preview-placeholder {
+    text-align: center;
+  }
+
+  .evidence-icon.large {
+    font-size: 64px;
+    margin-bottom: 16px;
+  }
+
+  .evidence-preview-hint {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  .evidence-preview-footer {
+    padding: 16px 20px;
+    background: var(--bg-tertiary);
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .sign-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 10001;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sign-modal.active {
+    display: flex;
+  }
+
+  .sign-modal-content {
+    width: 90%;
+    max-width: 500px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .sign-modal-header {
+    padding: 16px 20px;
+    background: var(--bg-tertiary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sign-modal-header h3 {
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .sign-modal-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .sign-modal-body {
+    padding: 24px;
+  }
+
+  .sign-notice {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .sign-area {
+    background: white;
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    cursor: crosshair;
+  }
+
+  .sign-area canvas {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .sign-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .upload-evidence-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 10001;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .upload-evidence-modal.active {
+    display: flex;
+  }
+
+  .upload-evidence-content {
+    width: 90%;
+    max-width: 500px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .upload-evidence-header {
+    padding: 16px 20px;
+    background: var(--bg-tertiary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .upload-evidence-header h3 {
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .upload-evidence-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .upload-evidence-body {
+    padding: 24px;
+  }
+
+  .upload-dropzone {
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 32px;
+    text-align: center;
+    margin-bottom: 16px;
+    background: var(--bg-primary);
+  }
+
+  .upload-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+  }
+
+  .upload-text {
+    color: var(--text-primary);
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .upload-hint {
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+
+  .upload-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .upload-evidence-footer {
+    padding: 16px 20px;
+    background: var(--bg-tertiary);
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+  }
 </style>
 
 <script>
@@ -1663,10 +2535,16 @@
 
   // 云庭审功能
   let isTrialOpen = false;
+  let trialStartTime = null;
+  let timerInterval = null;
+  let currentEvidenceIndex = 0;
+  let isDrawing = false;
+  let signCtx = null;
   
   function openCloudTrial(caseId) {
     document.getElementById('cloud-trial-fullscreen').classList.add('active');
     isTrialOpen = true;
+    startTrialTimer();
     
     // 请求浏览器全屏
     const trialElement = document.getElementById('cloud-trial-fullscreen');
@@ -1679,13 +2557,14 @@
     }
     
     if (caseId) {
-      document.getElementById('ct-case-id').textContent = caseId || 'ZC20260503005';
+      document.getElementById('ct-case-id').textContent = caseId;
     }
     showNotification('已进入云庭审室', 'success');
   }
 
   function closeCloudTrial() {
     isTrialOpen = false;
+    stopTrialTimer();
     document.getElementById('cloud-trial-fullscreen').classList.remove('active');
     
     // 退出全屏
@@ -1700,10 +2579,242 @@
     showNotification('已退出云庭审', 'info');
   }
   
+  function startTrialTimer() {
+    trialStartTime = Date.now();
+    timerInterval = setInterval(updateTimer, 1000);
+  }
+
+  function stopTrialTimer() {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+  }
+
+  function updateTimer() {
+    const elapsed = Math.floor((Date.now() - trialStartTime) / 1000);
+    const hours = Math.floor(elapsed / 3600).toString().padStart(2, '0');
+    const minutes = Math.floor((elapsed % 3600) / 60).toString().padStart(2, '0');
+    const seconds = (elapsed % 60).toString().padStart(2, '0');
+    document.getElementById('ct-duration').textContent = hours + ':' + minutes + ':' + seconds;
+  }
+
+  function toggleMute() {
+    const icon = document.getElementById('mic-icon');
+    icon.textContent = icon.textContent === '🎤' ? '🔇' : '🎤';
+    showNotification(icon.textContent === '🔇' ? '已静音' : '已开启麦克风', 'info');
+  }
+
+  function toggleCamera() {
+    const icon = document.getElementById('camera-icon');
+    icon.textContent = icon.textContent === '📹' ? '📷' : '📹';
+    showNotification(icon.textContent === '📷' ? '已关闭摄像头' : '已开启摄像头', 'info');
+  }
+
+  function shareScreen() {
+    showNotification('屏幕共享功能已开启', 'success');
+  }
+
+  function toggleRecording() {
+    showNotification('庭审录制功能已开启', 'info');
+  }
+
+  function fullscreenVideo() {
+    const el = document.getElementById('arbiter-video');
+    if (el.requestFullscreen) {
+      el.requestFullscreen();
+    }
+  }
+
+  function nextTrialStep() {
+    const steps = document.querySelectorAll('.ct-trial-step');
+    let currentStep = -1;
+    
+    steps.forEach((step, index) => {
+      step.classList.remove('active');
+      if (step.classList.contains('completed')) {
+        currentStep = index;
+      }
+    });
+    
+    if (currentStep >= 0 && currentStep < steps.length - 1) {
+      steps[currentStep].classList.remove('completed');
+      steps[currentStep].classList.add('completed');
+      steps[currentStep + 1].classList.add('active');
+      steps[currentStep + 1].classList.add('completed');
+      
+      addTranscriptMessage('system', '【系统】进入' + steps[currentStep + 1].querySelector('.step-name').textContent + '环节');
+      showNotification('已进入: ' + steps[currentStep + 1].querySelector('.step-name').textContent, 'success');
+    } else {
+      showNotification('庭审流程已全部完成', 'info');
+    }
+  }
+
+  function showEvidence(evidenceName) {
+    document.getElementById('evidence-preview-title').textContent = evidenceName;
+    document.getElementById('evidence-preview-name').textContent = evidenceName;
+    document.getElementById('evidence-preview-modal').classList.add('active');
+    
+    const items = document.querySelectorAll('.ct-evidence-item');
+    items.forEach((item, index) => {
+      if (item.querySelector('.evidence-name').textContent === evidenceName) {
+        currentEvidenceIndex = index;
+      }
+    });
+  }
+
+  function closeEvidencePreview() {
+    document.getElementById('evidence-preview-modal').classList.remove('active');
+  }
+
+  function prevEvidence() {
+    const items = document.querySelectorAll('.ct-evidence-item');
+    currentEvidenceIndex = (currentEvidenceIndex - 1 + items.length) % items.length;
+    const name = items[currentEvidenceIndex].querySelector('.evidence-name').textContent;
+    document.getElementById('evidence-preview-title').textContent = name;
+    document.getElementById('evidence-preview-name').textContent = name;
+  }
+
+  function nextEvidence() {
+    const items = document.querySelectorAll('.ct-evidence-item');
+    currentEvidenceIndex = (currentEvidenceIndex + 1) % items.length;
+    const name = items[currentEvidenceIndex].querySelector('.evidence-name').textContent;
+    document.getElementById('evidence-preview-title').textContent = name;
+    document.getElementById('evidence-preview-name').textContent = name;
+  }
+
+  function zoomEvidence(direction) {
+    showNotification(direction > 0 ? '已放大' : '已缩小', 'info');
+  }
+
+  function exportTranscript() {
+    showNotification('庭审笔录导出成功', 'success');
+  }
+
+  function handleTranscriptInput(event) {
+    if (event.key === 'Enter') {
+      sendTranscript();
+    }
+  }
+
+  function sendTranscript() {
+    const input = document.getElementById('transcript-input');
+    const text = input.value.trim();
+    if (text) {
+      addTranscriptMessage('arbiter', text);
+      input.value = '';
+    }
+  }
+
+  function addTranscriptMessage(role, text) {
+    const body = document.getElementById('transcript-body');
+    const div = document.createElement('div');
+    div.className = 'ct-transcript-msg ' + role;
+    div.innerHTML = '<span class="msg-text">' + text + '</span>';
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function showUploadEvidenceModal() {
+    document.getElementById('upload-evidence-modal').classList.add('active');
+  }
+
+  function closeUploadModal() {
+    document.getElementById('upload-evidence-modal').classList.remove('active');
+  }
+
+  function handleFileUpload(input) {
+    if (input.files && input.files[0]) {
+      const fileName = input.files[0].name;
+      document.getElementById('evidence-name').value = fileName;
+      showNotification('已选择文件: ' + fileName, 'info');
+    }
+  }
+
+  function submitEvidence() {
+    const name = document.getElementById('evidence-name').value;
+    const source = document.getElementById('evidence-source').value;
+    if (name) {
+      showNotification('证据 "' + name + '" 上传成功', 'success');
+      closeUploadModal();
+      document.getElementById('evidence-name').value = '';
+    } else {
+      showNotification('请输入证据名称', 'warning');
+    }
+  }
+
+  function startCrossExamine() {
+    showNotification('开始举证质证环节', 'info');
+    addTranscriptMessage('system', '【系统】进入举证质证环节');
+  }
+
+  function addStatement() {
+    showNotification('请补充发言', 'info');
+  }
+
+  function adjournTrial() {
+    showNotification('已提交休庭申请，等待仲裁员确认', 'warning');
+    addTranscriptMessage('system', '【系统】劳动者申请休庭');
+  }
+
+  function startMediation() {
+    showNotification('开始调解程序', 'info');
+    addTranscriptMessage('system', '【系统】进入调解程序');
+  }
+
+  function announceJudgment() {
+    showNotification('宣判功能已开启', 'info');
+    addTranscriptMessage('system', '【系统】仲裁员宣布判决');
+  }
+
+  function showSignModal() {
+    document.getElementById('sign-modal').classList.add('active');
+    const canvas = document.getElementById('sign-canvas');
+    signCtx = canvas.getContext('2d');
+    signCtx.fillStyle = '#fff';
+    signCtx.fillRect(0, 0, canvas.width, canvas.height);
+    signCtx.strokeStyle = '#000';
+    signCtx.lineWidth = 2;
+  }
+
+  function closeSignModal() {
+    document.getElementById('sign-modal').classList.remove('active');
+  }
+
+  function startSign(e) {
+    isDrawing = true;
+    const canvas = document.getElementById('sign-canvas');
+    const rect = canvas.getBoundingClientRect();
+    signCtx.beginPath();
+    signCtx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+  }
+
+  function doSign(e) {
+    if (!isDrawing) return;
+    const canvas = document.getElementById('sign-canvas');
+    const rect = canvas.getBoundingClientRect();
+    signCtx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+    signCtx.stroke();
+  }
+
+  function endSign() {
+    isDrawing = false;
+  }
+
+  function clearSign() {
+    const canvas = document.getElementById('sign-canvas');
+    signCtx.fillStyle = '#fff';
+    signCtx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function confirmSign() {
+    showNotification('签字确认成功', 'success');
+    closeSignModal();
+  }
+
   // 监听全屏变化和ESC键
   document.addEventListener('fullscreenchange', function() {
     if (!document.fullscreenElement && isTrialOpen) {
-      // 如果退出了全屏但庭审还开着，关闭庭审
       closeCloudTrial();
     }
   });
