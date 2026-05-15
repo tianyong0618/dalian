@@ -55,7 +55,7 @@
         </div>
       </div>
       <div class="mt-24 text-center">
-        <button class="btn btn-primary">申请争议调解</button>
+        <button class="btn btn-primary" onclick="showModal('dispute-apply-modal')">申请争议调解</button>
       </div>
     </div>
 
@@ -113,6 +113,144 @@
   </div>
 </div>
 
-  <script src="assets/theme-switch.js"></script>
+  <!-- 争议申请模态框 -->
+<div id="dispute-apply-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>申请争议调解</h3>
+      <button class="modal-close" onclick="closeModal('dispute-apply-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label>申请人</label>
+          <input type="text" class="form-input" placeholder="请输入申请人姓名">
+        </div>
+        <div class="form-group">
+          <label>联系电话</label>
+          <input type="tel" class="form-input" placeholder="请输入联系电话">
+        </div>
+        <div class="form-group">
+          <label>争议类型</label>
+          <select class="form-select">
+            <option value="">请选择争议类型</option>
+            <option value="工资纠纷">工资纠纷</option>
+            <option value="劳动合同">劳动合同</option>
+            <option value="工伤赔偿">工伤赔偿</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>争议详情</label>
+          <textarea class="form-textarea" rows="4" placeholder="请详细描述争议情况"></textarea>
+        </div>
+        <div class="form-group">
+          <label>证据材料上传</label>
+          <input type="file" class="form-input" multiple>
+        </div>
+        <div class="form-group">
+          <label>调解方式</label>
+          <div style="display: flex; gap: 16px;">
+            <label><input type="radio" name="mediation-type" value="video"> 视频调解</label>
+            <label><input type="radio" name="mediation-type" value="text"> 文字调解</label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('dispute-apply-modal')">取消</button>
+      <button class="btn btn-primary">提交申请</button>
+    </div>
+  </div>
+</div>
+
+<!-- 申请审核模态框 -->
+<div id="dispute-audit-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>争议申请审核</h3>
+      <button class="modal-close" onclick="closeModal('dispute-audit-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="audit-info">
+        <div class="info-row">
+          <span class="label">申请人：</span>
+          <span>张三</span>
+        </div>
+        <div class="info-row">
+          <span class="label">争议类型：</span>
+          <span>工资纠纷</span>
+        </div>
+        <div class="info-row">
+          <span class="label">申请时间：</span>
+          <span>2026-05-14 15:30</span>
+        </div>
+      </div>
+      <div class="form-group mt-16">
+        <label>审核意见</label>
+        <textarea class="form-textarea" rows="3" placeholder="请填写审核意见"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('dispute-audit-modal')">关闭</button>
+      <button class="btn btn-warning">驳回申请</button>
+      <button class="btn btn-primary">审核通过</button>
+    </div>
+  </div>
+</div>
+
+<!-- 线上调解模态框 -->
+<div id="mediation-online-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>线上调解室</h3>
+      <button class="modal-close" onclick="closeModal('mediation-online-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="display: flex; gap: 16px;">
+        <div style="flex: 1; height: 200px; background: #1f2937; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+          <div style="text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 8px;">📹</div>
+            <span style="color: #9ca3af;">调解员视频</span>
+          </div>
+        </div>
+        <div style="flex: 1; height: 200px; background: #1f2937; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+          <div style="text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 8px;">👤</div>
+            <span style="color: #9ca3af;">我的视频</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 16px; display: flex; gap: 12px; justify-content: center;">
+        <button class="btn btn-secondary" style="padding: 8px 24px;">🔇 静音</button>
+        <button class="btn btn-secondary" style="padding: 8px 24px;">📹 关闭摄像头</button>
+        <button class="btn btn-danger" style="padding: 8px 24px;">🚪 离开</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('mediation-online-modal')">结束调解</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/theme-switch.js"></script>
+<script>
+  function showModal(modalId) {
+    document.getElementById(modalId).style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal-overlay')) {
+      e.target.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+</script>
 </body>
 </html>

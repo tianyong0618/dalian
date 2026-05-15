@@ -101,21 +101,21 @@
       
       <!-- 机构列表 -->
       <div class="search-bar">
-        <input type="text" class="form-input" placeholder="搜索机构名称、服务类型...">
-        <button class="btn btn-primary">+ 新增机构</button>
+        <input type="text" class="form-input" id="org-search" placeholder="搜索机构名称、服务类型..." onkeyup="filterOrgList()">
+        <button class="btn btn-primary" onclick="showModal('org-register-modal')">+ 新增机构</button>
       </div>
       <div class="filter-bar mb-24">
-        <select class="form-select">
+        <select class="form-select" id="filter-type" onchange="filterOrgList()">
           <option value="">全部服务类型</option>
           <option value="劳务派遣">劳务派遣</option>
           <option value="招聘外包">招聘外包</option>
         </select>
-        <select class="form-select">
+        <select class="form-select" id="filter-status" onchange="filterOrgList()">
           <option value="">全部状态</option>
           <option value="营业中">营业中</option>
           <option value="审核中">审核中</option>
         </select>
-        <select class="form-select">
+        <select class="form-select" id="filter-star" onchange="filterOrgList()">
           <option value="">全部星级</option>
           <option value="5">5星</option>
           <option value="4">4星</option>
@@ -141,7 +141,7 @@
             <td>286</td>
             <td><div class="progress-bar"><div class="progress-fill" style="width: 96%;"></div></div><span class="text-small">96%</span></td>
             <td><span class="badge badge-success">营业中</span></td>
-            <td><button class="btn btn-secondary btn-sm">查看</button></td>
+            <td><button class="btn btn-secondary btn-sm" onclick="showOrgDetail('XX人力资源有限公司')">查看</button></td>
           </tr>
           <tr>
             <td><strong>XX人才服务集团</strong></td>
@@ -207,6 +207,51 @@
   </div>
 </div>
 
+<!-- 机构详情模态框 -->
+<div id="org-detail-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3><span id="detail-org-name"></span> - 机构详情</h3>
+      <button class="modal-close" onclick="closeModal('org-detail-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>统一社会信用代码</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">91320000XXXXXXXXXX</div>
+          </div>
+          <div class="form-group">
+            <label>服务类型</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">劳务派遣 / 招聘外包</div>
+          </div>
+          <div class="form-group">
+            <label>联系人</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">张经理</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label>联系电话</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">138XXXX8888</div>
+          </div>
+          <div class="form-group">
+            <label>星级</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">★★★★★ 5.0</div>
+          </div>
+          <div class="form-group">
+            <label>状态</label>
+            <div style="padding: 10px; background: rgba(82, 196, 26, 0.1); border-radius: 8px; color: #52c41a;">营业中</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('org-detail-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
 <!-- 资质审核模态框 -->
 <div id="org-audit-modal" class="modal-overlay">
   <div class="modal">
@@ -265,6 +310,35 @@
       document.body.style.overflow = '';
     }
   });
+  
+  function filterOrgList() {
+    const search = document.getElementById('org-search').value.toLowerCase();
+    const type = document.getElementById('filter-type').value;
+    const status = document.getElementById('filter-status').value;
+    const star = document.getElementById('filter-star').value;
+    
+    const rows = document.querySelectorAll('.table tbody tr');
+    rows.forEach(row => {
+      const name = row.querySelector('td:first-child strong').textContent.toLowerCase();
+      const serviceType = row.querySelectorAll('td')[1].textContent;
+      const rowStar = row.querySelectorAll('td')[2].textContent;
+      const rowStatus = row.querySelectorAll('td')[5].textContent;
+      
+      let visible = true;
+      if (search && !name.includes(search) && !serviceType.toLowerCase().includes(search)) visible = false;
+      if (type && !serviceType.includes(type)) visible = false;
+      if (status && !rowStatus.includes(status)) visible = false;
+      if (star && !rowStar.includes(star)) visible = false;
+      
+      row.style.display = visible ? '' : 'none';
+    });
+    showNotification('筛选完成', 'success');
+  }
+  
+  function showOrgDetail(orgName) {
+    document.getElementById('detail-org-name').textContent = orgName;
+    showModal('org-detail-modal');
+  }
 </script>
 </body>
 </html>

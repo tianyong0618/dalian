@@ -21,7 +21,7 @@
       <h3 class="mb-16">从业人员信息入库</h3>
       <div class="row">
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('employee-add-modal')">
             <div class="card-header">
               <div class="icon">📥</div>
               <div class="card-content">
@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('employee-verify-modal')">
             <div class="card-header">
               <div class="icon">🤖</div>
               <div class="card-content">
@@ -120,8 +120,8 @@
       <!-- 从业人员列表 -->
       <div class="mt-24">
         <div class="search-bar">
-          <input type="text" class="form-input" placeholder="搜索从业人员姓名、身份证号、资质...">
-          <button class="btn btn-primary">+ 新增从业人员</button>
+          <input type="text" class="form-input" id="emp-search" placeholder="搜索从业人员姓名、身份证号、资质..." onkeyup="filterEmpList()">
+          <button class="btn btn-primary" onclick="showModal('employee-add-modal')">+ 新增从业人员</button>
         </div>
         <table class="table mt-16">
           <thead>
@@ -143,7 +143,7 @@
               <td><span class="tag">Java开发工程师</span></td>
               <td>36课时</td>
               <td><span class="badge badge-success">在职</span></td>
-              <td><button class="btn btn-secondary btn-sm">查看</button></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showEmpDetail('陈浩然')">查看</button></td>
             </tr>
             <tr>
               <td><strong>刘芳</strong></td>
@@ -234,6 +234,160 @@
   </div>
 </div>
 
-  <script src="assets/theme-switch.js"></script>
+  <!-- 新增从业人员模态框 -->
+<div id="employee-add-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>新增从业人员</h3>
+      <button class="modal-close" onclick="closeModal('employee-add-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label>姓名</label>
+          <input type="text" class="form-input" placeholder="请输入姓名">
+        </div>
+        <div class="form-group">
+          <label>身份证号</label>
+          <input type="text" class="form-input" placeholder="请输入身份证号">
+        </div>
+        <div class="form-group">
+          <label>所属机构</label>
+          <select class="form-select">
+            <option value="">请选择所属机构</option>
+            <option value="XX科技有限公司">XX科技有限公司</option>
+            <option value="XX零工服务中心">XX零工服务中心</option>
+            <option value="XX建筑劳务公司">XX建筑劳务公司</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>从业资质</label>
+          <input type="text" class="form-input" placeholder="请输入从业资质">
+        </div>
+        <div class="form-group">
+          <label>培训课时</label>
+          <input type="number" class="form-input" placeholder="请输入培训课时">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('employee-add-modal')">取消</button>
+      <button class="btn btn-primary">提交审核</button>
+    </div>
+  </div>
+</div>
+
+<!-- AI信息核验模态框 -->
+<div id="employee-verify-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>AI信息核验</h3>
+      <button class="modal-close" onclick="closeModal('employee-verify-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="text-align: center; padding: 24px;">
+        <div style="font-size: 48px; margin-bottom: 16px;">📷</div>
+        <p class="mb-16">上传身份证或资质证书图片进行OCR识别</p>
+        <input type="file" class="form-input" accept="image/*">
+        <button class="btn btn-primary mt-16">开始核验</button>
+      </div>
+      <div class="mt-16" style="padding: 16px; background: rgba(82, 196, 26, 0.1); border-radius: 8px;">
+        <div style="color: #52c41a; font-weight: 600; margin-bottom: 8px;">✅ 核验结果</div>
+        <p>身份证信息：已通过验证</p>
+        <p>资质证书：已通过验证</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('employee-verify-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 从业人员详情模态框 -->
+<div id="employee-detail-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3><span id="detail-emp-name"></span> - 从业人员详情</h3>
+      <button class="modal-close" onclick="closeModal('employee-detail-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>身份证号</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">430102********3421</div>
+          </div>
+          <div class="form-group">
+            <label>所属机构</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">XX科技有限公司</div>
+          </div>
+          <div class="form-group">
+            <label>从业资质</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">Java开发工程师</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label>培训课时</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">36课时</div>
+          </div>
+          <div class="form-group">
+            <label>状态</label>
+            <div style="padding: 10px; background: rgba(82, 196, 26, 0.1); border-radius: 8px; color: #52c41a;">在职</div>
+          </div>
+          <div class="form-group">
+            <label>诚信档案</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">无违规记录</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('employee-detail-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/theme-switch.js"></script>
+<script>
+  function showModal(modalId) {
+    document.getElementById(modalId).style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal-overlay')) {
+      e.target.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+  
+  function filterEmpList() {
+    const search = document.getElementById('emp-search').value.toLowerCase();
+    const rows = document.querySelectorAll('.table tbody tr');
+    rows.forEach(row => {
+      const name = row.querySelector('td:first-child strong').textContent.toLowerCase();
+      const idCard = row.querySelectorAll('td')[1].textContent.toLowerCase();
+      const org = row.querySelectorAll('td')[2].textContent.toLowerCase();
+      const qualification = row.querySelectorAll('td')[3].textContent.toLowerCase();
+      
+      if (name.includes(search) || idCard.includes(search) || org.includes(search) || qualification.includes(search)) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+  
+  function showEmpDetail(empName) {
+    document.getElementById('detail-emp-name').textContent = empName;
+    showModal('employee-detail-modal');
+  }
+</script>
 </body>
 </html>

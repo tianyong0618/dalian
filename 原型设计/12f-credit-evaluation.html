@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="col-4">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('ai-score-modal')">
             <div class="card-header">
               <div class="icon">🤖</div>
               <div class="card-content">
@@ -145,6 +145,78 @@
   </div>
 </div>
 
-  <script src="assets/theme-switch.js"></script>
+  <!-- AI自动评分模态框 -->
+<div id="ai-score-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>AI自动评分</h3>
+      <button class="modal-close" onclick="closeModal('ai-score-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>机构名称</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">XX人力资源有限公司</div>
+          </div>
+          <div class="form-group">
+            <label>本月评分</label>
+            <div style="padding: 10px; background: rgba(82, 196, 26, 0.1); border-radius: 8px; color: #52c41a; font-size: 24px; font-weight: 600;">245分</div>
+          </div>
+          <div class="form-group">
+            <label>星级评定</label>
+            <div style="padding: 10px; background: rgba(250, 204, 21, 0.1); border-radius: 8px;">★★★★★ 五星级</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label>评分明细</label>
+            <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <span>合规运营</span>
+                <span>65分</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <span>服务质量</span>
+                <span>72分</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <span>争议处理</span>
+                <span>58分</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span>稳就业贡献</span>
+                <span>50分</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('ai-score-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/theme-switch.js"></script>
+<script>
+  function showModal(modalId) {
+    document.getElementById(modalId).style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal-overlay')) {
+      e.target.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+</script>
 </body>
 </html>

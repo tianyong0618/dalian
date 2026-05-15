@@ -21,7 +21,7 @@
       <h3 class="mb-16">服务网店开设与管理</h3>
       <div class="row">
         <div class="col-3">
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('store-apply-modal')">
             <div class="card-header">
               <div class="icon">📝</div>
               <div class="card-content">
@@ -72,7 +72,7 @@
       <h3 class="mb-16">核心线上服务功能整合</h3>
       <div class="row">
         <div class="col-6">
-          <div class="feature-card mb-16">
+          <div class="feature-card mb-16" onclick="showModal('job-post-modal')">
             <div class="card-header">
               <div class="icon">📋</div>
               <div class="card-content">
@@ -81,7 +81,7 @@
               </div>
             </div>
           </div>
-          <div class="feature-card mb-16">
+          <div class="feature-card mb-16" onclick="showModal('video-interview-modal')">
             <div class="card-header">
               <div class="icon">🎥</div>
               <div class="card-content">
@@ -90,7 +90,7 @@
               </div>
             </div>
           </div>
-          <div class="feature-card">
+          <div class="feature-card" onclick="showModal('policy-chat-modal')">
             <div class="card-header">
               <div class="icon">💬</div>
               <div class="card-content">
@@ -154,6 +154,131 @@
   </div>
 </div>
 
-  <script src="assets/theme-switch.js"></script>
+  <!-- 网店申请模态框 -->
+<div id="store-apply-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>网店申请</h3>
+      <button class="modal-close" onclick="closeModal('store-apply-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label>网店名称</label>
+          <input type="text" class="form-input" placeholder="请输入网店名称">
+        </div>
+        <div class="form-group">
+          <label>服务范围</label>
+          <select class="form-select" multiple>
+            <option value="岗位招聘">岗位招聘</option>
+            <option value="劳务派遣">劳务派遣</option>
+            <option value="培训服务">培训服务</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>收费标准说明</label>
+          <textarea class="form-textarea" rows="3" placeholder="请描述收费标准"></textarea>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('store-apply-modal')">取消</button>
+      <button class="btn btn-primary">提交申请</button>
+    </div>
+  </div>
+</div>
+
+<!-- 岗位发布模态框 -->
+<div id="job-post-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>岗位发布</h3>
+      <button class="modal-close" onclick="closeModal('job-post-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label>岗位名称</label>
+          <input type="text" class="form-input" placeholder="请输入岗位名称">
+        </div>
+        <div class="form-group">
+          <label>薪资范围</label>
+          <input type="text" class="form-input" placeholder="如：10K-20K">
+        </div>
+        <div class="form-group">
+          <label>岗位要求</label>
+          <textarea class="form-textarea" rows="3" placeholder="请描述岗位要求"></textarea>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('job-post-modal')">取消</button>
+      <button class="btn btn-primary">发布岗位</button>
+    </div>
+  </div>
+</div>
+
+<!-- 视频面试模态框 -->
+<div id="video-interview-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>视频面试服务</h3>
+      <button class="modal-close" onclick="closeModal('video-interview-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="text-align: center; padding: 40px;">
+        <div style="font-size: 48px; margin-bottom: 16px;">🎥</div>
+        <p>AI生成面试题库，记录面试过程，生成评价报告</p>
+        <button class="btn btn-primary mt-8">开始视频面试</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('video-interview-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 政策咨询模态框 -->
+<div id="policy-chat-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>AI政策咨询助手</h3>
+      <button class="modal-close" onclick="closeModal('policy-chat-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="height: 200px; background: rgba(99, 102, 241, 0.1); border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+        <div style="color: var(--primary); font-weight: 600;">🤖 AI客服：</div>
+        <p style="color: var(--text-secondary);">您好！我是AI政策咨询助手，请问有什么可以帮助您的？</p>
+      </div>
+      <div class="search-bar">
+        <input type="text" class="form-input" placeholder="输入您的问题...">
+        <button class="btn btn-primary">发送</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('policy-chat-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/theme-switch.js"></script>
+<script>
+  function showModal(modalId) {
+    document.getElementById(modalId).style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal-overlay')) {
+      e.target.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+</script>
 </body>
 </html>

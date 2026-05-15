@@ -66,7 +66,7 @@
         </div>
       </div>
       <div class="mt-24 text-center">
-        <button class="btn btn-primary">发起智能撮合</button>
+        <button class="btn btn-primary" onclick="showModal('match-demand-modal')">发起智能撮合</button>
       </div>
     </div>
 
@@ -131,7 +131,7 @@
               <td>32家</td>
               <td>18家</td>
               <td><span class="badge badge-info">报名中</span></td>
-              <td><button class="btn btn-secondary btn-sm">查看</button></td>
+              <td><button class="btn btn-secondary btn-sm" onclick="showModal('fair-detail-modal')">查看</button></td>
             </tr>
             <tr>
               <td><strong>应届生就业对接会</strong></td>
@@ -150,6 +150,109 @@
   </div>
 </div>
 
-  <script src="assets/theme-switch.js"></script>
+  <!-- 智能撮合需求填写模态框 -->
+<div id="match-demand-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>发起智能撮合</h3>
+      <button class="modal-close" onclick="closeModal('match-demand-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label>企业名称</label>
+          <input type="text" class="form-input" placeholder="请输入企业名称">
+        </div>
+        <div class="form-group">
+          <label>用工需求类型</label>
+          <select class="form-select">
+            <option value="">请选择需求类型</option>
+            <option value="全职">全职</option>
+            <option value="兼职">兼职</option>
+            <option value="劳务派遣">劳务派遣</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>需求人数</label>
+          <input type="number" class="form-input" placeholder="请输入需求人数">
+        </div>
+        <div class="form-group">
+          <label>岗位要求</label>
+          <textarea class="form-textarea" rows="3" placeholder="请描述岗位要求"></textarea>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('match-demand-modal')">取消</button>
+      <button class="btn btn-primary">开始匹配</button>
+    </div>
+  </div>
+</div>
+
+<!-- 洽谈会详情模态框 -->
+<div id="fair-detail-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>洽谈会详情</h3>
+      <button class="modal-close" onclick="closeModal('fair-detail-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>洽谈会主题</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">重点企业用工专场洽谈会</div>
+          </div>
+          <div class="form-group">
+            <label>时间</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">2026-05-15 14:00</div>
+          </div>
+          <div class="form-group">
+            <label>地点</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">市人社局洽谈大厅A厅</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label>参与企业</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">32家</div>
+          </div>
+          <div class="form-group">
+            <label>参与机构</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">18家</div>
+          </div>
+          <div class="form-group">
+            <label>状态</label>
+            <div style="padding: 10px; background: rgba(24, 144, 255, 0.1); border-radius: 8px; color: #1890ff;">报名中</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('fair-detail-modal')">关闭</button>
+      <button class="btn btn-primary">立即报名</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/theme-switch.js"></script>
+<script>
+  function showModal(modalId) {
+    document.getElementById(modalId).style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal-overlay')) {
+      e.target.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+</script>
 </body>
 </html>
