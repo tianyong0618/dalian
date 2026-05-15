@@ -571,7 +571,7 @@
                     <td><span class="badge badge-warning">待参加庭审</span></td>
                     <td>ZC20260503005</td>
                     <td>2026-05-10 09:00</td>
-                    <td><button class="btn btn-primary btn-sm" onclick="showModal('cloud-trial-modal')">进入庭审</button></td>
+                    <td><button class="btn btn-primary btn-sm" onclick="openCloudTrial('ZC20260503005')">进入庭审</button></td>
                   </tr>
                   <tr>
                     <td><span class="badge badge-info">待签收文书</span></td>
@@ -768,7 +768,7 @@
             <div class="icon">🎥</div>
             <h4>云庭审即将开始</h4>
             <p>案件 ZC20260503005 已排期将于 2026-05-10 09:00 开庭</p>
-            <button class="btn btn-primary" onclick="showModal('cloud-trial-modal')">进入庭审室</button>
+            <button class="btn btn-primary" onclick="openCloudTrial('ZC20260503005')">进入庭审室</button>
           </div>
 
           <!-- 筛选栏 -->
@@ -1185,6 +1185,441 @@
   </div>
 </div>
 
+<!-- 全屏云庭审 -->
+<div class="cloud-trial-fullscreen" id="cloud-trial-fullscreen">
+  <div class="ct-header">
+    <div class="ct-header-left">
+      <span class="ct-logo">⚖️</span>
+      <span class="ct-title">劳动人事争议仲裁庭</span>
+      <span class="ct-divider">|</span>
+      <span class="ct-case">案件编号：<span id="ct-case-id">ZC20260503005</span></span>
+    </div>
+    <div class="ct-header-right">
+      <span class="ct-timer" id="ct-timer">00:00:00</span>
+      <button class="ct-btn ct-btn-exit" onclick="closeCloudTrial()">退出庭审</button>
+    </div>
+  </div>
+
+  <div class="ct-main">
+    <div class="ct-sidebar">
+      <div class="ct-panel">
+        <div class="ct-panel-title">👥 参会人员</div>
+        <div class="ct-participant">
+          <div class="ct-avatar ct-avatar-arbitrator">仲裁员</div>
+          <div class="ct-participant-info">
+            <div class="ct-participant-name">王仲裁员</div>
+            <div class="ct-participant-role">首席仲裁员</div>
+          </div>
+          <div class="ct-participant-status online"></div>
+        </div>
+        <div class="ct-participant">
+          <div class="ct-avatar ct-avatar-clerk">书记</div>
+          <div class="ct-participant-info">
+            <div class="ct-participant-name">李书记</div>
+            <div class="ct-participant-role">书记员</div>
+          </div>
+          <div class="ct-participant-status online"></div>
+        </div>
+        <div class="ct-participant">
+          <div class="ct-avatar ct-avatar-applicant">申请人</div>
+          <div class="ct-participant-info">
+            <div class="ct-participant-name">张三（您）</div>
+            <div class="ct-participant-role">劳动者</div>
+          </div>
+          <div class="ct-participant-status online"></div>
+        </div>
+        <div class="ct-participant">
+          <div class="ct-avatar ct-avatar-respondent">被申请人</div>
+          <div class="ct-participant-info">
+            <div class="ct-participant-name">XX制造公司</div>
+            <div class="ct-participant-role">用人单位</div>
+          </div>
+          <div class="ct-participant-status offline"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ct-content">
+      <div class="ct-video-grid">
+        <div class="ct-video-main">
+          <div class="ct-video-placeholder">
+            <div class="ct-video-icon">🎥</div>
+            <div class="ct-video-text">王仲裁员</div>
+          </div>
+          <div class="ct-video-controls">
+            <button class="ct-control-btn" onclick="this.classList.toggle('active')">🎤</button>
+            <button class="ct-control-btn" onclick="this.classList.toggle('active')">📹</button>
+            <button class="ct-control-btn">🖥️</button>
+          </div>
+        </div>
+        <div class="ct-video-small">
+          <div class="ct-video-placeholder ct-video-sm">
+            <div class="ct-video-icon">👤</div>
+            <div class="ct-video-text">张三（您）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ct-timeline">
+        <div class="ct-timeline-header">
+          <span>📝 庭审笔录</span>
+          <button class="ct-btn ct-btn-sm">导出</button>
+        </div>
+        <div class="ct-timeline-content">
+          <div class="ct-record">[09:00:00] 书记员宣布：仲裁庭现在开始开庭。</div>
+          <div class="ct-record">[09:00:15] 书记员宣布当事人权利义务。</div>
+          <div class="ct-record">[09:01:00] 仲裁员宣布仲裁庭组成人员。</div>
+          <div class="ct-record">[09:02:00] 询问双方是否申请回避。</div>
+          <div class="ct-record">[09:02:30] 双方均表示不申请回避。</div>
+        </div>
+        <div class="ct-timeline-input">
+          <input type="text" class="ct-input" placeholder="输入笔录内容...">
+          <button class="ct-btn ct-btn-primary">发送</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ct-sidebar">
+      <div class="ct-panel">
+        <div class="ct-panel-title">📎 证据材料</div>
+        <div class="ct-evidence-list">
+          <div class="ct-evidence-item">
+            <span class="ct-evidence-icon">📄</span>
+            <div class="ct-evidence-info">
+              <div class="ct-evidence-name">劳动合同.pdf</div>
+              <div class="ct-evidence-status">已质证</div>
+            </div>
+          </div>
+          <div class="ct-evidence-item">
+            <span class="ct-evidence-icon">📄</span>
+            <div class="ct-evidence-info">
+              <div class="ct-evidence-name">工资流水.pdf</div>
+              <div class="ct-evidence-status">质证中</div>
+            </div>
+          </div>
+          <div class="ct-evidence-item">
+            <span class="ct-evidence-icon">📄</span>
+            <div class="ct-evidence-info">
+              <div class="ct-evidence-name">工伤认定书.pdf</div>
+              <div class="ct-evidence-status">待质证</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ct-panel">
+        <div class="ct-panel-title">⚡ 快捷操作</div>
+        <div class="ct-actions">
+          <button class="ct-action-btn">📤 上传证据</button>
+          <button class="ct-action-btn">✋ 申请发言</button>
+          <button class="ct-action-btn">⏸️ 申请休庭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cloud-trial-fullscreen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #0f0f1a;
+    z-index: 9999;
+  }
+
+  .cloud-trial-fullscreen.active {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ct-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .ct-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+  }
+
+  .ct-logo { font-size: 24px; }
+  .ct-title { font-size: 16px; font-weight: 600; }
+  .ct-divider { color: rgba(255, 255, 255, 0.3); }
+  .ct-case { font-size: 14px; color: rgba(255, 255, 255, 0.7); }
+
+  .ct-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .ct-timer {
+    font-size: 20px;
+    font-weight: 600;
+    color: #52c41a;
+    font-family: monospace;
+  }
+
+  .ct-btn {
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .ct-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .ct-btn-exit {
+    background: rgba(255, 77, 79, 0.8);
+    border-color: #ff4d4f;
+  }
+
+  .ct-main {
+    flex: 1;
+    display: flex;
+    padding: 16px;
+    gap: 16px;
+    overflow: hidden;
+  }
+
+  .ct-sidebar {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ct-panel {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .ct-panel-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 12px;
+  }
+
+  .ct-participant {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  .ct-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  .ct-avatar-arbitrator { background: #722ed1; }
+  .ct-avatar-clerk { background: #13c2c2; }
+  .ct-avatar-applicant { background: #1890ff; }
+  .ct-avatar-respondent { background: #faad14; }
+
+  .ct-participant-info { flex: 1; }
+  .ct-participant-name { font-size: 13px; color: white; }
+  .ct-participant-role { font-size: 11px; color: rgba(255, 255, 255, 0.5); }
+
+  .ct-participant-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .ct-participant-status.online { background: #52c41a; }
+  .ct-participant-status.offline { background: #ff4d4f; }
+
+  .ct-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ct-video-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 16px;
+  }
+
+  .ct-video-main {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ct-video-placeholder {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .ct-video-icon { font-size: 64px; margin-bottom: 12px; }
+  .ct-video-text { font-size: 14px; }
+
+  .ct-video-controls {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+  }
+
+  .ct-control-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .ct-control-btn:hover { background: rgba(255, 255, 255, 0.3); }
+  .ct-control-btn.active { background: #ff4d4f; }
+
+  .ct-video-small {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ct-video-sm {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .ct-timeline {
+    height: 200px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ct-timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 14px;
+  }
+
+  .ct-timeline-content {
+    flex: 1;
+    padding: 12px 16px;
+    overflow-y: auto;
+  }
+
+  .ct-record {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .ct-timeline-input {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .ct-input {
+    flex: 1;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: white;
+    font-size: 13px;
+  }
+
+  .ct-input:focus {
+    outline: none;
+    border-color: #1890ff;
+  }
+
+  .ct-evidence-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ct-evidence-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .ct-evidence-icon { font-size: 20px; }
+  .ct-evidence-name { font-size: 12px; color: white; }
+  .ct-evidence-status { font-size: 10px; color: rgba(255, 255, 255, 0.5); }
+
+  .ct-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ct-action-btn {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .ct-action-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .ct-btn-sm { padding: 4px 8px; font-size: 12px; }
+  .ct-btn-primary { background: #1890ff; border-color: #1890ff; }
+</style>
+
 <script>
   // 顶部标签切换功能
   document.querySelectorAll('.tab-item').forEach(function(item) {
@@ -1215,6 +1650,38 @@
 
   function closeModal(modalId) {
     document.getElementById(modalId).classList.remove('active');
+  }
+
+  // 云庭审功能
+  function openCloudTrial(caseId) {
+    document.getElementById('cloud-trial-fullscreen').classList.add('active');
+    if (caseId) {
+      document.getElementById('ct-case-id').textContent = caseId || 'ZC20260503005';
+    }
+    showNotification('已进入云庭审室', 'success');
+  }
+
+  function closeCloudTrial() {
+    document.getElementById('cloud-trial-fullscreen').classList.remove('active');
+    showNotification('已退出云庭审', 'info');
+  }
+
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-item').forEach(function(item) {
+      item.classList.remove('active');
+      if (item.getAttribute('data-tab') === tabId) {
+        item.classList.add('active');
+      }
+    });
+
+    document.querySelectorAll('[id^="tab-"]').forEach(function(content) {
+      content.style.display = 'none';
+    });
+
+    var targetContent = document.getElementById('tab-' + tabId);
+    if (targetContent) {
+      targetContent.style.display = 'block';
+    }
   }
 
   document.querySelectorAll('.modal-overlay').forEach(function(overlay) {

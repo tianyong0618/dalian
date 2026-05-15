@@ -1141,7 +1141,6 @@
             <div class="content-card ai-card">
               <div class="content-card-header">
                 <h3>🤖 AI智能校验</h3>
-                <button class="btn btn-secondary btn-sm" onclick="showNotification('查看详情', 'info')">查看详情</button>
               </div>
               <div class="content-card-body">
                 <div class="ai-check-summary">
@@ -1175,32 +1174,32 @@
             <div class="content-card">
               <div class="content-card-header">
                 <h3>📊 案件分流</h3>
-                <button class="btn btn-secondary btn-sm" onclick="showNotification('查看全部', 'info')">查看全部</button>
+                <button class="btn btn-secondary btn-sm" onclick="showModule('case-management')">查看全部</button>
               </div>
               <div class="content-card-body">
                 <div class="case-flow-grid">
-                  <div class="flow-item" onclick="showNotification('待分配案件', 'info')">
+                  <div class="flow-item" onclick="showModule('case-management')">
                     <div class="flow-icon pending">⏳</div>
                     <div class="flow-info">
                       <div class="flow-count">45</div>
                       <div class="flow-label">待分配</div>
                     </div>
                   </div>
-                  <div class="flow-item" onclick="showNotification('调解中案件', 'info')">
+                  <div class="flow-item" onclick="showModule('case-management')">
                     <div class="flow-icon mediation">🤝</div>
                     <div class="flow-info">
                       <div class="flow-count">89</div>
                       <div class="flow-label">调解中</div>
                     </div>
                   </div>
-                  <div class="flow-item" onclick="showNotification('仲裁审理案件', 'info')">
+                  <div class="flow-item" onclick="showModule('case-management')">
                     <div class="flow-icon arbitration">⚖️</div>
                     <div class="flow-info">
                       <div class="flow-count">67</div>
                       <div class="flow-label">仲裁审理</div>
                     </div>
                   </div>
-                  <div class="flow-item" onclick="showNotification('已结案案件', 'info')">
+                  <div class="flow-item" onclick="showModule('case-management')">
                     <div class="flow-icon closed">✅</div>
                     <div class="flow-info">
                       <div class="flow-count">234</div>
@@ -1217,20 +1216,6 @@
             <div class="content-card case-list-card">
               <div class="content-card-header">
                 <h3>📋 待处理案件</h3>
-                <div class="filter-bar">
-                  <select class="form-select" onchange="filterCases(this.value)">
-                    <option value="all">全部状态</option>
-                    <option value="pending">待分配</option>
-                    <option value="mediation">调解中</option>
-                    <option value="arbitration">仲裁审理</option>
-                  </select>
-                  <select class="form-select" onchange="filterCaseType(this.value)">
-                    <option value="all">全部类型</option>
-                    <option value="labor">劳动争议</option>
-                    <option value="injury">工伤待遇</option>
-                    <option value="social">社会保险</option>
-                  </select>
-                </div>
               </div>
               <div class="content-card-body" style="padding: 0;">
                 <div class="case-list">
@@ -1278,7 +1263,7 @@
                   </div>
                 </div>
                 <div class="case-list-footer">
-                  <button class="btn btn-secondary btn-sm" onclick="showNotification('查看更多案件', 'info')">查看更多 →</button>
+                  <button class="btn btn-secondary btn-sm" onclick="showModule('case-management')">查看更多 →</button>
                 </div>
               </div>
             </div>
