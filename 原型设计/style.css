@@ -44,9 +44,9 @@ body {
 }
 
 .container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 32px;
+  width: 100%;
+  margin: 0;
+  padding: 0 24px;
 }
 
 /* 导航栏样式 - 参考人员画像页面 */
