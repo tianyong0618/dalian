@@ -534,10 +534,6 @@
     </div>
 
     <main class="main-content">
-      <div class="top-nav">
-        <h1 class="page-title">法律援助端</h1>
-      </div>
-
       <div class="tab-content" id="tab-dashboard">
         <div class="stats-grid">
           <div class="stat-card legal-aid-stat">
@@ -1244,7 +1240,77 @@
     }
 
     function assignToLawyer(lawyerName) {
-      showNotification('已指派 ' + lawyerName + '，请先选择申请人', 'info');
+      var approvedApps = applicationData.filter(function(a) { return a.status === 'approved'; });
+      
+      if (approvedApps.length === 0) {
+        showNotification('暂无已通过的案件可指派', 'warning');
+        return;
+      }
+
+      var overlay = document.createElement('div');
+      overlay.className = 'modal-overlay active';
+      overlay.style.display = 'flex';
+
+      var casesHtml = '';
+      approvedApps.forEach(function(app) {
+        casesHtml += '<div class="lawyer-select-card" onclick="selectCaseForAssign(this, \'' + app.name + '\')">' +
+          '<div style="flex:1;">' +
+            '<div class="lawyer-name">' + app.name + '</div>' +
+            '<div class="lawyer-detail">' + app.type + ' | ' + app.amount + ' | ' + app.date + '</div>' +
+          '</div>' +
+        '</div>';
+      });
+
+      overlay.innerHTML =
+        '<div class="modal" style="max-width:700px;">' +
+          '<div class="modal-header"><h3>选择要指派的案件</h3><button class="modal-close" onclick="this.closest(\'.modal-overlay\').remove()">&times;</button></div>' +
+          '<div class="modal-body">' +
+            '<div style="background:var(--bg-secondary);padding:16px;border-radius:var(--radius-md);margin-bottom:20px;">' +
+              '<strong>指派律师：</strong><span>' + lawyerName + '</span>' +
+            '</div>' +
+            '<div class="form-group">' +
+              '<label class="form-label">已通过的案件</label>' +
+              '<div class="lawyer-select-list" id="assign-case-list">' + casesHtml + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="modal-footer">' +
+            '<button class="btn btn-secondary" onclick="this.closest(\'.modal-overlay\').remove()">取消</button>' +
+            '<button class="btn btn-primary" onclick="confirmAssignToLawyer(\'' + lawyerName + '\')">确认指派</button>' +
+          '</div>' +
+        '</div>';
+
+      overlay.addEventListener('click', function(e) {
+        if (e.target === this) this.remove();
+      });
+      document.body.appendChild(overlay);
+    }
+
+    var selectedCaseName = null;
+
+    function selectCaseForAssign(card, caseName) {
+      document.querySelectorAll('#assign-case-list .lawyer-select-card').forEach(function(c) {
+        c.classList.remove('selected');
+      });
+      card.classList.add('selected');
+      selectedCaseName = caseName;
+    }
+
+    function confirmAssignToLawyer(lawyerName) {
+      if (!selectedCaseName) {
+        showNotification('请选择要指派的案件', 'warning');
+        return;
+      }
+
+      var app = applicationData.find(function(a) { return a.name === selectedCaseName; });
+      if (app) {
+        app.status = 'assigned';
+        app.lawyer = lawyerName;
+        updateTableRow(app);
+      }
+
+      document.querySelector('.modal-overlay.active').remove();
+      showNotification('已将 ' + selectedCaseName + ' 的案件指派给 ' + lawyerName, 'success');
+      selectedCaseName = null;
     }
 
     function uploadFile() {
