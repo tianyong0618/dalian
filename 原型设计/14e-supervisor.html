@@ -825,131 +825,120 @@
           </div>
         </div>
 
-        <div class="warning-card">
-          <div class="warning-header">
-            <div class="warning-icon">🤖</div>
-            <div>
-              <div class="warning-title">AI欠薪预警</div>
-              <span class="warning-badge">🔴 红色预警</span>
+        <div class="stats-charts">
+          <div class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">月度案件办结趋势</div>
+              <div class="chart-legend">
+                <div class="chart-legend-item">
+                  <span style="width: 12px; height: 12px; background: var(--primary); border-radius: 4px; display: inline-block;"></span>
+                  <span>办结数</span>
+                </div>
+              </div>
+            </div>
+            <div class="chart-bar">
+              <div class="bar-item" style="height: 60%;"><div class="bar-value">120</div><div class="bar-label">1月</div></div>
+              <div class="bar-item" style="height: 75%;"><div class="bar-value">150</div><div class="bar-label">2月</div></div>
+              <div class="bar-item" style="height: 55%;"><div class="bar-value">110</div><div class="bar-label">3月</div></div>
+              <div class="bar-item" style="height: 85%;"><div class="bar-value">170</div><div class="bar-label">4月</div></div>
+              <div class="bar-item" style="height: 95%;"><div class="bar-value">190</div><div class="bar-label">5月</div></div>
             </div>
           </div>
-          <div class="warning-content">
-            <div class="warning-item" onclick="showTab('warning')">
-              <div class="count">23</div>
-              <div class="label">高风险项目</div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">案件类型分布</div>
             </div>
-            <div class="warning-item" onclick="showTab('warning')">
-              <div class="count">1,256</div>
-              <div class="label">涉及劳动者(人)</div>
+            <div class="pie-chart-container">
+              <div class="pie-chart">
+                <div class="pie-center">
+                  <div class="percent">100%</div>
+                  <div class="label">总计</div>
+                </div>
+              </div>
+              <div class="pie-legend">
+                <div class="pie-legend-item">
+                  <span class="pie-color" style="background: #1677ff;"></span>
+                  <span>劳动争议</span>
+                  <span style="font-weight: 600; margin-left: auto;">40%</span>
+                </div>
+                <div class="pie-legend-item">
+                  <span class="pie-color" style="background: #52c41a;"></span>
+                  <span>工伤赔偿</span>
+                  <span style="font-weight: 600; margin-left: auto;">30%</span>
+                </div>
+                <div class="pie-legend-item">
+                  <span class="pie-color" style="background: #faad14;"></span>
+                  <span>工资拖欠</span>
+                  <span style="font-weight: 600; margin-left: auto;">20%</span>
+                </div>
+                <div class="pie-legend-item">
+                  <span class="pie-color" style="background: #ff4d4f;"></span>
+                  <span>其他</span>
+                  <span style="font-weight: 600; margin-left: auto;">10%</span>
+                </div>
+              </div>
             </div>
-            <div class="warning-item" onclick="showTab('warning')">
-              <div class="count">¥ 856万</div>
-              <div class="label">欠薪金额(元)</div>
-            </div>
-          </div>
-          <div class="warning-legend">
-            <div class="legend-item">
-              <span class="legend-dot red"></span>
-              <span>红色预警 - 严重欠薪</span>
-            </div>
-            <div class="legend-item">
-              <span class="legend-dot yellow"></span>
-              <span>黄色预警 - 存在隐患</span>
-            </div>
-            <div class="legend-item">
-              <span class="legend-dot blue"></span>
-              <span>蓝色预警 - 轻微异常</span>
-            </div>
-          </div>
-          <div class="warning-actions">
-            <button class="btn btn-primary" onclick="showTab('warning')">查看预警详情</button>
-            <button class="btn btn-secondary" onclick="pushWarning()">推送监管部门</button>
           </div>
         </div>
 
         <div class="project-table-section">
           <div class="section-header-bar">
-            <h2 class="section-title">在建项目全要素监管</h2>
-            <button class="btn btn-primary btn-sm" onclick="showTab('project')">查看全部</button>
+            <h2 class="section-title">各级仲裁机构效能排行</h2>
+            <button class="btn btn-primary btn-sm" onclick="showTab('efficiency')">查看全部</button>
           </div>
           <div class="table-wrapper">
             <table class="project-table">
               <thead>
                 <tr>
-                  <th>项目名称</th>
-                  <th>建设单位</th>
-                  <th>施工单位</th>
-                  <th>项目状态</th>
-                  <th>施工进度</th>
-                  <th>工人数量</th>
-                  <th>工资账户</th>
-                  <th>预警状态</th>
-                  <th>操作</th>
+                  <th>排名</th>
+                  <th>机构名称</th>
+                  <th>办结率</th>
+                  <th>本月办结</th>
+                  <th>云庭审使用率</th>
+                  <th>调解成功率</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="project-name">城西CBD综合体项目</td>
-                  <td>城西置业集团</td>
-                  <td>建工集团</td>
-                  <td><span class="status-badge ongoing">在建</span></td>
-                  <td>
-                    <div class="progress-cell">
-                      <div class="progress-bar">
-                        <div class="progress-fill" style="width: 75%"></div>
-                      </div>
-                      <span class="progress-text">75%</span>
-                    </div>
-                  </td>
-                  <td>328人</td>
-                  <td>已开设</td>
-                  <td><span class="status-badge warning">高风险</span></td>
-                  <td class="action-cell">
-                    <button class="btn btn-secondary btn-sm" onclick="showProjectDetail('城西CBD综合体项目')">详情</button>
-                    <button class="btn btn-warning btn-sm" onclick="showTab('warning')">预警处置</button>
-                  </td>
+                  <td><span style="font-weight: 700; color: #1677ff;">1</span></td>
+                  <td class="project-name">市仲裁委</td>
+                  <td>98%</td>
+                  <td>156件</td>
+                  <td>85%</td>
+                  <td>78%</td>
                 </tr>
                 <tr>
-                  <td class="project-name">地铁3号线工程</td>
-                  <td>市轨道公司</td>
-                  <td>中铁隧道局</td>
-                  <td><span class="status-badge ongoing">在建</span></td>
-                  <td>
-                    <div class="progress-cell">
-                      <div class="progress-bar">
-                        <div class="progress-fill" style="width: 60%"></div>
-                      </div>
-                      <span class="progress-text">60%</span>
-                    </div>
-                  </td>
-                  <td>512人</td>
-                  <td>已开设</td>
-                  <td><span class="status-badge ongoing">正常</span></td>
-                  <td class="action-cell">
-                    <button class="btn btn-secondary btn-sm" onclick="showProjectDetail('地铁3号线工程')">详情</button>
-                    <button class="btn btn-warning btn-sm" onclick="showTab('warning')">预警处置</button>
-                  </td>
+                  <td><span style="font-weight: 700; color: #52c41a;">2</span></td>
+                  <td class="project-name">高新区仲裁院</td>
+                  <td>95%</td>
+                  <td>89件</td>
+                  <td>78%</td>
+                  <td>72%</td>
                 </tr>
                 <tr>
-                  <td class="project-name">人民医院新院区</td>
-                  <td>市卫健委</td>
-                  <td>华西建设</td>
-                  <td><span class="status-badge ongoing">在建</span></td>
-                  <td>
-                    <div class="progress-cell">
-                      <div class="progress-bar">
-                        <div class="progress-fill" style="width: 45%"></div>
-                      </div>
-                      <span class="progress-text">45%</span>
-                    </div>
-                  </td>
-                  <td>186人</td>
-                  <td>已开设</td>
-                  <td><span class="status-badge medium">中风险</span></td>
-                  <td class="action-cell">
-                    <button class="btn btn-secondary btn-sm" onclick="showProjectDetail('人民医院新院区')">详情</button>
-                    <button class="btn btn-warning btn-sm" onclick="showTab('warning')">预警处置</button>
-                  </td>
+                  <td><span style="font-weight: 700; color: #faad14;">3</span></td>
+                  <td class="project-name">经开区仲裁院</td>
+                  <td>92%</td>
+                  <td>76件</td>
+                  <td>72%</td>
+                  <td>68%</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td class="project-name">城东区仲裁院</td>
+                  <td>88%</td>
+                  <td>65件</td>
+                  <td>65%</td>
+                  <td>65%</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td class="project-name">城西区仲裁院</td>
+                  <td>85%</td>
+                  <td>58件</td>
+                  <td>60%</td>
+                  <td>62%</td>
                 </tr>
               </tbody>
             </table>
