@@ -530,9 +530,7 @@
   <div class="app-layout">
     <div class="top-tabs">
       <div class="tab-item active" data-tab="dashboard">我的工作台</div>
-      <div class="tab-item" data-tab="applications">援助申请</div>
       <div class="tab-item" data-tab="cases">案件管理</div>
-      <div class="tab-item" data-tab="stats">统计分析</div>
     </div>
 
     <main class="main-content">
@@ -569,22 +567,25 @@
             </button>
           </div>
           <div class="filter-bar">
-            <select class="form-select">
-              <option>全部状态</option>
-              <option>待审核</option>
-              <option>已通过</option>
-              <option>已驳回</option>
+            <select class="form-select" id="filter-status" onchange="filterApplications()">
+              <option value="">全部状态</option>
+              <option value="pending">待审核</option>
+              <option value="approved">已通过</option>
+              <option value="rejected">已驳回</option>
+              <option value="processing">审核中</option>
+              <option value="assigned">已指派</option>
             </select>
-            <select class="form-select">
-              <option>全部类型</option>
-              <option>劳动仲裁</option>
-              <option>诉讼代理</option>
-              <option>非诉调解</option>
+            <select class="form-select" id="filter-type" onchange="filterApplications()">
+              <option value="">全部类型</option>
+              <option value="劳动仲裁">劳动仲裁</option>
+              <option value="诉讼代理">诉讼代理</option>
+              <option value="非诉调解">非诉调解</option>
             </select>
-            <select class="form-select">
-              <option>本月</option>
-              <option>本季度</option>
-              <option>本年</option>
+            <select class="form-select" id="filter-date" onchange="filterApplications()">
+              <option value="all">全部时间</option>
+              <option value="month">本月</option>
+              <option value="quarter">本季度</option>
+              <option value="year">本年</option>
             </select>
           </div>
           <div class="table-wrapper">
@@ -764,31 +765,6 @@
         </div>
       </div>
 
-      <div class="tab-content" id="tab-applications" style="display:none;">
-        <div class="application-section">
-          <div class="section-header-bar">
-            <h2 class="section-title">援助申请管理</h2>
-            <button class="btn btn-primary" onclick="showNewApplicationModal()">
-              <span>🔍</span> 新建申请
-            </button>
-          </div>
-          <div class="filter-bar">
-            <select class="form-select"><option>全部状态</option><option>待审核</option><option>已通过</option><option>已驳回</option></select>
-            <select class="form-select"><option>全部类型</option><option>劳动仲裁</option><option>诉讼代理</option><option>非诉调解</option></select>
-          </div>
-          <div style="padding:0 24px 24px;">
-            <table class="application-table">
-              <thead><tr><th>申请人</th><th>联系电话</th><th>案件类型</th><th>申请金额</th><th>申请日期</th><th>状态</th><th>操作</th></tr></thead>
-              <tbody>
-                <tr><td class="applicant-name">陈某</td><td>138****1234</td><td>劳动仲裁</td><td>¥ 28,000</td><td>2026-05-10</td><td><span class="status-badge pending">待审核</span></td><td><button class="btn btn-sm btn-primary" onclick="reviewApplication('陈某')">审核</button></td></tr>
-                <tr><td class="applicant-name">刘某</td><td>139****5678</td><td>诉讼代理</td><td>¥ 45,000</td><td>2026-05-09</td><td><span class="status-badge processing">审核中</span></td><td><button class="btn btn-sm btn-secondary" onclick="viewApplication('刘某')">查看</button></td></tr>
-                <tr><td class="applicant-name">周某</td><td>135****7890</td><td>诉讼代理</td><td>¥ 62,000</td><td>2026-05-06</td><td><span class="status-badge rejected">已驳回</span></td><td><button class="btn btn-sm btn-secondary" onclick="viewApplicationDetail('周某')">详情</button></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
       <div class="tab-content" id="tab-cases" style="display:none;">
         <div class="application-section">
           <div class="section-header-bar">
@@ -803,23 +779,6 @@
                 <tr><td class="applicant-name">LA-2026-003</td><td>陈某</td><td>劳动仲裁</td><td>张律师</td><td>2026-05-10</td><td><span class="status-badge processing">审核中</span></td><td><button class="btn btn-sm btn-secondary" onclick="showCaseDetail('陈某','LA-2026-003')">查看</button></td></tr>
               </tbody>
             </table>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-content" id="tab-stats" style="display:none;">
-        <div class="application-section">
-          <div class="section-header-bar">
-            <h2 class="section-title">统计分析</h2>
-          </div>
-          <div style="padding:24px;">
-            <div class="stats-grid" style="margin-bottom:24px;">
-              <div class="stat-card legal-aid-stat"><div class="number">48</div><div class="label">待审核</div></div>
-              <div class="stat-card legal-aid-stat"><div class="number">126</div><div class="label">在办案件</div></div>
-              <div class="stat-card legal-aid-stat"><div class="number">35</div><div class="label">援助律师</div></div>
-              <div class="stat-card legal-aid-stat"><div class="number">89%</div><div class="label">结案率</div></div>
-            </div>
-            <p style="color:var(--text-secondary);font-size:14px;text-align:center;padding:40px;">统计图表功能开发中，敬请期待...</p>
           </div>
         </div>
       </div>
@@ -1070,6 +1029,51 @@
   <script>
     var currentApplicant = null;
     var selectedLawyer = null;
+
+    function filterApplications() {
+      var statusFilter = document.getElementById('filter-status').value;
+      var typeFilter = document.getElementById('filter-type').value;
+      var dateFilter = document.getElementById('filter-date').value;
+
+      var rows = document.querySelectorAll('.application-table tbody tr');
+      var visibleCount = 0;
+
+      rows.forEach(function(row) {
+        var name = row.querySelector('.applicant-name').textContent;
+        var app = applicationData.find(function(a) { return a.name === name; });
+        
+        if (!app) return;
+
+        var matchStatus = !statusFilter || app.status === statusFilter;
+        var matchType = !typeFilter || app.type === typeFilter;
+        
+        var matchDate = true;
+        if (dateFilter !== 'all') {
+          var appDate = new Date(app.date);
+          var now = new Date();
+          var startDate;
+          
+          if (dateFilter === 'month') {
+            startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+          } else if (dateFilter === 'quarter') {
+            var quarter = Math.floor(now.getMonth() / 3);
+            startDate = new Date(now.getFullYear(), quarter * 3, 1);
+          } else if (dateFilter === 'year') {
+            startDate = new Date(now.getFullYear(), 0, 1);
+          }
+          matchDate = appDate >= startDate;
+        }
+
+        if (matchStatus && matchType && matchDate) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      showNotification('筛选完成，共 ' + visibleCount + ' 个项目', 'success');
+    }
 
     function switchRole(role) {
       const roleUrls = {
