@@ -1231,10 +1231,36 @@
     });
 
     function filterProjects() {
-      showNotification('正在筛选项目...', 'info');
-      setTimeout(() => {
-        showNotification('筛选完成', 'success');
-      }, 500);
+      const regionSelect = document.querySelector('#tab-project .filter-container select:first-child');
+      const statusSelect = document.querySelector('#tab-project .filter-container select:last-child');
+      
+      const selectedRegion = regionSelect.value;
+      const selectedStatus = statusSelect.value;
+      
+      const rows = document.querySelectorAll('#tab-project .project-table tbody tr');
+      let visibleCount = 0;
+      
+      rows.forEach(row => {
+        const regionCell = row.querySelector('td:nth-child(2)');
+        const statusCell = row.querySelector('td:nth-child(8)');
+        
+        const regionMatch = selectedRegion === '全部区域' || 
+          (selectedRegion === '主城区' && ['城西置业集团', '市轨道公司', '市卫健委'].includes(regionCell.textContent)) ||
+          (selectedRegion === '高新区' && regionCell.textContent === '科技发展公司') ||
+          (selectedRegion === '开发区' && regionCell.textContent === '区住建局');
+        
+        const statusMatch = selectedStatus === '全部状态' || 
+          statusCell.textContent.includes(selectedStatus);
+        
+        if (regionMatch && statusMatch) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+      
+      // showNotification(`筛选完成，共 ${visibleCount} 个项目`, 'success');
     }
 
     function showTab(tabId) {
