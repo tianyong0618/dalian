@@ -16,35 +16,13 @@
 <div class="page-content">
   <div class="container">
 
-    <!-- 争议申请与受理 -->
-    <div class="card mb-24 p-24">
-      <h3 class="mb-16">争议申请与受理</h3>
-      <div class="row">
-        <div class="col-12">
-          <div class="feature-card" onclick="showModal('dispute-apply-modal')">
-            <div class="card-header">
-              <div class="icon">📝</div>
-              <div class="card-content">
-                <h4>争议申请</h4>
-                <p class="text-small">在线提交申请，填写详情，上传证据，选择调解方式</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="mt-24 text-center">
-        <button class="btn btn-primary" onclick="showModal('dispute-apply-modal')">申请争议调解</button>
-      </div>
-    </div>
-
-
-
     <!-- 争议案件列表 -->
     <div class="card p-24 mt-24">
       <h3 class="mb-16">争议案件列表</h3>
       <div class="search-bar mb-16" style="display: flex; gap: 12px;">
         <input type="text" class="form-input" id="case-search" placeholder="搜索案件编号、申请人..." style="flex: 1; max-width: 360px;">
         <button class="btn btn-primary" onclick="searchCaseList()"><i class="fas fa-search mr-4"></i>搜索</button>
+        <button class="btn btn-secondary" onclick="showModal('dispute-apply-modal')">申请调解</button>
       </div>
       <div style="overflow-x: auto;">
         <table class="table">
