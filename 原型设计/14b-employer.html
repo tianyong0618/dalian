@@ -878,9 +878,7 @@
   <div class="app-layout">
     <div class="top-tabs">
       <div class="tab-item active" data-tab="dashboard">我的工作台</div>
-      <div class="tab-item" data-tab="contracts">合同管理</div>
       <div class="tab-item" data-tab="cases">应诉案件</div>
-
       <div class="tab-item" data-tab="wage">工资确认</div>
       <div class="tab-item" data-tab="complaint">欠薪投诉处理</div>
     </div>
@@ -910,6 +908,68 @@
         </div>
       </div>
 
+      <div class="contract-section">
+        <div class="section-header-bar">
+          <h2 class="section-title">合同管理</h2>
+          <button class="btn btn-primary" onclick="openContractModal()">
+            <span>➕</span>
+            发起签署
+          </button>
+        </div>
+        <div class="table-wrapper">
+          <table class="contract-table">
+            <thead>
+              <tr>
+                <th>合同名称</th>
+                <th>员工姓名</th>
+                <th>合同类型</th>
+                <th>签订日期</th>
+                <th>截止日期</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="contract-name">劳动合同-2026版</td>
+                <td>张三</td>
+                <td>全职合同</td>
+                <td>2026-01-15</td>
+                <td>2027-01-14</td>
+                <td><span class="status-badge signed">已签署</span></td>
+                <td><button class="btn btn-sm btn-secondary" onclick="showContractDetail(0)">查看</button> <button class="btn btn-sm btn-secondary" onclick="downloadContractPDF(0)">下载PDF</button> <button class="btn btn-sm btn-secondary" onclick="showContractPreview(0)">预览</button></td>
+              </tr>
+              <tr>
+                <td class="contract-name">劳动合同-2026版</td>
+                <td>李四</td>
+                <td>全职合同</td>
+                <td>2026-02-01</td>
+                <td>2027-01-31</td>
+                <td><span class="status-badge processing">签署中</span></td>
+                <td><button class="btn btn-sm btn-warning" onclick="sendSigningReminder(1)">提醒</button> <button class="btn btn-sm btn-secondary" onclick="showSigningProgress(1)">查看</button></td>
+              </tr>
+              <tr>
+                <td class="contract-name">劳务派遣合同</td>
+                <td>王五</td>
+                <td>派遣合同</td>
+                <td>2026-03-01</td>
+                <td>2027-02-28</td>
+                <td><span class="status-badge pending">待签署</span></td>
+                <td><button class="btn btn-sm btn-primary" onclick="openContractModal()">发送</button> <button class="btn btn-sm btn-secondary" onclick="showContractPreview(2)">预览</button></td>
+              </tr>
+              <tr>
+                <td class="contract-name">兼职协议</td>
+                <td>赵六</td>
+                <td>兼职合同</td>
+                <td>2025-06-01</td>
+                <td>2026-05-31</td>
+                <td><span class="status-badge expired">已过期</span></td>
+                <td><button class="btn btn-sm btn-secondary" onclick="showRenewalForm(3)">续签</button> <button class="btn btn-sm btn-secondary" onclick="showContractDetail(3)">查看</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       </div>
 
@@ -1095,75 +1155,6 @@
 
         <div style="text-align: center; margin-top: 20px;">
           <button class="btn btn-secondary btn-sm" onclick="closeWizard()">取消</button>
-        </div>
-      </div>
-
-      <!-- 合同管理标签页 -->
-      <div id="tab-contracts" style="display: none;">
-        <div class="top-nav">
-          <h1 class="page-title">合同管理</h1>
-        </div>
-        <div class="contract-section">
-          <div class="section-header-bar">
-            <h2 class="section-title">合同列表</h2>
-            <button class="btn btn-primary" onclick="openContractModal()">
-              <span>➕</span>
-              发起签署
-            </button>
-          </div>
-          <div class="table-wrapper">
-            <table class="contract-table">
-              <thead>
-                <tr>
-                  <th>合同名称</th>
-                  <th>员工姓名</th>
-                  <th>合同类型</th>
-                  <th>签订日期</th>
-                  <th>截止日期</th>
-                  <th>状态</th>
-                  <th>操作</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="contract-name">劳动合同-2026版</td>
-                  <td>张三</td>
-                  <td>全职合同</td>
-                  <td>2026-01-15</td>
-                  <td>2027-01-14</td>
-                  <td><span class="status-badge signed">已签署</span></td>
-                  <td><button class="btn btn-sm btn-secondary" onclick="showContractDetail(0)">查看</button> <button class="btn btn-sm btn-secondary" onclick="downloadContractPDF(0)">下载PDF</button> <button class="btn btn-sm btn-secondary" onclick="showContractPreview(0)">预览</button></td>
-                </tr>
-                <tr>
-                  <td class="contract-name">劳动合同-2026版</td>
-                  <td>李四</td>
-                  <td>全职合同</td>
-                  <td>2026-02-01</td>
-                  <td>2027-01-31</td>
-                  <td><span class="status-badge processing">签署中</span></td>
-                  <td><button class="btn btn-sm btn-warning" onclick="sendSigningReminder(1)">提醒</button> <button class="btn btn-sm btn-secondary" onclick="showSigningProgress(1)">查看</button></td>
-                </tr>
-                <tr>
-                  <td class="contract-name">劳务派遣合同</td>
-                  <td>王五</td>
-                  <td>派遣合同</td>
-                  <td>2026-03-01</td>
-                  <td>2027-02-28</td>
-                  <td><span class="status-badge pending">待签署</span></td>
-                  <td><button class="btn btn-sm btn-primary" onclick="openContractModal()">发送</button> <button class="btn btn-sm btn-secondary" onclick="showContractPreview(2)">预览</button></td>
-                </tr>
-                <tr>
-                  <td class="contract-name">兼职协议</td>
-                  <td>赵六</td>
-                  <td>兼职合同</td>
-                  <td>2025-06-01</td>
-                  <td>2026-05-31</td>
-                  <td><span class="status-badge expired">已过期</span></td>
-                  <td><button class="btn btn-sm btn-secondary" onclick="showRenewalForm(3)">续签</button> <button class="btn btn-sm btn-secondary" onclick="showContractDetail(3)">查看</button></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </div>
       </div>
 
