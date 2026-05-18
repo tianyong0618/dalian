@@ -192,6 +192,9 @@
       font-weight: 600;
       color: var(--text-primary);
       margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .verify-items {
@@ -496,6 +499,19 @@
     }
 
     .btn-warning { background: var(--warning); color: var(--text-on-primary); }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .btn-success { 
+      background: var(--success); 
+      color: var(--text-on-primary); 
+    }
+    .btn-success:hover { 
+      background: #34d399; 
+    }
   </style>
 </head>
 <body>
@@ -826,32 +842,61 @@
       <button class="modal-close" onclick="closeModal('case-apply-modal')">&times;</button>
     </div>
     <div class="modal-body">
-      <!-- AI材料校验展示 -->
-      <div class="ai-verify-box" style="margin-bottom: 20px;">
+      <!-- AI材料校验展示 - 默认隐藏 -->
+      <div id="ai-verify-section" class="ai-verify-box" style="margin-bottom: 20px; display: none;">
         <div class="ai-verify-header">
           <span class="icon">🤖</span>
-          <h4>AI材料校验状态</h4>
+          <h4 id="ai-verify-title">AI材料校验状态</h4>
+          <span id="ai-verify-spinner" style="display: none; animation: spin 1s linear infinite;">🔄</span>
         </div>
-        <div class="verify-items">
-          <div class="verify-item pass">
-            <span class="status-icon">✓</span>
-            <span>身份证件 - 格式合规，已识别</span>
+        <div class="verify-items" id="ai-verify-items">
+          <div class="verify-item" id="verify-id-card">
+            <span class="status-icon">⏳</span>
+            <span>身份证件 - 待校验...</span>
           </div>
-          <div class="verify-item pass">
-            <span class="status-icon">✓</span>
-            <span>劳动合同 - 完整有效</span>
+          <div class="verify-item" id="verify-contract">
+            <span class="status-icon">⏳</span>
+            <span>劳动合同 - 待校验...</span>
           </div>
-          <div class="verify-item warning">
-            <span class="status-icon">⚠</span>
-            <span>工资流水 - 建议补充近6个月记录</span>
+          <div class="verify-item" id="verify-salary">
+            <span class="status-icon">⏳</span>
+            <span>工资流水 - 待校验...</span>
           </div>
-          <div class="verify-item pass">
-            <span class="status-icon">✓</span>
-            <span>证据清单 - 规范完整</span>
+          <div class="verify-item" id="verify-evidence">
+            <span class="status-icon">⏳</span>
+            <span>证据清单 - 待校验...</span>
           </div>
-          <div class="verify-item error">
-            <span class="status-icon">✗</span>
-            <span>考勤记录 - 缺失，请补充</span>
+          <div class="verify-item" id="verify-attendance">
+            <span class="status-icon">⏳</span>
+            <span>考勤记录 - 待校验...</span>
+          </div>
+        </div>
+        <div id="ai-verify-progress" style="display: none; margin-top: 16px;">
+          <div style="height: 4px; background: var(--border-color); border-radius: 2px; overflow: hidden;">
+            <div id="ai-progress-bar" style="height: 100%; background: linear-gradient(90deg, var(--primary), #7c3aed); width: 0%; transition: width 0.3s ease;"></div>
+          </div>
+        </div>
+        <div id="ai-verify-summary" style="display: none; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+          <h4 style="margin-bottom: 12px; color: var(--text-primary);">📊 校验结果汇总</h4>
+          <div style="background: var(--bg-secondary); padding: 16px; border-radius: var(--radius-md);">
+            <div class="row mb-8">
+              <div class="col-6"><strong>材料完整度：</strong><span id="completeness-score" style="color: var(--success); font-weight: 600;">85%</span></div>
+              <div class="col-6"><strong>证据有效性：</strong><span id="evidence-score" style="color: var(--success); font-weight: 600;">优秀</span></div>
+            </div>
+            <div class="row mb-8">
+              <div class="col-6"><strong>风险等级：</strong><span id="risk-level" style="color: var(--warning); font-weight: 600;">中</span></div>
+              <div class="col-6"><strong>受理建议：</strong><span id="acceptance-advice" style="color: var(--success); font-weight: 600;">建议受理</span></div>
+            </div>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color);">
+              <p style="color: var(--text-secondary); font-size: 13px; line-height: 1.6;">
+                <strong>AI智能分析结果：</strong><br>
+                • 申请人身份信息完整，已通过实名认证<br>
+                • 劳动合同有效，劳动关系确认成立<br>
+                • 工资流水证据充分，支持诉求主张<br>
+                • <span style="color: var(--warning);">建议补充考勤记录以增强证据链</span><br>
+                • 案件事实清楚，证据确凿，建议予以受理
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -938,134 +983,13 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('case-apply-modal')">取消</button>
-      <button class="btn btn-primary" onclick="submitCase(event)">提交申请</button>
+      <button class="btn btn-primary" id="submit-case-btn" onclick="submitCase(event)">提交申请</button>
+      <button class="btn btn-success" id="confirm-submit-btn" style="display: none;" onclick="confirmCaseSubmit()">确认提交申请</button>
     </div>
   </div>
 </div>
 
-<!-- 案件申请模态框 -->
-<div class="modal-overlay" id="case-apply-modal">
-  <div class="modal" style="max-width: 720px;">
-    <div class="modal-header">
-      <h3>在线仲裁申请</h3>
-      <button class="modal-close" onclick="closeModal('case-apply-modal')">&times;</button>
-    </div>
-    <div class="modal-body">
-      <div class="ai-verify-box" style="margin-bottom: 20px;">
-        <div class="ai-verify-header">
-          <span class="icon">🤖</span>
-          <h4>AI材料校验状态</h4>
-        </div>
-        <div class="verify-items">
-          <div class="verify-item pass">
-            <span class="status-icon">✓</span>
-            <span>身份证件 - 格式合规，已识别</span>
-          </div>
-          <div class="verify-item pass">
-            <span class="status-icon">✓</span>
-            <span>劳动合同 - 完整有效</span>
-          </div>
-          <div class="verify-item warning">
-            <span class="status-icon">⚠</span>
-            <span>工资流水 - 建议补充近6个月记录</span>
-          </div>
-          <div class="verify-item pass">
-            <span class="status-icon">✓</span>
-            <span>证据清单 - 规范完整</span>
-          </div>
-          <div class="verify-item error">
-            <span class="status-icon">✗</span>
-            <span>考勤记录 - 缺失，请补充</span>
-          </div>
-        </div>
-      </div>
 
-      <form id="case-apply-form">
-        <div class="form-group">
-          <label class="form-label">案件类型 <span style="color: var(--danger);">*</span></label>
-          <select class="form-select" id="apply-case-type" required>
-            <option value="">请选择案件类型</option>
-            <option value="工资拖欠">工资拖欠纠纷</option>
-            <option value="劳动合同">劳动合同争议</option>
-            <option value="工伤赔偿">工伤赔偿纠纷</option>
-            <option value="社保缴纳">社保缴纳争议</option>
-            <option value="违法解雇">违法解雇纠纷</option>
-          </select>
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <div class="form-group">
-              <label class="form-label">申请人姓名 <span style="color: var(--danger);">*</span></label>
-              <input type="text" class="form-input" id="apply-name" placeholder="请输入申请人姓名" required>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="form-group">
-              <label class="form-label">联系电话 <span style="color: var(--danger);">*</span></label>
-              <input type="tel" class="form-input" id="apply-phone" placeholder="请输入联系电话" required>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">被申请人（单位/个人） <span style="color: var(--danger);">*</span></label>
-          <input type="text" class="form-input" id="apply-respondent" placeholder="请输入被申请人名称" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label">纠纷描述 <span style="color: var(--danger);">*</span></label>
-          <textarea class="form-textarea" id="apply-desc" placeholder="请详细描述纠纷经过、诉求等..." required></textarea>
-        </div>
-        <div class="form-group">
-          <label class="form-label">诉求金额（元）</label>
-          <input type="number" class="form-input" id="apply-amount" placeholder="请输入诉求金额">
-        </div>
-        <div class="form-group">
-          <label class="form-label">上传证据材料</label>
-          <div class="row">
-            <div class="col-6">
-              <div class="upload-area" onclick="uploadFile('id-card')">
-                <div class="upload-icon">🪪</div>
-                <p>身份证件</p>
-                <p class="text-small">点击上传</p>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="upload-area" onclick="uploadFile('contract')">
-                <div class="upload-icon">📄</div>
-                <p>劳动合同</p>
-                <p class="text-small">点击上传</p>
-              </div>
-            </div>
-          </div>
-          <div class="row mt-16">
-            <div class="col-6">
-              <div class="upload-area" onclick="uploadFile('salary')">
-                <div class="upload-icon">💳</div>
-                <p>工资流水</p>
-                <p class="text-small">点击上传</p>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="upload-area" onclick="uploadFile('evidence')">
-                <div class="upload-icon">📎</div>
-                <p>其他证据</p>
-                <p class="text-small">点击上传</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-secondary);">
-            <input type="checkbox" id="apply-agree"> 本人确认以上信息真实有效，并同意在线审理协议
-          </label>
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-secondary" onclick="closeModal('case-apply-modal')">取消</button>
-      <button class="btn btn-primary" onclick="submitCase(event)">提交申请</button>
-    </div>
-  </div>
-</div>
 
 <!-- 云庭审模态框 -->
 <div class="modal-overlay" id="cloud-trial-modal">
@@ -1289,11 +1213,105 @@
       showNotification('请先阅读并同意在线审理协议', 'warning');
       return;
     }
+
+    var caseType = document.getElementById('apply-case-type').value;
+    var name = document.getElementById('apply-name').value;
+    var phone = document.getElementById('apply-phone').value;
+    var respondent = document.getElementById('apply-respondent').value;
+    var desc = document.getElementById('apply-desc').value;
+
+    if (!caseType || !name || !phone || !respondent || !desc) {
+      showNotification('请填写完整的申请信息', 'warning');
+      return;
+    }
+
+    document.getElementById('case-apply-form').style.display = 'none';
+    document.getElementById('ai-verify-section').style.display = 'block';
+    document.getElementById('submit-case-btn').style.display = 'none';
+    document.getElementById('ai-verify-spinner').style.display = 'inline-block';
+    document.getElementById('ai-verify-title').textContent = 'AI材料校验中...';
+    document.getElementById('ai-verify-progress').style.display = 'block';
+
+    document.querySelectorAll('.verify-item').forEach(function(item) {
+      item.classList.remove('pass', 'warning', 'error');
+      item.innerHTML = '<span class="status-icon">⏳</span><span>待校验...</span>';
+    });
+
+    runAIValidationInModal();
+  }
+
+  function runAIValidationInModal() {
+    var progress = 0;
+    var progressBar = document.getElementById('ai-progress-bar');
+    var title = document.getElementById('ai-verify-title');
+
+    var steps = [
+      { id: 'verify-id-card', msg: '正在校验身份证件...', success: '身份证件 - 格式合规，已识别', status: 'pass' },
+      { id: 'verify-contract', msg: '正在校验劳动合同...', success: '劳动合同 - 完整有效', status: 'pass' },
+      { id: 'verify-salary', msg: '正在校验工资流水...', success: '工资流水 - 建议补充近6个月记录', status: 'warning' },
+      { id: 'verify-evidence', msg: '正在校验证据清单...', success: '证据清单 - 规范完整', status: 'pass' },
+      { id: 'verify-attendance', msg: '正在校验考勤记录...', success: '考勤记录 - 缺失，请补充', status: 'error' }
+    ];
+
+    var currentStep = 0;
+    var interval = setInterval(function() {
+      progress += 20;
+      progressBar.style.width = progress + '%';
+
+      if (currentStep < steps.length) {
+        title.textContent = steps[currentStep].msg;
+        var item = document.getElementById(steps[currentStep].id);
+        if (item) {
+          item.classList.add(steps[currentStep].status);
+          var icon = steps[currentStep].status === 'pass' ? '✓' : steps[currentStep].status === 'warning' ? '⚠' : '✗';
+          item.innerHTML = `<span class="status-icon">${icon}</span><span>${steps[currentStep].success}</span>`;
+        }
+        currentStep++;
+      }
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        document.getElementById('ai-verify-spinner').style.display = 'none';
+        title.textContent = '✅ AI材料校验完成';
+        document.getElementById('ai-verify-summary').style.display = 'block';
+        document.getElementById('confirm-submit-btn').style.display = 'inline-flex';
+      }
+    }, 500);
+  }
+
+  function confirmCaseSubmit() {
+    var caseType = document.getElementById('apply-case-type').options[document.getElementById('apply-case-type').selectedIndex].text;
+    var respondent = document.getElementById('apply-respondent').value;
+    
+    addNewCaseRecord(caseType, respondent);
+    
     closeModal('case-apply-modal');
-    showNotification('案件申请已提交，AI正在校验材料...', 'success');
+    showNotification('📋 案件申请已正式提交', 'success');
     setTimeout(function() {
-      showNotification('材料校验完成，请等待审核', 'success');
-    }, 1500);
+      showNotification('✅ AI材料校验通过，等待仲裁机构审核', 'success');
+    }, 1200);
+    setTimeout(function() {
+      showNotification('📧 受理进度将通过短信和站内信通知您', 'info');
+    }, 2400);
+  }
+
+  function addNewCaseRecord(caseType, respondent) {
+    var now = new Date();
+    var caseId = 'ZC' + now.getFullYear() + String(now.getMonth() + 1).padStart(2, '0') + String(now.getDate()).padStart(2, '0') + '00' + Math.floor(Math.random() * 100);
+    
+    var tableBody = document.getElementById('case-list-body-dash');
+    if (tableBody) {
+      var newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td><strong>${caseId}</strong></td>
+        <td>${caseType}</td>
+        <td>${respondent}</td>
+        <td><span class="badge badge-info">待受理</span></td>
+        <td>${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}</td>
+        <td><button class="btn btn-secondary btn-sm" onclick="showCaseDetail('${caseId}')">查看</button></td>
+      `;
+      tableBody.insertBefore(newRow, tableBody.firstChild);
+    }
   }
 
   function showCaseDetail(caseId) {
