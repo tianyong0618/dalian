@@ -262,7 +262,8 @@ body {
   display: none; position: absolute; right: 0; top: 100%; z-index: 1000;
   background: var(--bg-primary, #fff); border: 1px solid var(--border-color, #e0e0e0);
   border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-  min-width: 120px; padding: 4px; margin-top: 4px;
+  min-width: 120px; padding: 4px; margin-top: -2px;
+  border-top: 6px solid transparent;
   white-space: nowrap;
 }
 .action-dropdown:hover .action-menu,
