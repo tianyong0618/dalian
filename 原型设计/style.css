@@ -248,32 +248,45 @@ body {
 .action-dropdown { position: relative; display: inline-block; }
 .action-btn {
   background: var(--bg-secondary, #f5f5f5); border: 1px solid var(--border-color, #e0e0e0);
-  padding: 4px 12px; border-radius: 6px; cursor: pointer;
-  font-size: 13px; color: var(--text-primary, #333);
-  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 8px; border-radius: 6px; cursor: pointer;
+  font-size: 18px; color: var(--text-primary, #333);
+  display: inline-flex; align-items: center; justify-content: center;
   transition: background 0.2s;
-  line-height: 1.4;
+  line-height: 1;
+  width: 28px;
+  height: 28px;
 }
 .action-btn:hover { background: var(--bg-tertiary, #e8e8e8); }
 .action-btn i { font-size: 10px; color: var(--text-secondary, #999); }
 .action-menu {
-  display: none; position: absolute; right: 0; top: 100%; z-index: 100;
+  display: none; position: absolute; right: 0; top: 100%; z-index: 1000;
   background: var(--bg-primary, #fff); border: 1px solid var(--border-color, #e0e0e0);
   border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-  min-width: 100px; padding: 4px; margin-top: 4px;
+  min-width: 120px; padding: 4px; margin-top: 4px;
   white-space: nowrap;
 }
+.action-dropdown:hover .action-menu,
+.action-dropdown:focus-within .action-menu { display: block; }
 .action-menu.show { display: block; }
-.action-menu a {
+.action-menu a,
+.action-menu .dropdown-item {
   display: flex; align-items: center; gap: 8px;
   padding: 8px 12px; font-size: 13px; color: var(--text-primary, #333);
   text-decoration: none; border-radius: 4px; cursor: pointer;
   transition: background 0.15s;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
 }
-.action-menu a:hover { background: var(--bg-secondary, #f0f0f0); }
-.action-menu a i { width: 16px; text-align: center; font-size: 13px; color: var(--text-secondary, #888); }
-.action-menu a.danger { color: #ff4d4f; }
-.action-menu a.danger i { color: #ff4d4f; }
+.action-menu a:hover,
+.action-menu .dropdown-item:hover { background: var(--bg-secondary, #f0f0f0); color: var(--primary); }
+.action-menu a i,
+.action-menu .dropdown-item i { width: 16px; text-align: center; font-size: 13px; color: var(--text-secondary, #888); }
+.action-menu a.danger,
+.action-menu .dropdown-item.danger { color: #ff4d4f; }
+.action-menu a.danger i,
+.action-menu .dropdown-item.danger i { color: #ff4d4f; }
 .btn-audit { padding: 4px 16px; font-size: 13px; }
 
 /* 栅格系统 */

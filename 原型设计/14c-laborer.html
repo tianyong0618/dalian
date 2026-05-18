@@ -512,6 +512,54 @@
     .btn-success:hover { 
       background: #34d399; 
     }
+
+    .action-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .action-btn {
+      font-size: 18px;
+      padding: 4px 10px;
+    }
+
+    .action-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      margin-top: 4px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      min-width: 120px;
+      z-index: 100;
+      overflow: hidden;
+    }
+
+    .action-dropdown:hover .action-menu,
+    .action-dropdown:focus-within .action-menu {
+      display: block;
+    }
+
+    .dropdown-item {
+      display: block;
+      width: 100%;
+      padding: 8px 16px;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--text-secondary);
+      transition: background 0.2s;
+    }
+
+    .dropdown-item:hover {
+      background: var(--bg-secondary);
+      color: var(--primary);
+    }
   </style>
 </head>
 <body>
@@ -603,18 +651,20 @@
             <h3>我的案件</h3>
           </div>
           <div class="filter-bar mb-24">
-            <select class="form-select" id="filter-case-status-dash">
+            <select class="form-select" id="filter-case-status-dash" onchange="filterCases()">
               <option value="">全部状态</option>
               <option value="已结案">已结案</option>
               <option value="审理中">审理中</option>
               <option value="调解中">调解中</option>
               <option value="待受理">待受理</option>
             </select>
-            <select class="form-select" id="filter-case-type-dash">
+            <select class="form-select" id="filter-case-type-dash" onchange="filterCases()">
               <option value="">全部类型</option>
               <option value="工资拖欠">工资拖欠</option>
               <option value="劳动合同">劳动合同</option>
               <option value="工伤赔偿">工伤赔偿</option>
+              <option value="社保缴纳">社保缴纳</option>
+              <option value="违法解雇">违法解雇</option>
             </select>
             <button class="btn btn-primary" onclick="showModal('case-apply-modal')" style="margin-left:auto">+ 申请立案</button>
           </div>
@@ -631,37 +681,72 @@
                 </tr>
               </thead>
               <tbody id="case-list-body-dash">
-                <tr>
+                <tr data-status="审理中" data-type="工伤赔偿">
                   <td><strong>ZC20260503005</strong></td>
                   <td>工伤赔偿纠纷</td>
                   <td>XX制造公司</td>
                   <td><span class="badge badge-info">审理中</span></td>
                   <td>2026-05-03</td>
-                  <td><button class="btn btn-secondary btn-sm" onclick="showCaseDetail('ZC20260503005')">查看</button></td>
+                  <td>
+                    <div class="action-dropdown">
+                      <button class="action-btn">⋯</button>
+                      <div class="action-menu">
+                        <button class="dropdown-item" onclick="showCaseDetail('ZC20260503005')">查看详情</button>
+                        <button class="dropdown-item" onclick="showCaseDocuments('ZC20260503005')">查看文书</button>
+                        <button class="dropdown-item" onclick="showEvidenceUpload('ZC20260503005')">提交证据</button>
+                      </div>
+                    </div>
+                  </td>
                 </tr>
-                <tr>
+                <tr data-status="已结案" data-type="工资拖欠">
                   <td><strong>ZC20260501001</strong></td>
                   <td>工资拖欠纠纷</td>
                   <td>XX建筑公司</td>
                   <td><span class="badge badge-success">已结案</span></td>
                   <td>2026-05-01</td>
-                  <td><button class="btn btn-secondary btn-sm" onclick="showCaseDetail('ZC20260501001')">查看</button></td>
+                  <td>
+                    <div class="action-dropdown">
+                      <button class="action-btn">⋯</button>
+                      <div class="action-menu">
+                        <button class="dropdown-item" onclick="showCaseDetail('ZC20260501001')">查看详情</button>
+                        <button class="dropdown-item" onclick="showCaseDocuments('ZC20260501001')">查看文书</button>
+                      </div>
+                    </div>
+                  </td>
                 </tr>
-                <tr>
+                <tr data-status="调解中" data-type="劳动合同">
                   <td><strong>ZC20260428003</strong></td>
                   <td>劳动合同争议</td>
                   <td>XX科技公司</td>
                   <td><span class="badge badge-warning">调解中</span></td>
                   <td>2026-04-28</td>
-                  <td><button class="btn btn-secondary btn-sm" onclick="showCaseDetail('ZC20260428003')">查看</button></td>
+                  <td>
+                    <div class="action-dropdown">
+                      <button class="action-btn">⋯</button>
+                      <div class="action-menu">
+                        <button class="dropdown-item" onclick="showCaseDetail('ZC20260428003')">查看详情</button>
+                        <button class="dropdown-item" onclick="showCaseDocuments('ZC20260428003')">查看文书</button>
+                        <button class="dropdown-item" onclick="showEvidenceUpload('ZC20260428003')">提交证据</button>
+                        <button class="dropdown-item" onclick="showMediationApply('ZC20260428003')">申请调解</button>
+                      </div>
+                    </div>
+                  </td>
                 </tr>
-                <tr>
+                <tr data-status="已结案" data-type="社保缴纳">
                   <td><strong>ZC20260415002</strong></td>
                   <td>社保缴纳争议</td>
                   <td>XX电商公司</td>
                   <td><span class="badge badge-success">已结案</span></td>
                   <td>2026-04-15</td>
-                  <td><button class="btn btn-secondary btn-sm" onclick="showCaseDetail('ZC20260415002')">查看</button></td>
+                  <td>
+                    <div class="action-dropdown">
+                      <button class="action-btn">⋯</button>
+                      <div class="action-menu">
+                        <button class="dropdown-item" onclick="showCaseDetail('ZC20260415002')">查看详情</button>
+                        <button class="dropdown-item" onclick="showCaseDocuments('ZC20260415002')">查看文书</button>
+                      </div>
+                    </div>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -1153,6 +1238,26 @@
     }
   }
 
+  function filterCases() {
+    var statusFilter = document.getElementById('filter-case-status-dash').value;
+    var typeFilter = document.getElementById('filter-case-type-dash').value;
+    
+    var rows = document.querySelectorAll('#case-list-body-dash tr');
+    rows.forEach(function(row) {
+      var rowStatus = row.getAttribute('data-status');
+      var rowType = row.getAttribute('data-type');
+      
+      var statusMatch = !statusFilter || rowStatus === statusFilter;
+      var typeMatch = !typeFilter || rowType && rowType.includes(typeFilter);
+      
+      if (statusMatch && typeMatch) {
+        row.style.display = 'table-row';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
   function resetCaseApplyForm() {
     document.getElementById('case-apply-form').style.display = 'block';
     document.getElementById('ai-verify-section').style.display = 'none';
@@ -1329,16 +1434,33 @@
     var now = new Date();
     var caseId = 'ZC' + now.getFullYear() + String(now.getMonth() + 1).padStart(2, '0') + String(now.getDate()).padStart(2, '0') + '00' + Math.floor(Math.random() * 100);
     
+    var typeTag = '';
+    if (caseType.includes('工资')) typeTag = '工资拖欠';
+    else if (caseType.includes('劳动')) typeTag = '劳动合同';
+    else if (caseType.includes('工伤')) typeTag = '工伤赔偿';
+    else if (caseType.includes('社保')) typeTag = '社保缴纳';
+    else if (caseType.includes('解雇')) typeTag = '违法解雇';
+    
     var tableBody = document.getElementById('case-list-body-dash');
     if (tableBody) {
       var newRow = document.createElement('tr');
+      newRow.setAttribute('data-status', '待受理');
+      newRow.setAttribute('data-type', typeTag);
       newRow.innerHTML = `
         <td><strong>${caseId}</strong></td>
         <td>${caseType}</td>
         <td>${respondent}</td>
         <td><span class="badge badge-info">待受理</span></td>
         <td>${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}</td>
-        <td><button class="btn btn-secondary btn-sm" onclick="showCaseDetail('${caseId}')">查看</button></td>
+        <td>
+          <div class="action-dropdown">
+            <button class="action-btn">⋯</button>
+            <div class="action-menu">
+              <button class="dropdown-item" onclick="showCaseDetail('${caseId}')">查看详情</button>
+              <button class="dropdown-item" onclick="showCaseDocuments('${caseId}')">查看文书</button>
+            </div>
+          </div>
+        </td>
       `;
       tableBody.insertBefore(newRow, tableBody.firstChild);
     }
@@ -1656,7 +1778,7 @@
     }
   }
 
-  // 渲染案件操作按钮（查看 + 操作下拉菜单）
+  // 渲染案件操作按钮（⋯下拉菜单）
   function renderCaseActions() {
     document.querySelectorAll('#case-list-body-dash tr').forEach(function(row) {
       var statusEl = row.querySelector('.badge');
@@ -1666,42 +1788,25 @@
       var actionCell = row.querySelector('td:last-child');
       if (!actionCell) return;
 
-      var actions = '<button class="btn btn-secondary btn-sm" onclick="showCaseDetail(\'' + caseNo + '\')">查看</button>';
-
-      actions += '<div class="action-dropdown" style="display:inline-block;vertical-align:middle;margin-left:4px">';
-      actions += '<button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i></button>';
+      var actions = '<div class="action-dropdown">';
+      actions += '<button class="action-btn">⋯</button>';
       actions += '<div class="action-menu" id="action-menu-' + caseNo + '">';
+      actions += '<button class="dropdown-item" onclick="showCaseDetail(\'' + caseNo + '\')">查看详情</button>';
+      actions += '<button class="dropdown-item" onclick="showCaseDocuments(\'' + caseNo + '\')">查看文书</button>';
 
       if (status === '审理中') {
-        actions += '<a onclick="openCloudTrial(\'' + caseNo + '\')"><i>🎥</i>进入庭审</a>';
-        actions += '<a onclick="showEvidenceUpload(\'' + caseNo + '\')"><i>📎</i>提交证据</a>';
-        actions += '<a onclick="showCaseDetail(\'' + caseNo + '\')"><i>📊</i>查看进度</a>';
+        actions += '<button class="dropdown-item" onclick="openCloudTrial(\'' + caseNo + '\')">进入庭审</button>';
+        actions += '<button class="dropdown-item" onclick="showEvidenceUpload(\'' + caseNo + '\')">提交证据</button>';
       } else if (status === '调解中') {
-        actions += '<a onclick="showMediationApply(\'' + caseNo + '\')"><i>⚖️</i>申请调解</a>';
-        actions += '<a onclick="showSupplementMaterial(\'' + caseNo + '\')"><i>📄</i>补充材料</a>';
+        actions += '<button class="dropdown-item" onclick="showMediationApply(\'' + caseNo + '\')">申请调解</button>';
+        actions += '<button class="dropdown-item" onclick="showSupplementMaterial(\'' + caseNo + '\')">补充材料</button>';
       }
 
-      actions += '<a onclick="showCaseDocuments(\'' + caseNo + '\')"><i>📋</i>查看文书</a>';
       actions += '</div></div>';
 
       actionCell.innerHTML = actions;
     });
   }
-
-  // 操作下拉菜单切换
-  function toggleActionMenu(btn) {
-    var menu = btn.nextElementSibling;
-    menu.classList.toggle('show');
-  }
-
-  // 点击其他区域关闭下拉菜单
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.action-dropdown')) {
-      document.querySelectorAll('.action-menu.show').forEach(function(m) {
-        m.classList.remove('show');
-      });
-    }
-  });
 
   // 案件列表筛选
   function filterCaseList() {
@@ -1712,7 +1817,7 @@
       var typeTd = row.querySelector('td:nth-child(2)');
       var show = true;
       if (statusFilter && statusEl && statusEl.textContent.trim() !== statusFilter) show = false;
-      if (typeFilter && typeTd && typeTd.textContent.trim() !== typeFilter) show = false;
+      if (typeFilter && typeTd && !typeTd.textContent.trim().includes(typeFilter)) show = false;
       row.style.display = show ? '' : 'none';
     });
   }
