@@ -1370,7 +1370,7 @@
         <div class="form-row" style="grid-template-columns: repeat(2, 1fr); gap: 20px;">
           <div class="form-group">
             <label class="form-label">合同模板 <span style="color: var(--danger);">*</span></label>
-            <select class="form-input" id="sign-contract-type">
+            <select class="form-input" id="sign-contract-type" onchange="onContractTypeChange(this.value)">
               <option value="">请选择合同模板</option>
               <option value="fixed">固定期限劳动合同</option>
               <option value="unlimited">无固定期限劳动合同</option>
@@ -1417,7 +1417,7 @@
             <label class="form-label">月薪（元）<span style="color: var(--danger);">*</span></label>
             <input type="number" class="form-input" id="sign-emp-salary" placeholder="请输入月薪">
           </div>
-          <div class="form-group">
+          <div class="form-group" id="sign-emp-probation-row">
             <label class="form-label">试用期</label>
             <select class="form-input" id="sign-emp-probation">
               <option value="">无试用期</option>
@@ -1433,9 +1433,29 @@
             <label class="form-label">合同开始日期 <span style="color: var(--danger);">*</span></label>
             <input type="date" class="form-input" id="sign-emp-start-date">
           </div>
-          <div class="form-group">
+          <div class="form-group" id="sign-emp-end-date-row">
             <label class="form-label">合同结束日期</label>
             <input type="date" class="form-input" id="sign-emp-end-date">
+          </div>
+        </div>
+        <div class="form-row" style="grid-template-columns: repeat(2, 1fr); gap: 20px; display: none;" id="sign-dispatch-row">
+          <div class="form-group">
+            <label class="form-label">派遣公司名称</label>
+            <input type="text" class="form-input" id="sign-dispatch-company" placeholder="请输入派遣公司名称">
+          </div>
+          <div class="form-group">
+            <label class="form-label">派遣服务费（元/月）</label>
+            <input type="number" class="form-input" id="sign-dispatch-fee" placeholder="请输入派遣服务费">
+          </div>
+        </div>
+        <div class="form-row" style="grid-template-columns: repeat(2, 1fr); gap: 20px; display: none;" id="sign-project-row">
+          <div class="form-group">
+            <label class="form-label">项目名称</label>
+            <input type="text" class="form-input" id="sign-project-name" placeholder="请输入项目名称">
+          </div>
+          <div class="form-group">
+            <label class="form-label">项目周期</label>
+            <input type="text" class="form-input" id="sign-project-duration" placeholder="如：3个月、6个月">
           </div>
         </div>
         <div class="form-group">
@@ -1604,6 +1624,50 @@
 
     function openSignContractModal() {
       document.getElementById('sign-contract-modal').classList.add('active');
+      document.getElementById('sign-emp-probation-row').style.display = 'flex';
+      document.getElementById('sign-emp-end-date-row').style.display = 'flex';
+      document.getElementById('sign-dispatch-row').style.display = 'none';
+      document.getElementById('sign-project-row').style.display = 'none';
+    }
+
+    function onContractTypeChange(type) {
+      var durationSelect = document.getElementById('sign-contract-duration');
+      var probationRow = document.getElementById('sign-emp-probation-row');
+      var endDateRow = document.getElementById('sign-emp-end-date-row');
+      var dispatchRow = document.getElementById('sign-dispatch-row');
+      var projectRow = document.getElementById('sign-project-row');
+
+      if (type === 'unlimited') {
+        durationSelect.value = '无固定期限';
+        endDateRow.style.display = 'none';
+        document.getElementById('sign-emp-end-date').value = '';
+      } else {
+        durationSelect.value = '';
+        endDateRow.style.display = 'flex';
+      }
+
+      if (type === 'parttime' || type === 'flexible') {
+        probationRow.style.display = 'none';
+        document.getElementById('sign-emp-probation').value = '';
+      } else {
+        probationRow.style.display = 'flex';
+      }
+
+      if (type === 'dispatch') {
+        dispatchRow.style.display = 'flex';
+      } else {
+        dispatchRow.style.display = 'none';
+        document.getElementById('sign-dispatch-company').value = '';
+        document.getElementById('sign-dispatch-fee').value = '';
+      }
+
+      if (type === 'project') {
+        projectRow.style.display = 'flex';
+      } else {
+        projectRow.style.display = 'none';
+        document.getElementById('sign-project-name').value = '';
+        document.getElementById('sign-project-duration').value = '';
+      }
     }
 
     function submitSignContract() {
@@ -1677,7 +1741,15 @@
       document.getElementById('sign-emp-probation').value = '';
       document.getElementById('sign-emp-start-date').value = '';
       document.getElementById('sign-emp-end-date').value = '';
+      document.getElementById('sign-dispatch-company').value = '';
+      document.getElementById('sign-dispatch-fee').value = '';
+      document.getElementById('sign-project-name').value = '';
+      document.getElementById('sign-project-duration').value = '';
       document.getElementById('sign-emp-work-desc').value = '';
+      document.getElementById('sign-emp-probation-row').style.display = 'flex';
+      document.getElementById('sign-emp-end-date-row').style.display = 'flex';
+      document.getElementById('sign-dispatch-row').style.display = 'none';
+      document.getElementById('sign-project-row').style.display = 'none';
     }
 
     function openContractModal() {
