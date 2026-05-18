@@ -297,6 +297,14 @@ body {
   flex: 0 0 calc(50% - 12px);
   max-width: calc(50% - 12px);
 }
+.col-5 {
+  flex: 0 0 calc(41.667% - 12px);
+  max-width: calc(41.667% - 12px);
+}
+.col-7 {
+  flex: 0 0 calc(58.333% - 12px);
+  max-width: calc(58.333% - 12px);
+}
 
 .col-12 {
   flex: 0 0 100%;
@@ -1147,11 +1155,6 @@ tr.enterprise-hidden {
   gap: 16px;
 }
 
-.col-5 {
-  flex: 0 0 calc(20% - 13px);
-  max-width: calc(20% - 13px);
-}
-
 .role-card {
   display: flex;
   align-items: center;
@@ -1536,14 +1539,6 @@ tr.enterprise-hidden {
   background: rgba(30, 41, 59, 0.8);
   border: 1px solid rgba(99, 102, 241, 0.2);
   color: #e2e8f0;
-}
-
-/* 响应式角色卡片 */
-@media (max-width: 1024px) {
-  .col-5 {
-    flex: 0 0 calc(33.333% - 11px);
-    max-width: calc(33.333% - 11px);
-  }
 }
 
 /* 主题切换器样式 - 与调解仲裁页面一致 */

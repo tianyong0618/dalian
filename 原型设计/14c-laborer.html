@@ -585,7 +585,6 @@
           <!-- 下半部分：我的案件列表 -->
           <div class="module-header" style="margin-bottom:16px">
             <h3>我的案件</h3>
-            <button class="btn btn-primary" onclick="showModal('case-apply-modal')">+ 申请立案</button>
           </div>
           <div class="filter-bar mb-24">
             <select class="form-select" id="filter-case-status-dash">
@@ -601,6 +600,7 @@
               <option value="劳动合同">劳动合同</option>
               <option value="工伤赔偿">工伤赔偿</option>
             </select>
+            <button class="btn btn-primary" onclick="showModal('case-apply-modal')" style="margin-left:auto">+ 申请立案</button>
           </div>
           <div class="card">
             <table class="table">
@@ -1608,7 +1608,7 @@
     }
   }
 
-  // 渲染案件操作按钮（根据状态显示不同操作）
+  // 渲染案件操作按钮（查看 + 操作下拉菜单）
   function renderCaseActions() {
     document.querySelectorAll('#case-list-body-dash tr').forEach(function(row) {
       var statusEl = row.querySelector('.badge');
@@ -1620,20 +1620,56 @@
 
       var actions = '<button class="btn btn-secondary btn-sm" onclick="showCaseDetail(\'' + caseNo + '\')">查看</button>';
 
+      actions += '<div class="action-dropdown" style="display:inline-block;vertical-align:middle;margin-left:4px">';
+      actions += '<button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i></button>';
+      actions += '<div class="action-menu" id="action-menu-' + caseNo + '">';
+
       if (status === '审理中') {
-        actions += ' <button class="btn btn-primary btn-sm" onclick="openCloudTrial(\'' + caseNo + '\')">进入庭审</button>';
-        actions += ' <button class="btn btn-secondary btn-sm" onclick="showEvidenceUpload(\'' + caseNo + '\')">提交证据</button>';
-        actions += ' <button class="btn btn-secondary btn-sm" onclick="showCaseDetail(\'' + caseNo + '\')">查看进度</button>';
+        actions += '<a onclick="openCloudTrial(\'' + caseNo + '\')"><i>🎥</i>进入庭审</a>';
+        actions += '<a onclick="showEvidenceUpload(\'' + caseNo + '\')"><i>📎</i>提交证据</a>';
+        actions += '<a onclick="showCaseDetail(\'' + caseNo + '\')"><i>📊</i>查看进度</a>';
       } else if (status === '调解中') {
-        actions += ' <button class="btn btn-primary btn-sm" onclick="showMediationApply(\'' + caseNo + '\')">申请调解</button>';
-        actions += ' <button class="btn btn-secondary btn-sm" onclick="showSupplementMaterial(\'' + caseNo + '\')">补充材料</button>';
+        actions += '<a onclick="showMediationApply(\'' + caseNo + '\')"><i>⚖️</i>申请调解</a>';
+        actions += '<a onclick="showSupplementMaterial(\'' + caseNo + '\')"><i>📄</i>补充材料</a>';
       }
 
-      actions += ' <button class="btn btn-secondary btn-sm" onclick="showCaseDocuments(\'' + caseNo + '\')">查看文书</button>';
+      actions += '<a onclick="showCaseDocuments(\'' + caseNo + '\')"><i>📋</i>查看文书</a>';
+      actions += '</div></div>';
 
       actionCell.innerHTML = actions;
     });
   }
+
+  // 操作下拉菜单切换
+  function toggleActionMenu(btn) {
+    var menu = btn.nextElementSibling;
+    menu.classList.toggle('show');
+  }
+
+  // 点击其他区域关闭下拉菜单
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.action-dropdown')) {
+      document.querySelectorAll('.action-menu.show').forEach(function(m) {
+        m.classList.remove('show');
+      });
+    }
+  });
+
+  // 案件列表筛选
+  function filterCaseList() {
+    var statusFilter = document.getElementById('filter-case-status-dash').value;
+    var typeFilter = document.getElementById('filter-case-type-dash').value;
+    document.querySelectorAll('#case-list-body-dash tr').forEach(function(row) {
+      var statusEl = row.querySelector('.badge');
+      var typeTd = row.querySelector('td:nth-child(2)');
+      var show = true;
+      if (statusFilter && statusEl && statusEl.textContent.trim() !== statusFilter) show = false;
+      if (typeFilter && typeTd && typeTd.textContent.trim() !== typeFilter) show = false;
+      row.style.display = show ? '' : 'none';
+    });
+  }
+  document.getElementById('filter-case-status-dash').addEventListener('change', filterCaseList);
+  document.getElementById('filter-case-type-dash').addEventListener('change', filterCaseList);
 
   renderCaseActions();
 </script>
