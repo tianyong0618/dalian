@@ -1609,21 +1609,21 @@
         }
         updateContractPreview();
       }
-      for (var i = 1; i <= 4; i++) {
-        var stepEl = document.getElementById('step-' + i);
-        var contentEl = document.getElementById('wizard-step-' + i);
-        if (i < step) {
-          stepEl.classList.remove('active');
-          stepEl.classList.add('completed');
-        } else if (i === step) {
-          stepEl.classList.add('active');
-          stepEl.classList.remove('completed');
-          contentEl.style.display = 'block';
-        } else {
-          stepEl.classList.remove('active', 'completed');
-          contentEl.style.display = 'none';
-        }
+      
+      document.querySelectorAll('.wizard-step').forEach(function(el) {
+        el.classList.remove('active', 'completed');
+      });
+      
+      document.querySelectorAll('.wizard-content').forEach(function(el) {
+        el.style.display = 'none';
+      });
+      
+      for (var i = 1; i < step; i++) {
+        document.getElementById('step-' + i).classList.add('completed');
       }
+      
+      document.getElementById('step-' + step).classList.add('active');
+      document.getElementById('wizard-step-' + step).style.display = 'block';
     }
 
     function prevStep(step) {
