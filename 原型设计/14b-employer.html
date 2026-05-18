@@ -907,7 +907,7 @@
       <div class="contract-section">
         <div class="section-header-bar">
           <h2 class="section-title">合同管理</h2>
-          <button class="btn btn-primary" onclick="openContractModal()">
+          <button class="btn btn-primary" onclick="openSignContractModal()">
             <span>➕</span>
             发起签署
           </button>
@@ -951,7 +951,7 @@
                 <td>2026-03-01</td>
                 <td>2027-02-28</td>
                 <td><span class="status-badge pending">待签署</span></td>
-                <td><button class="btn btn-sm btn-primary" onclick="openContractModal()">发送</button> <button class="btn btn-sm btn-secondary" onclick="showContractPreview(2)">预览</button></td>
+                <td><button class="btn btn-sm btn-primary" onclick="openSignContractModal()">发送</button> <button class="btn btn-sm btn-secondary" onclick="showContractPreview(2)">预览</button></td>
               </tr>
               <tr>
                 <td class="contract-name">兼职协议</td>
@@ -1359,6 +1359,97 @@
     </div>
   </div>
 
+  <!-- 发起签署模态框 -->
+  <div class="modal-overlay" id="sign-contract-modal">
+    <div class="modal" style="max-width: 800px;">
+      <div class="modal-header">
+        <h3>发起合同签署</h3>
+        <button class="modal-close" onclick="closeModal('sign-contract-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row" style="grid-template-columns: repeat(2, 1fr); gap: 20px;">
+          <div class="form-group">
+            <label class="form-label">合同模板 <span style="color: var(--danger);">*</span></label>
+            <select class="form-input" id="sign-contract-type">
+              <option value="">请选择合同模板</option>
+              <option value="fixed">固定期限劳动合同</option>
+              <option value="unlimited">无固定期限劳动合同</option>
+              <option value="dispatch">劳务派遣合同</option>
+              <option value="flexible">灵活用工协议</option>
+              <option value="parttime">兼职协议</option>
+              <option value="project">项目制合同</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">合同期限 <span style="color: var(--danger);">*</span></label>
+            <select class="form-input" id="sign-contract-duration">
+              <option value="">请选择期限</option>
+              <option>1年</option>
+              <option>2年</option>
+              <option>3年</option>
+              <option>5年</option>
+              <option>无固定期限</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row" style="grid-template-columns: repeat(2, 1fr); gap: 20px;">
+          <div class="form-group">
+            <label class="form-label">员工姓名 <span style="color: var(--danger);">*</span></label>
+            <input type="text" class="form-input" id="sign-emp-name" placeholder="请输入员工姓名">
+          </div>
+          <div class="form-group">
+            <label class="form-label">身份证号 <span style="color: var(--danger);">*</span></label>
+            <input type="text" class="form-input" id="sign-emp-idcard" placeholder="请输入身份证号">
+          </div>
+        </div>
+        <div class="form-row" style="grid-template-columns: repeat(2, 1fr); gap: 20px;">
+          <div class="form-group">
+            <label class="form-label">联系电话</label>
+            <input type="tel" class="form-input" id="sign-emp-phone" placeholder="请输入联系电话">
+          </div>
+          <div class="form-group">
+            <label class="form-label">工作岗位</label>
+            <input type="text" class="form-input" id="sign-emp-position" placeholder="请输入工作岗位">
+          </div>
+        </div>
+        <div class="form-row" style="grid-template-columns: repeat(2, 1fr); gap: 20px;">
+          <div class="form-group">
+            <label class="form-label">月薪（元）<span style="color: var(--danger);">*</span></label>
+            <input type="number" class="form-input" id="sign-emp-salary" placeholder="请输入月薪">
+          </div>
+          <div class="form-group">
+            <label class="form-label">试用期</label>
+            <select class="form-input" id="sign-emp-probation">
+              <option value="">无试用期</option>
+              <option>1个月</option>
+              <option>2个月</option>
+              <option>3个月</option>
+              <option>6个月</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row" style="grid-template-columns: repeat(2, 1fr); gap: 20px;">
+          <div class="form-group">
+            <label class="form-label">合同开始日期 <span style="color: var(--danger);">*</span></label>
+            <input type="date" class="form-input" id="sign-emp-start-date">
+          </div>
+          <div class="form-group">
+            <label class="form-label">合同结束日期</label>
+            <input type="date" class="form-input" id="sign-emp-end-date">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">工作内容描述</label>
+          <textarea class="form-input" id="sign-emp-work-desc" placeholder="请描述工作内容" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('sign-contract-modal')">取消</button>
+        <button class="btn btn-primary" onclick="submitSignContract()">提交签署</button>
+      </div>
+    </div>
+  </div>
+
   <!-- 合同详情模态框 -->
   <div class="modal-overlay" id="contract-detail-modal">
     <div class="modal" style="max-width: 700px;">
@@ -1509,6 +1600,84 @@
       document.getElementById('detail-status').textContent = contract.status;
       
       document.getElementById('contract-detail-modal').classList.add('active');
+    }
+
+    function openSignContractModal() {
+      document.getElementById('sign-contract-modal').classList.add('active');
+    }
+
+    function submitSignContract() {
+      var contractType = document.getElementById('sign-contract-type').value;
+      var duration = document.getElementById('sign-contract-duration').value;
+      var empName = document.getElementById('sign-emp-name').value;
+      var empIdcard = document.getElementById('sign-emp-idcard').value;
+      var empSalary = document.getElementById('sign-emp-salary').value;
+      var startDate = document.getElementById('sign-emp-start-date').value;
+
+      if (!contractType || !duration || !empName || !empIdcard || !empSalary || !startDate) {
+        showNotification('请填写所有必填项', 'warning');
+        return;
+      }
+
+      var typeMap = {
+        'fixed': '固定期限劳动合同',
+        'unlimited': '无固定期限劳动合同',
+        'dispatch': '劳务派遣合同',
+        'flexible': '灵活用工协议',
+        'parttime': '兼职协议',
+        'project': '项目制合同'
+      };
+
+      var contractId = 'EC' + new Date().getFullYear() + String(new Date().getMonth() + 1).padStart(2, '0') + String(Date.now()).slice(-4);
+      
+      var newContract = {
+        id: contractId,
+        name: typeMap[contractType] || '劳动合同',
+        employee: empName,
+        idcard: empIdcard,
+        type: typeMap[contractType] || '全职合同',
+        duration: duration,
+        signDate: startDate,
+        endDate: document.getElementById('sign-emp-end-date').value || '-',
+        salary: empSalary,
+        position: document.getElementById('sign-emp-position').value || '-',
+        probation: document.getElementById('sign-emp-probation').value || '无',
+        phone: document.getElementById('sign-emp-phone').value || '-',
+        workDesc: document.getElementById('sign-emp-work-desc').value || '-',
+        status: '待签署'
+      };
+
+      contractsData.push(newContract);
+
+      var tbody = document.querySelector('#tab-dashboard .contract-table tbody');
+      var newRow = document.createElement('tr');
+      newRow.innerHTML = 
+        '<td class="contract-name">' + newContract.name + '</td>' +
+        '<td>' + newContract.employee + '</td>' +
+        '<td>' + newContract.type + '</td>' +
+        '<td>' + newContract.signDate + '</td>' +
+        '<td>' + newContract.endDate + '</td>' +
+        '<td><span class="status-badge pending">待签署</span></td>' +
+        '<td><button class="btn btn-sm btn-primary" onclick="openSignContractModal()">发送</button> <button class="btn btn-sm btn-secondary" onclick="showContractPreview(' + (contractsData.length - 1) + ')">预览</button></td>';
+      tbody.appendChild(newRow);
+
+      closeModal('sign-contract-modal');
+      resetSignContractForm();
+      showNotification('合同签署已发起，请等待员工确认', 'success');
+    }
+
+    function resetSignContractForm() {
+      document.getElementById('sign-contract-type').value = '';
+      document.getElementById('sign-contract-duration').value = '';
+      document.getElementById('sign-emp-name').value = '';
+      document.getElementById('sign-emp-idcard').value = '';
+      document.getElementById('sign-emp-phone').value = '';
+      document.getElementById('sign-emp-position').value = '';
+      document.getElementById('sign-emp-salary').value = '';
+      document.getElementById('sign-emp-probation').value = '';
+      document.getElementById('sign-emp-start-date').value = '';
+      document.getElementById('sign-emp-end-date').value = '';
+      document.getElementById('sign-emp-work-desc').value = '';
     }
 
     function openContractModal() {
