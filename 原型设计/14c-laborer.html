@@ -1140,11 +1140,40 @@
   }
 
   function showModal(modalId) {
+    if (modalId === 'case-apply-modal') {
+      resetCaseApplyForm();
+    }
     document.getElementById(modalId).classList.add('active');
   }
 
   function closeModal(modalId) {
     document.getElementById(modalId).classList.remove('active');
+    if (modalId === 'case-apply-modal') {
+      resetCaseApplyForm();
+    }
+  }
+
+  function resetCaseApplyForm() {
+    document.getElementById('case-apply-form').style.display = 'block';
+    document.getElementById('ai-verify-section').style.display = 'none';
+    document.getElementById('submit-case-btn').style.display = 'inline-flex';
+    document.getElementById('confirm-submit-btn').style.display = 'none';
+    document.getElementById('ai-verify-spinner').style.display = 'none';
+    document.getElementById('ai-verify-title').textContent = 'AI材料校验状态';
+    document.getElementById('ai-verify-progress').style.display = 'none';
+    document.getElementById('ai-verify-summary').style.display = 'none';
+    
+    document.getElementById('ai-progress-bar').style.width = '0%';
+    
+    document.querySelectorAll('.verify-item').forEach(function(item) {
+      item.classList.remove('pass', 'warning', 'error');
+      item.innerHTML = '<span class="status-icon">⏳</span><span>待校验...</span>';
+    });
+    
+    var form = document.getElementById('case-apply-form');
+    if (form) {
+      form.reset();
+    }
   }
 
   // 云庭审功能
@@ -1189,6 +1218,7 @@
     var notification = document.createElement('div');
     notification.className = 'notification ' + (type || '');
     notification.innerHTML = '<span>' + message + '</span>';
+    notification.style.zIndex = '9999';
     document.body.appendChild(notification);
 
     setTimeout(function() {
