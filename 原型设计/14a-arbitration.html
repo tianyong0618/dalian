@@ -996,6 +996,8 @@
         grid-template-columns: 1fr;
       }
     }
+
+    .btn-warning { background: var(--warning); color: var(--text-on-primary); }
   </style>
 </head>
 <body>
@@ -1514,7 +1516,7 @@
       <div class="module-section" id="module-documents" style="display:none;">
         <div class="module-header">
           <h2>文书管理</h2>
-          <button class="btn btn-primary" onclick="showNotification('生成裁决书', 'info')">+ 生成裁决书</button>
+          <button class="btn btn-primary" onclick="openAwardGenerationModal()">+ 生成裁决书</button>
         </div>
 
         <div class="content-card">
@@ -2041,7 +2043,7 @@
               <div class="doc-name">裁决书.pdf</div>
               <div class="doc-size">文件大小：2.3 MB</div>
             </div>
-            <button class="btn btn-xs btn-secondary" onclick="showNotification('正在打开预览...', 'info')">预览</button>
+            <button class="btn btn-xs btn-secondary" onclick="openPreviewModal()">预览</button>
           </div>
         </div>
       </div>
@@ -2200,6 +2202,351 @@
     </div>
   </div>
 
+  <!-- 裁决书生成弹窗 -->
+  <div class="case-detail-modal" id="award-generation-modal">
+    <div class="modal-overlay" onclick="closeAwardGenerationModal()"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📜 生成裁决书</h3>
+        <button class="modal-close" onclick="closeAwardGenerationModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-section">
+          <h4>案件信息</h4>
+          <div class="detail-grid">
+            <div class="detail-item">
+              <span class="detail-label">案件编号</span>
+              <span class="detail-value" id="award-case-id">LA2024-0892</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">申请人</span>
+              <span class="detail-value" id="award-applicant">张某</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">被申请人</span>
+              <span class="detail-value" id="award-respondent">某科技公司</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">案由</span>
+              <span class="detail-value" id="award-case-type">劳动争议</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">裁决类型</label>
+          <select class="form-select" id="award-type-select">
+            <option value="调解书">调解书 - 双方达成调解协议</option>
+            <option value="裁决书">裁决书 - 仲裁庭作出裁决</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">裁决内容概述</label>
+          <textarea class="form-input" id="award-content" rows="4" placeholder="请输入裁决内容概要，系统将据此生成正式文书...">依据《中华人民共和国劳动争议调解仲裁法》相关规定，经本委审理查明，裁定如下：</textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeAwardGenerationModal()">取消</button>
+        <button class="btn btn-primary" onclick="generateAward()">生成裁决书</button>
+        <button class="btn btn-secondary" onclick="downloadAward()">下载文书</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 文书预览弹窗 -->
+  <div class="case-detail-modal" id="preview-modal">
+    <div class="modal-overlay" onclick="closePreviewModal()"></div>
+    <div class="modal-content" style="max-width:700px;">
+      <div class="modal-header">
+        <h3>📄 文书预览</h3>
+        <button class="modal-close" onclick="closePreviewModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="doc-preview-content" style="background:var(--bg-primary);padding:40px;border-radius:8px;border:1px solid var(--border-color);font-family:serif;line-height:2;">
+          <div style="text-align:center;margin-bottom:32px;">
+            <h3 style="margin:0 0 4px;">杭州市劳动人事争议仲裁委员会</h3>
+            <h4 style="margin:0;color:var(--text-secondary);font-weight:400;">仲裁裁决书</h4>
+            <div style="margin-top:8px;font-size:13px;color:var(--text-secondary);">杭劳人仲案字〔2024〕第<span id="preview-doc-no">0892</span>号</div>
+          </div>
+          <div style="margin-bottom:16px;">
+            <p><strong>申请人：</strong><span id="preview-applicant">张某</span></p>
+            <p><strong>被申请人：</strong><span id="preview-respondent">某科技公司</span></p>
+            <p><strong>案由：</strong>劳动争议</p>
+          </div>
+          <div style="margin-bottom:16px;text-indent:2em;">
+            申请人诉被申请人劳动争议一案，本委依法受理并组成仲裁庭进行了审理。本案现已审理终结。
+          </div>
+          <div style="margin-bottom:16px;text-indent:2em;">
+            经审理查明，申请人与被申请人之间存在劳动关系。被申请人未按照劳动合同约定足额支付劳动报酬，违反了《中华人民共和国劳动法》第五十条之规定。
+          </div>
+          <div style="margin-bottom:16px;text-indent:2em;">
+            本委认为，申请人要求被申请人支付拖欠工资的请求符合法律规定，予以支持。依据《中华人民共和国劳动争议调解仲裁法》第四十七条之规定，裁决如下：
+          </div>
+          <div style="margin-bottom:16px;padding-left:2em;">
+            一、被申请人于本裁决书生效之日起十日内支付申请人拖欠工资共计人民币15,000元；<br>
+            二、驳回申请人的其他仲裁请求。
+          </div>
+          <div style="text-align:right;margin-top:32px;">
+            <p>首席仲裁员：王仲裁员</p>
+            <p>二〇二四年三月六日</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closePreviewModal()">关闭</button>
+        <button class="btn btn-primary" onclick="downloadAward()">下载PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 分配仲裁员弹窗 -->
+  <div class="assign-case-modal" id="arbitrator-assign-modal">
+    <div class="assign-modal-content">
+      <div class="assign-modal-header">
+        <h3>👤 分配仲裁员 - 案件 <span id="arbitrator-case-id">LA2024-0892</span></h3>
+        <button class="modal-close" onclick="closeArbitratorAssignModal()">×</button>
+      </div>
+      <div class="assign-modal-body">
+        <div class="form-group">
+          <label class="form-label">选择仲裁员</label>
+          <select class="form-select" id="arbitrator-select">
+            <option value="">请选择仲裁员</option>
+            <option value="wang">王仲裁员 - 劳动争议专家 - 当前8件</option>
+            <option value="chen">陈仲裁员 - 工伤赔偿专家 - 当前5件</option>
+            <option value="li">李仲裁员 - 工资拖欠专家 - 当前4件</option>
+            <option value="zhao">赵仲裁员 - 社会保险专家 - 当前3件</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">分配说明</label>
+          <textarea class="form-input" id="arbitrator-note" rows="2" placeholder="请输入分配说明（可选）"></textarea>
+        </div>
+      </div>
+      <div class="assign-modal-footer">
+        <button class="btn btn-secondary" onclick="closeArbitratorAssignModal()">取消</button>
+        <button class="btn btn-primary" onclick="confirmArbitratorAssign()">确认分配</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 调解进度弹窗 -->
+  <div class="case-detail-modal" id="mediation-progress-modal">
+    <div class="modal-overlay" onclick="closeMediationProgressModal()"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📊 调解进度 - <span id="progress-case-id">LA2024-0892</span></h3>
+        <button class="modal-close" onclick="closeMediationProgressModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-section">
+          <h4>案件信息</h4>
+          <div class="detail-grid">
+            <div class="detail-item">
+              <span class="detail-label">申请人</span>
+              <span class="detail-value" id="progress-applicant">张某</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">被申请人</span>
+              <span class="detail-value" id="progress-respondent">某科技公司</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">调解员</span>
+              <span class="detail-value" id="progress-mediator">陈调解员</span>
+            </div>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h4>调解进度时间线</h4>
+          <div class="timeline" id="progress-timeline">
+            <div class="timeline-item active">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-title">案件受理</div>
+                <div class="timeline-date">2024-02-15</div>
+                <div class="timeline-desc">案件已受理并分配调解员</div>
+              </div>
+            </div>
+            <div class="timeline-item active">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-title">首次调解</div>
+                <div class="timeline-date">2024-02-25</div>
+                <div class="timeline-desc">双方到场，初步沟通，分歧较大</div>
+              </div>
+            </div>
+            <div class="timeline-item active">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-title">二次调解</div>
+                <div class="timeline-date">2024-03-01</div>
+                <div class="timeline-desc">背对背调解，双方态度有所缓和</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-title">调解结果</div>
+                <div class="timeline-date">待完成</div>
+                <div class="timeline-desc">等待最终调解结果</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h4>当前进度摘要</h4>
+          <div class="progress-summary" style="padding:16px;background:var(--bg-secondary);border-radius:8px;">
+            <p style="margin:0 0 8px;"><strong>调解次数：</strong>2 次</p>
+            <p style="margin:0 0 8px;"><strong>调解员意见：</strong>建议双方在赔偿金额上进一步协商，差距已缩小至30%以内</p>
+            <p style="margin:0;"><strong>预计结案：</strong>2024-03-15</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeMediationProgressModal()">关闭</button>
+        <button class="btn btn-primary" onclick="showNotification('已通知调解员跟进案件', 'info')">催促调解</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 转仲裁确认弹窗 -->
+  <div class="case-detail-modal" id="transfer-arbitration-modal">
+    <div class="modal-overlay" onclick="closeTransferArbitrationModal()"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>⚖️ 转仲裁确认</h3>
+        <button class="modal-close" onclick="closeTransferArbitrationModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-section">
+          <div style="text-align:center;padding:20px 0;">
+            <div style="font-size:48px;margin-bottom:16px;">⚖️</div>
+            <h4 style="margin:0 0 8px;">确认将案件转入仲裁程序？</h4>
+            <p style="color:var(--text-secondary);margin:0 0 16px;font-size:14px;">
+              案件 <strong id="transfer-case-id">LA2024-0892</strong> 将终止调解，转入仲裁审理
+            </p>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h4>转仲裁说明</h4>
+          <ul style="line-height:2;padding-left:20px;color:var(--text-secondary);font-size:14px;">
+            <li>调解程序终止，案件将进入仲裁立案阶段</li>
+            <li>原调解过程中的证据材料将随案移送</li>
+            <li>仲裁庭将重新组成仲裁员进行审理</li>
+            <li>双方当事人将收到转仲裁通知书</li>
+            <li>预计仲裁审理周期：45天</li>
+          </ul>
+        </div>
+        <div class="form-group">
+          <label class="form-label">转仲裁原因说明</label>
+          <textarea class="form-input" id="transfer-reason" rows="3" placeholder="请输入转仲裁的原因说明...">经调解，双方分歧较大，无法达成一致意见，建议转入仲裁程序。</textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeTransferArbitrationModal()">取消</button>
+        <button class="btn btn-warning" onclick="confirmTransferToArbitration()">确认转仲裁</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 归档确认弹窗 -->
+  <div class="case-detail-modal" id="archive-modal">
+    <div class="modal-overlay" onclick="closeArchiveModal()"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📦 案件归档确认</h3>
+        <button class="modal-close" onclick="closeArchiveModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-section">
+          <div style="text-align:center;padding:20px 0;">
+            <div style="font-size:48px;margin-bottom:16px;">📦</div>
+            <h4 style="margin:0 0 8px;">确认归档案件 <span id="archive-case-id">LA2024-0892</span>？</h4>
+            <p style="color:var(--text-secondary);margin:0;font-size:14px;">归档后案件将进入历史案卷库，相关文书和证据材料将被封存</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">归档分类</label>
+          <select class="form-select" id="archive-category">
+            <option value="normal">普通归档 - 正常结案</option>
+            <option value="settlement">和解归档 - 双方达成和解</option>
+            <option value="withdrawn">撤回归档 - 申请人撤回</option>
+            <option value="enforcement">强制执行归档</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">归档备注</label>
+          <textarea class="form-input" id="archive-note" rows="2" placeholder="请输入归档备注（可选）"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeArchiveModal()">取消</button>
+        <button class="btn btn-primary" onclick="confirmArchive()">确认归档</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 案件送达文书弹窗 -->
+  <div class="serve-modal" id="case-serve-modal">
+    <div class="modal-overlay" onclick="closeCaseServeModal()"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📤 送达文书 - <span id="serve-case-no">LA2024-0892</span></h3>
+        <button class="modal-close" onclick="closeCaseServeModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">送达方式</label>
+          <div class="serve-methods">
+            <label class="method-option">
+              <input type="radio" name="case-serve-method" value="electronic" checked>
+              <span class="method-icon">📱</span>
+              <span class="method-text">电子送达</span>
+            </label>
+            <label class="method-option">
+              <input type="radio" name="case-serve-method" value="mail">
+              <span class="method-icon">📮</span>
+              <span class="method-text">邮寄送达</span>
+            </label>
+            <label class="method-option">
+              <input type="radio" name="case-serve-method" value="announce">
+              <span class="method-icon">📢</span>
+              <span class="method-text">公告送达</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">送达对象</label>
+          <div class="serve-targets">
+            <label class="target-option">
+              <input type="checkbox" name="case-serve-target" value="applicant" checked>
+              <span>👤 申请人 (<span id="serve-target-applicant">张某</span>)</span>
+            </label>
+            <label class="target-option">
+              <input type="checkbox" name="case-serve-target" value="respondent" checked>
+              <span>🏢 被申请人 (<span id="serve-target-respondent">某科技公司</span>)</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">送达文书类型</label>
+          <select class="form-select" id="serve-doc-type-select">
+            <option value="裁决书">裁决书</option>
+            <option value="调解书">调解书</option>
+            <option value="决定书">决定书</option>
+            <option value="通知书">通知书</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">送达地址/方式说明</label>
+          <textarea class="form-input" id="serve-address-detail" rows="2" placeholder="请输入送达地址或联系方式详情">电子送达：当事人注册手机号/电子邮箱</textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeCaseServeModal()">取消</button>
+        <button class="btn btn-primary" onclick="confirmCaseServe()">确认送达</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // 全局变量
     let trialStartTime = null;
@@ -2263,13 +2610,17 @@
     // 根据共享数据更新UI
     function updateUIWithSharedData() {
       if (sharedData.currentCase) {
-        document.getElementById('ct-case-id').textContent = sharedData.currentCase.caseId || 'LA2024-0892';
+        var caseId = sharedData.currentCase.caseId || 'LA2024-0892';
+        document.getElementById('ct-case-id').textContent = caseId;
+        // 从劳动者/用人单位端跳转过来时自动打开庭审
+        openCloudTrial(caseId);
       }
     }
 
     // 页面加载时请求共享数据
     document.addEventListener('DOMContentLoaded', function() {
       requestSharedData();
+      renderCaseActions();
     });
 
     // 顶部标签切换
@@ -2396,6 +2747,35 @@
     function filterCaseType(type) {
       applyFilters();
       showNotification(type === 'all' ? '显示全部类型' : '已按案由筛选', 'info');
+    }
+
+    function renderCaseActions() {
+      document.querySelectorAll('#module-case-management .data-table tbody tr').forEach(function(row) {
+        var statusEl = row.querySelector('.badge');
+        if (!statusEl) return;
+        var status = statusEl.textContent.trim();
+        var caseNo = row.querySelector('td').textContent.trim();
+        var actionCell = row.querySelector('td:last-child');
+        if (!actionCell) return;
+        
+        var actions = '<button class="btn btn-secondary btn-sm" onclick="viewCaseDetail(\'' + caseNo + '\')">查看</button>';
+        
+        if (status === '待分配') {
+          actions += ' <button class="btn btn-primary btn-sm" onclick="showAssignModal(\'' + caseNo + '\')">分配调解员</button>';
+          actions += ' <button class="btn btn-secondary btn-sm" onclick="showArbitratorAssignModal(\'' + caseNo + '\')">分配仲裁员</button>';
+        } else if (status === '调解中') {
+          actions += ' <button class="btn btn-primary btn-sm" onclick="showMediationProgressModal(\'' + caseNo + '\')">查看调解进度</button>';
+          actions += ' <button class="btn btn-warning btn-sm" onclick="showTransferToArbitrationModal(\'' + caseNo + '\')">转仲裁</button>';
+        } else if (status === '仲裁审理') {
+          actions += ' <button class="btn btn-primary btn-sm" onclick="openCloudTrial(\'' + caseNo + '\')">进入庭审</button>';
+          actions += ' <button class="btn btn-secondary btn-sm" onclick="openAwardGenerationModal(\'' + caseNo + '\')">生成裁决书</button>';
+        } else if (status === '已结案') {
+          actions += ' <button class="btn btn-primary btn-sm" onclick="showArchiveModal(\'' + caseNo + '\')">归档</button>';
+          actions += ' <button class="btn btn-secondary btn-sm" onclick="showCaseServeModal(\'' + caseNo + '\')">送达文书</button>';
+        }
+        
+        actionCell.innerHTML = actions;
+      });
     }
 
     // 云庭审功能
@@ -3215,6 +3595,135 @@
       setTimeout(() => {
         showNotification(`${mediatorName} 已收到任务通知`, 'info');
       }, 1000);
+    }
+
+    // 裁决书生成
+    function openAwardGenerationModal(caseId) {
+      if (caseId) {
+        document.getElementById('award-case-id').textContent = caseId;
+        var detail = caseDetails[caseId];
+        if (detail) {
+          document.getElementById('award-applicant').textContent = detail.applicant || '未知';
+          document.getElementById('award-respondent').textContent = detail.respondent || '未知';
+          document.getElementById('award-case-type').textContent = detail.caseType || '未知';
+        }
+      }
+      document.getElementById('award-generation-modal').classList.add('active');
+    }
+    function closeAwardGenerationModal() {
+      document.getElementById('award-generation-modal').classList.remove('active');
+    }
+    function generateAward() {
+      var type = document.getElementById('award-type-select').value;
+      showNotification(type + '生成成功，文书编号：WS' + Date.now().toString().slice(-6), 'success');
+      closeAwardGenerationModal();
+      setTimeout(function() { showNotification('裁决书已生成，可前往文书管理查看', 'info'); }, 800);
+    }
+    function downloadAward() {
+      showNotification('正在准备下载文书...', 'info');
+      setTimeout(function() { showNotification('文书下载中，请稍候', 'info'); }, 500);
+    }
+
+    // 文书预览
+    function openPreviewModal(docName) {
+      document.getElementById('preview-modal').classList.add('active');
+    }
+    function closePreviewModal() {
+      document.getElementById('preview-modal').classList.remove('active');
+    }
+
+    // 分配仲裁员
+    function showArbitratorAssignModal(caseId) {
+      document.getElementById('arbitrator-case-id').textContent = caseId;
+      document.getElementById('arbitrator-assign-modal').classList.add('active');
+    }
+    function closeArbitratorAssignModal() {
+      document.getElementById('arbitrator-assign-modal').classList.remove('active');
+    }
+    function confirmArbitratorAssign() {
+      var arb = document.getElementById('arbitrator-select').value;
+      if (!arb) { showNotification('请选择仲裁员', 'warning'); return; }
+      var nameEl = document.querySelector('#arbitrator-select option[value="' + arb + '"]');
+      var name = nameEl ? nameEl.textContent.split('-')[0].trim() : arb;
+      var caseId = document.getElementById('arbitrator-case-id').textContent;
+      showNotification('案件 ' + caseId + ' 已分配给 ' + name, 'success');
+      closeArbitratorAssignModal();
+      setTimeout(function() { showNotification(name + ' 已收到任务通知', 'info'); }, 1000);
+    }
+
+    // 调解进度
+    function showMediationProgressModal(caseId) {
+      document.getElementById('progress-case-id').textContent = caseId;
+      var detail = caseDetails[caseId];
+      if (detail) {
+        document.getElementById('progress-applicant').textContent = detail.applicant || '未知';
+        document.getElementById('progress-respondent').textContent = detail.respondent || '未知';
+      }
+      document.getElementById('mediation-progress-modal').classList.add('active');
+    }
+    function closeMediationProgressModal() {
+      document.getElementById('mediation-progress-modal').classList.remove('active');
+    }
+
+    // 转仲裁
+    function showTransferToArbitrationModal(caseId) {
+      document.getElementById('transfer-case-id').textContent = caseId;
+      document.getElementById('transfer-arbitration-modal').classList.add('active');
+    }
+    function closeTransferArbitrationModal() {
+      document.getElementById('transfer-arbitration-modal').classList.remove('active');
+    }
+    function confirmTransferToArbitration() {
+      var caseId = document.getElementById('transfer-case-id').textContent;
+      var reason = document.getElementById('transfer-reason').value;
+      closeTransferArbitrationModal();
+      showNotification('案件 ' + caseId + ' 已转入仲裁程序', 'success');
+      setTimeout(function() { showNotification('仲裁庭将重新组成并安排开庭', 'info'); }, 1000);
+    }
+
+    // 归档
+    function showArchiveModal(caseId) {
+      document.getElementById('archive-case-id').textContent = caseId;
+      document.getElementById('archive-modal').classList.add('active');
+    }
+    function closeArchiveModal() {
+      document.getElementById('archive-modal').classList.remove('active');
+    }
+    function confirmArchive() {
+      var caseId = document.getElementById('archive-case-id').textContent;
+      var category = document.getElementById('archive-category').value;
+      var catNames = { 'normal': '普通归档', 'settlement': '和解归档', 'withdrawn': '撤回归档', 'enforcement': '强制执行归档' };
+      closeArchiveModal();
+      showNotification('案件 ' + caseId + ' 已' + (catNames[category] || '归档'), 'success');
+      setTimeout(function() { showNotification('案件已转入历史案卷库', 'info'); }, 1000);
+    }
+
+    // 案件送达文书
+    function showCaseServeModal(caseId) {
+      document.getElementById('serve-case-no').textContent = caseId;
+      var detail = caseDetails[caseId];
+      if (detail) {
+        document.getElementById('serve-target-applicant').textContent = detail.applicant || '申请人';
+        document.getElementById('serve-target-respondent').textContent = detail.respondent || '被申请人';
+      }
+      document.getElementById('case-serve-modal').classList.add('active');
+    }
+    function closeCaseServeModal() {
+      document.getElementById('case-serve-modal').classList.remove('active');
+    }
+    function confirmCaseServe() {
+      var method = document.querySelector('input[name="case-serve-method"]:checked').value;
+      var targets = Array.from(document.querySelectorAll('input[name="case-serve-target"]:checked')).map(function(el) { return el.value; });
+      if (targets.length === 0) { showNotification('请选择送达对象', 'warning'); return; }
+      var methodNames = { 'electronic': '电子送达', 'mail': '邮寄送达', 'announce': '公告送达' };
+      closeCaseServeModal();
+      showNotification('正在通过' + (methodNames[method] || method) + '送达...', 'info');
+      setTimeout(function() {
+        showNotification('送达成功！', 'success');
+        setTimeout(function() {
+          showNotification('已向' + (targets.length === 2 ? '双方' : (targets.includes('applicant') ? '申请人' : '被申请人')) + '送达文书', 'info');
+        }, 800);
+      }, 1200);
     }
 
     function showNotification(message, type) {

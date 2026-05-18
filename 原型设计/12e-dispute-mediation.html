@@ -43,8 +43,8 @@
     <div class="card p-24 mt-24">
       <h3 class="mb-16">争议案件列表</h3>
       <div class="search-bar mb-16" style="display: flex; gap: 12px;">
-        <input type="text" class="form-input" placeholder="搜索案件编号、申请人..." style="flex: 1; max-width: 360px;">
-        <button class="btn btn-primary" onclick="showNotification('搜索完成', 'success')"><i class="fas fa-search mr-4"></i>搜索</button>
+        <input type="text" class="form-input" id="case-search" placeholder="搜索案件编号、申请人..." style="flex: 1; max-width: 360px;">
+        <button class="btn btn-primary" onclick="searchCaseList()"><i class="fas fa-search mr-4"></i>搜索</button>
       </div>
       <div style="overflow-x: auto;">
         <table class="table">
@@ -69,11 +69,11 @@
                 <td><span class="badge badge-warning">待审核</span></td>
                 <td>
                   <div class="action-dropdown">
-                    <button class="btn btn-primary btn-audit" onclick="showNotification('已进入审核流程', 'success')">审核</button>
+                    <button class="btn btn-primary btn-audit" onclick="showAuditModal('TJ-20260514001')">审核</button>
                     <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i></button>
                     <div class="action-menu">
-                      <a onclick="showNotification('查看案件详情', 'info')"><i class="fas fa-eye"></i>查看详情</a>
-                      <a onclick="showModal('mediator-assign-modal')"><i class="fas fa-user-tie"></i>分配调解员</a>
+                      <a onclick="showCaseDetailFromClick(this)"><i class="fas fa-eye"></i>查看详情</a>
+                      <a onclick="showMediatorAssignFromClick(this)"><i class="fas fa-user-tie"></i>分配调解员</a>
                     </div>
                   </div>
                 </td>
@@ -89,10 +89,10 @@
                   <div class="action-dropdown">
                     <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
                     <div class="action-menu">
-                      <a onclick="showNotification('查看案件详情', 'info')"><i class="fas fa-eye"></i>查看详情</a>
-                      <a onclick="showModal('mediation-notice-modal')"><i class="fas fa-bell"></i>调解通知</a>
-                      <a onclick="showModal('mediation-online-modal')"><i class="fas fa-laptop"></i>线上调解</a>
-                      <a onclick="showModal('mediation-agreement-modal')"><i class="fas fa-file-signature"></i>调解协议</a>
+                      <a onclick="showCaseDetailFromClick(this)"><i class="fas fa-eye"></i>查看详情</a>
+                      <a onclick="showMediationNoticeFromClick(this)"><i class="fas fa-bell"></i>调解通知</a>
+                      <a onclick="showMediationOnlineFromClick(this)"><i class="fas fa-laptop"></i>线上调解</a>
+                      <a onclick="showMediationAgreementFromClick(this)"><i class="fas fa-file-signature"></i>调解协议</a>
                     </div>
                   </div>
                 </td>
@@ -108,10 +108,10 @@
                   <div class="action-dropdown">
                     <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
                     <div class="action-menu">
-                      <a onclick="showNotification('查看案件详情', 'info')"><i class="fas fa-eye"></i>查看详情</a>
-                      <a onclick="showModal('mediation-notice-modal')"><i class="fas fa-bell"></i>调解通知</a>
-                      <a onclick="showModal('mediation-online-modal')"><i class="fas fa-laptop"></i>线上调解</a>
-                      <a onclick="showModal('mediation-agreement-modal')"><i class="fas fa-file-signature"></i>调解协议</a>
+                      <a onclick="showCaseDetailFromClick(this)"><i class="fas fa-eye"></i>查看详情</a>
+                      <a onclick="showMediationNoticeFromClick(this)"><i class="fas fa-bell"></i>调解通知</a>
+                      <a onclick="showMediationOnlineFromClick(this)"><i class="fas fa-laptop"></i>线上调解</a>
+                      <a onclick="showMediationAgreementFromClick(this)"><i class="fas fa-file-signature"></i>调解协议</a>
                     </div>
                   </div>
                 </td>
@@ -127,7 +127,7 @@
                   <div class="action-dropdown">
                     <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
                     <div class="action-menu">
-                      <a onclick="showNotification('查看案件详情', 'info')"><i class="fas fa-eye"></i>查看详情</a>
+                      <a onclick="showCaseDetailFromClick(this)"><i class="fas fa-eye"></i>查看详情</a>
                       <a onclick="showModal('mediation-archive-modal')"><i class="fas fa-archive"></i>调解归档</a>
                     </div>
                   </div>
@@ -187,7 +187,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('dispute-apply-modal')">取消</button>
-      <button class="btn btn-primary" onclick="submitActionAndClose('dispute-apply-modal')">提交申请</button>
+      <button class="btn btn-primary" onclick="submitDisputeApply()">提交申请</button>
     </div>
   </div>
 </div>
@@ -203,26 +203,26 @@
       <div class="audit-info">
         <div class="info-row">
           <span class="label">申请人：</span>
-          <span>张三</span>
+          <span id="audit-case-applicant">张三</span>
         </div>
         <div class="info-row">
           <span class="label">争议类型：</span>
-          <span>工资纠纷</span>
+          <span id="audit-case-type">工资纠纷</span>
         </div>
         <div class="info-row">
           <span class="label">申请时间：</span>
-          <span>2026-05-14 15:30</span>
+          <span id="audit-case-time">2026-05-14 15:30</span>
         </div>
       </div>
       <div class="form-group mt-16">
         <label>审核意见</label>
-        <textarea class="form-textarea" rows="3" placeholder="请填写审核意见"></textarea>
+        <textarea class="form-textarea" id="audit-opinion" rows="3" placeholder="请填写审核意见"></textarea>
       </div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('dispute-audit-modal')">关闭</button>
-      <button class="btn btn-warning" onclick="submitActionAndClose('dispute-audit-modal')">驳回申请</button>
-      <button class="btn btn-primary" onclick="submitActionAndClose('dispute-audit-modal')">审核通过</button>
+      <button class="btn btn-warning" onclick="rejectAudit()">驳回申请</button>
+      <button class="btn btn-primary" onclick="approveAudit()">审核通过</button>
     </div>
   </div>
 </div>
@@ -250,13 +250,13 @@
         </div>
       </div>
       <div style="margin-top: 16px; display: flex; gap: 12px; justify-content: center;">
-        <button class="btn btn-secondary" style="padding: 8px 24px;" onclick="showNotification('操作已提交', 'success')">🔇 静音</button>
-        <button class="btn btn-secondary" style="padding: 8px 24px;" onclick="showNotification('操作已提交', 'success')">📹 关闭摄像头</button>
-        <button class="btn btn-danger" style="padding: 8px 24px;" onclick="submitActionAndClose('mediation-online-modal')">🚪 离开</button>
+        <button class="btn btn-secondary" style="padding: 8px 24px;" onclick="showNotification('麦克风已静音', 'success')">🔇 静音</button>
+        <button class="btn btn-secondary" style="padding: 8px 24px;" onclick="showNotification('摄像头已关闭', 'success')">📹 关闭摄像头</button>
+        <button class="btn btn-danger" style="padding: 8px 24px;" onclick="closeModal('mediation-online-modal')">🚪 离开</button>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-secondary" onclick="submitActionAndClose('mediation-online-modal')">结束调解</button>
+      <button class="btn btn-secondary" onclick="endMediation()">结束调解</button>
     </div>
   </div>
 </div>
@@ -284,7 +284,7 @@
               <div style="font-weight: 600;">李明华</div>
               <p class="text-small">擅长领域：工资纠纷、劳动合同</p>
             </div>
-            <button class="btn btn-primary" onclick="submitActionAndClose('mediator-assign-modal')">分配此调解员</button>
+            <button class="btn btn-primary" onclick="assignMediator()">分配此调解员</button>
           </div>
         </div>
       </div>
@@ -312,7 +312,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('mediation-notice-modal')">关闭</button>
-      <button class="btn btn-primary" onclick="submitActionAndClose('mediation-notice-modal')">确认参加</button>
+      <button class="btn btn-primary" onclick="confirmMediation()">确认参加</button>
     </div>
   </div>
 </div>
@@ -353,7 +353,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('mediation-agreement-modal')">关闭</button>
-      <button class="btn btn-primary" onclick="submitActionAndClose('mediation-agreement-modal')">签署协议</button>
+      <button class="btn btn-primary" onclick="signAgreement()">签署协议</button>
     </div>
   </div>
 </div>
@@ -367,8 +367,8 @@
     </div>
     <div class="modal-body">
       <div class="search-bar mb-16">
-        <input type="text" class="form-input" placeholder="搜索调解编号、申请人...">
-        <button class="btn btn-primary" onclick="showNotification('搜索完成', 'success')">搜索</button>
+        <input type="text" class="form-input" id="archive-search" placeholder="搜索调解编号、申请人...">
+        <button class="btn btn-primary" onclick="searchArchiveList()">搜索</button>
       </div>
       <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -376,12 +376,59 @@
             <div style="font-weight: 600;">TJ-20260516001</div>
             <p class="text-small">申请人：张三 | 状态：已结案</p>
           </div>
-          <button class="btn btn-secondary btn-sm" onclick="showNotification('查看详情', 'info')">查看详情</button>
+          <button class="btn btn-secondary btn-sm" onclick="showCaseDetail('TJ-20260516001')">查看详情</button>
         </div>
       </div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('mediation-archive-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 案件详情模态框 -->
+<div id="case-detail-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>案件详情 - <span id="detail-case-number"></span></h3>
+      <button class="modal-close" onclick="closeModal('case-detail-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>申请人</label>
+            <div id="detail-applicant" style="padding: 10px; background: rgba(99,102,241,0.1); border-radius: 8px;"></div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label>被申请人</label>
+            <div id="detail-respondent" style="padding: 10px; background: rgba(99,102,241,0.1); border-radius: 8px;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>争议类型</label>
+            <div id="detail-dispute-type" style="padding: 10px; background: rgba(99,102,241,0.1); border-radius: 8px;"></div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label>调解员</label>
+            <div id="detail-mediator" style="padding: 10px; background: rgba(99,102,241,0.1); border-radius: 8px;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>状态</label>
+        <div id="detail-status" style="padding: 10px; background: rgba(82,196,26,0.1); border-radius: 8px;"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('case-detail-modal')">关闭</button>
     </div>
   </div>
 </div>
@@ -393,6 +440,9 @@
 
 <script src="assets/theme-switch.js"></script>
 <script>
+  var currentCaseNumber = null;
+  var caseCounter = 5;
+
   function showModal(modalId) {
     document.getElementById(modalId).style.display = 'flex';
     document.body.style.overflow = 'hidden';
@@ -403,25 +453,17 @@
     document.body.style.overflow = '';
   }
 
-  // 通知提示
   function showNotification(msg, type) {
-    const notification = document.getElementById('notification');
-    const msgEl = document.getElementById('notification-msg');
+    var notification = document.getElementById('notification');
+    var msgEl = document.getElementById('notification-msg');
     notification.className = 'notification ' + (type || '');
     msgEl.textContent = msg;
     notification.style.display = 'flex';
     setTimeout(function() { notification.style.display = 'none'; }, 3000);
   }
 
-  // 提交操作并关闭模态框
-  function submitActionAndClose(modalId) {
-    showNotification('操作已提交', 'success');
-    closeModal(modalId);
-  }
-
-  // 切换操作下拉菜单
   function toggleActionMenu(btn) {
-    const menu = btn.parentElement.querySelector('.action-menu');
+    var menu = btn.parentElement.querySelector('.action-menu');
     document.querySelectorAll('.action-menu.show').forEach(function(m) {
       if (m !== menu) m.classList.remove('show');
     });
@@ -429,18 +471,302 @@
   }
   
   document.addEventListener('click', function(e) {
-    // 关闭下拉菜单（点击外部）
     if (!e.target.closest('.action-dropdown')) {
       document.querySelectorAll('.action-menu.show').forEach(function(m) {
         m.classList.remove('show');
       });
     }
-    // 点击模态框外部关闭
     if (e.target.classList.contains('modal-overlay')) {
       e.target.style.display = 'none';
       document.body.style.overflow = '';
     }
   });
+
+  // ===== 从行元素提取案件编号 =====
+  function getCaseNumberFromRow(el) {
+    var row = el.closest('tr');
+    if (!row) return null;
+    var caseNoEl = row.querySelector('td:first-child');
+    return caseNoEl ? caseNoEl.textContent.trim() : null;
+  }
+
+  // ===== 查看详情 =====
+  function showCaseDetailFromClick(el) {
+    var caseNo = getCaseNumberFromRow(el);
+    if (caseNo) showCaseDetail(caseNo);
+  }
+
+  function showCaseDetail(caseNumber) {
+    var rows = document.querySelectorAll('.table tbody tr');
+    rows.forEach(function(row) {
+      var caseNoEl = row.querySelector('td:first-child');
+      if (caseNoEl && caseNoEl.textContent.trim() === caseNumber) {
+        var cells = row.querySelectorAll('td');
+        document.getElementById('detail-case-number').textContent = caseNumber;
+        document.getElementById('detail-applicant').textContent = cells[1].textContent;
+        document.getElementById('detail-respondent').textContent = cells[2].textContent;
+        document.getElementById('detail-dispute-type').textContent = cells[3].textContent;
+        document.getElementById('detail-mediator').textContent = cells[4].textContent;
+        document.getElementById('detail-status').textContent = cells[5].querySelector('.badge').textContent;
+      }
+    });
+    showModal('case-detail-modal');
+  }
+
+  // ===== 争议申请 =====
+  function submitDisputeApply() {
+    var modal = document.getElementById('dispute-apply-modal');
+    var name = modal.querySelector('input[placeholder="请输入申请人姓名"]').value;
+    var phone = modal.querySelector('input[placeholder="请输入联系电话"]').value;
+    var typeEl = modal.querySelector('select');
+    var type = typeEl.value;
+    var detail = modal.querySelector('textarea').value;
+    var mediationType = modal.querySelector('input[name="mediation-type"]:checked');
+
+    if (!name || !phone || !type || !detail || !mediationType) {
+      showNotification('请填写完整信息', 'error');
+      return;
+    }
+
+    var now = new Date();
+    var dateStr = now.getFullYear() +
+      String(now.getMonth() + 1).padStart(2, '0') +
+      String(now.getDate()).padStart(2, '0');
+    var caseNo = 'TJ-' + dateStr + String(caseCounter++).padStart(3, '0');
+
+    var tbody = document.querySelector('.table tbody');
+    var row = document.createElement('tr');
+    row.innerHTML = '\
+      <td><span style="font-family: monospace; color: var(--primary);">' + caseNo + '</span></td>\
+      <td>' + name + '</td>\
+      <td>—</td>\
+      <td>' + type + '</td>\
+      <td>—</td>\
+      <td><span class="badge badge-warning">待审核</span></td>\
+      <td>\
+        <div class="action-dropdown">\
+          <button class="btn btn-primary btn-audit" onclick="showAuditModal(\'' + caseNo + '\')">审核</button>\
+          <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i></button>\
+          <div class="action-menu">\
+            <a onclick="showCaseDetailFromClick(this)"><i class="fas fa-eye"></i>查看详情</a>\
+            <a onclick="showMediatorAssignFromClick(this)"><i class="fas fa-user-tie"></i>分配调解员</a>\
+          </div>\
+        </div>\
+      </td>\
+    ';
+    tbody.insertBefore(row, tbody.firstChild);
+
+    modal.querySelectorAll('input[type="text"], input[type="tel"]').forEach(function(el) { el.value = ''; });
+    typeEl.value = '';
+    modal.querySelector('textarea').value = '';
+    modal.querySelectorAll('input[type="radio"]').forEach(function(el) { el.checked = false; });
+    modal.querySelector('input[type="file"]').value = '';
+
+    closeModal('dispute-apply-modal');
+    showNotification('争议申请已提交，等待审核', 'success');
+  }
+
+  // ===== 审核 =====
+  function showAuditModal(caseNumber) {
+    currentCaseNumber = caseNumber;
+    var rows = document.querySelectorAll('.table tbody tr');
+    rows.forEach(function(row) {
+      var caseNoEl = row.querySelector('td:first-child');
+      if (caseNoEl && caseNoEl.textContent.trim() === caseNumber) {
+        var cells = row.querySelectorAll('td');
+        document.getElementById('audit-case-applicant').textContent = cells[1].textContent;
+        document.getElementById('audit-case-type').textContent = cells[3].textContent;
+      }
+    });
+    document.getElementById('audit-case-time').textContent = new Date().toLocaleString('zh-CN');
+    document.getElementById('audit-opinion').value = '';
+    showModal('dispute-audit-modal');
+  }
+
+  function approveAudit() {
+    if (!currentCaseNumber) {
+      showNotification('请选择要审核的案件', 'error');
+      return;
+    }
+    var rows = document.querySelectorAll('.table tbody tr');
+    rows.forEach(function(row) {
+      var caseNoEl = row.querySelector('td:first-child');
+      if (caseNoEl && caseNoEl.textContent.trim() === currentCaseNumber) {
+        var cells = row.querySelectorAll('td');
+        var badge = cells[5].querySelector('.badge');
+        if (badge && badge.textContent.indexOf('待审核') !== -1) {
+          badge.textContent = '调解中';
+          badge.className = 'badge badge-info';
+          cells[4].textContent = '待分配';
+        }
+      }
+    });
+    currentCaseNumber = null;
+    closeModal('dispute-audit-modal');
+    showNotification('审核通过，案件已进入调解阶段', 'success');
+  }
+
+  function rejectAudit() {
+    if (!currentCaseNumber) {
+      showNotification('请选择要审核的案件', 'error');
+      return;
+    }
+    var opinion = document.getElementById('audit-opinion').value;
+    if (!opinion) {
+      showNotification('请填写驳回原因', 'error');
+      return;
+    }
+    var rows = document.querySelectorAll('.table tbody tr');
+    rows.forEach(function(row) {
+      var caseNoEl = row.querySelector('td:first-child');
+      if (caseNoEl && caseNoEl.textContent.trim() === currentCaseNumber) {
+        row.remove();
+      }
+    });
+    currentCaseNumber = null;
+    closeModal('dispute-audit-modal');
+    showNotification('申请已驳回', 'warning');
+  }
+
+  // ===== 调解员分配 =====
+  function showMediatorAssignFromClick(el) {
+    var caseNo = getCaseNumberFromRow(el);
+    if (caseNo) {
+      currentCaseNumber = caseNo;
+      showModal('mediator-assign-modal');
+    }
+  }
+
+  function assignMediator() {
+    if (!currentCaseNumber) {
+      showNotification('请选择要分配的案件', 'error');
+      return;
+    }
+    var rows = document.querySelectorAll('.table tbody tr');
+    rows.forEach(function(row) {
+      var caseNoEl = row.querySelector('td:first-child');
+      if (caseNoEl && caseNoEl.textContent.trim() === currentCaseNumber) {
+        var cells = row.querySelectorAll('td');
+        cells[4].textContent = '李明华';
+        var badge = cells[5].querySelector('.badge');
+        if (badge && badge.textContent.indexOf('待审核') !== -1) {
+          badge.textContent = '调解中';
+          badge.className = 'badge badge-info';
+        }
+      }
+    });
+    currentCaseNumber = null;
+    closeModal('mediator-assign-modal');
+    showNotification('调解员已分配', 'success');
+  }
+
+  // ===== 调解通知 =====
+  function showMediationNoticeFromClick(el) {
+    var caseNo = getCaseNumberFromRow(el);
+    if (caseNo) {
+      currentCaseNumber = caseNo;
+      showModal('mediation-notice-modal');
+    }
+  }
+
+  function confirmMediation() {
+    if (currentCaseNumber) {
+      showNotification('已确认参加调解 - ' + currentCaseNumber, 'success');
+    } else {
+      showNotification('已确认参加调解', 'success');
+    }
+    closeModal('mediation-notice-modal');
+  }
+
+  // ===== 线上调解 =====
+  function showMediationOnlineFromClick(el) {
+    var caseNo = getCaseNumberFromRow(el);
+    if (caseNo) {
+      currentCaseNumber = caseNo;
+      showModal('mediation-online-modal');
+    }
+  }
+
+  function endMediation() {
+    if (!currentCaseNumber) {
+      showNotification('请选择要结束调解的案件', 'error');
+      return;
+    }
+    var rows = document.querySelectorAll('.table tbody tr');
+    rows.forEach(function(row) {
+      var caseNoEl = row.querySelector('td:first-child');
+      if (caseNoEl && caseNoEl.textContent.trim() === currentCaseNumber) {
+        var badge = row.querySelectorAll('td')[5].querySelector('.badge');
+        if (badge) {
+          badge.textContent = '已结案';
+          badge.className = 'badge badge-success';
+        }
+      }
+    });
+    closeModal('mediation-online-modal');
+    showNotification('调解已结束，案件已结案', 'success');
+  }
+
+  // ===== 调解协议 =====
+  function showMediationAgreementFromClick(el) {
+    var caseNo = getCaseNumberFromRow(el);
+    if (caseNo) {
+      currentCaseNumber = caseNo;
+      showModal('mediation-agreement-modal');
+    }
+  }
+
+  function signAgreement() {
+    var modal = document.getElementById('mediation-agreement-modal');
+    var pendingSpans = modal.querySelectorAll('.modal-body p.text-small');
+    for (var i = 0; i < pendingSpans.length; i++) {
+      if (pendingSpans[i].textContent.trim() === '待签署') {
+        pendingSpans[i].textContent = '已签署';
+        break;
+      }
+    }
+    closeModal('mediation-agreement-modal');
+    showNotification('协议已签署', 'success');
+  }
+
+  // ===== 调解归档 =====
+  function showMediationArchiveFromClick(el) {
+    var caseNo = getCaseNumberFromRow(el);
+    if (caseNo) {
+      currentCaseNumber = caseNo;
+      showModal('mediation-archive-modal');
+    }
+  }
+
+  // ===== 搜索 =====
+  function searchCaseList() {
+    var search = document.getElementById('case-search').value.toLowerCase();
+    var rows = document.querySelectorAll('.table tbody tr');
+    rows.forEach(function(row) {
+      var caseNo = row.querySelector('td:first-child').textContent.toLowerCase();
+      var applicant = row.querySelectorAll('td')[1].textContent.toLowerCase();
+      if (caseNo.indexOf(search) !== -1 || applicant.indexOf(search) !== -1) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+    showNotification('搜索完成', 'info');
+  }
+
+  function searchArchiveList() {
+    var search = document.getElementById('archive-search').value.toLowerCase();
+    var items = document.querySelectorAll('#mediation-archive-modal .modal-body > div:not(.search-bar)');
+    items.forEach(function(item) {
+      var text = item.textContent.toLowerCase();
+      if (text.indexOf(search) !== -1) {
+        item.style.display = '';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+    showNotification('搜索完成', 'info');
+  }
 </script>
 </body>
 </html>

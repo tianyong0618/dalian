@@ -884,6 +884,7 @@
                   <th>工人数量</th>
                   <th>工资账户</th>
                   <th>预警状态</th>
+                  <th>操作</th>
                 </tr>
               </thead>
               <tbody>
@@ -903,6 +904,10 @@
                   <td>328人</td>
                   <td>已开设</td>
                   <td><span class="status-badge warning">高风险</span></td>
+                  <td class="action-cell">
+                    <button class="btn btn-secondary btn-sm" onclick="showProjectDetail('城西CBD综合体项目')">详情</button>
+                    <button class="btn btn-warning btn-sm" onclick="showTab('warning')">预警处置</button>
+                  </td>
                 </tr>
                 <tr>
                   <td class="project-name">地铁3号线工程</td>
@@ -920,6 +925,10 @@
                   <td>512人</td>
                   <td>已开设</td>
                   <td><span class="status-badge ongoing">正常</span></td>
+                  <td class="action-cell">
+                    <button class="btn btn-secondary btn-sm" onclick="showProjectDetail('地铁3号线工程')">详情</button>
+                    <button class="btn btn-warning btn-sm" onclick="showTab('warning')">预警处置</button>
+                  </td>
                 </tr>
                 <tr>
                   <td class="project-name">人民医院新院区</td>
@@ -937,6 +946,10 @@
                   <td>186人</td>
                   <td>已开设</td>
                   <td><span class="status-badge medium">中风险</span></td>
+                  <td class="action-cell">
+                    <button class="btn btn-secondary btn-sm" onclick="showProjectDetail('人民医院新院区')">详情</button>
+                    <button class="btn btn-warning btn-sm" onclick="showTab('warning')">预警处置</button>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -968,7 +981,7 @@
                 <option>中风险</option>
                 <option>高风险</option>
               </select>
-              <button class="btn btn-primary btn-sm filter-btn">筛选</button>
+              <button class="btn btn-primary btn-sm filter-btn" onclick="showFilterPanel()">筛选</button>
             </div>
           </div>
           <div class="table-wrapper">
@@ -1003,7 +1016,7 @@
                   <td>328人</td>
                   <td>已开设</td>
                   <td><span class="status-badge warning">高风险</span></td>
-                  <td><button class="btn btn-secondary btn-sm">详情</button></td>
+                  <td><button class="btn btn-secondary btn-sm" onclick="showProjectDetail('城西CBD综合体项目')">详情</button></td>
                 </tr>
                 <tr>
                   <td class="project-name">地铁3号线工程</td>
@@ -1021,7 +1034,7 @@
                   <td>512人</td>
                   <td>已开设</td>
                   <td><span class="status-badge ongoing">正常</span></td>
-                  <td><button class="btn btn-secondary btn-sm">详情</button></td>
+                  <td><button class="btn btn-secondary btn-sm" onclick="showProjectDetail('地铁3号线工程')">详情</button></td>
                 </tr>
                 <tr>
                   <td class="project-name">人民医院新院区</td>
@@ -1039,7 +1052,7 @@
                   <td>186人</td>
                   <td>已开设</td>
                   <td><span class="status-badge medium">中风险</span></td>
-                  <td><button class="btn btn-secondary btn-sm">详情</button></td>
+                  <td><button class="btn btn-secondary btn-sm" onclick="showProjectDetail('人民医院新院区')">详情</button></td>
                 </tr>
                 <tr>
                   <td class="project-name">东湖公园改造工程</td>
@@ -1057,7 +1070,7 @@
                   <td>95人</td>
                   <td>已开设</td>
                   <td><span class="status-badge ongoing">正常</span></td>
-                  <td><button class="btn btn-secondary btn-sm">详情</button></td>
+                  <td><button class="btn btn-secondary btn-sm" onclick="showProjectDetail('东湖公园改造工程')">详情</button></td>
                 </tr>
                 <tr>
                   <td class="project-name">科技园区厂房建设</td>
@@ -1075,7 +1088,7 @@
                   <td>142人</td>
                   <td>已开设</td>
                   <td><span class="status-badge warning">高风险</span></td>
-                  <td><button class="btn btn-secondary btn-sm">详情</button></td>
+                  <td><button class="btn btn-secondary btn-sm" onclick="showProjectDetail('科技园区厂房建设')">详情</button></td>
                 </tr>
                 <tr>
                   <td class="project-name">老旧小区改造项目</td>
@@ -1093,7 +1106,7 @@
                   <td>78人</td>
                   <td>已开设</td>
                   <td><span class="status-badge ongoing">正常</span></td>
-                  <td><button class="btn btn-secondary btn-sm">详情</button></td>
+                  <td><button class="btn btn-secondary btn-sm" onclick="showProjectDetail('老旧小区改造项目')">详情</button></td>
                 </tr>
               </tbody>
             </table>
@@ -1161,8 +1174,11 @@
             <li>📡 考勤系统部分离线，数据上传不及时</li>
           </ul>
           <div class="warning-detail-actions">
-            <button class="btn btn-primary btn-sm">推送监管部门</button>
-            <button class="btn btn-secondary btn-sm">查看详情</button>
+            <button class="btn btn-primary btn-sm" onclick="showPushDepartment('XX住宅小区开发项目')">推送监管部门</button>
+            <button class="btn btn-secondary btn-sm" onclick="showDisposalHistory('XX住宅小区开发项目')">处置记录</button>
+            <button class="btn btn-secondary btn-sm" onclick="showDowngradeConfirm('XX住宅小区开发项目')">降级/解除</button>
+            <button class="btn btn-secondary btn-sm" onclick="showExportReport('XX住宅小区开发项目')">导出报告</button>
+            <button class="btn btn-secondary btn-sm" onclick="showWarningDetail('XX住宅小区开发项目')">查看详情</button>
           </div>
         </div>
 
@@ -1180,8 +1196,11 @@
             <li>⚠️ 施工进度滞后，可能影响工程款拨付</li>
           </ul>
           <div class="warning-detail-actions">
-            <button class="btn btn-primary btn-sm">推送监管部门</button>
-            <button class="btn btn-secondary btn-sm">查看详情</button>
+            <button class="btn btn-primary btn-sm" onclick="showPushDepartment('科技园区厂房建设项目')">推送监管部门</button>
+            <button class="btn btn-secondary btn-sm" onclick="showDisposalHistory('科技园区厂房建设项目')">处置记录</button>
+            <button class="btn btn-secondary btn-sm" onclick="showDowngradeConfirm('科技园区厂房建设项目')">降级/解除</button>
+            <button class="btn btn-secondary btn-sm" onclick="showExportReport('科技园区厂房建设项目')">导出报告</button>
+            <button class="btn btn-secondary btn-sm" onclick="showWarningDetail('科技园区厂房建设项目')">查看详情</button>
           </div>
         </div>
 
@@ -1198,7 +1217,10 @@
             <li>📊 资金拨付流程较慢，建议加快审批</li>
           </ul>
           <div class="warning-detail-actions">
-            <button class="btn btn-secondary btn-sm">查看详情</button>
+            <button class="btn btn-secondary btn-sm" onclick="showDisposalHistory('人民医院新院区项目')">处置记录</button>
+            <button class="btn btn-secondary btn-sm" onclick="showDowngradeConfirm('人民医院新院区项目')">降级/解除</button>
+            <button class="btn btn-secondary btn-sm" onclick="showExportReport('人民医院新院区项目')">导出报告</button>
+            <button class="btn btn-secondary btn-sm" onclick="showWarningDetail('人民医院新院区项目')">查看详情</button>
           </div>
         </div>
       </div>
@@ -1357,7 +1379,7 @@
                 <option>Excel</option>
                 <option>PDF</option>
               </select>
-              <button class="btn btn-primary btn-sm filter-btn">生成报表</button>
+              <button class="btn btn-primary btn-sm filter-btn" onclick="showReportConfig()">生成报表</button>
             </div>
           </div>
 
@@ -1474,6 +1496,314 @@
           notification.remove();
         }, 300);
       }, 3000);
+    }
+
+    // ====== Modal creation and interaction ======
+    function createModal(title, bodyHtml, width) {
+      var existing = document.querySelector('.custom-modal-overlay');
+      if (existing) existing.remove();
+      var overlay = document.createElement('div');
+      overlay.className = 'custom-modal-overlay';
+      overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:10000;display:flex;align-items:center;justify-content:center;';
+      var modal = document.createElement('div');
+      modal.style.cssText = 'background:var(--bg-primary);border-radius:20px;width:' + (width || 520) + 'px;max-width:90vw;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3);animation:modalIn 0.2s ease;';
+      var header = document.createElement('div');
+      header.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:24px 28px 16px;border-bottom:1px solid var(--border-color);';
+      header.innerHTML = '<h3 style="margin:0;font-size:18px;font-weight:600;color:var(--text-primary);">' + title + '</h3><span style="font-size:24px;cursor:pointer;color:var(--text-tertiary);line-height:1;" onclick="closeModal(this)">&times;</span>';
+      var body = document.createElement('div');
+      body.style.cssText = 'padding:24px 28px;';
+      body.innerHTML = bodyHtml;
+      modal.appendChild(header);
+      modal.appendChild(body);
+      overlay.appendChild(modal);
+      document.body.appendChild(overlay);
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) overlay.remove();
+      });
+      return { overlay: overlay, modal: modal, body: body };
+    }
+
+    function closeModal(el) {
+      var overlay = el.closest('.custom-modal-overlay');
+      if (overlay) overlay.remove();
+    }
+
+    (function() {
+      var s = document.createElement('style');
+      s.textContent = '@keyframes modalIn{from{opacity:0;transform:translateY(-20px) scale(0.95)}to{opacity:1;transform:translateY(0) scale(1)}}';
+      document.head.appendChild(s);
+    })();
+
+    // ====== Project data ======
+    var projectData = {
+      '城西CBD综合体项目': { builder: '城西置业集团', contractor: '建工集团', status: '在建', progress: 75, workers: '328人', account: '已开设', risk: '高风险', riskClass: 'warning' },
+      '地铁3号线工程': { builder: '市轨道公司', contractor: '中铁隧道局', status: '在建', progress: 60, workers: '512人', account: '已开设', risk: '正常', riskClass: 'ongoing' },
+      '人民医院新院区': { builder: '市卫健委', contractor: '华西建设', status: '在建', progress: 45, workers: '186人', account: '已开设', risk: '中风险', riskClass: 'medium' },
+      '东湖公园改造工程': { builder: '市园林局', contractor: '园林绿化公司', status: '在建', progress: 80, workers: '95人', account: '已开设', risk: '正常', riskClass: 'ongoing' },
+      '科技园区厂房建设': { builder: '科技发展公司', contractor: '新兴建筑', status: '在建', progress: 30, workers: '142人', account: '已开设', risk: '高风险', riskClass: 'warning' },
+      '老旧小区改造项目': { builder: '区住建局', contractor: '社区建设公司', status: '在建', progress: 55, workers: '78人', account: '已开设', risk: '正常', riskClass: 'ongoing' }
+    };
+
+    function showProjectDetail(name) {
+      var p = projectData[name];
+      if (!p) { showNotification('项目数据未找到', 'error'); return; }
+      var bodyHtml =
+        '<div style="margin-bottom:20px;">' +
+          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">' +
+            '<div><div style="font-size:12px;color:var(--text-tertiary);margin-bottom:4px;">建设单位</div><div style="font-size:14px;font-weight:500;color:var(--text-primary);">' + p.builder + '</div></div>' +
+            '<div><div style="font-size:12px;color:var(--text-tertiary);margin-bottom:4px;">施工单位</div><div style="font-size:14px;font-weight:500;color:var(--text-primary);">' + p.contractor + '</div></div>' +
+            '<div><div style="font-size:12px;color:var(--text-tertiary);margin-bottom:4px;">项目状态</div><div><span class="status-badge ongoing">' + p.status + '</span></div></div>' +
+            '<div><div style="font-size:12px;color:var(--text-tertiary);margin-bottom:4px;">预警状态</div><div><span class="status-badge ' + p.riskClass + '">' + p.risk + '</span></div></div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="margin-bottom:20px;">' +
+          '<div style="font-size:12px;color:var(--text-tertiary);margin-bottom:8px;">施工进度</div>' +
+          '<div class="progress-cell"><div class="progress-bar"><div class="progress-fill" style="width:' + p.progress + '%;"></div></div><span class="progress-text">' + p.progress + '%</span></div>' +
+        '</div>' +
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:16px;background:var(--bg-secondary);border-radius:12px;margin-bottom:20px;">' +
+          '<div style="text-align:center;"><div style="font-size:24px;font-weight:700;color:var(--primary);">' + p.workers + '</div><div style="font-size:12px;color:var(--text-tertiary);">工人数量</div></div>' +
+          '<div style="text-align:center;"><div style="font-size:24px;font-weight:700;color:var(--primary);">' + p.account + '</div><div style="font-size:12px;color:var(--text-tertiary);">工资账户</div></div>' +
+        '</div>' +
+        '<div style="margin-bottom:16px;">' +
+          '<div style="font-size:14px;font-weight:600;color:var(--text-primary);margin-bottom:12px;">近期预警</div>' +
+          '<div style="padding:12px;background:var(--bg-secondary);border-radius:8px;border-left:3px solid ' + (p.riskClass === 'warning' ? '#ff4d4f' : p.riskClass === 'medium' ? '#faad14' : '#52c41a') + ';margin-bottom:8px;">' +
+            '<div style="font-size:13px;color:var(--text-primary);font-weight:500;">' + (p.risk === '高风险' ? '\u26a0\ufe0f 工资发放异常' : p.risk === '中风险' ? '\u23f0 工资发放延迟' : '\u2705 正常') + '</div>' +
+            '<div style="font-size:12px;color:var(--text-tertiary);margin-top:4px;">' + (p.risk === '高风险' ? '连续2个月工资发放延迟，涉及金额较大' : p.risk === '中风险' ? '近期有工资发放延迟记录' : '项目运行正常，无异常预警') + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="text-align:right;"><button class="btn btn-secondary btn-sm" onclick="closeModal(this)">关闭</button></div>';
+      createModal('项目详情 - ' + name, bodyHtml, 560);
+    }
+
+    function showFilterPanel() {
+      var bodyHtml =
+        '<div style="margin-bottom:20px;">' +
+          '<div style="font-size:14px;font-weight:500;color:var(--text-primary);margin-bottom:12px;">项目状态</div>' +
+          '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">' +
+            '<label style="display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--bg-secondary);border-radius:8px;cursor:pointer;font-size:13px;color:var(--text-primary);"><input type="checkbox" checked> 全部</label>' +
+            '<label style="display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--bg-secondary);border-radius:8px;cursor:pointer;font-size:13px;color:var(--text-primary);"><input type="checkbox" checked> 在建</label>' +
+            '<label style="display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--bg-secondary);border-radius:8px;cursor:pointer;font-size:13px;color:var(--text-primary);"><input type="checkbox"> 停工</label>' +
+            '<label style="display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--bg-secondary);border-radius:8px;cursor:pointer;font-size:13px;color:var(--text-primary);"><input type="checkbox"> 完工</label>' +
+          '</div>' +
+          '<div style="font-size:14px;font-weight:500;color:var(--text-primary);margin-bottom:12px;">预警等级</div>' +
+          '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">' +
+            '<label style="display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--bg-secondary);border-radius:8px;cursor:pointer;font-size:13px;color:var(--text-primary);"><input type="checkbox" checked> 全部</label>' +
+            '<label style="display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--bg-secondary);border-radius:8px;cursor:pointer;font-size:13px;color:var(--text-primary);"><input type="checkbox" checked> 红色</label>' +
+            '<label style="display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--bg-secondary);border-radius:8px;cursor:pointer;font-size:13px;color:var(--text-primary);"><input type="checkbox" checked> 黄色</label>' +
+            '<label style="display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--bg-secondary);border-radius:8px;cursor:pointer;font-size:13px;color:var(--text-primary);"><input type="checkbox"> 蓝色</label>' +
+          '</div>' +
+          '<div style="font-size:14px;font-weight:500;color:var(--text-primary);margin-bottom:12px;">所属区域</div>' +
+          '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">' +
+            '<label style="display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--bg-secondary);border-radius:8px;cursor:pointer;font-size:13px;color:var(--text-primary);"><input type="checkbox" checked> 全部</label>' +
+            '<label style="display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--bg-secondary);border-radius:8px;cursor:pointer;font-size:13px;color:var(--text-primary);"><input type="checkbox" checked> 主城区</label>' +
+            '<label style="display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--bg-secondary);border-radius:8px;cursor:pointer;font-size:13px;color:var(--text-primary);"><input type="checkbox" checked> 高新区</label>' +
+            '<label style="display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--bg-secondary);border-radius:8px;cursor:pointer;font-size:13px;color:var(--text-primary);"><input type="checkbox"> 开发区</label>' +
+          '</div>' +
+        '</div>' +
+        '<div style="display:flex;justify-content:flex-end;gap:12px;">' +
+          '<button class="btn btn-secondary btn-sm" onclick="closeModal(this)">取消</button>' +
+          '<button class="btn btn-primary btn-sm" onclick="showNotification(\'\u7b5b\u9009\u6761\u4ef6\u5df2\u5e94\u7528\',\'success\');closeModal(this)">确认筛选</button>' +
+        '</div>';
+      createModal('筛选条件', bodyHtml, 480);
+    }
+
+    // ====== Warning data ======
+    var warningDisposalData = {
+      'XX住宅小区开发项目': {
+        level: '红色预警', levelColor: '#ff4d4f',
+        time: '2026-05-11 10:30',
+        reasons: ['\u{1F4B0} 工资发放已延迟15天，涉及员工412人', '\u{1F4E2} 近30天投诉量激增，共收到欠薪投诉23件', '\u{1F4E1} 考勤系统部分离线，数据上传不及时']
+      },
+      '科技园区厂房建设项目': {
+        level: '红色预警', levelColor: '#ff4d4f',
+        time: '2026-05-10 14:20',
+        reasons: ['\u{1F4B0} 工资专户资金不足，缺口约280万元', '\u{1F4CB} 本月工资未按时发放，涉及142名工人', '\u26a0\ufe0f 施工进度滞后，可能影响工程款拨付']
+      },
+      '人民医院新院区项目': {
+        level: '黄色预警', levelColor: '#faad14',
+        time: '2026-05-09 09:15',
+        reasons: ['\u23f0 工资发放延迟3天，涉及员工186人', '\u{1F4CA} 资金拨付流程较慢，建议加快审批']
+      }
+    };
+
+    function showPushDepartment(warningTitle) {
+      var bodyHtml =
+        '<div style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;">选择推送目标和原因，将 <strong style="color:var(--text-primary);">' + warningTitle + '</strong> 的预警信息推送至相关监管部门。</div>' +
+        '<div style="margin-bottom:16px;">' +
+          '<label style="display:block;font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:6px;">目标部门</label>' +
+          '<select id="pushDept" class="form-select filter-select" style="width:100%;">' +
+            '<option value="劳动监察大队">劳动监察大队</option>' +
+            '<option value="社保局">社保局</option>' +
+            '<option value="市场监管局">市场监管局</option>' +
+          '</select>' +
+        '</div>' +
+        '<div style="margin-bottom:16px;">' +
+          '<label style="display:block;font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:6px;">推送原因</label>' +
+          '<textarea id="pushReason" style="width:100%;min-height:100px;padding:12px;border:1px solid var(--border-color);border-radius:var(--radius-md);background:var(--bg-primary);color:var(--text-primary);font-size:14px;resize:vertical;box-sizing:border-box;" placeholder="请描述推送原因..."></textarea>' +
+        '</div>' +
+        '<div style="display:flex;justify-content:flex-end;gap:12px;">' +
+          '<button class="btn btn-secondary btn-sm" onclick="closeModal(this)">取消</button>' +
+          '<button class="btn btn-primary btn-sm" onclick="var d=document.getElementById(\'pushDept\').value;showNotification(\'\u9884\u8b66\u4fe1\u606f\u5df2\u63a8\u9001\u81f3\'+d,\'success\');closeModal(this)">确认推送</button>' +
+        '</div>';
+      createModal('推送监管部门', bodyHtml, 480);
+    }
+
+    function showWarningDetail(title) {
+      var d = warningDisposalData[title];
+      if (!d) { showNotification('预警数据未找到', 'error'); return; }
+      var reasonsHtml = '<ul style="margin:0;padding:0;list-style:none;">';
+      for (var i = 0; i < d.reasons.length; i++) {
+        reasonsHtml += '<li style="padding:10px 12px;background:var(--bg-secondary);border-radius:8px;margin-bottom:8px;font-size:13px;color:var(--text-secondary);">' + d.reasons[i] + '</li>';
+      }
+      reasonsHtml += '</ul>';
+      var bodyHtml =
+        '<div style="margin-bottom:20px;">' +
+          '<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">' +
+            '<span style="padding:4px 12px;background:' + d.levelColor + '20;color:' + d.levelColor + ';border-radius:100px;font-size:12px;font-weight:600;">' + d.level + '</span>' +
+            '<span style="font-size:12px;color:var(--text-tertiary);">' + d.time + '</span>' +
+          '</div>' +
+          '<div style="margin-bottom:20px;"><div style="font-size:14px;font-weight:600;color:var(--text-primary);margin-bottom:12px;">预警原因</div>' + reasonsHtml + '</div>' +
+          '<div style="margin-bottom:20px;">' +
+            '<div style="font-size:14px;font-weight:600;color:var(--text-primary);margin-bottom:12px;">处置时间线</div>' +
+            '<div style="position:relative;padding-left:20px;border-left:2px solid var(--border-color);margin-left:8px;">' +
+              '<div style="position:relative;margin-bottom:16px;padding-left:12px;">' +
+                '<div style="position:absolute;left:-26px;top:4px;width:10px;height:10px;border-radius:50%;background:' + d.levelColor + ';border:2px solid var(--bg-primary);"></div>' +
+                '<div style="font-size:13px;font-weight:500;color:var(--text-primary);">系统自动识别</div>' +
+                '<div style="font-size:12px;color:var(--text-tertiary);">' + d.time + ' - AI系统识别欠薪风险</div>' +
+              '</div>' +
+              '<div style="position:relative;margin-bottom:16px;padding-left:12px;">' +
+                '<div style="position:absolute;left:-26px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--primary);border:2px solid var(--bg-primary);"></div>' +
+                '<div style="font-size:13px;font-weight:500;color:var(--text-primary);">监管端已接收</div>' +
+                '<div style="font-size:12px;color:var(--text-tertiary);">' + d.time + ' - 预警信息推送至监管端</div>' +
+              '</div>' +
+              '<div style="position:relative;padding-left:12px;">' +
+                '<div style="position:absolute;left:-26px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--bg-secondary);border:2px solid var(--border-color);"></div>' +
+                '<div style="font-size:13px;font-weight:500;color:var(--text-tertiary);">待处置</div>' +
+                '<div style="font-size:12px;color:var(--text-tertiary);">请相关部门尽快处理</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div style="font-size:14px;font-weight:600;color:var(--text-primary);margin-bottom:12px;">相关文书</div>' +
+            '<div style="padding:10px 12px;background:var(--bg-secondary);border-radius:8px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
+              '<span style="font-size:13px;color:var(--text-primary);">\u{1F4C4} 预警通知书</span><span style="font-size:12px;color:var(--text-tertiary);">2026-05-11</span>' +
+            '</div>' +
+            '<div style="padding:10px 12px;background:var(--bg-secondary);border-radius:8px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
+              '<span style="font-size:13px;color:var(--text-primary);">\u{1F4C4} 项目考勤报表</span><span style="font-size:12px;color:var(--text-tertiary);">2026-05-10</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="display:flex;justify-content:flex-end;gap:12px;margin-top:8px;">' +
+          '<button class="btn btn-secondary btn-sm" onclick="closeModal(this)">关闭</button>' +
+        '</div>';
+      createModal('预警详情 - ' + title, bodyHtml, 560);
+    }
+
+    function showDisposalHistory(warningTitle) {
+      var d = warningDisposalData[warningTitle];
+      if (!d) { showNotification('处置记录未找到', 'error'); return; }
+      var bodyHtml =
+        '<div style="margin-bottom:20px;">' +
+          '<div style="font-size:14px;font-weight:500;color:var(--text-primary);margin-bottom:4px;">' + warningTitle + '</div>' +
+          '<div style="font-size:12px;color:var(--text-tertiary);margin-bottom:20px;">预警时间：' + d.time + '</div>' +
+          '<div style="position:relative;padding-left:24px;border-left:2px solid var(--border-color);">' +
+            '<div style="position:relative;margin-bottom:20px;padding-left:12px;">' +
+              '<div style="position:absolute;left:-28px;top:4px;width:12px;height:12px;border-radius:50%;background:#52c41a;border:2px solid var(--bg-primary);"></div>' +
+              '<div style="font-size:14px;font-weight:500;color:var(--text-primary);margin-bottom:4px;">系统预警</div>' +
+              '<div style="font-size:12px;color:var(--text-tertiary);">' + d.time + ' - AI系统发出预警</div>' +
+            '</div>' +
+            '<div style="position:relative;margin-bottom:20px;padding-left:12px;">' +
+              '<div style="position:absolute;left:-28px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--primary);border:2px solid var(--bg-primary);"></div>' +
+              '<div style="font-size:14px;font-weight:500;color:var(--text-primary);margin-bottom:4px;">监管端接收</div>' +
+              '<div style="font-size:12px;color:var(--text-tertiary);">' + d.time + ' - 预警推送至监管平台</div>' +
+            '</div>' +
+            '<div style="position:relative;margin-bottom:20px;padding-left:12px;">' +
+              '<div style="position:absolute;left:-28px;top:4px;width:12px;height:12px;border-radius:50%;background:#faad14;border:2px solid var(--bg-primary);"></div>' +
+              '<div style="font-size:14px;font-weight:500;color:var(--text-primary);margin-bottom:4px;">电话核实</div>' +
+              '<div style="font-size:12px;color:var(--text-tertiary);">2026-05-12 09:00 - 已联系项目负责人核实情况</div>' +
+            '</div>' +
+            '<div style="position:relative;padding-left:12px;">' +
+              '<div style="position:absolute;left:-28px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--bg-secondary);border:2px solid var(--border-color);"></div>' +
+              '<div style="font-size:14px;font-weight:500;color:var(--text-tertiary);margin-bottom:4px;">等待处置</div>' +
+              '<div style="font-size:12px;color:var(--text-tertiary);">待相关部门进一步处理</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="display:flex;justify-content:flex-end;gap:12px;margin-top:8px;">' +
+          '<button class="btn btn-secondary btn-sm" onclick="closeModal(this)">关闭</button>' +
+        '</div>';
+      createModal('处置记录', bodyHtml, 520);
+    }
+
+    function showDowngradeConfirm(warningTitle) {
+      var bodyHtml =
+        '<div style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;">对 <strong style="color:var(--text-primary);">' + warningTitle + '</strong> 执行以下操作：</div>' +
+        '<div style="margin-bottom:16px;">' +
+          '<label style="display:block;font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:6px;">操作类型</label>' +
+          '<select id="downgradeAction" class="form-select filter-select" style="width:100%;">' +
+            '<option value="降级">降级处理（红色\u2192黄色）</option>' +
+            '<option value="解除">解除预警</option>' +
+          '</select>' +
+        '</div>' +
+        '<div style="margin-bottom:16px;">' +
+          '<label style="display:block;font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:6px;">操作原因</label>' +
+          '<textarea id="downgradeReason" style="width:100%;min-height:100px;padding:12px;border:1px solid var(--border-color);border-radius:var(--radius-md);background:var(--bg-primary);color:var(--text-primary);font-size:14px;resize:vertical;box-sizing:border-box;" placeholder="请描述操作原因..."></textarea>' +
+        '</div>' +
+        '<div style="display:flex;justify-content:flex-end;gap:12px;">' +
+          '<button class="btn btn-secondary btn-sm" onclick="closeModal(this)">取消</button>' +
+          '<button class="btn btn-primary btn-sm" onclick="var a=document.getElementById(\'downgradeAction\').value;showNotification(\'\u9884\u8b66\u5df2\'+(a===\'\u964d\u7ea7\'?\'\u964d\u7ea7\u5904\u7406\':\'\u89e3\u9664\'),\'success\');closeModal(this)">确认</button>' +
+        '</div>';
+      createModal('降级/解除预警', bodyHtml, 480);
+    }
+
+    function showExportReport(warningTitle) {
+      var bodyHtml =
+        '<div style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;">导出 <strong style="color:var(--text-primary);">' + warningTitle + '</strong> 的预警报告</div>' +
+        '<div style="margin-bottom:16px;">' +
+          '<label style="display:block;font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:6px;">导出格式</label>' +
+          '<select id="exportFormat" class="form-select filter-select" style="width:100%;">' +
+            '<option value="PDF">PDF 文档</option>' +
+            '<option value="Excel">Excel 表格</option>' +
+          '</select>' +
+        '</div>' +
+        '<div style="margin-bottom:16px;">' +
+          '<label style="display:block;font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:6px;">模板选择</label>' +
+          '<select id="exportTemplate" class="form-select filter-select" style="width:100%;">' +
+            '<option value="standard">标准预警报告</option>' +
+            '<option value="detailed">详细数据分析报告</option>' +
+            '<option value="brief">简要摘要报告</option>' +
+          '</select>' +
+        '</div>' +
+        '<div style="display:flex;justify-content:flex-end;gap:12px;">' +
+          '<button class="btn btn-secondary btn-sm" onclick="closeModal(this)">取消</button>' +
+          '<button class="btn btn-primary btn-sm" onclick="var f=document.getElementById(\'exportFormat\').value;showNotification(\'\u6b63\u5728\u751f\u6210\'+f+\'\u683c\u5f0f\u9884\u8b66\u62a5\u544a...\',\'info\');closeModal(this)">导出</button>' +
+        '</div>';
+      createModal('导出预警报告', bodyHtml, 480);
+    }
+
+    function showReportConfig() {
+      var bodyHtml =
+        '<div style="margin-bottom:16px;">' +
+          '<label style="display:block;font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:6px;">报表类型</label>' +
+          '<select id="reportType" class="form-select filter-select" style="width:100%;">' +
+            '<option value="summary">汇总报表</option>' +
+            '<option value="detail">明细报表</option>' +
+            '<option value="comparison">对比分析报表</option>' +
+          '</select>' +
+        '</div>' +
+        '<div style="margin-bottom:16px;">' +
+          '<label style="display:block;font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:6px;">开始日期</label>' +
+          '<input type="date" id="reportStartDate" class="form-select filter-select" style="width:100%;box-sizing:border-box;" value="2026-01-01">' +
+        '</div>' +
+        '<div style="margin-bottom:16px;">' +
+          '<label style="display:block;font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:6px;">结束日期</label>' +
+          '<input type="date" id="reportEndDate" class="form-select filter-select" style="width:100%;box-sizing:border-box;" value="2026-05-18">' +
+        '</div>' +
+        '<div style="display:flex;justify-content:flex-end;gap:12px;">' +
+          '<button class="btn btn-secondary btn-sm" onclick="closeModal(this)">取消</button>' +
+          '<button class="btn btn-primary btn-sm" onclick="showNotification(\'\u62a5\u8868\u6b63\u5728\u751f\u6210\u4e2d\uff0c\u8bf7\u7a0d\u5019...\',\'info\');closeModal(this)">生成报表</button>' +
+        '</div>';
+      createModal('生成报表', bodyHtml, 480);
     }
   </script>
   <script src="assets/theme-switch.js"></script>

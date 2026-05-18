@@ -563,7 +563,7 @@
         <div class="application-section">
           <div class="section-header-bar">
             <h2 class="section-title">援助申请审核列表</h2>
-            <button class="btn btn-primary" onclick="showNotification('新建申请功能', 'info')">
+            <button class="btn btn-primary" onclick="showNewApplicationModal()">
               <span>🔍</span>
               新建申请
             </button>
@@ -768,7 +768,7 @@
         <div class="application-section">
           <div class="section-header-bar">
             <h2 class="section-title">援助申请管理</h2>
-            <button class="btn btn-primary" onclick="showNotification('新建申请功能', 'info')">
+            <button class="btn btn-primary" onclick="showNewApplicationModal()">
               <span>🔍</span> 新建申请
             </button>
           </div>
@@ -780,9 +780,9 @@
             <table class="application-table">
               <thead><tr><th>申请人</th><th>联系电话</th><th>案件类型</th><th>申请金额</th><th>申请日期</th><th>状态</th><th>操作</th></tr></thead>
               <tbody>
-                <tr><td class="applicant-name">陈某</td><td>138****1234</td><td>劳动仲裁</td><td>¥ 28,000</td><td>2026-05-10</td><td><span class="status-badge pending">待审核</span></td><td><button class="btn btn-sm btn-primary">审核</button></td></tr>
-                <tr><td class="applicant-name">刘某</td><td>139****5678</td><td>诉讼代理</td><td>¥ 45,000</td><td>2026-05-09</td><td><span class="status-badge processing">审核中</span></td><td><button class="btn btn-sm btn-secondary">查看</button></td></tr>
-                <tr><td class="applicant-name">周某</td><td>135****7890</td><td>诉讼代理</td><td>¥ 62,000</td><td>2026-05-06</td><td><span class="status-badge rejected">已驳回</span></td><td><button class="btn btn-sm btn-secondary">详情</button></td></tr>
+                <tr><td class="applicant-name">陈某</td><td>138****1234</td><td>劳动仲裁</td><td>¥ 28,000</td><td>2026-05-10</td><td><span class="status-badge pending">待审核</span></td><td><button class="btn btn-sm btn-primary" onclick="reviewApplication('陈某')">审核</button></td></tr>
+                <tr><td class="applicant-name">刘某</td><td>139****5678</td><td>诉讼代理</td><td>¥ 45,000</td><td>2026-05-09</td><td><span class="status-badge processing">审核中</span></td><td><button class="btn btn-sm btn-secondary" onclick="viewApplication('刘某')">查看</button></td></tr>
+                <tr><td class="applicant-name">周某</td><td>135****7890</td><td>诉讼代理</td><td>¥ 62,000</td><td>2026-05-06</td><td><span class="status-badge rejected">已驳回</span></td><td><button class="btn btn-sm btn-secondary" onclick="viewApplicationDetail('周某')">详情</button></td></tr>
               </tbody>
             </table>
           </div>
@@ -798,9 +798,9 @@
             <table class="application-table">
               <thead><tr><th>案件编号</th><th>当事人</th><th>案件类型</th><th>承办律师</th><th>立案日期</th><th>状态</th><th>操作</th></tr></thead>
               <tbody>
-                <tr><td class="applicant-name">LA-2026-001</td><td>张某</td><td>劳动仲裁</td><td>李律师</td><td>2026-05-08</td><td><span class="status-badge assigned">已指派</span></td><td><button class="btn btn-sm btn-secondary">查看</button></td></tr>
-                <tr><td class="applicant-name">LA-2026-002</td><td>王某</td><td>非诉调解</td><td>王律师</td><td>2026-05-07</td><td><span class="status-badge assigned">已指派</span></td><td><button class="btn btn-sm btn-secondary">查看</button></td></tr>
-                <tr><td class="applicant-name">LA-2026-003</td><td>陈某</td><td>劳动仲裁</td><td>张律师</td><td>2026-05-10</td><td><span class="status-badge processing">审核中</span></td><td><button class="btn btn-sm btn-secondary">查看</button></td></tr>
+                <tr><td class="applicant-name">LA-2026-001</td><td>张某</td><td>劳动仲裁</td><td>李律师</td><td>2026-05-08</td><td><span class="status-badge assigned">已指派</span></td><td><button class="btn btn-sm btn-secondary" onclick="showCaseDetail('张某','LA-2026-001')">查看</button></td></tr>
+                <tr><td class="applicant-name">LA-2026-002</td><td>王某</td><td>非诉调解</td><td>王律师</td><td>2026-05-07</td><td><span class="status-badge assigned">已指派</span></td><td><button class="btn btn-sm btn-secondary" onclick="showCaseDetail('王某','LA-2026-002')">查看</button></td></tr>
+                <tr><td class="applicant-name">LA-2026-003</td><td>陈某</td><td>劳动仲裁</td><td>张律师</td><td>2026-05-10</td><td><span class="status-badge processing">审核中</span></td><td><button class="btn btn-sm btn-secondary" onclick="showCaseDetail('陈某','LA-2026-003')">查看</button></td></tr>
               </tbody>
             </table>
           </div>
@@ -941,7 +941,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" onclick="closeModal('detail-modal')">关闭</button>
-        <button class="btn btn-primary" onclick="closeModal('detail-modal')">打印</button>
+        <button class="btn btn-primary" onclick="showPrintOptions()">打印</button>
       </div>
     </div>
   </div>
@@ -1021,15 +1021,15 @@
         <button class="modal-close" onclick="closeModal('new-app-modal')">&times;</button>
       </div>
       <div class="modal-body">
-        <div class="form-group">
+        <div class="form-group" data-step="1">
           <label class="form-label">申请人姓名 <span style="color: var(--danger);">*</span></label>
           <input type="text" class="form-input" id="new-name" placeholder="请输入申请人姓名" style="width: 100%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" data-step="1">
           <label class="form-label">联系电话 <span style="color: var(--danger);">*</span></label>
           <input type="tel" class="form-input" id="new-phone" placeholder="请输入联系电话" style="width: 100%;">
         </div>
-        <div class="form-row">
+        <div class="form-row" data-step="2">
           <div class="col-6">
             <div class="form-group">
               <label class="form-label">案件类型</label>
@@ -1048,11 +1048,11 @@
             </div>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" data-step="2">
           <label class="form-label">纠纷描述</label>
           <textarea class="form-input" id="new-desc" placeholder="请描述纠纷情况..." rows="3" style="width: 100%;"></textarea>
         </div>
-        <div class="form-group">
+        <div class="form-group" data-step="3">
           <label class="form-label">上传证明材料</label>
           <div class="upload-area" onclick="uploadFile()">
             <div class="upload-icon">📎</div>
@@ -1298,6 +1298,169 @@
         if (target) target.style.display = 'block';
       });
     });
+
+    // ===== Case Detail Data =====
+    var caseData = [
+      { name: '张某', caseId: 'LA-2026-001', type: '劳动仲裁', lawyer: '李律师', date: '2026-05-08', status: 'assigned', desc: '公司拖欠工资3个月，共计15000元，多次协商无果。' },
+      { name: '王某', caseId: 'LA-2026-002', type: '非诉调解', lawyer: '王律师', date: '2026-05-07', status: 'assigned', desc: '工伤赔偿纠纷，公司在工伤认定后拒绝支付赔偿金。' },
+      { name: '陈某', caseId: 'LA-2026-003', type: '劳动仲裁', lawyer: '张律师', date: '2026-05-10', status: 'processing', desc: '因公司单方面变更劳动合同内容，申请劳动仲裁。' }
+    ];
+
+    function getStatusTextExt(status) {
+      return status === 'pending' ? '待审核' :
+             status === 'processing' ? '审核中' :
+             status === 'approved' ? '已通过' :
+             status === 'rejected' ? '已驳回' : '已指派';
+    }
+
+    // ===== Case Detail Modal (dynamic) =====
+    function showCaseDetail(name, caseId) {
+      var c = caseData.find(function(d) { return d.caseId === caseId; });
+      if (!c) { showNotification('案件未找到', 'error'); return; }
+
+      var overlay = document.createElement('div');
+      overlay.className = 'modal-overlay active';
+      overlay.style.display = 'flex';
+      var st = getStatusTextExt(c.status);
+
+      overlay.innerHTML =
+        '<div class="modal" style="max-width:700px;">' +
+          '<div class="modal-header"><h3>案件详情 - ' + c.caseId + '</h3><button class="modal-close" onclick="this.closest(\'.modal-overlay\').remove()">&times;</button></div>' +
+          '<div class="modal-body">' +
+            '<div style="background:var(--bg-secondary);padding:16px;border-radius:var(--radius-md);margin-bottom:20px;">' +
+              '<div class="form-row mb-16"><div class="col-6"><strong>当事人：</strong><span>' + c.name + '</span></div><div class="col-6"><strong>案件编号：</strong><span>' + c.caseId + '</span></div></div>' +
+              '<div class="form-row mb-16"><div class="col-6"><strong>案件类型：</strong><span>' + c.type + '</span></div><div class="col-6"><strong>承办律师：</strong><span>' + c.lawyer + '</span></div></div>' +
+              '<div class="form-row"><div class="col-6"><strong>立案日期：</strong><span>' + c.date + '</span></div><div class="col-6"><strong>当前状态：</strong><span class="status-badge ' + c.status + '">' + st + '</span></div></div>' +
+            '</div>' +
+            '<div class="form-group"><label class="form-label">纠纷描述</label><p style="font-size:14px;color:var(--text-secondary);line-height:1.6;">' + c.desc + '</p></div>' +
+            '<div class="form-group"><label class="form-label">案件进度</label>' +
+            '<div class="case-timeline">' +
+              '<div class="timeline-item completed"><div class="timeline-dot"></div><div class="timeline-content"><h5>提交申请</h5><p>申请人提交法律援助申请</p><div class="timeline-time">' + c.date + '</div></div></div>' +
+              '<div class="timeline-item ' + (c.status === 'processing' ? 'active' : 'completed') + '"><div class="timeline-dot"></div><div class="timeline-content"><h5>审核通过</h5><p>法律援助中心审核通过</p><div class="timeline-time">' + (c.status === 'processing' ? '进行中' : c.date) + '</div></div></div>' +
+              '<div class="timeline-item ' + (c.status === 'assigned' ? 'active' : '') + '"><div class="timeline-dot"></div><div class="timeline-content"><h5>指派律师</h5><p>已指派 ' + c.lawyer + ' 承办</p><div class="timeline-time">' + (c.status === 'assigned' ? c.date : '待进行') + '</div></div></div>' +
+              '<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><h5>案件代理</h5><p>律师代理仲裁/诉讼</p><div class="timeline-time">待进行</div></div></div>' +
+            '</div></div>' +
+          '</div>' +
+          '<div class="modal-footer"><button class="btn btn-secondary" onclick="this.closest(\'.modal-overlay\').remove()">关闭</button></div>' +
+        '</div>';
+
+      overlay.addEventListener('click', function(e) {
+        if (e.target === this) this.remove();
+      });
+      document.body.appendChild(overlay);
+    }
+
+    // ===== Multi-step New Application =====
+    var newAppStep = 1;
+
+    function showNewApplicationModal() {
+      newAppStep = 1;
+      document.getElementById('new-app-modal').classList.add('active');
+      updateNewAppStepUI();
+    }
+
+    function updateNewAppStepUI() {
+      var body = document.querySelector('#new-app-modal .modal-body');
+      // Hide all step-grouped fields
+      body.querySelectorAll('[data-step]').forEach(function(el) {
+        el.style.display = 'none';
+      });
+      // Show current step fields
+      body.querySelectorAll('[data-step="' + newAppStep + '"]').forEach(function(el) {
+        el.style.display = '';
+        if (el.classList.contains('form-row')) el.style.display = 'flex';
+      });
+
+      // Step indicator
+      var indicator = document.getElementById('new-app-step-indicator');
+      if (!indicator) {
+        indicator = document.createElement('div');
+        indicator.id = 'new-app-step-indicator';
+        indicator.style.cssText = 'display:flex;gap:8px;margin-bottom:20px;';
+        body.insertBefore(indicator, body.firstChild);
+      }
+      var stepNames = ['基本信息', '案件信息', '上传材料'];
+      var html = '';
+      for (var i = 1; i <= 3; i++) {
+        var bg = i === newAppStep ? 'var(--primary);color:var(--text-on-primary)' :
+                 i < newAppStep ? 'var(--success);color:var(--text-on-primary)' :
+                 'var(--bg-secondary);color:var(--text-secondary)';
+        html += '<span style="flex:1;padding:8px 12px;text-align:center;border-radius:var(--radius-md);font-size:13px;font-weight:600;background:' + bg + '">Step ' + i + ': ' + stepNames[i-1] + '</span>';
+      }
+      indicator.innerHTML = html;
+
+      // Update footer buttons
+      var footer = document.querySelector('#new-app-modal .modal-footer');
+      footer.innerHTML = '';
+      if (newAppStep > 1) {
+        footer.innerHTML += '<button class="btn btn-secondary" onclick="prevNewAppStep()">上一步</button>';
+      }
+      footer.innerHTML += '<button class="btn btn-secondary" onclick="closeModal(\'new-app-modal\')">取消</button>';
+      if (newAppStep < 3) {
+        footer.innerHTML += '<button class="btn btn-primary" onclick="nextNewAppStep()">下一步</button>';
+      } else {
+        footer.innerHTML += '<button class="btn btn-primary" onclick="submitNewApplication()">提交申请</button>';
+      }
+    }
+
+    function nextNewAppStep() {
+      // Validate current step fields before advancing
+      if (newAppStep === 1) {
+        var name = document.getElementById('new-name').value.trim();
+        var phone = document.getElementById('new-phone').value.trim();
+        if (!name) { showNotification('请输入申请人姓名', 'warning'); return; }
+        if (!phone) { showNotification('请输入联系电话', 'warning'); return; }
+      }
+      if (newAppStep < 3) {
+        newAppStep++;
+        updateNewAppStepUI();
+      }
+    }
+
+    function prevNewAppStep() {
+      if (newAppStep > 1) {
+        newAppStep--;
+        updateNewAppStepUI();
+      }
+    }
+
+    // Override submitNewApplication to reset step on close
+    var origSubmitNewApp = submitNewApplication;
+    submitNewApplication = function() {
+      origSubmitNewApp();
+      newAppStep = 1;
+    };
+
+    // ===== Print Options Modal (dynamic) =====
+    function showPrintOptions() {
+      var overlay = document.createElement('div');
+      overlay.className = 'modal-overlay active';
+      overlay.style.display = 'flex';
+      var name = document.getElementById('detail-name').textContent;
+      var caseId = document.getElementById('detail-type').textContent;
+
+      overlay.innerHTML =
+        '<div class="modal" style="max-width:500px;">' +
+          '<div class="modal-header"><h3>打印案件信息</h3><button class="modal-close" onclick="this.closest(\'.modal-overlay\').remove()">&times;</button></div>' +
+          '<div class="modal-body">' +
+            '<p style="color:var(--text-secondary);margin-bottom:16px;">选择要打印的内容：</p>' +
+            '<label style="display:flex;align-items:center;gap:8px;padding:8px 0;cursor:pointer;"><input type="checkbox" checked disabled> 申请人信息（' + name + '）</label>' +
+            '<label style="display:flex;align-items:center;gap:8px;padding:8px 0;cursor:pointer;"><input type="checkbox" checked disabled> 案件详情（' + caseId + '）</label>' +
+            '<label style="display:flex;align-items:center;gap:8px;padding:8px 0;cursor:pointer;"><input type="checkbox" checked disabled> 案件进度时间线</label>' +
+            '<hr style="border-color:var(--border-color);margin:16px 0;">' +
+            '<p style="font-size:13px;color:var(--text-tertiary);">将使用浏览器默认打印功能生成纸质文档</p>' +
+          '</div>' +
+          '<div class="modal-footer">' +
+            '<button class="btn btn-secondary" onclick="this.closest(\'.modal-overlay\').remove()">取消</button>' +
+            '<button class="btn btn-primary" onclick="this.closest(\'.modal-overlay\').remove();setTimeout(function(){window.print()},300)">确认打印</button>' +
+          '</div>' +
+        '</div>';
+
+      overlay.addEventListener('click', function(e) {
+        if (e.target === this) this.remove();
+      });
+      document.body.appendChild(overlay);
+    }
   </script>
   <script src="assets/theme-switch.js"></script>
 </body>

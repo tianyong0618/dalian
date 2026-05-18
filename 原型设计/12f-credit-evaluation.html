@@ -115,8 +115,8 @@
         <h3 style="margin: 0;">机构评分列表</h3>
       </div>
       <div class="search-bar">
-        <input type="text" class="form-input" placeholder="搜索机构名称、服务类型...">
-        <button class="btn btn-primary btn-sm" onclick="showNotification('搜索功能开发中')"><i class="fas fa-search"></i> 搜索</button>
+        <input type="text" id="rating-search-input" class="form-input" placeholder="搜索机构名称、服务类型..." oninput="filterRatingList()">
+        <button class="btn btn-primary btn-sm" onclick="filterRatingList()"><i class="fas fa-search"></i> 搜索</button>
       </div>
       <table class="table">
         <thead>
@@ -129,7 +129,7 @@
             <th style="width: 100px;">操作</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="rating-table-body">
           <tr>
             <td><strong>大连智联人力资源有限公司</strong></td>
             <td>人才招聘</td>
@@ -456,6 +456,22 @@
     document.body.appendChild(n);
     setTimeout(function(){n.style.opacity='1';},10);
     setTimeout(function(){n.style.opacity='0';setTimeout(function(){n.remove();},300);},2000);
+  }
+
+  /* 机构评分列表搜索过滤 */
+  function filterRatingList() {
+    var input = document.getElementById('rating-search-input');
+    var filter = input.value.trim().toLowerCase();
+    var tbody = document.getElementById('rating-table-body');
+    var rows = tbody.getElementsByTagName('tr');
+    for (var i = 0; i < rows.length; i++) {
+      var nameCell = rows[i].getElementsByTagName('td')[0];
+      if (nameCell) {
+        var instName = nameCell.textContent || nameCell.innerText;
+        rows[i].style.display = instName.toLowerCase().indexOf(filter) > -1 ? '' : 'none';
+      }
+    }
+    showNotification('搜索完成');
   }
 
   /* 操作下拉菜单切换 */

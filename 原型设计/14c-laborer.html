@@ -494,6 +494,8 @@
         justify-content: flex-start;
       }
     }
+
+    .btn-warning { background: var(--warning); color: var(--text-on-primary); }
   </style>
 </head>
 <body>
@@ -504,7 +506,6 @@
       <div class="top-tabs">
         <div class="tab-item active" data-module="dashboard">我的工作台</div>
         <div class="tab-item" data-module="contracts">电子劳动合同</div>
-        <div class="tab-item" data-module="apply">案件申请</div>
         <div class="tab-item" data-module="cases">我的案件</div>
         <div class="tab-item" data-module="documents">文书查看</div>
         <div class="tab-item" data-module="legal-aid">法律援助</div>
@@ -548,7 +549,7 @@
 
           <!-- 快捷操作 -->
           <div class="quick-actions">
-            <button class="btn btn-primary" onclick="switchModule('apply')">+ 申请立案</button>
+            <button class="btn btn-primary" onclick="showModal('case-apply-modal')">+ 申请立案</button>
             <button class="btn btn-secondary" onclick="switchModule('contracts')">签署合同</button>
             <button class="btn btn-secondary" onclick="switchModule('documents')">查看文书</button>
           </div>
@@ -583,7 +584,7 @@
                     <td><span class="badge badge-danger">材料补正</span></td>
                     <td>ZC20260506002</td>
                     <td>2026-05-08</td>
-                    <td><button class="btn btn-secondary btn-sm" onclick="switchModule('apply')">补充材料</button></td>
+                    <td><button class="btn btn-secondary btn-sm" onclick="showModal('case-apply-modal')">补充材料</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -635,140 +636,11 @@
           </div>
         </div>
 
-        <!-- 案件申请模块 -->
-        <div class="module-section" id="module-apply">
-          <div class="module-header">
-            <h2>案件申请</h2>
-          </div>
-
-          <!-- AI材料校验展示 -->
-          <div class="ai-verify-box">
-            <div class="ai-verify-header">
-              <span class="icon">🤖</span>
-              <h4>AI材料校验状态</h4>
-            </div>
-            <div class="verify-items">
-              <div class="verify-item pass">
-                <span class="status-icon">✓</span>
-                <span>身份证件 - 格式合规，已识别</span>
-              </div>
-              <div class="verify-item pass">
-                <span class="status-icon">✓</span>
-                <span>劳动合同 - 完整有效</span>
-              </div>
-              <div class="verify-item warning">
-                <span class="status-icon">⚠</span>
-                <span>工资流水 - 建议补充近6个月记录</span>
-              </div>
-              <div class="verify-item pass">
-                <span class="status-icon">✓</span>
-                <span>证据清单 - 规范完整</span>
-              </div>
-              <div class="verify-item error">
-                <span class="status-icon">✗</span>
-                <span>考勤记录 - 缺失，请补充</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 仲裁申请表单 -->
-          <div class="card">
-            <h3 class="mb-16">在线仲裁申请</h3>
-            <form id="case-apply-form">
-              <div class="form-group">
-                <label class="form-label">案件类型 <span style="color: var(--danger);">*</span></label>
-                <select class="form-select" id="apply-case-type" required>
-                  <option value="">请选择案件类型</option>
-                  <option value="工资拖欠">工资拖欠纠纷</option>
-                  <option value="劳动合同">劳动合同争议</option>
-                  <option value="工伤赔偿">工伤赔偿纠纷</option>
-                  <option value="社保缴纳">社保缴纳争议</option>
-                  <option value="违法解雇">违法解雇纠纷</option>
-                </select>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label class="form-label">申请人姓名 <span style="color: var(--danger);">*</span></label>
-                    <input type="text" class="form-input" id="apply-name" placeholder="请输入申请人姓名" required>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label class="form-label">联系电话 <span style="color: var(--danger);">*</span></label>
-                    <input type="tel" class="form-input" id="apply-phone" placeholder="请输入联系电话" required>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label">被申请人（单位/个人） <span style="color: var(--danger);">*</span></label>
-                <input type="text" class="form-input" id="apply-respondent" placeholder="请输入被申请人名称" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">纠纷描述 <span style="color: var(--danger);">*</span></label>
-                <textarea class="form-textarea" id="apply-desc" placeholder="请详细描述纠纷经过、诉求等..." required></textarea>
-              </div>
-              <div class="form-group">
-                <label class="form-label">诉求金额（元）</label>
-                <input type="number" class="form-input" id="apply-amount" placeholder="请输入诉求金额">
-              </div>
-              <div class="form-group">
-                <label class="form-label">上传证据材料</label>
-                <div class="row">
-                  <div class="col-6">
-                    <div class="upload-area" onclick="uploadFile('id-card')">
-                      <div class="upload-icon">🪪</div>
-                      <p>身份证件</p>
-                      <p class="text-small">点击上传</p>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="upload-area" onclick="uploadFile('contract')">
-                      <div class="upload-icon">📄</div>
-                      <p>劳动合同</p>
-                      <p class="text-small">点击上传</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="row mt-16">
-                  <div class="col-6">
-                    <div class="upload-area" onclick="uploadFile('salary')">
-                      <div class="upload-icon">💳</div>
-                      <p>工资流水</p>
-                      <p class="text-small">点击上传</p>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="upload-area" onclick="uploadFile('evidence')">
-                      <div class="upload-icon">📎</div>
-                      <p>其他证据</p>
-                      <p class="text-small">点击上传</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-secondary);">
-                  <input type="checkbox" id="apply-agree"> 本人确认以上信息真实有效，并同意在线审理协议
-                </label>
-              </div>
-              <button type="submit" class="btn btn-primary" onclick="submitCase(event)">提交申请</button>
-            </form>
-          </div>
-        </div>
-
         <!-- 我的案件模块 -->
         <div class="module-section" id="module-cases">
           <div class="module-header">
             <h2>我的案件</h2>
-          </div>
-
-          <!-- 云庭审入口 -->
-          <div class="cloud-trial-entry">
-            <div class="icon">🎥</div>
-            <h4>云庭审即将开始</h4>
-            <p>案件 ZC20260503005 已排期将于 2026-05-10 09:00 开庭</p>
-            <button class="btn btn-primary" onclick="openCloudTrial('ZC20260503005')">进入庭审室</button>
+            <button class="btn btn-primary" onclick="showModal('case-apply-modal')">+ 申请立案</button>
           </div>
 
           <!-- 筛选栏 -->
@@ -838,44 +710,6 @@
             </table>
           </div>
 
-          <!-- 案件进度时间线示例 -->
-          <div class="card">
-            <h3 class="mb-16">案件进度 - ZC20260503005</h3>
-            <div class="case-timeline">
-              <div class="timeline-item completed">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                  <h5>申请立案</h5>
-                  <p>已提交仲裁申请材料</p>
-                  <div class="timeline-time">2026-05-03 14:30</div>
-                </div>
-              </div>
-              <div class="timeline-item completed">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                  <h5>审核受理</h5>
-                  <p>案件已通过审核并受理</p>
-                  <div class="timeline-time">2026-05-04 10:00</div>
-                </div>
-              </div>
-              <div class="timeline-item active">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                  <h5>云上庭审</h5>
-                  <p>已排期，等待开庭</p>
-                  <div class="timeline-time">2026-05-10 09:00</div>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                  <h5>云送达</h5>
-                  <p>等待送达仲裁裁决书</p>
-                  <div class="timeline-time">-</div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         <!-- 文书查看模块 -->
@@ -893,8 +727,8 @@
                 <p>案件号：ZC20260501001 | 送达时间：2026-05-06</p>
               </div>
               <div class="document-actions">
-                <button class="btn btn-secondary btn-sm" onclick="showNotification('文书已下载', 'success')">下载</button>
-                <button class="btn btn-secondary btn-sm" onclick="showNotification('开始打印...', 'success')">打印</button>
+                <button class="btn btn-secondary btn-sm" onclick="downloadDocument('ZC20260501001')">下载</button>
+                <button class="btn btn-secondary btn-sm" onclick="printDocument('ZC20260501001')">打印</button>
                 <button class="btn btn-primary btn-sm" onclick="confirmReceive.call(this, 'ZC20260501001')">签收确认</button>
               </div>
             </div>
@@ -906,8 +740,8 @@
                 <p>案件号：ZC20260503005 | 送达时间：2026-05-04</p>
               </div>
               <div class="document-actions">
-                <button class="btn btn-secondary btn-sm" onclick="showNotification('文书已下载', 'success')">下载</button>
-                <button class="btn btn-secondary btn-sm" onclick="showNotification('开始打印...', 'success')">打印</button>
+                <button class="btn btn-secondary btn-sm" onclick="downloadDocument('ZC20260503005')">下载</button>
+                <button class="btn btn-secondary btn-sm" onclick="printDocument('ZC20260503005')">打印</button>
                 <button class="btn btn-primary btn-sm" onclick="confirmReceive.call(this, 'ZC20260503005')">签收确认</button>
               </div>
             </div>
@@ -919,8 +753,8 @@
                 <p>案件号：ZC20260503005 | 送达时间：2026-05-04</p>
               </div>
               <div class="document-actions">
-                <button class="btn btn-secondary btn-sm" onclick="showNotification('文书已下载', 'success')">下载</button>
-                <button class="btn btn-secondary btn-sm" onclick="showNotification('开始打印...', 'success')">打印</button>
+                <button class="btn btn-secondary btn-sm" onclick="downloadDocument('ZC20260503005')">下载</button>
+                <button class="btn btn-secondary btn-sm" onclick="printDocument('ZC20260503005')">打印</button>
                 <button class="btn btn-primary btn-sm" onclick="confirmReceive.call(this, 'ZC20260503005')">签收确认</button>
               </div>
             </div>
@@ -932,8 +766,8 @@
                 <p>案件号：ZC20260428003 | 送达时间：2026-05-02</p>
               </div>
               <div class="document-actions">
-                <button class="btn btn-secondary btn-sm" onclick="showNotification('文书已下载', 'success')">下载</button>
-                <button class="btn btn-secondary btn-sm" onclick="showNotification('开始打印...', 'success')">打印</button>
+                <button class="btn btn-secondary btn-sm" onclick="downloadDocument('ZC20260428003')">下载</button>
+                <button class="btn btn-secondary btn-sm" onclick="printDocument('ZC20260428003')">打印</button>
                 <button class="btn btn-primary btn-sm" onclick="confirmReceive.call(this, 'ZC20260428003')">签收确认</button>
               </div>
             </div>
@@ -1026,7 +860,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('sign-contract-modal')">取消</button>
-      <button class="btn btn-primary" onclick="showNotification('合同已生成，请确认签署', 'success'); closeModal('sign-contract-modal')">生成合同</button>
+      <button class="btn btn-primary" onclick="generateContract()">生成合同</button>
     </div>
   </div>
 </div>
@@ -1057,7 +891,132 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('contract-detail-modal')">关闭</button>
-      <button class="btn btn-primary" onclick="showNotification('合同已下载', 'success')">下载合同</button>
+      <button class="btn btn-primary" onclick="downloadContract()">下载合同</button>
+    </div>
+  </div>
+</div>
+
+<!-- 案件申请模态框 -->
+<div class="modal-overlay" id="case-apply-modal">
+  <div class="modal" style="max-width: 720px;">
+    <div class="modal-header">
+      <h3>在线仲裁申请</h3>
+      <button class="modal-close" onclick="closeModal('case-apply-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <!-- AI材料校验展示 -->
+      <div class="ai-verify-box" style="margin-bottom: 20px;">
+        <div class="ai-verify-header">
+          <span class="icon">🤖</span>
+          <h4>AI材料校验状态</h4>
+        </div>
+        <div class="verify-items">
+          <div class="verify-item pass">
+            <span class="status-icon">✓</span>
+            <span>身份证件 - 格式合规，已识别</span>
+          </div>
+          <div class="verify-item pass">
+            <span class="status-icon">✓</span>
+            <span>劳动合同 - 完整有效</span>
+          </div>
+          <div class="verify-item warning">
+            <span class="status-icon">⚠</span>
+            <span>工资流水 - 建议补充近6个月记录</span>
+          </div>
+          <div class="verify-item pass">
+            <span class="status-icon">✓</span>
+            <span>证据清单 - 规范完整</span>
+          </div>
+          <div class="verify-item error">
+            <span class="status-icon">✗</span>
+            <span>考勤记录 - 缺失，请补充</span>
+          </div>
+        </div>
+      </div>
+
+      <form id="case-apply-form">
+        <div class="form-group">
+          <label class="form-label">案件类型 <span style="color: var(--danger);">*</span></label>
+          <select class="form-select" id="apply-case-type" required>
+            <option value="">请选择案件类型</option>
+            <option value="工资拖欠">工资拖欠纠纷</option>
+            <option value="劳动合同">劳动合同争议</option>
+            <option value="工伤赔偿">工伤赔偿纠纷</option>
+            <option value="社保缴纳">社保缴纳争议</option>
+            <option value="违法解雇">违法解雇纠纷</option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label class="form-label">申请人姓名 <span style="color: var(--danger);">*</span></label>
+              <input type="text" class="form-input" id="apply-name" placeholder="请输入申请人姓名" required>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label class="form-label">联系电话 <span style="color: var(--danger);">*</span></label>
+              <input type="tel" class="form-input" id="apply-phone" placeholder="请输入联系电话" required>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">被申请人（单位/个人） <span style="color: var(--danger);">*</span></label>
+          <input type="text" class="form-input" id="apply-respondent" placeholder="请输入被申请人名称" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">纠纷描述 <span style="color: var(--danger);">*</span></label>
+          <textarea class="form-textarea" id="apply-desc" placeholder="请详细描述纠纷经过、诉求等..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">诉求金额（元）</label>
+          <input type="number" class="form-input" id="apply-amount" placeholder="请输入诉求金额">
+        </div>
+        <div class="form-group">
+          <label class="form-label">上传证据材料</label>
+          <div class="row">
+            <div class="col-6">
+              <div class="upload-area" onclick="uploadFile('id-card')">
+                <div class="upload-icon">🪪</div>
+                <p>身份证件</p>
+                <p class="text-small">点击上传</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="upload-area" onclick="uploadFile('contract')">
+                <div class="upload-icon">📄</div>
+                <p>劳动合同</p>
+                <p class="text-small">点击上传</p>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-16">
+            <div class="col-6">
+              <div class="upload-area" onclick="uploadFile('salary')">
+                <div class="upload-icon">💳</div>
+                <p>工资流水</p>
+                <p class="text-small">点击上传</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="upload-area" onclick="uploadFile('evidence')">
+                <div class="upload-icon">📎</div>
+                <p>其他证据</p>
+                <p class="text-small">点击上传</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-secondary);">
+            <input type="checkbox" id="apply-agree"> 本人确认以上信息真实有效，并同意在线审理协议
+          </label>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('case-apply-modal')">取消</button>
+      <button class="btn btn-primary" onclick="submitCase(event)">提交申请</button>
     </div>
   </div>
 </div>
@@ -1075,7 +1034,7 @@
         <h3 class="mb-8">云庭审已就绪</h3>
         <p class="text-body mb-24">案件 ZC20260503005 - 工伤赔偿纠纷</p>
         <p class="text-body mb-24">开庭时间：2026-05-10 09:00</p>
-        <button class="btn btn-primary" onclick="showNotification('正在进入庭审室...', 'success')">进入庭审</button>
+        <button class="btn btn-primary" onclick="openCloudTrial('ZC20260503005')">进入庭审</button>
       </div>
     </div>
     <div class="modal-footer">
@@ -1180,7 +1139,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('legal-aid-apply-modal')">取消</button>
-      <button class="btn btn-primary" onclick="showNotification('法律援助申请已提交，将在3个工作日内审核', 'success'); closeModal('legal-aid-apply-modal')">提交申请</button>
+      <button class="btn btn-primary" onclick="submitLegalAid()">提交申请</button>
     </div>
   </div>
 </div>
@@ -1219,273 +1178,16 @@
   }
 
   // 云庭审功能
-  let isTrialOpen = false;
-  let trialStartTime = null;
-  let timerInterval = null;
-  let currentEvidenceIndex = 0;
-  let isDrawing = false;
-  let signCtx = null;
+  // 已清理: 移除未使用的云庭审变量
   
   function openCloudTrial(caseId) {
-    document.getElementById('cloud-trial-modal').classList.add('active');
-  }
-
-  function closeCloudTrial() {
-    document.getElementById('cloud-trial-modal').classList.remove('active');
-    showNotification('已退出云庭审', 'info');
-  }
-  
-  function startTrialTimer() {
-    trialStartTime = Date.now();
-    timerInterval = setInterval(updateTimer, 1000);
-  }
-
-  function stopTrialTimer() {
-    if (timerInterval) {
-      clearInterval(timerInterval);
-      timerInterval = null;
+    if (window.parent) {
+      window.parent.postMessage({ type: 'SET_CASE_DATA', data: { caseId: caseId } }, '*');
+      window.parent.postMessage({ type: 'SWITCH_ROLE', role: 'arbitration' }, '*');
     }
   }
 
-  function updateTimer() {
-    const elapsed = Math.floor((Date.now() - trialStartTime) / 1000);
-    const hours = Math.floor(elapsed / 3600).toString().padStart(2, '0');
-    const minutes = Math.floor((elapsed % 3600) / 60).toString().padStart(2, '0');
-    const seconds = (elapsed % 60).toString().padStart(2, '0');
-    document.getElementById('ct-duration').textContent = hours + ':' + minutes + ':' + seconds;
-  }
 
-  function toggleMute() {
-    const icon = document.getElementById('mic-icon');
-    icon.textContent = icon.textContent === '🎤' ? '🔇' : '🎤';
-    showNotification(icon.textContent === '🔇' ? '已静音' : '已开启麦克风', 'info');
-  }
-
-  function toggleCamera() {
-    const icon = document.getElementById('camera-icon');
-    icon.textContent = icon.textContent === '📹' ? '📷' : '📹';
-    showNotification(icon.textContent === '📷' ? '已关闭摄像头' : '已开启摄像头', 'info');
-  }
-
-  function shareScreen() {
-    showNotification('屏幕共享功能已开启', 'success');
-  }
-
-  function toggleRecording() {
-    showNotification('庭审录制功能已开启', 'info');
-  }
-
-  function fullscreenVideo() {
-    const el = document.getElementById('arbiter-video');
-    if (el.requestFullscreen) {
-      el.requestFullscreen();
-    }
-  }
-
-  function nextTrialStep() {
-    const steps = document.querySelectorAll('.ct-trial-step');
-    let currentStep = -1;
-    
-    steps.forEach((step, index) => {
-      step.classList.remove('active');
-      if (step.classList.contains('completed')) {
-        currentStep = index;
-      }
-    });
-    
-    if (currentStep >= 0 && currentStep < steps.length - 1) {
-      steps[currentStep].classList.remove('completed');
-      steps[currentStep].classList.add('completed');
-      steps[currentStep + 1].classList.add('active');
-      steps[currentStep + 1].classList.add('completed');
-      
-      addTranscriptMessage('system', '【系统】进入' + steps[currentStep + 1].querySelector('.step-name').textContent + '环节');
-      showNotification('已进入: ' + steps[currentStep + 1].querySelector('.step-name').textContent, 'success');
-    } else {
-      showNotification('庭审流程已全部完成', 'info');
-    }
-  }
-
-  function showEvidence(evidenceName) {
-    document.getElementById('evidence-preview-title').textContent = evidenceName;
-    document.getElementById('evidence-preview-name').textContent = evidenceName;
-    document.getElementById('evidence-preview-modal').classList.add('active');
-    
-    const items = document.querySelectorAll('.ct-evidence-item');
-    items.forEach((item, index) => {
-      if (item.querySelector('.evidence-name').textContent === evidenceName) {
-        currentEvidenceIndex = index;
-      }
-    });
-  }
-
-  function closeEvidencePreview() {
-    document.getElementById('evidence-preview-modal').classList.remove('active');
-  }
-
-  function prevEvidence() {
-    const items = document.querySelectorAll('.ct-evidence-item');
-    currentEvidenceIndex = (currentEvidenceIndex - 1 + items.length) % items.length;
-    const name = items[currentEvidenceIndex].querySelector('.evidence-name').textContent;
-    document.getElementById('evidence-preview-title').textContent = name;
-    document.getElementById('evidence-preview-name').textContent = name;
-  }
-
-  function nextEvidence() {
-    const items = document.querySelectorAll('.ct-evidence-item');
-    currentEvidenceIndex = (currentEvidenceIndex + 1) % items.length;
-    const name = items[currentEvidenceIndex].querySelector('.evidence-name').textContent;
-    document.getElementById('evidence-preview-title').textContent = name;
-    document.getElementById('evidence-preview-name').textContent = name;
-  }
-
-  function zoomEvidence(direction) {
-    showNotification(direction > 0 ? '已放大' : '已缩小', 'info');
-  }
-
-  function exportTranscript() {
-    showNotification('庭审笔录导出成功', 'success');
-  }
-
-  function handleTranscriptInput(event) {
-    if (event.key === 'Enter') {
-      sendTranscript();
-    }
-  }
-
-  function sendTranscript() {
-    const input = document.getElementById('transcript-input');
-    const text = input.value.trim();
-    if (text) {
-      addTranscriptMessage('arbiter', text);
-      input.value = '';
-    }
-  }
-
-  function addTranscriptMessage(role, text) {
-    const body = document.getElementById('transcript-body');
-    const div = document.createElement('div');
-    div.className = 'ct-transcript-msg ' + role;
-    div.innerHTML = '<span class="msg-text">' + text + '</span>';
-    body.appendChild(div);
-    body.scrollTop = body.scrollHeight;
-  }
-
-  function showUploadEvidenceModal() {
-    document.getElementById('upload-evidence-modal').classList.add('active');
-  }
-
-  function closeUploadModal() {
-    document.getElementById('upload-evidence-modal').classList.remove('active');
-  }
-
-  function handleFileUpload(input) {
-    if (input.files && input.files[0]) {
-      const fileName = input.files[0].name;
-      document.getElementById('evidence-name').value = fileName;
-      showNotification('已选择文件: ' + fileName, 'info');
-    }
-  }
-
-  function submitEvidence() {
-    const name = document.getElementById('evidence-name').value;
-    const source = document.getElementById('evidence-source').value;
-    if (name) {
-      showNotification('证据 "' + name + '" 上传成功', 'success');
-      closeUploadModal();
-      document.getElementById('evidence-name').value = '';
-    } else {
-      showNotification('请输入证据名称', 'warning');
-    }
-  }
-
-  function startCrossExamine() {
-    showNotification('开始举证质证环节', 'info');
-    addTranscriptMessage('system', '【系统】进入举证质证环节');
-  }
-
-  function addStatement() {
-    showNotification('请补充发言', 'info');
-  }
-
-  function adjournTrial() {
-    showNotification('已提交休庭申请，等待仲裁员确认', 'warning');
-    addTranscriptMessage('system', '【系统】劳动者申请休庭');
-  }
-
-  function startMediation() {
-    showNotification('开始调解程序', 'info');
-    addTranscriptMessage('system', '【系统】进入调解程序');
-  }
-
-  function announceJudgment() {
-    showNotification('宣判功能已开启', 'info');
-    addTranscriptMessage('system', '【系统】仲裁员宣布判决');
-  }
-
-  function showSignModal() {
-    document.getElementById('sign-modal').classList.add('active');
-    const canvas = document.getElementById('sign-canvas');
-    signCtx = canvas.getContext('2d');
-    signCtx.fillStyle = '#fff';
-    signCtx.fillRect(0, 0, canvas.width, canvas.height);
-    signCtx.strokeStyle = '#000';
-    signCtx.lineWidth = 2;
-  }
-
-  function closeSignModal() {
-    document.getElementById('sign-modal').classList.remove('active');
-  }
-
-  function startSign(e) {
-    isDrawing = true;
-    const canvas = document.getElementById('sign-canvas');
-    const rect = canvas.getBoundingClientRect();
-    signCtx.beginPath();
-    signCtx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-  }
-
-  function doSign(e) {
-    if (!isDrawing) return;
-    const canvas = document.getElementById('sign-canvas');
-    const rect = canvas.getBoundingClientRect();
-    signCtx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-    signCtx.stroke();
-  }
-
-  function endSign() {
-    isDrawing = false;
-  }
-
-  function clearSign() {
-    const canvas = document.getElementById('sign-canvas');
-    signCtx.fillStyle = '#fff';
-    signCtx.fillRect(0, 0, canvas.width, canvas.height);
-  }
-
-  function confirmSign() {
-    showNotification('签字确认成功', 'success');
-    closeSignModal();
-  }
-
-  // 监听全屏变化和ESC键
-  document.addEventListener('fullscreenchange', function() {
-    if (!document.fullscreenElement && isTrialOpen) {
-      closeCloudTrial();
-    }
-  });
-  
-  document.addEventListener('webkitfullscreenchange', function() {
-    if (!document.webkitFullscreenElement && isTrialOpen) {
-      closeCloudTrial();
-    }
-  });
-  
-  document.addEventListener('msfullscreenchange', function() {
-    if (!document.msFullscreenElement && isTrialOpen) {
-      closeCloudTrial();
-    }
-  });
 
   function switchTab(tabId) {
     document.querySelectorAll('.tab-item').forEach(function(item) {
@@ -1541,6 +1243,7 @@
       showNotification('请先阅读并同意在线审理协议', 'warning');
       return;
     }
+    closeModal('case-apply-modal');
     showNotification('案件申请已提交，AI正在校验材料...', 'success');
     setTimeout(function() {
       showNotification('材料校验完成，请等待审核', 'success');
@@ -1588,26 +1291,259 @@
     }
   }
 
-  function downloadDocument(docId) {
-    showNotification('正在生成文书PDF...', 'info');
-    setTimeout(function() {
-      showNotification('文书已下载', 'success');
-    }, 1500);
+  // ===== 动态模态框创建工具 =====
+  function createDynamicModal(title, bodyHTML, footerHTML) {
+    var overlayId = 'dyn-modal-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5);
+    var overlay = document.createElement('div');
+    overlay.className = 'modal-overlay active';
+    overlay.id = overlayId;
+    overlay.innerHTML = '<div class="modal" style="max-width:500px">' +
+      '<div class="modal-header"><h3>' + title + '</h3>' +
+      '<button class="modal-close" onclick="document.getElementById(\'' + overlayId + '\').remove()">&times;</button></div>' +
+      '<div class="modal-body">' + bodyHTML + '</div>' +
+      (footerHTML ? '<div class="modal-footer">' + footerHTML + '</div>' : '') +
+      '</div>';
+    overlay.addEventListener('click', function(e) {
+      if (e.target === this) this.remove();
+    });
+    document.body.appendChild(overlay);
+    return overlayId;
   }
 
-  function printDocument(docId) {
-    showNotification('正在准备打印...', 'info');
+  // ===== 文书下载（格式选择） =====
+  function downloadDocument(docId) {
+    var body = '<p style="margin-bottom:16px;color:var(--text-secondary)">选择下载格式：</p>' +
+      '<div class="row">' +
+      '<div class="col-6"><div class="card" style="text-align:center;padding:20px;cursor:pointer" onclick="simulateDownload(\'' + docId + '\',\'PDF\')"><div style="font-size:32px;margin-bottom:8px">📕</div><div>PDF 格式</div></div></div>' +
+      '<div class="col-6"><div class="card" style="text-align:center;padding:20px;cursor:pointer" onclick="simulateDownload(\'' + docId + '\',\'Word\')"><div style="font-size:32px;margin-bottom:8px">📘</div><div>Word 格式</div></div></div>' +
+      '</div>';
+    createDynamicModal('下载文书', body, '<button class="btn btn-secondary" onclick="this.closest(\'.modal-overlay\').remove()">取消</button>');
+  }
+
+  function simulateDownload(docId, format) {
+    var overlay = document.querySelector('.modal-overlay.active');
+    if (overlay) overlay.remove();
+    showNotification('正在生成 ' + format + ' 格式文书...', 'info');
     setTimeout(function() {
-      showNotification('打印任务已发送', 'success');
+      showNotification('文书 (' + docId + ') 已下载为 ' + format + ' 格式', 'success');
+    }, 1200);
+  }
+
+  // ===== 文书打印（预览 + 打印） =====
+  function printDocument(docId) {
+    var body = '<div style="border:1px solid var(--border-color);border-radius:var(--radius-md);padding:24px;margin-bottom:16px;background:var(--bg-secondary);font-size:13px;line-height:1.8">' +
+      '<h4 style="margin-bottom:12px">仲裁文书 - 案件 ' + docId + '</h4>' +
+      '<p>......（文书内容预览）......</p>' +
+      '<p style="margin-top:16px;color:var(--text-tertiary);text-align:center">— 以上为预览内容，共 3 页 —</p></div>' +
+      '<p style="font-size:13px;color:var(--text-tertiary);text-align:center">打印份数: <input type="number" id="print-copies" value="1" min="1" max="10" style="width:60px;padding:4px;border:1px solid var(--border-color);border-radius:4px;background:var(--bg-primary);color:var(--text-primary);text-align:center"></p>';
+    createDynamicModal('打印预览', body,
+      '<button class="btn btn-secondary" onclick="this.closest(\'.modal-overlay\').remove()">取消</button>' +
+      '<button class="btn btn-primary" onclick="doPrint(\'' + docId + '\')">🖨️ 打印</button>');
+  }
+
+  function doPrint(docId) {
+    var overlay = document.querySelector('.modal-overlay.active');
+    if (overlay) overlay.remove();
+    showNotification('正在发送打印任务...', 'info');
+    setTimeout(function() {
+      window.print();
+      showNotification('案件 ' + docId + ' 文书打印任务已发送', 'success');
+    }, 500);
+  }
+
+  // ===== 合同生成（确认信息后生成） =====
+  function generateContract() {
+    closeModal('sign-contract-modal');
+    var body = '<div style="background:var(--bg-secondary);padding:20px;border-radius:var(--radius-md);margin-bottom:16px">' +
+      '<div class="row mb-12"><div class="col-6"><strong>合同模板：</strong>固定期限劳动合同</div><div class="col-6"><strong>用人单位：</strong>XX科技有限公司</div></div>' +
+      '<div class="row mb-12"><div class="col-6"><strong>劳动者：</strong>张三</div><div class="col-6"><strong>合同期限：</strong>3年</div></div>' +
+      '<div><strong>月薪：</strong>8,000元</div></div>' +
+      '<p style="color:var(--text-secondary);font-size:14px">请确认以上合同信息，确认后将生成正式电子合同。</p>';
+    createDynamicModal('确认合同信息', body,
+      '<button class="btn btn-secondary" onclick="this.closest(\'.modal-overlay\').remove()">取消</button>' +
+      '<button class="btn btn-primary" onclick="confirmContract()">确认生成</button>');
+  }
+
+  function confirmContract() {
+    var overlay = document.querySelector('.modal-overlay.active');
+    if (overlay) overlay.remove();
+    showNotification('合同已生成，可在合同管理中查看', 'success');
+  }
+
+  // ===== 合同下载 =====
+  function downloadContract() {
+    closeModal('contract-detail-modal');
+    var body = '<p style="margin-bottom:16px;color:var(--text-secondary)">选择下载格式：</p>' +
+      '<div class="row">' +
+      '<div class="col-6"><div class="card" style="text-align:center;padding:20px;cursor:pointer" onclick="simulateDownload(\'EC20240101001\',\'PDF\')"><div style="font-size:32px;margin-bottom:8px">📕</div><div>PDF 格式</div></div></div>' +
+      '<div class="col-6"><div class="card" style="text-align:center;padding:20px;cursor:pointer" onclick="simulateDownload(\'EC20240101001\',\'Word\')"><div style="font-size:32px;margin-bottom:8px">📘</div><div>Word 格式</div></div></div>' +
+      '</div>';
+    createDynamicModal('下载合同', body, '<button class="btn btn-secondary" onclick="this.closest(\'.modal-overlay\').remove()">取消</button>');
+  }
+
+  // ===== 法律援助申请（提交前审核） =====
+  function submitLegalAid() {
+    closeModal('legal-aid-apply-modal');
+    var body = '<h4 style="margin-bottom:12px">请确认法律援助申请信息</h4>' +
+      '<div style="background:var(--bg-secondary);padding:16px;border-radius:var(--radius-md);margin-bottom:16px">' +
+      '<div class="mb-8"><span style="color:var(--text-secondary)">申请人：</span>张三</div>' +
+      '<div class="mb-8"><span style="color:var(--text-secondary)">困难情况：</span>低收入家庭</div>' +
+      '<div class="mb-8"><span style="color:var(--text-secondary)">援助事项：</span>劳动争议</div>' +
+      '<div><span style="color:var(--text-secondary)">情况说明：</span>已填写具体情况</div></div>' +
+      '<p style="color:var(--text-tertiary);font-size:13px">提交后将在3个工作日内完成审核。</p>';
+    createDynamicModal('确认提交', body,
+      '<button class="btn btn-secondary" onclick="this.closest(\'.modal-overlay\').remove()">返回修改</button>' +
+      '<button class="btn btn-primary" onclick="confirmLegalAid()">确认提交</button>');
+  }
+
+  function confirmLegalAid() {
+    var overlay = document.querySelector('.modal-overlay.active');
+    if (overlay) overlay.remove();
+    showNotification('法律援助申请已提交，将在3个工作日内审核', 'success');
+  }
+
+  // ===== 证据上传 =====
+  var evidenceFiles = [];
+
+  function showEvidenceUpload(caseNo) {
+    var body = '<div id="evidence-file-list" style="margin-bottom:16px">' +
+      '<div style="border:2px dashed var(--border-color);border-radius:var(--radius-md);padding:24px;text-align:center;margin-bottom:12px;cursor:pointer" onclick="addEvidenceFile()">' +
+      '<div style="font-size:24px;margin-bottom:8px">📎</div>' +
+      '<p style="color:var(--text-secondary);font-size:14px">点击上传新证据文件</p></div>' +
+      '<div id="evidence-files-container"></div></div>' +
+      '<p style="font-size:13px;color:var(--text-tertiary)">支持格式：PDF、JPG、PNG、DOC，单个文件不超过10MB</p>';
+    createDynamicModal('提交证据 - ' + caseNo, body,
+      '<button class="btn btn-secondary" onclick="this.closest(\'.modal-overlay\').remove()">取消</button>' +
+      '<button class="btn btn-primary" onclick="confirmEvidenceUpload(\'' + caseNo + '\')">提交</button>');
+  }
+
+  function addEvidenceFile() {
+    var fileName = '证据_' + (evidenceFiles.length + 1) + '.pdf';
+    evidenceFiles.push(fileName);
+    var container = document.getElementById('evidence-files-container');
+    if (!container) return;
+    var item = document.createElement('div');
+    item.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--bg-secondary);border-radius:var(--radius-sm);margin-bottom:8px';
+    item.innerHTML = '<span>📄 ' + fileName + ' <span style="color:var(--text-tertiary);font-size:12px">(2.4 MB)</span></span>' +
+      '<span onclick="removeEvidenceFile(this,\'' + fileName + '\')" style="cursor:pointer;color:var(--danger);font-size:18px">&times;</span>';
+    container.appendChild(item);
+    showNotification('已添加: ' + fileName, 'info');
+  }
+
+  function removeEvidenceFile(el, name) {
+    el.parentElement.remove();
+    evidenceFiles = evidenceFiles.filter(function(f) { return f !== name; });
+  }
+
+  function confirmEvidenceUpload(caseNo) {
+    if (evidenceFiles.length === 0) {
+      showNotification('请至少添加一个证据文件', 'warning');
+      return;
+    }
+    var count = evidenceFiles.length;
+    var overlay = document.querySelector('.modal-overlay.active');
+    if (overlay) overlay.remove();
+    evidenceFiles = [];
+    showNotification('案件 ' + caseNo + ' 的证据已提交，共 ' + count + ' 份', 'info');
+    setTimeout(function() {
+      showNotification('证据提交成功，等待仲裁员审核', 'success');
     }, 1000);
   }
 
-  function viewDocument(docId) {
-    showNotification('正在打开文书...', 'info');
-    setTimeout(function() {
-      showNotification('文书已在新窗口打开', 'success');
-    }, 800);
+  // ===== 调解申请 =====
+  function showMediationApply(caseNo) {
+    var body = '<div class="form-group">' +
+      '<label class="form-label">调解意愿</label>' +
+      '<p style="color:var(--text-secondary);font-size:14px;margin-bottom:12px">您是否愿意就案件 ' + caseNo + ' 进行调解？</p></div>' +
+      '<div class="form-group"><label class="form-label">调解请求 <span style="color:var(--danger)">*</span></label>' +
+      '<textarea class="form-textarea" id="mediation-request" placeholder="请描述您的调解请求和期望结果..." style="width:100%;box-sizing:border-box"></textarea></div>' +
+      '<div class="form-group"><label class="form-label">备注说明</label>' +
+      '<textarea class="form-textarea" id="mediation-note" placeholder="其他需要说明的情况..." style="width:100%;box-sizing:border-box"></textarea></div>';
+    createDynamicModal('申请调解 - ' + caseNo, body,
+      '<button class="btn btn-secondary" onclick="this.closest(\'.modal-overlay\').remove()">取消</button>' +
+      '<button class="btn btn-primary" onclick="confirmMediation(\'' + caseNo + '\')">提交调解申请</button>');
   }
+
+  function confirmMediation(caseNo) {
+    var request = document.getElementById('mediation-request');
+    if (!request || !request.value.trim()) {
+      showNotification('请填写调解请求', 'warning');
+      return;
+    }
+    var overlay = document.querySelector('.modal-overlay.active');
+    if (overlay) overlay.remove();
+    showNotification('案件 ' + caseNo + ' 调解申请已提交，等待仲裁员确认', 'success');
+  }
+
+  // ===== 补充材料 =====
+  function showSupplementMaterial(caseNo) {
+    var body = '<p style="color:var(--text-secondary);font-size:14px;margin-bottom:16px">请补充以下材料（案件 ' + caseNo + '）：</p>' +
+      '<div class="form-group"><label class="form-label">材料类型 <span style="color:var(--danger)">*</span></label>' +
+      '<select class="form-select" id="supplement-type" style="width:100%;box-sizing:border-box">' +
+      '<option value="">请选择</option>' +
+      '<option>考勤记录</option><option>工资流水</option><option>身份证明</option><option>合同文件</option><option>其他证明材料</option>' +
+      '</select></div>' +
+      '<div class="form-group"><label class="form-label">补充说明</label>' +
+      '<textarea class="form-textarea" id="supplement-desc" placeholder="请描述补充内容..." style="width:100%;box-sizing:border-box"></textarea></div>' +
+      '<div id="supplement-file-list" style="border:2px dashed var(--border-color);border-radius:var(--radius-md);padding:16px;text-align:center;cursor:pointer" onclick="addSupplementFile()">' +
+      '<span style="color:var(--text-secondary)">📎 点击上传补充材料文件</span></div>' +
+      '<div id="supplement-files" style="margin-top:8px"></div>';
+    createDynamicModal('补充材料 - ' + caseNo, body,
+      '<button class="btn btn-secondary" onclick="this.closest(\'.modal-overlay\').remove()">取消</button>' +
+      '<button class="btn btn-primary" onclick="confirmSupplement(\'' + caseNo + '\')">提交补充材料</button>');
+  }
+
+  function addSupplementFile() {
+    var container = document.getElementById('supplement-files');
+    if (!container) return;
+    var item = document.createElement('div');
+    item.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--bg-secondary);border-radius:var(--radius-sm);margin-top:8px';
+    item.innerHTML = '<span>📄 补充材料_' + (container.children.length + 1) + '.pdf</span><span onclick="this.parentElement.remove()" style="cursor:pointer;color:var(--danger);font-size:18px">&times;</span>';
+    container.appendChild(item);
+  }
+
+  function confirmSupplement(caseNo) {
+    var type = document.getElementById('supplement-type');
+    if (!type || !type.value) {
+      showNotification('请选择材料类型', 'warning');
+      return;
+    }
+    var overlay = document.querySelector('.modal-overlay.active');
+    if (overlay) overlay.remove();
+    showNotification('案件 ' + caseNo + ' 的补充材料已提交', 'success');
+    setTimeout(function() {
+      showNotification('材料补正已提交，等待仲裁员审核', 'info');
+    }, 1200);
+  }
+
+  // 渲染案件操作按钮（根据状态显示不同操作）
+  function renderCaseActions() {
+    document.querySelectorAll('#module-cases .table tbody tr').forEach(function(row) {
+      var statusEl = row.querySelector('.badge');
+      if (!statusEl) return;
+      var status = statusEl.textContent.trim();
+      var caseNo = row.querySelector('td strong').textContent.trim();
+      var actionCell = row.querySelector('td:last-child');
+      if (!actionCell) return;
+
+      var actions = '<button class="btn btn-secondary btn-sm" onclick="showCaseDetail(\'' + caseNo + '\')">查看</button>';
+
+      if (status === '审理中') {
+        actions += ' <button class="btn btn-primary btn-sm" onclick="openCloudTrial(\'' + caseNo + '\')">进入庭审</button>';
+        actions += ' <button class="btn btn-secondary btn-sm" onclick="showEvidenceUpload(\'' + caseNo + '\')">提交证据</button>';
+        actions += ' <button class="btn btn-secondary btn-sm" onclick="showCaseDetail(\'' + caseNo + '\')">查看进度</button>';
+      } else if (status === '调解中') {
+        actions += ' <button class="btn btn-primary btn-sm" onclick="showMediationApply(\'' + caseNo + '\')">申请调解</button>';
+        actions += ' <button class="btn btn-secondary btn-sm" onclick="showSupplementMaterial(\'' + caseNo + '\')">补充材料</button>';
+      } else if (status === '已结案') {
+        actions += ' <button class="btn btn-primary btn-sm" onclick="switchModule(\'documents\')">查看文书</button>';
+      }
+
+      actionCell.innerHTML = actions;
+    });
+  }
+
+  renderCaseActions();
 </script>
 
   <script src="assets/theme-switch.js"></script>

@@ -115,7 +115,7 @@
                   <div class="action-menu">
                     <a onclick="showModal('fair-detail-modal')"><i class="fas fa-eye"></i>查看详情</a>
                     <a onclick="showModal('match-participant-modal')"><i class="fas fa-handshake"></i>参会匹配</a>
-                    <a onclick="showNotification('报名已提交', 'success')"><i class="fas fa-user-plus"></i>报名参与</a>
+                    <a onclick="signupFairParticipation(this)"><i class="fas fa-user-plus"></i>报名参与</a>
                   </div>
                 </div>
               </td>
@@ -133,7 +133,7 @@
                   <div class="action-menu">
                     <a onclick="showModal('fair-detail-modal')"><i class="fas fa-eye"></i>查看详情</a>
                     <a onclick="showModal('match-participant-modal')"><i class="fas fa-handshake"></i>参会匹配</a>
-                    <a onclick="showNotification('报名已提交', 'success')"><i class="fas fa-user-plus"></i>报名参与</a>
+                    <a onclick="signupFairParticipation(this)"><i class="fas fa-user-plus"></i>报名参与</a>
                   </div>
                 </div>
               </td>
@@ -313,7 +313,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('match-demand-modal')">取消</button>
-      <button class="btn btn-primary" onclick="showNotification('匹配任务已提交', 'success');closeModal('match-demand-modal')">开始匹配</button>
+      <button class="btn btn-primary" onclick="submitMatchDemand()">开始匹配</button>
     </div>
   </div>
 </div>
@@ -359,7 +359,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('fair-detail-modal')">关闭</button>
-      <button class="btn btn-primary" onclick="showNotification('报名已提交，等待审核', 'success');closeModal('fair-detail-modal')">立即报名</button>
+      <button class="btn btn-primary" onclick="submitFairSignup()">立即报名</button>
     </div>
   </div>
 </div>
@@ -409,7 +409,7 @@
             <div style="font-weight: 600;">XX人力资源有限公司</div>
             <p class="text-small">匹配度：95%</p>
           </div>
-          <button class="btn btn-primary" onclick="showNotification('对接请求已发送', 'success')">立即对接</button>
+          <button class="btn btn-primary" onclick="startMatchConnect(this, 'XX人力资源有限公司')">立即对接</button>
         </div>
       </div>
       <div style="padding: 12px; background: rgba(24, 144, 255, 0.1); border-radius: 8px; margin-bottom: 12px;">
@@ -418,7 +418,7 @@
             <div style="font-weight: 600;">XX人才服务集团</div>
             <p class="text-small">匹配度：88%</p>
           </div>
-          <button class="btn btn-primary" onclick="showNotification('对接请求已发送', 'success')">立即对接</button>
+          <button class="btn btn-primary" onclick="startMatchConnect(this, 'XX人才服务集团')">立即对接</button>
         </div>
       </div>
       <div style="padding: 12px; background: rgba(250, 204, 21, 0.1); border-radius: 8px;">
@@ -427,7 +427,7 @@
             <div style="font-weight: 600;">XX劳务派遣公司</div>
             <p class="text-small">匹配度：75%</p>
           </div>
-          <button class="btn btn-primary" onclick="showNotification('对接请求已发送', 'success')">立即对接</button>
+          <button class="btn btn-primary" onclick="startMatchConnect(this, 'XX劳务派遣公司')">立即对接</button>
         </div>
       </div>
     </div>
@@ -491,7 +491,7 @@
     <div class="modal-body">
       <div class="search-bar mb-16">
         <input type="text" class="form-input" placeholder="搜索人才姓名、技能、资质...">
-          <button class="btn btn-primary" onclick="showNotification('搜索已完成', 'success')">搜索</button>
+          <button class="btn btn-primary" onclick="searchTalent()">搜索</button>
       </div>
       <div class="filter-bar mb-16">
         <select class="form-select">
@@ -505,15 +505,7 @@
           <option value="前端">前端</option>
         </select>
       </div>
-      <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <div>
-            <div style="font-weight: 600;">陈浩然</div>
-            <p class="text-small">Java开发工程师 | 3年经验</p>
-          </div>
-          <button class="btn btn-secondary btn-sm" onclick="showNotification('正在打开人才详情', 'success')">查看详情</button>
-        </div>
-      </div>
+      <div id="talent-results"></div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('talent-search-modal')">关闭</button>
@@ -546,7 +538,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('fair-organize-modal')">取消</button>
-      <button class="btn btn-primary" onclick="showNotification('洽谈会已发布', 'success');closeModal('fair-organize-modal')">发布洽谈会</button>
+      <button class="btn btn-primary" onclick="submitFairOrganize()">发布洽谈会</button>
     </div>
   </div>
 </div>
@@ -576,7 +568,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('match-participant-modal')">关闭</button>
-      <button class="btn btn-primary" onclick="showNotification('对接清单已生成', 'success');closeModal('match-participant-modal')">生成对接清单</button>
+      <button class="btn btn-primary" onclick="generateMatchList()">生成对接清单</button>
     </div>
   </div>
 </div>
@@ -611,13 +603,73 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('special-event-modal')">取消</button>
-      <button class="btn btn-primary" onclick="showNotification('专场已发起', 'success');closeModal('special-event-modal')">发起专场</button>
+      <button class="btn btn-primary" onclick="launchSpecialEvent()">发起专场</button>
+    </div>
+  </div>
+</div>
+
+<!-- 人才详情模态框 -->
+<div id="talent-detail-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3><span id="talent-detail-name"></span> - 人才详情</h3>
+      <button class="modal-close" onclick="closeModal('talent-detail-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>姓名</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;" id="talent-detail-name-body"></div>
+          </div>
+          <div class="form-group">
+            <label>职位</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;" id="talent-detail-title"></div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label>经验</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;" id="talent-detail-exp"></div>
+          </div>
+          <div class="form-group">
+            <label>行业</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;" id="talent-detail-industry"></div>
+          </div>
+          <div class="form-group">
+            <label>技能</label>
+            <div style="padding: 10px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;" id="talent-detail-skill"></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group mt-16">
+        <label>工作经历</label>
+        <div style="padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+          <p>2023-2025：在相关行业领域从事核心岗位工作</p>
+          <p>具备扎实的专业技能和丰富的项目经验</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('talent-detail-modal')">关闭</button>
     </div>
   </div>
 </div>
 
 <script src="assets/theme-switch.js"></script>
 <script>
+  // Talent database for search
+  var talentDB = [
+    { name: '陈浩然', title: 'Java开发工程师', exp: '3年经验', industry: '互联网', skill: 'Java' },
+    { name: '张雨婷', title: 'AI算法工程师', exp: '5年经验', industry: '互联网', skill: 'Python' },
+    { name: '刘强', title: '外卖骑手', exp: '1年经验', industry: '服务业', skill: '配送' },
+    { name: '赵磊', title: '前端开发工程师', exp: '4年经验', industry: '互联网', skill: '前端' },
+    { name: '王明华', title: '建筑施工员', exp: '6年经验', industry: '制造业', skill: '施工管理' },
+    { name: '吴丽娟', title: '家政服务', exp: '2年经验', industry: '服务业', skill: '家政' },
+    { name: '周建国', title: '保洁员', exp: '3年经验', industry: '服务业', skill: '保洁' },
+    { name: '黄敏', title: '中级会计师', exp: '8年经验', industry: '制造业', skill: '财务' },
+  ];
+
   function showModal(modalId) {
     document.getElementById(modalId).style.display = 'flex';
     document.body.style.overflow = 'hidden';
@@ -629,8 +681,8 @@
   }
 
   function toggleActionMenu(btn) {
-    const menu = btn.parentElement.querySelector('.action-menu');
-    document.querySelectorAll('.action-menu.show').forEach(m => {
+    var menu = btn.parentElement.querySelector('.action-menu');
+    document.querySelectorAll('.action-menu.show').forEach(function(m) {
       if (m !== menu) m.classList.remove('show');
     });
     menu.classList.toggle('show');
@@ -643,10 +695,262 @@
       alert(message);
     }
   }
+
+  function renderTalentResults(filtered, silent) {
+    var container = document.getElementById('talent-results');
+    container.innerHTML = '';
+    
+    if (filtered.length === 0) {
+      container.innerHTML = '<div style="padding: 24px; text-align: center; color: var(--text-secondary);">未找到匹配的候选人</div>';
+      if (!silent) showNotification('未找到匹配的候选人', 'warning');
+      return;
+    }
+    
+    filtered.forEach(function(t) {
+      var item = document.createElement('div');
+      item.style.cssText = 'padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px; margin-bottom: 8px;';
+      item.innerHTML = '\
+        <div style="display: flex; justify-content: space-between; align-items: center;">\
+          <div>\
+            <div style="font-weight: 600;">' + t.name + '</div>\
+            <p class="text-small">' + t.title + ' | ' + t.exp + '</p>\
+          </div>\
+          <button class="btn btn-secondary btn-sm" onclick="viewTalentDetail(\'' + t.name + '\')">查看详情</button>\
+        </div>\
+      ';
+      container.appendChild(item);
+    });
+    
+    if (!silent) showNotification('搜索完成，找到 ' + filtered.length + ' 位符合条件的候选人', 'success');
+  }
+
+  function searchTalent() {
+    var keyword = document.querySelector('#talent-search-modal .search-bar input').value.trim().toLowerCase();
+    var industry = document.querySelectorAll('#talent-search-modal .filter-bar select')[0].value;
+    var skill = document.querySelectorAll('#talent-search-modal .filter-bar select')[1].value;
+    
+    var filtered = talentDB.filter(function(t) {
+      var matchKeyword = !keyword || t.name.indexOf(keyword) !== -1 || t.title.indexOf(keyword) !== -1 || t.skill.indexOf(keyword) !== -1;
+      var matchIndustry = !industry || t.industry === industry;
+      var matchSkill = !skill || t.skill === skill;
+      return matchKeyword && matchIndustry && matchSkill;
+    });
+    
+    renderTalentResults(filtered, false);
+  }
+
+  function viewTalentDetail(name) {
+    var talent = null;
+    for (var i = 0; i < talentDB.length; i++) {
+      if (talentDB[i].name === name) {
+        talent = talentDB[i];
+        break;
+      }
+    }
+    if (!talent) return;
+    
+    document.getElementById('talent-detail-name').textContent = talent.name;
+    document.getElementById('talent-detail-name-body').textContent = talent.name;
+    document.getElementById('talent-detail-title').textContent = talent.title;
+    document.getElementById('talent-detail-exp').textContent = talent.exp;
+    document.getElementById('talent-detail-industry').textContent = talent.industry;
+    document.getElementById('talent-detail-skill').textContent = talent.skill;
+    showModal('talent-detail-modal');
+  }
+
+  function submitMatchDemand() {
+    var modal = document.getElementById('match-demand-modal');
+    var company = modal.querySelector('.form-input').value.trim();
+    var demandType = modal.querySelector('.form-select').value;
+    var inputs = modal.querySelectorAll('.form-input');
+    var peopleCount = inputs[1].value.trim();
+    var textareas = modal.querySelectorAll('.form-textarea');
+    var requirements = textareas[0].value.trim();
+    
+    if (!company || !demandType || !peopleCount || !requirements) {
+      showNotification('请填写完整信息', 'error');
+      return;
+    }
+    
+    var tbody = document.querySelectorAll('.table')[2].querySelector('tbody');
+    var newRow = document.createElement('tr');
+    newRow.innerHTML = '\
+      <td>' + company + '</td>\
+      <td>待匹配机构</td>\
+      <td><span class="badge badge-info">对接中</span></td>\
+      <td>\
+        <div class="action-dropdown">\
+          <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>\
+          <div class="action-menu">\
+            <a onclick="showModal(\'track-modal\')"><i class="fas fa-search"></i>查看撮合详情</a>\
+            <a onclick="showModal(\'track-modal\')"><i class="fas fa-chart-line"></i>跟踪进度</a>\
+          </div>\
+        </div>\
+      </td>\
+    ';
+    tbody.appendChild(newRow);
+    
+    var statCards = document.querySelectorAll('.stat-card');
+    var connectVal = statCards[1].querySelector('div:first-child');
+    connectVal.textContent = parseInt(connectVal.textContent) + 1;
+    
+    modal.querySelectorAll('.form-input').forEach(function(i) { i.value = ''; });
+    modal.querySelector('.form-select').value = '';
+    modal.querySelector('.form-textarea').value = '';
+    
+    closeModal('match-demand-modal');
+    showNotification('匹配任务已提交，正在撮合中', 'success');
+  }
+
+  function startMatchConnect(btn, agencyName) {
+    var tbody = document.querySelectorAll('.table')[2].querySelector('tbody');
+    var rows = tbody.querySelectorAll('tr');
+    var updated = false;
+    
+    rows.forEach(function(row) {
+      var cells = row.querySelectorAll('td');
+      var statusBadge = cells[2].querySelector('.badge');
+      
+      if (statusBadge && statusBadge.textContent.indexOf('对接中') !== -1 && !updated) {
+        cells[1].textContent = agencyName;
+        statusBadge.textContent = '已对接';
+        statusBadge.className = 'badge badge-success';
+        updated = true;
+      }
+    });
+    
+    if (updated) {
+      var statCards = document.querySelectorAll('.stat-card');
+      var connectVal = statCards[1].querySelector('div:first-child');
+      var successVal = statCards[0].querySelector('div:first-child');
+      var currConnect = parseInt(connectVal.textContent);
+      var currSuccess = parseInt(successVal.textContent);
+      connectVal.textContent = currConnect - 1;
+      successVal.textContent = currSuccess + 1;
+      var total = currConnect + currSuccess;
+      if (total > 0) {
+        var rateVal = statCards[2].querySelector('div:first-child');
+        rateVal.textContent = Math.round(((currSuccess + 1) / total) * 100) + '%';
+      }
+    }
+    
+    showNotification('已向 ' + agencyName + ' 发送对接请求', 'success');
+  }
+
+  function submitFairSignup() {
+    var modal = document.getElementById('fair-detail-modal');
+    var statusDiv = modal.querySelector('.col-6:last-child .form-group:last-child div[style*="border-radius"]');
+    if (statusDiv) {
+      statusDiv.textContent = '已报名';
+      statusDiv.style.color = '#52c41a';
+      statusDiv.style.background = 'rgba(82, 196, 26, 0.1)';
+    }
+    
+    var fairRows = document.querySelectorAll('.table')[0].querySelectorAll('tbody tr');
+    fairRows.forEach(function(row) {
+      var theme = row.querySelector('td:first-child strong').textContent;
+      if (theme.indexOf('重点企业用工专场洽谈会') !== -1) {
+        var enterpriseCell = row.querySelectorAll('td')[3];
+        var institutionCell = row.querySelectorAll('td')[4];
+        var entMatch = enterpriseCell.textContent.match(/(\d+)家/);
+        var instMatch = institutionCell.textContent.match(/(\d+)家/);
+        if (entMatch) enterpriseCell.textContent = (parseInt(entMatch[1]) + 1) + '家';
+        if (instMatch) institutionCell.textContent = (parseInt(instMatch[1]) + 1) + '家';
+      }
+    });
+    
+    closeModal('fair-detail-modal');
+    showNotification('报名已提交，等待审核', 'success');
+  }
+
+  function submitFairOrganize() {
+    var modal = document.getElementById('fair-organize-modal');
+    var theme = modal.querySelector('input[type="text"]').value.trim();
+    var time = modal.querySelector('input[type="datetime-local"]').value;
+    var textInputs = modal.querySelectorAll('input[type="text"]');
+    var location = textInputs[1].value.trim();
+    
+    if (!theme || !time || !location) {
+      showNotification('请填写完整信息', 'error');
+      return;
+    }
+    
+    var displayTime = time.replace('T', ' ');
+    
+    var fairTbody = document.querySelectorAll('.table')[0].querySelector('tbody');
+    var newRow = document.createElement('tr');
+    newRow.innerHTML = '\
+      <td><strong>' + theme + '</strong></td>\
+      <td>' + displayTime + '</td>\
+      <td>' + location + '</td>\
+      <td>0家</td>\
+      <td>0家</td>\
+      <td><span class="badge badge-info">筹备中</span></td>\
+      <td>\
+        <div class="action-dropdown">\
+          <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>\
+          <div class="action-menu">\
+            <a onclick="showModal(\'fair-detail-modal\')"><i class="fas fa-eye"></i>查看详情</a>\
+            <a onclick="showModal(\'match-participant-modal\')"><i class="fas fa-handshake"></i>参会匹配</a>\
+            <a onclick="signupFairParticipation(this)"><i class="fas fa-user-plus"></i>报名参与</a>\
+          </div>\
+        </div>\
+      </td>\
+    ';
+    fairTbody.appendChild(newRow);
+    
+    modal.querySelectorAll('input').forEach(function(i) { i.value = ''; });
+    
+    closeModal('fair-organize-modal');
+    showNotification('洽谈会已发布，正在筹备中', 'success');
+  }
+
+  function generateMatchList() {
+    closeModal('match-participant-modal');
+    showNotification('对接清单已生成，已发送至参会双方', 'success');
+  }
+
+  function launchSpecialEvent() {
+    var modal = document.getElementById('special-event-modal');
+    var theme = modal.querySelector('input[type="text"]').value.trim();
+    var industry = modal.querySelector('select').value;
+    var time = modal.querySelector('input[type="datetime-local"]').value;
+    
+    if (!theme || !industry || !time) {
+      showNotification('请填写完整信息', 'error');
+      return;
+    }
+    
+    modal.querySelectorAll('input').forEach(function(i) { i.value = ''; });
+    modal.querySelector('select').value = '';
+    
+    closeModal('special-event-modal');
+    showNotification('"' + theme + '"专场已发起，等待企业报名参与', 'success');
+  }
+
+  function signupFairParticipation(btn) {
+    var row = btn.closest('tr');
+    if (!row) return;
+    
+    var enterpriseCell = row.querySelectorAll('td')[3];
+    var institutionCell = row.querySelectorAll('td')[4];
+    var entMatch = enterpriseCell.textContent.match(/(\d+)家/);
+    var instMatch = institutionCell.textContent.match(/(\d+)家/);
+    
+    if (entMatch) enterpriseCell.textContent = (parseInt(entMatch[1]) + 1) + '家';
+    if (instMatch) institutionCell.textContent = (parseInt(instMatch[1]) + 1) + '家';
+    
+    showNotification('报名已提交', 'success');
+  }
+
+  // Initialize talent results on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    renderTalentResults(talentDB, true);
+  });
   
   document.addEventListener('click', function(e) {
     if (!e.target.closest('.action-dropdown')) {
-      document.querySelectorAll('.action-menu.show').forEach(m => m.classList.remove('show'));
+      document.querySelectorAll('.action-menu.show').forEach(function(m) { m.classList.remove('show'); });
     }
     if (e.target.classList.contains('modal-overlay')) {
       e.target.style.display = 'none';

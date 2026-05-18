@@ -14,116 +14,14 @@
 
 <!-- 页面内容 -->
 <div class="page-content">
-  <div class="container">
-
-    <!-- 服务网店开设与管理 -->
-    <div class="card mb-24 p-24">
-      <h3 class="mb-16">服务网店开设与管理</h3>
-      <div class="row">
-        <div class="col-4">
-          <div class="feature-card" onclick="showModal('store-apply-modal')">
-            <div class="card-header">
-              <div class="icon">📝</div>
-              <div class="card-content">
-                <h4>网店申请</h4>
-                <p class="text-small">优质机构申请开设网店，提交服务范围、收费标准等</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 核心线上服务功能整合 -->
-    <div class="card p-24">
-      <h3 class="mb-16">核心线上服务功能整合</h3>
-      <div class="row">
-        <div class="col-6">
-          <div class="feature-card mb-16" onclick="showModal('job-post-modal')">
-            <div class="card-header">
-              <div class="icon">📋</div>
-              <div class="card-content">
-                <h4>岗位发布与管理</h4>
-                <p>企业发布岗位，AI合规校验，机构筛选对接，智能推送人才</p>
-              </div>
-            </div>
-          </div>
-          <div class="feature-card mb-16" onclick="showModal('video-interview-modal')">
-            <div class="card-header">
-              <div class="icon">🎥</div>
-              <div class="card-content">
-                <h4>视频面试服务</h4>
-                <p>AI生成面试题库，记录面试过程，生成评价报告</p>
-              </div>
-            </div>
-          </div>
-          <div class="feature-card" onclick="showModal('policy-chat-modal')">
-            <div class="card-header">
-              <div class="icon">💬</div>
-              <div class="card-content">
-                <h4>政策咨询服务</h4>
-                <p>AI智能客服7×24小时在线，智能推送适配政策</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="card p-16" style="height: 100%;">
-            <h4 class="mb-16">网店示例：XX人力资源旗舰店</h4>
-            <div class="row mb-16">
-              <div class="col-6">
-                <div class="stat-card" style="padding: 16px;">
-                  <div class="number" style="font-size: 24px;">128</div>
-                  <div class="label">发布岗位</div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="stat-card" style="padding: 16px;">
-                  <div class="number" style="font-size: 24px;">96%</div>
-                  <div class="label">服务满意度</div>
-                </div>
-              </div>
-            </div>
-            <div class="mb-16">
-              <h5 class="mb-8">服务项目</h5>
-              <span class="tag">岗位招聘</span>
-              <span class="tag">劳务派遣</span>
-              <span class="tag">视频面试</span>
-              <span class="tag">政策咨询</span>
-            </div>
-            <div class="mb-16">
-              <h5 class="mb-8">服务流程</h5>
-              <div class="steps" style="margin-bottom: 0;">
-                <div class="step completed" style="font-size: 12px;">
-                  <div class="step-circle" style="width: 24px; height: 24px; font-size: 12px;">1</div>
-                  <div class="step-label">需求对接</div>
-                </div>
-                <div class="step completed" style="font-size: 12px;">
-                  <div class="step-circle" style="width: 24px; height: 24px; font-size: 12px;">2</div>
-                  <div class="step-label">人才匹配</div>
-                </div>
-                <div class="step active" style="font-size: 12px;">
-                  <div class="step-circle" style="width: 24px; height: 24px; font-size: 12px;">3</div>
-                  <div class="step-label">面试录用</div>
-                </div>
-                <div class="step" style="font-size: 12px;">
-                  <div class="step-circle" style="width: 24px; height: 24px; font-size: 12px;">4</div>
-                  <div class="step-label">签约入职</div>
-                </div>
-              </div>
-            </div>
-            <button class="btn btn-primary w-100" onclick="showModal('enter-store-modal')">进入网店</button>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="container">
 
     <!-- 网店列表 -->
     <div class="card p-24 mt-24">
       <h3 class="mb-16">网店列表</h3>
       <div class="search-bar mb-16">
-        <input type="text" class="form-input" placeholder="搜索网店名称、服务类型..." id="store-search">
-        <button class="btn btn-primary" onclick="filterStoreList()">搜索</button>
+        <input type="text" class="form-input" placeholder="搜索网店名称、服务类型..." id="store-search" oninput="filterStoreList()">
+        <button class="btn btn-primary" onclick="showModal('store-apply-modal')"><i class="fas fa-plus"></i> 网店申请</button>
       </div>
       <table class="table">
         <thead>
@@ -149,10 +47,13 @@
               <div class="action-dropdown">
                 <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
                 <div class="action-menu">
-                  <a onclick="showNotification('正在查看网店详情...', 'info')"><i class="fas fa-eye"></i> 查看</a>
-                  <a onclick="showModal('store-manage-modal')"><i class="fas fa-store"></i> 运营</a>
-                  <a onclick="showModal('store-supervise-modal')"><i class="fas fa-shield-alt"></i> 监管</a>
-                </div>
+                    <a onclick="showStoreDetail('XX人力资源旗舰店')"><i class="fas fa-eye"></i> 查看</a>
+                    <a onclick="showModal('store-manage-modal')"><i class="fas fa-store"></i> 运营</a>
+                    <a onclick="showModal('store-supervise-modal')"><i class="fas fa-shield-alt"></i> 监管</a>
+                    <a onclick="showModal('job-post-modal')"><i class="fas fa-briefcase"></i> 岗位发布</a>
+                    <a onclick="showModal('video-interview-modal')"><i class="fas fa-video"></i> 视频面试</a>
+                    <a onclick="showModal('policy-chat-modal')"><i class="fas fa-comments"></i> 政策咨询</a>
+                  </div>
               </div>
             </td>
           </tr>
@@ -167,10 +68,13 @@
               <div class="action-dropdown">
                 <button class="action-btn" onclick="toggleActionMenu(this)">操作 <i class="fas fa-chevron-down"></i></button>
                 <div class="action-menu">
-                  <a onclick="showNotification('正在查看网店详情...', 'info')"><i class="fas fa-eye"></i> 查看</a>
-                  <a onclick="showModal('store-manage-modal')"><i class="fas fa-store"></i> 运营</a>
-                  <a onclick="showModal('store-supervise-modal')"><i class="fas fa-shield-alt"></i> 监管</a>
-                </div>
+                    <a onclick="showStoreDetail('XX零工服务中心')"><i class="fas fa-eye"></i> 查看</a>
+                    <a onclick="showModal('store-manage-modal')"><i class="fas fa-store"></i> 运营</a>
+                    <a onclick="showModal('store-supervise-modal')"><i class="fas fa-shield-alt"></i> 监管</a>
+                    <a onclick="showModal('job-post-modal')"><i class="fas fa-briefcase"></i> 岗位发布</a>
+                    <a onclick="showModal('video-interview-modal')"><i class="fas fa-video"></i> 视频面试</a>
+                    <a onclick="showModal('policy-chat-modal')"><i class="fas fa-comments"></i> 政策咨询</a>
+                  </div>
               </div>
             </td>
           </tr>
@@ -182,11 +86,14 @@
             <td>88%</td>
             <td><span class="badge badge-warning">审核中</span></td>
             <td>
-              <button class="btn btn-primary btn-audit" onclick="showNotification('已提交审核', 'success')">审核</button>
+              <button class="btn btn-primary btn-audit" onclick="showStoreAudit(this)">审核</button>
               <div class="action-dropdown" style="display:inline-block;vertical-align:middle;">
                 <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i></button>
                 <div class="action-menu">
-                  <a onclick="showNotification('正在查看网店详情...', 'info')"><i class="fas fa-eye"></i> 查看</a>
+                  <a onclick="showStoreDetail('XX建筑劳务公司')"><i class="fas fa-eye"></i> 查看</a>
+                  <a onclick="showModal('job-post-modal')"><i class="fas fa-briefcase"></i> 岗位发布</a>
+                  <a onclick="showModal('video-interview-modal')"><i class="fas fa-video"></i> 视频面试</a>
+                  <a onclick="showModal('policy-chat-modal')"><i class="fas fa-comments"></i> 政策咨询</a>
                 </div>
               </div>
             </td>
@@ -199,16 +106,19 @@
             <td>94%</td>
             <td><span class="badge badge-warning">审核中</span></td>
             <td>
-              <button class="btn btn-primary btn-audit" onclick="showNotification('已提交审核', 'success')">审核</button>
+              <button class="btn btn-primary btn-audit" onclick="showStoreAudit(this)">审核</button>
               <div class="action-dropdown" style="display:inline-block;vertical-align:middle;">
                 <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i></button>
                 <div class="action-menu">
-                  <a onclick="showNotification('正在查看网店详情...', 'info')"><i class="fas fa-eye"></i> 查看</a>
+                    <a onclick="showStoreDetail('XXAI科技公司')"><i class="fas fa-eye"></i> 查看</a>
+                    <a onclick="showModal('job-post-modal')"><i class="fas fa-briefcase"></i> 岗位发布</a>
+                    <a onclick="showModal('video-interview-modal')"><i class="fas fa-video"></i> 视频面试</a>
+                    <a onclick="showModal('policy-chat-modal')"><i class="fas fa-comments"></i> 政策咨询</a>
+                  </div>
                 </div>
-              </div>
-            </td>
-          </tr>
-        </tbody>
+              </td>
+            </tr>
+          </tbody>
       </table>
     </div>
 
@@ -244,7 +154,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('store-apply-modal')">取消</button>
-      <button class="btn btn-primary" onclick="showNotification('申请已提交', 'success'); closeModal('store-apply-modal')">提交申请</button>
+      <button class="btn btn-primary" onclick="submitStoreApply()">提交申请</button>
     </div>
   </div>
 </div>
@@ -274,7 +184,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('job-post-modal')">取消</button>
-      <button class="btn btn-primary" onclick="showNotification('岗位已发布', 'success'); closeModal('job-post-modal')">发布岗位</button>
+      <button class="btn btn-primary" onclick="submitJobPost()">发布岗位</button>
     </div>
   </div>
 </div>
@@ -290,7 +200,7 @@
       <div style="text-align: center; padding: 40px;">
         <div style="font-size: 48px; margin-bottom: 16px;">🎥</div>
         <p>AI生成面试题库，记录面试过程，生成评价报告</p>
-        <button class="btn btn-primary mt-8" onclick="showNotification('视频面试已开启', 'success'); closeModal('video-interview-modal')">开始视频面试</button>
+        <button class="btn btn-primary mt-8" onclick="startVideoInterview()">开始视频面试</button>
       </div>
     </div>
     <div class="modal-footer">
@@ -328,8 +238,8 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('store-audit-modal')">关闭</button>
-      <button class="btn btn-warning" onclick="showNotification('已驳回申请', 'success'); closeModal('store-audit-modal')">驳回申请</button>
-      <button class="btn btn-primary" onclick="showNotification('审核已通过', 'success'); closeModal('store-audit-modal')">审核通过</button>
+      <button class="btn btn-warning" onclick="rejectStoreAudit()">驳回申请</button>
+      <button class="btn btn-primary" onclick="approveStoreAudit()">审核通过</button>
     </div>
   </div>
 </div>
@@ -356,13 +266,13 @@
           <span class="tag">岗位招聘</span>
           <span class="tag">劳务派遣</span>
           <span class="tag">视频面试</span>
-          <button class="btn btn-outline btn-sm">+ 添加</button>
+          <button class="btn btn-outline btn-sm" onclick="showNotification('服务项目添加功能开发中', 'info')">+ 添加</button>
         </div>
       </div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('store-manage-modal')">关闭</button>
-      <button class="btn btn-primary" onclick="showNotification('修改已保存', 'success'); closeModal('store-manage-modal')">保存修改</button>
+      <button class="btn btn-primary" onclick="submitStoreManage()">保存修改</button>
     </div>
   </div>
 </div>
@@ -372,7 +282,7 @@
   <div class="modal">
     <div class="modal-header">
       <h3>网店监管</h3>
-      <button class="btn btn-danger ml-auto" onclick="showNotification('网店已暂停', 'warning'); closeModal('store-supervise-modal')">暂停网店</button>
+      <button class="btn btn-danger ml-auto" onclick="suspendStore()">暂停网店</button>
       <button class="modal-close" onclick="closeModal('store-supervise-modal')">×</button>
     </div>
     <div class="modal-body">
@@ -387,7 +297,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('store-supervise-modal')">关闭</button>
-      <button class="btn btn-primary" onclick="showNotification('记录已保存', 'success'); closeModal('store-supervise-modal')">保存记录</button>
+      <button class="btn btn-primary" onclick="saveSuperviseRecord()">保存记录</button>
     </div>
   </div>
 </div>
@@ -434,7 +344,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('enter-store-modal')">关闭</button>
-      <button class="btn btn-primary" onclick="showNotification('咨询请求已发送', 'success'); closeModal('enter-store-modal')">立即咨询</button>
+      <button class="btn btn-primary" onclick="submitConsultation()">立即咨询</button>
     </div>
   </div>
 </div>
@@ -453,7 +363,7 @@
       </div>
       <div class="search-bar">
         <input type="text" class="form-input" placeholder="输入您的问题...">
-        <button class="btn btn-primary" onclick="showNotification('消息已发送', 'success'); closeModal('policy-chat-modal')">发送</button>
+        <button class="btn btn-primary" onclick="sendChatMessage()">发送</button>
       </div>
     </div>
     <div class="modal-footer">
@@ -464,6 +374,8 @@
 
 <script src="assets/theme-switch.js"></script>
 <script>
+  let currentAuditStore = null;
+  
   function showModal(modalId) {
     document.getElementById(modalId).style.display = 'flex';
     document.body.style.overflow = 'hidden';
@@ -497,15 +409,258 @@
       const text = row.textContent.toLowerCase();
       row.style.display = text.includes(search) ? '' : 'none';
     });
-    parent.showNotification('搜索完成', 'success');
   }
-  
-  document.addEventListener('click', function(e) {
-    // 关闭下拉菜单（点击外部时）
+
+  /* ========== 1. 网店申请 ========== */
+  function submitStoreApply() {
+    const modal = document.getElementById('store-apply-modal');
+    const name = modal.querySelector('input[type="text"]').value.trim();
+    const select = modal.querySelector('select');
+    const selectedOptions = Array.from(select.selectedOptions).map(o => o.value);
+    const feeDesc = modal.querySelector('textarea').value.trim();
+
+    if (!name) { showNotification('请输入网店名称', 'error'); return; }
+    if (selectedOptions.length === 0) { showNotification('请选择服务范围', 'error'); return; }
+    if (!feeDesc) { showNotification('请填写收费标准说明', 'error'); return; }
+
+    const serviceType = selectedOptions.join('/');
+    const tbody = document.querySelector('.table tbody');
+    const newRow = document.createElement('tr');
+    newRow.innerHTML =
+      '<td><strong>' + name + '</strong></td>' +
+      '<td>' + serviceType + '</td>' +
+      '<td>⭐⭐⭐⭐⭐</td>' +
+      '<td>0</td>' +
+      '<td>--</td>' +
+      '<td><span class="badge badge-warning">审核中</span></td>' +
+      '<td>' +
+        '<button class="btn btn-primary btn-audit" onclick="showStoreAudit(this)">审核</button>' +
+        '<div class="action-dropdown" style="display:inline-block;vertical-align:middle;">' +
+          '<button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i></button>' +
+          '<div class="action-menu">' +
+            '<a onclick="showStoreDetail(\'' + name + '\')"><i class="fas fa-eye"></i> 查看</a>' +
+            '<a onclick="showModal(\'job-post-modal\')"><i class="fas fa-briefcase"></i> 岗位发布</a>' +
+            '<a onclick="showModal(\'video-interview-modal\')"><i class="fas fa-video"></i> 视频面试</a>' +
+            '<a onclick="showModal(\'policy-chat-modal\')"><i class="fas fa-comments"></i> 政策咨询</a>' +
+          '</div>' +
+        '</div>' +
+      '</td>';
+    tbody.appendChild(newRow);
+
+    modal.querySelector('input[type="text"]').value = '';
+    select.selectedIndex = -1;
+    modal.querySelector('textarea').value = '';
+
+    closeModal('store-apply-modal');
+    showNotification('网店申请已提交，等待审核', 'success');
+  }
+
+  /* ========== 2. 网店审核 ========== */
+  function showStoreAudit(btn) {
+    const row = btn.closest('tr');
+    const storeName = row.querySelector('td:first-child strong').textContent;
+    currentAuditStore = storeName;
+
+    const auditModal = document.getElementById('store-audit-modal');
+    const infoRows = auditModal.querySelectorAll('.audit-info .info-row');
+    infoRows[0].querySelector('span:last-child').textContent = storeName;
+    infoRows[2].querySelector('span:last-child').textContent = row.querySelectorAll('td')[1].textContent;
+
+    const now = new Date();
+    const dateStr = now.getFullYear() + '-' +
+      String(now.getMonth() + 1).padStart(2, '0') + '-' +
+      String(now.getDate()).padStart(2, '0') + ' ' +
+      String(now.getHours()).padStart(2, '0') + ':' +
+      String(now.getMinutes()).padStart(2, '0');
+    infoRows[1].querySelector('span:last-child').textContent = dateStr;
+
+    auditModal.querySelector('textarea').value = '';
+    showModal('store-audit-modal');
+  }
+
+  function approveStoreAudit() {
+    if (!currentAuditStore) { showNotification('请选择要审核的网店', 'error'); return; }
+    const rows = document.querySelectorAll('.table tbody tr');
+    rows.forEach(row => {
+      const name = row.querySelector('td:first-child strong').textContent;
+      const statusBadge = row.querySelectorAll('td')[5].querySelector('.badge');
+      if (name === currentAuditStore && statusBadge && statusBadge.textContent.includes('审核中')) {
+        statusBadge.textContent = '营业中';
+        statusBadge.className = 'badge badge-success';
+        row.querySelectorAll('td')[4].textContent = '95%';
+      }
+    });
+    document.getElementById('store-audit-modal').querySelector('textarea').value = '';
+    currentAuditStore = null;
+    closeModal('store-audit-modal');
+    showNotification('审核已通过，网店已开业', 'success');
+  }
+
+  function rejectStoreAudit() {
+    if (!currentAuditStore) { showNotification('请选择要审核的网店', 'error'); return; }
+    const opinion = document.getElementById('store-audit-modal').querySelector('textarea').value.trim();
+    if (!opinion) { showNotification('请填写驳回原因', 'error'); return; }
+    const rows = document.querySelectorAll('.table tbody tr');
+    rows.forEach(row => {
+      if (row.querySelector('td:first-child strong').textContent === currentAuditStore) row.remove();
+    });
+    document.getElementById('store-audit-modal').querySelector('textarea').value = '';
+    currentAuditStore = null;
+    closeModal('store-audit-modal');
+    showNotification('已驳回申请', 'warning');
+  }
+
+  /* ========== 3. 网店运营管理 ========== */
+  function submitStoreManage() {
+    const modal = document.getElementById('store-manage-modal');
+    const name = modal.querySelector('input[type="text"]').value.trim();
+    if (!name) { showNotification('网店名称不能为空', 'error'); return; }
+    const rows = document.querySelectorAll('.table tbody tr');
+    rows.forEach(row => {
+      const badge = row.querySelectorAll('td')[5].querySelector('.badge');
+      if (badge && badge.textContent.includes('营业中')) {
+        row.querySelector('td:first-child strong').textContent = name;
+      }
+    });
+    closeModal('store-manage-modal');
+    showNotification('修改已保存', 'success');
+  }
+
+  /* ========== 4. 网店监管 ========== */
+  function suspendStore() {
+    const rows = document.querySelectorAll('.table tbody tr');
+    let found = false;
+    rows.forEach(row => {
+      const badge = row.querySelectorAll('td')[5].querySelector('.badge');
+      if (badge && badge.textContent.includes('营业中')) {
+        badge.textContent = '已暂停';
+        badge.className = 'badge badge-danger';
+        found = true;
+      }
+    });
+    closeModal('store-supervise-modal');
+    showNotification(found ? '网店已暂停营业' : '网店已暂停', 'warning');
+  }
+
+  function saveSuperviseRecord() {
+    const opinion = document.getElementById('store-supervise-modal').querySelector('textarea').value.trim();
+    if (!opinion) { showNotification('请填写监管备注', 'error'); return; }
+    closeModal('store-supervise-modal');
+    showNotification('监管记录已保存', 'success');
+  }
+
+  /* ========== 5. 岗位发布 ========== */
+  function submitJobPost() {
+    const modal = document.getElementById('job-post-modal');
+    const inputs = modal.querySelectorAll('input');
+    const name = inputs[0].value.trim();
+    const salary = inputs[1].value.trim();
+    const requirements = modal.querySelector('textarea').value.trim();
+    if (!name) { showNotification('请输入岗位名称', 'error'); return; }
+    if (!salary) { showNotification('请输入薪资范围', 'error'); return; }
+    if (!requirements) { showNotification('请填写岗位要求', 'error'); return; }
+    inputs[0].value = '';
+    inputs[1].value = '';
+    modal.querySelector('textarea').value = '';
+    closeModal('job-post-modal');
+    showNotification('岗位已发布，等待审核', 'success');
+  }
+
+  /* ========== 6. 视频面试 ========== */
+  function startVideoInterview() {
+    const modal = document.getElementById('video-interview-modal');
+    modal.querySelector('.modal-body').innerHTML =
+      '<div style="text-align:center;padding:20px;">' +
+        '<div style="background:rgba(82,196,26,0.1);border-radius:12px;padding:30px;">' +
+          '<div style="font-size:48px;margin-bottom:16px;">📹</div>' +
+          '<h4 style="color:#52c41a;margin-bottom:12px;">视频面试已开启</h4>' +
+          '<p style="color:var(--text-secondary);">面试时长：00:00</p>' +
+          '<p style="color:var(--text-secondary);">AI正在生成面试题目...</p>' +
+          '<div style="margin-top:16px;display:flex;gap:12px;justify-content:center;">' +
+            '<span class="tag" style="background:rgba(82,196,26,0.1);">AI智能提问</span>' +
+            '<span class="tag" style="background:rgba(99,102,241,0.1);">语音识别</span>' +
+            '<span class="tag" style="background:rgba(250,173,20,0.1);">行为分析</span>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    showNotification('视频面试已开启', 'success');
+  }
+
+  /* ========== 7. AI政策咨询 ========== */
+  function sendChatMessage() {
+    const modal = document.getElementById('policy-chat-modal');
+    const input = modal.querySelector('.search-bar input');
+    const chatArea = modal.querySelector('.modal-body > div:first-child');
+    const message = input.value.trim();
+    if (!message) { showNotification('请输入您的问题', 'error'); return; }
+
+    const userMsg = document.createElement('div');
+    userMsg.style.cssText = 'text-align:right;margin:8px 0;';
+    userMsg.innerHTML =
+      '<div style="display:inline-block;background:var(--primary);color:white;padding:8px 16px;border-radius:12px 12px 4px 12px;max-width:80%;word-break:break-all;">' +
+      escapeHtml(message) + '</div>';
+    chatArea.appendChild(userMsg);
+
+    input.value = '';
+    chatArea.scrollTop = chatArea.scrollHeight;
+
+    setTimeout(function () {
+      const aiMsg = document.createElement('div');
+      aiMsg.style.cssText = 'margin:8px 0;';
+      aiMsg.innerHTML =
+        '<div style="color:var(--primary);font-weight:600;margin-bottom:4px;">🤖 AI客服：</div>' +
+        '<div style="display:inline-block;background:rgba(99,102,241,0.1);padding:8px 16px;border-radius:12px 12px 12px 4px;max-width:80%;">' +
+        '感谢您的咨询！关于 "' + escapeHtml(message) + '" ，建议您参考《人力资源服务管理规定》第三章相关条款。如需进一步了解，请提供更多详细信息。</div>';
+      chatArea.appendChild(aiMsg);
+      chatArea.scrollTop = chatArea.scrollHeight;
+    }, 600);
+
+    showNotification('消息已发送', 'success');
+  }
+
+  function escapeHtml(text) {
+    var d = document.createElement('div');
+    d.textContent = text;
+    return d.innerHTML;
+  }
+
+  /* ========== 8. 立即咨询 ========== */
+  function submitConsultation() {
+    closeModal('enter-store-modal');
+    showNotification('咨询请求已发送，客服将尽快与您联系', 'success');
+  }
+
+  /* ========== 9. 网店详情 ========== */
+  function showStoreDetail(storeName) {
+    var rows = document.querySelectorAll('.table tbody tr');
+    var found = false;
+    rows.forEach(function (row) {
+      var name = row.querySelector('td:first-child strong').textContent;
+      if (name === storeName) {
+        var serviceType = row.querySelectorAll('td')[1].textContent;
+        var stars = row.querySelectorAll('td')[2].textContent;
+        var services = row.querySelectorAll('td')[3].textContent;
+        var satisfaction = row.querySelectorAll('td')[4].textContent;
+
+        var modal = document.getElementById('enter-store-modal');
+        modal.querySelector('.modal-header h3').textContent = storeName;
+        var groups = modal.querySelectorAll('.form-group');
+        groups[0].querySelector('div:last-child').textContent = stars;
+        groups[1].querySelector('div:last-child').textContent = services + '个岗位';
+        groups[2].querySelector('div:last-child').textContent = satisfaction;
+        groups[3].querySelector('div:last-child').textContent = '--';
+        showModal('enter-store-modal');
+        found = true;
+      }
+    });
+    if (!found) showNotification('未找到网店信息', 'error');
+  }
+
+  /* ========== 事件监听 ========== */
+  document.addEventListener('click', function (e) {
     if (!e.target.closest('.action-dropdown')) {
-      document.querySelectorAll('.action-menu.show').forEach(m => m.classList.remove('show'));
+      document.querySelectorAll('.action-menu.show').forEach(function (m) { m.classList.remove('show'); });
     }
-    // 关闭弹窗（点击遮罩层）
     if (e.target.classList.contains('modal-overlay')) {
       e.target.style.display = 'none';
       document.body.style.overflow = '';
