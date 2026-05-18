@@ -506,8 +506,6 @@
       <div class="top-tabs">
         <div class="tab-item active" data-module="dashboard">我的工作台</div>
         <div class="tab-item" data-module="contracts">电子劳动合同</div>
-        <div class="tab-item" data-module="cases">我的案件</div>
-        <div class="tab-item" data-module="documents">文书查看</div>
         <div class="tab-item" data-module="legal-aid">法律援助</div>
       </div>
 
@@ -515,80 +513,142 @@
         
         <!-- 仪表盘（我的工作台） -->
         <div class="module-section active" id="module-dashboard">
-          <div class="module-header">
-            <h2>我的工作台</h2>
-          </div>
-
-          <!-- 统计卡片 -->
+          <!-- 上半部分：左（统计数据）+ 右（待办事项） -->
           <div class="row mb-24">
-            <div class="col-3">
-              <div class="stat-card">
-                <div class="number">5</div>
-                <div class="label">我的案件数</div>
+            <div class="col-5">
+              <div class="row">
+                <div class="col-6">
+                  <div class="stat-card">
+                    <div class="number">5</div>
+                    <div class="label">我的案件数</div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="stat-card stat-warning">
+                    <div class="number">2</div>
+                    <div class="label">待处理数</div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="stat-card">
+                    <div class="number">1</div>
+                    <div class="label">云庭审待参加</div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="stat-card">
+                    <div class="number">3</div>
+                    <div class="label">待签收文书</div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="col-3">
-              <div class="stat-card stat-warning">
-                <div class="number">2</div>
-                <div class="label">待处理数</div>
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="stat-card">
-                <div class="number">1</div>
-                <div class="label">云庭审待参加</div>
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="stat-card">
-                <div class="number">3</div>
-                <div class="label">待签收文书</div>
+            <div class="col-7">
+              <div class="card">
+                <h3 class="mb-16">待办事项</h3>
+                <div class="table">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>事项类型</th>
+                        <th>相关案件</th>
+                        <th>截止时间</th>
+                        <th>操作</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span class="badge badge-warning">待参加庭审</span></td>
+                        <td>ZC20260503005</td>
+                        <td>2026-05-10 09:00</td>
+                        <td><button class="btn btn-primary btn-sm" onclick="openCloudTrial('ZC20260503005')">进入庭审</button></td>
+                      </tr>
+                      <tr>
+                        <td><span class="badge badge-info">待签收文书</span></td>
+                        <td>ZC20260501001</td>
+                        <td>2026-05-15</td>
+                        <td><button class="btn btn-secondary btn-sm" onclick="showCaseDocuments('ZC20260501001')">签收文书</button></td>
+                      </tr>
+                      <tr>
+                        <td><span class="badge badge-danger">材料补正</span></td>
+                        <td>ZC20260506002</td>
+                        <td>2026-05-08</td>
+                        <td><button class="btn btn-secondary btn-sm" onclick="showModal('case-apply-modal')">补充材料</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- 快捷操作 -->
-          <div class="quick-actions">
+          <!-- 下半部分：我的案件列表 -->
+          <div class="module-header" style="margin-bottom:16px">
+            <h3>我的案件</h3>
             <button class="btn btn-primary" onclick="showModal('case-apply-modal')">+ 申请立案</button>
-            <button class="btn btn-secondary" onclick="switchModule('contracts')">签署合同</button>
-            <button class="btn btn-secondary" onclick="switchModule('documents')">查看文书</button>
           </div>
-
-          <!-- 待办事项 -->
+          <div class="filter-bar mb-24">
+            <select class="form-select" id="filter-case-status-dash">
+              <option value="">全部状态</option>
+              <option value="已结案">已结案</option>
+              <option value="审理中">审理中</option>
+              <option value="调解中">调解中</option>
+              <option value="待受理">待受理</option>
+            </select>
+            <select class="form-select" id="filter-case-type-dash">
+              <option value="">全部类型</option>
+              <option value="工资拖欠">工资拖欠</option>
+              <option value="劳动合同">劳动合同</option>
+              <option value="工伤赔偿">工伤赔偿</option>
+            </select>
+          </div>
           <div class="card">
-            <h3 class="mb-16">待办事项</h3>
-            <div class="table">
-              <table>
-                <thead>
-                  <tr>
-                    <th>事项类型</th>
-                    <th>相关案件</th>
-                    <th>截止时间</th>
-                    <th>操作</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="badge badge-warning">待参加庭审</span></td>
-                    <td>ZC20260503005</td>
-                    <td>2026-05-10 09:00</td>
-                    <td><button class="btn btn-primary btn-sm" onclick="openCloudTrial('ZC20260503005')">进入庭审</button></td>
-                  </tr>
-                  <tr>
-                    <td><span class="badge badge-info">待签收文书</span></td>
-                    <td>ZC20260501001</td>
-                    <td>2026-05-15</td>
-                    <td><button class="btn btn-secondary btn-sm" onclick="switchModule('documents')">签收文书</button></td>
-                  </tr>
-                  <tr>
-                    <td><span class="badge badge-danger">材料补正</span></td>
-                    <td>ZC20260506002</td>
-                    <td>2026-05-08</td>
-                    <td><button class="btn btn-secondary btn-sm" onclick="showModal('case-apply-modal')">补充材料</button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>案件编号</th>
+                  <th>案件类型</th>
+                  <th>被申请人</th>
+                  <th>状态</th>
+                  <th>提交时间</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="case-list-body-dash">
+                <tr>
+                  <td><strong>ZC20260503005</strong></td>
+                  <td>工伤赔偿纠纷</td>
+                  <td>XX制造公司</td>
+                  <td><span class="badge badge-info">审理中</span></td>
+                  <td>2026-05-03</td>
+                  <td><button class="btn btn-secondary btn-sm" onclick="showCaseDetail('ZC20260503005')">查看</button></td>
+                </tr>
+                <tr>
+                  <td><strong>ZC20260501001</strong></td>
+                  <td>工资拖欠纠纷</td>
+                  <td>XX建筑公司</td>
+                  <td><span class="badge badge-success">已结案</span></td>
+                  <td>2026-05-01</td>
+                  <td><button class="btn btn-secondary btn-sm" onclick="showCaseDetail('ZC20260501001')">查看</button></td>
+                </tr>
+                <tr>
+                  <td><strong>ZC20260428003</strong></td>
+                  <td>劳动合同争议</td>
+                  <td>XX科技公司</td>
+                  <td><span class="badge badge-warning">调解中</span></td>
+                  <td>2026-04-28</td>
+                  <td><button class="btn btn-secondary btn-sm" onclick="showCaseDetail('ZC20260428003')">查看</button></td>
+                </tr>
+                <tr>
+                  <td><strong>ZC20260415002</strong></td>
+                  <td>社保缴纳争议</td>
+                  <td>XX电商公司</td>
+                  <td><span class="badge badge-success">已结案</span></td>
+                  <td>2026-04-15</td>
+                  <td><button class="btn btn-secondary btn-sm" onclick="showCaseDetail('ZC20260415002')">查看</button></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -631,144 +691,6 @@
               </div>
               <div class="contract-status">
                 <span class="badge badge-warning">待签署</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 我的案件模块 -->
-        <div class="module-section" id="module-cases">
-          <div class="module-header">
-            <h2>我的案件</h2>
-            <button class="btn btn-primary" onclick="showModal('case-apply-modal')">+ 申请立案</button>
-          </div>
-
-          <!-- 筛选栏 -->
-          <div class="filter-bar mb-24">
-            <select class="form-select" id="filter-case-status">
-              <option value="">全部状态</option>
-              <option value="已结案">已结案</option>
-              <option value="审理中">审理中</option>
-              <option value="调解中">调解中</option>
-              <option value="待受理">待受理</option>
-            </select>
-            <select class="form-select" id="filter-case-type">
-              <option value="">全部类型</option>
-              <option value="工资拖欠">工资拖欠</option>
-              <option value="劳动合同">劳动合同</option>
-              <option value="工伤赔偿">工伤赔偿</option>
-            </select>
-          </div>
-
-          <!-- 案件列表 -->
-          <div class="card mb-24">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>案件编号</th>
-                  <th>案件类型</th>
-                  <th>被申请人</th>
-                  <th>状态</th>
-                  <th>提交时间</th>
-                  <th>操作</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>ZC20260503005</strong></td>
-                  <td>工伤赔偿纠纷</td>
-                  <td>XX制造公司</td>
-                  <td><span class="badge badge-info">审理中</span></td>
-                  <td>2026-05-03</td>
-                  <td><button class="btn btn-secondary btn-sm" onclick="showCaseDetail('ZC20260503005')">查看</button></td>
-                </tr>
-                <tr>
-                  <td><strong>ZC20260501001</strong></td>
-                  <td>工资拖欠纠纷</td>
-                  <td>XX建筑公司</td>
-                  <td><span class="badge badge-success">已结案</span></td>
-                  <td>2026-05-01</td>
-                  <td><button class="btn btn-secondary btn-sm" onclick="showCaseDetail('ZC20260501001')">查看</button></td>
-                </tr>
-                <tr>
-                  <td><strong>ZC20260428003</strong></td>
-                  <td>劳动合同争议</td>
-                  <td>XX科技公司</td>
-                  <td><span class="badge badge-warning">调解中</span></td>
-                  <td>2026-04-28</td>
-                  <td><button class="btn btn-secondary btn-sm" onclick="showCaseDetail('ZC20260428003')">查看</button></td>
-                </tr>
-                <tr>
-                  <td><strong>ZC20260415002</strong></td>
-                  <td>社保缴纳争议</td>
-                  <td>XX电商公司</td>
-                  <td><span class="badge badge-success">已结案</span></td>
-                  <td>2026-04-15</td>
-                  <td><button class="btn btn-secondary btn-sm" onclick="showCaseDetail('ZC20260415002')">查看</button></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-        </div>
-
-        <!-- 文书查看模块 -->
-        <div class="module-section" id="module-documents">
-          <div class="module-header">
-            <h2>文书查看</h2>
-          </div>
-
-          <!-- 已送达文书列表 -->
-          <div class="document-list">
-            <div class="document-card">
-              <div class="document-icon">📋</div>
-              <div class="document-info">
-                <h4>仲裁裁决书</h4>
-                <p>案件号：ZC20260501001 | 送达时间：2026-05-06</p>
-              </div>
-              <div class="document-actions">
-                <button class="btn btn-secondary btn-sm" onclick="downloadDocument('ZC20260501001')">下载</button>
-                <button class="btn btn-secondary btn-sm" onclick="printDocument('ZC20260501001')">打印</button>
-                <button class="btn btn-primary btn-sm" onclick="confirmReceive.call(this, 'ZC20260501001')">签收确认</button>
-              </div>
-            </div>
-
-            <div class="document-card">
-              <div class="document-icon">📨</div>
-              <div class="document-info">
-                <h4>受理通知书</h4>
-                <p>案件号：ZC20260503005 | 送达时间：2026-05-04</p>
-              </div>
-              <div class="document-actions">
-                <button class="btn btn-secondary btn-sm" onclick="downloadDocument('ZC20260503005')">下载</button>
-                <button class="btn btn-secondary btn-sm" onclick="printDocument('ZC20260503005')">打印</button>
-                <button class="btn btn-primary btn-sm" onclick="confirmReceive.call(this, 'ZC20260503005')">签收确认</button>
-              </div>
-            </div>
-
-            <div class="document-card">
-              <div class="document-icon">📑</div>
-              <div class="document-info">
-                <h4>举证通知书</h4>
-                <p>案件号：ZC20260503005 | 送达时间：2026-05-04</p>
-              </div>
-              <div class="document-actions">
-                <button class="btn btn-secondary btn-sm" onclick="downloadDocument('ZC20260503005')">下载</button>
-                <button class="btn btn-secondary btn-sm" onclick="printDocument('ZC20260503005')">打印</button>
-                <button class="btn btn-primary btn-sm" onclick="confirmReceive.call(this, 'ZC20260503005')">签收确认</button>
-              </div>
-            </div>
-
-            <div class="document-card">
-              <div class="document-icon">⚖️</div>
-              <div class="document-info">
-                <h4>调解协议书</h4>
-                <p>案件号：ZC20260428003 | 送达时间：2026-05-02</p>
-              </div>
-              <div class="document-actions">
-                <button class="btn btn-secondary btn-sm" onclick="downloadDocument('ZC20260428003')">下载</button>
-                <button class="btn btn-secondary btn-sm" onclick="printDocument('ZC20260428003')">打印</button>
-                <button class="btn btn-primary btn-sm" onclick="confirmReceive.call(this, 'ZC20260428003')">签收确认</button>
               </div>
             </div>
           </div>
@@ -1021,6 +943,130 @@
   </div>
 </div>
 
+<!-- 案件申请模态框 -->
+<div class="modal-overlay" id="case-apply-modal">
+  <div class="modal" style="max-width: 720px;">
+    <div class="modal-header">
+      <h3>在线仲裁申请</h3>
+      <button class="modal-close" onclick="closeModal('case-apply-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="ai-verify-box" style="margin-bottom: 20px;">
+        <div class="ai-verify-header">
+          <span class="icon">🤖</span>
+          <h4>AI材料校验状态</h4>
+        </div>
+        <div class="verify-items">
+          <div class="verify-item pass">
+            <span class="status-icon">✓</span>
+            <span>身份证件 - 格式合规，已识别</span>
+          </div>
+          <div class="verify-item pass">
+            <span class="status-icon">✓</span>
+            <span>劳动合同 - 完整有效</span>
+          </div>
+          <div class="verify-item warning">
+            <span class="status-icon">⚠</span>
+            <span>工资流水 - 建议补充近6个月记录</span>
+          </div>
+          <div class="verify-item pass">
+            <span class="status-icon">✓</span>
+            <span>证据清单 - 规范完整</span>
+          </div>
+          <div class="verify-item error">
+            <span class="status-icon">✗</span>
+            <span>考勤记录 - 缺失，请补充</span>
+          </div>
+        </div>
+      </div>
+
+      <form id="case-apply-form">
+        <div class="form-group">
+          <label class="form-label">案件类型 <span style="color: var(--danger);">*</span></label>
+          <select class="form-select" id="apply-case-type" required>
+            <option value="">请选择案件类型</option>
+            <option value="工资拖欠">工资拖欠纠纷</option>
+            <option value="劳动合同">劳动合同争议</option>
+            <option value="工伤赔偿">工伤赔偿纠纷</option>
+            <option value="社保缴纳">社保缴纳争议</option>
+            <option value="违法解雇">违法解雇纠纷</option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label class="form-label">申请人姓名 <span style="color: var(--danger);">*</span></label>
+              <input type="text" class="form-input" id="apply-name" placeholder="请输入申请人姓名" required>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label class="form-label">联系电话 <span style="color: var(--danger);">*</span></label>
+              <input type="tel" class="form-input" id="apply-phone" placeholder="请输入联系电话" required>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">被申请人（单位/个人） <span style="color: var(--danger);">*</span></label>
+          <input type="text" class="form-input" id="apply-respondent" placeholder="请输入被申请人名称" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">纠纷描述 <span style="color: var(--danger);">*</span></label>
+          <textarea class="form-textarea" id="apply-desc" placeholder="请详细描述纠纷经过、诉求等..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">诉求金额（元）</label>
+          <input type="number" class="form-input" id="apply-amount" placeholder="请输入诉求金额">
+        </div>
+        <div class="form-group">
+          <label class="form-label">上传证据材料</label>
+          <div class="row">
+            <div class="col-6">
+              <div class="upload-area" onclick="uploadFile('id-card')">
+                <div class="upload-icon">🪪</div>
+                <p>身份证件</p>
+                <p class="text-small">点击上传</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="upload-area" onclick="uploadFile('contract')">
+                <div class="upload-icon">📄</div>
+                <p>劳动合同</p>
+                <p class="text-small">点击上传</p>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-16">
+            <div class="col-6">
+              <div class="upload-area" onclick="uploadFile('salary')">
+                <div class="upload-icon">💳</div>
+                <p>工资流水</p>
+                <p class="text-small">点击上传</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="upload-area" onclick="uploadFile('evidence')">
+                <div class="upload-icon">📎</div>
+                <p>其他证据</p>
+                <p class="text-small">点击上传</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-secondary);">
+            <input type="checkbox" id="apply-agree"> 本人确认以上信息真实有效，并同意在线审理协议
+          </label>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('case-apply-modal')">取消</button>
+      <button class="btn btn-primary" onclick="submitCase(event)">提交申请</button>
+    </div>
+  </div>
+</div>
+
 <!-- 云庭审模态框 -->
 <div class="modal-overlay" id="cloud-trial-modal">
   <div class="modal" style="max-width: 700px;">
@@ -1094,7 +1140,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('case-detail-modal')">关闭</button>
-      <button class="btn btn-primary" onclick="switchModule('documents'); closeModal('case-detail-modal')">查看文书</button>
+      <button class="btn btn-primary" onclick="closeModal('case-detail-modal'); showCaseDocuments('ZC20260503005')">查看文书</button>
     </div>
   </div>
 </div>
@@ -1516,9 +1562,55 @@
     }, 1200);
   }
 
+  // 查看案件相关文书
+  function showCaseDocuments(caseNo) {
+    var docMap = {
+      'ZC20260501001': [{ icon: '📋', name: '仲裁裁决书', date: '2026-05-06' }],
+      'ZC20260503005': [{ icon: '📨', name: '受理通知书', date: '2026-05-04' }, { icon: '📑', name: '举证通知书', date: '2026-05-04' }],
+      'ZC20260428003': [{ icon: '⚖️', name: '调解协议书', date: '2026-05-02' }],
+      'ZC20260415002': [{ icon: '📋', name: '仲裁裁决书', date: '2026-04-22' }]
+    };
+    var docs = docMap[caseNo];
+    if (!docs) {
+      showNotification('该案件暂无相关文书', 'info');
+      return;
+    }
+    var bodyHTML = '<div style="max-height:400px;overflow-y:auto">';
+    for (var i = 0; i < docs.length; i++) {
+      var d = docs[i];
+      bodyHTML += '<div class="document-card" style="margin-bottom:12px">' +
+        '<div class="document-icon">' + d.icon + '</div>' +
+        '<div class="document-info">' +
+        '<h4>' + d.name + '</h4>' +
+        '<p>案件号：' + caseNo + ' | 送达时间：' + d.date + '</p></div>' +
+        '<div class="document-actions">' +
+        '<button class="btn btn-secondary btn-sm" onclick="simulateDownload(\'' + caseNo + '\',\'PDF\')">下载</button>' +
+        '<button class="btn btn-secondary btn-sm" onclick="printDocument(\'' + caseNo + '\')">打印</button>' +
+        '<button class="btn btn-primary btn-sm" onclick="signDocument(\'' + caseNo + '\', this)">签收确认</button>' +
+        '</div></div>';
+    }
+    bodyHTML += '</div>';
+    createDynamicModal('案件文书 - ' + caseNo, bodyHTML,
+      '<button class="btn btn-secondary" onclick="this.closest(\'.modal-overlay\').remove()">关闭</button>');
+  }
+
+  function signDocument(caseNo, btn) {
+    if (confirm('确认签收此文书吗？签收后将更新案件状态。')) {
+      showNotification('文书签收成功，案件已归档', 'success');
+      setTimeout(function() { showNotification('案件 ' + caseNo + ' 已结案', 'info'); }, 1500);
+      setTimeout(function() { showNotification('短信/站内信通知已发送', 'info'); }, 3000);
+      var card = btn.closest('.document-card');
+      if (card) {
+        card.style.opacity = '0.5';
+        var actions = card.querySelector('.document-actions');
+        if (actions) actions.innerHTML = '<span class="badge badge-success">已签收</span>';
+      }
+    }
+  }
+
   // 渲染案件操作按钮（根据状态显示不同操作）
   function renderCaseActions() {
-    document.querySelectorAll('#module-cases .table tbody tr').forEach(function(row) {
+    document.querySelectorAll('#case-list-body-dash tr').forEach(function(row) {
       var statusEl = row.querySelector('.badge');
       if (!statusEl) return;
       var status = statusEl.textContent.trim();
@@ -1535,9 +1627,9 @@
       } else if (status === '调解中') {
         actions += ' <button class="btn btn-primary btn-sm" onclick="showMediationApply(\'' + caseNo + '\')">申请调解</button>';
         actions += ' <button class="btn btn-secondary btn-sm" onclick="showSupplementMaterial(\'' + caseNo + '\')">补充材料</button>';
-      } else if (status === '已结案') {
-        actions += ' <button class="btn btn-primary btn-sm" onclick="switchModule(\'documents\')">查看文书</button>';
       }
+
+      actions += ' <button class="btn btn-secondary btn-sm" onclick="showCaseDocuments(\'' + caseNo + '\')">查看文书</button>';
 
       actionCell.innerHTML = actions;
     });
