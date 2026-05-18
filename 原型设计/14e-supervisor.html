@@ -795,8 +795,8 @@
       <div class="tab-item active" data-tab="dashboard">我的工作台</div>
       <div class="tab-item" data-tab="project">项目监管</div>
       <div class="tab-item" data-tab="warning">欠薪预警</div>
-      <div class="tab-item" data-tab="efficiency">效能统计</div>
-      <div class="tab-item" data-tab="reports">报表中心</div>
+
+
     </div>
 
     <main class="main-content">
@@ -881,7 +881,6 @@
         <div class="project-table-section">
           <div class="section-header-bar">
             <h2 class="section-title">各级仲裁机构效能排行</h2>
-            <button class="btn btn-primary btn-sm" onclick="showTab('efficiency')">查看全部</button>
           </div>
           <div class="table-wrapper">
             <table class="project-table">
@@ -950,19 +949,18 @@
           </div>
           <div class="filter-container">
             <div class="filter-group">
-              <select class="form-select filter-select">
+              <select class="form-select filter-select" onchange="filterProjects()">
                 <option>全部区域</option>
                 <option>主城区</option>
                 <option>高新区</option>
                 <option>开发区</option>
               </select>
-              <select class="form-select filter-select">
+              <select class="form-select filter-select" onchange="filterProjects()">
                 <option>全部状态</option>
                 <option>正常</option>
                 <option>中风险</option>
                 <option>高风险</option>
               </select>
-              <button class="btn btn-primary btn-sm filter-btn" onclick="showFilterPanel()">筛选</button>
             </div>
           </div>
           <div class="table-wrapper">
@@ -1202,196 +1200,6 @@
         </div>
       </div>
 
-      <!-- 效能统计 -->
-      <div class="module-section" id="tab-efficiency">
-        <div class="stats-charts">
-          <div class="chart-card">
-            <div class="chart-header">
-              <div class="chart-title">月度案件办结趋势</div>
-              <div class="chart-legend">
-                <div class="chart-legend-item">
-                  <span style="width: 12px; height: 12px; background: var(--primary); border-radius: 4px; display: inline-block;"></span>
-                  <span>办结数</span>
-                </div>
-              </div>
-            </div>
-            <div class="chart-bar">
-              <div class="bar-item" style="height: 60%;"><div class="bar-value">120</div><div class="bar-label">1月</div></div>
-              <div class="bar-item" style="height: 75%;"><div class="bar-value">150</div><div class="bar-label">2月</div></div>
-              <div class="bar-item" style="height: 55%;"><div class="bar-value">110</div><div class="bar-label">3月</div></div>
-              <div class="bar-item" style="height: 85%;"><div class="bar-value">170</div><div class="bar-label">4月</div></div>
-              <div class="bar-item" style="height: 95%;"><div class="bar-value">190</div><div class="bar-label">5月</div></div>
-            </div>
-          </div>
-
-          <div class="chart-card">
-            <div class="chart-header">
-              <div class="chart-title">案件类型分布</div>
-            </div>
-            <div class="pie-chart-container">
-              <div class="pie-chart">
-                <div class="pie-center">
-                  <div class="percent">100%</div>
-                  <div class="label">总计</div>
-                </div>
-              </div>
-              <div class="pie-legend">
-                <div class="pie-legend-item">
-                  <span class="pie-color" style="background: #1677ff;"></span>
-                  <span>劳动争议</span>
-                  <span style="font-weight: 600; margin-left: auto;">40%</span>
-                </div>
-                <div class="pie-legend-item">
-                  <span class="pie-color" style="background: #52c41a;"></span>
-                  <span>工伤赔偿</span>
-                  <span style="font-weight: 600; margin-left: auto;">30%</span>
-                </div>
-                <div class="pie-legend-item">
-                  <span class="pie-color" style="background: #faad14;"></span>
-                  <span>工资拖欠</span>
-                  <span style="font-weight: 600; margin-left: auto;">20%</span>
-                </div>
-                <div class="pie-legend-item">
-                  <span class="pie-color" style="background: #ff4d4f;"></span>
-                  <span>其他</span>
-                  <span style="font-weight: 600; margin-left: auto;">10%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-table-section">
-          <div class="section-header-bar">
-            <h2 class="section-title">各级仲裁机构效能排行</h2>
-          </div>
-          <div class="table-wrapper">
-            <table class="project-table">
-              <thead>
-                <tr>
-                  <th>排名</th>
-                  <th>机构名称</th>
-                  <th>办结率</th>
-                  <th>本月办结</th>
-                  <th>云庭审使用率</th>
-                  <th>调解成功率</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span style="font-weight: 700; color: #1677ff;">1</span></td>
-                  <td class="project-name">市仲裁委</td>
-                  <td>98%</td>
-                  <td>156件</td>
-                  <td>85%</td>
-                  <td>78%</td>
-                </tr>
-                <tr>
-                  <td><span style="font-weight: 700; color: #52c41a;">2</span></td>
-                  <td class="project-name">高新区仲裁院</td>
-                  <td>95%</td>
-                  <td>89件</td>
-                  <td>78%</td>
-                  <td>72%</td>
-                </tr>
-                <tr>
-                  <td><span style="font-weight: 700; color: #faad14;">3</span></td>
-                  <td class="project-name">经开区仲裁院</td>
-                  <td>92%</td>
-                  <td>76件</td>
-                  <td>72%</td>
-                  <td>68%</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td class="project-name">城东区仲裁院</td>
-                  <td>88%</td>
-                  <td>65件</td>
-                  <td>65%</td>
-                  <td>65%</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td class="project-name">城西区仲裁院</td>
-                  <td>85%</td>
-                  <td>58件</td>
-                  <td>60%</td>
-                  <td>62%</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- 报表中心 -->
-      <div class="module-section" id="tab-reports">
-        <div class="report-section">
-          <div class="section-header-bar">
-            <h2 class="section-title">报表查询</h2>
-          </div>
-          <div class="filter-container">
-            <div class="filter-group">
-              <select class="form-select filter-select">
-                <option>本月</option>
-                <option>上月</option>
-                <option>本季度</option>
-                <option>本年度</option>
-              </select>
-              <select class="form-select filter-select">
-                <option>全部区域</option>
-                <option>主城区</option>
-                <option>高新区</option>
-              </select>
-              <select class="form-select filter-select">
-                <option>全部格式</option>
-                <option>Excel</option>
-                <option>PDF</option>
-              </select>
-              <button class="btn btn-primary btn-sm filter-btn" onclick="showReportConfig()">生成报表</button>
-            </div>
-          </div>
-
-          <div class="report-card-grid">
-            <div class="report-card" onclick="generateReport('monthly')">
-              <div class="report-icon">📊</div>
-              <div class="report-title">月度监管报表</div>
-              <div class="report-desc">包含项目监管、预警分析、案件统计等</div>
-              <div class="report-date">最近更新：2026-05-11</div>
-            </div>
-            <div class="report-card" onclick="generateReport('warning')">
-              <div class="report-icon">🔴</div>
-              <div class="report-title">欠薪预警报表</div>
-              <div class="report-desc">包含预警趋势、风险分析、处理情况</div>
-              <div class="report-date">最近更新：2026-05-11</div>
-            </div>
-            <div class="report-card" onclick="generateReport('efficiency')">
-              <div class="report-icon">⚡</div>
-              <div class="report-title">效能分析报表</div>
-              <div class="report-desc">包含办结率、云庭审使用、调解成功率</div>
-              <div class="report-date">最近更新：2026-05-10</div>
-            </div>
-            <div class="report-card" onclick="generateReport('cases')">
-              <div class="report-icon">📋</div>
-              <div class="report-title">案件统计报表</div>
-              <div class="report-desc">包含案件类型分布、审理进度、结案情况</div>
-              <div class="report-date">最近更新：2026-05-11</div>
-            </div>
-            <div class="report-card" onclick="generateReport('wage')">
-              <div class="report-icon">💰</div>
-              <div class="report-title">工资发放报表</div>
-              <div class="report-desc">包含工资发放率、专户资金、发放记录</div>
-              <div class="report-date">最近更新：2026-05-10</div>
-            </div>
-            <div class="report-card" onclick="generateReport('custom')">
-              <div class="report-icon">⚙️</div>
-              <div class="report-title">自定义报表</div>
-              <div class="report-desc">根据自定义条件生成报表</div>
-              <div class="report-date">-</div>
-            </div>
-          </div>
-        </div>
-      </div>
     </main>
   </div>
 
@@ -1421,6 +1229,13 @@
         document.getElementById('tab-' + tabId).style.display = 'block';
       });
     });
+
+    function filterProjects() {
+      showNotification('正在筛选项目...', 'info');
+      setTimeout(() => {
+        showNotification('筛选完成', 'success');
+      }, 500);
+    }
 
     function showTab(tabId) {
       document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
