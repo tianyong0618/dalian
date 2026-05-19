@@ -25,17 +25,20 @@
         <div class="col-3"><div class="stat-card" style="padding:20px 16px;"><div class="number" style="font-size:32px;">6</div><div class="label">本月举办活动</div></div></div>
       </div>
 
-      <!-- AI智能撮合 -->
+      <!-- 撮合工作台 -->
     <div class="card mb-24 p-24">
-      <h3 class="mb-16">AI智能撮合</h3>
+      <h3 class="mb-16">
+        <i class="fas fa-handshake" style="color:var(--primary);margin-right:8px;"></i>撮合工作台
+      </h3>
+      <p class="text-small mb-16" style="color:var(--text-secondary);">三步完成供需对接：采集需求 → 智能匹配 → 对接跟踪</p>
       <div class="row">
         <div class="col-4">
           <div class="feature-card" onclick="showModal('demand-analysis-modal')">
             <div class="card-header">
-              <div class="icon">📊</div>
+              <div class="icon">📋</div>
               <div class="card-content">
-                <h4>需求采集分析</h4>
-                <p class="text-small">构建企业需求画像与机构供给画像，多维度解析匹配要点</p>
+                <h4>需求采集</h4>
+                <p class="text-small">录入企业用工需求，构建需求画像</p>
               </div>
             </div>
           </div>
@@ -45,8 +48,8 @@
             <div class="card-header">
               <div class="icon">🎯</div>
               <div class="card-content">
-                <h4>智能匹配推送</h4>
-                <p class="text-small">标注匹配度评分与理由，向双方推送适配对象</p>
+                <h4>智能匹配</h4>
+                <p class="text-small">匹配服务机构，查看匹配度评分</p>
               </div>
             </div>
           </div>
@@ -54,17 +57,17 @@
         <div class="col-4">
           <div class="feature-card" onclick="showModal('talent-search-modal')">
             <div class="card-header">
-              <div class="icon">🔎</div>
+              <div class="icon">👥</div>
               <div class="card-content">
-                <h4>人才库检索</h4>
-                <p class="text-small">统一人才库，关键词筛选，AI智能推荐</p>
+                <h4>人才检索</h4>
+                <p class="text-small">查询人才库，筛选候选人</p>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="mt-24 text-center">
-        <button class="btn btn-primary" onclick="showModal('match-demand-modal')">发起智能撮合</button>
+        <button class="btn btn-primary" onclick="showModal('match-demand-modal')"><i class="fas fa-plus-circle mr-4"></i>发起撮合</button>
       </div>
     </div>
 
@@ -152,30 +155,11 @@
       </div>
     </div>
 
-    <!-- 本月撮合概览 -->
+    <!-- 撮合动态 -->
     <div class="card p-24 mt-24">
-      <h3 class="mb-16">本月撮合概览</h3>
-      <div class="row mb-24">
-        <div class="col-4">
-          <div class="stat-card" style="text-align:center;padding:20px;">
-            <div style="font-size:32px;font-weight:700;color:var(--primary,#6366f1);">156</div>
-            <div style="font-size:14px;color:var(--text-secondary,#888);margin-top:4px;">撮合成功 <span style="color:var(--text-primary);">对</span></div>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="stat-card" style="text-align:center;padding:20px;">
-            <div style="font-size:32px;font-weight:700;color:#f59e0b;">23</div>
-            <div style="font-size:14px;color:var(--text-secondary,#888);margin-top:4px;">对接中 <span style="color:var(--text-primary);">对</span></div>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="stat-card" style="text-align:center;padding:20px;">
-            <div style="font-size:32px;font-weight:700;color:#10b981;">87%</div>
-            <div style="font-size:14px;color:var(--text-secondary,#888);margin-top:4px;">匹配成功率</div>
-          </div>
-        </div>
-      </div>
-      <h4 class="mb-12">最近匹配成功</h4>
+      <h3 class="mb-16">
+        <i class="fas fa-chart-line" style="color:var(--primary);margin-right:8px;"></i>撮合动态
+      </h3>
       <table class="table">
         <thead>
           <tr>
@@ -184,6 +168,7 @@
             <th>对接岗位</th>
             <th>匹配人数</th>
             <th>完成时间</th>
+            <th>状态</th>
           </tr>
         </thead>
         <tbody>
@@ -193,6 +178,7 @@
             <td>Java开发工程师</td>
             <td>5人</td>
             <td>2026-05-14</td>
+            <td><span class="badge badge-success">已成功</span></td>
           </tr>
           <tr>
             <td>XX制造集团</td>
@@ -200,6 +186,7 @@
             <td>技术工人</td>
             <td>20人</td>
             <td>2026-05-13</td>
+            <td><span class="badge badge-success">已成功</span></td>
           </tr>
           <tr>
             <td>XX互联网公司</td>
@@ -207,14 +194,17 @@
             <td>产品经理</td>
             <td>3人</td>
             <td>2026-05-12</td>
+            <td><span class="badge badge-info">对接中</span></td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- 撮合记录 -->
+    <!-- 对接列表 -->
     <div class="card p-24 mt-24">
-      <h3 class="mb-16">撮合记录</h3>
+      <h3 class="mb-16">
+        <i class="fas fa-list" style="color:var(--primary);margin-right:8px;"></i>对接列表
+      </h3>
       <table class="table">
         <thead>
           <tr>
@@ -230,13 +220,7 @@
             <td>XX人力资源有限公司</td>
             <td><span class="badge badge-info">对接中</span></td>
             <td>
-              <button class="btn btn-secondary btn-sm mr-8" onclick="showModal('track-modal')"><i class="fas fa-eye"></i> 查看</button>
-              <div class="action-dropdown">
-                <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i> </button>
-                <div class="action-menu">
-                  <a onclick="showModal('track-modal')"><i class="fas fa-chart-line"></i>跟踪进度</a>
-                </div>
-              </div>
+              <button class="btn btn-secondary btn-sm" onclick="showModal('track-modal')"><i class="fas fa-eye"></i> 跟踪</button>
             </td>
           </tr>
           <tr>
@@ -244,13 +228,7 @@
             <td>XX劳务派遣公司</td>
             <td><span class="badge badge-success">已对接</span></td>
             <td>
-              <button class="btn btn-secondary btn-sm mr-8" onclick="showModal('track-modal')"><i class="fas fa-eye"></i> 查看</button>
-              <div class="action-dropdown">
-                <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i> </button>
-                <div class="action-menu">
-                  <a onclick="showModal('track-modal')"><i class="fas fa-chart-line"></i>跟踪进度</a>
-                </div>
-              </div>
+              <button class="btn btn-secondary btn-sm" onclick="showModal('track-modal')"><i class="fas fa-eye"></i> 跟踪</button>
             </td>
           </tr>
           <tr>
@@ -258,13 +236,7 @@
             <td>XX人才服务集团</td>
             <td><span class="badge badge-primary">已成功</span></td>
             <td>
-              <button class="btn btn-secondary btn-sm mr-8" onclick="showModal('track-modal')"><i class="fas fa-eye"></i> 查看</button>
-              <div class="action-dropdown">
-                <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i> </button>
-                <div class="action-menu">
-                  <a onclick="showModal('track-modal')"><i class="fas fa-chart-line"></i>跟踪进度</a>
-                </div>
-              </div>
+              <button class="btn btn-secondary btn-sm" onclick="showModal('track-modal')"><i class="fas fa-eye"></i> 跟踪</button>
             </td>
           </tr>
           <tr>
@@ -272,13 +244,7 @@
             <td>XX人力服务集团</td>
             <td><span class="badge badge-info">对接中</span></td>
             <td>
-              <button class="btn btn-secondary btn-sm mr-8" onclick="showModal('track-modal')"><i class="fas fa-eye"></i> 查看</button>
-              <div class="action-dropdown">
-                <button class="action-btn" onclick="toggleActionMenu(this)"><i class="fas fa-ellipsis-v"></i> </button>
-                <div class="action-menu">
-                  <a onclick="showModal('track-modal')"><i class="fas fa-chart-line"></i>跟踪进度</a>
-                </div>
-              </div>
+              <button class="btn btn-secondary btn-sm" onclick="showModal('track-modal')"><i class="fas fa-eye"></i> 跟踪</button>
             </td>
           </tr>
       </tbody>
