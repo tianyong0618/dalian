@@ -16,6 +16,14 @@
 <div class="page-content">
   <div class="container">
 
+    <div class="role-gov">
+    <div class="row mb-16">
+      <div class="col-3"><div class="stat-card" style="padding:20px 16px;"><div class="number" style="font-size:32px;">45</div><div class="label">累计争议数</div></div></div>
+      <div class="col-3"><div class="stat-card" style="padding:20px 16px;"><div class="number" style="font-size:32px;">38</div><div class="label">已调解完成</div></div></div>
+      <div class="col-3"><div class="stat-card" style="padding:20px 16px;"><div class="number" style="font-size:32px;">84.4%</div><div class="label">调解成功率</div></div></div>
+      <div class="col-3"><div class="stat-card stat-warning" style="padding:20px 16px;"><div class="number" style="font-size:32px;">3</div><div class="label">待处理争议</div></div></div>
+    </div>
+
     <!-- 争议案件列表 -->
     <div class="card p-24 mt-24">
       <h3 class="mb-16">争议案件列表</h3>
@@ -115,6 +123,80 @@
         </table>
       </div>
     </div>
+</div>
+
+<div class="role-org" style="display:none;">
+  <div class="card p-24">
+    <h4 class="mb-16">争议处理</h4>
+    <table class="table">
+      <thead><tr><th>争议编号</th><th>对方名称</th><th>争议类型</th><th>申请时间</th><th>处理状态</th><th>操作</th></tr></thead>
+      <tbody>
+        <tr><td><span style="font-family:monospace;">TJ-20260514002</span></td><td>XX科技有限公司</td><td>服务质量争议</td><td>2026-05-14</td><td><span class="badge badge-warning">调解中</span></td><td><button class="btn btn-secondary btn-sm mr-8">查看</button><button class="btn btn-primary btn-sm" onclick="showModal('org-evidence-modal')">提交证据</button></td></tr>
+        <tr><td><span style="font-family:monospace;">TJ-20260420001</span></td><td>XX贸易公司</td><td>费用纠纷</td><td>2026-04-20</td><td><span class="badge badge-info">待受理</span></td><td><button class="btn btn-secondary btn-sm mr-8">查看</button><button class="btn btn-primary btn-sm" onclick="showModal('org-evidence-modal')">提交证据</button></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div id="org-evidence-modal" class="modal-overlay">
+  <div class="modal" style="max-width:500px;">
+    <div class="modal-header"><h3>提交证据材料</h3><button class="modal-close" onclick="closeModal('org-evidence-modal')">×</button></div>
+    <div class="modal-body">
+      <div class="form-group"><label class="form-label">证据说明</label><textarea class="form-textarea" rows="3" placeholder="请描述证据内容..."></textarea></div>
+      <div class="form-group"><label class="form-label">上传文件</label><div class="upload-area" onclick="this.querySelector('input').click()" style="padding:20px;"><i class="fas fa-cloud-upload-alt" style="font-size:32px;color:var(--primary);"></i><p class="text-small mt-8">点击上传证据文件（图片/PDF）</p><input type="file" style="display:none;" accept="image/*,.pdf" multiple></div></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('org-evidence-modal')">取消</button>
+      <button class="btn btn-primary" onclick="closeModal('org-evidence-modal');showNotification('证据已提交', 'success')">提交</button>
+    </div>
+  </div>
+</div>
+
+<div class="role-enterprise" style="display:none;">
+  <!-- 服务评价 -->
+  <div class="card mb-24 p-24">
+    <h4 class="mb-16">服务评价</h4>
+    <div class="row">
+      <div class="col-6"><div class="form-group"><label class="form-label">相关订单</label><select class="form-select"><option>ORD-20260501 - 劳务派遣服务</option><option>ORD-20260503 - 招聘外包服务</option></select></div></div>
+      <div class="col-6">
+        <div class="form-group"><label class="form-label">综合评分</label>
+          <div class="star-selector" style="display:flex;gap:4px;">
+            <span class="star" onclick="setRating(this,1)" style="font-size:24px;color:#d1d5db;cursor:pointer;">☆</span>
+            <span class="star" onclick="setRating(this,2)" style="font-size:24px;color:#d1d5db;cursor:pointer;">☆</span>
+            <span class="star" onclick="setRating(this,3)" style="font-size:24px;color:#d1d5db;cursor:pointer;">☆</span>
+            <span class="star" onclick="setRating(this,4)" style="font-size:24px;color:#d1d5db;cursor:pointer;">☆</span>
+            <span class="star" onclick="setRating(this,5)" style="font-size:24px;color:#d1d5db;cursor:pointer;">☆</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group"><label class="form-label">评价内容</label><textarea class="form-textarea" rows="3" placeholder="请分享您的服务体验..."></textarea></div>
+    <div style="text-align:right;"><button class="btn btn-primary" onclick="showNotification('评价已提交', 'success')">提交评价</button></div>
+  </div>
+
+  <!-- 争议申请 -->
+  <div class="card mb-24 p-24">
+    <h4 class="mb-16">争议申请</h4>
+    <div class="row">
+      <div class="col-6"><div class="form-group"><label class="form-label">相关订单</label><select class="form-select"><option>ORD-20260501 - 劳务派遣服务</option><option>ORD-20260503 - 招聘外包服务</option></select></div></div>
+      <div class="col-6"><div class="form-group"><label class="form-label">争议类型</label><select class="form-select"><option>费用纠纷</option><option>服务质量争议</option><option>合同违约</option><option>其他</option></select></div></div>
+    </div>
+    <div class="form-group"><label class="form-label">争议描述</label><textarea class="form-textarea" rows="3" placeholder="请详细描述争议情况..."></textarea></div>
+    <div class="form-group"><label class="form-label">证据上传</label><div class="upload-area" onclick="this.querySelector('input').click()" style="padding:20px;"><i class="fas fa-cloud-upload-alt" style="font-size:32px;color:var(--primary);"></i><p class="text-small mt-8">点击上传证据材料</p><input type="file" style="display:none;" accept="image/*,.pdf" multiple></div></div>
+    <div style="text-align:right;"><button class="btn btn-primary" onclick="showNotification('争议申请已提交，等待受理', 'success')">提交申请</button></div>
+  </div>
+
+  <!-- 争议进度查询 -->
+  <div class="card p-24">
+    <h4 class="mb-16">争议进度查询</h4>
+    <table class="table">
+      <thead><tr><th>争议编号</th><th>被申请方</th><th>争议类型</th><th>申请时间</th><th>处理状态</th><th>操作</th></tr></thead>
+      <tbody>
+        <tr><td><span style="font-family:monospace;">TJ-20260514002</span></td><td>XX人力资源有限公司</td><td>服务质量争议</td><td>2026-05-14</td><td><span class="badge badge-warning">调解中</span></td><td><button class="btn btn-secondary btn-sm">查看进度</button></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
   </div>
 </div>
@@ -745,6 +827,36 @@
     });
     showNotification('搜索完成', 'info');
   }
+let currentPageRole = 'gov';
+
+window.addEventListener('message', function(event) {
+  if (event.data.type === 'ROLE_CHANGE') {
+    currentPageRole = event.data.role;
+    updateRoleDisplay();
+  }
+});
+
+function updateRoleDisplay() {
+  document.querySelectorAll('.role-gov').forEach(el => { el.style.display = currentPageRole === 'gov' ? '' : 'none'; });
+  document.querySelectorAll('.role-org').forEach(el => { el.style.display = currentPageRole === 'org' ? '' : 'none'; });
+  document.querySelectorAll('.role-enterprise').forEach(el => { el.style.display = currentPageRole === 'enterprise' ? '' : 'none'; });
+}
+
+let enterpriseRating = { overall: 0 };
+
+function setRating(el, value) {
+  enterpriseRating.overall = value;
+  const stars = el.parentElement.querySelectorAll('.star');
+  stars.forEach((s, i) => {
+    s.textContent = i < value ? '★' : '☆';
+    if (i < value) { s.style.color = '#fbbf24'; } else { s.style.color = '#d1d5db'; }
+  });
+}
+
+(function initRole() {
+  try { if (parent && parent.currentRole) { currentPageRole = parent.currentRole; } } catch(e) {}
+  updateRoleDisplay();
+})();
 </script>
 </body>
 </html>

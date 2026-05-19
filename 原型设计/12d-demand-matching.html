@@ -16,7 +16,16 @@
 <div class="page-content">
   <div class="container">
 
-    <!-- AI智能撮合 -->
+    <div class="role-gov">
+      <!-- 政府角色总览 -->
+      <div class="row mb-16">
+        <div class="col-3"><div class="stat-card" style="padding:20px 16px;"><div class="number" style="font-size:32px;">86</div><div class="label">企业需求总数</div></div></div>
+        <div class="col-3"><div class="stat-card" style="padding:20px 16px;"><div class="number" style="font-size:32px;">72</div><div class="label">成功匹配数</div></div></div>
+        <div class="col-3"><div class="stat-card" style="padding:20px 16px;"><div class="number" style="font-size:32px;">83.7%</div><div class="label">匹配成功率</div></div></div>
+        <div class="col-3"><div class="stat-card" style="padding:20px 16px;"><div class="number" style="font-size:32px;">6</div><div class="label">本月举办活动</div></div></div>
+      </div>
+
+      <!-- AI智能撮合 -->
     <div class="card mb-24 p-24">
       <h3 class="mb-16">AI智能撮合</h3>
       <div class="row">
@@ -272,8 +281,80 @@
               </div>
             </td>
           </tr>
-        </tbody>
-      </table>
+      </tbody>
+    </table>
+    </div>
+    </div>
+
+    <div class="role-org" style="display:none;">
+      <!-- 组织角色内容 -->
+      <div class="card mb-24 p-24">
+        <h4 class="mb-16">商机推荐</h4>
+        <p class="text-small mb-16">系统根据您的服务能力为您推荐以下企业需求</p>
+        <div class="row">
+          <div class="col-6">
+            <div class="card p-16" style="border-left:4px solid var(--primary);">
+              <div style="display:flex;justify-content:space-between;">
+                <div><strong>急需50名生产线工人</strong><br><span class="text-small">XX制造有限公司 · 2026-05-15</span></div>
+                <span class="badge badge-success">匹配度 92%</span>
+              </div>
+              <p class="text-small mt-8">需求类型：劳务派遣 | 人数：50人 | 到岗时间：2026-06-01</p>
+              <div class="mt-8"><button class="btn btn-primary btn-sm mr-8"><i class="fas fa-eye"></i> 查看详情</button><button class="btn btn-secondary btn-sm"><i class="fas fa-phone"></i> 立即联系</button></div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card p-16" style="border-left:4px solid var(--warning);">
+              <div style="display:flex;justify-content:space-between;">
+                <div><strong>招聘Java高级工程师5名</strong><br><span class="text-small">XX科技有限公司 · 2026-05-14</span></div>
+                <span class="badge badge-warning">匹配度 78%</span>
+              </div>
+              <p class="text-small mt-8">需求类型：招聘外包 | 人数：5人 | 到岗时间：2026-07-01</p>
+              <div class="mt-8"><button class="btn btn-primary btn-sm mr-8"><i class="fas fa-eye"></i> 查看详情</button><button class="btn btn-secondary btn-sm"><i class="fas fa-phone"></i> 立即联系</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-24">
+        <h4 class="mb-16">供需对接活动</h4>
+        <table class="table">
+          <thead><tr><th>活动名称</th><th>活动时间</th><th>活动地点</th><th>报名状态</th><th>操作</th></tr></thead>
+          <tbody>
+            <tr><td><strong>2026年6月人力资源供需对接会</strong></td><td>2026-06-15 14:00</td><td>大连市人力资源产业园</td><td><span class="badge badge-success">已报名</span></td><td><button class="btn btn-secondary btn-sm">取消报名</button></td></tr>
+            <tr><td><strong>制造业专场招聘对接会</strong></td><td>2026-07-01 09:00</td><td>大连国际会议中心</td><td><span class="badge badge-info">可报名</span></td><td><button class="btn btn-primary btn-sm">立即报名</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="role-enterprise" style="display:none;">
+      <!-- 企业角色内容 -->
+      <div class="card mb-24 p-24">
+        <h4 class="mb-16">发布用工需求</h4>
+        <div class="row">
+          <div class="col-6"><div class="form-group"><label class="form-label">需求标题</label><input type="text" class="form-input" placeholder="如：急需50名生产线工人"></div></div>
+          <div class="col-6"><div class="form-group"><label class="form-label">需求类型</label><select class="form-select"><option>劳务派遣</option><option>招聘外包</option><option>人力资源外包</option><option>猎头服务</option><option>政策咨询</option></select></div></div>
+        </div>
+        <div class="form-group"><label class="form-label">需求描述</label><textarea class="form-textarea" rows="3" placeholder="请详细描述您的用工需求..."></textarea></div>
+        <div class="row">
+          <div class="col-4"><div class="form-group"><label class="form-label">招聘人数</label><input type="number" class="form-input" placeholder="0"></div></div>
+          <div class="col-4"><div class="form-group"><label class="form-label">薪资范围</label><select class="form-select"><option>面议</option><option>3K-5K</option><option>5K-8K</option><option>8K-15K</option><option>15K以上</option></select></div></div>
+          <div class="col-4"><div class="form-group"><label class="form-label">到岗时间</label><input type="date" class="form-input"></div></div>
+        </div>
+        <div class="form-group"><label class="form-label">联系方式</label><input type="text" class="form-input" placeholder="联系人姓名+电话"></div>
+        <div style="text-align:right;"><button class="btn btn-primary" onclick="showNotification('需求已发布，系统正在匹配机构', 'success')">发布需求</button></div>
+      </div>
+
+      <div class="card p-24">
+        <h4 class="mb-16">我的需求</h4>
+        <table class="table">
+          <thead><tr><th>需求标题</th><th>发布时间</th><th>匹配机构</th><th>状态</th><th>操作</th></tr></thead>
+          <tbody>
+            <tr><td><strong>急需50名生产线工人</strong></td><td>2026-05-15</td><td>3家</td><td><span class="badge badge-success">匹配中</span></td><td><button class="btn btn-primary btn-sm mr-8">查看匹配</button><button class="btn btn-secondary btn-sm">编辑</button></td></tr>
+            <tr><td><strong>招聘Java高级工程师</strong></td><td>2026-05-10</td><td>2家</td><td><span class="badge badge-info">待发布</span></td><td><button class="btn btn-primary btn-sm mr-8">编辑</button><button class="btn btn-danger btn-sm">删除</button></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
   </div>
@@ -957,6 +1038,27 @@
       document.body.style.overflow = '';
     }
   });
+
+  // Role switching
+  var currentPageRole = 'gov';
+
+  window.addEventListener('message', function(event) {
+    if (event.data.type === 'ROLE_CHANGE') {
+      currentPageRole = event.data.role;
+      updateRoleDisplay();
+    }
+  });
+
+  function updateRoleDisplay() {
+    document.querySelectorAll('.role-gov').forEach(function(el) { el.style.display = currentPageRole === 'gov' ? '' : 'none'; });
+    document.querySelectorAll('.role-org').forEach(function(el) { el.style.display = currentPageRole === 'org' ? '' : 'none'; });
+    document.querySelectorAll('.role-enterprise').forEach(function(el) { el.style.display = currentPageRole === 'enterprise' ? '' : 'none'; });
+  }
+
+  (function initRole() {
+    try { if (parent && parent.currentRole) { currentPageRole = parent.currentRole; } } catch(e) {}
+    updateRoleDisplay();
+  })();
 </script>
 </body>
 </html>

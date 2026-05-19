@@ -17,6 +17,7 @@
   <div class="container">
 
     <!-- 机构管理 -->
+    <div class="role-gov">
     <div class="card mb-24 p-24">
       <h3 class="mb-16">机构管理</h3>
       <div class="row mb-16">
@@ -169,7 +170,107 @@
         </tbody>
       </table>
     </div>
+    </div>
 
+  </div>
+</div>
+
+<!-- 机构端：机构信息管理 -->
+<div class="role-org" style="display:none;">
+  <div class="card mb-24 p-24">
+    <h3 class="mb-16">机构信息管理</h3>
+    <div class="row mb-24">
+      <div class="col-6">
+        <div class="form-group">
+          <label class="form-label">机构名称</label>
+          <input type="text" class="form-input" value="XX人力资源有限公司" readonly>
+        </div>
+        <div class="form-group">
+          <label class="form-label">统一社会信用代码</label>
+          <input type="text" class="form-input" value="91320000XXXXXXXXXX" readonly>
+        </div>
+        <div class="form-group">
+          <label class="form-label">许可证编号</label>
+          <input type="text" class="form-input" value="HR-LIC-2026-0001" readonly>
+        </div>
+        <div class="form-group">
+          <label class="form-label">法定代表人</label>
+          <input type="text" class="form-input" value="李四">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label class="form-label">机构地址</label>
+          <input type="text" class="form-input" value="大连市中山区XX路XX号">
+        </div>
+        <div class="form-group">
+          <label class="form-label">联系电话</label>
+          <input type="text" class="form-input" value="0411-XXXXXXXX">
+        </div>
+        <div class="form-group">
+          <label class="form-label">服务类型</label>
+          <input type="text" class="form-input" value="劳务派遣 / 招聘外包" readonly>
+        </div>
+        <div class="form-group">
+          <label class="form-label">机构邮箱</label>
+          <input type="text" class="form-input" value="contact@xxhr.com">
+        </div>
+      </div>
+    </div>
+    <div style="text-align: right;">
+      <button class="btn btn-primary" onclick="showNotification('信息已更新', 'success')">保存修改</button>
+    </div>
+  </div>
+
+  <div class="card mb-24 p-24">
+    <h3 class="mb-16">资质文件</h3>
+    <div class="row">
+      <div class="col-6">
+        <div class="card p-16" style="text-align: center;">
+          <i class="fas fa-file-alt" style="font-size: 48px; color: var(--primary);"></i>
+          <p class="mt-8"><strong>营业执照</strong></p>
+          <p class="text-small">已上传 · 2026-01-15</p>
+          <button class="btn btn-sm btn-secondary mt-8"><i class="fas fa-upload"></i> 重新上传</button>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card p-16" style="text-align: center;">
+          <i class="fas fa-id-card" style="font-size: 48px; color: var(--primary);"></i>
+          <p class="mt-8"><strong>人力资源服务许可证</strong></p>
+          <p class="text-small">已上传 · 2026-01-15</p>
+          <button class="btn btn-sm btn-secondary mt-8"><i class="fas fa-upload"></i> 重新上传</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-24 p-24">
+    <h3 class="mb-16">店铺信息设置</h3>
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <label class="form-label">店铺Logo</label>
+          <div class="upload-area" style="padding: 20px;" onclick="document.getElementById('logo-upload').click()">
+            <i class="fas fa-cloud-upload-alt" style="font-size: 32px; color: var(--primary);"></i>
+            <p class="text-small mt-8">点击上传Logo</p>
+            <input type="file" id="logo-upload" style="display:none;" accept="image/*">
+          </div>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="form-group">
+          <label class="form-label">店铺简介</label>
+          <textarea class="form-textarea" rows="3">XX人力资源有限公司成立于2010年，是一家专业的人力资源服务机构，提供劳务派遣、招聘外包、培训服务等全方位人力资源解决方案。</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">店铺公告</label>
+          <textarea class="form-textarea" rows="2">欢迎来到XX人力资源旗舰店，我们将为您提供优质的人力资源服务!</textarea>
+        </div>
+      </div>
+    </div>
+    <div style="text-align: right;" class="mt-16">
+      <button class="btn btn-primary" onclick="showNotification('店铺信息已更新', 'success')">保存设置</button>
+    </div>
   </div>
 </div>
 
@@ -647,6 +748,37 @@
       alert(message);
     }
   }
+
+  // 角色切换
+  let currentPageRole = 'gov';
+
+  window.addEventListener('message', function(event) {
+    if (event.data.type === 'ROLE_CHANGE') {
+      currentPageRole = event.data.role;
+      updateRoleDisplay();
+    }
+  });
+
+  function updateRoleDisplay() {
+    document.querySelectorAll('.role-gov').forEach(el => {
+      el.style.display = currentPageRole === 'gov' ? '' : 'none';
+    });
+    document.querySelectorAll('.role-org').forEach(el => {
+      el.style.display = currentPageRole === 'org' ? '' : 'none';
+    });
+    document.querySelectorAll('.role-enterprise').forEach(el => {
+      el.style.display = currentPageRole === 'enterprise' ? '' : 'none';
+    });
+  }
+
+  (function initRole() {
+    try {
+      if (parent && parent.currentRole) {
+        currentPageRole = parent.currentRole;
+      }
+    } catch(e) {}
+    updateRoleDisplay();
+  })();
 </script>
 </body>
 </html>

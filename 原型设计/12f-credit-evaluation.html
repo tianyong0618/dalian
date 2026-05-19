@@ -16,6 +16,14 @@
 <div class="page-content">
   <div class="container">
 
+    <div class="role-gov">
+      <div class="row mb-16">
+        <div class="col-3"><div class="stat-card" style="padding:20px 16px;"><div class="number" style="font-size:32px;">8</div><div class="label">五星机构</div></div></div>
+        <div class="col-3"><div class="stat-card" style="padding:20px 16px;"><div class="number" style="font-size:32px;">12</div><div class="label">四星机构</div></div></div>
+        <div class="col-3"><div class="stat-card stat-warning" style="padding:20px 16px;"><div class="number" style="font-size:32px;">6</div><div class="label">三星及以下</div></div></div>
+        <div class="col-3"><div class="stat-card" style="padding:20px 16px;"><div class="number" style="font-size:32px;">5</div><div class="label">本月信用变更</div></div></div>
+      </div>
+
     <!-- 诚信评价体系 -->
     <div class="card mb-24 p-24">
       <h3 class="mb-16">诚信评价体系</h3>
@@ -235,6 +243,68 @@
         </tbody>
       </table>
     </div>
+
+    <!-- 机构信用列表 -->
+    <div class="card p-24 mt-24">
+      <h4 class="mb-16">机构信用列表</h4>
+      <div class="search-bar">
+        <input type="text" class="form-input" placeholder="搜索机构名称...">
+        <select class="form-select" style="width:auto;min-width:130px;"><option>全部星级</option><option>五星</option><option>四星</option><option>三星</option><option>二星</option><option>一星</option></select>
+      </div>
+      <table class="table">
+        <thead><tr><th>机构名称</th><th>信用评分</th><th>星级</th><th>上次评定时间</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr><td><strong>XX人力资源有限公司</strong></td><td><span style="color:var(--success);font-weight:600;">268</span></td><td><span class="star-rating">★★★★★</span></td><td>2026-04-01</td><td><button class="btn btn-secondary btn-sm mr-8">查看详情</button><button class="btn btn-primary btn-sm">调整星级</button></td></tr>
+          <tr><td><strong>XX人才服务集团</strong></td><td><span style="color:var(--success);font-weight:600;">245</span></td><td><span class="star-rating">★★★★★</span></td><td>2026-04-01</td><td><button class="btn btn-secondary btn-sm mr-8">查看详情</button><button class="btn btn-primary btn-sm">调整星级</button></td></tr>
+          <tr><td><strong>XX科技服务公司</strong></td><td><span style="color:var(--warning);font-weight:600;">195</span></td><td><span class="star-rating">★★★★☆</span></td><td>2026-04-01</td><td><button class="btn btn-secondary btn-sm mr-8">查看详情</button><button class="btn btn-primary btn-sm">调整星级</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="role-org" style="display:none;">
+    <div class="row mb-16">
+      <div class="col-6">
+        <div class="card p-24" style="text-align:center;">
+          <div class="number" style="font-size:52px;">268</div>
+          <div class="star-rating" style="font-size:28px;">★★★★★</div>
+          <p class="mt-8"><strong>五星级机构</strong></p>
+          <p class="text-small">较上次评定 ↑2分</p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card p-24" style="height:100%;">
+          <h4 class="mb-16">评分明细</h4>
+          <div class="mb-8" style="display:flex;justify-content:space-between;"><span>合规运营</span><span><strong>90</strong>/100</span></div>
+          <div class="progress-bar mb-8"><div class="progress-fill" style="width:90%;"></div></div>
+          <div class="mb-8" style="display:flex;justify-content:space-between;"><span>服务质量</span><span><strong>85</strong>/100</span></div>
+          <div class="progress-bar mb-8"><div class="progress-fill" style="width:85%;"></div></div>
+          <div class="mb-8" style="display:flex;justify-content:space-between;"><span>争议处理</span><span><strong>92</strong>/100</span></div>
+          <div class="progress-bar mb-8"><div class="progress-fill" style="width:92%;"></div></div>
+          <div style="display:flex;justify-content:space-between;"><span>稳就业贡献</span><span><strong>1</strong>/100（+1加分项）</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:1%;"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card p-24">
+      <h4 class="mb-16">客户评价</h4>
+      <div class="card p-16 mb-8" style="background:var(--bg-secondary);">
+        <div style="display:flex;justify-content:space-between;">
+          <div><strong>XX科技有限公司</strong> <span class="star-rating">★★★★★</span></div>
+          <span class="text-small">2026-05-10</span>
+        </div>
+        <p class="text-small mt-8">服务态度很好，响应迅速，推荐的专业人员非常符合我们的需求。</p>
+      </div>
+      <div class="card p-16" style="background:var(--bg-secondary);">
+        <div style="display:flex;justify-content:space-between;">
+          <div><strong>XX制造有限公司</strong> <span class="star-rating">★★★★☆</span></div>
+          <span class="text-small">2026-04-28</span>
+        </div>
+        <p class="text-small mt-8">整体服务不错，人员在岗稳定性高，建议增加更多培训支持。</p>
+      </div>
+    </div>
+  </div>
 
   </div>
 </div>
@@ -492,6 +562,26 @@
       document.body.style.overflow = '';
     }
   });
+
+  let currentPageRole = 'gov';
+
+  window.addEventListener('message', function(event) {
+    if (event.data.type === 'ROLE_CHANGE') {
+      currentPageRole = event.data.role;
+      updateRoleDisplay();
+    }
+  });
+
+  function updateRoleDisplay() {
+    document.querySelectorAll('.role-gov').forEach(function(el) { el.style.display = currentPageRole === 'gov' ? '' : 'none'; });
+    document.querySelectorAll('.role-org').forEach(function(el) { el.style.display = currentPageRole === 'org' ? '' : 'none'; });
+    document.querySelectorAll('.role-enterprise').forEach(function(el) { el.style.display = currentPageRole === 'enterprise' ? '' : 'none'; });
+  }
+
+  (function initRole() {
+    try { if (parent && parent.currentRole) { currentPageRole = parent.currentRole; } } catch(e) {}
+    updateRoleDisplay();
+  })();
 </script>
 </body>
 </html>

@@ -281,7 +281,7 @@
       <span class="tab-icon">⚖️</span>
       <span>争议调解</span>
     </button>
-    <button class="tab-btn" data-tab="credit" data-roles="gov" onclick="switchTab('credit')">
+    <button class="tab-btn" data-tab="credit" data-roles="gov org" onclick="switchTab('credit')">
       <span class="tab-icon">⭐</span>
       <span>诚信评价</span>
     </button>
@@ -421,6 +421,14 @@
         }
       }
     }
+
+    // 角色切换时通知子页面
+    setTimeout(() => {
+      sendMessageToFrame({
+        type: 'ROLE_CHANGE',
+        role: role
+      });
+    }, 200);
   }
 
   // 向 iframe 发送消息

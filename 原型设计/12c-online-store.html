@@ -16,6 +16,14 @@
 <div class="page-content">
 <div class="container">
 
+    <div class="role-gov">
+      <div class="row mb-16">
+        <div class="col-3"><div class="stat-card" style="padding:20px 16px;"><div class="number" style="font-size:32px;">28</div><div class="label">已开通网店机构</div></div></div>
+        <div class="col-3"><div class="stat-card" style="padding:20px 16px;"><div class="number" style="font-size:32px;">356</div><div class="label">上架服务产品总数</div></div></div>
+        <div class="col-3"><div class="stat-card" style="padding:20px 16px;"><div class="number" style="font-size:32px;">18</div><div class="label">本月新增服务</div></div></div>
+        <div class="col-3"><div class="stat-card stat-warning" style="padding:20px 16px;"><div class="number" style="font-size:32px;">5</div><div class="label">待审核服务</div></div></div>
+      </div>
+
     <!-- 网店列表 -->
     <div class="card p-24 mt-24">
       <h3 class="mb-16">网店列表</h3>
@@ -120,6 +128,134 @@
             </tr>
           </tbody>
       </table>
+    </div>
+
+    </div> <!-- /.role-gov -->
+
+    <div class="role-org" style="display:none;">
+      <div class="card mb-24 p-24">
+        <div style="display:flex; gap: 8px; margin-bottom: 16px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px;">
+          <button class="btn btn-primary btn-sm" onclick="switchOrgStoreTab('decoration')" id="org-store-tab-decoration">店铺装修</button>
+          <button class="btn btn-secondary btn-sm" onclick="switchOrgStoreTab('services')" id="org-store-tab-services">服务管理</button>
+          <button class="btn btn-secondary btn-sm" onclick="switchOrgStoreTab('orders')" id="org-store-tab-orders">订单管理</button>
+        </div>
+
+        <!-- 店铺装修 Tab -->
+        <div id="org-store-decoration" class="org-store-tab">
+          <h4 class="mb-16">店铺装修</h4>
+          <div class="form-group">
+            <label class="form-label">选择模板</label>
+            <div class="row">
+              <div class="col-4"><div class="card p-16" style="text-align:center; cursor:pointer; border: 2px solid var(--primary);"><i class="fas fa-store" style="font-size:36px;color:var(--primary);"></i><p class="mt-8"><strong>简约模板</strong></p><p class="text-small">当前使用</p></div></div>
+              <div class="col-4"><div class="card p-16" style="text-align:center; cursor:pointer;"><i class="fas fa-store-alt" style="font-size:36px;color:var(--text-secondary);"></i><p class="mt-8"><strong>专业模板</strong></p><p class="text-small">预览</p></div></div>
+              <div class="col-4"><div class="card p-16" style="text-align:center; cursor:pointer;"><i class="fas fa-store-slash" style="font-size:36px;color:var(--text-secondary);"></i><p class="mt-8"><strong>简洁模板</strong></p><p class="text-small">预览</p></div></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">轮播图设置</label>
+            <div class="upload-area" onclick="this.querySelector('input').click()" style="padding:20px;">
+              <i class="fas fa-images" style="font-size:32px;color:var(--primary);"></i>
+              <p class="text-small mt-8">点击上传轮播图（建议尺寸：1200×400px）</p>
+              <input type="file" style="display:none;" accept="image/*" multiple>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <button class="btn btn-secondary mr-8">预览</button>
+            <button class="btn btn-primary" onclick="showNotification('店铺已发布', 'success')">发布</button>
+          </div>
+        </div>
+
+        <!-- 服务管理 Tab -->
+        <div id="org-store-services" class="org-store-tab" style="display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <h4 style="margin:0;">服务管理</h4>
+            <button class="btn btn-primary btn-sm" onclick="showModal('org-service-add-modal')"><i class="fas fa-plus"></i> 新增服务</button>
+          </div>
+          <table class="table">
+            <thead><tr><th>服务名称</th><th>服务类型</th><th>价格</th><th>销量</th><th>状态</th><th>操作</th></tr></thead>
+            <tbody>
+              <tr><td><strong>劳务派遣服务</strong></td><td>劳务派遣</td><td>¥200/人/月</td><td>156</td><td><span class="badge badge-success">已上架</span></td><td><button class="btn btn-secondary btn-sm mr-8">编辑</button><button class="btn btn-warning btn-sm">下架</button></td></tr>
+              <tr><td><strong>招聘外包服务</strong></td><td>招聘外包</td><td>¥5000/人</td><td>89</td><td><span class="badge badge-success">已上架</span></td><td><button class="btn btn-secondary btn-sm mr-8">编辑</button><button class="btn btn-warning btn-sm">下架</button></td></tr>
+              <tr><td><strong>岗前培训课程</strong></td><td>培训服务</td><td>¥800/人</td><td>45</td><td><span class="badge badge-info">待审核</span></td><td><button class="btn btn-secondary btn-sm mr-8">编辑</button><button class="btn btn-danger btn-sm">删除</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 订单管理 Tab -->
+        <div id="org-store-orders" class="org-store-tab" style="display:none;">
+          <h4 class="mb-16">订单管理</h4>
+          <table class="table">
+            <thead><tr><th>订单编号</th><th>企业名称</th><th>服务项目</th><th>金额</th><th>状态</th><th>下单时间</th><th>操作</th></tr></thead>
+            <tbody>
+              <tr><td><span style="font-family:monospace;">ORD-20260501</span></td><td>XX科技有限公司</td><td>劳务派遣服务</td><td>¥20,000</td><td><span class="badge badge-success">进行中</span></td><td>2026-05-01</td><td><button class="btn btn-secondary btn-sm">查看</button></td></tr>
+              <tr><td><span style="font-family:monospace;">ORD-20260503</span></td><td>XX制造有限公司</td><td>招聘外包服务</td><td>¥15,000</td><td><span class="badge badge-warning">待确认</span></td><td>2026-05-03</td><td><button class="btn btn-secondary btn-sm mr-8">查看</button><button class="btn btn-primary btn-sm">确认</button></td></tr>
+              <tr><td><span style="font-family:monospace;">ORD-20260510</span></td><td>XX贸易公司</td><td>岗前培训课程</td><td>¥4,000</td><td><span class="badge badge-success">已完成</span></td><td>2026-05-10</td><td><button class="btn btn-secondary btn-sm">查看</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="role-enterprise" style="display:none;">
+      <div class="card p-24 mb-24">
+        <div class="search-bar">
+          <input type="text" class="form-input" placeholder="搜索服务名称、机构名称..." onkeyup="filterEnterpriseStoreList()">
+          <button class="btn btn-primary"><i class="fas fa-search"></i> 搜索</button>
+        </div>
+        <div class="filter-bar">
+          <select class="form-select" style="width:auto;min-width:130px;"><option>全部服务类型</option><option>劳务派遣</option><option>职业中介</option><option>人力资源外包</option><option>猎头服务</option><option>政策咨询</option></select>
+          <select class="form-select" style="width:auto;min-width:130px;"><option>全部地区</option><option>大连市</option><option>沈阳市</option></select>
+          <select class="form-select" style="width:auto;min-width:130px;"><option>综合排序</option><option>销量优先</option><option>评分优先</option><option>价格升序</option><option>价格降序</option></select>
+        </div>
+      </div>
+
+      <div class="card p-24 mb-24">
+        <h4 class="mb-16">⭐ 星级推荐</h4>
+        <div class="row">
+          <div class="col-4">
+            <div class="card p-16" style="cursor:pointer;" onclick="showModal('enterprise-service-detail-modal')">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+                <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;color:white;font-size:20px;"><i class="fas fa-building"></i></div>
+                <div><strong>XX人力资源有限公司</strong><br><span class="star-rating">★★★★★</span> <span class="text-small">4.9</span></div>
+              </div>
+              <p class="text-small">劳务派遣 / 招聘外包</p>
+              <div style="display:flex;justify-content:space-between;" class="mt-8"><span class="text-small">已服务 286 家企业</span><span class="badge badge-success">五星机构</span></div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card p-16" style="cursor:pointer;" onclick="showModal('enterprise-service-detail-modal')">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+                <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#8b5cf6,#ec4899);display:flex;align-items:center;justify-content:center;color:white;font-size:20px;"><i class="fas fa-crown"></i></div>
+                <div><strong>XX人才服务集团</strong><br><span class="star-rating">★★★★★</span> <span class="text-small">4.8</span></div>
+              </div>
+              <p class="text-small">高端猎头 / 培训服务</p>
+              <div style="display:flex;justify-content:space-between;" class="mt-8"><span class="text-small">已服务 198 家企业</span><span class="badge badge-success">五星机构</span></div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card p-16" style="cursor:pointer;" onclick="showModal('enterprise-service-detail-modal')">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+                <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#3b82f6,#6366f1);display:flex;align-items:center;justify-content:center;color:white;font-size:20px;"><i class="fas fa-star"></i></div>
+                <div><strong>XX科技服务公司</strong><br><span class="star-rating">★★★★☆</span> <span class="text-small">4.5</span></div>
+              </div>
+              <p class="text-small">人力资源外包 / 政策咨询</p>
+              <div style="display:flex;justify-content:space-between;" class="mt-8"><span class="text-small">已服务 127 家企业</span><span class="badge badge-warning">四星机构</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-24">
+        <h4 class="mb-16">🔥 热门服务</h4>
+        <table class="table">
+          <thead><tr><th>服务名称</th><th>机构</th><th>类型</th><th>价格</th><th>评分</th><th>操作</th></tr></thead>
+          <tbody>
+            <tr><td><strong>劳务派遣服务</strong></td><td>XX人力资源有限公司</td><td><span class="tag">劳务派遣</span></td><td>¥200/人/月</td><td><span class="star-rating">★★★★★</span> 4.9</td><td><button class="btn btn-primary btn-sm" onclick="showModal('enterprise-service-detail-modal')">立即购买</button></td></tr>
+            <tr><td><strong>招聘外包服务</strong></td><td>XX人力资源有限公司</td><td><span class="tag">招聘外包</span></td><td>¥5,000/人</td><td><span class="star-rating">★★★★★</span> 4.8</td><td><button class="btn btn-primary btn-sm" onclick="showModal('enterprise-service-detail-modal')">立即购买</button></td></tr>
+            <tr><td><strong>高端猎头服务</strong></td><td>XX人才服务集团</td><td><span class="tag">猎头服务</span></td><td>¥30,000/人</td><td><span class="star-rating">★★★★★</span> 4.9</td><td><button class="btn btn-primary btn-sm" onclick="showModal('enterprise-service-detail-modal')">立即购买</button></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
   </div>
@@ -368,6 +504,54 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('policy-chat-modal')">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 机构新增服务模态框 -->
+<div id="org-service-add-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header"><h3>发布新服务</h3><button class="modal-close" onclick="closeModal('org-service-add-modal')">×</button></div>
+    <div class="modal-body">
+      <div class="form-group"><label class="form-label">服务名称</label><input type="text" class="form-input" placeholder="请输入服务名称"></div>
+      <div class="form-group"><label class="form-label">服务类型</label><select class="form-select"><option>劳务派遣</option><option>招聘外包</option><option>培训服务</option><option>高端猎头</option><option>政策咨询</option></select></div>
+      <div class="row"><div class="col-6"><div class="form-group"><label class="form-label">价格</label><input type="text" class="form-input" placeholder="请输入价格"></div></div><div class="col-6"><div class="form-group"><label class="form-label">计价单位</label><select class="form-select"><option>元/人/月</option><option>元/次</option><option>元/人</option></select></div></div></div>
+      <div class="form-group"><label class="form-label">服务描述</label><textarea class="form-textarea" rows="4" placeholder="请描述服务内容、流程、适用对象等"></textarea></div>
+      <div class="form-group"><label class="form-label">服务流程</label><textarea class="form-textarea" rows="3" placeholder="描述服务流程步骤..."></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('org-service-add-modal')">取消</button>
+      <button class="btn btn-primary" onclick="closeModal('org-service-add-modal');showNotification('服务已提交审核', 'success')">提交审核</button>
+    </div>
+  </div>
+</div>
+
+<!-- 企业服务详情模态框 -->
+<div id="enterprise-service-detail-modal" class="modal-overlay">
+  <div class="modal" style="max-width:700px;">
+    <div class="modal-header"><h3>劳务派遣服务 - 详情</h3><button class="modal-close" onclick="closeModal('enterprise-service-detail-modal')">×</button></div>
+    <div class="modal-body">
+      <div class="row mb-24">
+        <div class="col-8">
+          <p><strong>提供机构：</strong>XX人力资源有限公司</p>
+          <p><strong>服务类型：</strong>劳务派遣</p>
+          <p><strong>价格：</strong><span style="font-size:24px;font-weight:700;color:var(--primary);">¥200</span> <span class="text-small">/人/月</span></p>
+          <p><strong>服务周期：</strong>最低6个月起签</p>
+        </div>
+        <div class="col-4" style="text-align:center;">
+          <div class="card p-16">
+            <div class="number" style="font-size:28px;">4.9</div>
+            <div class="star-rating">★★★★★</div>
+            <p class="text-small">156 人已购买</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group"><label class="form-label">服务描述</label><div class="card p-16" style="background:var(--bg-secondary);"><p class="text-small">提供全面的劳务派遣服务，包括：员工招聘、劳动合同管理、社保缴纳、工资发放、劳动关系管理等一站式劳务派遣解决方案。适用于各类企业用工需求，有效降低用工风险和管理成本。</p></div></div>
+      <div class="form-group"><label class="form-label">服务流程</label><div class="card p-16" style="background:var(--bg-secondary);"><p class="text-small">1. 在线下单 → 2. 需求沟通 → 3. 签订合同 → 4. 人员派遣 → 5. 日常管理 → 6. 服务完成</p></div></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('enterprise-service-detail-modal')">关闭</button>
+      <button class="btn btn-primary" onclick="closeModal('enterprise-service-detail-modal');showNotification('订单已提交，等待机构确认', 'success')">立即购买</button>
     </div>
   </div>
 </div>
@@ -666,6 +850,38 @@
       document.body.style.overflow = '';
     }
   });
+
+  /* ========== 角色切换 & 机构店铺Tab切换 ========== */
+  let currentPageRole = 'gov';
+
+  window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'ROLE_CHANGE') {
+      currentPageRole = event.data.role;
+      updateRoleDisplay();
+    }
+  });
+
+  function updateRoleDisplay() {
+    document.querySelectorAll('.role-gov').forEach(function(el) { el.style.display = currentPageRole === 'gov' ? '' : 'none'; });
+    document.querySelectorAll('.role-org').forEach(function(el) { el.style.display = currentPageRole === 'org' ? '' : 'none'; });
+    document.querySelectorAll('.role-enterprise').forEach(function(el) { el.style.display = currentPageRole === 'enterprise' ? '' : 'none'; });
+  }
+
+  function switchOrgStoreTab(tab) {
+    document.querySelectorAll('.org-store-tab').forEach(function(el) { el.style.display = 'none'; });
+    document.querySelectorAll('[id^="org-store-tab-"]').forEach(function(el) { el.className = 'btn btn-secondary btn-sm'; });
+    document.getElementById('org-store-' + tab).style.display = 'block';
+    document.getElementById('org-store-tab-' + tab).className = 'btn btn-primary btn-sm';
+  }
+
+  function filterEnterpriseStoreList() {
+    // Placeholder for enterprise store list filtering
+  }
+
+  (function initRole() {
+    try { if (parent && parent.currentRole) { currentPageRole = parent.currentRole; } } catch(e) {}
+    updateRoleDisplay();
+  })();
 </script>
 </body>
 </html>

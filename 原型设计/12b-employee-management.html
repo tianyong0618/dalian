@@ -17,6 +17,7 @@
   <div class="container">
 
     <!-- 从业人员列表 -->
+    <div class="role-gov">
       <div class="mt-24">
         <div class="search-bar">
           <input type="text" class="form-input" id="emp-search" placeholder="搜索从业人员姓名、身份证号、资质..." onkeyup="filterEmpList()">
@@ -272,6 +273,141 @@
           </tr>
         </tbody>
         </table>
+      </div><!-- /.mt-24 -->
+    </div><!-- /.role-gov -->
+
+    <!-- 机构端：从业人员管理 -->
+    <div class="role-org" style="display:none;">
+      <div class="row mb-16">
+        <div class="col-3">
+          <div class="stat-card" style="padding: 20px 16px;">
+            <div class="number" style="font-size: 32px;">32</div>
+            <div class="label">本机构备案人员</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="stat-card" style="padding: 20px 16px;">
+            <div class="number" style="font-size: 32px;">30</div>
+            <div class="label">资质有效人员</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="stat-card" style="padding: 20px 16px;">
+            <div class="number" style="font-size: 32px;">2</div>
+            <div class="label">本月新增</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="stat-card stat-warning" style="padding: 20px 16px;">
+            <div class="number" style="font-size: 32px;">1</div>
+            <div class="label">资质到期提醒</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-24">
+        <div class="search-bar">
+          <input type="text" class="form-input" placeholder="搜索本机构从业人员..." onkeyup="filterOrgEmpList()">
+          <button class="btn btn-primary" onclick="showModal('org-emp-add-modal')"><i class="fas fa-plus"></i> 新增人员</button>
+          <button class="btn btn-secondary" onclick="showNotification('备案已批量提交', 'success')"><i class="fas fa-check-double"></i> 批量提交备案</button>
+        </div>
+        <table class="table mt-16">
+          <thead>
+            <tr>
+              <th>姓名</th>
+              <th>身份证号</th>
+              <th>职业资格证书</th>
+              <th>证书有效期</th>
+              <th>备案状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>林小华</strong></td>
+              <td>430105********6789</td>
+              <td><span class="tag">网络工程师</span></td>
+              <td>2027-03-15</td>
+              <td><span class="badge badge-info">待审核</span></td>
+              <td>
+                <button class="btn btn-secondary btn-sm mr-8"><i class="fas fa-eye"></i> 查看</button>
+                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> 删除</button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>王小芳</strong></td>
+              <td>440305********2345</td>
+              <td><span class="tag">人力资源管理师</span></td>
+              <td>2028-06-20</td>
+              <td><span class="badge badge-success">已备案</span></td>
+              <td>
+                <button class="btn btn-secondary btn-sm mr-8"><i class="fas fa-eye"></i> 查看</button>
+                <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> 编辑</button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>张伟</strong></td>
+              <td>210203********5678</td>
+              <td><span class="tag">心理咨询师</span></td>
+              <td>2026-12-01</td>
+              <td><span class="badge badge-success">已备案</span></td>
+              <td>
+                <button class="btn btn-secondary btn-sm mr-8"><i class="fas fa-eye"></i> 查看</button>
+                <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> 编辑</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 机构端新增从业人员模态框 -->
+    <div id="org-emp-add-modal" class="modal-overlay">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>新增从业人员</h3>
+          <button class="modal-close" onclick="closeModal('org-emp-add-modal')">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label class="form-label">姓名</label>
+                <input type="text" class="form-input" placeholder="请输入姓名">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label class="form-label">性别</label>
+                <select class="form-select"><option>男</option><option>女</option></select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">身份证号</label>
+            <input type="text" class="form-input" placeholder="请输入身份证号">
+          </div>
+          <div class="form-group">
+            <label class="form-label">联系方式</label>
+            <input type="text" class="form-input" placeholder="请输入手机号码">
+          </div>
+          <div class="form-group">
+            <label class="form-label">职业资格证书</label>
+            <input type="text" class="form-input" placeholder="如：人力资源管理师、网络工程师">
+          </div>
+          <div class="form-group">
+            <label class="form-label">证书图片上传</label>
+            <div class="upload-area" onclick="this.querySelector('input').click()" style="padding:20px;">
+              <i class="fas fa-cloud-upload-alt" style="font-size: 32px; color: var(--primary);"></i>
+              <p class="text-small mt-8">点击上传资质证书</p>
+              <input type="file" style="display:none;" accept="image/*">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="closeModal('org-emp-add-modal')">取消</button>
+          <button class="btn btn-primary" onclick="closeModal('org-emp-add-modal'); showNotification('从业人员信息已提交备案', 'success')">提交备案</button>
+        </div>
       </div>
     </div>
 
@@ -1022,6 +1158,37 @@
       alert(message);
     }
   }
+
+  // 角色切换
+  let currentPageRole = 'gov';
+
+  window.addEventListener('message', function(event) {
+    if (event.data.type === 'ROLE_CHANGE') {
+      currentPageRole = event.data.role;
+      updateRoleDisplay();
+    }
+  });
+
+  function updateRoleDisplay() {
+    document.querySelectorAll('.role-gov').forEach(el => {
+      el.style.display = currentPageRole === 'gov' ? '' : 'none';
+    });
+    document.querySelectorAll('.role-org').forEach(el => {
+      el.style.display = currentPageRole === 'org' ? '' : 'none';
+    });
+    document.querySelectorAll('.role-enterprise').forEach(el => {
+      el.style.display = currentPageRole === 'enterprise' ? '' : 'none';
+    });
+  }
+
+  (function initRole() {
+    try {
+      if (parent && parent.currentRole) {
+        currentPageRole = parent.currentRole;
+      }
+    } catch(e) {}
+    updateRoleDisplay();
+  })();
 </script>
 </body>
 </html>
