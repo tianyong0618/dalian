@@ -35,11 +35,7 @@
       --primary-hover: #818cf8;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -73,12 +69,7 @@
       color: white;
     }
 
-    .logo-icon-wrapper {
-      position: relative;
-      width: 44px;
-      height: 44px;
-    }
-
+    .logo-icon-wrapper { position: relative; width: 44px; height: 44px; }
     .logo-icon-glow {
       position: absolute;
       top: 50%;
@@ -110,21 +101,9 @@
       color: #6366f1;
     }
 
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .logo-english {
-      font-size: 10px;
-      opacity: 0.8;
-      letter-spacing: 1px;
-    }
-
-    .logo-chinese {
-      font-size: 16px;
-      font-weight: 600;
-    }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-english { font-size: 10px; opacity: 0.8; letter-spacing: 1px; }
+    .logo-chinese { font-size: 16px; font-weight: 600; }
 
     .theme-toggle {
       background: rgba(255,255,255,0.2);
@@ -140,9 +119,7 @@
       transition: background 0.2s;
     }
 
-    .theme-toggle:hover {
-      background: rgba(255,255,255,0.3);
-    }
+    .theme-toggle:hover { background: rgba(255,255,255,0.3); }
 
     .role-switch select {
       padding: 8px 16px;
@@ -155,10 +132,7 @@
       min-width: 120px;
     }
 
-    .role-switch select option {
-      background: #1a1a2e;
-      color: white;
-    }
+    .role-switch select option { background: #1a1a2e; color: white; }
 
     .tab-navigation {
       display: flex;
@@ -184,29 +158,11 @@
       white-space: nowrap;
     }
 
-    .tab-btn:hover {
-      border-color: var(--primary);
-      color: var(--text-primary);
-    }
+    .tab-btn:hover { border-color: var(--primary); color: var(--text-primary); }
+    .tab-btn.active { background: var(--primary); border-color: var(--primary); color: white; }
 
-    .tab-btn.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: white;
-    }
-
-    .main-content {
-      padding: 24px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 20px;
-      color: var(--text-primary);
-    }
+    .main-content { padding: 24px; max-width: 1400px; margin: 0 auto; }
+    .section-title { font-size: 24px; font-weight: 600; margin-bottom: 20px; color: var(--text-primary); }
 
     .stats-grid {
       display: grid;
@@ -227,10 +183,7 @@
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .stat-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    }
+    .stat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
 
     .stat-icon {
       width: 48px;
@@ -249,16 +202,8 @@
     .stat-icon-red { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
     .stat-icon-purple { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
 
-    .stat-value {
-      font-size: 28px;
-      font-weight: 700;
-      margin: 8px 0;
-    }
-
-    .stat-label {
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
+    .stat-value { font-size: 28px; font-weight: 700; margin: 8px 0; }
+    .stat-label { font-size: 13px; color: var(--text-secondary); }
 
     .table-wrapper {
       background: var(--bg-card);
@@ -267,27 +212,10 @@
       overflow: hidden;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      padding: 14px 16px;
-      text-align: left;
-      border-bottom: 1px solid var(--border-color);
-      font-size: 14px;
-    }
-
-    th {
-      background: var(--bg-secondary);
-      font-weight: 600;
-      color: var(--text-secondary);
-    }
-
-    tr:hover {
-      background: var(--bg-secondary);
-    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+    th { background: var(--bg-secondary); font-weight: 600; color: var(--text-secondary); }
+    tr:hover { background: var(--bg-secondary); }
 
     .badge {
       padding: 4px 12px;
@@ -314,9 +242,7 @@
       transition: background 0.2s;
     }
 
-    .action-btn:hover {
-      background: var(--primary-hover);
-    }
+    .action-btn:hover { background: var(--primary-hover); }
 
     .btn-secondary {
       background: transparent;
@@ -324,10 +250,7 @@
       border-color: var(--border-color);
     }
 
-    .btn-secondary:hover {
-      background: var(--bg-secondary);
-      color: var(--text-primary);
-    }
+    .btn-secondary:hover { background: var(--bg-secondary); color: var(--text-primary); }
 
     .btn-danger {
       background: rgba(239, 68, 68, 0.15);
@@ -335,10 +258,7 @@
       color: #ef4444;
     }
 
-    .btn-danger:hover {
-      background: #ef4444;
-      color: white;
-    }
+    .btn-danger:hover { background: #ef4444; color: white; }
 
     .search-bar {
       display: flex;
@@ -360,9 +280,7 @@
       transition: border-color 0.2s;
     }
 
-    .search-bar input:focus {
-      border-color: var(--primary);
-    }
+    .search-bar input:focus { border-color: var(--primary); }
 
     .filter-tabs {
       display: flex;
@@ -382,15 +300,8 @@
       transition: all 0.2s;
     }
 
-    .filter-tabs button:hover {
-      border-color: var(--primary);
-    }
-
-    .filter-tabs button.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: white;
-    }
+    .filter-tabs button:hover { border-color: var(--primary); }
+    .filter-tabs button.active { background: var(--primary); border-color: var(--primary); color: white; }
 
     .modal-overlay {
       display: none;
@@ -405,9 +316,7 @@
       z-index: 1000;
     }
 
-    .modal-overlay.show {
-      display: flex;
-    }
+    .modal-overlay.show { display: flex; }
 
     .modal-dialog {
       background: var(--bg-card);
@@ -427,10 +336,7 @@
       border-bottom: 1px solid var(--border-color);
     }
 
-    .modal-title {
-      font-size: 16px;
-      font-weight: 600;
-    }
+    .modal-title { font-size: 16px; font-weight: 600; }
 
     .modal-close {
       background: none;
@@ -441,12 +347,7 @@
       line-height: 1;
     }
 
-    .modal-body {
-      padding: 20px;
-      max-height: 60vh;
-      overflow-y: auto;
-    }
-
+    .modal-body { padding: 20px; max-height: 60vh; overflow-y: auto; }
     .modal-footer {
       display: flex;
       justify-content: flex-end;
@@ -455,9 +356,7 @@
       border-top: 1px solid var(--border-color);
     }
 
-    .form-group {
-      margin-bottom: 16px;
-    }
+    .form-group { margin-bottom: 16px; }
 
     .form-group label {
       display: block;
@@ -479,64 +378,8 @@
       outline: none;
     }
 
-    .form-group textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .toast {
-      display: none;
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      z-index: 2000;
-    }
-
-    .toast.show {
-      animation: slideIn 0.3s ease-out;
-    }
-
-    @keyframes slideIn {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    .toast i {
-      font-size: 18px;
-    }
-
-    .toast-success i { color: #22c55e; }
-    .toast-error i { color: #ef4444; }
-    .toast-info i { color: #3b82f6; }
-
-    .progress-bar {
-      height: 8px;
-      background: var(--bg-secondary);
-      border-radius: 4px;
-      overflow: hidden;
-      margin: 8px 0;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--primary), var(--primary-hover));
-      border-radius: 4px;
-      transition: width 0.3s;
-    }
+    .form-group textarea { min-height: 100px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 
     .service-card {
       background: var(--bg-card);
@@ -546,184 +389,80 @@
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .service-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    }
+    .service-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+    .service-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .service-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; }
+    .service-meta { display: flex; justify-content: space-between; align-items: center; }
+    .service-price { font-size: 18px; font-weight: 700; color: var(--primary); }
+    .rating-stars { color: #fbbf24; font-size: 14px; }
 
-    .service-title {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .service-desc {
-      font-size: 13px;
-      color: var(--text-secondary);
-      margin-bottom: 12px;
-    }
-
-    .service-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .service-price {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .service-provider {
-      font-size: 12px;
-      color: var(--text-tertiary);
-    }
-
-    .demand-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 16px;
-    }
-
-    .demand-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 12px;
-    }
-
-    .demand-title {
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    .demand-badge {
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 12px;
-    }
-
-    .demand-content {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    .demand-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border-color);
-    }
-
-    .rating-stars {
-      color: #fbbf24;
-      font-size: 14px;
-    }
-
-    .review-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 16px;
-    }
-
-    .review-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .reviewer-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 600;
-    }
-
-    .reviewer-info {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .reviewer-name {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .review-date {
-      font-size: 12px;
-      color: var(--text-tertiary);
-    }
-
-    .review-content {
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 12px;
-    }
-
-    .order-summary {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 20px;
-      margin-top: 24px;
-    }
-
-    .order-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
+    .detail-item {
+      padding: 12px 0;
       border-bottom: 1px solid var(--border-color);
     }
 
-    .order-row:last-child {
-      border-bottom: none;
-      font-weight: 600;
-      font-size: 16px;
+    .detail-item:last-child { border-bottom: none; }
+    .detail-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+    .detail-value { font-size: 14px; }
+
+    .modal-alert {
+      background: rgba(245, 158, 11, 0.15);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 16px;
+      font-size: 13px;
     }
 
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .rating-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .rating-item {
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .rating-item input { display: none; }
+    .rating-item div {
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: all 0.2s;
+    }
+
+    .rating-item span { font-size: 11px; margin-top: 4px; display: block; }
+    .rating-item.selected div { border-color: #fbbf24; background: rgba(251, 191, 36, 0.1); }
+
     @media (max-width: 768px) {
-      .navbar {
-        padding: 10px 16px;
-      }
-
-      .logo-english {
-        display: none;
-      }
-
-      .main-content {
-        padding: 16px;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-
-      th, td {
-        padding: 10px 8px;
-        font-size: 12px;
-      }
-
-      .tab-navigation {
-        padding: 12px 16px;
-      }
+      .navbar { padding: 10px 16px; }
+      .logo-english { display: none; }
+      .main-content { padding: 16px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-row { grid-template-columns: 1fr; }
+      th, td { padding: 10px 8px; font-size: 12px; }
+      .tab-navigation { padding: 12px 16px; }
     }
   </style>
 </head>
@@ -733,9 +472,7 @@
       <a href="index.html" class="navbar-logo">
         <div class="logo-icon-wrapper">
           <div class="logo-icon-glow"></div>
-          <div class="logo-icon">
-            <i class="fa-solid fa-users"></i>
-          </div>
+          <div class="logo-icon"><i class="fa-solid fa-users"></i></div>
         </div>
         <div class="logo-text">
           <div class="logo-english">Human Resources and Social Security</div>
@@ -773,11 +510,6 @@
       <div class="modal-body" id="modalBody"></div>
       <div class="modal-footer" id="modalFooter"></div>
     </div>
-  </div>
-
-  <div class="toast" id="toast">
-    <i class="fas fa-check-circle"></i>
-    <span id="toast-message"></span>
   </div>
 
   <script>
@@ -822,7 +554,7 @@
         'org-match':function(){return['<div class="section-title">供需撮合</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-file-pen"></i></div><div class="stat-value">28</div><div class="stat-label">可匹配需求数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-gavel"></i></div><div class="stat-value">12</div><div class="stat-label">已投标数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-check-circle"></i></div><div class="stat-value">6</div><div class="stat-label">中标数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-chart-line"></i></div><div class="stat-value">50%</div><div class="stat-label">匹配成功率</div></div>','</div>','<div class="section-title" style="font-size:18px;">可匹配的需求</div>','<div class="table-wrapper"><table><thead><tr><th>需求标题</th><th>发布企业</th><th>需求类型</th><th>预算</th><th>发布时间</th><th>操作</th></tr></thead><tbody><tr><td>招聘高级软件工程师10名</td><td>大连华信计算机</td><td>高端人才招聘</td><td>面议</td><td>2026-05-18</td><td><button class="action-btn" onclick="viewDetail(this)">查看详情</button><button class="action-btn btn-secondary" onclick="submitBid(this)">投标</button></td></tr><tr><td>生产车间劳务派遣50人</td><td>大连重工装备集团</td><td>劳务派遣</td><td>按人数计费</td><td>2026-05-16</td><td><button class="action-btn" onclick="viewDetail(this)">查看详情</button><button class="action-btn btn-secondary" onclick="submitBid(this)">投标</button></td></tr><tr><td>财务结算临时人员20人</td><td>大连万达集团</td><td>灵活用工</td><td>¥3,000-5,000/人月</td><td>2026-05-14</td><td><button class="action-btn" onclick="viewDetail(this)">查看详情</button><button class="action-btn btn-secondary" onclick="submitBid(this)">投标</button></td></tr></tbody></table></div>'].join('')},
         'org-mediation':function(){return['<div class="section-title">争议处理</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-scale-balanced"></i></div><div class="stat-value">8</div><div class="stat-label">涉及本机构争议数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-spinner"></i></div><div class="stat-value">3</div><div class="stat-label">调解中</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-check-circle"></i></div><div class="stat-value">5</div><div class="stat-label">已完成</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-chart-line"></i></div><div class="stat-value">62.5%</div><div class="stat-label">调解成功率</div></div>','</div>','<div class="filter-tabs"><button class="active" onclick="setFilter(this,\'全部\')">全部</button><button onclick="setFilter(this,\'调解中\')">调解中</button><button onclick="setFilter(this,\'已完成\')">已完成</button></div>','<div class="table-wrapper"><table><thead><tr><th>争议编号</th><th>申请方</th><th>争议类型</th><th>申请时间</th><th>处理状态</th><th>操作</th></tr></thead><tbody><tr><td>MED2026001</td><td>李明</td><td>劳务报酬纠纷</td><td>2026-05-15</td><td><span class="badge badge-orange">调解中</span></td><td><button class="action-btn" onclick="viewDetail(this)">详情</button><button class="action-btn btn-secondary" onclick="respondMediation(this)">回应</button></td></tr><tr><td>MED2026002</td><td>大连华信计算机</td><td>服务质量争议</td><td>2026-05-14</td><td><span class="badge badge-orange">调解中</span></td><td><button class="action-btn" onclick="viewDetail(this)">详情</button><button class="action-btn btn-secondary" onclick="respondMediation(this)">回应</button></td></tr><tr><td>MED2026003</td><td>赵丽</td><td>合同违约纠纷</td><td>2026-05-10</td><td><span class="badge badge-green">已完成</span></td><td><button class="action-btn" onclick="viewDetail(this)">详情</button></td></tr></tbody></table></div>'].join('')},
         'org-evaluate':function(){return['<div class="section-title">诚信评价</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-star"></i></div><div class="stat-value">92</div><div class="stat-label">当前信用评分</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-star"></i></div><div class="stat-value">⭐⭐⭐⭐</div><div class="stat-label">星级</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-ranking-star"></i></div><div class="stat-value">第 12 名</div><div class="stat-label">全市排名</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-calendar"></i></div><div class="stat-value">2026-07-15</div><div class="stat-label">评级有效期</div></div>','</div>','<div class="service-card"><div class="service-title"><i class="fas fa-sliders"></i> 评分构成</div><div class="service-desc">基础分：94分（初始80+资质10+年限4）<br>加分项：+8分（公益招聘3+无投诉5）<br>减分项：-10分（投诉5+年报延迟5）<br><strong>最终得分：92分</strong></div></div>','<div class="section-title" style="font-size:18px;">评定历史</div>','<div class="table-wrapper"><table><thead><tr><th>季度</th><th>评分</th><th>星级</th><th>评定时间</th></tr></thead><tbody><tr><td>2026年第一季度</td><td><span style="color:#8b5cf6;font-weight:600;">92分</span></td><td>⭐⭐⭐⭐</td><td>2026-04-15</td></tr><tr><td>2025年第四季度</td><td><span style="color:#8b5cf6;font-weight:600;">88分</span></td><td>⭐⭐⭐⭐</td><td>2026-01-15</td></tr><tr><td>2025年第三季度</td><td><span style="color:#8b5cf6;font-weight:600;">85分</span></td><td>⭐⭐⭐</td><td>2025-10-20</td></tr></tbody></table></div>'].join('')},
-        'ent-mall':function(){return['<div class="section-title">服务商城</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-store"></i></div><div class="stat-value">86</div><div class="stat-label">入驻机构数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-box"></i></div><div class="stat-value">1,247</div><div class="stat-label">可选购服务数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-handshake"></i></div><div class="stat-value">5,632</div><div class="stat-label">累计成交数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-star"></i></div><div class="stat-value">96.8%</div><div class="stat-label">好评率</div></div>','</div>','<div class="search-bar"><input type="text" placeholder="搜索服务名称、机构名称..." style="flex:1;" onkeypress="if(event.key===\'Enter\') searchTable();"><button class="action-btn" onclick="searchTable()"><i class="fas fa-search"></i> 搜索</button></div>','<div class="filter-tabs"><button class="active" onclick="setFilter(this,\'全部\')">全部</button><button onclick="setFilter(this,\'劳务派遣\')">劳务派遣</button><button onclick="setFilter(this,\'猎头服务\')">猎头服务</button><button onclick="setFilter(this,\'人事外包\')">人事外包</button><button onclick="setFilter(this,\'灵活用工\')">灵活用工</button></div>','<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">','<div class="service-card"><div class="service-title">高端人才猎聘服务套餐</div><div class="service-desc">大连智才人力资源服务有限公司</div><div class="service-meta"><span class="service-price">¥5,000-50,000</span><span class="rating-stars">⭐⭐⭐⭐</span></div><button class="action-btn" onclick="viewDetail(this)">查看详情</button><button class="action-btn" onclick="orderService(this)">立即订购</button></div>','<div class="service-card"><div class="service-title">劳务派遣全流程服务</div><div class="service-desc">大连金普人力资源集团有限公司</div><div class="service-meta"><span class="service-price">按人数计费</span><span class="rating-stars">⭐⭐⭐⭐⭐</span></div><button class="action-btn" onclick="viewDetail(this)">查看详情</button><button class="action-btn" onclick="orderService(this)">立即订购</button></div>','<div class="service-card"><div class="service-title">灵活用工一站式方案</div><div class="service-desc">大连滨海人力资源管理有限公司</div><div class="service-meta"><span class="service-price">¥2,000-8,000/人月</span><span class="rating-stars">⭐⭐⭐⭐</span></div><button class="action-btn" onclick="viewDetail(this)">查看详情</button><button class="action-btn" onclick="orderService(this)">立即订购</button></div>','<div class="service-card"><div class="service-title">企业人事外包托管</div><div class="service-desc">大连高新人才服务有限公司</div><div class="service-meta"><span class="service-price">¥3,000/月起</span><span class="rating-stars">⭐⭐⭐⭐⭐</span></div><button class="action-btn" onclick="viewDetail(this)">查看详情</button><button class="action-btn" onclick="orderService(this)">立即订购</button></div>','<div class="service-card"><div class="service-title">职业生涯规划咨询</div><div class="service-desc">大连中山人才咨询中心</div><div class="service-meta"><span class="service-price">¥500/次</span><span class="rating-stars">⭐⭐⭐⭐</span></div><button class="action-btn" onclick="viewDetail(this)">查看详情</button><button class="action-btn" onclick="orderService(this)">立即订购</button></div>','<div class="service-card"><div class="service-title">劳动法培训课程</div><div class="service-desc">大连 HR 能力提升中心</div><div class="service-meta"><span class="service-price">¥2,000/人</span><span class="rating-stars">⭐⭐⭐⭐</span></div><button class="action-btn" onclick="viewDetail(this)">查看详情</button><button class="action-btn" onclick="orderService(this)">立即订购</button></div>','</div>'].join('')},
+        'ent-mall':function(){return['<div class="section-title">服务商城</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-store"></i></div><div class="stat-value">86</div><div class="stat-label">入驻机构数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-box"></i></div><div class="stat-value">1,247</div><div class="stat-label">可选购服务数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-handshake"></i></div><div class="stat-value">5,632</div><div class="stat-label">累计成交数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-star"></i></div><div class="stat-value">96.8%</div><div class="stat-label">好评率</div></div>','</div>','<div class="search-bar"><input type="text" id="mallSearch" placeholder="搜索服务名称、机构名称..." style="flex:1;" onkeypress="if(event.key===\'Enter\') searchMall();"><button class="action-btn" onclick="searchMall()"><i class="fas fa-search"></i> 搜索</button></div>','<div class="filter-tabs"><button class="active" onclick="filterMall(this, \'全部\')">全部</button><button onclick="filterMall(this, \'劳务派遣\')">劳务派遣</button><button onclick="filterMall(this, \'猎头服务\')">猎头服务</button><button onclick="filterMall(this, \'人事外包\')">人事外包</button><button onclick="filterMall(this, \'灵活用工\')">灵活用工</button></div>','<div id="mallGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">','<div class="service-card" data-type="猎头服务" data-name="高端人才猎聘服务套餐"><div class="service-title">高端人才猎聘服务套餐</div><div class="service-desc">大连智才人力资源服务有限公司</div><div class="service-meta"><span class="service-price">¥5,000-50,000</span><span class="rating-stars">⭐⭐⭐⭐</span></div><button class="action-btn" onclick="viewMallDetail(this)">查看详情</button><button class="action-btn" onclick="orderService(this)">立即订购</button></div>','<div class="service-card" data-type="劳务派遣" data-name="劳务派遣全流程服务"><div class="service-title">劳务派遣全流程服务</div><div class="service-desc">大连金普人力资源集团有限公司</div><div class="service-meta"><span class="service-price">按人数计费</span><span class="rating-stars">⭐⭐⭐⭐⭐</span></div><button class="action-btn" onclick="viewMallDetail(this)">查看详情</button><button class="action-btn" onclick="orderService(this)">立即订购</button></div>','<div class="service-card" data-type="灵活用工" data-name="灵活用工一站式方案"><div class="service-title">灵活用工一站式方案</div><div class="service-desc">大连滨海人力资源管理有限公司</div><div class="service-meta"><span class="service-price">¥2,000-8,000/人月</span><span class="rating-stars">⭐⭐⭐⭐</span></div><button class="action-btn" onclick="viewMallDetail(this)">查看详情</button><button class="action-btn" onclick="orderService(this)">立即订购</button></div>','<div class="service-card" data-type="人事外包" data-name="企业人事外包托管"><div class="service-title">企业人事外包托管</div><div class="service-desc">大连高新人才服务有限公司</div><div class="service-meta"><span class="service-price">¥3,000/月起</span><span class="rating-stars">⭐⭐⭐⭐⭐</span></div><button class="action-btn" onclick="viewMallDetail(this)">查看详情</button><button class="action-btn" onclick="orderService(this)">立即订购</button></div>','<div class="service-card" data-type="职业中介" data-name="职业生涯规划咨询"><div class="service-title">职业生涯规划咨询</div><div class="service-desc">大连中山人才咨询中心</div><div class="service-meta"><span class="service-price">¥500/次</span><span class="rating-stars">⭐⭐⭐⭐</span></div><button class="action-btn" onclick="viewMallDetail(this)">查看详情</button><button class="action-btn" onclick="orderService(this)">立即订购</button></div>','<div class="service-card" data-type="职业培训" data-name="劳动法培训课程"><div class="service-title">劳动法培训课程</div><div class="service-desc">大连 HR 能力提升中心</div><div class="service-meta"><span class="service-price">¥2,000/人</span><span class="rating-stars">⭐⭐⭐⭐</span></div><button class="action-btn" onclick="viewMallDetail(this)">查看详情</button><button class="action-btn" onclick="orderService(this)">立即订购</button></div>','</div></div>'].join('')},
         'ent-demand':function(){return['<div class="section-title">用工需求</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-file-pen"></i></div><div class="stat-value">12</div><div class="stat-label">已发布需求数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-hourglass-half"></i></div><div class="stat-value">5</div><div class="stat-label">匹配中</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-handshake"></i></div><div class="stat-value">6</div><div class="stat-label">已匹配成功</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-star"></i></div><div class="stat-value">1</div><div class="stat-label">待评价</div></div>','</div>','<button class="action-btn" onclick="publishDemand()" style="margin-bottom:16px;"><i class="fas fa-plus"></i> 发布新需求</button>','<div class="table-wrapper"><table><thead><tr><th>需求标题</th><th>需求类型</th><th>发布时间</th><th>匹配状态</th><th>操作</th></tr></thead><tbody><tr><td>招聘高级前端工程师5名</td><td>高端人才招聘</td><td>2026-05-18</td><td><span class="badge badge-blue">匹配中</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-danger" onclick="deleteItem(this, \'cancel\')">取消</button></td></tr><tr><td>生产车间操作工30人</td><td>劳务派遣</td><td>2026-05-16</td><td><span class="badge badge-green">已匹配成功</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button></td></tr><tr><td>临时客服人员15名</td><td>灵活用工</td><td>2026-05-14</td><td><span class="badge badge-blue">匹配中</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-danger" onclick="deleteItem(this, \'cancel\')">取消</button></td></tr></tbody></table></div>'].join('')},
         'ent-order':function(){return['<div class="section-title">订单管理</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-file-invoice"></i></div><div class="stat-value">48</div><div class="stat-label">总订单数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-spinner"></i></div><div class="stat-value">12</div><div class="stat-label">执行中</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-check-circle"></i></div><div class="stat-value">32</div><div class="stat-label">已完成</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-star"></i></div><div class="stat-value">4</div><div class="stat-label">待评价</div></div>','</div>','<div class="filter-tabs"><button class="active" onclick="setFilter(this,\'全部\')">全部</button><button onclick="setFilter(this,\'执行中\')">执行中</button><button onclick="setFilter(this,\'已完成\')">已完成</button><button onclick="setFilter(this,\'待确认\')">待确认</button></div>','<div class="table-wrapper"><table><thead><tr><th>订单编号</th><th>服务名称</th><th>服务机构</th><th>金额</th><th>下单时间</th><th>状态</th><th>操作</th></tr></thead><tbody><tr><td>ORD20260501</td><td>高端人才猎聘服务套餐</td><td>大连智才人力资源</td><td>¥25,000</td><td>2026-05-18</td><td><span class="badge badge-green">已完成</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary" onclick="submitRating(this)">评价</button></td></tr><tr><td>ORD20260502</td><td>劳务派遣全流程服务</td><td>大连金普人力资源</td><td>¥8,000/月</td><td>2026-05-16</td><td><span class="badge badge-orange">执行中</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-danger" onclick="deleteItem(this, \'cancel\')">取消</button></td></tr><tr><td>ORD20260503</td><td>灵活用工一站式方案</td><td>大连滨海人力资源管理</td><td>¥6,000/人月</td><td>2026-05-15</td><td><span class="badge badge-blue">待确认</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary" onclick="confirmOrder(this)">确认</button><button class="action-btn btn-danger" onclick="deleteItem(this, \'cancel\')">取消</button></td></tr></tbody></table></div>'].join('')},
         'ent-evaluate':function(){return['<div class="section-title">评价与维权</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-star"></i></div><div class="stat-value">86</div><div class="stat-label">累计评价数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-thumbs-up"></i></div><div class="stat-value">94.2%</div><div class="stat-label">好评率</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-scale-balanced"></i></div><div class="stat-value">3</div><div class="stat-label">维权中</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-check-circle"></i></div><div class="stat-value">12</div><div class="stat-label">已完成维权</div></div>','</div>','<div class="section-title" style="font-size:18px;">服务评价</div>','<div class="table-wrapper"><table><thead><tr><th>服务名称</th><th>服务机构</th><th>完成时间</th><th>评价内容</th><th>操作</th></tr></thead><tbody><tr><td>高端人才猎聘服务套餐</td><td>大连智才人力资源</td><td>2026-05-18</td><td><span class="badge badge-purple">待评价</span></td><td><button class="action-btn" onclick="submitRating(this)"><i class="fas fa-star"></i> 去评价</button></td></tr><tr><td>职业生涯规划咨询</td><td>大连中山人才咨询中心</td><td>2026-05-12</td><td><span class="badge badge-purple">待评价</span></td><td><button class="action-btn" onclick="submitRating(this)"><i class="fas fa-star"></i> 去评价</button></td></tr><tr><td>企业人事外包托管</td><td>大连高新人才服务</td><td>2026-05-08</td><td><span style="color:#22c55e;">⭐⭐⭐⭐ 服务专业，响应及时</span></td><td>已评价</td></tr></tbody></table></div>','<div class="section-title" style="font-size:18px;margin-top:24px;">维权申请</div>','<button class="action-btn" onclick="applyRights()" style="margin-bottom:16px;"><i class="fas fa-gavel"></i> 申请维权</button>','<div class="table-wrapper"><table><thead><tr><th>维权编号</th><th>涉及服务</th><th>争议类型</th><th>申请时间</th><th>处理状态</th><th>操作</th></tr></thead><tbody><tr><td>CPL2026001</td><td>灵活用工服务</td><td>服务质量争议</td><td>2026-05-10</td><td><span class="badge badge-orange">处理中</span></td><td><button class="action-btn" onclick="viewDetail(this)">详情</button></td></tr><tr><td>CPL2026002</td><td>劳务派遣服务</td><td>费用纠纷</td><td>2026-05-08</td><td><span class="badge badge-green">已完成</span></td><td><button class="action-btn" onclick="viewDetail(this)">详情</button></td></tr></tbody></table></div>'].join('')}
@@ -847,72 +579,47 @@
       var input = document.querySelector('.search-bar input');
       var filter = input.value.toLowerCase();
       var table = document.querySelector('.table-wrapper table');
-      if (!table) {
-        showToast('当前页面无可搜索的表格', 'error');
-        return;
-      }
+      if (!table) return;
       var rows = table.querySelectorAll('tbody tr');
-      var matchCount = 0;
       rows.forEach(function(row) {
         var text = row.textContent.toLowerCase();
-        if (text.indexOf(filter) > -1) {
-          row.style.display = '';
-          matchCount++;
-        } else {
-          row.style.display = 'none';
-        }
+        row.style.display = text.indexOf(filter) > -1 ? '' : 'none';
       });
-      showToast('找到 ' + matchCount + ' 条匹配结果', 'success');
     }
 
     function setFilter(btn, label) {
       var tbs = btn.parentElement.querySelectorAll('button');
-      tbs.forEach(function(t) {
-        t.classList.remove('active');
-      });
+      tbs.forEach(function(t) { t.classList.remove('active'); });
       btn.classList.add('active');
       var table = document.querySelector('.table-wrapper table');
-      if (!table) {
-        showToast('筛选: ' + label, 'info');
-        return;
-      }
+      if (!table) return;
       var rows = table.querySelectorAll('tbody tr');
-      var matchCount = 0;
       rows.forEach(function(row) {
         var cells = row.querySelectorAll('td');
-        var shouldShow = false;
-        if (label === '全部') {
-          shouldShow = true;
-        } else {
-          cells.forEach(function(cell) {
-            if (cell.textContent.indexOf(label) > -1) {
-              shouldShow = true;
-            }
-          });
-        }
+        var shouldShow = label === '全部' ? true : Array.from(cells).some(function(cell) {
+          return cell.textContent.indexOf(label) > -1;
+        });
         row.style.display = shouldShow ? '' : 'none';
-        if (shouldShow) matchCount++;
       });
-      showToast('已筛选: ' + label + ' (' + matchCount + ' 条)', 'success');
     }
 
     function viewDetail(btn) {
       var row = btn;
-      while (row && row.tagName !== 'TR')
-        row = row.parentElement;
-      var cells = row ? row.querySelectorAll('td') : [];
-      var title = cells[0] ? cells[0].textContent : '详情';
+      while (row && row.tagName !== 'TR') row = row.parentElement;
+      if (!row) return;
+      var cells = row.querySelectorAll('td');
       var headers = document.querySelectorAll('table thead th');
-      var detailHtml = '<div style="padding:8px 0;">';
+      var detailHtml = '';
       cells.forEach(function(cell, i) {
-        var header = headers[i] ? headers[i].textContent : '字段' + (i + 1);
-        detailHtml += '<div style="padding:8px 0;border-bottom:1px solid var(--border-color);">';
-        detailHtml += '<div style="color:var(--text-secondary);font-size:12px;margin-bottom:4px;">' + header + '</div>';
-        detailHtml += '<div style="font-size:14px;">' + cell.innerHTML + '</div>';
-        detailHtml += '</div>';
+        var header = headers[i] ? headers[i].textContent : '';
+        if (header !== '操作') {
+          detailHtml += '<div class="detail-item">';
+          detailHtml += '<div class="detail-label">' + header + '</div>';
+          detailHtml += '<div class="detail-value">' + cell.innerHTML + '</div>';
+          detailHtml += '</div>';
+        }
       });
-      detailHtml += '</div>';
-      openModal(title, detailHtml);
+      openModal('详情', detailHtml);
     }
 
     function addAgency() {
@@ -920,9 +627,7 @@
       formHtml += '<div class="form-group"><label>统一社会信用代码 *</label><input type="text" id="agencyCode" placeholder="18位统一社会信用代码"></div>';
       formHtml += '<div class="form-group"><label>法定代表人</label><input type="text" id="agencyLegal" placeholder="请输入法定代表人姓名"></div>';
       formHtml += '<div class="form-group"><label>联系电话</label><input type="tel" id="agencyPhone" placeholder="请输入联系电话"></div>';
-      formHtml += '<div class="form-group"><label>注册地址</label><input type="text" id="agencyAddress" placeholder="请输入详细地址"></div>';
-      formHtml += '<div class="form-group"><label>服务类型</label><select id="agencyType"><option value="">请选择服务类型</option><option value="laodong">劳务派遣</option><option value="zhongjie">职业中介</option><option value="lietou">猎头服务</option><option value="renshou">人事外包</option><option value="linghuo">灵活用工</option></select></div>';
-      formHtml += '<div class="form-group"><label>注册资本（万元）</label><input type="number" id="agencyCapital" placeholder="请输入注册资本"></div>';
+      formHtml += '<div class="form-group"><label>服务类型</label><select id="agencyType"><option value="">请选择</option><option value="laodong">劳务派遣</option><option value="zhongjie">职业中介</option><option value="lietou">猎头服务</option></select></div>';
       openModal('新增机构', formHtml, [
         { label: '取消', action: 'close', class: 'btn-secondary' },
         { label: '提交', action: 'submitAgency', class: '' }
@@ -931,166 +636,305 @@
 
     function submitAgency() {
       var name = document.getElementById('agencyName').value;
-      var code = document.getElementById('agencyCode').value;
-      if (!name || !code) {
-        showToast('请填写必填项', 'error');
-        return;
-      }
+      if (!name) { alert('请填写机构名称'); return; }
       closeModal();
-      showToast('机构 "' + name + '" 提交成功，等待审核', 'success');
+      openModal('成功', '<div style="text-align:center;padding:20px;"><i class="fas fa-check-circle" style="font-size:48px;color:#22c55e;margin-bottom:16px;"></i><div style="font-size:16px;">机构 "' + name + '" 提交成功，等待审核</div></div>');
     }
 
     function editAgency(btn) {
       var row = btn;
-      while (row && row.tagName !== 'TR')
-        row = row.parentElement;
-      var cells = row ? row.querySelectorAll('td') : [];
-      var name = cells[0] ? cells[0].textContent : '';
-      var formHtml = '<div style="padding:8px 12px;background:rgba(99,102,241,0.1);border-radius:8px;margin-bottom:16px;font-size:13px;"><i class="fas fa-info-circle" style="margin-right:8px;"></i>编辑机构：' + name + '</div>';
-      formHtml += '<div class="form-group"><label>联系电话</label><input type="tel" id="editPhone" value="0411-84712345" placeholder="请输入联系电话"></div>';
-      formHtml += '<div class="form-group"><label>详细地址</label><input type="text" id="editAddress" value="辽宁省大连市高新区数码路100号" placeholder="请输入详细地址"></div>';
-      formHtml += '<div class="form-group"><label>服务类型</label><select id="editType"><option value="laodong">劳务派遣</option><option value="zhongjie" selected>职业中介</option><option value="lietou">猎头服务</option></select></div>';
-      formHtml += '<div class="form-group"><label>营业状态</label><select id="editStatus"><option value="open" selected>营业中</option><option value="closed">已停业</option><option value="suspended">歇业</option></select></div>';
-      openModal('编辑机构信息', formHtml, [
+      while (row && row.tagName !== 'TR') row = row.parentElement;
+      var name = row ? row.cells[0].textContent : '';
+      var formHtml = '<div class="modal-alert"><i class="fas fa-info-circle"></i> 编辑机构：' + name + '</div>';
+      formHtml += '<div class="form-group"><label>联系电话</label><input type="tel" value="0411-84712345"></div>';
+      formHtml += '<div class="form-group"><label>详细地址</label><input type="text" value="辽宁省大连市高新区数码路100号"></div>';
+      formHtml += '<div class="form-group"><label>营业状态</label><select><option selected>营业中</option><option>已停业</option></select></div>';
+      openModal('编辑机构', formHtml, [
         { label: '取消', action: 'close', class: 'btn-secondary' },
-        { label: '保存', action: 'saveAgency', class: '' }
+        { label: '保存', action: 'close', class: '' }
       ]);
-    }
-
-    function saveAgency() {
-      closeModal();
-      showToast('机构信息保存成功', 'success');
     }
 
     function auditItem(btn) {
       var row = btn;
-      while (row && row.tagName !== 'TR')
-        row = row.parentElement;
-      var cells = row ? row.querySelectorAll('td') : [];
-      var name = cells[0] ? cells[0].textContent : '待审核项';
-      var formHtml = '<div style="padding:8px 12px;background:rgba(245,158,11,0.1);border-radius:8px;margin-bottom:16px;font-size:13px;"><i class="fas fa-clock" style="margin-right:8px;"></i>审核：' + name + '</div>';
+      while (row && row.tagName !== 'TR') row = row.parentElement;
+      var name = row ? row.cells[0].textContent : '';
+      var formHtml = '<div class="modal-alert"><i class="fas fa-clock"></i> 审核：' + name + '</div>';
       formHtml += '<div class="form-group"><label>审核结果</label><select id="auditResult"><option value="pass">通过</option><option value="reject">不通过</option><option value="return">退回修改</option></select></div>';
       formHtml += '<div class="form-group"><label>审核意见</label><textarea id="auditComment" placeholder="请输入审核意见..."></textarea></div>';
-      formHtml += '<div class="form-group"><label>合规检查项</label>';
-      formHtml += '<div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">';
-      formHtml += '<label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" checked> 营业执照有效期</label>';
-      formHtml += '<label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" checked> 许可证有效性</label>';
-      formHtml += '<label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" checked> 经营场所合规</label>';
-      formHtml += '<label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox"> 人员资质达标</label>';
+      formHtml += '<div class="form-group"><label>合规检查项</label><div class="checkbox-group">';
+      formHtml += '<label class="checkbox-item"><input type="checkbox" checked> 营业执照有效期</label>';
+      formHtml += '<label class="checkbox-item"><input type="checkbox" checked> 许可证有效性</label>';
+      formHtml += '<label class="checkbox-item"><input type="checkbox" checked> 经营场所合规</label>';
+      formHtml += '<label class="checkbox-item"><input type="checkbox"> 人员资质达标</label>';
       formHtml += '</div></div>';
       openModal('审核', formHtml, [
         { label: '取消', action: 'close', class: 'btn-secondary' },
-        { label: '提交审核', action: 'submitAudit', class: '' }
+        { label: '提交审核', action: 'close', class: '' }
       ]);
-    }
-
-    function submitAudit() {
-      var result = document.getElementById('auditResult').value;
-      var comment = document.getElementById('auditComment').value;
-      var resultText = result === 'pass' ? '通过' : (result === 'reject' ? '不通过' : '退回修改');
-      closeModal();
-      showToast('审核已提交，结果：' + resultText, 'success');
     }
 
     function deleteItem(btn, type) {
       var row = btn;
-      while (row && row.tagName !== 'TR')
-        row = row.parentElement;
-      var cells = row ? row.querySelectorAll('td') : [];
-      var name = cells[0] ? cells[0].textContent : '此项';
-      var action = type === 'offline' ? '下架' : (type === 'cancel' ? '取消' : '删除');
-      var confirmHtml = '<div style="text-align:center;padding:20px 0;">';
-      confirmHtml += '<div style="width:60px;height:60px;border-radius:50%;background:rgba(239,68,68,0.15);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-exclamation-triangle" style="font-size:28px;color:#ef4444;"></i></div>';
-      confirmHtml += '<div style="font-size:16px;font-weight:600;margin-bottom:8px;">确认' + action + '？</div>';
-      confirmHtml += '<div style="font-size:14px;color:var(--text-secondary);">' + name + '</div>';
-      confirmHtml += '<div style="font-size:13px;color:var(--text-tertiary);margin-top:12px;">此操作不可逆，请确认是否' + action + '</div>';
-      confirmHtml += '</div>';
-      openModal(action + '确认', confirmHtml, [
+      while (row && row.tagName !== 'TR') row = row.parentElement;
+      var name = row ? row.cells[0].textContent : '';
+      var action = type === 'offline' ? '下架' : '取消';
+      var body = '<div style="text-align:center;padding:20px;"><i class="fas fa-exclamation-triangle" style="font-size:48px;color:#ef4444;margin-bottom:16px;"></i><div style="font-size:16px;margin-bottom:8px;">确认' + action + '？</div><div style="color:var(--text-secondary);">' + name + '</div><div style="color:var(--text-tertiary);margin-top:12px;font-size:13px;">此操作不可逆</div></div>';
+      openModal(action + '确认', body, [
         { label: '取消', action: 'close', class: 'btn-secondary' },
-        { label: '确认' + action, action: 'confirmDelete', class: 'btn-danger', data: { btn: btn, type: type, row: row } }
+        { label: '确认' + action, action: 'confirmDelete', class: 'btn-danger', data: { btn: btn, row: row } }
       ]);
     }
 
     function confirmDelete(params) {
-      closeModal();
-      var type = params.type;
-      var action = type === 'offline' ? '下架' : (type === 'cancel' ? '取消' : '删除');
       if (params.row) {
         params.row.style.opacity = '0.5';
-        setTimeout(function() {
-          params.row.remove();
-          showToast(action + '成功', 'success');
-        }, 500);
-      } else {
-        showToast(action + '成功', 'success');
+        setTimeout(function() { params.row.remove(); }, 500);
       }
+      closeModal();
+    }
+
+    function recommendAgency(btn) {
+      var row = btn;
+      while (row && row.tagName !== 'TR') row = row.parentElement;
+      var name = row ? row.cells[0].textContent : '';
+      var body = '<div class="modal-alert"><i class="fas fa-building"></i> 为需求推荐机构：' + name + '</div>';
+      body += '<div class="form-group"><label>选择推荐机构</label><select><option>大连智才人力资源服务有限公司</option><option>大连高新人才服务有限公司</option><option>大连金普人力资源集团有限公司</option></select></div>';
+      body += '<div class="form-group"><label>推荐理由</label><textarea placeholder="请输入推荐理由..."></textarea></div>';
+      openModal('推荐机构', body, [
+        { label: '取消', action: 'close', class: 'btn-secondary' },
+        { label: '确认推荐', action: 'close', class: '' }
+      ]);
+    }
+
+    function acceptMediation(btn) {
+      var row = btn;
+      while (row && row.tagName !== 'TR') row = row.parentElement;
+      var id = row ? row.cells[0].textContent : '';
+      var body = '<div class="modal-alert"><i class="fas fa-check"></i> 受理争议：' + id + '</div>';
+      body += '<div class="form-group"><label>受理说明</label><textarea placeholder="请输入受理说明..."></textarea></div>';
+      body += '<div class="form-group"><label>预计完成时间</label><input type="date"></div>';
+      openModal('受理争议', body, [
+        { label: '取消', action: 'close', class: 'btn-secondary' },
+        { label: '确认受理', action: 'close', class: '' }
+      ]);
+    }
+
+    function processMediation(btn) {
+      var row = btn;
+      while (row && row.tagName !== 'TR') row = row.parentElement;
+      var id = row ? row.cells[0].textContent : '';
+      var body = '<div class="modal-alert"><i class="fas fa-handshake"></i> 调解争议：' + id + '</div>';
+      body += '<div class="form-group"><label>调解方案</label><textarea placeholder="请输入调解方案..."></textarea></div>';
+      body += '<div class="form-group"><label>调解结果</label><select><option>调解成功</option><option>调解失败</option><option>继续调解</option></select></div>';
+      openModal('调解', body, [
+        { label: '取消', action: 'close', class: 'btn-secondary' },
+        { label: '提交', action: 'close', class: '' }
+      ]);
+    }
+
+    function adjustCredit(btn) {
+      var row = btn;
+      while (row && row.tagName !== 'TR') row = row.parentElement;
+      var name = row ? row.cells[0].textContent : '';
+      var body = '<div class="modal-alert"><i class="fas fa-sliders"></i> 调整信用：' + name + '</div>';
+      body += '<div class="form-group"><label>调整分值</label><input type="number" value="0" style="width:100px;"> 分</div>';
+      body += '<div class="form-group"><label>调整原因</label><textarea placeholder="请输入调整原因..."></textarea></div>';
+      openModal('信用调整', body, [
+        { label: '取消', action: 'close', class: 'btn-secondary' },
+        { label: '确认调整', action: 'close', class: '' }
+      ]);
+    }
+
+    function editMyAgency() {
+      var body = '<div class="form-group"><label>联系电话</label><input type="tel" value="0411-84712345"></div>';
+      body += '<div class="form-group"><label>详细地址</label><input type="text" value="辽宁省大连市高新区数码路100号"></div>';
+      body += '<div class="form-group"><label>从业人数</label><input type="number" value="128"></div>';
+      openModal('编辑基本信息', body, [
+        { label: '取消', action: 'close', class: 'btn-secondary' },
+        { label: '保存', action: 'close', class: '' }
+      ]);
+    }
+
+    function addStaff() {
+      var body = '<div class="form-group"><label>姓名 *</label><input type="text" placeholder="请输入姓名"></div>';
+      body += '<div class="form-group"><label>岗位</label><input type="text" placeholder="请输入岗位"></div>';
+      body += '<div class="form-group"><label>资格证书</label><input type="text" placeholder="请输入资格证书"></div>';
+      body += '<div class="form-group"><label>证书编号</label><input type="text" placeholder="请输入证书编号"></div>';
+      openModal('新增人员', body, [
+        { label: '取消', action: 'close', class: 'btn-secondary' },
+        { label: '提交', action: 'close', class: '' }
+      ]);
+    }
+
+    function editStaff(btn) {
+      var row = btn;
+      while (row && row.tagName !== 'TR') row = row.parentElement;
+      var name = row ? row.cells[0].textContent : '';
+      var body = '<div class="modal-alert"><i class="fas fa-user"></i> 编辑人员：' + name + '</div>';
+      body += '<div class="form-group"><label>联系电话</label><input type="tel" value="138****1234"></div>';
+      body += '<div class="form-group"><label>岗位</label><input type="text" value="高级猎头顾问"></div>';
+      body += '<div class="form-group"><label>状态</label><select><option selected>在岗</option><option>离岗</option></select></div>';
+      openModal('编辑人员', body, [
+        { label: '取消', action: 'close', class: 'btn-secondary' },
+        { label: '保存', action: 'close', class: '' }
+      ]);
+    }
+
+    function editService(btn) {
+      var row = btn;
+      while (row && row.tagName !== 'TR') row = row.parentElement;
+      var name = row ? row.cells[0].textContent : '';
+      var body = '<div class="modal-alert"><i class="fas fa-box"></i> 编辑服务：' + name + '</div>';
+      body += '<div class="form-group"><label>服务价格</label><input type="text" value="¥5,000-50,000"></div>';
+      body += '<div class="form-group"><label>服务描述</label><textarea>提供高端人才猎聘服务，包含简历筛选、面试安排等全流程服务。</textarea></div>';
+      openModal('编辑服务', body, [
+        { label: '取消', action: 'close', class: 'btn-secondary' },
+        { label: '保存', action: 'close', class: '' }
+      ]);
+    }
+
+    function submitBid(btn) {
+      var row = btn;
+      while (row && row.tagName !== 'TR') row = row.parentElement;
+      var name = row ? row.cells[0].textContent : '';
+      var body = '<div class="modal-alert"><i class="fas fa-gavel"></i> 投标需求：' + name + '</div>';
+      body += '<div class="form-group"><label>投标报价</label><input type="text" placeholder="请输入报价"></div>';
+      body += '<div class="form-group"><label>服务方案</label><textarea placeholder="请简述服务方案..."></textarea></div>';
+      body += '<div class="form-group"><label>预期完成时间</label><input type="text" placeholder="如：30个工作日"></div>';
+      openModal('投标', body, [
+        { label: '取消', action: 'close', class: 'btn-secondary' },
+        { label: '提交投标', action: 'close', class: '' }
+      ]);
+    }
+
+    function respondMediation(btn) {
+      var row = btn;
+      while (row && row.tagName !== 'TR') row = row.parentElement;
+      var id = row ? row.cells[0].textContent : '';
+      var body = '<div class="modal-alert"><i class="fas fa-comment"></i> 回应争议：' + id + '</div>';
+      body += '<div class="form-group"><label>回应内容</label><textarea placeholder="请输入回应内容..."></textarea></div>';
+      body += '<div class="form-group"><label>上传材料</label><div style="border:2px dashed var(--border-color);border-radius:8px;padding:20px;text-align:center;color:var(--text-tertiary);">点击上传证据材料</div></div>';
+      openModal('回应', body, [
+        { label: '取消', action: 'close', class: 'btn-secondary' },
+        { label: '提交回应', action: 'close', class: '' }
+      ]);
+    }
+
+    function searchMall() {
+      var input = document.getElementById('mallSearch');
+      if (!input) return;
+      var filter = input.value.toLowerCase();
+      var cards = document.querySelectorAll('#mallGrid .service-card');
+      cards.forEach(function(card) {
+        var text = card.textContent.toLowerCase();
+        card.style.display = text.indexOf(filter) > -1 ? '' : 'none';
+      });
+    }
+
+    function filterMall(btn, type) {
+      var tbs = btn.parentElement.querySelectorAll('button');
+      tbs.forEach(function(t) { t.classList.remove('active'); });
+      btn.classList.add('active');
+      var cards = document.querySelectorAll('#mallGrid .service-card');
+      cards.forEach(function(card) {
+        if (type === '全部' || card.getAttribute('data-type') === type) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function viewMallDetail(btn) {
+      var card = btn.closest('.service-card');
+      var name = card ? card.querySelector('.service-title').textContent : '';
+      var desc = card ? card.querySelector('.service-desc').textContent : '';
+      var price = card ? card.querySelector('.service-price').textContent : '';
+      var rating = card ? card.querySelector('.rating-stars').textContent : '';
+      var body = '<div class="detail-item"><div class="detail-label">服务名称</div><div class="detail-value">' + name + '</div></div>';
+      body += '<div class="detail-item"><div class="detail-label">服务机构</div><div class="detail-value">' + desc + '</div></div>';
+      body += '<div class="detail-item"><div class="detail-label">服务价格</div><div class="detail-value" style="color:var(--primary);font-weight:600;">' + price + '</div></div>';
+      body += '<div class="detail-item"><div class="detail-label">评分</div><div class="detail-value">' + rating + '</div></div>';
+      body += '<div class="detail-item"><div class="detail-label">服务描述</div><div class="detail-value">提供专业的人力资源服务，包含需求分析、方案定制、执行跟踪等全流程服务。</div></div>';
+      openModal('服务详情', body, [
+        { label: '关闭', action: 'close', class: 'btn-secondary' },
+        { label: '立即订购', action: 'orderServiceDirect', class: '' }
+      ]);
+    }
+
+    function orderService(btn) {
+      var card = btn.closest('.service-card');
+      var name = card ? card.querySelector('.service-title').textContent : '';
+      var body = '<div class="modal-alert"><i class="fas fa-shopping-cart"></i> 订购服务：' + name + '</div>';
+      body += '<div class="form-group"><label>服务规格</label><input type="text" placeholder="请输入服务规格或数量"></div>';
+      body += '<div class="form-group"><label>联系人员</label><input type="text" placeholder="请输入联系人姓名"></div>';
+      body += '<div class="form-group"><label>联系电话</label><input type="tel" placeholder="请输入联系电话"></div>';
+      body += '<div class="form-group"><label>备注</label><textarea placeholder="如有特殊需求请说明..."></textarea></div>';
+      openModal('订购服务', body, [
+        { label: '取消', action: 'close', class: 'btn-secondary' },
+        { label: '提交订单', action: 'close', class: '' }
+      ]);
+    }
+
+    function orderServiceDirect() {
+      closeModal();
+      orderService(document.querySelector('#mallGrid .service-card button'));
+    }
+
+    function publishDemand() {
+      var body = '<div class="form-group"><label>需求标题 *</label><input type="text" placeholder="如：招聘高级软件工程师10名"></div>';
+      body += '<div class="form-group"><label>需求类型</label><select><option>高端人才招聘</option><option>劳务派遣</option><option>灵活用工</option><option>人事外包</option></select></div>';
+      body += '<div class="form-group"><label>需求人数</label><input type="number" placeholder="请输入人数"></div>';
+      body += '<div class="form-group"><label>预算范围</label><input type="text" placeholder="如：¥10,000-50,000"></div>';
+      body += '<div class="form-group"><label>详细描述 *</label><textarea placeholder="请详细描述需求..."></textarea></div>';
+      body += '<div class="form-group"><label>期望完成时间</label><input type="date"></div>';
+      openModal('发布新需求', body, [
+        { label: '取消', action: 'close', class: 'btn-secondary' },
+        { label: '发布', action: 'close', class: '' }
+      ]);
     }
 
     function submitRating(btn) {
       var row = btn;
-      while (row && row.tagName !== 'TR')
-        row = row.parentElement;
-      var cells = row ? row.querySelectorAll('td') : [];
-      var name = cells[0] ? cells[0].textContent : '服务';
-      var formHtml = '<div style="padding:8px 12px;background:rgba(251,191,36,0.1);border-radius:8px;margin-bottom:16px;font-size:13px;"><i class="fas fa-star" style="margin-right:8px;color:#fbbf24;"></i>评价服务：' + name + '</div>';
-      formHtml += '<div class="form-group"><label>服务评分</label>';
-      formHtml += '<div style="display:flex;gap:8px;margin-top:8px;">';
-      formHtml += '<label style="cursor:pointer;text-align:center;"><input type="radio" name="rating" value="5" style="display:none;"><div style="width:40px;height:40px;border:2px solid var(--border-color);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;">⭐</div><div style="font-size:11px;margin-top:4px;">5星</div></label>';
-      formHtml += '<label style="cursor:pointer;text-align:center;"><input type="radio" name="rating" value="4" style="display:none;"><div style="width:40px;height:40px;border:2px solid var(--border-color);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;">⭐</div><div style="font-size:11px;margin-top:4px;">4星</div></label>';
-      formHtml += '<label style="cursor:pointer;text-align:center;"><input type="radio" name="rating" value="3" style="display:none;"><div style="width:40px;height:40px;border:2px solid var(--border-color);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;">⭐</div><div style="font-size:11px;margin-top:4px;">3星</div></label>';
-      formHtml += '<label style="cursor:pointer;text-align:center;"><input type="radio" name="rating" value="2" style="display:none;"><div style="width:40px;height:40px;border:2px solid var(--border-color);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;">⭐</div><div style="font-size:11px;margin-top:4px;">2星</div></label>';
-      formHtml += '<label style="cursor:pointer;text-align:center;"><input type="radio" name="rating" value="1" style="display:none;"><div style="width:40px;height:40px;border:2px solid var(--border-color);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;">⭐</div><div style="font-size:11px;margin-top:4px;">1星</div></label>';
-      formHtml += '</div></div>';
-      formHtml += '<div class="form-group"><label>评价内容</label><textarea id="ratingComment" placeholder="请输入您的评价..."></textarea></div>';
-      formHtml += '<div class="form-group"><label>是否匿名</label><label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox"> 匿名评价</label></div>';
-      openModal('服务评价', formHtml, [
+      while (row && row.tagName !== 'TR') row = row.parentElement;
+      var name = row ? row.cells[0].textContent : '';
+      var body = '<div class="modal-alert"><i class="fas fa-star" style="color:#fbbf24;"></i> 评价服务：' + name + '</div>';
+      body += '<div class="form-group"><label>服务评分</label><div class="rating-group">';
+      body += '<label class="rating-item"><input type="radio" name="rating" value="5"><div>⭐</div><span>5星</span></label>';
+      body += '<label class="rating-item"><input type="radio" name="rating" value="4"><div>⭐</div><span>4星</span></label>';
+      body += '<label class="rating-item"><input type="radio" name="rating" value="3"><div>⭐</div><span>3星</span></label>';
+      body += '<label class="rating-item"><input type="radio" name="rating" value="2"><div>⭐</div><span>2星</span></label>';
+      body += '<label class="rating-item"><input type="radio" name="rating" value="1"><div>⭐</div><span>1星</span></label>';
+      body += '</div></div>';
+      body += '<div class="form-group"><label>评价内容</label><textarea placeholder="请输入您的评价..."></textarea></div>';
+      openModal('服务评价', body, [
         { label: '取消', action: 'close', class: 'btn-secondary' },
-        { label: '提交评价', action: 'doSubmitRating', class: '' }
+        { label: '提交评价', action: 'close', class: '' }
       ]);
-      document.querySelectorAll('input[name="rating"]').forEach(function(radio) {
-        radio.addEventListener('change', function() {
-          document.querySelectorAll('input[name="rating"] + div').forEach(function(div) {
-            div.style.borderColor = 'var(--border-color)';
-            div.style.background = 'transparent';
-          });
-          this.nextElementSibling.style.borderColor = '#fbbf24';
-          this.nextElementSibling.style.background = 'rgba(251,191,36,0.1)';
-        });
-      });
     }
 
-    function doSubmitRating() {
-      var rating = document.querySelector('input[name="rating"]:checked');
-      if (!rating) {
-        showToast('请选择评分', 'error');
-        return;
-      }
-      var comment = document.getElementById('ratingComment') ? document.getElementById('ratingComment').value : '';
-      closeModal();
-      showToast('评价提交成功，感谢您的反馈！', 'success');
+    function confirmOrder(btn) {
+      var row = btn;
+      while (row && row.tagName !== 'TR') row = row.parentElement;
+      var id = row ? row.cells[0].textContent : '';
+      var body = '<div style="text-align:center;padding:20px;"><i class="fas fa-check-circle" style="font-size:48px;color:#22c55e;margin-bottom:16px;"></i><div style="font-size:16px;">确认订单：' + id + '？</div><div style="color:var(--text-secondary);margin-top:8px;">请确认服务已完成并符合预期</div></div>';
+      openModal('确认订单', body, [
+        { label: '取消', action: 'close', class: 'btn-secondary' },
+        { label: '确认', action: 'close', class: '' }
+      ]);
     }
 
     function applyRights() {
-      var formHtml = '<div class="form-group"><label>涉及订单编号</label><input type="text" id="rightsOrder" placeholder="请输入订单编号（选填）"></div>';
-      formHtml += '<div class="form-group"><label>争议类型 *</label><select id="rightsType"><option value="">请选择争议类型</option><option value="quality">服务质量问题</option><option value="delay">服务延误</option><option value="fee">费用纠纷</option><option value="contract">合同违约</option><option value="other">其他</option></select></div>';
-      formHtml += '<div class="form-group"><label>涉及金额（元）</label><input type="number" id="rightsAmount" placeholder="请输入涉及金额（选填）"></div>';
-      formHtml += '<div class="form-group"><label>详细描述 *</label><textarea id="rightsDesc" placeholder="请详细描述您遇到的问题..."></textarea></div>';
-      formHtml += '<div class="form-group"><label>上传证据</label><div style="border:2px dashed var(--border-color);border-radius:8px;padding:20px;text-align:center;color:var(--text-tertiary);cursor:pointer;"><i class="fas fa-cloud-upload-alt" style="font-size:24px;margin-bottom:8px;"></i><div>点击上传证据材料</div><div style="font-size:12px;margin-top:4px;">支持图片、PDF等格式</div></div></div>';
-      openModal('申请维权', formHtml, [
+      var body = '<div class="form-group"><label>涉及订单编号</label><input type="text" placeholder="请输入订单编号（选填）"></div>';
+      body += '<div class="form-group"><label>争议类型 *</label><select><option value="">请选择</option><option>服务质量问题</option><option>服务延误</option><option>费用纠纷</option><option>合同违约</option><option>其他</option></select></div>';
+      body += '<div class="form-group"><label>涉及金额</label><input type="number" placeholder="请输入金额"></div>';
+      body += '<div class="form-group"><label>详细描述 *</label><textarea placeholder="请详细描述问题..."></textarea></div>';
+      body += '<div class="form-group"><label>上传证据</label><div style="border:2px dashed var(--border-color);border-radius:8px;padding:20px;text-align:center;color:var(--text-tertiary);">点击上传证据材料</div></div>';
+      openModal('申请维权', body, [
         { label: '取消', action: 'close', class: 'btn-secondary' },
-        { label: '提交申请', action: 'doSubmitRights', class: '' }
+        { label: '提交申请', action: 'close', class: '' }
       ]);
-    }
-
-    function doSubmitRights() {
-      var type = document.getElementById('rightsType').value;
-      var desc = document.getElementById('rightsDesc').value;
-      if (!type || !desc) {
-        showToast('请填写必填项', 'error');
-        return;
-      }
-      closeModal();
-      showToast('维权申请已提交，我们将尽快处理', 'success');
     }
 
     function openModal(title, body, buttons) {
@@ -1112,44 +956,14 @@
     function handleModalAction(action, btn) {
       var params = btn.getAttribute('data-params');
       if (action === 'confirmDelete' && params) {
-        var parsedParams = JSON.parse(params);
-        confirmDelete(parsedParams);
-      } else if (action === 'close') {
+        confirmDelete(JSON.parse(params));
+      } else {
         closeModal();
-      } else if (action === 'submitAgency') {
-        submitAgency();
-      } else if (action === 'saveAgency') {
-        saveAgency();
-      } else if (action === 'submitAudit') {
-        submitAudit();
-      } else if (action === 'doSubmitRating') {
-        doSubmitRating();
-      } else if (action === 'doSubmitRights') {
-        doSubmitRights();
       }
     }
 
     function closeModal() {
       document.getElementById('modalOverlay').classList.remove('show');
-    }
-
-    function showToast(msg, type) {
-      type = type || 'success';
-      var t = document.getElementById('toast');
-      var icon = t.querySelector('i');
-      t.className = 'toast toast-' + type;
-      if (type === 'success') {
-        icon.className = 'fas fa-check-circle';
-      } else if (type === 'error') {
-        icon.className = 'fas fa-exclamation-circle';
-      } else if (type === 'info') {
-        icon.className = 'fas fa-info-circle';
-      }
-      document.getElementById('toast-message').textContent = msg;
-      t.classList.add('show');
-      setTimeout(function() {
-        t.classList.remove('show');
-      }, 3000);
     }
 
     function toggleTheme() {
@@ -1159,7 +973,6 @@
       localStorage.setItem('theme', theme);
       document.querySelector('.theme-icon').textContent = theme === 'dark' ? '☀️' : '🌙';
       document.querySelector('.theme-text').textContent = theme === 'dark' ? '浅色' : '深色';
-      showToast('已切换到' + (theme === 'dark' ? '深色' : '浅色') + '主题');
     }
 
     document.addEventListener('DOMContentLoaded', function() {
