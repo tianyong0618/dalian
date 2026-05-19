@@ -1,239 +1,735 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>人力资源服务旗舰店 - 人社服务数字化平台</title>
-  <!-- Font Awesome图标库 -->
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <!-- 防止闪烁：在页面渲染前立即设置主题 -->
   <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
-  <link rel="stylesheet" href="style.css">
   <style>
-    /* SPA 容器样式 */
-    .spa-container {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
+    :root {
+      --bg-primary: #0f0f23;
+      --bg-secondary: #1a1a2e;
+      --bg-card: #252540;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0b0;
+      --text-tertiary: #6b6b80;
+      --border-color: #3d3d5c;
+      --primary: #6366f1;
+      --primary-hover: #818cf8;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --info: #3b82f6;
+    }
+    
+    [data-theme="light"] {
+      --bg-primary: #f5f5f5;
+      --bg-secondary: #ffffff;
+      --bg-card: #fafafa;
+      --text-primary: #1a1a2e;
+      --text-secondary: #5a5a6e;
+      --text-tertiary: #8b8b9e;
+      --border-color: #e0e0e0;
+      --primary: #6366f1;
+      --primary-hover: #818cf8;
     }
 
-    /* 顶部导航区 */
-    .spa-header {
-      flex-shrink: 0;
-      background: var(--bg-primary);
-      border-bottom: 1px solid var(--border-color);
-      padding: 0 24px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+    }
+
+    .navbar {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      padding: 12px 24px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
       z-index: 100;
     }
 
-    /* iframe 内容区 */
-    .spa-content {
-      flex: 1;
-      overflow: hidden;
-      background: var(--bg-secondary);
+    .navbar .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    /* 导航栏logo样式 */
     .navbar-logo {
-      text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
+      text-decoration: none;
+      color: white;
     }
 
     .logo-icon-wrapper {
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
     }
 
     .logo-icon-glow {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, #6366f1, #a855f7);
-      border-radius: 12px;
-      filter: blur(12px);
-      opacity: 0.75;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.2; }
     }
 
     .logo-icon {
       position: relative;
-      width: 56px;
-      height: 56px;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background: white;
       border-radius: 12px;
-      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 22px;
+      color: #6366f1;
     }
 
-    .logo-icon i {
-      color: var(--text-on-primary);
-      font-size: 24px;
-    }
-
-    .navbar-logo .logo-text {
+    .logo-text {
       display: flex;
       flex-direction: column;
-      gap: 4px;
     }
 
-    .navbar-logo .logo-english {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--text-secondary);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+    .logo-english {
+      font-size: 10px;
+      opacity: 0.8;
+      letter-spacing: 1px;
     }
 
-    .navbar-logo .logo-chinese {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      background: linear-gradient(to right, #818cf8, #a78bfa, #f472b6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .logo-chinese {
+      font-size: 16px;
+      font-weight: 600;
     }
 
-    /* Tab 标签栏样式 */
+    .theme-toggle {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      transition: background 0.2s;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .role-switch select {
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: none;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      cursor: pointer;
+      font-size: 13px;
+      min-width: 120px;
+    }
+
+    .role-switch select option {
+      background: #1a1a2e;
+      color: white;
+    }
+
     .tab-navigation {
       display: flex;
-      gap: 4px;
+      gap: 8px;
+      padding: 16px 24px;
       background: var(--bg-secondary);
-      padding: 8px 16px;
       border-bottom: 1px solid var(--border-color);
       overflow-x: auto;
     }
 
     .tab-btn {
       padding: 10px 20px;
-      background: transparent;
-      border: none;
-      border-radius: 8px 8px 0 0;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 500;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
       color: var(--text-secondary);
-      transition: all 0.2s ease;
-      white-space: nowrap;
+      cursor: pointer;
       display: flex;
       align-items: center;
       gap: 8px;
+      font-size: 14px;
+      transition: all 0.2s;
+      white-space: nowrap;
     }
 
     .tab-btn:hover {
-      background: var(--bg-primary);
-      color: var(--primary);
+      border-color: var(--primary);
+      color: var(--text-primary);
     }
 
     .tab-btn.active {
-      background: var(--bg-primary);
-      color: var(--primary);
-      border-bottom: 3px solid var(--primary);
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
     }
 
-    .tab-btn .tab-icon {
-      font-size: 16px;
+    .main-content {
+      padding: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
-    /* 内容区域 */
-    #content-frame {
-      width: 100%;
-      height: 100%;
-      border: none;
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text-primary);
     }
 
-    /* 渐变文字效果 */
-    .gradient-text {
-      background: linear-gradient(to right, #818cf8, #a78bfa, #f472b6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
     }
 
-    /* 全局通知样式 */
-    .global-notification {
-      position: fixed;
-      top: 80px;
-      right: 24px;
-      padding: 16px 24px;
-      border-radius: 8px;
-      color: var(--text-on-primary);
-      font-size: 14px;
-      font-weight: 500;
-      z-index: 1000;
-      transform: translateX(120%);
-      transition: transform 0.3s ease;
+    .stat-card {
+      background: var(--bg-card);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 12px;
     }
 
-    .global-notification.show {
-      transform: translateX(0);
+    .stat-icon-blue { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+    .stat-icon-green { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+    .stat-icon-orange { background: rgba(249, 115, 22, 0.15); color: #f97316; }
+    .stat-icon-red { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+    .stat-icon-purple { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 8px 0;
     }
 
-    .global-notification.success {
-      background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-secondary);
     }
 
-    .global-notification.warning {
-      background: linear-gradient(135deg, #faad14 0%, #ffc53d 100%);
+    .table-wrapper {
+      background: var(--bg-card);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
     }
 
-    .global-notification.error {
-      background: linear-gradient(135deg, #ff4d4f 0%, #ff7875 100%);
+    table {
+      width: 100%;
+      border-collapse: collapse;
     }
 
-    .global-notification.info {
-      background: linear-gradient(135deg, #1677ff 0%, #40a9ff 100%);
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 14px;
     }
 
-    .notification-icon {
-      font-size: 18px;
+    th {
+      background: var(--bg-secondary);
+      font-weight: 600;
+      color: var(--text-secondary);
     }
 
-    /* 主题切换按钮 */
-    .theme-toggle {
-      padding: 8px 16px;
+    tr:hover {
+      background: var(--bg-secondary);
+    }
+
+    .badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .badge-green { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+    .badge-blue { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+    .badge-red { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+    .badge-orange { background: rgba(249, 115, 22, 0.15); color: #f97316; }
+
+    .action-btn {
+      padding: 6px 12px;
+      background: var(--primary);
+      border: 1px solid var(--primary);
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      font-size: 12px;
+      margin-right: 4px;
+      transition: background 0.2s;
+    }
+
+    .action-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-secondary);
+      border-color: var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: #ef4444;
+      color: #ef4444;
+    }
+
+    .btn-danger:hover {
+      background: #ef4444;
+      color: white;
+    }
+
+    .search-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .search-bar input {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 16px;
       background: var(--bg-secondary);
       border: 1px solid var(--border-color);
       border-radius: 8px;
-      cursor: pointer;
+      color: var(--text-primary);
       font-size: 14px;
-      color: var(--text-secondary);
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      outline: none;
+      transition: border-color 0.2s;
     }
 
-    .theme-toggle:hover {
+    .search-bar input:focus {
       border-color: var(--primary);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tabs button {
+      padding: 8px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .filter-tabs button:hover {
+      border-color: var(--primary);
+    }
+
+    .filter-tabs button.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal-dialog {
+      background: var(--bg-card);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      width: 90%;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow: hidden;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal-body {
+      padding: 20px;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 16px 20px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 14px;
+      outline: none;
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .toast {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      z-index: 2000;
+    }
+
+    .toast.show {
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .toast i {
+      font-size: 18px;
+    }
+
+    .toast-success i { color: #22c55e; }
+    .toast-error i { color: #ef4444; }
+    .toast-info i { color: #3b82f6; }
+
+    .progress-bar {
+      height: 8px;
+      background: var(--bg-secondary);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 8px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--primary-hover));
+      border-radius: 4px;
+      transition: width 0.3s;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .service-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .service-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .service-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .service-price {
+      font-size: 18px;
+      font-weight: 700;
       color: var(--primary);
     }
 
-    .theme-icon {
+    .service-provider {
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    .demand-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .demand-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .demand-title {
       font-size: 16px;
+      font-weight: 600;
+    }
+
+    .demand-badge {
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+
+    .demand-content {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .demand-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .rating-stars {
+      color: #fbbf24;
+      font-size: 14px;
+    }
+
+    .review-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .reviewer-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+    }
+
+    .reviewer-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .reviewer-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .review-date {
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    .review-content {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .order-summary {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+
+    .order-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .order-row:last-child {
+      border-bottom: none;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 10px 16px;
+      }
+      
+      .logo-english {
+        display: none;
+      }
+
+      .main-content {
+        padding: 16px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      th, td {
+        padding: 10px 8px;
+        font-size: 12px;
+      }
+
+      .tab-navigation {
+        padding: 12px 16px;
+      }
     }
   </style>
 </head>
 <body>
-
-<div class="spa-container">
   <nav class="navbar">
     <div class="container">
-      <a href="index.html" class="navbar-logo">
+      <a href="#" class="navbar-logo">
         <div class="logo-icon-wrapper">
           <div class="logo-icon-glow"></div>
           <div class="logo-icon">
@@ -246,347 +742,147 @@
         </div>
       </a>
       <div style="display: flex; align-items: center; gap: 12px;">
-        <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">
+        <button class="theme-toggle" onclick="toggleTheme()">
           <span class="theme-icon">🌙</span>
           <span class="theme-text">深色</span>
         </button>
-        <select class="form-select" style="width: auto; padding: 8px 32px 8px 12px;" id="role-select" onchange="switchRole(this.value)">
-          <option value="gov" selected>人社部门</option>
-          <option value="org">服务机构</option>
-          <option value="enterprise">用工企业</option>
-        </select>
+        <div class="role-switch">
+          <select id="role-select" onchange="switchRole(this.value)">
+            <option value="gov" selected>人社部门</option>
+            <option value="org">服务机构</option>
+            <option value="enterprise">用工企业</option>
+          </select>
+        </div>
       </div>
     </div>
   </nav>
 
-  <!-- Tab 标签导航 -->
-  <div class="tab-navigation">
-    <button class="tab-btn active" data-tab="org" data-roles="gov" onclick="switchTab('org')">
-      <span class="tab-icon">🏢</span>
-      <span>机构管理</span>
-    </button>
-    <button class="tab-btn" data-tab="employee" data-roles="gov org" onclick="switchTab('employee')">
-      <span class="tab-icon">👥</span>
-      <span>从业人员管理</span>
-    </button>
-    <button class="tab-btn" data-tab="store" data-roles="gov org enterprise" onclick="switchTab('store')">
-      <span class="tab-icon">🛒</span>
-      <span>线上服务网店</span>
-    </button>
-    <button class="tab-btn" data-tab="matching" data-roles="gov org enterprise" onclick="switchTab('matching')">
-      <span class="tab-icon">🤝</span>
-      <span>供需撮合</span>
-    </button>
-    <button class="tab-btn" data-tab="dispute" data-roles="gov org enterprise" onclick="switchTab('dispute')">
-      <span class="tab-icon">⚖️</span>
-      <span>争议调解</span>
-    </button>
-    <button class="tab-btn" data-tab="credit" data-roles="gov org" onclick="switchTab('credit')">
-      <span class="tab-icon">⭐</span>
-      <span>诚信评价</span>
-    </button>
+  <div class="tab-navigation" id="tabBar"></div>
+
+  <main class="main-content" id="mainContent">
+    <div id="mainContentInner"></div>
+  </main>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">详情</div>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer" id="modalFooter"></div>
+    </div>
   </div>
 
-  <!-- 内容区域 -->
-  <main class="spa-content">
-    <iframe id="content-frame" src="12a-org-management.html" frameborder="0"></iframe>
-  </main>
-</div>
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toast-message"></span>
+  </div>
 
-<!-- 全局通知容器 -->
-<div id="notification-container"></div>
-
-<script>
-  // Tab与页面映射
-  const TAB_PAGES = {
-    'org': '12a-org-management.html',
-    'employee': '12b-employee-management.html',
-    'store': '12c-online-store.html',
-    'matching': '12d-demand-matching.html',
-    'dispute': '12e-dispute-mediation.html',
-    'credit': '12f-credit-evaluation.html'
-  };
-
-  // Tab显示名称
-  const TAB_LABELS = {
-    'org': '🏢 机构管理',
-    'employee': '👥 从业人员管理',
-    'store': '🛒 线上服务网店',
-    'matching': '🤝 供需撮合',
-    'dispute': '⚖️ 争议调解',
-    'credit': '⭐ 诚信评价'
-  };
-
-  // 当前Tab
-  let currentTab = 'org';
-
-  // 当前角色
-  let currentRole = 'gov';
-
-  // 角色显示名称
-  const ROLE_LABELS = {
-    'gov': '👔 人社部门',
-    'org': '🏢 服务机构',
-    'enterprise': '💼 用工企业'
-  };
-
-  // 共享数据存储
-  const sharedData = {
-    currentCase: null,
-    notificationCount: {
-      org: 0,
-      employee: 0,
-      store: 0,
-      matching: 0,
-      dispute: 0,
-      credit: 0
-    },
-    recentActivities: []
-  };
-
-  // 切换Tab
-  function switchTab(tab) {
-    console.log('switchTab called with:', tab);
-
-    if (!tab || !TAB_PAGES[tab]) {
-      console.error('Invalid tab:', tab);
-      return;
-    }
-
-    currentTab = tab;
-
-    // 更新Tab按钮状态
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.classList.remove('active');
-    });
-    const activeBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
-    if (activeBtn) {
-      activeBtn.classList.add('active');
-    }
-
-    // 加载页面 - 添加时间戳避免缓存
-    const frame = document.getElementById('content-frame');
-    if (frame) {
-      const url = TAB_PAGES[tab] + '?t=' + Date.now();
-      console.log('Setting iframe src to:', url);
-      frame.src = url;
-    } else {
-      console.error('content-frame element not found!');
-    }
-
-    // 发送初始化消息到子页面
-    setTimeout(() => {
-      sendMessageToFrame({
-        type: 'TAB_CHANGE',
-        tab: tab,
-        data: sharedData
-      });
-    }, 100);
-  }
-
-  // 切换角色
-  function switchRole(role) {
-    console.log('switchRole called with:', role);
-
-    if (!role) {
-      console.error('Invalid role:', role);
-      return;
-    }
-
-    currentRole = role;
-
-    // 更新Tab可见性
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      const roles = btn.getAttribute('data-roles');
-      if (roles && roles.split(' ').includes(role)) {
-        btn.style.display = 'flex';
-      } else {
-        btn.style.display = 'none';
-      }
-      btn.classList.remove('active');
-    });
-
-    // 找到第一个可见的Tab并激活
-    const visibleTabs = document.querySelectorAll('.tab-btn[data-roles]:not([style*="display: none"])');
-    if (visibleTabs.length > 0) {
-      const firstTab = visibleTabs[0];
-      firstTab.classList.add('active');
-      const tabId = firstTab.getAttribute('data-tab');
-      if (tabId) {
-        currentTab = tabId;
-        const frame = document.getElementById('content-frame');
-        if (frame) {
-          const url = TAB_PAGES[tabId] + '?t=' + Date.now();
-          frame.src = url;
-        }
-      }
-    }
-
-    // 角色切换时通知子页面
-    setTimeout(() => {
-      sendMessageToFrame({
-        type: 'ROLE_CHANGE',
-        role: role
-      });
-    }, 200);
-  }
-
-  // 向 iframe 发送消息
-  function sendMessageToFrame(message) {
-    const frame = document.getElementById('content-frame');
-    if (frame && frame.contentWindow) {
-      frame.contentWindow.postMessage(message, '*');
-    }
-  }
-
-  // 从 iframe 内调用切换Tab
-  window.switchToTab = function(tab) {
-    if (tab && TAB_PAGES[tab]) {
-      switchTab(tab);
-    }
-  };
-
-  // 从 iframe 发送数据
-  window.sendDataFromFrame = function(data) {
-    if (data.type === 'SET_CURRENT_CASE') {
-      sharedData.currentCase = data.payload;
-      showNotification(`当前记录已更新`, 'success');
-    } else if (data.type === 'ADD_NOTIFICATION') {
-      if (sharedData.notificationCount[data.tab]) {
-        sharedData.notificationCount[data.tab]++;
-      }
-    } else if (data.type === 'ADD_ACTIVITY') {
-      sharedData.recentActivities.unshift({
-        ...data.payload,
-        timestamp: new Date().toISOString()
-      });
-      if (sharedData.recentActivities.length > 10) {
-        sharedData.recentActivities.pop();
-      }
-    }
-  };
-
-  // 显示全局通知
-  function showNotification(message, type = 'info') {
-    const container = document.getElementById('notification-container');
-    const notification = document.createElement('div');
-    notification.className = `global-notification ${type}`;
-
-    const icons = {
-      success: '✓',
-      warning: '⚠',
-      error: '✕',
-      info: 'ℹ'
+  <script>
+    var ROLE_CONFIG = {
+      gov: { label: '人社部门', accent: '#6366f1', tabs: [
+        { id: 'gov-agency', label: '机构管理', icon: 'fa-building-columns' },
+        { id: 'gov-practitioner', label: '从业人员管理', icon: 'fa-id-card' },
+        { id: 'gov-shop', label: '线上服务网店监管', icon: 'fa-store' },
+        { id: 'gov-match', label: '供需撮合', icon: 'fa-handshake' },
+        { id: 'gov-mediation', label: '争议调解', icon: 'fa-scale-balanced' },
+        { id: 'gov-evaluate', label: '诚信评价', icon: 'fa-star' }
+      ]},
+      org: { label: '服务机构', accent: '#8b5cf6', tabs: [
+        { id: 'org-info', label: '机构信息管理', icon: 'fa-building' },
+        { id: 'org-staff', label: '从业人员管理', icon: 'fa-users' },
+        { id: 'org-shop', label: '线上服务网店', icon: 'fa-store' },
+        { id: 'org-match', label: '供需撮合', icon: 'fa-handshake' },
+        { id: 'org-mediation', label: '争议处理', icon: 'fa-file-text' },
+        { id: 'org-evaluate', label: '诚信评价', icon: 'fa-star' }
+      ]},
+      enterprise: { label: '用工企业', accent: '#22c55e', tabs: [
+        { id: 'ent-mall', label: '服务商城', icon: 'fa-shopping-cart' },
+        { id: 'ent-demand', label: '用工需求', icon: 'fa-list-alt' },
+        { id: 'ent-order', label: '订单管理', icon: 'fa-file-invoice' },
+        { id: 'ent-evaluate', label: '评价与维权', icon: 'fa-comments' }
+      ]}
     };
 
-    notification.innerHTML = `
-      <span class="notification-icon">${icons[type] || 'ℹ'}</span>
-      <span>${message}</span>
-    `;
+    var currentRole = 'gov', currentTab = 'gov-agency';
 
-    container.appendChild(notification);
-
-    setTimeout(() => {
-      notification.classList.add('show');
-    }, 10);
-
-    setTimeout(() => {
-      notification.classList.remove('show');
-      setTimeout(() => {
-        notification.remove();
-      }, 300);
-    }, 4000);
-  }
-
-  // 监听来自 iframe 的消息
-  window.addEventListener('message', function(event) {
-    const message = event.data;
-
-    if (message.type === 'REQUEST_SHARED_DATA') {
-      sendMessageToFrame({
-        type: 'SHARED_DATA',
-        data: sharedData
-      });
-    } else if (message.type === 'NOTIFY') {
-      showNotification(message.message, message.level || 'info');
-    } else if (message.type === 'SWITCH_TAB') {
-      switchTab(message.tab);
-    } else if (message.type === 'SET_CASE_DATA') {
-      sharedData.currentCase = message.data;
+    function getContent(role, tabId) {
+      var contentMap = {
+        'gov-agency':function(){return['<div class="section-title">机构管理</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-building-columns"></i></div><div class="stat-value">128</div><div class="stat-label">入驻机构总数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-check-circle"></i></div><div class="stat-value">96.2%</div><div class="stat-label">平均合规率</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-exclamation-triangle"></i></div><div class="stat-value">12</div><div class="stat-label">本月预警数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-red"><i class="fas fa-clock"></i></div><div class="stat-value">3</div><div class="stat-label">年度审核待办</div></div>','</div>','<div class="search-bar"><input type="text" placeholder="搜索机构名称、统一社会信用代码..." style="flex:1;"><button class="action-btn" onclick="showToast(\'搜索\')"><i class="fas fa-search"></i> 搜索</button><button class="action-btn" onclick="showToast(\'新增机构\')"><i class="fas fa-plus"></i> 新增机构</button></div>','<div class="table-wrapper"><table><thead><tr><th>机构名称</th><th>服务类型</th><th>星级</th><th>本月撮合</th><th>满意度</th><th>状态</th><th>操作</th></tr></thead><tbody><tr><td>大连智才人力资源服务有限公司</td><td>劳务派遣、职业中介</td><td>⭐⭐⭐⭐</td><td>128次</td><td>96.5%</td><td><span class="badge badge-green">营业中</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary">更多</button></td></tr><tr><td>大连高新人才服务有限公司</td><td>猎头服务、人事外包</td><td>⭐⭐⭐⭐⭐</td><td>256次</td><td>98.2%</td><td><span class="badge badge-green">营业中</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary">更多</button></td></tr><tr><td>大连滨海人力资源管理有限公司</td><td>灵活用工、人事代理</td><td>⭐⭐⭐</td><td>45次</td><td>88.6%</td><td><span class="badge badge-blue">审核中</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary">更多</button></td></tr><tr><td>大连金普人力资源集团有限公司</td><td>劳务派遣、人事代理</td><td>⭐⭐⭐⭐</td><td>189次</td><td>94.8%</td><td><span class="badge badge-green">营业中</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary">更多</button></td></tr><tr><td>大连中山人才咨询服务中心</td><td>猎头服务、职业咨询</td><td>⭐⭐</td><td>12次</td><td>72.3%</td><td><span class="badge badge-red">异常</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary">更多</button></td></tr></tbody></table></div>'].join('')},
+        'gov-practitioner':function(){return['<div class="section-title">从业人员管理</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-id-card"></i></div><div class="stat-value">12,847</div><div class="stat-label">备案从业人员总数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-certificate"></i></div><div class="stat-value">94.2%</div><div class="stat-label">资质有效率</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-user-plus"></i></div><div class="stat-value">386</div><div class="stat-label">本月新增</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-clock"></i></div><div class="stat-value">128</div><div class="stat-label">到期提醒</div></div>','</div>','<div class="search-bar"><input type="text" placeholder="搜索姓名、身份证号、所属机构..." style="flex:1;"><button class="action-btn" onclick="showToast(\'搜索\')"><i class="fas fa-search"></i> 搜索</button></div>','<div class="filter-tabs"><button class="active" onclick="setFilter(this,\'全部\')">全部</button><button onclick="setFilter(this,\'已备案\')">已备案</button><button onclick="setFilter(this,\'待审核\')">待审核</button><button onclick="setFilter(this,\'已过期\')">已过期</button></div>','<div class="table-wrapper"><table><thead><tr><th>姓名</th><th>身份证号</th><th>所属机构</th><th>职业资格证书</th><th>证书有效期</th><th>备案状态</th><th>操作</th></tr></thead><tbody><tr><td>王建国</td><td>210202******1234</td><td>大连智才人力资源</td><td>人力资源管理师(一级)</td><td>2027-12-31</td><td><span class="badge badge-green">已备案</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary">审核</button></td></tr><tr><td>李芳</td><td>210203******5678</td><td>大连高新人才服务</td><td>劳动关系协调员(二级)</td><td>2028-06-30</td><td><span class="badge badge-green">已备案</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary">审核</button></td></tr><tr><td>张伟</td><td>210204******9012</td><td>大连滨海人力资源管理</td><td>—</td><td>—</td><td><span class="badge badge-blue">待审核</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary">审核</button></td></tr><tr><td>刘洋</td><td>210211******3456</td><td>大连金普人力资源集团</td><td>职业指导师(一级)</td><td>2026-08-15</td><td><span class="badge badge-green">已备案</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary">审核</button></td></tr></tbody></table></div>'].join('')},
+        'gov-shop':function(){return['<div class="section-title">线上服务网店监管</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-store"></i></div><div class="stat-value">86</div><div class="stat-label">已开通网店机构</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-box"></i></div><div class="stat-value">1,247</div><div class="stat-label">上架服务产品</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-plus-circle"></i></div><div class="stat-value">156</div><div class="stat-label">本月新增</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-hourglass-half"></i></div><div class="stat-value">23</div><div class="stat-label">待审核</div></div>','</div>','<div class="search-bar"><input type="text" placeholder="搜索服务名称、所属机构..." style="flex:1;"><button class="action-btn" onclick="showToast(\'搜索\')"><i class="fas fa-search"></i> 搜索</button></div>','<div class="filter-tabs"><button class="active" onclick="setFilter(this,\'全部\')">全部</button><button onclick="setFilter(this,\'待审核\')">待审核</button><button onclick="setFilter(this,\'已上线\')">已上线</button><button onclick="setFilter(this,\'已下架\')">已下架</button></div>','<div class="table-wrapper"><table><thead><tr><th>服务名称</th><th>所属机构</th><th>服务类型</th><th>价格</th><th>销量</th><th>状态</th><th>操作</th></tr></thead><tbody><tr><td>高端人才猎聘服务套餐</td><td>大连智才人力资源</td><td>猎头服务</td><td>¥5,000-50,000</td><td>328单</td><td><span class="badge badge-green">已上线</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-danger">下架</button></td></tr><tr><td>劳务派遣全流程服务</td><td>大连金普人力资源</td><td>劳务派遣</td><td>按人数计费</td><td>856单</td><td><span class="badge badge-green">已上线</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-danger">下架</button></td></tr><tr><td>灵活用工一站式方案</td><td>大连滨海人力资源管理</td><td>灵活用工</td><td>¥2,000-8,000/人月</td><td>156单</td><td><span class="badge badge-blue">待审核</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary">通过</button><button class="action-btn btn-danger">驳回</button></td></tr></tbody></table></div>'].join('')},
+        'gov-match':function(){return['<div class="section-title">供需撮合</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-file-pen"></i></div><div class="stat-value">847</div><div class="stat-label">企业发布需求</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-handshake"></i></div><div class="stat-value">563</div><div class="stat-label">成功匹配</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-chart-line"></i></div><div class="stat-value">76.3%</div><div class="stat-label">匹配成功率</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-calendar"></i></div><div class="stat-value">12</div><div class="stat-label">本月活动</div></div>','</div>','<div class="section-title" style="font-size:18px;">企业需求列表</div>','<div class="table-wrapper"><table><thead><tr><th>需求标题</th><th>企业名称</th><th>需求类型</th><th>发布时间</th><th>匹配机构数</th><th>状态</th><th>操作</th></tr></thead><tbody><tr><td>招聘高级软件工程师10名</td><td>大连华信计算机</td><td>高端人才招聘</td><td>2026-05-18</td><td>6家</td><td><span class="badge badge-blue">匹配中</span></td><td><button class="action-btn" onclick="viewDetail(this)">详情</button><button class="action-btn btn-secondary">推荐机构</button></td></tr><tr><td>生产车间劳务派遣50人</td><td>大连重工装备集团</td><td>劳务派遣</td><td>2026-05-16</td><td>4家</td><td><span class="badge badge-blue">匹配中</span></td><td><button class="action-btn" onclick="viewDetail(this)">详情</button><button class="action-btn btn-secondary">推荐机构</button></td></tr><tr><td>财务结算临时人员20人</td><td>大连万达集团</td><td>灵活用工</td><td>2026-05-14</td><td>3家</td><td><span class="badge badge-green">已推荐</span></td><td><button class="action-btn" onclick="viewDetail(this)">详情</button></td></tr></tbody></table></div>'].join('')},
+        'gov-mediation':function(){return['<div class="section-title">争议调解</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-scale-balanced"></i></div><div class="stat-value">156</div><div class="stat-label">累计争议</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-check-circle"></i></div><div class="stat-value">128</div><div class="stat-label">已调解完成</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-chart-line"></i></div><div class="stat-value">82.1%</div><div class="stat-label">调解成功率</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-exclamation-circle"></i></div><div class="stat-value">28</div><div class="stat-label">待处理</div></div>','</div>','<div class="filter-tabs"><button class="active" onclick="setFilter(this,\'全部\')">全部</button><button onclick="setFilter(this,\'待受理\')">待受理</button><button onclick="setFilter(this,\'调解中\')">调解中</button><button onclick="setFilter(this,\'已完成\')">已完成</button></div>','<div class="table-wrapper"><table><thead><tr><th>争议编号</th><th>申请方</th><th>被申请方</th><th>争议类型</th><th>申请时间</th><th>处理状态</th><th>操作</th></tr></thead><tbody><tr><td>MED2026001</td><td>李明</td><td>大连智才人力资源</td><td>劳务报酬纠纷</td><td>2026-05-15</td><td><span class="badge badge-blue">待受理</span></td><td><button class="action-btn" onclick="showToast(\'已受理\')">受理</button><button class="action-btn" onclick="viewDetail(this)">详情</button></td></tr><tr><td>MED2026002</td><td>大连华信计算机</td><td>大连滨海人力资源管理</td><td>服务质量争议</td><td>2026-05-14</td><td><span class="badge badge-orange">调解中</span></td><td><button class="action-btn" onclick="viewDetail(this)">详情</button></td></tr><tr><td>MED2026003</td><td>赵丽</td><td>大连高新人才服务</td><td>合同违约纠纷</td><td>2026-05-10</td><td><span class="badge badge-green">已完成</span></td><td><button class="action-btn" onclick="viewDetail(this)">详情</button></td></tr></tbody></table></div>'].join('')},
+        'gov-evaluate':function(){return['<div class="section-title">诚信评价</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-star"></i></div><div class="stat-value">42</div><div class="stat-label">5星机构</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-star"></i></div><div class="stat-value">86</div><div class="stat-label">4星机构</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-star"></i></div><div class="stat-value">28</div><div class="stat-label">3星及以下</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-arrows-rotate"></i></div><div class="stat-value">16</div><div class="stat-label">本月信用变更</div></div>','</div>','<div class="section-title" style="font-size:18px;">机构信用列表</div>','<div class="table-wrapper"><table><thead><tr><th>机构名称</th><th>信用评分</th><th>星级</th><th>上次评定时间</th><th>操作</th></tr></thead><tbody><tr><td>大连高新人才服务有限公司</td><td><span style="color:#22c55e;font-weight:600;">98分</span></td><td>⭐⭐⭐⭐⭐</td><td>2026-04-15</td><td><button class="action-btn" onclick="viewDetail(this)">详情</button><button class="action-btn btn-secondary">调整</button></td></tr><tr><td>大连金普人力资源集团有限公司</td><td><span style="color:#22c55e;font-weight:600;">95分</span></td><td>⭐⭐⭐⭐⭐</td><td>2026-04-15</td><td><button class="action-btn" onclick="viewDetail(this)">详情</button><button class="action-btn btn-secondary">调整</button></td></tr><tr><td>大连智才人力资源服务有限公司</td><td><span style="color:#3b82f6;font-weight:600;">92分</span></td><td>⭐⭐⭐⭐</td><td>2026-04-15</td><td><button class="action-btn" onclick="viewDetail(this)">详情</button><button class="action-btn btn-secondary">调整</button></td></tr></tbody></table></div>'].join('')},
+        'org-info':function(){return['<div class="section-title">机构信息管理</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-building"></i></div><div class="stat-value">大连智才人力资源服务有限公司</div><div class="stat-label">本机构名称</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-certificate"></i></div><div class="stat-value">HRFW2024-00128</div><div class="stat-label">许可证号</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-users"></i></div><div class="stat-value">128</div><div class="stat-label">从业人数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-star"></i></div><div class="stat-value">92分</div><div class="stat-label">信用评分</div></div>','</div>','<div class="service-card"><div class="service-title"><i class="fas fa-info-circle"></i> 基本信息</div><div class="service-desc">机构名称：大连智才人力资源服务有限公司<br>统一社会信用代码：91210200MA0XXXXXXX<br>许可证编号：HRFW2024-00128<br>法定代表人：张建国<br>联系电话：0411-84712345<br>注册地址：辽宁省大连市高新区数码路100号<br>注册资本：1000万元<br>服务类型：劳务派遣、职业中介</div><button class="action-btn" onclick="showToast(\'编辑机构信息\')"><i class="fas fa-edit"></i> 编辑基本信息</button></div>'].join('')},
+        'org-staff':function(){return['<div class="section-title">从业人员管理</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-id-card"></i></div><div class="stat-value">42</div><div class="stat-label">从业人员总数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-certificate"></i></div><div class="stat-value">87.4%</div><div class="stat-label">持证率</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-user-plus"></i></div><div class="stat-value">3</div><div class="stat-label">本月新增</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-clock"></i></div><div class="stat-value">5</div><div class="stat-label">到期提醒</div></div>','</div>','<div class="search-bar"><input type="text" placeholder="搜索姓名、岗位..." style="flex:1;"><button class="action-btn" onclick="showToast(\'搜索\')"><i class="fas fa-search"></i> 搜索</button></div>','<div class="table-wrapper"><table><thead><tr><th>姓名</th><th>岗位</th><th>资格证书</th><th>有效期</th><th>状态</th><th>操作</th></tr></thead><tbody><tr><td>李明</td><td>高级猎头顾问</td><td>人力资源管理师(一级)</td><td>2027-12-31</td><td><span class="badge badge-green">在岗</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary">编辑</button></td></tr><tr><td>王芳</td><td>劳务派遣主管</td><td>劳动关系协调员(二级)</td><td>2028-06-30</td><td><span class="badge badge-green">在岗</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary">编辑</button></td></tr><tr><td>张伟</td><td>招聘专员</td><td>职业指导师(三级)</td><td>2026-08-15</td><td><span class="badge badge-green">在岗</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary">编辑</button></td></tr></tbody></table></div>'].join('')},
+        'org-shop':function(){return['<div class="section-title">线上服务网店</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-box"></i></div><div class="stat-value">12</div><div class="stat-label">已上架服务数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-file-invoice"></i></div><div class="stat-value">86</div><div class="stat-label">本月订单数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-clock"></i></div><div class="stat-value">3</div><div class="stat-label">待处理订单</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-star"></i></div><div class="stat-value">4.8</div><div class="stat-label">店铺评分</div></div>','</div>','<div class="filter-tabs"><button class="active" onclick="setFilter(this,\'全部\')">全部</button><button onclick="setFilter(this,\'已上架\')">已上架</button><button onclick="setFilter(this,\'已下架\')">已下架</button><button onclick="setFilter(this,\'待审核\')">待审核</button></div>','<div class="table-wrapper"><table><thead><tr><th>服务名称</th><th>服务类型</th><th>价格</th><th>销量</th><th>状态</th><th>操作</th></tr></thead><tbody><tr><td>高端人才猎聘服务套餐</td><td>猎头服务</td><td>¥5,000-50,000</td><td>328单</td><td><span class="badge badge-green">已上架</span></td><td><button class="action-btn btn-secondary">编辑</button><button class="action-btn btn-danger">下架</button></td></tr><tr><td>劳务派遣全流程服务</td><td>劳务派遣</td><td>按人数计费</td><td>856单</td><td><span class="badge badge-green">已上架</span></td><td><button class="action-btn btn-secondary">编辑</button><button class="action-btn btn-danger">下架</button></td></tr><tr><td>灵活用工一站式方案</td><td>灵活用工</td><td>¥2,000-8,000/人月</td><td>156单</td><td><span class="badge badge-blue">待审核</span></td><td><button class="action-btn btn-secondary">编辑</button></td></tr></tbody></table></div>'].join('')},
+        'org-match':function(){return['<div class="section-title">供需撮合</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-file-pen"></i></div><div class="stat-value">28</div><div class="stat-label">可匹配需求数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-gavel"></i></div><div class="stat-value">12</div><div class="stat-label">已投标数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-check-circle"></i></div><div class="stat-value">6</div><div class="stat-label">中标数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-chart-line"></i></div><div class="stat-value">50%</div><div class="stat-label">匹配成功率</div></div>','</div>','<div class="section-title" style="font-size:18px;">可匹配的需求</div>','<div class="table-wrapper"><table><thead><tr><th>需求标题</th><th>发布企业</th><th>需求类型</th><th>预算</th><th>发布时间</th><th>操作</th></tr></thead><tbody><tr><td>招聘高级软件工程师10名</td><td>大连华信计算机</td><td>高端人才招聘</td><td>面议</td><td>2026-05-18</td><td><button class="action-btn" onclick="viewDetail(this)">查看详情</button><button class="action-btn btn-secondary">投标</button></td></tr><tr><td>生产车间劳务派遣50人</td><td>大连重工装备集团</td><td>劳务派遣</td><td>按人数计费</td><td>2026-05-16</td><td><button class="action-btn" onclick="viewDetail(this)">查看详情</button><button class="action-btn btn-secondary">投标</button></td></tr><tr><td>财务结算临时人员20人</td><td>大连万达集团</td><td>灵活用工</td><td>¥3,000-5,000/人月</td><td>2026-05-14</td><td><button class="action-btn" onclick="viewDetail(this)">查看详情</button><button class="action-btn btn-secondary">投标</button></td></tr></tbody></table></div>'].join('')},
+        'org-mediation':function(){return['<div class="section-title">争议处理</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-scale-balanced"></i></div><div class="stat-value">8</div><div class="stat-label">涉及本机构争议数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-spinner"></i></div><div class="stat-value">3</div><div class="stat-label">调解中</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-check-circle"></i></div><div class="stat-value">5</div><div class="stat-label">已完成</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-chart-line"></i></div><div class="stat-value">62.5%</div><div class="stat-label">调解成功率</div></div>','</div>','<div class="filter-tabs"><button class="active" onclick="setFilter(this,\'全部\')">全部</button><button onclick="setFilter(this,\'调解中\')">调解中</button><button onclick="setFilter(this,\'已完成\')">已完成</button></div>','<div class="table-wrapper"><table><thead><tr><th>争议编号</th><th>申请方</th><th>争议类型</th><th>申请时间</th><th>处理状态</th><th>操作</th></tr></thead><tbody><tr><td>MED2026001</td><td>李明</td><td>劳务报酬纠纷</td><td>2026-05-15</td><td><span class="badge badge-orange">调解中</span></td><td><button class="action-btn" onclick="viewDetail(this)">详情</button><button class="action-btn btn-secondary">回应</button></td></tr><tr><td>MED2026002</td><td>大连华信计算机</td><td>服务质量争议</td><td>2026-05-14</td><td><span class="badge badge-orange">调解中</span></td><td><button class="action-btn" onclick="viewDetail(this)">详情</button><button class="action-btn btn-secondary">回应</button></td></tr><tr><td>MED2026003</td><td>赵丽</td><td>合同违约纠纷</td><td>2026-05-10</td><td><span class="badge badge-green">已完成</span></td><td><button class="action-btn" onclick="viewDetail(this)">详情</button></td></tr></tbody></table></div>'].join('')},
+        'org-evaluate':function(){return['<div class="section-title">诚信评价</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-star"></i></div><div class="stat-value">92</div><div class="stat-label">当前信用评分</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-star"></i></div><div class="stat-value">⭐⭐⭐⭐</div><div class="stat-label">星级</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-ranking-star"></i></div><div class="stat-value">第 12 名</div><div class="stat-label">全市排名</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-calendar"></i></div><div class="stat-value">2026-07-15</div><div class="stat-label">评级有效期</div></div>','</div>','<div class="service-card"><div class="service-title"><i class="fas fa-sliders"></i> 评分构成</div><div class="service-desc">基础分：94分（初始80+资质10+年限4）<br>加分项：+8分（公益招聘3+无投诉5）<br>减分项：-10分（投诉5+年报延迟5）<br><strong>最终得分：92分</strong></div></div>','<div class="section-title" style="font-size:18px;">评定历史</div>','<div class="table-wrapper"><table><thead><tr><th>季度</th><th>评分</th><th>星级</th><th>评定时间</th></tr></thead><tbody><tr><td>2026年第一季度</td><td><span style="color:#8b5cf6;font-weight:600;">92分</span></td><td>⭐⭐⭐⭐</td><td>2026-04-15</td></tr><tr><td>2025年第四季度</td><td><span style="color:#8b5cf6;font-weight:600;">88分</span></td><td>⭐⭐⭐⭐</td><td>2026-01-15</td></tr><tr><td>2025年第三季度</td><td><span style="color:#8b5cf6;font-weight:600;">85分</span></td><td>⭐⭐⭐</td><td>2025-10-20</td></tr></tbody></table></div>'].join('')},
+        'ent-mall':function(){return['<div class="section-title">服务商城</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-store"></i></div><div class="stat-value">86</div><div class="stat-label">入驻机构数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-box"></i></div><div class="stat-value">1,247</div><div class="stat-label">可选购服务数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-handshake"></i></div><div class="stat-value">5,632</div><div class="stat-label">累计成交数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-star"></i></div><div class="stat-value">96.8%</div><div class="stat-label">好评率</div></div>','</div>','<div class="search-bar"><input type="text" placeholder="搜索服务名称、机构名称..." style="flex:1;"><button class="action-btn" onclick="showToast(\'搜索\')"><i class="fas fa-search"></i> 搜索</button></div>','<div class="filter-tabs"><button class="active" onclick="setFilter(this,\'全部\')">全部</button><button onclick="setFilter(this,\'劳务派遣\')">劳务派遣</button><button onclick="setFilter(this,\'猎头服务\')">猎头服务</button><button onclick="setFilter(this,\'人事外包\')">人事外包</button><button onclick="setFilter(this,\'灵活用工\')">灵活用工</button></div>','<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">','<div class="service-card"><div class="service-title">高端人才猎聘服务套餐</div><div class="service-desc">大连智才人力资源服务有限公司</div><div class="service-meta"><span class="service-price">¥5,000-50,000</span><span class="rating-stars">⭐⭐⭐⭐</span></div><button class="action-btn" onclick="viewDetail(this)">查看详情</button></div>','<div class="service-card"><div class="service-title">劳务派遣全流程服务</div><div class="service-desc">大连金普人力资源集团有限公司</div><div class="service-meta"><span class="service-price">按人数计费</span><span class="rating-stars">⭐⭐⭐⭐</span></div><button class="action-btn" onclick="viewDetail(this)">查看详情</button></div>','<div class="service-card"><div class="service-title">灵活用工一站式方案</div><div class="service-desc">大连滨海人力资源管理有限公司</div><div class="service-meta"><span class="service-price">¥2,000-8,000/人月</span><span class="rating-stars">⭐⭐⭐</span></div><button class="action-btn" onclick="viewDetail(this)">查看详情</button></div>','<div class="service-card"><div class="service-title">企业人事外包托管</div><div class="service-desc">大连高新人才服务有限公司</div><div class="service-meta"><span class="service-price">¥3,000-15,000/月</span><span class="rating-stars">⭐⭐⭐⭐⭐</span></div><button class="action-btn" onclick="viewDetail(this)">查看详情</button></div>','</div>'].join('')},
+        'ent-demand':function(){return['<div class="section-title">用工需求</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-file-pen"></i></div><div class="stat-value">12</div><div class="stat-label">已发布需求数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-hourglass-half"></i></div><div class="stat-value">5</div><div class="stat-label">匹配中</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-handshake"></i></div><div class="stat-value">6</div><div class="stat-label">已匹配成功</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-star"></i></div><div class="stat-value">1</div><div class="stat-label">待评价</div></div>','</div>','<button class="action-btn" onclick="showToast(\'发布新需求\')" style="margin-bottom:16px;"><i class="fas fa-plus"></i> 发布新需求</button>','<div class="table-wrapper"><table><thead><tr><th>需求标题</th><th>需求类型</th><th>发布时间</th><th>匹配状态</th><th>操作</th></tr></thead><tbody><tr><td>招聘高级前端工程师5名</td><td>高端人才招聘</td><td>2026-05-18</td><td><span class="badge badge-blue">匹配中</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-danger">取消</button></td></tr><tr><td>生产车间操作工30人</td><td>劳务派遣</td><td>2026-05-16</td><td><span class="badge badge-green">已匹配成功</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button></td></tr><tr><td>临时客服人员15名</td><td>灵活用工</td><td>2026-05-14</td><td><span class="badge badge-blue">匹配中</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-danger">取消</button></td></tr></tbody></table></div>'].join('')},
+        'ent-order':function(){return['<div class="section-title">订单管理</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-file-invoice"></i></div><div class="stat-value">48</div><div class="stat-label">总订单数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-spinner"></i></div><div class="stat-value">12</div><div class="stat-label">执行中</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-check-circle"></i></div><div class="stat-value">32</div><div class="stat-label">已完成</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-purple"><i class="fas fa-star"></i></div><div class="stat-value">4</div><div class="stat-label">待评价</div></div>','</div>','<div class="filter-tabs"><button class="active" onclick="setFilter(this,\'全部\')">全部</button><button onclick="setFilter(this,\'执行中\')">执行中</button><button onclick="setFilter(this,\'已完成\')">已完成</button><button onclick="setFilter(this,\'待确认\')">待确认</button></div>','<div class="table-wrapper"><table><thead><tr><th>订单编号</th><th>服务名称</th><th>服务机构</th><th>金额</th><th>下单时间</th><th>状态</th><th>操作</th></tr></thead><tbody><tr><td>ORD20260501</td><td>高端人才猎聘服务套餐</td><td>大连智才人力资源</td><td>¥25,000</td><td>2026-05-18</td><td><span class="badge badge-green">已完成</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary">评价</button></td></tr><tr><td>ORD20260502</td><td>劳务派遣全流程服务</td><td>大连金普人力资源</td><td>¥8,000/月</td><td>2026-05-16</td><td><span class="badge badge-orange">执行中</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-danger">取消</button></td></tr><tr><td>ORD20260503</td><td>灵活用工一站式方案</td><td>大连滨海人力资源管理</td><td>¥6,000/人月</td><td>2026-05-15</td><td><span class="badge badge-blue">待确认</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button><button class="action-btn btn-secondary">确认完成</button></td></tr></tbody></table></div>'].join('')},
+        'ent-evaluate':function(){return['<div class="section-title">评价与维权</div>','<div class="stats-grid">','<div class="stat-card"><div class="stat-icon stat-icon-blue"><i class="fas fa-star"></i></div><div class="stat-value">86</div><div class="stat-label">累计评价数</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-thumbs-up"></i></div><div class="stat-value">94.2%</div><div class="stat-label">好评率</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-orange"><i class="fas fa-scale-balanced"></i></div><div class="stat-value">3</div><div class="stat-label">维权中</div></div>','<div class="stat-card"><div class="stat-icon stat-icon-green"><i class="fas fa-check-circle"></i></div><div class="stat-value">12</div><div class="stat-label">已完成维权</div></div>','</div>','<div class="section-title" style="font-size:18px;">服务评价</div>','<div class="table-wrapper"><table><thead><tr><th>服务名称</th><th>服务机构</th><th>完成时间</th><th>评价内容</th><th>操作</th></tr></thead><tbody><tr><td>高端人才猎聘服务套餐</td><td>大连智才人力资源</td><td>2026-05-18</td><td><span class="badge badge-purple">待评价</span></td><td><button class="action-btn" onclick="showToast(\'评价功能\')"><i class="fas fa-star"></i> 去评价</button></td></tr><tr><td>职业生涯规划咨询</td><td>大连中山人才咨询中心</td><td>2026-05-12</td><td><span class="badge badge-purple">待评价</span></td><td><button class="action-btn" onclick="showToast(\'评价功能\')"><i class="fas fa-star"></i> 去评价</button></td></tr><tr><td>企业人事外包托管</td><td>大连高新人才服务</td><td>2026-05-08</td><td><span style="color:#22c55e;">⭐⭐⭐⭐ 服务专业，响应及时</span></td><td>已评价</td></tr></tbody></table></div>','<div class="section-title" style="font-size:18px;margin-top:24px;">维权申请</div>','<button class="action-btn" onclick="showToast(\'申请维权\')" style="margin-bottom:16px;"><i class="fas fa-gavel"></i> 申请维权</button>','<div class="table-wrapper"><table><thead><tr><th>维权编号</th><th>涉及服务</th><th>争议类型</th><th>申请时间</th><th>处理状态</th><th>操作</th></tr></thead><tbody><tr><td>CPL2026001</td><td>灵活用工一站式方案</td><td>服务质量争议</td><td>2026-05-16</td><td><span class="badge badge-orange">调解中</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button></td></tr><tr><td>CPL2026002</td><td>劳务派遣全流程服务</td><td>费用争议</td><td>2026-05-10</td><td><span class="badge badge-green">已完成维权</span></td><td><button class="action-btn" onclick="viewDetail(this)">查看</button></td></tr></tbody></table></div>'].join('')}
+      };
+      return contentMap[tabId] || function(){return '<div class="section-title">模块加载中...</div>';};
     }
-  });
 
-  // 页面加载完成后初始化
-  document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOMContentLoaded triggered');
-
-    const params = new URLSearchParams(window.location.search);
-    const tab = params.get('tab');
-
-    if (tab && TAB_PAGES[tab]) {
-      currentTab = tab;
-      // 使用时间戳避免缓存
-      document.getElementById('content-frame').src = TAB_PAGES[tab] + '?t=' + Date.now();
-
-      // 更新Tab按钮状态
-      document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      const activeBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
-      if (activeBtn) {
-        activeBtn.classList.add('active');
-      }
+    function renderTabs(){
+      var tabs = ROLE_CONFIG[currentRole].tabs;
+      var bar = document.getElementById('tabBar');
+      bar.innerHTML = tabs.map(function(t){return '<button class="tab-btn'+(t.id===currentTab?' active':'')+'" onclick="switchTab(\''+t.id+'\')"><i class="fas '+t.icon+'"></i><span>'+t.label+'</span></button>';}).join('');
     }
-  });
 
-  // 暴露给子页面的接口
-  window.platform = {
-    switchTab: switchTab,
-    showNotification: showNotification,
-    sendMessage: sendMessageToFrame,
-    sharedData: sharedData
-  };
-
-  // 主题切换功能
-  function toggleTheme() {
-    const html = document.documentElement;
-    const currentTheme = html.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-    html.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateThemeToggle(newTheme);
-
-    // 向 iframe 发送主题切换消息
-    const frame = document.getElementById('content-frame');
-    if (frame && frame.contentWindow) {
-      frame.contentWindow.postMessage({ type: 'THEME_CHANGE', theme: newTheme }, '*');
+    function renderContent(){
+      document.getElementById('mainContentInner').innerHTML = getContent(currentRole, currentTab)();
     }
-  }
 
-  function updateThemeToggle(theme) {
-    const icon = document.querySelector('.theme-icon');
-    const text = document.querySelector('.theme-text');
+    function switchTab(tabId){ currentTab = tabId; renderTabs(); renderContent(); }
+    function switchRole(role){ currentRole = role; currentTab = ROLE_CONFIG[role].tabs[0].id; renderTabs(); renderContent(); }
+    function setFilter(btn, label){ var tbs=btn.parentElement.querySelectorAll('button'); tbs.forEach(function(t){t.classList.remove('active');}); btn.classList.add('active'); showToast('筛选: '+label); }
 
-    if (!icon || !text) return;
-
-    if (theme === 'dark') {
-      icon.textContent = '☀️';
-      text.textContent = '浅色';
-    } else {
-      icon.textContent = '🌙';
-      text.textContent = '深色';
+    function viewDetail(btn){
+      var row = btn; while(row&&row.tagName!=='TR')row=row.parentElement;
+      var cells = row ? row.querySelectorAll('td') : [];
+      var title = cells[0] ? cells[0].textContent : '详情';
+      openModal(title, '<div style="padding:8px 0;">' + Array.from(cells).map(function(c,i){return '<div style="padding:6px 0;border-bottom:1px solid var(--border-color);"><span style="color:var(--text-secondary);">字段'+(i+1)+':</span> <span style="margin-left:12px;">'+c.textContent+'</span></div>';}).join('') + '</div>');
     }
-  }
 
-  document.addEventListener('DOMContentLoaded', function() {
-    const savedTheme = localStorage.getItem('theme');
-    const theme = savedTheme || 'dark';
+    function openModal(title, body){
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalBody').innerHTML = body;
+      document.getElementById('modalFooter').innerHTML = '<button class="action-btn" onclick="closeModal()">关闭</button>';
+      document.getElementById('modalOverlay').classList.add('show');
+    }
 
-    document.documentElement.setAttribute('data-theme', theme);
-    updateThemeToggle(theme);
-  });
-</script>
+    function closeModal(){ document.getElementById('modalOverlay').classList.remove('show'); }
 
+    function showToast(msg){
+      var t = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      t.classList.add('show');
+      setTimeout(function(){ t.classList.remove('show'); }, 3000);
+    }
+
+    function toggleTheme(){
+      var html = document.documentElement;
+      var theme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      document.querySelector('.theme-icon').textContent = theme==='dark'?'☀️':'🌙';
+      document.querySelector('.theme-text').textContent = theme==='dark'?'浅色':'深色';
+      showToast('已切换到'+(theme==='dark'?'深色':'浅色')+'主题');
+    }
+
+    document.addEventListener('DOMContentLoaded',function(){
+      var saved = localStorage.getItem('theme')||'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+      if(saved==='dark'){document.querySelector('.theme-icon').textContent='☀️';document.querySelector('.theme-text').textContent='浅色';}
+      renderTabs();
+      renderContent();
+    });
+  </script>
 </body>
 </html>
